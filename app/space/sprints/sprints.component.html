@@ -1,0 +1,7 @@
+<ng-container *ngIf="space">
+    <jnt-menu>
+        <jnt-menu-item *ngFor="let sprint of space.sprints"
+                       [link]="sprint.id" [title]="sprint.title"></jnt-menu-item>
+    </jnt-menu>
+</ng-container>
+<router-outlet></router-outlet>

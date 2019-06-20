@@ -1,0 +1,19 @@
+<ul *ngIf="errors.length" class="unstyled">
+    <li *ngFor="let e of errors" class="error">
+        <ng-container *ngIf="e.actor">
+            <jnt-label [label]="e.term" [color]="ui.colors.red"></jnt-label>
+            term not found in <u>actor</u> <b>({{e.actor.id}})</b>,
+            inside the property <u>features</u><b>({{e.feature.id}})</b>
+        </ng-container>
+        <ng-container *ngIf="e.epic">
+            <jnt-label [label]="e.term" [color]="ui.colors.red"></jnt-label>
+            term not found in <u>epic</u> <b>({{e.epic.id}})</b>,
+            inside the property <u>features</u><b>({{e.feature.id}})</b>
+        </ng-container>
+        <ng-container *ngIf="e.sprint">
+            <jnt-label [label]="e.term" [color]="ui.colors.red"></jnt-label>
+            term not found in <u>sprint</u> <b>({{e.sprint.title}})</b>,
+            inside the property <u>features</u><b>({{e.feature.id}})</b>
+        </ng-container>
+    </li>
+</ul>

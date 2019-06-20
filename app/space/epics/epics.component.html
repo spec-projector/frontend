@@ -1,0 +1,17 @@
+<ng-container *ngIf="space">
+    <jnt-stack>
+        <ng-container *ngFor="let epic of space.epics">
+            <h1>{{epic.title}}</h1>
+            <jnt-block>
+                <ol>
+                    <li *ngFor="let feature of epic.features;let i = index">
+                        {{feature.actor?.name}}
+                        <app-feature [feature]="feature">
+
+                        </app-feature>
+                    </li>
+                </ol>
+            </jnt-block>
+        </ng-container>
+    </jnt-stack>
+</ng-container>

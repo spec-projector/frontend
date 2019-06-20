@@ -1,0 +1,28 @@
+<jnt-app-main>
+    <jnt-app-aside #aside>
+        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+            <jnt-menu-item link="sprints" title="Sprints ({{space?.sprints.length}})"></jnt-menu-item>
+            <jnt-menu-item link="epics" title="Epics ({{space?.epics.length}})"></jnt-menu-item>
+            <jnt-menu-item link="actors" title="Features ({{space?.actors.length}})"></jnt-menu-item>
+            <jnt-menu-item link="terms" title="Terms ({{space?.terms.length}})"></jnt-menu-item>
+            <jnt-menu-item link="packages" title="Model ({{space?.packages.length}})"></jnt-menu-item>
+            <jnt-menu-item link="validate" title="Validate ({{errors.length}})"></jnt-menu-item>
+        </jnt-menu>
+    </jnt-app-aside>
+    <jnt-app-content [aside]="aside">
+        <jnt-app-body>
+            <jnt-app-sub-header (burger)="aside.toggle()">
+                <jnt-container [fluid]="true">
+                    <jnt-breadcrumb></jnt-breadcrumb>
+                </jnt-container>
+            </jnt-app-sub-header>
+            <div app-content>
+                <router-outlet></router-outlet>
+            </div>
+        </jnt-app-body>
+        <jnt-app-footer>
+            <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
+        </jnt-app-footer>
+
+    </jnt-app-content>
+</jnt-app-main>

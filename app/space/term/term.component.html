@@ -1,0 +1,24 @@
+<form [formGroup]="form" (dblclick)="edit()" (clickOutside)="normal()">
+    <div term id="{{term.name}}">
+        <ng-container [ngSwitch]="mode">
+            <ng-container *ngSwitchCase="editMode.normal">
+                <span>{{term.name}}</span>
+            </ng-container>
+            <ng-container *ngSwitchCase="editMode.edit">
+                <input #name formControlName="name">
+            </ng-container>
+        </ng-container>
+    </div>
+    <div gutter>&minus;</div>
+    <div descripton>
+        <ng-container [ngSwitch]="mode">
+            <ng-container *ngSwitchCase="editMode.normal">
+                <app-tokens [tokens]="term.description"></app-tokens>
+            </ng-container>
+            <ng-container *ngSwitchCase="editMode.edit">
+                <textarea (clickOutside)="normal()" #description formControlName="description"></textarea>
+            </ng-container>
+        </ng-container>
+    </div>
+</form>
+

@@ -1,0 +1,59 @@
+<form [formGroup]="form" (mouseenter)="mode = editMode.edit"
+      (mouseleave)="mode = editMode.view">
+    <header>
+        <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+            <input fitWidth title formControlName="title">
+            <div naming>
+                <label [attr.checked]="autoName.value">
+                    <input type="checkbox" formControlName="autoName">
+                </label>
+                <input fitWidth name formControlName="name">
+            </div>
+        </ng-container>
+    </header>
+
+    <ng-template #viewHeader>
+        <h1 title>{{field.title}}</h1>
+        <div naming>
+            <label [attr.checked]="autoName.value">
+            </label>
+            <h2 name>{{field.name}}</h2>
+        </div>
+    </ng-template>
+    <div [attr.typing]="typeControl.value">
+        <ng-container *ngIf="mode == editMode.edit; else viewTyping">
+            <select type formControlName="type">
+                <option [value]="fieldType.string">string</option>
+                <option [value]="fieldType.number">number</option>
+                <option [value]="fieldType.date">date</option>
+                <option [value]="fieldType.reference">reference</option>
+                <option [value]="fieldType.array">array</option>
+            </select>
+            <br>
+            <ng-container *ngIf="typeControl.value == fieldType.reference || typeControl.value == fieldType.array">
+                <select formControlName="reference">
+                    <option *ngFor="let e of (field.entity.package.space.packages | groupEntities)"
+                            [value]="e.id">{{e.package != field.entity.package ? e.package.title + ' / ' :
+                        ''}}{{e.title}}
+                    </option>
+                </select>
+            </ng-container>
+        </ng-container>
+        <ng-template #viewTyping>
+            <ng-container [ngSwitch]="field.type">
+                <ng-container *ngSwitchCase="fieldType.reference">
+                    &rarr;
+                    <jnt-link>{{field.links.reference?.title}}</jnt-link>
+                </ng-container>
+                <ng-container *ngSwitchCase="fieldType.array">
+                    &rarr; [
+                    <jnt-link>{{field.links.reference?.title}}</jnt-link>
+                    , ...]
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    <small>{{field.type}}</small>
+                </ng-container>
+            </ng-container>
+        </ng-template>
+    </div>
+</form>

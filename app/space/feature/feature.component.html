@@ -1,0 +1,128 @@
+<ng-container *ngIf="feature">
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+        <button (click)="opened = !opened">
+            <jnt-icon [icon]="opened ? ui.icons.close : ui.icons.plus"></jnt-icon>
+        </button>
+        <b>I want</b>
+        <app-tokens [tokens]="feature.title"></app-tokens>
+        <jnt-label *ngIf="feature.endpoints.length" label="API"></jnt-label>
+        <app-issue *ngFor="let issue of feature.issues" [issue]="issue"></app-issue>
+
+    </jnt-stack>
+    <ng-container *ngIf="opened">
+        <table *ngIf="feature.story.length">
+            <tr *ngFor="let story of feature.story;let i = index">
+                <td valign="top">{{i + 1}}.</td>
+                <ng-container *ngIf="story.can;else see">
+                    <td valign="top" style="white-space: nowrap"><b>I can</b></td>
+                    <td>
+                        <app-tokens [tokens]="story.can"></app-tokens>
+                    </td>
+                </ng-container>
+
+                <ng-template #see>
+                    <td valign="top" style="white-space: nowrap"><b>I see</b></td>
+                    <td>
+                        <app-tokens [tokens]="story.see"></app-tokens>
+                    </td>
+                </ng-template>
+            </tr>
+        </table>
+        <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
+                    text="Copy to clipboard"></jnt-button>
+        <div #summary summary style="display:none">
+            <div>As a 👦 **{{feature.actor?.name}}** I want:
+                <ng-container
+                        *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>
+            </div>
+            <div *ngFor="let story of feature.story;let i = index">
+                <ng-container *ngIf="story.can;else see">1. **I can:**
+                    <ng-container
+                            *ngTemplateOutlet="tokensTemplate; context: {tokens: story.can}"></ng-container>
+                </ng-container>
+                <ng-template #see>1. **I see:**
+                    <ng-container
+                            *ngTemplateOutlet="tokensTemplate; context: {tokens: story.see}"></ng-container>
+                </ng-template>
+            </div>
+            <ng-container *ngIf="feature.frames.length">
+                <br>
+                <div>**🚀 Design**</div>
+                <div *ngFor="let frame of feature.frames">
+                    * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="feature.endpoints.length">
+                <br>
+                <div>**⛳ API**</div>
+                <div *ngFor="let endpoint of feature.endpoints">
+                    * {{endpoint.title}} {{endpoint.url}}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="feature.issues.length">
+                <br>
+                <div>**💈 Issues**</div>
+                <div *ngFor="let issue of feature.issues">
+                    * {{issue.label}} {{issue.link}}
+                </div>
+            </ng-container>
+            <ng-container *ngIf="(feature | featureTerms).length">
+                <br>
+                <div>**❓Terms**</div>
+                <div *ngFor="let term of (feature | featureTerms)">
+                    * **{{term.name}}** &mdash;
+                    <ng-container
+                            *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}"></ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
+            <thead>
+            <th style="width:35%">Frontend</th>
+            <th width="10"></th>
+            <th style="width:30%">API</th>
+            <th width="10"></th>
+            <th style="width:35%">Backend</th>
+            </thead>
+            <tr>
+                <td>
+                    <jnt-stack frames [type]="ui.stack.type.horizontal">
+                        <a *ngFor="let frame of feature.frames"
+                           href="http://figma.com/file/{{frame.file}}?node-id={{frame.node}}"
+                           target="_blank">
+                            <ng-container
+                                    *ngIf="this.storage.exists(frame.file, frame.node);else loading">
+                                <img width="200"
+                                     [src]="this.storage.get(frame.file, frame.node)['preview']">
+                            </ng-container>
+                            <ng-template #loading>
+                                {{preview(frame.file, frame.node)}}
+                            </ng-template>
+                        </a>
+                    </jnt-stack>
+                </td>
+                <td>&rarr;</td>
+                <td>
+                    <jnt-label api *ngFor="let endpoint of feature.endpoints"
+                               [label]="endpoint.title"
+                               (click)="goto(endpoint.url)"></jnt-label>
+                </td>
+                <td>&larr;</td>
+                <td>
+                    <app-entity *ngFor="let entity of feature.entities"
+                                [entity]="entity"></app-entity>
+                </td>
+            </tr>
+        </table>
+    </ng-container>
+</ng-container>
+
+<ng-template #tokensTemplate let-tokens="tokens">
+    <ng-container *ngFor="let t of tokens">
+        <ng-container [ngSwitch]="t | getTokenType">
+            <ng-container *ngSwitchCase="tokenType.term"> **{{t.term}}**</ng-container>
+            <ng-container *ngSwitchCase="tokenType.accent"> {{t.text}}</ng-container>
+            <ng-container *ngSwitchDefault> {{t.text}}</ng-container>
+        </ng-container>
+    </ng-container>
+</ng-template>

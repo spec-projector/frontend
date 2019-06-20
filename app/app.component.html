@@ -1,0 +1,16 @@
+<jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
+
+<jnt-app-layout #layout>
+    <jnt-app-header [fixed]="true">
+        <ng-template #logo>
+            <img src="/assets/images/logo-white.svg" height="45">
+        </ng-template>
+        <ng-template #topMenu>
+            <jnt-menu>
+                <jnt-menu-item link="projects" title="Projects"></jnt-menu-item>
+                <jnt-menu-item link="import" title="Import"></jnt-menu-item>
+            </jnt-menu>
+        </ng-template>
+    </jnt-app-header>
+    <router-outlet></router-outlet>
+</jnt-app-layout>

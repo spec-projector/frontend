@@ -1,0 +1,17 @@
+<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small" [wrap]="ui.flex.wrap.wrap">
+    <ng-container *ngFor="let t of tokens">
+        <ng-container [ngSwitch]="t | getTokenType">
+            <ng-container *ngSwitchCase="tokenType.term">
+                <jnt-link term source="/terms">
+                    {{t.term}}
+                </jnt-link>
+            </ng-container>
+            <ng-container *ngSwitchCase="tokenType.accent">
+                <span accent>{{t.text}}</span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+                <span>{{t.text}}</span>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</jnt-stack>

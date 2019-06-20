@@ -1,0 +1,32 @@
+<ng-container *ngIf="sprint">
+    <h1>{{sprint.title}}</h1>
+    <h2>Features</h2>
+    <jnt-stack>
+        <ng-container *ngFor="let group of (sprint.features | groupFeatures)">
+            <h3>{{group.epic?.title}}</h3>
+            <jnt-block>
+
+                <ol>
+                    <li *ngFor="let feature of group.features">
+                        <small>{{feature.actor?.name}}</small>
+                        <app-feature [feature]="feature"></app-feature>
+                    </li>
+                </ol>
+            </jnt-block>
+        </ng-container>
+    </jnt-stack>
+
+    <ng-container *ngIf="sprint.improvements.length">
+        <h2>Improvements</h2>
+        <ol improvements>
+            <li *ngFor="let improvement of sprint.improvements">
+                <jnt-stack [type]="ui.stack.type.horizontal">
+                    <app-tokens [tokens]="improvement.title"></app-tokens>
+                    <app-issue *ngFor="let issue of improvement.issues" [issue]="issue"></app-issue>
+                </jnt-stack>
+                <small>{{improvement.feature.actor?.name}}</small>
+                <app-feature [feature]="improvement.feature"></app-feature>
+            </li>
+        </ol>
+    </ng-container>
+</ng-container>

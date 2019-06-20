@@ -1,0 +1,48 @@
+<form [formGroup]="form">
+    <header (mouseenter)="mode = editMode.edit"
+            (mouseleave)="mode = editMode.view">
+        <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+            <input fitWidth title formControlName="title">
+            <div naming>
+                <label [attr.checked]="autoName.value">
+                    <input type="checkbox" formControlName="autoName">
+                </label>
+                <input fitWidth name formControlName="name">
+            </div>
+        </ng-container>
+    </header>
+
+    <ng-template #viewHeader>
+        <h1 title>{{package.title}}</h1>
+        <div naming>
+            <label [attr.checked]="autoName.value">
+            </label>
+            <h2 name>{{package.name}}</h2>
+        </div>
+    </ng-template>
+    <ul [dndDropzone]="['entity']" dndEffectAllowed="copyMove" (dndDrop)="moveEntity($event)">
+        <li placeholder dndPlaceholderRef></li>
+        <li *ngFor="let entity of package.entities; let i = index;"
+            [dndDraggable]="i"
+            dndType="entity">
+            <jnt-stack actions [gutter]="ui.stack.gutter.tiny">
+                <jnt-button handle dndHandle
+                            [icon]="ui.icons.expand"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary">
+                </jnt-button>
+                <jnt-button [icon]="ui.icons.delete"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary"
+                            (click)="deleteEntity(i)">
+                </jnt-button>
+            </jnt-stack>
+            <app-entity [entity]="entity"></app-entity>
+        </li>
+        <li add>
+            <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+                        [scheme]="ui.schemes.secondary"
+                        (click)="addEntity()"></jnt-button>
+        </li>
+    </ul>
+</form>

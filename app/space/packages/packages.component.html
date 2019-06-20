@@ -1,0 +1,26 @@
+<jnt-stack [gutter]="ui.stack.gutter.large">
+    <jnt-button [icon]="ui.icons.plus"
+                [size]="ui.sizes.tiny"
+                [scheme]="ui.schemes.secondary"
+                (click)="addPackage()"></jnt-button>
+    <ul [dndDropzone]="['package']" dndEffectAllowed="copyMove" (dndDrop)="movePackage($event)">
+        <li placeholder dndPlaceholderRef></li>
+        <li *ngFor="let package of space.packages; let i = index;"
+            [dndDraggable]="i"
+            dndType="package">
+            <jnt-stack actions [gutter]="ui.stack.gutter.small">
+                <jnt-button dndHandle
+                            [icon]="ui.icons.expand"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary">
+                </jnt-button>
+                <jnt-button [icon]="ui.icons.delete"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary"
+                            (click)="deletePackage(i)">
+                </jnt-button>
+            </jnt-stack>
+            <app-package [package]="package"></app-package>
+        </li>
+    </ul>
+</jnt-stack>

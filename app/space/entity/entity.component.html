@@ -1,0 +1,49 @@
+<form [formGroup]="form">
+    <header (mouseenter)="mode = editMode.edit"
+            (mouseleave)="mode = editMode.view">
+        <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+            <input fitWidth title formControlName="title">
+            <div naming>
+                <label [attr.checked]="autoName.value">
+                    <input type="checkbox" formControlName="autoName">
+                </label>
+                <input fitWidth name formControlName="name">
+            </div>
+        </ng-container>
+    </header>
+
+    <ng-template #viewHeader>
+        <h1 title>{{entity.title}}</h1>
+        <div naming>
+            <label [attr.checked]="autoName.value">
+            </label>
+            <h2 name>{{entity.name}}</h2>
+        </div>
+    </ng-template>
+
+    <ul [dndDropzone]="['entity-field']" dndEffectAllowed="copyMove" (dndDrop)="moveField($event)">
+        <li placeholder dndPlaceholderRef></li>
+        <li *ngFor="let field of entity.fields; let i = index;"
+            [dndDraggable]="{index: i, field: field.id}"
+            dndType="entity-field">
+            <jnt-stack actions [gutter]="ui.stack.gutter.tiny"
+                       [type]="ui.stack.type.horizontal">
+                <jnt-button handle dndHandle
+                            [icon]="ui.icons.expand"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary">
+                </jnt-button>
+                <jnt-button [icon]="ui.icons.delete"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary"
+                            (click)="deleteField(i)">
+                </jnt-button>
+            </jnt-stack>
+            <app-entity-field [field]="field"
+                              (changed)="space.put(entity)"></app-entity-field>
+        </li>
+    </ul>
+    <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+                [scheme]="ui.schemes.secondary"
+                (click)="addField()"></jnt-button>
+</form>
