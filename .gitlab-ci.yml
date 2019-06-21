@@ -71,6 +71,7 @@ deploy_dev:
   variables:
     SSH_PRIVATE_KEY: $SSH_DEV_PRIVATE_KEY
   script:
+  - echo "test"
   - ssh deploy@${DEV_HOST} "/opt/junte/deploy/spec_projector/deploy.sh"
   environment:
     name: dev
