@@ -10,24 +10,11 @@
 
     </jnt-stack>
     <ng-container *ngIf="opened">
-        <table *ngIf="feature.story.length">
-            <tr *ngFor="let story of feature.story;let i = index">
-                <td valign="top">{{i + 1}}.</td>
-                <ng-container *ngIf="story.can;else see">
-                    <td valign="top" style="white-space: nowrap"><b>I can</b></td>
-                    <td>
-                        <app-tokens [tokens]="story.can"></app-tokens>
-                    </td>
-                </ng-container>
-
-                <ng-template #see>
-                    <td valign="top" style="white-space: nowrap"><b>I see</b></td>
-                    <td>
-                        <app-tokens [tokens]="story.see"></app-tokens>
-                    </td>
-                </ng-template>
-            </tr>
-        </table>
+        <jnt-stack [gutter]="ui.stack.gutter.tiny" *ngIf="feature.story.length">
+            <app-story-entry *ngFor="let entry of feature.story"
+                             [entry]="entry"
+                             (changed)="space.put(feature)"></app-story-entry>
+        </jnt-stack>
         <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
                     text="Copy to clipboard"></jnt-button>
         <div #summary summary style="display:none">
@@ -109,8 +96,8 @@
                 </td>
                 <td>&larr;</td>
                 <td>
-                    <app-entity *ngFor="let entity of feature.entities"
-                                [entity]="entity"></app-entity>
+                    <jnt-label *ngFor="let entity of feature.entities"
+                               [label]="entity.title"></jnt-label>
                 </td>
             </tr>
         </table>

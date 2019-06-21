@@ -1,10 +1,11 @@
-import {Component, ElementRef, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Feature} from '../../../model/planning/feature';
 import {UI} from 'junte-ui';
 import {FramesStorage} from '../../services/frames-storage.service';
 import * as Figma from 'figma-api';
 import {ClipboardService} from 'ngx-clipboard';
 import {TokenType} from '../../../model/planning/token';
+import {SpaceService} from "../../services/space.service";
 
 @Component({
     selector: 'app-feature',
@@ -24,7 +25,8 @@ export class FeatureComponent {
         personalAccessToken: '12129-3a0f1d4d-ba86-4364-a226-954bd1c40120'
     });
 
-    constructor(private clipboard: ClipboardService,
+    constructor(private space: SpaceService,
+                private clipboard: ClipboardService,
                 public storage: FramesStorage) {
 
     }

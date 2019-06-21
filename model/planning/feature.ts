@@ -13,14 +13,19 @@ import {Term} from './term';
 import {persist, persistence, Persistence} from '../../decorators/persistence';
 import {Entity} from '../orm/entity';
 
+export enum StoryEntryType {
+    see = 'see',
+    can = 'can'
+}
+
 @persistence()
 export class StoryEntry {
 
-    @persist({serializer: new ArraySerializer(new TokenSerializer())})
-    can: Token[];
+    @persist()
+    type: StoryEntryType;
 
     @persist({serializer: new ArraySerializer(new TokenSerializer())})
-    see: Token[];
+    description: Token[];
 
     constructor(defs: any = {}) {
         Object.assign(this, defs);
@@ -63,11 +68,11 @@ export class Feature extends Persistence {
     linking(space: Space, actor: Actor = null, epic: Epic = null) {
         this.space = space;
 
-        this.actor = actor || space.actors.find(actor =>
-            actor.features.some(feature => feature.id == this.id));
+        this.actor = actor || space.actors.find(a =>
+            a.features.some(feature => feature.id === this.id));
 
-        this.epic = epic || space.epics.find(epic =>
-            epic.features.some(feature => feature.id == this.id));
+        this.epic = epic || space.epics.find(e =>
+            e.features.some(feature => feature.id === this.id));
 
         let entities = space.packages.reduce((res, pack) => res.concat(pack.entities), []);
         for (let i = 0; i < this.entities.length; i++) {
@@ -109,21 +114,16 @@ export class Feature extends Persistence {
             throw 'Object is not linked';
         }
         let terms: Term[] = [];
-        for (let entry of this.story) {
-            if (!!entry.see) {
-                terms = terms.concat(this.findTerms(entry.see)
-                    .filter(x => terms.indexOf(x) == -1));
-
-            }
-            if (!!entry.can) {
-                terms = terms.concat(this.findTerms(entry.can)
+        for (const entry of this.story) {
+            if (!!entry.description.length) {
+                terms = terms.concat(this.findTerms(entry.description)
                     .filter(x => terms.indexOf(x) == -1));
             }
         }
 
         let nested: Term[] = [];
 
-        for (let term of terms) {
+        for (const term of terms) {
             nested = nested.concat(this.findTerms(term.description)
                 .filter(x => nested.indexOf(x) == -1));
         }

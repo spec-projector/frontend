@@ -37,7 +37,13 @@ export class EntityFieldComponent {
 
     @Input() set field(field: EntityField) {
         this._field = field;
-        this.updateForm();
+        this.form.patchValue({
+            name: field.name,
+            title: field.title,
+            autoName: field.autoName,
+            type: field.type,
+            reference: field.reference
+        });
     }
 
     get field() {
@@ -60,16 +66,6 @@ export class EntityFieldComponent {
                 this.field.linking();
                 this.changed.emit(this.field);
             });
-    }
-
-    private updateForm() {
-        this.form.patchValue({
-            name: this.field.name,
-            title: this.field.title,
-            autoName: this.field.autoName,
-            type: this.field.type,
-            reference: this.field.reference
-        });
     }
 
     private updateName() {

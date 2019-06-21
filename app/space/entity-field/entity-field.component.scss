@@ -2,17 +2,26 @@
 
 :host {
   display: block;
-  &:hover {
-    [typing] select[type] {
-      visibility: visible;
-    }
-  }
 }
 
 form {
   display: flex;
   align-items: flex-start;
   position: relative;
+}
+
+[editor] {
+  position: absolute;
+  top: -($gutter-small);
+  left: -($gutter-small);
+  background: $white-color;
+  border-radius: $corner-normal;
+  box-shadow: $shadow-light;
+  box-sizing: border-box;
+  padding: $gutter-small;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
 }
 
 header {
@@ -69,17 +78,6 @@ header {
 
 [typing] {
   margin-left: $gutter-normal;
-
-  select {
-    border: none;
-    background: none;
-    font-size: .85em;
-    padding: 0 $gutter-small;
-    &:hover {
-      appearance: auto;
-      background-color: $secondary-color;
-    }
-  }
 }
 
 [typing='reference'], [typing='array'] {
