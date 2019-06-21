@@ -1,0 +1,14 @@
+<form [formGroup]="form" (click)="mode = editMode.edit"
+      (mouseleave)="mode = editMode.view">
+    <div><b>I {{entry.type}}</b></div>
+    <div>
+        <app-tokens [tokens]="entry.description"></app-tokens>
+    </div>
+    <div *ngIf="mode == editMode.edit" editor>
+        <select type formControlName="type">
+            <option [value]="storyEntryType.see">see</option>
+            <option [value]="storyEntryType.can">can</option>
+        </select>
+        <textarea formControlName="description"></textarea>
+    </div>
+</form>

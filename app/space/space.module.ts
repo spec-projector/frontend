@@ -33,6 +33,7 @@ import {SpaceService} from '../services/space.service';
 import {CommonModule} from '@angular/common';
 import {SpaceResolver} from '../resolvers/space';
 import {SpaceSyncComponent} from "./modals/sync/space-sync.component";
+import { StoryEntryComponent } from './story-entry/story-entry.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import {SpaceSyncComponent} from "./modals/sync/space-sync.component";
         FitWidthDirective,
         EntityFieldComponent,
         GroupEntitiesPipe,
-        SpaceSyncComponent
+        SpaceSyncComponent,
+        StoryEntryComponent
     ],
     entryComponents: [SpaceSyncComponent],
     imports: [

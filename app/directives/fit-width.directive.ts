@@ -1,6 +1,7 @@
 import {AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2} from '@angular/core';
 
-const GUTTER_SIZE = 30;
+const MIN_WIDTH = 30;
+const SHIFT = 30;
 
 @Directive({
     selector: '[fitWidth]'
@@ -33,11 +34,12 @@ export class FitWidthDirective implements AfterViewInit {
     private updateWidth() {
         this.measure.innerHTML = this.host.value;
 
-        let style = getComputedStyle(this.host, null);
+        const style = getComputedStyle(this.host, null);
         this.renderer.setStyle(this.measure, 'fontSize', style.getPropertyValue('font-size'));
         this.renderer.setStyle(this.measure, 'padding', style.getPropertyValue('padding'));
+        this.renderer.setStyle(this.measure, 'fontWeight', style.getPropertyValue('font-weight'));
 
-        const width = this.measure.offsetWidth + GUTTER_SIZE;
+        const width = Math.max(MIN_WIDTH, this.measure.offsetWidth) + SHIFT;
         this.renderer.setStyle(this.host, 'maxWidth', `${width}px`);
         this.renderer.setStyle(this.host, 'width', `${width}px`);
     }

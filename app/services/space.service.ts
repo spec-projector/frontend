@@ -61,7 +61,24 @@ export class SpaceService {
     import(project: string, progress = new Subject()): Observable<Space> {
         return new Observable(observer => {
             this.http.get('space.json')
-                .pipe(map(space => deserialize(space, Space)),
+                .pipe(map((obj: any) => {
+                        for (const actor of  obj.actors) {
+                            for (const feature of  actor.features) {
+                                for (const entry of  feature.story) {
+                                    if (!!entry.see) {
+                                        entry.type = 'see';
+                                        entry.description = entry.see;
+                                    }
+                                    if (!!entry.can) {
+                                        entry.type = 'can';
+                                        entry.description = entry.can;
+                                    }
+                                }
+                            }
+                        }
+
+                        return deserialize(obj, Space);
+                    }),
                     tap(space => space.linking()))
                 .subscribe((space: Space) => {
                     console.log(project);

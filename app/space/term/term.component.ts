@@ -32,7 +32,7 @@ export class TermComponent implements OnInit {
         this._term = term;
         this.form.patchValue({
             name: term.name,
-             description: term.description.map(t => t.toString()).join(' ')
+            description: term.description.map(t => t.toString()).join(' ')
         });
     }
 

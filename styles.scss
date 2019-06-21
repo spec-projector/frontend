@@ -72,3 +72,14 @@ input, textarea {
   font-family: Open Sans;
   font-weight: 300;
 }
+
+select {
+  border: none;
+  background: none;
+  font-size: .85em;
+  padding: 0 $gutter-small;
+  &:hover {
+    appearance: auto;
+    background-color: $secondary-color;
+  }
+}

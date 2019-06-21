@@ -2,12 +2,12 @@
     <header (mouseenter)="mode = editMode.edit"
             (mouseleave)="mode = editMode.view">
         <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-            <input fitWidth title formControlName="title">
+            <input title formControlName="title">
             <div naming>
                 <label [attr.checked]="autoName.value">
                     <input type="checkbox" formControlName="autoName">
                 </label>
-                <input fitWidth name formControlName="name">
+                <input name formControlName="name">
             </div>
         </ng-container>
     </header>
