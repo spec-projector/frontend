@@ -98,7 +98,7 @@ export class SpaceService {
             this.modalService.open('Syncing space', component);
 
             this.local = new PouchDB(project, {auto_compaction: true});
-            this.remote = new PouchDB('http://localhost:5984/' + project);
+            this.remote = new PouchDB('https://specprojector.com:5984/' + project);
 
             this.local.sync(this.remote)
                 .on('complete', () => {

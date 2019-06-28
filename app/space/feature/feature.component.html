@@ -10,27 +10,29 @@
 
     </jnt-stack>
     <ng-container *ngIf="opened">
-        <jnt-stack [gutter]="ui.stack.gutter.tiny" *ngIf="feature.story.length">
-            <app-story-entry *ngFor="let entry of feature.story"
-                             [entry]="entry"
-                             (changed)="space.put(feature)"></app-story-entry>
-        </jnt-stack>
-        <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
-                    text="Copy to clipboard"></jnt-button>
+        <ol *ngIf="feature.story.length">
+            <li *ngFor="let entry of feature.story;let i = index">
+                <app-story-entry [entry]="entry"
+                                 (changed)="space.put(feature)"
+                                 (deleted)="deleteStoryEntry(i)"></app-story-entry>
+            </li>
+        </ol>
+        <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+                    [scheme]="ui.schemes.secondary"
+                    (click)="addStoryEntry()"></jnt-button>
+
+
+        <!--<jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
+                    text="Copy to clipboard"></jnt-button>-->
         <div #summary summary style="display:none">
             <div>As a 👦 **{{feature.actor?.name}}** I want:
                 <ng-container
                         *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>
             </div>
-            <div *ngFor="let story of feature.story;let i = index">
-                <ng-container *ngIf="story.can;else see">1. **I can:**
-                    <ng-container
-                            *ngTemplateOutlet="tokensTemplate; context: {tokens: story.can}"></ng-container>
-                </ng-container>
-                <ng-template #see>1. **I see:**
-                    <ng-container
-                            *ngTemplateOutlet="tokensTemplate; context: {tokens: story.see}"></ng-container>
-                </ng-template>
+            <div *ngFor="let entry of feature.story;let i = index">
+                1. **I {{entry.type}}:**
+                <ng-container
+                        *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}"></ng-container>
             </div>
             <ng-container *ngIf="feature.frames.length">
                 <br>

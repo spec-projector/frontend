@@ -1,11 +1,12 @@
 import {Component, Input} from '@angular/core';
-import {Feature} from '../../../model/planning/feature';
+import {Feature, StoryEntry, StoryEntryType} from '../../../model/planning/feature';
 import {UI} from 'junte-ui';
 import {FramesStorage} from '../../services/frames-storage.service';
 import * as Figma from 'figma-api';
 import {ClipboardService} from 'ngx-clipboard';
 import {TokenType} from '../../../model/planning/token';
 import {SpaceService} from "../../services/space.service";
+import {EntityField} from "../../../model/orm/entity-field";
 
 @Component({
     selector: 'app-feature',
@@ -44,6 +45,20 @@ export class FeatureComponent {
 
     goto(url: string) {
         open(url);
+    }
+
+    addStoryEntry() {
+        const entry = new StoryEntry({
+            type: StoryEntryType.see,
+            description: []
+        });
+        this.feature.story.push(entry);
+        this.space.put(this.feature);
+    }
+
+    deleteStoryEntry(index: number) {
+        this.feature.story.splice(index, 1);
+        this.space.put(this.feature);
     }
 
     markdown(container: HTMLElement) {

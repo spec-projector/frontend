@@ -80,8 +80,6 @@ header {
   margin-left: $gutter-normal;
 }
 
-[typing='reference'], [typing='array'] {
-  select[type] {
-    visibility: hidden;
-  }
+select {
+  font-size: .85em;
 }

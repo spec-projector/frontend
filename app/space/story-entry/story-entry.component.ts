@@ -4,6 +4,7 @@ import {FormBuilder, FormControl} from "@angular/forms";
 import {EditMode} from "../../../enums/edit-mode";
 import {filter, tap} from "rxjs/operators";
 import {Token} from "../../../model/planning/token";
+import {UI} from "junte-ui";
 
 @Component({
     selector: 'app-story-entry',
@@ -12,6 +13,7 @@ import {Token} from "../../../model/planning/token";
 })
 export class StoryEntryComponent implements OnInit {
 
+    ui = UI;
     editMode = EditMode;
     storyEntryType = StoryEntryType;
 
@@ -30,6 +32,7 @@ export class StoryEntryComponent implements OnInit {
     }
 
     @Output() changed = new EventEmitter<StoryEntry>();
+    @Output() deleted = new EventEmitter();
 
     type = new FormControl();
     description = new FormControl();
