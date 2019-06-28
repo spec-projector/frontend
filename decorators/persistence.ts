@@ -69,7 +69,7 @@ export function persist(config: FieldConfig = {}) {
             const type = Reflect.getMetadata('design:type', obj, property);
             if (type === Boolean || type === Number || type === String || type === Date) {
                 // nothing...
-            } else if (type == Array) {
+            } else if (type === Array) {
                 const persistence = config.type.prototype instanceof Persistence;
                 metadata.persistence = persistence;
                 metadata.serializer = new ArraySerializer(new ModelSerializer(config.type));
@@ -141,6 +141,7 @@ export class Persistence {
 
             combineLatest(loaders).pipe(finalize(() => merged.complete()))
                 .subscribe(() => {
+                    this.flush();
                     merged.next(this);
                     this.changes.next(this);
                 }, err => merged.error(err));
@@ -150,7 +151,6 @@ export class Persistence {
     load(db: Database, progress: Subject<Object>): Observable<Persistence> {
         return new Observable(loaded => {
             db.get(this.id).then(doc => {
-                this.flush(doc);
                 const src = this.deserialize(doc);
                 this.merge(db, progress, src)
                     .pipe(finalize(() => loaded.complete()))
@@ -166,7 +166,6 @@ export class Persistence {
     update(db: Database, progress: Subject<Object>, doc: Document<Object>): Observable<Persistence> {
         return new Observable(updated => {
             if (doc._id === this.id) {
-                this.flush(doc);
                 const src = this.deserialize(doc);
                 this.merge(db, progress, src)
                     .pipe(finalize(() => updated.complete()))
@@ -224,7 +223,6 @@ export class Persistence {
                 db.put(reference)
                     .then(doc => {
                         this.rev = doc.rev;
-                        this.flush(doc);
                         imported.next(this);
                         progress.next(this);
                     })
@@ -261,12 +259,12 @@ export class Persistence {
         return deserialize(obj, prototype.constructor);
     }
 
-    dirty(snapshot: Object): boolean {
-        return !deepEqual(this.snapshot, snapshot);
+    dirty(): boolean {
+        return !deepEqual(this.snapshot, this.serialize(SerializeType.reference));
     }
 
-    flush(snapshot: Object): void {
-        this.snapshot = snapshot;
+    flush(): void {
+        this.snapshot = this.serialize(SerializeType.reference);
     }
 
     private getPropertyType(property: string) {

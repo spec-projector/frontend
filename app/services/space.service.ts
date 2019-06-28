@@ -12,13 +12,10 @@ import {SpaceSyncComponent} from '../space/modals/sync/space-sync.component';
 
 interface Flush {
 
-    snapshot: Object;
-    object: Persistence
+    object: Persistence;
 }
 
 class Put implements Flush {
-
-    snapshot: Object;
 
     constructor(public object: Persistence) {
 
@@ -26,8 +23,6 @@ class Put implements Flush {
 }
 
 class Remove implements Flush {
-
-    snapshot: Object;
 
     constructor(public object: Persistence) {
 
@@ -81,7 +76,6 @@ export class SpaceService {
                     }),
                     tap(space => space.linking()))
                 .subscribe((space: Space) => {
-                    console.log(project);
                     this.local = new PouchDB(project);
                     space.import(this.local, progress)
                         .pipe(finalize(() => observer.complete()))
@@ -145,7 +139,7 @@ export class SpaceService {
             live: true,
             retry: true
         }).on('change', (changes) => {
-            console.log('change');
+            console.log('changes from server');
             console.log(changes.docs);
             const space = this.space$.getValue();
             const progress = new Subject();
@@ -177,7 +171,6 @@ export class SpaceService {
                     removed = new Map<string, Remove>();
 
                 for (const action of buffer) {
-                    action.snapshot = action.object.serialize(SerializeType.reference);
                     if (action instanceof Put) {
                         if (!puts.has(action.object.id)) {
                             puts.set(action.object.id, action);
@@ -192,30 +185,33 @@ export class SpaceService {
                 const docs = [];
                 for (const action of Array.from(puts.values())) {
                     const object = action.object;
-                    if (object.dirty(action.snapshot)) {
-                        docs.push(action.snapshot);
+                    if (object.dirty()) {
+                        docs.push(object.serialize(SerializeType.reference));
                     } else {
                         console.log('object it not dirty');
                     }
                 }
 
                 for (const action of Array.from(removed.values())) {
-                    action.snapshot['deleted'] = true;
-                    docs.push(action.snapshot);
+                    const obj = action.object.serialize(SerializeType.reference);
+                    obj['deleted'] = true;
+                    docs.push(obj);
                 }
 
-                this.local.bulkDocs(docs)
-                    .then((updates => {
-                        for (const update of updates) {
-                            if (puts.has(update.id)) {
-                                const action = puts.get(update.id);
-                                action.object.rev = update.rev;
-                                action.snapshot['_rev'] = update.rev;
-                                action.object.flush(action.snapshot);
-                                console.log(action.snapshot);
+                if (docs.length) {
+                    console.log('send to server');
+                    console.log(docs);
+                    this.local.bulkDocs(docs)
+                        .then((updates => {
+                            for (const update of updates) {
+                                if (puts.has(update.id)) {
+                                    const action = puts.get(update.id);
+                                    action.object.rev = update.rev;
+                                    action.object.flush();
+                                }
                             }
-                        }
-                    })).catch(err => console.log(err));
+                        })).catch(err => console.log(err));
+                }
             });
     }
 
