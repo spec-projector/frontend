@@ -89,7 +89,7 @@ export class SpaceService {
             this.space$ = new BehaviorSubject<Space>(null);
 
             const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
-            this.modalService.open('Syncing space', component);
+            this.modalService.open(component);
 
             this.local = new PouchDB(project, {auto_compaction: true});
             this.remote = new PouchDB('https://specprojector.com:5984/' + project);
