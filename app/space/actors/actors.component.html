@@ -1,16 +1,29 @@
-<ng-container *ngIf="space">
-    <ul class="unstyled">
-        <jnt-stack>
-            <ng-container *ngFor="let actor of space.actors">
-                <h1>{{actor.name}}</h1>
-                <jnt-block>
-                    <ol>
-                        <li *ngFor="let feature of actor.features">
-                            <app-feature [feature]="feature"></app-feature>
-                        </li>
-                    </ol>
-                </jnt-block>
-            </ng-container>
-        </jnt-stack>
+<jnt-stack [gutter]="ui.stack.gutter.large">
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.plus"
+                [size]="ui.sizes.tiny"
+                [scheme]="ui.schemes.secondary"
+                (click)="addActor()"></jnt-button>
+    <ul [dndDropzone]="['actor']" dndEffectAllowed="copyMove" (dndDrop)="moveActor($event)">
+        <li placeholder dndPlaceholderRef></li>
+        <li *ngFor="let actor of space.actors; let i = index;"
+            [dndDraggable]="i"
+            dndType="actor">
+            <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.small">
+                <jnt-button dndHandle
+                            [icon]="ui.icons.expand"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary">
+                </jnt-button>
+                <jnt-button [icon]="ui.icons.delete"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary"
+                            (click)="deleteActor(i)">
+                </jnt-button>
+            </jnt-stack>
+            <app-actor [actor]="actor"></app-actor>
+        </li>
     </ul>
-</ng-container>
+</jnt-stack>
+
+

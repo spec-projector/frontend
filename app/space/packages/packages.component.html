@@ -1,5 +1,5 @@
 <jnt-stack [gutter]="ui.stack.gutter.large">
-    <jnt-button [icon]="ui.icons.plus"
+    <jnt-button *ngIf="manager.mode == editMode.edit" [icon]="ui.icons.plus"
                 [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addPackage()"></jnt-button>
@@ -8,7 +8,7 @@
         <li *ngFor="let package of space.packages; let i = index;"
             [dndDraggable]="i"
             dndType="package">
-            <jnt-stack actions [gutter]="ui.stack.gutter.small">
+            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.small">
                 <jnt-button dndHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"

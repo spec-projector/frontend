@@ -65,19 +65,25 @@ export class Feature extends Persistence {
         Object.assign(this, defs);
     }
 
-    linking(space: Space, actor: Actor = null, epic: Epic = null) {
-        this.space = space;
+    linking({space, actor, epic}: { space?: Space, actor?: Actor, epic?: Epic }) {
+        if (!!space) {
+            this.space = space;
+        }
 
-        this.actor = actor || space.actors.find(a =>
-            a.features.some(feature => feature.id === this.id));
+        if (!!actor) {
+            this.actor = actor;
+        }
 
-        this.epic = epic || space.epics.find(e =>
-            e.features.some(feature => feature.id === this.id));
+        if (!!epic) {
+            this.epic = epic;
+        }
 
-        let entities = space.packages.reduce((res, pack) => res.concat(pack.entities), []);
-        for (let i = 0; i < this.entities.length; i++) {
-            let entity = this.entities[i];
-            this.entities[i] = entities.find(e => e.id == entity.id);
+        if (!!this.space) {
+            const entities = this.space.packages.reduce((res, pack) => res.concat(pack.entities), []);
+            for (let i = 0; i < this.entities.length; i++) {
+                const entity = this.entities[i];
+                this.entities[i] = entities.find(e => e.id === entity.id);
+            }
         }
     }
 

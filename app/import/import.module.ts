@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {JunteUiModule} from 'junte-ui';
 import {RouterModule} from '@angular/router';
-import {SpaceService} from '../services/space.service';
+import {SpaceManager} from '../services/space-manager.service';
 import {CommonModule} from '@angular/common';
 import {ImportComponent} from './import.component';
 
@@ -20,7 +20,7 @@ import {ImportComponent} from './import.component';
         ])
     ],
     providers: [
-        SpaceService
+        SpaceManager
     ]
 })
 export class ImportModule {

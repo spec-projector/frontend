@@ -5,7 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Package} from '../../../model/orm/package';
 import {isUndefined} from 'util';
 import * as uuid from 'uuid/v1';
-import {SpaceService} from '../../services/space.service';
+import {SpaceManager} from '../../services/space-manager.service';
+import {EditMode} from "../../../enums/edit-mode";
 
 @Component({
     selector: 'app-packages',
@@ -15,10 +16,11 @@ import {SpaceService} from '../../services/space.service';
 export class PackagesComponent implements OnInit {
 
     ui = UI;
+    editMode = EditMode;
 
     space: Space;
 
-    constructor(private spaceService: SpaceService,
+    constructor(public manager: SpaceManager,
                 private route: ActivatedRoute) {
     }
 
@@ -34,16 +36,16 @@ export class PackagesComponent implements OnInit {
         });
         this.space.packages.unshift(pack);
 
-        this.spaceService.put(pack);
-        this.spaceService.put(this.space);
+        this.manager.put(pack);
+        this.manager.put(this.space);
     }
 
     deletePackage(index: number) {
         const pack = this.space.packages[index];
         this.space.packages.splice(index, 1);
 
-        this.spaceService.remove(pack);
-        this.spaceService.put(this.space);
+        this.manager.remove(pack);
+        this.manager.put(this.space);
 
     }
 
@@ -55,7 +57,7 @@ export class PackagesComponent implements OnInit {
         this.space.packages.splice(index1, 1, p2);
         this.space.packages.splice(index2, 1, p1);
 
-        this.spaceService.put(this.space);
+        this.manager.put(this.space);
     }
 
 

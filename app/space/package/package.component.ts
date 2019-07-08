@@ -5,7 +5,7 @@ import {FormBuilder, FormControl} from '@angular/forms';
 import {isUndefined} from 'util';
 import {Entity} from '../../../model/orm/entity';
 import * as uuid from 'uuid/v1';
-import {SpaceService} from '../../services/space.service';
+import {SpaceManager} from '../../services/space-manager.service';
 import {merge} from "rxjs";
 import {filter, tap} from "rxjs/operators";
 import {EditMode} from "../../../enums/edit-mode";
@@ -22,11 +22,12 @@ export class PackageComponent {
 
     private _package: Package;
 
+
+    mode = EditMode.view;
+
     title = new FormControl();
     name = new FormControl();
     autoName = new FormControl();
-
-    mode = EditMode.view;
 
     form = this.formBuilder.group({
         title: this.title,
@@ -45,7 +46,7 @@ export class PackageComponent {
         return this._package;
     }
 
-    constructor(private space: SpaceService,
+    constructor(public space: SpaceManager,
                 private formBuilder: FormBuilder) {
         this.autoName.valueChanges.subscribe(() =>
             this.autoName.value ? this.name.disable() : this.name.enable());

@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-    <header (mouseenter)="mode = editMode.edit"
+    <header (mouseenter)="space.mode ==  editMode.edit ? mode = editMode.edit : null"
             (mouseleave)="mode = editMode.view">
         <ng-container *ngIf="mode == editMode.edit; else viewHeader">
             <input title formControlName="title">
@@ -26,7 +26,7 @@
         <li *ngFor="let field of entity.fields; let i = index;"
             [dndDraggable]="{index: i, field: field.id}"
             dndType="entity-field">
-            <jnt-stack actions [gutter]="ui.stack.gutter.tiny"
+            <jnt-stack *ngIf="space.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny"
                        [type]="ui.stack.type.horizontal">
                 <jnt-button handle dndHandle
                             [icon]="ui.icons.expand"
@@ -43,7 +43,8 @@
                               (changed)="space.put(entity)"></app-entity-field>
         </li>
     </ul>
-    <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+    <jnt-button *ngIf="space.mode == editMode.edit"
+                [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addField()"></jnt-button>
 </form>

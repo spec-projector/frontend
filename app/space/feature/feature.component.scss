@@ -1,13 +1,31 @@
 @import "../../../node_modules/junte-ui/lib/assets/styles/variables";
 
-button {
-  display: flex;
-  vertical-align: middle;
-  background: $secondary-color;
-  border: 1px solid black;
-  padding: $gutter-small;
-  cursor: pointer;
-  border-radius: 3px;
+form {
+  position: relative;
+}
+
+header {
+  margin-bottom: $gutter-small;
+  [title] {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    height: 1.4em;
+    line-height: 1.1em;
+    overflow: hidden;
+    background-color: transparent;
+    white-space: nowrap;
+    width: 100%;
+    font-size: 1em;
+    &:focus {
+      color: black;
+    }
+  }
 }
 
 [api] {

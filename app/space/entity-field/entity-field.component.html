@@ -1,4 +1,4 @@
-<form [formGroup]="form" (mouseenter)="mode = editMode.edit"
+<form [formGroup]="form" (mouseenter)="manager.mode == editMode.edit ? mode = editMode.edit : null"
       (mouseleave)="mode = editMode.view">
     <div *ngIf="mode == editMode.edit" editor>
         <header>

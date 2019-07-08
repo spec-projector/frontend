@@ -1,19 +1,16 @@
-<form [formGroup]="form" (click)="mode = editMode.edit"
-      (mouseleave)="mode = editMode.view">
-    <b>I {{entry.type}}:</b>
-    <div>
-        <app-tokens [tokens]="entry.description"></app-tokens>
-    </div>
-    <div *ngIf="mode == editMode.edit" editor>
-        <div>
-            <select type formControlName="type">
-                <option [value]="storyEntryType.see">see</option>
-                <option [value]="storyEntryType.can">can</option>
+<form [formGroup]="form">
+    <ng-container *ngIf="mode == editMode.edit; else view">
+        <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny">
+            <select type formControlName="type" tabindex="-1">
+                <option [value]="storyEntryType.see">I see:</option>
+                <option [value]="storyEntryType.can">I can:</option>
             </select>
-            <jnt-button [scheme]="ui.schemes.secondary"
-                        [size]="ui.sizes.tiny"
-                        [icon]="ui.icons.delete" (click)="deleted.emit()"></jnt-button>
-        </div>
-        <textarea formControlName="description"></textarea>
-    </div>
+            <input #input formControlName="description" fitWidth (keyup)="keyup($event)">
+        </jnt-stack>
+    </ng-container>
+
+    <ng-template #view>
+        <b>I {{entry.type}}:</b>
+        <app-tokens [tokens]="entry.description"></app-tokens>
+    </ng-template>
 </form>

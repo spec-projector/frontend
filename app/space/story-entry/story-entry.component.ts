@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {StoryEntry, StoryEntryType} from "../../../model/planning/feature";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {EditMode} from "../../../enums/edit-mode";
@@ -17,6 +17,9 @@ export class StoryEntryComponent implements OnInit {
     editMode = EditMode;
     storyEntryType = StoryEntryType;
 
+    @ViewChild('input')
+    input: HTMLInputElement;
+
     private _entry: StoryEntry;
 
     @Input() set entry(field: StoryEntry) {
@@ -32,6 +35,7 @@ export class StoryEntryComponent implements OnInit {
     }
 
     @Output() changed = new EventEmitter<StoryEntry>();
+    @Output() finished = new EventEmitter();
     @Output() deleted = new EventEmitter();
 
     type = new FormControl();
@@ -42,6 +46,7 @@ export class StoryEntryComponent implements OnInit {
         description: this.description
     });
 
+    @Input()
     mode = EditMode.view;
 
     constructor(private formBuilder: FormBuilder) {
@@ -56,6 +61,14 @@ export class StoryEntryComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    keyup(e: KeyboardEvent) {
+        if (e.code === 'Enter') {
+            this.finished.emit();
+        } else if (e.code === 'Backspace' && !this.description.value) {
+            this.deleted.emit();
+        }
     }
 
 }

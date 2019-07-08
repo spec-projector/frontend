@@ -97,6 +97,7 @@ export class Persistence {
 
     changes: Subject<Persistence> = new Subject<Persistence>();
     loaded = false;
+    imported = false;
     snapshot: Object;
 
     @persist({name: '_id'})
@@ -198,6 +199,12 @@ export class Persistence {
 
 
     import(db: Database, progress: Subject<Object>): Observable<Persistence> {
+        if (this.imported) {
+            return of(this);
+        }
+
+        this.imported = true;
+
         return new Observable(imported => {
             this.id = generate();
             const queue = [of(null)];

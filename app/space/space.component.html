@@ -8,17 +8,54 @@
             <jnt-menu-item link="packages" title="Model ({{space?.packages.length}})"></jnt-menu-item>
             <jnt-menu-item link="validate" title="Validate ({{errors.length}})"></jnt-menu-item>
         </jnt-menu>
+        <div controls>
+            <form [formGroup]="form">
+                <jnt-switch formControlName="mode" label="edit"
+                            [size]="ui.sizes.tiny"></jnt-switch>
+            </form>
+
+            <p><b>Epics</b></p>
+            <ul>
+                <li *ngFor="let epic of space.epics"
+                    [dndDraggable]="{id: epic.id}"
+                    [dndEffectAllowed]="'copyLink'"
+                    dndType="epic">
+                    {{epic.title}}
+                </li>
+            </ul>
+            <p><b>Entities</b></p>
+            <ul>
+                <li *ngFor="let pack of space.packages">
+                    <p>{{pack.title}}</p>
+                    <ul>
+                        <li *ngFor="let entity of pack.entities"
+                            [dndDraggable]="{id: entity.id}"
+                            [dndEffectAllowed]="'copyLink'"
+                            dndType="entity">
+                            {{entity.title}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><b>Actors</b></p>
+            <ul>
+                <li *ngFor="let actor of space.actors">
+                    {{actor.name}}
+                </li>
+            </ul>
+        </div>
     </jnt-app-aside>
     <jnt-app-content [aside]="aside">
+        <jnt-app-sub-header (burger)="aside.toggle()">
+            <jnt-container [width]="ui.width.fluid">
+                <jnt-breadcrumb></jnt-breadcrumb>
+            </jnt-container>
+        </jnt-app-sub-header>
         <jnt-app-body>
-            <jnt-app-sub-header (burger)="aside.toggle()">
-                <jnt-container [width]="ui.width.fluid">
-                    <jnt-breadcrumb></jnt-breadcrumb>
-                </jnt-container>
-            </jnt-app-sub-header>
-            <div app-content>
+            <jnt-container [width]="ui.width.fluid">
                 <router-outlet></router-outlet>
-            </div>
+            </jnt-container>
         </jnt-app-body>
         <jnt-app-footer>
             <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>

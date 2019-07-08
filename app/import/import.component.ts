@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UI} from 'junte-ui';
-import {SpaceService} from '../services/space.service';
+import {SpaceManager} from '../services/space-manager.service';
 import {Router} from '@angular/router';
 import {generate, characters} from 'shortid';
 
@@ -14,7 +14,7 @@ characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 export class ImportComponent {
     ui = UI;
 
-    constructor(private spaceService: SpaceService,
+    constructor(private spaceService: SpaceManager,
                 private router: Router) {
     }
 

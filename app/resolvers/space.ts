@@ -2,12 +2,12 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {Space} from '../../model/space';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {SpaceService} from '../services/space.service';
+import {SpaceManager} from '../services/space-manager.service';
 
 @Injectable()
 export class SpaceResolver implements Resolve<Space> {
 
-    constructor(private spaceService: SpaceService) {
+    constructor(private spaceService: SpaceManager) {
     }
 
     resolve(route: ActivatedRouteSnapshot,

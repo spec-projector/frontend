@@ -10,28 +10,31 @@ form {
   position: relative;
   b {
     margin-right: $gutter-small;
+    white-space: nowrap;
   }
 }
 
-[editor] {
-  position: absolute;
-  top: -($gutter-small);
-  left: -($gutter-small);
-  background: $white-color;
-  border-radius: $corner-normal;
-  box-shadow: $shadow-light;
-  box-sizing: border-box;
-  padding: $gutter-small;
-  z-index: 100;
+select {
+  appearance: none;
+  padding: 0;
+}
+
+input {
   display: flex;
-  align-items: flex-start;
-  select {
-    margin-right: $gutter-small;
-  }
-  textarea {
-    width: 500px;
-    height: 50px;
-    outline: none;
-    border: 1px solid $secondary-color;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-sizing: border-box;
+  outline: none;
+  height: 1.4em;
+  line-height: 1.1em;
+  overflow: hidden;
+  background-color: transparent;
+  white-space: nowrap;
+  min-width: 200px;
+  font-size: 1em;
+  &:focus {
+    color: black;
   }
 }

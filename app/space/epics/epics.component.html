@@ -1,17 +1,29 @@
-<ng-container *ngIf="space">
-    <jnt-stack>
-        <ng-container *ngFor="let epic of space.epics">
-            <h1>{{epic.title}}</h1>
-            <jnt-block>
-                <ol>
-                    <li *ngFor="let feature of epic.features;let i = index">
-                        {{feature.actor?.name}}
-                        <app-feature [feature]="feature">
+<jnt-stack [gutter]="ui.stack.gutter.large">
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.plus"
+                [size]="ui.sizes.tiny"
+                [scheme]="ui.schemes.secondary"
+                (click)="addEpic()"></jnt-button>
+    <ul [dndDropzone]="['epic']" dndEffectAllowed="copyMove" (dndDrop)="moveEpic($event)">
+        <li placeholder dndPlaceholderRef></li>
+        <li *ngFor="let epic of space.epics; let i = index;"
+            [dndDraggable]="i"
+            dndType="epic">
+            <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.small">
+                <jnt-button dndHandle
+                            [icon]="ui.icons.expand"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary">
+                </jnt-button>
+                <jnt-button [icon]="ui.icons.delete"
+                            [size]="ui.sizes.tiny"
+                            [scheme]="ui.schemes.secondary"
+                            (click)="deleteEpic(i)">
+                </jnt-button>
+            </jnt-stack>
+            <app-epic [epic]="epic"></app-epic>
+        </li>
+    </ul>
+</jnt-stack>
 
-                        </app-feature>
-                    </li>
-                </ol>
-            </jnt-block>
-        </ng-container>
-    </jnt-stack>
-</ng-container>
+

@@ -3,7 +3,8 @@ import {persist, persistence} from '../../decorators/persistence';
 export enum TokenType {
     text = 'text',
     term = 'term',
-    accent = 'accent'
+    accent = 'accent',
+    url = 'url'
 }
 
 @persistence()
@@ -14,11 +15,11 @@ export class Token {
     }
 
     static parse(source: string): Token[] {
-        return source.split(/(\{\{\w+\}\}|\[[\w\s]+\])/i)
+        return source.split(/(\{\{[\w\s]+\}\}|\[[\w\s]+\]|[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*)/i)
             .map(t => t.trim())
             .filter(t => !!t)
             .map(t => {
-                let match = t.match(/\{\{(\w+)\}\}/i);
+                let match = t.match(/\{\{([\w\s]+)\}\}/i);
                 if (!!match) {
                     return new TermToken(match[1]);
                 }
@@ -26,6 +27,11 @@ export class Token {
                 match = t.match(/\[([\w\s]+)\]/i);
                 if (!!match) {
                     return new AccentToken(match[1]);
+                }
+
+                match = t.match(/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*)/i);
+                if (!!match) {
+                    return new UrlToken(match[1]);
                 }
                 return new TextToken(t);
 
@@ -79,5 +85,20 @@ export class TermToken extends Token {
 
     toString() {
         return `{{${this.term}}}`;
+    }
+}
+
+export class UrlToken extends Token {
+
+    @persist()
+    url: string;
+
+    constructor(url: string) {
+        super();
+        this.url = url;
+    }
+
+    toString() {
+        return this.url;
     }
 }

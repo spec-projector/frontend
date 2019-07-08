@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+    <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+            (mouseleave)="mode = editMode.view">
+        <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+            <input title formControlName="title">
+        </ng-container>
+    </header>
+
+    <ng-template #viewHeader>
+        <h1 title>{{epic.title}}</h1>
+    </ng-template>
+
+
+    <ul *ngIf="epic.features.length;else noFeaturesTemplate">
+        <li *ngFor="let group of (epic.features | groupFeaturesByActor)">
+            <h4>
+                <span>{{group.actor?.name}}</span>
+            </h4>
+            <ul>
+                <li *ngFor="let feature of group.features">
+                    <app-feature [feature]="feature"></app-feature>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ng-template #noFeaturesTemplate>
+        <p>Drag epics on <a [routerLink]="['..', 'actors']">features</a></p>
+    </ng-template>
+</form>

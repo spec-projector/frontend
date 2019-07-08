@@ -1,7 +1,7 @@
 <form [formGroup]="form" (dblclick)="edit()" (clickOutside)="normal()">
     <div term id="{{term.name}}">
         <ng-container [ngSwitch]="mode">
-            <ng-container *ngSwitchCase="editMode.normal">
+            <ng-container *ngSwitchCase="editMode.view">
                 <span>{{term.name}}</span>
             </ng-container>
             <ng-container *ngSwitchCase="editMode.edit">
@@ -12,7 +12,7 @@
     <div gutter>&minus;</div>
     <div descripton>
         <ng-container [ngSwitch]="mode">
-            <ng-container *ngSwitchCase="editMode.normal">
+            <ng-container *ngSwitchCase="editMode.view">
                 <app-tokens [tokens]="term.description"></app-tokens>
             </ng-container>
             <ng-container *ngSwitchCase="editMode.edit">

@@ -6,6 +6,7 @@ import {EntityField, FieldType} from '../../../model/orm/entity-field';
 import {merge} from "rxjs";
 import {filter, tap} from "rxjs/operators";
 import {EditMode} from "../../../enums/edit-mode";
+import {SpaceManager} from "../../services/space-manager.service";
 
 @Component({
     selector: 'app-entity-field',
@@ -52,7 +53,8 @@ export class EntityFieldComponent {
 
     @Output() changed = new EventEmitter<EntityField>();
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(public manager: SpaceManager,
+                private formBuilder: FormBuilder) {
         this.autoName.valueChanges.subscribe(() =>
             this.autoName.value ? this.name.disable() : this.name.enable());
 

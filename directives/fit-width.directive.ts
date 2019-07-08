@@ -19,7 +19,7 @@ export class FitWidthDirective implements AfterViewInit {
     ngAfterViewInit() {
         this.measure = this.renderer.createElement('div');
         this.renderer.setStyle(this.measure, 'position', 'absolute');
-        this.renderer.setStyle(this.measure, 'opacity', '0');
+        this.renderer.setStyle(this.measure, 'visibility', 'hidden');
         this.renderer.setStyle(this.measure, 'height', '0');
         this.renderer.setStyle(this.measure, 'whiteSpace', 'pre');
         this.renderer.setStyle(this.measure, 'fontFamily', this.host.style.fontFamily);

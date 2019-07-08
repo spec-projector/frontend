@@ -1,10 +1,10 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {UI} from 'junte-ui';
-import {EditMode} from '../../../types/edit-mode';
 import {Term} from '../../../model/planning/term';
 import {FormBuilder} from '@angular/forms';
 import {Token} from '../../../model/planning/token';
-import {SpaceService} from '../../services/space.service';
+import {SpaceManager} from '../../services/space-manager.service';
+import {EditMode} from "../../../enums/edit-mode";
 
 @Component({
     selector: 'app-term',
@@ -21,7 +21,7 @@ export class TermComponent implements OnInit {
     ui = UI;
     editMode = EditMode;
 
-    mode = EditMode.normal;
+    mode = EditMode.view;
 
     form = this.formBuilder.group({
         name: null,
@@ -45,10 +45,10 @@ export class TermComponent implements OnInit {
     }
 
     normal() {
-        this.mode = EditMode.normal;
+        this.mode = EditMode.view;
     }
 
-    constructor(private space: SpaceService,
+    constructor(private space: SpaceManager,
                 private formBuilder: FormBuilder) {
     }
 

@@ -26,10 +26,10 @@ export class Sprint {
 
     linking(space: Space) {
         for (const feature of this.features) {
-            feature.linking(space);
+            feature.linking({space: space});
         }
         for (const improvement of this.improvements) {
-            improvement.feature.linking(space);
+            improvement.feature.linking({space: space});
         }
     }
 

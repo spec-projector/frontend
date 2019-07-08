@@ -12,14 +12,17 @@ export class Actor extends Persistence {
     @persist({type: Feature})
     features: Feature[] = [];
 
+    space: Space;
+
     constructor(defs: any = {}) {
         super();
         Object.assign(this, defs);
     }
 
     linking(space: Space) {
+        this.space = space;
         for (const feature of this.features) {
-            feature.linking(space, this);
+            feature.linking({space: space, actor: this});
         }
     }
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Space} from '../../../model/space';
 import {ActivatedRoute} from '@angular/router';
 import {UI} from 'junte-ui';
-import {EditMode} from '../../../types/edit-mode';
+import {EditMode} from "../../../enums/edit-mode";
 
 @Component({
     selector: 'app-terms',
@@ -14,7 +14,7 @@ export class TermsComponent implements OnInit {
     ui = UI;
     editMode = EditMode;
 
-    mode = EditMode.normal;
+    mode = EditMode.view;
     space: Space;
 
     constructor(private route: ActivatedRoute) {

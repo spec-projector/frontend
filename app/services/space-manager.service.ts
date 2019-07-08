@@ -9,6 +9,7 @@ import {Persistence, SerializeType} from '../../decorators/persistence';
 import Database = PouchDB.Database;
 import {ModalService} from 'junte-ui';
 import {SpaceSyncComponent} from '../space/modals/sync/space-sync.component';
+import {EditMode} from "../../enums/edit-mode";
 
 interface Flush {
 
@@ -30,12 +31,14 @@ class Remove implements Flush {
 }
 
 @Injectable()
-export class SpaceService {
+export class SpaceManager {
 
     private local: Database = null;
     private remote: Database = null;
     private space$: BehaviorSubject<Space>;
     private flushing$ = new Subject<Flush>();
+
+    mode: EditMode = EditMode.view;
 
     get space() {
         return this.space$.getValue();
@@ -104,6 +107,7 @@ export class SpaceService {
                     space.load(this.local, progress)
                         .pipe(tap(() => space.linking()))
                         .subscribe(() => {
+                            console.log(space);
                             this.space$.next(space);
                             this.pull();
                             this.push();

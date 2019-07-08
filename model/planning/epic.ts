@@ -1,10 +1,10 @@
 import {Feature} from './feature';
 import {Space} from '../space';
 import {ValidationError} from '../../validation/error';
-import {persist, persistence} from '../../decorators/persistence';
+import {persist, Persistence, persistence} from '../../decorators/persistence';
 
 @persistence()
-export class Epic {
+export class Epic extends Persistence {
 
     @persist()
     title: string;
@@ -12,13 +12,23 @@ export class Epic {
     @persist({type: Feature})
     features: Feature[] = [];
 
+    space: Space;
+
     constructor(defs: any = {}) {
+        super();
         Object.assign(this, defs);
     }
 
     linking(space: Space) {
-        for (const feature of this.features) {
-            feature.linking(space, null, this);
+        this.space = space;
+        const features = space.actors.reduce((res, actor) => res.concat(actor.features), []);
+        for (let i = 0; i < this.features.length; i++) {
+            const feature = this.features[i];
+            const found = features.find(e => e.id === feature.id);
+            if (!!found) {
+                found.linking({space: space, epic: this});
+                this.features[i] = found;
+            }
         }
     }
 

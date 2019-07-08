@@ -4,7 +4,7 @@ import {Entity} from '../../../model/orm/entity';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {isUndefined} from 'util';
 import {merge} from 'rxjs';
-import {SpaceService} from '../../services/space.service';
+import {SpaceManager} from '../../services/space-manager.service';
 import {EntityField} from '../../../model/orm/entity-field';
 import {filter, tap} from "rxjs/operators";
 import {EditMode} from "../../../enums/edit-mode";
@@ -44,7 +44,7 @@ export class EntityComponent {
         return this._entity;
     }
 
-    constructor(private space: SpaceService,
+    constructor(public space: SpaceManager,
                 private formBuilder: FormBuilder) {
         this.autoName.valueChanges.subscribe(() =>
             this.autoName.value ? this.name.disable() : this.name.enable());
