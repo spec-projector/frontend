@@ -4,13 +4,10 @@
                 [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addActor()"></jnt-button>
-    <ul [dndDropzone]="['actor']" dndEffectAllowed="copyMove" (dndDrop)="moveActor($event)">
-        <li placeholder dndPlaceholderRef></li>
-        <li *ngFor="let actor of space.actors; let i = index;"
-            [dndDraggable]="i"
-            dndType="actor">
+    <ul cdkDropList (cdkDropListDropped)="moveActor($event)" [cdkDropListData]="space.actors">
+        <li *ngFor="let actor of space.actors; let i = index;" cdkDrag field>
             <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.small">
-                <jnt-button dndHandle
+                <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary">

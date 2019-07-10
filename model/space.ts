@@ -1,10 +1,10 @@
-import {Actor} from './planning/actor';
-import {Term} from './planning/term';
-import {Sprint} from './planning/sprint';
-import {Epic} from './planning/epic';
-import {ValidationError} from '../validation/error';
-import {Package} from './orm/package';
-import {persist, persistence, Persistence} from '../decorators/persistence';
+import { persist, persistence, Persistence } from 'decorators/persistence';
+import { ValidationError } from 'validation/error';
+import { Package } from './orm/package';
+import { Actor } from './planning/actor';
+import { Epic } from './planning/epic';
+import { Sprint } from './planning/sprint';
+import { Term } from './planning/term';
 
 @persistence()
 class ErrorValidate {

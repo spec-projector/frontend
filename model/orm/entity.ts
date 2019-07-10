@@ -1,7 +1,6 @@
-import {Package} from './package';
-import {Space} from '../space';
-import {persist, persistence, Persistence} from '../../decorators/persistence';
-import {EntityField} from './entity-field';
+import { persist, persistence, Persistence } from 'decorators/persistence';
+import { EntityField } from './entity-field';
+import { Package } from './package';
 
 @persistence()
 export class Entity extends Persistence {

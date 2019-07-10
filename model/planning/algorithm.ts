@@ -1,8 +1,8 @@
 import {Token} from './token';
 import {ArraySerializer, ModelSerializer} from 'serialize-ts';
 import {Space} from '../space';
-import {TokenSerializer} from '../serializers/token';
-import {persist, persistence} from '../../decorators/persistence';
+import {TokenSerializer} from 'model/serializers/token';
+import {persist, persistence} from 'decorators/persistence';
 
 @persistence()
 export class AlgorithmStep {

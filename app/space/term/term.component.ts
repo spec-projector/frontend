@@ -1,10 +1,10 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {UI} from 'junte-ui';
-import {Term} from '../../../model/planning/term';
-import {FormBuilder} from '@angular/forms';
-import {Token} from '../../../model/planning/token';
-import {SpaceManager} from '../../services/space-manager.service';
-import {EditMode} from "../../../enums/edit-mode";
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Term } from 'model/planning/term';
+import { Token } from 'model/planning/token';
 
 @Component({
     selector: 'app-term',

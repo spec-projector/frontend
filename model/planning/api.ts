@@ -1,4 +1,4 @@
-import {persist, persistence} from '../../decorators/persistence';
+import { persist, persistence } from 'decorators/persistence';
 
 @persistence()
 export class Api {

@@ -120,11 +120,11 @@
 
 
 <ng-template #tokensTemplate let-tokens="tokens">
-    <ng-container *ngFor="let t of tokens">
-        <ng-container [ngSwitch]="t | getTokenType">
-            <ng-container *ngSwitchCase="tokenType.term"> **{{t.term}}**</ng-container>
-            <ng-container *ngSwitchCase="tokenType.accent"> {{t.text}}</ng-container>
-            <ng-container *ngSwitchDefault> {{t.text}}</ng-container>
+    <ng-container *ngFor="let token of tokens">
+        <ng-container [ngSwitch]="token | getTokenType">
+            <ng-container *ngSwitchCase="tokenType.term"> **{{token['term']}}**</ng-container>
+            <ng-container *ngSwitchCase="tokenType.accent"> {{token['text']}}</ng-container>
+            <ng-container *ngSwitchDefault> {{token.text}}</ng-container>
         </ng-container>
     </ng-container>
 </ng-template>

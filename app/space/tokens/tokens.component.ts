@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {Token, TokenType} from '../../../model/planning/token';
-import {UI} from 'junte-ui';
+import { Component, Input } from '@angular/core';
+import { UI } from 'junte-ui';
+import { Token, TokenType } from 'model/planning/token';
 
 @Component({
     selector: 'app-tokens',

@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {AccentToken, TermToken, TextToken, Token, TokenType, UrlToken} from '../../model/planning/token';
+import { Pipe, PipeTransform } from '@angular/core';
+import { AccentToken, TermToken, TextToken, Token, TokenType, UrlToken } from 'model/planning/token';
 
 @Pipe({name: 'getTokenType'})
 export class TokenTypePipe implements PipeTransform {

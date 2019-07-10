@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {UI} from 'junte-ui';
-import {Space} from '../../../model/space';
-import {ActivatedRoute} from '@angular/router';
-import {Package} from '../../../model/orm/package';
-import {isUndefined} from 'util';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Package } from 'model/orm/package';
+import { Space } from 'model/space';
 import * as uuid from 'uuid/v1';
-import {SpaceManager} from '../../services/space-manager.service';
-import {EditMode} from "../../../enums/edit-mode";
 
 @Component({
     selector: 'app-packages',
@@ -50,13 +50,7 @@ export class PackagesComponent implements OnInit {
     }
 
     movePackage(event: any) {
-        const index1 = isUndefined(event.index) ? this.space.packages.length - 1 : event.index;
-        const index2 = event.data;
-        const p1 = this.space.packages[index1];
-        const p2 = this.space.packages[index2];
-        this.space.packages.splice(index1, 1, p2);
-        this.space.packages.splice(index2, 1, p1);
-
+        moveItemInArray(this.space.packages, event.previousIndex, event.currentIndex);
         this.manager.put(this.space);
     }
 

@@ -1,5 +1,5 @@
-import {ModelSerializer, Serializer} from 'serialize-ts';
-import {AccentToken, TermToken, TextToken, Token, TokenType, UrlToken} from '../planning/token';
+import { Serializer } from 'serialize-ts';
+import { AccentToken, TermToken, TextToken, Token, TokenType, UrlToken } from '../planning/token';
 
 export class TokenSerializer implements Serializer<Object> {
 
@@ -26,7 +26,7 @@ export class TokenSerializer implements Serializer<Object> {
             case TokenType.term:
                 return new TermToken(json['term']);
             default:
-                throw 'Wrong token type';
+                throw new Error('Wrong token type');
 
         }
     }

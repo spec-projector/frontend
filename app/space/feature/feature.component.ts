@@ -1,14 +1,14 @@
-import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {Feature, StoryEntry, StoryEntryType} from '../../../model/planning/feature';
-import {UI} from 'junte-ui';
-import {FramesStorage} from '../../services/frames-storage.service';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { FramesStorage } from 'app/services/frames-storage.service';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
 import * as Figma from 'figma-api';
-import {ClipboardService} from 'ngx-clipboard';
-import {TextToken, Token, TokenType} from '../../../model/planning/token';
-import {SpaceManager} from '../../services/space-manager.service';
-import {FormBuilder, FormControl} from '@angular/forms';
-import {EditMode} from '../../../enums/edit-mode';
-import {filter, tap} from 'rxjs/operators';
+import { UI } from 'junte-ui';
+import { Feature, StoryEntry, StoryEntryType } from 'model/planning/feature';
+import { TextToken, Token, TokenType } from 'model/planning/token';
+import { ClipboardService } from 'ngx-clipboard';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-feature',

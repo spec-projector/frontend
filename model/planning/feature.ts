@@ -1,17 +1,17 @@
-import {TermToken, Token} from './token';
-import {Issue} from './issue';
-import {Frame} from './frame';
-import {ArraySerializer, ModelSerializer} from 'serialize-ts';
-import {Actor} from './actor';
-import {Space} from '../space';
-import {Epic} from './epic';
-import {TermMissedError} from '../../validation/error';
-import {Api} from './api';
-import {Algorithm} from './algorithm';
-import {TokenSerializer} from '../serializers/token';
-import {Term} from './term';
-import {persist, persistence, Persistence} from '../../decorators/persistence';
-import {Entity} from '../orm/entity';
+import { persist, persistence, Persistence } from 'decorators/persistence';
+import { Entity } from 'model/orm/entity';
+import { TokenSerializer } from 'model/serializers/token';
+import { Space } from 'model/space';
+import { ArraySerializer } from 'serialize-ts';
+import { TermMissedError } from 'validation/error';
+import { Actor } from './actor';
+import { Algorithm } from './algorithm';
+import { Api } from './api';
+import { Epic } from './epic';
+import { Frame } from './frame';
+import { Issue } from './issue';
+import { Term } from './term';
+import { TermToken, Token } from './token';
 
 export enum StoryEntryType {
     see = 'see',
@@ -89,10 +89,9 @@ export class Feature extends Persistence {
 
     validate(space: Space) {
         if (!this.space) {
-            return null;
-            throw 'Object is not linked';
+            throw new Error('Object is not linked');
         }
-        let errors: TermMissedError[] = [];
+        const errors: TermMissedError[] = [];
         for (const token of this.title) {
             if (token instanceof TermToken) {
                 const missed = token.validate(this.space.terms.map(t => t.name));
@@ -111,19 +110,19 @@ export class Feature extends Persistence {
 
     private findTerms(tokens: Token[]) {
         return tokens.filter(t => t instanceof TermToken)
-            .map((t1: TermToken) => this.space.terms.find(t2 => t2.name == t1.term))
+            .map((t1: TermToken) => this.space.terms.find(t2 => t2.name === t1.term))
             .filter(t => !!t);
     }
 
     getTerms() {
         if (!this.space) {
-            throw 'Object is not linked';
+            throw new Error('Object is not linked');
         }
         let terms: Term[] = [];
         for (const entry of this.story) {
             if (!!entry.description.length) {
                 terms = terms.concat(this.findTerms(entry.description)
-                    .filter(x => terms.indexOf(x) == -1));
+                    .filter(x => terms.indexOf(x) === -1));
             }
         }
 
@@ -131,9 +130,9 @@ export class Feature extends Persistence {
 
         for (const term of terms) {
             nested = nested.concat(this.findTerms(term.description)
-                .filter(x => nested.indexOf(x) == -1));
+                .filter(x => nested.indexOf(x) === -1));
         }
 
-        return terms.concat(nested.filter(x => terms.indexOf(x) == -1));
+        return terms.concat(nested.filter(x => terms.indexOf(x) === -1));
     }
 }

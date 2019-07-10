@@ -3,9 +3,9 @@ npm i
 npm start
 ```
 
-docker pull couchdb
-docker run -p 5984:5984 -d couchdb
-http://localhost:5984/_utils/
+docker pull couchdb  
+docker run -p 5984:5984 -d couchdb  
+http://localhost:5984/_utils/  
 
 
 Run space project:

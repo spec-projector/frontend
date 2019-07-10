@@ -1,4 +1,4 @@
-import {persist, persistence} from '../../decorators/persistence';
+import { persist, persistence } from 'decorators/persistence';
 
 export enum TokenType {
     text = 'text',
@@ -15,21 +15,21 @@ export class Token {
     }
 
     static parse(source: string): Token[] {
-        return source.split(/(\{\{[\w\s]+\}\}|\[[\w\s]+\]|[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*)/i)
+        return source.split(/({{[\w\s]+}}|\[[\w\s]+]|[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_+.~#?&//=]*)/i)
             .map(t => t.trim())
             .filter(t => !!t)
             .map(t => {
-                let match = t.match(/\{\{([\w\s]+)\}\}/i);
+                let match = t.match(/{{([\w\s]+)}}/i);
                 if (!!match) {
                     return new TermToken(match[1]);
                 }
 
-                match = t.match(/\[([\w\s]+)\]/i);
+                match = t.match(/\[([\w\s]+)]/i);
                 if (!!match) {
                     return new AccentToken(match[1]);
                 }
 
-                match = t.match(/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*)/i);
+                match = t.match(/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_+.~#?&//=]*)/i);
                 if (!!match) {
                     return new UrlToken(match[1]);
                 }

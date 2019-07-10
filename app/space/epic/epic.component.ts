@@ -1,13 +1,10 @@
-import {Component, Input} from '@angular/core';
-import {UI} from 'junte-ui';
-import {FormBuilder, FormControl} from '@angular/forms';
-import {SpaceManager} from '../../services/space-manager.service';
-import {filter, tap} from 'rxjs/operators';
-import {EditMode} from '../../../enums/edit-mode';
-import {Actor} from '../../../model/planning/actor';
-import {DndDropEvent} from "ngx-drag-drop";
-import {Feature} from "../../../model/planning/feature";
-import {Epic} from "../../../model/planning/epic";
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Epic } from 'model/planning/epic';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-epic',
