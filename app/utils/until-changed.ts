@@ -1,6 +1,6 @@
-import {MonoTypeOperatorFunction, Observable, Operator, Subscriber, TeardownLogic} from "rxjs";
-import {Persistence, SerializeType} from "../../decorators/persistence";
-import {FormGroup} from "@angular/forms";
+import { FormGroup } from '@angular/forms';
+import { Persistence, SerializeType } from 'decorators/persistence';
+import { MonoTypeOperatorFunction, Observable, Operator, Subscriber, TeardownLogic } from 'rxjs';
 
 function getSnapshot(persistence: Persistence): Object {
     return persistence.serialize(SerializeType.reference);

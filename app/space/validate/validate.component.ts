@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {UI} from 'junte-ui';
-import {Space} from '../../../model/space';
-import {ActivatedRoute} from '@angular/router';
-import {ValidationError} from '../../../validation/error';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UI } from 'junte-ui';
+import { Space } from 'model/space';
+import { ValidationError } from 'validation/error';
 
 @Component({
     selector: 'app-validate',

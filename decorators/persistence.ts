@@ -1,20 +1,10 @@
-import {
-    deserialize,
-    serialize,
-    ArraySerializer,
-    Field,
-    Model,
-    ModelSerializer,
-    Name,
-    Serializer,
-    Type
-} from 'serialize-ts';
-import {combineLatest, Observable, of, Subject} from 'rxjs';
-import {finalize, tap} from 'rxjs/operators';
-import Database = PouchDB.Database;
-import Document = PouchDB.Core.Document;
-import {generate, characters} from 'shortid';
 import 'reflect-metadata';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { ArraySerializer, deserialize, Field, Model, ModelSerializer, Name, serialize, Serializer, Type } from 'serialize-ts';
+import { characters, generate } from 'shortid';
+import Document = PouchDB.Core.Document;
+import Database = PouchDB.Database;
 
 characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 

@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {StoryEntry, StoryEntryType} from "../../../model/planning/feature";
-import {FormBuilder, FormControl} from "@angular/forms";
-import {EditMode} from "../../../enums/edit-mode";
-import {filter, tap} from "rxjs/operators";
-import {Token} from "../../../model/planning/token";
-import {UI} from "junte-ui";
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { StoryEntry, StoryEntryType } from 'model/planning/feature';
+import { Token } from 'model/planning/token';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-story-entry',

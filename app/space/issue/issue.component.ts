@@ -1,11 +1,11 @@
-import {Component, Input} from '@angular/core';
-import {Issue} from '../../../model/planning/issue';
-import {UI} from 'junte-ui';
-import {ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {deserialize, Field, Model} from 'serialize-ts';
-import {IssueLabel, IssueState} from "../../../enums/issue";
+import { HttpClient } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IssueLabel, IssueState } from 'enums/issue';
+import { UI } from 'junte-ui';
+import { Issue } from 'model/planning/issue';
+import { map } from 'rxjs/operators';
+import { deserialize, Field, Model } from 'serialize-ts';
 
 @Model()
 class IssueStatus {

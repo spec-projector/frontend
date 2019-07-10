@@ -1,6 +1,6 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {Package} from '../../model/orm/package';
-import {Entity} from '../../model/orm/entity';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Entity } from 'model/orm/entity';
+import { Package } from 'model/orm/package';
 
 @Pipe({name: 'groupEntities'})
 export class GroupEntitiesPipe implements PipeTransform {

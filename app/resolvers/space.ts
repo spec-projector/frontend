@@ -1,8 +1,8 @@
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Space} from '../../model/space';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {SpaceManager} from '../services/space-manager.service';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { Space } from 'model/space';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SpaceResolver implements Resolve<Space> {

@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Space} from '../../../model/space';
-import {ActivatedRoute} from '@angular/router';
-import {UI} from 'junte-ui';
-import {SpaceManager} from "../../services/space-manager.service";
-import {EditMode} from "../../../enums/edit-mode";
-import {Entity} from "../../../model/orm/entity";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Actor } from 'model/planning/actor';
+import { Space } from 'model/space';
 import * as uuid from 'uuid/v1';
-import {Actor} from "../../../model/planning/actor";
 
 @Component({
     selector: 'app-actors',
@@ -46,4 +46,8 @@ export class ActorsComponent implements OnInit {
         this.manager.put(this.space);
     }
 
+    moveActor(event: CdkDragDrop<Actor[]>) {
+        moveItemInArray(this.space.actors, event.previousIndex, event.currentIndex);
+        this.manager.put(this.space);
+    }
 }

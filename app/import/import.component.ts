@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {UI} from 'junte-ui';
-import {SpaceManager} from '../services/space-manager.service';
-import {Router} from '@angular/router';
-import {generate, characters} from 'shortid';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UI } from 'junte-ui';
+import { characters, generate } from 'shortid';
+import { SpaceManager } from '../services/space-manager.service';
 
 characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 
@@ -19,12 +19,15 @@ export class ImportComponent {
     }
 
     import() {
-        const project = generate().toLowerCase();
-        this.spaceService.import(project)
-            .subscribe(space => {
-                console.log('imported');
-                console.log(space.id);
-                this.router.navigate(['..', 'space', project, space.id]);
-            });
+        let project = generate().toLowerCase();
+        while (!project.match(/^[a-z].*/)) {
+            project = generate().toLowerCase();
+        }
+
+        this.spaceService.import(project).subscribe(space => {
+            console.log('imported');
+            console.log(space.id);
+            this.router.navigate(['..', 'space', project, space.id]);
+        });
     }
 }

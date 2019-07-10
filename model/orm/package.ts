@@ -1,6 +1,6 @@
-import {Entity} from './entity';
-import {Space} from '../space';
-import {persist, persistence, Persistence} from '../../decorators/persistence';
+import { persist, persistence, Persistence } from 'decorators/persistence';
+import { Space } from '../space';
+import { Entity } from './entity';
 
 @persistence()
 export class Package extends Persistence {

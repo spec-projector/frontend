@@ -1,9 +1,9 @@
-import {ArraySerializer, ModelSerializer} from 'serialize-ts';
-import {Feature} from './feature';
-import {Improvement} from './improvement';
-import {Space} from '../space';
-import {ValidationError} from '../../validation/error';
-import {persist, persistence} from '../../decorators/persistence';
+import { persist, persistence } from 'decorators/persistence';
+import { ArraySerializer, ModelSerializer } from 'serialize-ts';
+import { ValidationError } from 'validation/error';
+import { Space } from '../space';
+import { Feature } from './feature';
+import { Improvement } from './improvement';
 
 @persistence()
 export class Sprint {

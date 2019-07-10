@@ -1,6 +1,6 @@
-import {Space} from '../space';
-import {persist, persistence} from '../../decorators/persistence';
-import {Entity} from "./entity";
+import { persist, persistence } from 'decorators/persistence';
+import { Space } from '../space';
+import { Entity } from './entity';
 
 export enum FieldType {
     number = 'number',

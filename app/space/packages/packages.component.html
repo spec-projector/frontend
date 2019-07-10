@@ -3,13 +3,10 @@
                 [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addPackage()"></jnt-button>
-    <ul [dndDropzone]="['package']" dndEffectAllowed="copyMove" (dndDrop)="movePackage($event)">
-        <li placeholder dndPlaceholderRef></li>
-        <li *ngFor="let package of space.packages; let i = index;"
-            [dndDraggable]="i"
-            dndType="package">
+    <ul cdkDropList (cdkDropListDropped)="movePackage($event)" [cdkDropListData]="space.packages">
+        <li *ngFor="let pack of space.packages; let i = index;" cdkDrag field>
             <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.small">
-                <jnt-button dndHandle
+                <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary">
@@ -20,7 +17,7 @@
                             (click)="deletePackage(i)">
                 </jnt-button>
             </jnt-stack>
-            <app-package [package]="package"></app-package>
+            <app-package [package]="pack"></app-package>
         </li>
     </ul>
 </jnt-stack>

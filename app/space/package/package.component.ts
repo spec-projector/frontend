@@ -1,14 +1,14 @@
-import {Component, Input} from '@angular/core';
-import {Package} from '../../../model/orm/package';
-import {UI} from 'junte-ui';
-import {FormBuilder, FormControl} from '@angular/forms';
-import {isUndefined} from 'util';
-import {Entity} from '../../../model/orm/entity';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Entity } from 'model/orm/entity';
+import { Package } from 'model/orm/package';
+import { merge } from 'rxjs';
+import { filter, tap } from 'rxjs/operators';
+import { isUndefined } from 'util';
 import * as uuid from 'uuid/v1';
-import {SpaceManager} from '../../services/space-manager.service';
-import {merge} from "rxjs";
-import {filter, tap} from "rxjs/operators";
-import {EditMode} from "../../../enums/edit-mode";
 
 @Component({
     selector: 'app-package',

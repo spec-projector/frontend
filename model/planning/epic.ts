@@ -1,7 +1,7 @@
-import {Feature} from './feature';
-import {Space} from '../space';
-import {ValidationError} from '../../validation/error';
-import {persist, Persistence, persistence} from '../../decorators/persistence';
+import { persist, Persistence, persistence } from 'decorators/persistence';
+import { Space } from 'model/space';
+import { ValidationError } from 'validation/error';
+import { Feature } from './feature';
 
 @persistence()
 export class Epic extends Persistence {

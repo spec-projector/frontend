@@ -1,7 +1,7 @@
-import {Feature} from './feature';
-import {Space} from '../space';
-import {ValidationError} from '../../validation/error';
-import {persist, persistence, Persistence} from '../../decorators/persistence';
+import { persist, persistence, Persistence } from 'decorators/persistence';
+import { ValidationError } from 'validation/error';
+import { Space } from '../space';
+import { Feature } from './feature';
 
 @persistence()
 export class Actor extends Persistence {

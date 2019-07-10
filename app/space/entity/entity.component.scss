@@ -1,4 +1,4 @@
-@import "../../../node_modules/junte-ui/lib/assets/styles/variables";
+@import "~junte-ui/lib/assets/styles/variables";
 
 form {
   position: relative;
@@ -20,6 +20,7 @@ header {
     background-color: transparent;
     white-space: nowrap;
     width: 100%;
+
     &:focus {
       color: black;
     }
@@ -28,9 +29,11 @@ header {
   [title] {
     font-size: 1.5em;
   }
+
   [naming] {
     display: flex;
     align-items: center;
+
     label {
       display: block;
       cursor: pointer;
@@ -42,13 +45,16 @@ header {
       margin-right: $gutter-tiny;
       position: relative;
       z-index: 1;
+
       input[type='checkbox'] {
         visibility: collapse;
       }
+
       &[checked='true'] {
         background: silver;
       }
     }
+
     [name] {
       color: silver;
       font-size: 1em;
@@ -61,31 +67,55 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  li {
-    display: flex;
-    align-items: flex-start;
-    background-color: $white-color;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 10px;
-    app-entity-field {
-      flex: 1;
-    }
-    &[placeholder] {
-      border: 1px solid black;
-      height: 30px;
-    }
-    &:not(:last-child) {
-      border-bottom: 1px dotted $secondary-color;
-      margin-bottom: $gutter-tiny;
-    }
-    [actions] {
-      opacity: .1;
-      margin: 0 $gutter-small 0 0;
-      &:hover {
-        opacity: 1;
-        transition: .25s opacity;
-      }
+}
+
+[field] {
+  display: flex;
+  align-items: flex-start;
+  background-color: $white-color;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 5px;
+
+  app-entity-field {
+    flex: 1;
+  }
+
+  &[placeholder] {
+    border: 1px solid black;
+    height: 30px;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px dotted $secondary-color;
+    margin-bottom: $gutter-tiny;
+  }
+
+  [actions] {
+    opacity: .1;
+    margin: 0 $gutter-small 0 0;
+
+    &:hover {
+      opacity: 1;
+      transition: .25s opacity;
     }
   }
+}
+
+.cdk-drag-preview {
+  box-shadow: $shadow-primary;
+}
+
+.cdk-drop-dragging .cdk-drag {
+  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.5;
+  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
 }

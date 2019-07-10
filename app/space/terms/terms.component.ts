@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Space} from '../../../model/space';
-import {ActivatedRoute} from '@angular/router';
-import {UI} from 'junte-ui';
-import {EditMode} from "../../../enums/edit-mode";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Space } from 'model/space';
 
 @Component({
     selector: 'app-terms',

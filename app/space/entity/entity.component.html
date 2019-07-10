@@ -21,14 +21,11 @@
         </div>
     </ng-template>
 
-    <ul [dndDropzone]="['entity-field']" dndEffectAllowed="copyMove" (dndDrop)="moveField($event)">
-        <li placeholder dndPlaceholderRef></li>
-        <li *ngFor="let field of entity.fields; let i = index;"
-            [dndDraggable]="{index: i, field: field.id}"
-            dndType="entity-field">
+    <ul cdkDropList (cdkDropListDropped)="moveField($event)" [cdkDropListData]="entity.fields">
+        <li *ngFor="let field of entity.fields; let i = index;" cdkDrag field>
             <jnt-stack *ngIf="space.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny"
                        [type]="ui.stack.type.horizontal">
-                <jnt-button handle dndHandle
+                <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary">
@@ -40,7 +37,8 @@
                 </jnt-button>
             </jnt-stack>
             <app-entity-field [field]="field"
-                              (changed)="space.put(entity)"></app-entity-field>
+                              (changed)="space.put(entity)">
+            </app-entity-field>
         </li>
     </ul>
     <jnt-button *ngIf="space.mode == editMode.edit"

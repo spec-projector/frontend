@@ -1,4 +1,4 @@
-@import "../../../node_modules/junte-ui/lib/assets/styles/variables";
+@import "~junte-ui/lib/assets/styles/variables";
 
 :host {
   display: inline-block;
@@ -7,7 +7,7 @@
 
 [icon] {
   position: absolute;
-  op: 0;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;

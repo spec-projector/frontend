@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Space} from '../../../model/space';
-import {ActivatedRoute} from '@angular/router';
-import {UI} from 'junte-ui';
-import {SpaceManager} from "../../services/space-manager.service";
-import {EditMode} from "../../../enums/edit-mode";
-import {Actor} from "../../../model/planning/actor";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SpaceManager } from 'app/services/space-manager.service';
+import { EditMode } from 'enums/edit-mode';
+import { UI } from 'junte-ui';
+import { EntityField } from 'model/orm/entity-field';
+import { Epic } from 'model/planning/epic';
+import { Space } from 'model/space';
 import * as uuid from 'uuid/v1';
-import {Epic} from "../../../model/planning/epic";
 
 @Component({
     selector: 'app-epics',
@@ -43,6 +44,11 @@ export class EpicsComponent implements OnInit {
         const epic = this.space.epics[index];
         this.space.epics.splice(index, 1);
         this.manager.remove(epic);
+        this.manager.put(this.space);
+    }
+
+    moveEpic(event: CdkDragDrop<EntityField[]>) {
+        moveItemInArray(this.space.epics, event.previousIndex, event.currentIndex);
         this.manager.put(this.space);
     }
 

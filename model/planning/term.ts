@@ -1,7 +1,7 @@
-import {ArraySerializer} from 'serialize-ts';
-import {Token} from './token';
-import {TokenSerializer} from '../serializers/token';
-import {persist, persistence, Persistence} from '../../decorators/persistence';
+import { persist, persistence, Persistence } from 'decorators/persistence';
+import { TokenSerializer } from 'model/serializers/token';
+import { ArraySerializer } from 'serialize-ts';
+import { Token } from './token';
 
 @persistence()
 export class Term extends Persistence {

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Space} from '../../../model/space';
-import {UI} from 'junte-ui';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UI } from 'junte-ui';
+import { Space } from 'model/space';
 
 @Component({
     selector: 'app-sprints',

@@ -1,10 +1,10 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {AppComponent} from './app.component';
-import {RouterModule} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {JunteUiModule} from 'junte-ui';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from 'app/app-routing.module';
+import { JunteUiModule } from 'junte-ui';
+import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [
@@ -15,20 +15,7 @@ import {JunteUiModule} from 'junte-ui';
         HttpClientModule,
         BrowserAnimationsModule,
         JunteUiModule,
-        RouterModule.forRoot([
-                {
-                    path: 'space',
-                    loadChildren: './space/space.module#SpaceModule'
-                },
-                {
-                    path: 'import',
-                    loadChildren: './import/import.module#ImportModule'
-                }
-            ], {
-                paramsInheritanceStrategy: 'always',
-                relativeLinkResolution: 'corrected'
-            }
-        )
+        AppRoutingModule
     ],
     bootstrap: [
         AppComponent

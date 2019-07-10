@@ -1,30 +1,27 @@
-import {ComponentFactoryResolver, Injectable, Injector} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {bufferTime, filter, finalize, map, tap} from 'rxjs/operators';
-import {deserialize, serialize} from 'serialize-ts';
-import {Space} from '../../model/space';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
+import { SpaceSyncComponent } from 'app/space/modals/sync/space-sync.component';
+import { Persistence, SerializeType } from 'decorators/persistence';
+import { EditMode } from 'enums/edit-mode';
+import { ModalService } from 'junte-ui';
+import { Space } from 'model/space';
 import PouchDB from 'pouchdb-browser';
-import {Persistence, SerializeType} from '../../decorators/persistence';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { bufferTime, filter, finalize, map, tap } from 'rxjs/operators';
+import { deserialize } from 'serialize-ts';
 import Database = PouchDB.Database;
-import {ModalService} from 'junte-ui';
-import {SpaceSyncComponent} from '../space/modals/sync/space-sync.component';
-import {EditMode} from "../../enums/edit-mode";
 
 interface Flush {
-
     object: Persistence;
 }
 
 class Put implements Flush {
-
     constructor(public object: Persistence) {
 
     }
 }
 
 class Remove implements Flush {
-
     constructor(public object: Persistence) {
 
     }
@@ -60,7 +57,7 @@ export class SpaceManager {
         return new Observable(observer => {
             this.http.get('space.json')
                 .pipe(map((obj: any) => {
-                        for (const actor of  obj.actors) {
+                        for (const actor of obj.actors) {
                             for (const feature of  actor.features) {
                                 for (const entry of  feature.story) {
                                     if (!!entry.see) {
@@ -128,7 +125,7 @@ export class SpaceManager {
     }
 
     put(object: Persistence) {
-        console.log('putting');
+        // console.log('putting');
         this.flushing$.next(new Put(object));
     }
 
