@@ -12,12 +12,14 @@
     <h3>As <b>{{actor.name}}</b> I want:</h3>
 
     <ul>
-        <li *ngFor="let group of (actor.features | groupFeaturesByEpic:version); let i = index; trackBy: trackFeature;">
+        <li *ngFor="let group of (actor.features | groupFeaturesByEpic:version); trackBy: trackFeature">
             <h4>
                 <span>{{group.epic?.title}}</span>
             </h4>
             <ul>
-                <li *ngFor="let feature of group.features">
+                <li *ngFor="let feature of group.features; trackBy: trackFeature" cdkDropList
+                    cdkDropListConnectedTo="epics" [id]="'feature-' + feature.id"
+                    (cdkDropListDropped)="onDropEpic(feature, $event)">
                     <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.tiny">
                         <jnt-button [icon]="ui.icons.delete"
                                     [size]="ui.sizes.tiny"
@@ -25,17 +27,15 @@
                                     (click)="deleteFeature(feature.id)">
                         </jnt-button>
                     </jnt-stack>
-                    <app-feature [feature]="feature"
-                                 [dndDropzone]="['epic']"
-                                 [dndEffectAllowed]="'copyLink'"
-                                 (dndDrop)="onDropEpic(feature, $event)"></app-feature>
+                    <app-feature [feature]="feature" feature></app-feature>
                 </li>
             </ul>
         </li>
         <li *ngIf="manager.mode == editMode.edit">
             <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
                         [scheme]="ui.schemes.secondary"
-                        (click)="addFeature()"></jnt-button>
+                        (click)="addFeature()">
+            </jnt-button>
         </li>
     </ul>
 </form>

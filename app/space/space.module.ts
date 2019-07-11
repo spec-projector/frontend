@@ -37,6 +37,7 @@ import { EpicComponent } from './epic/epic.component';
 import { SpaceSyncComponent } from './modals/sync/space-sync.component';
 import { SpaceComponent } from './space.component';
 import { StoryEntryComponent } from './story-entry/story-entry.component';
+import { SpacePipe } from './space.pipe';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { StoryEntryComponent } from './story-entry/story-entry.component';
         EntityFieldComponent,
         GroupEntitiesPipe,
         SpaceSyncComponent,
-        StoryEntryComponent
+        StoryEntryComponent,
+        SpacePipe
     ],
     entryComponents: [SpaceSyncComponent],
     imports: [

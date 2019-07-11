@@ -4,15 +4,26 @@ ul {
   list-style: none;
   margin: 0;
   padding: $gutter-small;
+
   li {
     border: 1px solid $secondary-color;
     border-radius: $corner-small;
     padding: $gutter-small;
     cursor: pointer;
     user-select: none;
+
     &:not(:last-child) {
       margin-bottom: $gutter-small;
     }
+
+    &.cdk-drag-preview {
+      box-shadow: $shadow-primary;
+    }
+  }
+
+  .cdk-drag-placeholder {
+    visibility: hidden;
+    height: 0;
   }
 }
 
@@ -20,4 +31,15 @@ ul {
   margin-top: $gutter-normal;
   padding: $gutter-normal $gutter-tiny;
   border-top: 1px solid $secondary-color;
+}
+
+[epic] {
+  &.cdk-drag-preview {
+    box-shadow: $shadow-primary;
+    padding: 0 $gutter-small;
+    border-radius: $corner-small;
+    display: flex;
+    align-items: center;
+    background-color: $primary-background;
+  }
 }
