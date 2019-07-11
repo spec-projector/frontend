@@ -16,12 +16,14 @@
             </form>
 
             <p><b>Epics</b></p>
-            <ul>
+            <ul cdkDropList id="epics" cdkDropListOrientation="horizontal"
+                [cdkDropListConnectedTo]="space | features">
                 <li *ngFor="let epic of space.epics"
-                    [dndDraggable]="{id: epic.id}"
-                    [dndEffectAllowed]="'copyLink'"
-                    dndType="epic">
+                    cdkDrag [cdkDragData]="{id: epic.id}" epic>
                     {{epic.title}}
+                    <div *cdkDragPlaceholder>
+                        <jnt-icon [icon]="ui.icons.plus"></jnt-icon>
+                    </div>
                 </li>
             </ul>
             <p><b>Entities</b></p>

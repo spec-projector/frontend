@@ -15,7 +15,7 @@ export class TermComponent implements OnInit {
 
     private _term: Term;
 
-    @ViewChild('description')
+    @ViewChild('description', {static: false})
     description: ElementRef<HTMLTextAreaElement>;
 
     ui = UI;

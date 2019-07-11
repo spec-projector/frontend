@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { SpaceManager } from 'app/services/space-manager.service';
@@ -6,7 +7,6 @@ import { UI } from 'junte-ui';
 import { Actor } from 'model/planning/actor';
 import { Feature } from 'model/planning/feature';
 import { TextToken } from 'model/planning/token';
-import { DndDropEvent } from 'ngx-drag-drop';
 import { filter, tap } from 'rxjs/operators';
 import * as uuid from 'uuid/v1';
 
@@ -55,7 +55,7 @@ export class ActorComponent {
         });
     }
 
-    onDropEpic(feature: Feature, {data: {id}}: DndDropEvent) {
+    onDropEpic(feature: Feature, {item: {data: {id}}}: CdkDragDrop<{ id: string }[]>) {
         const epic = this.actor.space.epics.find(e => e.id === id);
         if (!!feature.epic) {
             const index = feature.epic.features.indexOf(feature);
@@ -96,5 +96,4 @@ export class ActorComponent {
 
         this.version++;
     }
-
 }

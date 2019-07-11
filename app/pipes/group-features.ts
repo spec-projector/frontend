@@ -19,7 +19,7 @@ export class ActorGroup {
 
 @Pipe({name: 'groupFeaturesByEpic'})
 export class GroupFeaturesByEpicPipe implements PipeTransform {
-    transform(features: Feature[]): EpicGroup[] {
+    transform(features: Feature[], version?: number): EpicGroup[] {
         const groups = features.reduce((result: Map<Epic, EpicGroup>, feature) => {
             const key = feature.epic || null;
             let group = result.get(key);

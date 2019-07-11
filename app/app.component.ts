@@ -9,8 +9,8 @@ import {ModalComponent, ModalService, UI} from 'junte-ui';
 export class AppComponent implements AfterViewInit {
     ui = UI;
 
-    @ViewChild('modal') modal: ModalComponent;
-    @ViewChild('layout', {read: ElementRef}) backdrop;
+    @ViewChild('modal', {static: false}) modal: ModalComponent;
+    @ViewChild('layout', {read: ElementRef, static: false}) backdrop;
 
     constructor(private modalService: ModalService) {
     }

@@ -17,7 +17,7 @@ export class StoryEntryComponent implements OnInit {
     editMode = EditMode;
     storyEntryType = StoryEntryType;
 
-    @ViewChild('input')
+    @ViewChild('input', {static: false})
     input: HTMLInputElement;
 
     private _entry: StoryEntry;
