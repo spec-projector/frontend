@@ -5,6 +5,7 @@ import { SpaceManager } from 'app/services/space-manager.service';
 import { EditMode } from 'enums/edit-mode';
 import { UI } from 'junte-ui';
 import { Actor } from 'model/planning/actor';
+import { Feature } from 'model/planning/feature';
 import { Space } from 'model/space';
 import * as uuid from 'uuid/v1';
 
@@ -49,5 +50,9 @@ export class ActorsComponent implements OnInit {
     moveActor(event: CdkDragDrop<Actor[]>) {
         moveItemInArray(this.space.actors, event.previousIndex, event.currentIndex);
         this.manager.put(this.space);
+    }
+
+    trackActor(index: number, actor: Actor) {
+        return !!actor ? actor.id : null;
     }
 }

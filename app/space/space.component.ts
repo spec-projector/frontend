@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SpaceManager } from 'app/services/space-manager.service';
 import { EditMode } from 'enums/edit-mode';
 import { UI } from 'junte-ui';
+import { Feature } from 'model/planning/feature';
 import { Space } from 'model/space';
 import { ValidationError } from 'validation/error';
 

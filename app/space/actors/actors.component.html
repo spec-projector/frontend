@@ -5,7 +5,7 @@
                 [scheme]="ui.schemes.secondary"
                 (click)="addActor()"></jnt-button>
     <ul cdkDropList (cdkDropListDropped)="moveActor($event)" [cdkDropListData]="space.actors">
-        <li *ngFor="let actor of space.actors; let i = index;" cdkDrag field>
+        <li *ngFor="let actor of space.actors; let i = index; trackBy: trackActor" cdkDrag field>
             <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.small">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"

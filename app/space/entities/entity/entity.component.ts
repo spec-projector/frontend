@@ -94,4 +94,8 @@ export class EntityComponent {
         this.space.put(this.entity);
     }
 
+    trackField(index: number) {
+        return index;
+    }
+
 }

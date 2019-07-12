@@ -6,7 +6,7 @@ import { ActorsComponent } from 'app/space/actors/actors.component';
 import { EpicsComponent } from 'app/space/epics/epics.component';
 import { PackagesComponent } from 'app/space/packages/packages.component';
 import { SpaceComponent } from 'app/space/space.component';
-import { SprintComponent } from 'app/space/sprint/sprint.component';
+import { SprintComponent } from 'app/space/sprints/sprint/sprint.component';
 import { SprintsComponent } from 'app/space/sprints/sprints.component';
 import { TermsComponent } from 'app/space/terms/terms.component';
 import { ValidateComponent } from 'app/space/validate/validate.component';

@@ -22,7 +22,7 @@
     </ng-template>
 
     <ul cdkDropList (cdkDropListDropped)="moveField($event)" [cdkDropListData]="entity.fields">
-        <li *ngFor="let field of entity.fields; let i = index;" cdkDrag field>
+        <li *ngFor="let field of entity.fields; let i = index; trackBy: trackField" cdkDrag field>
             <jnt-stack *ngIf="space.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny"
                        [type]="ui.stack.type.horizontal">
                 <jnt-button cdkDragHandle

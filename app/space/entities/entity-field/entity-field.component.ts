@@ -3,6 +3,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { SpaceManager } from 'app/services/space-manager.service';
 import { EditMode } from 'enums/edit-mode';
 import { UI } from 'junte-ui';
+import { Entity } from 'model/orm/entity';
 import { EntityField, FieldType } from 'model/orm/entity-field';
 import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
@@ -75,6 +76,10 @@ export class EntityFieldComponent {
             title = title.replace(/\s+/g, '_');
             this.name.patchValue(title);
         }
+    }
+
+    trackEntity(index: number, entity: Entity) {
+        return !!entity ? entity.id : null;
     }
 
 }

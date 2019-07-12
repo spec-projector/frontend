@@ -54,5 +54,7 @@ export class PackagesComponent implements OnInit {
         this.manager.put(this.space);
     }
 
-
+    trackPackage(index: number, pack: Package) {
+        return !!pack ? pack.id : null;
+    }
 }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="space">
+<ng-container *ngIf="!!space">
     <jnt-stack [align]="ui.flex.align.stretch">
         <app-term *ngFor="let term of space.terms" [term]="term"></app-term>
     </jnt-stack>
