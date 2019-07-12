@@ -108,5 +108,4 @@ export class FeatureComponent implements OnInit {
         container.style.display = 'block';
         this.clipboard.copyFromContent(container.innerText);
     }
-
 }

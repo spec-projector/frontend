@@ -21,9 +21,9 @@
             <br>
             <ng-container *ngIf="typeControl.value == fieldType.reference || typeControl.value == fieldType.array">
                 <select formControlName="reference">
-                    <option *ngFor="let e of (field.entity.package.space.packages | groupEntities)"
-                            [value]="e.id">{{e.package != field.entity.package ?
-                        e.package.title + ' / ' : ''}}{{e.title}}
+                    <option *ngFor="let entity of (field.entity.package.space.packages | groupEntities);
+                            trackBy: trackEntity" [value]="entity.id">
+                        {{entity.package != field.entity.package ? entity.package.title + ' / ' : ''}}{{entity.title}}
                     </option>
                 </select>
             </ng-container>

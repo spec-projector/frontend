@@ -4,7 +4,7 @@
                 [scheme]="ui.schemes.secondary"
                 (click)="addPackage()"></jnt-button>
     <ul cdkDropList (cdkDropListDropped)="movePackage($event)" [cdkDropListData]="space.packages">
-        <li *ngFor="let pack of space.packages; let i = index;" cdkDrag field>
+        <li *ngFor="let pack of space.packages; let i = index; trackBy: trackPackage" cdkDrag field>
             <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.small">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"

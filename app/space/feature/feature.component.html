@@ -11,113 +11,118 @@
     </ng-template>
 </form>
 
+<jnt-stack>
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+        <jnt-button [scheme]="ui.schemes.secondary" [icon]="opened ? ui.icons.minus : ui.icons.actions"
+                    [size]="ui.sizes.tiny"
+                    (click)="opened = !opened">
+        </jnt-button>
+        <jnt-label *ngIf="feature.frames.length" label="Design" [color]="ui.colors.blue100"></jnt-label>
+        <jnt-label *ngIf="feature.endpoints.length" label="API" [color]="ui.colors.purple"></jnt-label>
+        <app-issue *ngFor="let issue of feature.issues" [issue]="issue"></app-issue>
 
-<jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-    <jnt-button [scheme]="ui.schemes.secondary" [icon]="opened ? ui.icons.minus : ui.icons.actions"
-                [size]="ui.sizes.tiny"
-                (click)="opened = !opened">
-    </jnt-button>
-    <jnt-label *ngIf="feature.frames.length" label="Design" [color]="ui.colors.blue100"></jnt-label>
-    <jnt-label *ngIf="feature.endpoints.length" label="API" [color]="ui.colors.purple"></jnt-label>
-    <app-issue *ngFor="let issue of feature.issues" [issue]="issue"></app-issue>
+    </jnt-stack>
+    <ng-container *ngIf="opened">
+        <jnt-stack>
+            <ol *ngIf="feature.story.length"
+                (mouseenter)="manager.mode ==  editMode.edit ? storyMode = editMode.edit : null"
+                (mouseleave)="storyMode = editMode.view">
+                <li *ngFor="let entry of feature.story; let i = index">
+                    <app-story-entry #storyEntry [entry]="entry"
+                                     [mode]="storyMode"
+                                     (changed)="manager.put(feature)"
+                                     (finished)="addStoryEntry(i)"
+                                     (deleted)="deleteStoryEntry(i)">
+                    </app-story-entry>
+                </li>
+            </ol>
 
-</jnt-stack>
-<ng-container *ngIf="opened">
-    <ol *ngIf="feature.story.length" (mouseenter)="manager.mode ==  editMode.edit ? storyMode = editMode.edit : null"
-        (mouseleave)="storyMode = editMode.view">
-        <li *ngFor="let entry of feature.story;let i = index">
-            <app-story-entry #storyEntry [entry]="entry"
-                             [mode]="storyMode"
-                             (changed)="manager.put(feature)"
-                             (finished)="addStoryEntry(i)"
-                             (deleted)="deleteStoryEntry(i)"></app-story-entry>
-        </li>
-    </ol>
+            <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
+                        text="Copy to clipboard">
+            </jnt-button>
 
-    <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
-                text="Copy to clipboard"></jnt-button>
-
-    <div #summary summary style="display: none">
-        <div>As a 👦 **{{feature.actor?.name}}** I want:
-            <ng-container
-                    *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>
-        </div>
-        <div *ngFor="let entry of feature.story;let i = index">
-            1. **I {{entry.type}}:**
-            <ng-container
-                    *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}"></ng-container>
-        </div>
-        <ng-container *ngIf="feature.frames.length">
-            <br>
-            <div>**🚀 Design**</div>
-            <div *ngFor="let frame of feature.frames">
-                * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
-            </div>
-        </ng-container>
-        <ng-container *ngIf="feature.endpoints.length">
-            <br>
-            <div>**⛳ API**</div>
-            <div *ngFor="let endpoint of feature.endpoints">
-                * {{endpoint.title}} {{endpoint.url}}
-            </div>
-        </ng-container>
-        <ng-container *ngIf="feature.issues.length">
-            <br>
-            <div>**💈 Issues**</div>
-            <div *ngFor="let issue of feature.issues">
-                * {{issue.label}} {{issue.link}}
-            </div>
-        </ng-container>
-        <ng-container *ngIf="(feature | featureTerms).length">
-            <br>
-            <div>**❓Terms**</div>
-            <div *ngFor="let term of (feature | featureTerms)">
-                * **{{term.name}}** &mdash;
-                <ng-container
-                        *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}"></ng-container>
-            </div>
-        </ng-container>
-    </div>
-    <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
-        <thead>
-        <th style="width:35%">Frontend</th>
-        <th width="10"></th>
-        <th style="width:30%">API</th>
-        <th width="10"></th>
-        <th style="width:35%">Backend</th>
-        </thead>
-        <tr>
-            <td>
-                <jnt-stack frames [type]="ui.stack.type.horizontal">
-                    <a *ngFor="let frame of feature.frames"
-                       href="http://figma.com/file/{{frame.file}}?node-id={{frame.node}}"
-                       target="_blank">
-                        <ng-container
-                                *ngIf="this.storage.exists(frame.file, frame.node);else loading">
-                            <img width="200"
-                                 [src]="this.storage.get(frame.file, frame.node)['preview']">
+            <div #summary summary style="display: none">
+                <div>As a 👦 **{{feature.actor?.name}}** I want:
+                    <ng-container
+                            *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>
+                </div>
+                <div *ngFor="let entry of feature.story;let i = index">
+                    1. **I {{entry.type}}:**
+                    <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}">
+                    </ng-container>
+                </div>
+                <ng-container *ngIf="feature.frames.length">
+                    <br>
+                    <div>**🚀 Design**</div>
+                    <div *ngFor="let frame of feature.frames">
+                        * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="feature.endpoints.length">
+                    <br>
+                    <div>**⛳ API**</div>
+                    <div *ngFor="let endpoint of feature.endpoints">
+                        * {{endpoint.title}} {{endpoint.url}}
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="feature.issues.length">
+                    <br>
+                    <div>**💈 Issues**</div>
+                    <div *ngFor="let issue of feature.issues">
+                        * {{issue.label}} {{issue.link}}
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="(feature | featureTerms).length">
+                    <br>
+                    <div>**❓Terms**</div>
+                    <div *ngFor="let term of (feature | featureTerms)">
+                        * **{{term.name}}** &mdash;
+                        <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}">
                         </ng-container>
-                        <ng-template #loading>
-                            {{preview(frame.file, frame.node)}}
-                        </ng-template>
-                    </a>
-                </jnt-stack>
-            </td>
-            <td>&rarr;</td>
-            <td>
-                <jnt-label api *ngFor="let endpoint of feature.endpoints"
-                           [label]="endpoint.title"
-                           (click)="goto(endpoint.url)"></jnt-label>
-            </td>
-            <td>&larr;</td>
-            <td>
-                <jnt-label *ngFor="let entity of feature.entities"
-                           [label]="entity.title"></jnt-label>
-            </td>
-        </tr>
-    </table>
-</ng-container>
-
+                    </div>
+                </ng-container>
+            </div>
+            <table border="1" cellspacing="0" cellpadding="5" style="width:100%">
+                <thead>
+                <th style="width:35%">Frontend</th>
+                <th width="10"></th>
+                <th style="width:30%">API</th>
+                <th width="10"></th>
+                <th style="width:35%">Backend</th>
+                </thead>
+                <tr>
+                    <td>
+                        <jnt-stack frames [type]="ui.stack.type.horizontal">
+                            <a *ngFor="let frame of feature.frames"
+                               href="http://figma.com/file/{{frame.file}}?node-id={{frame.node}}"
+                               target="_blank">
+                                <ng-container
+                                        *ngIf="this.storage.exists(frame.file, frame.node);else loading">
+                                    <img width="200"
+                                         [src]="this.storage.get(frame.file, frame.node)['preview']">
+                                </ng-container>
+                                <ng-template #loading>
+                                    {{preview(frame.file, frame.node)}}
+                                </ng-template>
+                            </a>
+                        </jnt-stack>
+                    </td>
+                    <td>&rarr;</td>
+                    <td>
+                        <jnt-label api *ngFor="let endpoint of feature.endpoints"
+                                   [label]="endpoint.title"
+                                   (click)="goto(endpoint.url)"></jnt-label>
+                    </td>
+                    <td>&larr;</td>
+                    <td>
+                        <jnt-label *ngFor="let entity of feature.entities"
+                                   [label]="entity.title"></jnt-label>
+                    </td>
+                </tr>
+            </table>
+        </jnt-stack>
+    </ng-container>
+</jnt-stack>
 
 <ng-template #tokensTemplate let-tokens="tokens">
     <ng-container *ngFor="let token of tokens">
