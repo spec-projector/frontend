@@ -65,6 +65,18 @@ publish_prod:
   only:
     - prod
 
+deploy_game:
+  image: node:8
+  stage: deploy
+  script:
+    - npm run build:game
+    - mv dist/game/* public/
+  artifacts:
+    paths:
+      - public/
+  only:
+    - master
+
 deploy_dev:
   image: junte/ssh-agent
   stage: deploy
@@ -79,14 +91,3 @@ deploy_dev:
   only:
     - master
 
-deploy_game:
-  image: node:8
-  stage: deploy
-  script:
-    - npm run build:game
-    - mv dist/game/* public/
-  artifacts:
-    paths:
-      - public/
-  only:
-    - master
