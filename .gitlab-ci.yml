@@ -25,9 +25,12 @@ build:
     - npm install
   script:
     - npm run build
+    - npm run build:game
+    - mv dist/game/* public/
   artifacts:
     paths:
       - dist/
+      - public/
   cache:
     paths:
       - node_modules/
@@ -64,18 +67,6 @@ publish_prod:
   only:
     - prod
 
-deploy_game:
-  image: node:8
-  stage: build
-  script:
-    - npm run build:game
-    - mv dist/game/* public/
-  artifacts:
-    paths:
-      - public/
-  only:
-    - master
-
 deploy_dev:
   image: junte/ssh-agent
   stage: deploy
@@ -89,4 +80,3 @@ deploy_dev:
     url: https://${DEV_HOST}
   only:
     - master
-
