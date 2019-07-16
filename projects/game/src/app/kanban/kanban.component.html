@@ -1,0 +1,10 @@
+<div *ngIf="!!kanban">
+    <div container [attr.code]="group.code" *ngFor="let group of kanban.groups">
+        <h2>{{group.title}}</h2>
+
+        <div cdkDropList [id]="group.code" [cdkDropListData]="group.issues"
+             [cdkDropListConnectedTo]="kanban | codes" list (cdkDropListDropped)="drop($event)">
+            <div item *ngFor="let issue of group.issues" cdkDrag>{{issue.title}}</div>
+        </div>
+    </div>
+</div>
