@@ -28,7 +28,6 @@ build:
   artifacts:
     paths:
       - dist/
-      - public
   cache:
     paths:
       - node_modules/
@@ -67,7 +66,7 @@ publish_prod:
 
 deploy_game:
   image: node:8
-  stage: deploy
+  stage: build
   script:
     - npm run build:game
     - mv dist/game/* public/
