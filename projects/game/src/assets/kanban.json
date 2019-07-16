@@ -1,0 +1,58 @@
+{
+  "groups": [
+    {
+      "title": "To do",
+      "code": "todo",
+      "issues": [
+        {
+          "title": "Get to work"
+        },
+        {
+          "title": "Pick up groceries"
+        },
+        {
+          "title": "Go home"
+        },
+        {
+          "title": "Fall asleep"
+        }
+      ]
+    },
+    {
+      "title": "Doing",
+      "code": "doing",
+      "issues": [
+        {
+          "title": "Get up"
+        },
+        {
+          "title": "Brush teeth"
+        },
+        {
+          "title": "Take a shower"
+        },
+        {
+          "title": "Check e-mail"
+        },
+        {
+          "title": "Walk dog"
+        }
+      ]
+    },
+    {
+      "title": "Done",
+      "code": "done",
+      "issues": [
+        {
+          "title": "Done issue"
+        },
+        {
+          "title": "Done issue"
+        },
+        {
+          "title": "Done issue"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+@import "~junte-ui/lib/assets/styles/variables";
+
+[container] {
+  width: 350px;
+  max-width: 100%;
+  margin: $gutter-normal;
+  display: inline-block;
+  vertical-align: top;
+  padding: $gutter-normal;
+  color: $secondary-color;
+  border-radius: $corner-normal;
+  background-color: $gray-700;
+
+  &[code="todo"] {
+    background-color: $primary-color;
+  }
+
+  &[code="doing"] {
+    background-color: limegreen;
+  }
+
+  &[code="done"] {
+    background-color: $green-dark;
+  }
+
+  [list] {
+    border: solid 1px $gray-700;
+    background: white;
+    border-radius: $corner-normal;
+    display: block;
+    overflow: hidden;
+  }
+}
+
+[item] {
+  padding: $gutter-big;
+  border-bottom: solid 1px #ccc;
+  box-sizing: border-box;
+  cursor: move;
+  background: $secondary-background;
+  color: black;
+  font-size: $font-size-base;
+}
+
+.cdk-drag-preview {
+  border-radius: $corner-normal;
+  box-shadow: $shadow-primary-dark;
+}
+
+.cdk-drop-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: .3;
+}
+
