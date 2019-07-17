@@ -49,6 +49,8 @@ pages:
   cache:
     paths:
       - node_modules/
+  only:
+    - master
 
 docker:
   stage: docker
