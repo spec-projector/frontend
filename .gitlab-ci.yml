@@ -34,7 +34,7 @@ build:
 
 pages:
   image: node:8
-  stage: build
+  stage: deploy
   variables:
     GIT_DEPTH: 5
     GIT_STRATEGY: fetch
@@ -45,8 +45,7 @@ pages:
     - mv dist/game/* public/
   artifacts:
     paths:
-      - dist/
-      - public/
+      - public
   cache:
     paths:
       - node_modules/
