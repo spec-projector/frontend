@@ -147,7 +147,7 @@ export class KanbanManager {
     }
 
     private flushing() {
-        this.flushing$.pipe(bufferTime(2500), filter(buffer => buffer.length > 0))
+        this.flushing$.pipe(bufferTime(2000), filter(buffer => buffer.length > 0))
             .subscribe(buffer => {
                 const puts = new Map<string, Put>(),
                     removed = new Map<string, Remove>();
