@@ -25,6 +25,22 @@ build:
     - npm install
   script:
     - npm run build
+  artifacts:
+    paths:
+      - dist/
+  cache:
+    paths:
+      - node_modules/
+
+build_game:
+  image: node:8
+  stage: build
+  variables:
+    GIT_DEPTH: 5
+    GIT_STRATEGY: fetch
+  before_script:
+    - npm install
+  script:
     - npm run build:game
     - mv dist/game/* public/
   artifacts:
