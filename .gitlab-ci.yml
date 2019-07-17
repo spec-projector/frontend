@@ -32,7 +32,7 @@ build:
     paths:
       - node_modules/
 
-build_game:
+pages:
   image: node:8
   stage: build
   variables:
