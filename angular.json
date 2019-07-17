@@ -74,7 +74,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/game",
-            "baseHref": "/frontend/",
+            "baseHref": "/spec-projector/frontend/",
             "index": "projects/game/src/index.html",
             "main": "projects/game/src/main.ts",
             "polyfills": "projects/game/src/polyfills.ts",
