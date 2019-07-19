@@ -19,6 +19,7 @@
     "@angular/router": "~7.1.0",
     "@types/pouchdb": "^6.3.3",
     "figma-api": "^1.3.1",
+    "junte-angular": "0.0.46",
     "junte-ui": "0.0.123",
     "ng4-click-outside": "^1.0.1",
     "ngx-clipboard": "^12.0.0",

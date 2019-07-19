@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActorsComponent } from 'src/app/components/actors/actors.component';
+import { EpicsComponent } from 'src/app/components/epics/epics.component';
+import { PackagesComponent } from 'src/app/components/packages/packages.component';
+import { SpaceComponent } from 'src/app/components/space/space.component';
+import { SprintComponent } from 'src/app/components/sprints/sprint/sprint.component';
+import { SprintsComponent } from 'src/app/components/sprints/sprints.component';
+import { TermsComponent } from 'src/app/components/terms/terms.component';
+import { ValidateComponent } from 'src/app/components/validate/validate.component';
 import { SpaceResolver } from 'src/app/resolvers/space';
 import { SprintResolver } from 'src/app/resolvers/sprint';
-import { ActorsComponent } from 'src/app/space/actors/actors.component';
-import { EpicsComponent } from 'src/app/space/epics/epics.component';
-import { PackagesComponent } from 'src/app/space/packages/packages.component';
-import { SpaceComponent } from 'src/app/space/space.component';
-import { SprintComponent } from 'src/app/space/sprints/sprint/sprint.component';
-import { SprintsComponent } from 'src/app/space/sprints/sprints.component';
-import { TermsComponent } from 'src/app/space/terms/terms.component';
-import { ValidateComponent } from 'src/app/space/validate/validate.component';
 
 export const routes: Routes = [
     {

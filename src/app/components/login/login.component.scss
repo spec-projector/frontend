@@ -1,0 +1,48 @@
+@import '~junte-ui/lib/assets/styles/variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+form {
+  background-color: $primary-background;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: $shadow-normal;
+  min-width: 300px;
+
+  [logo] {
+    text-align: center;
+  }
+
+  [fields] {
+    margin-top: $gutter-normal;
+  }
+
+  button {
+    display: block;
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  [gitlab] {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid silver;
+    overflow: hidden;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+  }
+}

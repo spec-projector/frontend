@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UI } from 'junte-ui';
 import { characters, generate } from 'shortid';
-import { SpaceManager } from '../services/space-manager.service';
+import { SpaceManager } from 'src/app/services/space-manager.service';
 
 characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 

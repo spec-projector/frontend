@@ -6,7 +6,7 @@
             <img src="src/assets/images/logo-white.svg" height="45">
         </ng-template>
         <ng-template #topMenu>
-            <jnt-menu>
+            <jnt-menu *ngIf="!!me.user">
                 <jnt-menu-item link="projects" title="Projects" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
                 <jnt-menu-item link="import" title="Import" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
                 <jnt-menu-item link="tests" title="Tests" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>

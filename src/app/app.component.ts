@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ModalComponent, ModalService, UI } from 'junte-ui';
+import { MeManager } from 'src/app/managers/me.manager';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent implements AfterViewInit {
     @ViewChild('modal', {static: false}) modal: ModalComponent;
     @ViewChild('layout', {read: ElementRef, static: false}) backdrop;
 
-    constructor(private modalService: ModalService) {
+    constructor(private modalService: ModalService,
+                public me: MeManager) {
     }
 
     ngAfterViewInit() {
