@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { UI } from 'junte-ui';
 import { SpaceManager } from 'src/app/services/space-manager.service';
 import { EditMode } from 'src/enums/edit-mode';
-import { UI } from 'junte-ui';
 import { Space } from 'src/model/space';
 import { ValidationError } from 'src/validation/error';
 

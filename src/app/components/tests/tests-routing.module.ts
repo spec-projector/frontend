@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DragAndDropComponent } from 'src/app/tests/drag-and-drop/drag-and-drop.component';
+import { DragAndDropComponent } from 'src/app/components/tests/drag-and-drop/drag-and-drop.component';
 
 export const routes: Routes = [
     {

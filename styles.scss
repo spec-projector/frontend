@@ -1,37 +1,24 @@
 @import "~junte-ui/lib/assets/styles/common";
 @import "~junte-ui/lib/assets/styles/components";
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Open Sans;
-  font-weight: 300;
-}
-
-ul.unstyled {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-jnt-block {
-  padding: $gutter-normal;
-  box-sizing: border-box;
-}
-
-input, textarea {
-  font-size: 14px;
-  font-family: Open Sans;
-  font-weight: 300;
-}
-
-select {
+fieldset {
+  width: 100%;
   border: none;
-  background: none;
-  padding: 0 $gutter-small;
+  margin: 0;
+  padding: 0;
 
-  &:hover {
-    appearance: auto;
-    background-color: $secondary-color;
+  .message {
+    display: none;
+  }
+
+  &.error {
+    .message {
+      display: block;
+    }
+
+    input {
+      border: 1px solid red;
+    }
   }
 }
+

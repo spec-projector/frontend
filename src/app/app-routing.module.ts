@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthorizationGuard } from 'src/app/app.guard';
 
 const routes: Routes = [
     {
@@ -9,15 +10,21 @@ const routes: Routes = [
     },
     {
         path: 'space',
-        loadChildren: './space/space.module#SpaceModule'
+        loadChildren: './components/space/space.module#SpaceModule',
+        canActivate: [AuthorizationGuard]
     },
     {
         path: 'import',
-        loadChildren: './import/import.module#ImportModule'
+        loadChildren: './components/import/import.module#ImportModule',
+        canActivate: [AuthorizationGuard]
     },
     {
         path: 'tests',
-        loadChildren: './tests/tests.module#TestsModule'
+        loadChildren: './components/tests/tests.module#TestsModule'
+    },
+    {
+        path: 'login',
+        loadChildren: './components/login/login.module#LoginModule'
     }
 ];
 

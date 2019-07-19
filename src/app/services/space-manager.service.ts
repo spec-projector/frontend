@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
-import { SpaceSyncComponent } from 'src/app/space/modals/sync/space-sync.component';
+import { SpaceSyncComponent } from 'src/app/components/modals/sync/space-sync.component';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
 import { ModalService } from 'junte-ui';

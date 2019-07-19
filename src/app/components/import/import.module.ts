@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JunteUiModule } from 'junte-ui';
-import { SpaceManager } from '../services/space-manager.service';
-import { ImportComponent } from './import.component';
+import { SpaceManager } from 'src/app/services/space-manager.service';
+import { ImportComponent } from 'src/app/components/import/import.component';
 
 @NgModule({
     declarations: [
