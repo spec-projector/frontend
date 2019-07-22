@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Config } from 'junte-angular';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AppConfig } from 'src/app-config';
 import { Me } from 'src/app/models/me';
@@ -22,12 +22,17 @@ export class MeManager {
     }
 
     constructor(@Inject(me_service) private meService: MeService,
-                @Inject(Config) private config: AppConfig) {
+                private config: AppConfig,
+                private router: Router) {
         this.config.authorization$.subscribe(token => {
             if (!!token) {
-                this.meService.getMe().subscribe(user => this.user = user);
+                this.meService.getMe().subscribe(user => {
+                    this.user = user;
+                    this.router.navigate(['/']).then(() => null);
+                }, () => this.config.authorization = null);
             } else {
                 this.user = null;
+                this.router.navigate(['/login']).then(() => null);
             }
         });
     }
