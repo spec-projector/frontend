@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalComponent, ModalService, UI } from 'junte-ui';
 import { AppConfig } from 'src/app-config';
 import { MeManager } from 'src/app/managers/me.manager';
@@ -18,6 +19,7 @@ export class AppComponent implements AfterViewInit {
     constructor(@Inject(users_service) private usersService: IUsersService,
                 public config: AppConfig,
                 private modalService: ModalService,
+                private router: Router,
                 public me: MeManager) {
     }
 
@@ -26,6 +28,9 @@ export class AppComponent implements AfterViewInit {
     }
 
     logout() {
-        this.usersService.logout().subscribe(() => this.config.authorization = null);
+        this.usersService.logout().subscribe(() => {
+            this.config.authorization = null;
+            this.router.navigate(['/login']).then(() => null);
+        });
     }
 }

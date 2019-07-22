@@ -14,7 +14,7 @@ export class UsersService implements IUsersService {
     }
 
     gitlab(code: string, state: string): Observable<Authorization> {
-        return this.http.get<Authorization>('gitlab/login',
+        return this.http.get<Authorization>('complete/gitlab',
             new HttpParams({fromObject: {code: code, state: state}}))
             .pipe(map(obj => deserialize(obj, Authorization)));
     }
