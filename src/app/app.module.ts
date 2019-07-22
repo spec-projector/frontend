@@ -7,6 +7,7 @@ import { JunteUiModule } from 'junte-ui';
 import { AppConfig } from 'src/app-config';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MeServiceProvider } from 'src/app/services/me/me.provider';
+import { UsersServiceProvider } from 'src/app/services/users/users.provider';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -26,12 +27,13 @@ import { AppComponent } from './app.component';
     providers: [
         {
             provide: Config,
-            useClass: AppConfig
+            useExisting: AppConfig
         },
         HttpClient,
         HttpService,
         HttpMockService,
-        MeServiceProvider
+        MeServiceProvider,
+        UsersServiceProvider
     ]
 })
 export class AppModule {

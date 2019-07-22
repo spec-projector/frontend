@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { ModalComponent, ModalService, UI } from 'junte-ui';
+import { AppConfig } from 'src/app-config';
 import { MeManager } from 'src/app/managers/me.manager';
+import { IUsersService, users_service } from 'src/app/services/users/users.interface';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +15,9 @@ export class AppComponent implements AfterViewInit {
     @ViewChild('modal', {static: false}) modal: ModalComponent;
     @ViewChild('layout', {read: ElementRef, static: false}) backdrop;
 
-    constructor(private modalService: ModalService,
+    constructor(@Inject(users_service) private usersService: IUsersService,
+                public config: AppConfig,
+                private modalService: ModalService,
                 public me: MeManager) {
     }
 
@@ -21,4 +25,7 @@ export class AppComponent implements AfterViewInit {
         this.modalService.register(this.modal);
     }
 
+    logout() {
+        this.usersService.logout().subscribe(() => this.config.authorization = null);
+    }
 }

@@ -5,13 +5,28 @@
         <ng-template #logo>
             <img src="src/assets/images/logo-white.svg" height="45">
         </ng-template>
-        <ng-template #topMenu>
-            <jnt-menu *ngIf="!!me.user">
-                <jnt-menu-item link="projects" title="Projects" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
-                <jnt-menu-item link="import" title="Import" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
-                <jnt-menu-item link="tests" title="Tests" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
-            </jnt-menu>
-        </ng-template>
+        <ng-container *ngIf="!!(me.user$ | async)">
+            <ng-template #topMenu>
+                <jnt-menu>
+                    <jnt-menu-item link="projects" title="Projects"
+                                   [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+                    <jnt-menu-item link="import" title="Import" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+                    <jnt-menu-item link="tests" title="Tests" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+                </jnt-menu>
+            </ng-template>
+            <ng-template #userbar>
+                <jnt-userbar>
+                    <ng-template #avatar>
+                        <jnt-icon icon="user"></jnt-icon>
+                    </ng-template>
+                    <ng-template #userMenu>
+                        <jnt-user-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+                            <jnt-button (click)="logout()" text="Logout"></jnt-button>
+                        </jnt-user-menu>
+                    </ng-template>
+                </jnt-userbar>
+            </ng-template>
+        </ng-container>
     </jnt-app-header>
     <router-outlet></router-outlet>
 </jnt-app-layout>

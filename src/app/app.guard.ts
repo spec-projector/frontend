@@ -1,13 +1,12 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Config } from 'junte-angular';
 import { Observable, of } from 'rxjs';
 import { AppConfig } from '../app-config';
 
 @Injectable({providedIn: 'root'})
 export class AuthorizationGuard implements CanActivate {
 
-    constructor(@Inject(Config) public config: AppConfig,
+    constructor(private config: AppConfig,
                 private router: Router) {
     }
 

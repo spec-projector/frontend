@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Authorization, Config, Error, validate } from 'junte-angular';
+import { ActivatedRoute } from '@angular/router';
+import { Authorization, Error, validate } from 'junte-angular';
 import { UI } from 'junte-ui';
 import 'reflect-metadata';
 import { filter, finalize } from 'rxjs/operators';
@@ -26,10 +26,9 @@ export class LoginComponent implements OnInit {
     });
 
     constructor(@Inject(users_service) private usersService: IUsersService,
-                @Inject(Config) private config: AppConfig,
+                private config: AppConfig,
                 private builder: FormBuilder,
-                private route: ActivatedRoute,
-                private router: Router) {
+                private route: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -55,6 +54,5 @@ export class LoginComponent implements OnInit {
 
     private logged(authorization: Authorization) {
         this.config.authorization = authorization;
-        this.router.navigate(['/']).then(() => null);
     }
 }
