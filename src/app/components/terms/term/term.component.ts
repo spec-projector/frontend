@@ -7,7 +7,7 @@ import { Term } from 'src/model/planning/term';
 import { Token } from 'src/model/planning/token';
 
 @Component({
-    selector: 'app-term',
+    selector: 'spec-term',
     templateUrl: './term.component.html',
     styleUrls: ['./term.component.scss']
 })

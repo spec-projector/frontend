@@ -11,7 +11,7 @@ import { isUndefined } from 'util';
 import * as uuid from 'uuid/v1';
 
 @Component({
-    selector: 'app-package',
+    selector: 'spec-package',
     templateUrl: './package.component.html',
     styleUrls: ['./package.component.scss']
 })

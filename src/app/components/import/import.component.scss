@@ -1,1 +1,5 @@
 @import "~junte-ui/lib/assets/styles/variables";
+
+[app-body] {
+  padding-left: $gutter-normal;
+}

@@ -9,7 +9,7 @@ import { Space } from 'src/model/space';
 import * as uuid from 'uuid/v1';
 
 @Component({
-    selector: 'app-actors',
+    selector: 'spec-actors',
     templateUrl: './actors.component.html',
     styleUrls: ['./actors.component.scss']
 })

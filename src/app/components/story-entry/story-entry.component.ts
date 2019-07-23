@@ -7,7 +7,7 @@ import { Token } from 'src/model/planning/token';
 import { filter, tap } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-story-entry',
+    selector: 'spec-story-entry',
     templateUrl: './story-entry.component.html',
     styleUrls: ['./story-entry.component.scss']
 })

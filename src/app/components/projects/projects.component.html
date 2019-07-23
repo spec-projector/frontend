@@ -1,0 +1,25 @@
+<jnt-app-content>
+    <jnt-app-body app-body>
+        <jnt-stack>
+            <form [formGroup]="form" (ngSubmit)="create()">
+                <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny">
+                    <jnt-input formControlName="title" placeholder="Project title" required title></jnt-input>
+                    <jnt-button [icon]="ui.icons.plus" type="submit"></jnt-button>
+                </jnt-stack>
+                <ul>
+                    <li *ngFor="let project of projects; trackBy: trackProject" field>
+                        <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny"
+                                   [justify]="ui.flex.justify.between" stack>
+                            <jnt-link [source]="[project.id]">{{project.title}}</jnt-link>
+                            <jnt-button [icon]="ui.icons.delete"
+                                        [size]="ui.sizes.tiny"
+                                        [scheme]="ui.schemes.secondary"
+                                        (click)="delete(project.id)">
+                            </jnt-button>
+                        </jnt-stack>
+                    </li>
+                </ul>
+            </form>
+        </jnt-stack>
+    </jnt-app-body>
+</jnt-app-content>

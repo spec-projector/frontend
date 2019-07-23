@@ -34,7 +34,6 @@ export const routes: Routes = [
                             path: ':sprint',
                             component: SprintComponent,
                             resolve: {sprint: SprintResolver}
-
                         }]
                     }
                 ]

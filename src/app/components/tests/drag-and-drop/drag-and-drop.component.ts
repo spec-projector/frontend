@@ -2,7 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-drag-and-drop',
+    selector: 'spec-drag-and-drop',
     templateUrl: './drag-and-drop.component.html',
     styleUrls: ['./drag-and-drop.component.scss']
 })

@@ -5,12 +5,12 @@
     <p>{{error}}</p>
     <jnt-stack fields [gutter]="ui.stack.gutter.normal">
         <fieldset [class.error]="loginForm.get('login') | fieldTouchedHasError:'required'">
-            <p class="message">Field is requred!</p>
+            <p class="message">Field is required!</p>
             <jnt-input formControlName="login" placeholder="Login" required></jnt-input>
         </fieldset>
 
         <fieldset [class.error]="loginForm.get('password') | fieldTouchedHasError:'required'">
-            <p class="message">Field is requred!</p>
+            <p class="message">Field is required!</p>
             <jnt-input formControlName="password" placeholder="Password" required
                        [type]="ui.form.input.password">
             </jnt-input>

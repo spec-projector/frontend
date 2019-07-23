@@ -11,7 +11,7 @@ import { ClipboardService } from 'ngx-clipboard';
 import { filter, tap } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-feature',
+    selector: 'spec-feature',
     templateUrl: './feature.component.html',
     styleUrls: ['./feature.component.scss']
 })

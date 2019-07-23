@@ -7,7 +7,7 @@ import { SpaceManager } from 'src/app/services/space-manager.service';
 characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 
 @Component({
-    selector: 'app-import',
+    selector: 'spec-import',
     templateUrl: './import.component.html',
     styleUrls: ['./import.component.scss']
 })
