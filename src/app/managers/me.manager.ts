@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AppConfig } from 'src/app-config';
-import { Me } from 'src/app/models/user';
+import { AppConfig } from 'src/app/app-config';
+import { Me } from 'src/app/model/user';
 import { me_service } from 'src/app/services/me/me.interface';
 import { MeService } from 'src/app/services/me/me.service';
 

@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PagingProjects, Project } from 'src/app/models/projects';
+import { PagingProjects, Project } from 'src/app/model/projects';
 
 export interface IProjectsService {
     list(): Observable<PagingProjects>;

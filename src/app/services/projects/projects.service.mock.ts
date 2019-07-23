@@ -3,7 +3,7 @@ import { HttpMockService } from 'junte-angular';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts/dist';
-import { PagingProjects, Project } from 'src/app/models/projects';
+import { PagingProjects, Project } from 'src/app/model/projects';
 import { IProjectsService } from 'src/app/services/projects/projects.interface';
 
 @Injectable({providedIn: 'root'})

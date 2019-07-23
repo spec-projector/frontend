@@ -4,7 +4,7 @@ import { Authorization, HttpService } from 'junte-angular';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
-import { LoginCredentials } from 'src/app/models/login-credentials';
+import { LoginCredentials } from 'src/app/model/login-credentials';
 import { IUsersService } from 'src/app/services/users/users.interface';
 
 @Injectable()

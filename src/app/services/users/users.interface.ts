@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { Authorization } from 'junte-angular';
 import { Observable } from 'rxjs';
-import { LoginCredentials } from 'src/app/models/login-credentials';
+import { LoginCredentials } from 'src/app/model/login-credentials';
 
 export interface IUsersService {
 

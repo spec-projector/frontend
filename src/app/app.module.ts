@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Config, HttpMockService, HttpService } from 'junte-angular';
 import { JunteUiModule } from 'junte-ui';
-import { AppConfig } from 'src/app-config';
+import { AppConfig } from 'src/app/app-config';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MeServiceProvider } from 'src/app/services/me/me.provider';
 import { UsersServiceProvider } from 'src/app/services/users/users.provider';

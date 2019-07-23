@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UI } from 'junte-ui';
 import { characters, generate } from 'shortid';
-import { SpaceManager } from 'src/app/services/space-manager.service';
+import { SpecManager } from 'src/app/managers/spec.manager';
 
 characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 
@@ -14,7 +14,7 @@ characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 export class ImportComponent {
     ui = UI;
 
-    constructor(private spaceService: SpaceManager,
+    constructor(private spaceService: SpecManager,
                 private router: Router) {
     }
 

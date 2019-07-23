@@ -1,8 +1,18 @@
 import 'reflect-metadata';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { ArraySerializer, deserialize, Field, Model, ModelSerializer, Name, serialize, Serializer, Type } from 'serialize-ts';
-import { characters, generate } from 'shortid';
+import {combineLatest, Observable, of, Subject} from 'rxjs';
+import {finalize} from 'rxjs/operators';
+import {
+    ArraySerializer,
+    deserialize,
+    Field,
+    Model,
+    ModelSerializer,
+    Name,
+    serialize,
+    Serializer,
+    Type
+} from 'serialize-ts';
+import {characters, generate} from 'shortid';
 import Document = PouchDB.Core.Document;
 import Database = PouchDB.Database;
 
@@ -188,7 +198,7 @@ export class Persistence {
     }
 
 
-    import(db: Database, progress: Subject<Object>): Observable<Persistence> {
+    import(db: Database, progress: Subject<Object>, id: string = null): Observable<Persistence> {
         if (this.imported) {
             return of(this);
         }
@@ -196,7 +206,7 @@ export class Persistence {
         this.imported = true;
 
         return new Observable(imported => {
-            this.id = generate();
+            this.id = id || generate();
             const queue = [of(null)];
             const fields = Reflect.getMetadata(PERSIST_METADATA_KEY, this) || [];
             for (const metadata of fields) {

@@ -1,0 +1,48 @@
+@import "../../../../../../node_modules/junte-ui/lib/assets/styles/variables";
+
+:host {
+  display: block;
+}
+
+[backdrop] {
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .1);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  [term] {
+    min-width: 200px;
+    span {
+      border-bottom: 1px solid $primary-color;
+    }
+
+  }
+  [term] {
+    input {
+      width: 100%;
+      border: 1px dotted silver;
+      padding: $gutter-small;
+      border-radius: 5px;
+    }
+  }
+  [gutter] {
+    margin: 0 $gutter-large;
+  }
+  [descripton] {
+    flex: 1;
+    textarea {
+      width: 100%;
+      border: 1px dotted silver;
+      padding: $gutter-small;
+      border-radius: 5px;
+    }
+  }
+}
+

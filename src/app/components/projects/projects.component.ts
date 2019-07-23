@@ -3,7 +3,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { Error } from 'junte-angular';
 import { UI } from 'junte-ui';
 import { finalize } from 'rxjs/operators';
-import { Project } from 'src/app/models/projects';
+import { Project } from 'src/app/model/projects';
 import { IProjectsService, projects_service } from 'src/app/services/projects/projects.interface';
 
 @Component({

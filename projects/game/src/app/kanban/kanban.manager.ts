@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize, map, tap } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
-import { EditMode } from 'src/enums/edit-mode';
+import { EditMode } from 'src/app/model/enums/edit-mode';
 import Database = PouchDB.Database;
 
 interface Flush {

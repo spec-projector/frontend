@@ -1,5 +1,5 @@
 import { Config, HttpMockService, HttpService } from 'junte-angular';
-import { AppConfig } from 'src/app-config';
+import { AppConfig } from 'src/app/app-config';
 import { projects_service } from 'src/app/services/projects/projects.interface';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
 import { ProjectsMockService } from 'src/app/services/projects/projects.service.mock';

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/models/projects';
+import { Project } from 'src/app/model/projects';
 import { IProjectsService, projects_service } from 'src/app/services/projects/projects.interface';
 
 

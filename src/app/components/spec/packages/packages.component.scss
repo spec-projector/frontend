@@ -1,0 +1,55 @@
+@import "../../../../../node_modules/junte-ui/lib/assets/styles/variables";
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding: -($gutter-small);
+}
+
+[field] {
+  display: flex;
+  align-items: flex-start;
+  background-color: $white-color;
+  box-shadow: $shadow-primary-light;
+  width: 100%;
+  padding: $gutter-small;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  &[placeholder] {
+    border: 1px solid black;
+    height: 100px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-large;
+  }
+
+  [actions] {
+    opacity: .1;
+    margin: 0 $gutter-small 0 0;
+
+    &:hover {
+      opacity: 1;
+      transition: .25s opacity;
+    }
+  }
+}
+
+.cdk-drag-preview {
+  box-shadow: $shadow-primary;
+}
+
+.cdk-drop-dragging .cdk-drag {
+  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.5;
+  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+}

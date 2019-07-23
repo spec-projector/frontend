@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, ElementRef, Inject, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { ModalComponent, ModalService, UI } from 'junte-ui';
-import { AppConfig } from 'src/app-config';
-import { MeManager } from 'src/app/managers/me.manager';
-import { IUsersService, users_service } from 'src/app/services/users/users.interface';
+import {AfterViewInit, Component, ElementRef, Inject, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {ModalComponent, ModalService, UI} from 'junte-ui';
+import {AppConfig} from 'src/app/app-config';
+import {MeManager} from 'src/app/managers/me.manager';
+import {IUsersService, users_service} from 'src/app/services/users/users.interface';
 
 @Component({
     selector: 'app-root',

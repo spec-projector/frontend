@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Me } from 'src/app/models/user';
+import { Me } from 'src/app/model/user';
 
 export interface IMeService {
     getMe(): Observable<Me>;

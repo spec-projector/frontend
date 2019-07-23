@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JunteUiModule } from 'junte-ui';
-import { SpaceManager } from 'src/app/services/space-manager.service';
+import { SpecManager } from 'src/app/managers/spec.manager';
 import { ImportComponent } from 'src/app/components/import/import.component';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { ImportComponent } from 'src/app/components/import/import.component';
         ])
     ],
     providers: [
-        SpaceManager
+        SpecManager
     ]
 })
 export class ImportModule {

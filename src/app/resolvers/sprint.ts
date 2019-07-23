@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { SpaceManager } from 'src/app/services/space-manager.service';
-import { Sprint } from 'src/model/planning/sprint';
+import { SpecManager } from 'src/app/managers/spec.manager';
+import { Sprint } from 'src/app/model/spec/planning/sprint';
 import { Observable } from 'rxjs';
 
 
 @Injectable()
 export class SprintResolver implements Resolve<Sprint> {
 
-    constructor(private manager: SpaceManager) {
+    constructor(private manager: SpecManager) {
     }
 
     resolve(route: ActivatedRouteSnapshot,

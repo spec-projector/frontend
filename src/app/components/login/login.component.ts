@@ -5,8 +5,8 @@ import { Authorization, Error, validate } from 'junte-angular';
 import { UI } from 'junte-ui';
 import 'reflect-metadata';
 import { filter, finalize } from 'rxjs/operators';
-import { AppConfig } from 'src/app-config';
-import { LoginCredentials } from 'src/app/models/login-credentials';
+import { AppConfig } from 'src/app/app-config';
+import { LoginCredentials } from 'src/app/model/login-credentials';
 import { IUsersService, users_service } from 'src/app/services/users/users.interface';
 
 @Component({

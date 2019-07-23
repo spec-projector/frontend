@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Project } from 'src/app/models/projects';
+import { Project } from 'src/app/model/projects';
 
 @Component({
     selector: 'spec-project-detail',
