@@ -5,8 +5,13 @@ import { AuthorizationGuard } from 'src/app/app.guard';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'import',
+        redirectTo: 'projects',
         pathMatch: 'full'
+    },
+    {
+        path: 'projects',
+        loadChildren: './components/projects/projects.module#ProjectsModule',
+        canActivate: [AuthorizationGuard]
     },
     {
         path: 'space',

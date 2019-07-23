@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Authorization, Error, validate } from 'junte-angular';
 import { UI } from 'junte-ui';
 import 'reflect-metadata';
@@ -10,7 +10,7 @@ import { LoginCredentials } from 'src/app/models/login-credentials';
 import { IUsersService, users_service } from 'src/app/services/users/users.interface';
 
 @Component({
-    selector: 'app-login',
+    selector: 'spec-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     constructor(@Inject(users_service) private usersService: IUsersService,
                 private config: AppConfig,
                 private builder: FormBuilder,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -54,5 +55,6 @@ export class LoginComponent implements OnInit {
 
     private logged(authorization: Authorization) {
         this.config.authorization = authorization;
+        this.router.navigate(['/']).then(() => null);
     }
 }

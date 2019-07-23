@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'junte-angular';
 import { Observable } from 'rxjs';
-import { Me } from 'src/app/models/me';
+import { Me } from 'src/app/models/user';
 import { IMeService } from 'src/app/services/me/me.interface';
 
 @Injectable()

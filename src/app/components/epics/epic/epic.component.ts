@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { UI } from 'junte-ui';
+import { filter, tap } from 'rxjs/operators';
 import { SpaceManager } from 'src/app/services/space-manager.service';
 import { EditMode } from 'src/enums/edit-mode';
-import { UI } from 'junte-ui';
 import { Epic } from 'src/model/planning/epic';
-import { filter, tap } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-epic',
+    selector: 'spec-epic',
     templateUrl: './epic.component.html',
     styleUrls: ['./epic.component.scss']
 })

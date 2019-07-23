@@ -8,7 +8,7 @@ import { Space } from 'src/model/space';
 import { ValidationError } from 'src/validation/error';
 
 @Component({
-    selector: 'app-space',
+    selector: 'spec-space',
     templateUrl: './space.component.html',
     styleUrls: ['./space.component.scss']
 })

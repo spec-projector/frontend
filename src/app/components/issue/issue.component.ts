@@ -18,7 +18,7 @@ class IssueStatus {
 }
 
 @Component({
-    selector: 'app-issue',
+    selector: 'spec-issue',
     templateUrl: './issue.component.html',
     styleUrls: ['./issue.component.scss']
 })

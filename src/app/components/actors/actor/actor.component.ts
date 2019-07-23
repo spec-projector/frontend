@@ -11,7 +11,7 @@ import { filter, tap } from 'rxjs/operators';
 import * as uuid from 'uuid/v1';
 
 @Component({
-    selector: 'app-actor',
+    selector: 'spec-actor',
     templateUrl: './actor.component.html',
     styleUrls: ['./actor.component.scss']
 })

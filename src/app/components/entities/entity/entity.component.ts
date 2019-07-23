@@ -10,7 +10,7 @@ import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-entity',
+    selector: 'spec-entity',
     templateUrl: './entity.component.html',
     styleUrls: ['./entity.component.scss']
 })

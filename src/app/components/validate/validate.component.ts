@@ -5,7 +5,7 @@ import { Space } from 'src/model/space';
 import { ValidationError } from 'src/validation/error';
 
 @Component({
-    selector: 'app-validate',
+    selector: 'spec-validate',
     templateUrl: './validate.component.html',
     styleUrls: ['./validate.component.scss']
 })

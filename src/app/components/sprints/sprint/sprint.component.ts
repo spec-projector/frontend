@@ -4,7 +4,7 @@ import { UI } from 'junte-ui';
 import { Sprint } from 'src/model/planning/sprint';
 
 @Component({
-    selector: 'app-sprint',
+    selector: 'spec-sprint',
     templateUrl: './sprint.component.html',
     styleUrls: ['./sprint.component.css']
 })

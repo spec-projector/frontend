@@ -9,7 +9,7 @@ import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-entity-field',
+    selector: 'spec-entity-field',
     templateUrl: './entity-field.component.html',
     styleUrls: ['./entity-field.component.scss']
 })

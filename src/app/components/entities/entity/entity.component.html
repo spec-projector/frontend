@@ -36,9 +36,9 @@
                             (click)="deleteField(i)">
                 </jnt-button>
             </jnt-stack>
-            <app-entity-field [field]="field"
+            <spec-entity-field [field]="field"
                               (changed)="space.put(entity)">
-            </app-entity-field>
+            </spec-entity-field>
         </li>
     </ul>
     <jnt-button *ngIf="space.mode == editMode.edit"

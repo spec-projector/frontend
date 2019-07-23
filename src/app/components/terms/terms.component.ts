@@ -5,7 +5,7 @@ import { UI } from 'junte-ui';
 import { Space } from 'src/model/space';
 
 @Component({
-    selector: 'app-terms',
+    selector: 'spec-terms',
     templateUrl: './terms.component.html',
     styleUrls: ['./terms.component.scss']
 })

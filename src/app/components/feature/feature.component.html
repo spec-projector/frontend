@@ -7,7 +7,7 @@
     </header>
 
     <ng-template #viewHeader>
-        <app-tokens title [tokens]="feature.title"></app-tokens>
+        <spec-tokens title [tokens]="feature.title"></spec-tokens>
     </ng-template>
 </form>
 
@@ -19,7 +19,7 @@
         </jnt-button>
         <jnt-label *ngIf="feature.frames.length" label="Design" [color]="ui.colors.blue100"></jnt-label>
         <jnt-label *ngIf="feature.endpoints.length" label="API" [color]="ui.colors.purple"></jnt-label>
-        <app-issue *ngFor="let issue of feature.issues" [issue]="issue"></app-issue>
+        <spec-issue *ngFor="let issue of feature.issues" [issue]="issue"></spec-issue>
 
     </jnt-stack>
     <ng-container *ngIf="opened">
@@ -28,12 +28,12 @@
                 (mouseenter)="manager.mode ==  editMode.edit ? storyMode = editMode.edit : null"
                 (mouseleave)="storyMode = editMode.view">
                 <li *ngFor="let entry of feature.story; let i = index">
-                    <app-story-entry #storyEntry [entry]="entry"
+                    <spec-story-entry #storyEntry [entry]="entry"
                                      [mode]="storyMode"
                                      (changed)="manager.put(feature)"
                                      (finished)="addStoryEntry(i)"
                                      (deleted)="deleteStoryEntry(i)">
-                    </app-story-entry>
+                    </spec-story-entry>
                 </li>
             </ol>
 

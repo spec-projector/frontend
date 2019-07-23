@@ -4,7 +4,7 @@ import { UI } from 'junte-ui';
 import { Space } from 'src/model/space';
 
 @Component({
-    selector: 'app-sprints',
+    selector: 'spec-sprints',
     templateUrl: './sprints.component.html',
     styleUrls: ['./sprints.component.scss']
 })

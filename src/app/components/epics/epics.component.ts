@@ -1,16 +1,15 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UI } from 'junte-ui';
 import { SpaceManager } from 'src/app/services/space-manager.service';
 import { EditMode } from 'src/enums/edit-mode';
-import { UI } from 'junte-ui';
-import { EntityField } from 'src/model/orm/entity-field';
 import { Epic } from 'src/model/planning/epic';
 import { Space } from 'src/model/space';
 import * as uuid from 'uuid/v1';
 
 @Component({
-    selector: 'app-epics',
+    selector: 'spec-epics',
     templateUrl: './epics.component.html',
     styleUrls: ['./epics.component.scss']
 })

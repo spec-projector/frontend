@@ -3,7 +3,7 @@ import { UI } from 'junte-ui';
 import { Token, TokenType } from 'src/model/planning/token';
 
 @Component({
-    selector: 'app-tokens',
+    selector: 'spec-tokens',
     templateUrl: './tokens.component.html',
     styleUrls: ['./tokens.component.scss']
 })
