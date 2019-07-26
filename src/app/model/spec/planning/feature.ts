@@ -56,7 +56,7 @@ export class Feature extends Persistence {
     @persist({type: Algorithm})
     algorithms: Algorithm[] = [];
 
-    space: Spec;
+    spec: Spec;
     actor: Actor;
     epic: Epic;
 
@@ -67,7 +67,7 @@ export class Feature extends Persistence {
 
     linking({actor, epic}: { actor?: Actor, epic?: Epic }) {
         if (!!actor) {
-            [this.actor, this.space] = [actor, actor.space];
+            [this.actor, this.spec] = [actor, actor.spec];
         }
 
         if (!!epic) {
@@ -75,7 +75,7 @@ export class Feature extends Persistence {
         }
 
         if (!!this.actor) {
-            const entities = this.actor.space.packages.reduce((res, pack) => res.concat(pack.entities), []);
+            const entities = this.actor.spec.packages.reduce((res, pack) => res.concat(pack.entities), []);
             for (let i = 0; i < this.entities.length; i++) {
                 const entity = this.entities[i];
                 this.entities[i] = entities.find(e => e.id === entity.id);
@@ -83,14 +83,14 @@ export class Feature extends Persistence {
         }
     }
 
-    validate(space: Spec) {
-        if (!this.space) {
+    validate(spec: Spec) {
+        if (!this.spec) {
             throw new Error('Object is not linked');
         }
         const errors: TermMissedError[] = [];
         for (const token of this.title) {
             if (token instanceof TermToken) {
-                const missed = token.validate(this.space.terms.map(t => t.name));
+                const missed = token.validate(this.spec.terms.map(t => t.name));
                 if (!!missed) {
                     const error = new TermMissedError();
                     error.feature = this;
@@ -106,12 +106,12 @@ export class Feature extends Persistence {
 
     private findTerms(tokens: Token[]) {
         return tokens.filter(t => t instanceof TermToken)
-            .map((t1: TermToken) => this.space.terms.find(t2 => t2.name === t1.term))
+            .map((t1: TermToken) => this.spec.terms.find(t2 => t2.name === t1.term))
             .filter(t => !!t);
     }
 
     getTerms() {
-        if (!this.space) {
+        if (!this.spec) {
             throw new Error('Object is not linked');
         }
         let terms: Term[] = [];

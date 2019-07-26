@@ -12,13 +12,13 @@ export class SprintsComponent implements OnInit {
 
     ui = UI;
 
-    space: Spec;
+    spec: Spec;
 
     constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({space}) => this.space = space);
+        this.route.data.subscribe(({spec}) => this.spec = spec);
     }
 
 }

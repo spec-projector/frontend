@@ -48,14 +48,14 @@ export class TermComponent implements OnInit {
         this.mode = EditMode.view;
     }
 
-    constructor(private space: SpecManager,
+    constructor(private manager: SpecManager,
                 private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
         this.form.valueChanges.subscribe(value => {
             this.term.description = Token.parse(value.description);
-            this.space.put(this.term);
+            this.manager.put(this.term);
         });
     }
 }

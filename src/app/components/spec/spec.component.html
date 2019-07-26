@@ -1,10 +1,20 @@
 <jnt-app-aside #aside>
+    <jnt-stack [align]="ui.flex.align.center" actions>
+        <div>
+            <jnt-button text="Import" (click)="importInput.click()"></jnt-button>
+            <input type="file" (change)="load($event)" #importInput fileInput/>
+        </div>
+        <div>
+            <a href="" #exportFile></a>
+            <jnt-button text="Export" (click)="export(exportFile)"></jnt-button>
+        </div>
+    </jnt-stack>
     <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-        <jnt-menu-item link="sprints" title="Sprints ({{space?.sprints.length}})"></jnt-menu-item>
-        <jnt-menu-item link="epics" title="Epics ({{space?.epics.length}})"></jnt-menu-item>
-        <jnt-menu-item link="actors" title="Features ({{space?.actors.length}})"></jnt-menu-item>
-        <jnt-menu-item link="terms" title="Terms ({{space?.terms.length}})"></jnt-menu-item>
-        <jnt-menu-item link="packages" title="Model ({{space?.packages.length}})"></jnt-menu-item>
+        <jnt-menu-item link="sprints" title="Sprints ({{spec?.sprints.length}})"></jnt-menu-item>
+        <jnt-menu-item link="epics" title="Epics ({{spec?.epics.length}})"></jnt-menu-item>
+        <jnt-menu-item link="actors" title="Features ({{spec?.actors.length}})"></jnt-menu-item>
+        <jnt-menu-item link="terms" title="Terms ({{spec?.terms.length}})"></jnt-menu-item>
+        <jnt-menu-item link="packages" title="Model ({{spec?.packages.length}})"></jnt-menu-item>
         <jnt-menu-item link="validate" title="Validate ({{errors.length}})"></jnt-menu-item>
     </jnt-menu>
     <div controls>
@@ -16,8 +26,8 @@
 
         <p><b>Epics</b></p>
         <ul cdkDropList id="epics" cdkDropListOrientation="horizontal"
-            [cdkDropListConnectedTo]="space | features">
-            <li *ngFor="let epic of space.epics"
+            [cdkDropListConnectedTo]="spec | features">
+            <li *ngFor="let epic of spec.epics"
                 cdkDrag [cdkDragData]="{id: epic.id}" epic>
                 {{epic.title}}
                 <div *cdkDragPlaceholder>
@@ -27,7 +37,7 @@
         </ul>
         <p><b>Entities</b></p>
         <ul>
-            <li *ngFor="let pack of space.packages">
+            <li *ngFor="let pack of spec.packages">
                 <p>{{pack.title}}</p>
                 <ul>
                     <li *ngFor="let entity of pack.entities"
@@ -42,7 +52,7 @@
 
         <p><b>Actors</b></p>
         <ul>
-            <li *ngFor="let actor of space.actors">
+            <li *ngFor="let actor of spec.actors">
                 {{actor.name}}
             </li>
         </ul>

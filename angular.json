@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "space-project": {
+    "spec-project": {
       "root": "",
       "sourceRoot": "./",
       "projectType": "application",
@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.json",
             "assets": [
               "src/assets",
-              "space.json"
+              "spec.json"
             ],
             "styles": [
               "styles.scss",
@@ -57,11 +57,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "space-project:build"
+            "browserTarget": "spec-project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "space-project:build:production"
+              "browserTarget": "spec-project:build:production"
             }
           }
         }
@@ -166,5 +166,5 @@
       }
     }
   },
-  "defaultProject": "space-project"
+  "defaultProject": "spec-project"
 }

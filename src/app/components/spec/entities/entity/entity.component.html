@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-    <header (mouseenter)="space.mode ==  editMode.edit ? mode = editMode.edit : null"
+    <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
             (mouseleave)="mode = editMode.view">
         <ng-container *ngIf="mode == editMode.edit; else viewHeader">
             <input title formControlName="title">
@@ -23,7 +23,7 @@
 
     <ul cdkDropList (cdkDropListDropped)="moveField($event)" [cdkDropListData]="entity.fields">
         <li *ngFor="let field of entity.fields; let i = index; trackBy: trackField" cdkDrag field>
-            <jnt-stack *ngIf="space.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny"
+            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny"
                        [type]="ui.stack.type.horizontal">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
@@ -37,11 +37,11 @@
                 </jnt-button>
             </jnt-stack>
             <spec-entity-field [field]="field"
-                              (changed)="space.put(entity)">
+                              (changed)="manager.put(entity)">
             </spec-entity-field>
         </li>
     </ul>
-    <jnt-button *ngIf="space.mode == editMode.edit"
+    <jnt-button *ngIf="manager.mode == editMode.edit"
                 [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addField()"></jnt-button>

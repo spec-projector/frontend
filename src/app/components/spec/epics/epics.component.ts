@@ -18,14 +18,14 @@ export class EpicsComponent implements OnInit {
     ui = UI;
     editMode = EditMode;
 
-    space: Spec;
+    spec: Spec;
 
     constructor(public manager: SpecManager,
                 private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({space}) => this.space = space);
+        this.route.data.subscribe(({spec}) => this.spec = spec);
     }
 
     addEpic() {
@@ -33,22 +33,22 @@ export class EpicsComponent implements OnInit {
             id: uuid(),
             title: 'Some functionality'
         });
-        this.space.epics.unshift(epic);
+        this.spec.epics.unshift(epic);
 
         this.manager.put(epic);
-        this.manager.put(this.space);
+        this.manager.put(this.spec);
     }
 
     deleteEpic(index: number) {
-        const epic = this.space.epics[index];
-        this.space.epics.splice(index, 1);
+        const epic = this.spec.epics[index];
+        this.spec.epics.splice(index, 1);
         this.manager.remove(epic);
-        this.manager.put(this.space);
+        this.manager.put(this.spec);
     }
 
     moveEpic(event: CdkDragDrop<Epic[]>) {
-        moveItemInArray(this.space.epics, event.previousIndex, event.currentIndex);
-        this.manager.put(this.space);
+        moveItemInArray(this.spec.epics, event.previousIndex, event.currentIndex);
+        this.manager.put(this.spec);
     }
 
 }

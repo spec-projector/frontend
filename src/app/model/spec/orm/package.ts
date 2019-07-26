@@ -17,15 +17,15 @@ export class Package extends Persistence {
     @persist({type: Entity})
     entities: Entity[] = [];
 
-    space: Spec;
+    spec: Spec;
 
     constructor(defs: any = {}) {
         super();
         Object.assign(this, defs);
     }
 
-    linking(space: Spec) {
-        this.space = space;
+    linking(spec: Spec) {
+        this.spec = spec;
         for (const entity of this.entities) {
             entity.linking(this);
         }
