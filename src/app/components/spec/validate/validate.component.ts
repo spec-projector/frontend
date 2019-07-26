@@ -13,16 +13,16 @@ export class ValidateComponent implements OnInit {
 
     ui = UI;
 
-    space: Spec;
+    spec: Spec;
     errors: ValidationError[] = [];
 
     constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({space}) => {
-            this.errors = space.validate();
-            this.space = space;
+        this.route.data.subscribe(({spec}) => {
+            this.errors = spec.validate();
+            this.spec = spec;
         });
     }
 

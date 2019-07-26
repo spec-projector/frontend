@@ -24,19 +24,19 @@ export class Sprint {
         Object.assign(this, defs);
     }
 
-    linking(space: Spec) {
+    linking(spec: Spec) {
         for (const feature of this.features) {
-            // feature.linking({space: space});
+            // feature.linking({spec: spec});
         }
         for (const improvement of this.improvements) {
-            // improvement.feature.linking({space: space});
+            // improvement.feature.linking({spec: spec});
         }
     }
 
-    validateTerms(space: Spec) {
+    validateTerms(spec: Spec) {
         let errors: ValidationError[] = [];
         for (const feature of this.features) {
-            const errs = feature.validate(space);
+            const errs = feature.validate(spec);
             if (!!errs) {
                 errs.forEach(e => e.sprint = this);
 

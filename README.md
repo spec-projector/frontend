@@ -8,17 +8,17 @@ docker run -p 5984:5984 -d couchdb
 http://localhost:5984/_utils/  
 
 
-Run space project:
+Run spec project:
 
 ```
-npm run space-init
-npm run space
-npm run space-angular
+npm run spec-init
+npm run spec
+npm run spec-angular
 ```
 
 https://junte.gitlab.io/team-projector/spec - specs site
 
-    "space-init": "cp -r lib/space/dist/angular ./dist/space && cd ./space && tsc && cd ../ && cd ./lib/space/src/angular && npm i",
+    "spec-init": "cp -r lib/spec/dist/angular ./dist/spec && cd ./spec && tsc && cd ../ && cd ./lib/spec/src/angular && npm i",
     "model": "./node_modules/.bin/typedoc --out dist/model ./model",
 
 

@@ -1,5 +1,6 @@
-import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { ValidationError } from 'src/app/model/validation/error';
+import { persist, persistence, Persistence } from 'src/decorators/persistence';
+import { hasOwnProperty } from 'tslint/lib/utils';
 import { Package } from './orm/package';
 import { Actor } from './planning/actor';
 import { Epic } from './planning/epic';
@@ -38,19 +39,27 @@ export class Spec extends Persistence {
 
     linking() {
         for (const actor of this.actors) {
-            actor.linking(this);
+            if (hasOwnProperty(actor, 'linking')) {
+                actor.linking(this);
+            }
         }
 
         for (const epic of this.epics) {
-            epic.linking(this);
+            if (hasOwnProperty(epic, 'linking')) {
+                epic.linking(this);
+            }
         }
 
         for (const sprint of this.sprints) {
-            sprint.linking(this);
+            if (hasOwnProperty(sprint, 'linking')) {
+                sprint.linking(this);
+            }
         }
 
         for (const pack of this.packages) {
-            pack.linking(this);
+            if (hasOwnProperty(pack, 'linking')) {
+                pack.linking(this);
+            }
         }
     }
 

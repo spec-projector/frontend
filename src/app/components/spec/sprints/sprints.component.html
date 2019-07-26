@@ -1,6 +1,6 @@
-<ng-container *ngIf="!!space">
+<ng-container *ngIf="!!spec">
     <jnt-menu>
-        <jnt-menu-item *ngFor="let sprint of space.sprints"
+        <jnt-menu-item *ngFor="let sprint of spec.sprints"
                        [link]="sprint.id" [title]="sprint.title">
         </jnt-menu-item>
     </jnt-menu>

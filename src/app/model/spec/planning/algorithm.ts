@@ -34,11 +34,11 @@ export class Algorithm {
         Object.assign(this, defs);
     }
 
-    linking(space: Spec) {
+    linking(spec: Spec) {
 
     }
 
-    validate(space: Spec) {
+    validate(spec: Spec) {
 
     }
 }

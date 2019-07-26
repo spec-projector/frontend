@@ -44,7 +44,7 @@ export class EntityComponent {
         return this._entity;
     }
 
-    constructor(public space: SpecManager,
+    constructor(public manager: SpecManager,
                 private formBuilder: FormBuilder) {
         this.autoName.valueChanges.subscribe(() =>
             this.autoName.value ? this.name.disable() : this.name.enable());
@@ -55,7 +55,7 @@ export class EntityComponent {
         this.form.valueChanges
             .pipe(filter(() => !!this.entity),
                 tap(() => Object.assign(this.entity, this.form.getRawValue())))
-            .subscribe(() => this.space.put(this.entity));
+            .subscribe(() => this.manager.put(this.entity));
     }
 
     private updateForm() {
@@ -81,17 +81,17 @@ export class EntityComponent {
         });
         field.linking(this.entity);
         this.entity.fields.push(field);
-        this.space.put(this.entity);
+        this.manager.put(this.entity);
     }
 
     deleteField(index: number) {
         this.entity.fields.splice(index, 1);
-        this.space.put(this.entity);
+        this.manager.put(this.entity);
     }
 
     moveField(event: CdkDragDrop<EntityField[]>) {
         moveItemInArray(this.entity.fields, event.previousIndex, event.currentIndex);
-        this.space.put(this.entity);
+        this.manager.put(this.entity);
     }
 
     trackField(index: number) {

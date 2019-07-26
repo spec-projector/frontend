@@ -1,18 +1,8 @@
 import 'reflect-metadata';
-import {combineLatest, Observable, of, Subject} from 'rxjs';
-import {finalize} from 'rxjs/operators';
-import {
-    ArraySerializer,
-    deserialize,
-    Field,
-    Model,
-    ModelSerializer,
-    Name,
-    serialize,
-    Serializer,
-    Type
-} from 'serialize-ts';
-import {characters, generate} from 'shortid';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { ArraySerializer, deserialize, Field, Model, ModelSerializer, Name, serialize, Serializer, Type } from 'serialize-ts';
+import { characters, generate } from 'shortid';
 import Document = PouchDB.Core.Document;
 import Database = PouchDB.Database;
 
@@ -106,7 +96,7 @@ export class Persistence {
     @persist({name: '_rev'})
     rev: string;
 
-    private merge(db: Database, progress: Subject<Object>, src: Persistence): Observable<Persistence> {
+    merge(db: Database, progress: Subject<Object>, src: Persistence): Observable<Persistence> {
         return new Observable<Persistence>(merged => {
             const loaders = [of(null)];
 
@@ -216,9 +206,7 @@ export class Persistence {
                     if (type === Array) {
                         const list = this[property];
                         for (const element of list) {
-                            if (!(element instanceof Reference)) {
-                                queue.push(element.import(db, progress));
-                            }
+                            queue.push(element.import(db, progress));
                         }
                     } else {
                         const obj = this[property];
@@ -256,6 +244,8 @@ export class Persistence {
     }
 
     deserialize(obj: Object): Persistence {
+        console.log('deserialize');
+
         const prototype = Object.getPrototypeOf(this);
         const fields = Reflect.getMetadata(PERSIST_METADATA_KEY, this) || [];
         for (const metadata of fields) {
@@ -263,9 +253,23 @@ export class Persistence {
             if (!!metadata && !!metadata.serializer) {
                 Type(metadata.serializer)(prototype, property);
             }
+            // console.log(this[property]);
+            // if (isArray(this[property])) {
+            //     this[property].forEach(field => {
+            //         console.log(field);
+            //         if (!!field['deserialize']) {
+            //             field.deserialize();
+            //         }
+            //     });
+            // } else {
+            //     console.log(this[property]);
+            //     if (!!this[property]['deserialize']) {
+            //         this[property].deserialize();
+            //     }
+            // }
         }
 
-        return deserialize(obj, prototype.constructor);
+        return deserialize(obj, prototype.constructor) as Persistence;
     }
 
     dirty(): boolean {

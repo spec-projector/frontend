@@ -18,14 +18,14 @@ export class PackagesComponent implements OnInit {
     ui = UI;
     editMode = EditMode;
 
-    space: Spec;
+    spec: Spec;
 
     constructor(public manager: SpecManager,
                 private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({space}) => this.space = space);
+        this.route.data.subscribe(({spec}) => this.spec = spec);
     }
 
     addPackage() {
@@ -34,24 +34,24 @@ export class PackagesComponent implements OnInit {
             name: 'package',
             title: 'Package'
         });
-        this.space.packages.unshift(pack);
+        this.spec.packages.unshift(pack);
 
         this.manager.put(pack);
-        this.manager.put(this.space);
+        this.manager.put(this.spec);
     }
 
     deletePackage(index: number) {
-        const pack = this.space.packages[index];
-        this.space.packages.splice(index, 1);
+        const pack = this.spec.packages[index];
+        this.spec.packages.splice(index, 1);
 
         this.manager.remove(pack);
-        this.manager.put(this.space);
+        this.manager.put(this.spec);
 
     }
 
     movePackage(event: any) {
-        moveItemInArray(this.space.packages, event.previousIndex, event.currentIndex);
-        this.manager.put(this.space);
+        moveItemInArray(this.spec.packages, event.previousIndex, event.currentIndex);
+        this.manager.put(this.spec);
     }
 
     trackPackage(index: number, pack: Package) {

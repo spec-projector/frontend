@@ -31,7 +31,7 @@ export class EntityField {
     @persist()
     required: boolean;
 
-    space: Spec;
+    spec: Spec;
     entity: Entity;
     links: { reference?: Entity } = {};
 
@@ -45,7 +45,7 @@ export class EntityField {
         }
 
         if ((this.type === FieldType.reference || FieldType.array) && !!this.reference) {
-            const entities = this.entity.package.space.packages.reduce((entities, pack) => entities.concat(pack.entities), []);
+            const entities = this.entity.package.spec.packages.reduce((entities, pack) => entities.concat(pack.entities), []);
             this.links.reference = entities.find(e => e.id === this.reference);
         }
     }

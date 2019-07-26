@@ -1,5 +1,5 @@
-<ng-container *ngIf="!!space">
+<ng-container *ngIf="!!spec">
     <jnt-stack [align]="ui.flex.align.stretch">
-        <spec-term *ngFor="let term of space.terms" [term]="term"></spec-term>
+        <spec-term *ngFor="let term of spec.terms" [term]="term"></spec-term>
     </jnt-stack>
 </ng-container>

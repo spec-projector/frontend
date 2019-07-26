@@ -56,7 +56,7 @@ export class ActorComponent {
     }
 
     onDropEpic(feature: Feature, {item: {data: {id}}}: CdkDragDrop<{ id: string }[]>) {
-        const epic = this.actor.space.epics.find(e => e.id === id);
+        const epic = this.actor.spec.epics.find(e => e.id === id);
         if (!!feature.epic) {
             const index = feature.epic.features.indexOf(feature);
             feature.epic.features.splice(index, 1);

@@ -27,6 +27,14 @@ ul {
   }
 }
 
+[actions] {
+  padding: $gutter-normal;
+
+  [fileInput] {
+    display: none;
+  }
+}
+
 [controls] {
   margin-top: $gutter-normal;
   padding: $gutter-normal $gutter-tiny;

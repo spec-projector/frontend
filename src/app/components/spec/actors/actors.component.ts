@@ -18,14 +18,14 @@ export class ActorsComponent implements OnInit {
     ui = UI;
     editMode = EditMode;
 
-    space: Spec;
+    spec: Spec;
 
     constructor(public manager: SpecManager,
                 private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({space}) => this.space = space);
+        this.route.data.subscribe(({spec}) => this.spec = spec);
     }
 
     addActor() {
@@ -33,22 +33,22 @@ export class ActorsComponent implements OnInit {
             id: uuid(),
             name: 'Some person'
         });
-        this.space.actors.unshift(actor);
+        this.spec.actors.unshift(actor);
 
         this.manager.put(actor);
-        this.manager.put(this.space);
+        this.manager.put(this.spec);
     }
 
     deleteActor(index: number) {
-        const actor = this.space.actors[index];
-        this.space.actors.splice(index, 1);
+        const actor = this.spec.actors[index];
+        this.spec.actors.splice(index, 1);
         this.manager.remove(actor);
-        this.manager.put(this.space);
+        this.manager.put(this.spec);
     }
 
     moveActor(event: CdkDragDrop<Actor[]>) {
-        moveItemInArray(this.space.actors, event.previousIndex, event.currentIndex);
-        this.manager.put(this.space);
+        moveItemInArray(this.spec.actors, event.previousIndex, event.currentIndex);
+        this.manager.put(this.spec);
     }
 
     trackActor(index: number, actor: Actor) {
