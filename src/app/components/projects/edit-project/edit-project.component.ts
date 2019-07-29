@@ -18,7 +18,7 @@ export class EditProjectComponent {
     constructor(private formBuilder: FormBuilder) {
     }
 
-    private save() {
+    save() {
         if (validate(this.form)) {
             this.saved.emit(this.title.value);
         }
