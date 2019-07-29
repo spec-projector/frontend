@@ -1,4 +1,4 @@
-<jnt-form [formGroup]="form" jntValidation (submitted)="create()">
+<jnt-form [formGroup]="form" jntValidation (submitted)="save()">
     <jnt-stack [justify]="ui.flex.justify.center" [align]="ui.flex.align.center">
         <jnt-form-item>
             <jnt-form-control name="title">
@@ -9,9 +9,7 @@
             </jnt-form-control>
         </jnt-form-item>
         <jnt-form-control>
-            <jnt-button [type]="ui.form.button.type.submit"
-                        (click)="create()" text="Create">
-            </jnt-button>
+            <jnt-button [type]="ui.form.button.type.submit" text="Save"></jnt-button>
         </jnt-form-control>
     </jnt-stack>
 </jnt-form>

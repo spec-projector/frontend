@@ -9,6 +9,8 @@ export interface IProjectsService {
 
     create(title: string): Observable<Project>;
 
+    edit(id: string, title: string): Observable<Project>;
+
     delete(id: string): Observable<any>;
 }
 

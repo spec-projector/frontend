@@ -14,14 +14,21 @@
                 <jnt-stack [align]="ui.flex.align.stretch" list>
                     <jnt-block *ngFor="let project of projects; trackBy: trackProject"
                                [padding]="ui.padding.normal">
-                        <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny"
-                                   [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
+                        <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between"
+                                   [align]="ui.flex.align.center">
                             <jnt-link [source]="[project.id]">{{project.title}}</jnt-link>
-                            <jnt-button [icon]="ui.icons.delete"
-                                        [size]="ui.sizes.tiny"
-                                        [scheme]="ui.schemes.secondary"
-                                        (click)="delete(project.id)">
-                            </jnt-button>
+                            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny">
+                                <jnt-button [icon]="ui.icons.edit"
+                                            [size]="ui.sizes.tiny"
+                                            [scheme]="ui.schemes.secondary"
+                                            (click)="edit(project)">
+                                </jnt-button>
+                                <jnt-button [icon]="ui.icons.delete"
+                                            [size]="ui.sizes.tiny"
+                                            [scheme]="ui.schemes.secondary"
+                                            (click)="delete(project.id)">
+                                </jnt-button>
+                            </jnt-stack>
                         </jnt-stack>
                     </jnt-block>
                 </jnt-stack>

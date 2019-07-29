@@ -13,14 +13,14 @@ export class EditProjectComponent {
     ui = UI;
     title = new FormControl(null, Validators.required);
     form = this.formBuilder.group({title: this.title});
-    created = new EventEmitter<string>();
+    saved = new EventEmitter<string>();
 
     constructor(private formBuilder: FormBuilder) {
     }
 
-    private create() {
+    private save() {
         if (validate(this.form)) {
-            this.created.emit(this.title.value);
+            this.saved.emit(this.title.value);
         }
     }
 }

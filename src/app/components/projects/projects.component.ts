@@ -25,11 +25,11 @@ export class ProjectsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.load();
+        this.load(true);
     }
 
-    load() {
-        this.loading = true;
+    load(loading: boolean = false) {
+        this.loading = loading;
         this.projectsService.list().pipe(finalize(() => this.loading = false))
             .subscribe(paging => this.projects = paging.results,
                 error => this.error = error);
@@ -37,7 +37,18 @@ export class ProjectsComponent implements OnInit {
 
     create() {
         const component = this.cfr.resolveComponentFactory(EditProjectComponent).create(this.injector);
-        component.instance.created.pipe(switchMap(title => this.projectsService.create(title)))
+        component.instance.saved.pipe(switchMap(title => this.projectsService.create(title)))
+            .subscribe(() => {
+                this.load();
+                this.modalService.close();
+            }, error => this.error = error);
+        this.modalService.open(component);
+    }
+
+    edit(project: Project) {
+        const component = this.cfr.resolveComponentFactory(EditProjectComponent).create(this.injector);
+        component.instance.title.setValue(project.title);
+        component.instance.saved.pipe(switchMap(title => this.projectsService.edit(project.id, title)))
             .subscribe(() => {
                 this.load();
                 this.modalService.close();
