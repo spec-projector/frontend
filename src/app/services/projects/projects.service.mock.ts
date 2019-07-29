@@ -28,6 +28,11 @@ export class ProjectsMockService implements IProjectsService {
             .pipe(map(obj => deserialize(obj, Project)));
     }
 
+    edit(id: string, title: string): Observable<Project> {
+        return this.http.get('projects/get.json')
+            .pipe(map(obj => deserialize(obj, Project)));
+    }
+
     delete(id: string): Observable<any> {
         return of(null);
     }
