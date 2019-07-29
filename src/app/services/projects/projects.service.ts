@@ -27,6 +27,11 @@ export class ProjectsService implements IProjectsService {
             .pipe(map(obj => deserialize(obj, Project)));
     }
 
+    edit(id: string, title: string): Observable<Project> {
+        return this.http.patch(`projects/${id}`, {title: title})
+            .pipe(map(obj => deserialize(obj, Project)));
+    }
+
     delete(id: string): Observable<any> {
         return this.http.delete(`projects/${id}`);
     }
