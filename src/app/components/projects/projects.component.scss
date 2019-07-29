@@ -3,30 +3,11 @@
 [app-body] {
   padding-left: $gutter-normal;
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: $gutter-normal 0 0 0;
+  [projects] {
+    width: 300px;
 
-    [field] {
-      display: flex;
-      align-items: flex-start;
-      background-color: $white-color;
-      box-shadow: $shadow-primary;
+    [list] {
       width: 100%;
-      padding: $gutter-small $gutter-normal;
-      box-sizing: border-box;
-      border-radius: 10px;
-
-      &:not(:last-child) {
-        margin-bottom: $gutter-small;
-      }
-
-      [stack] {
-        width: 100%;
-      }
     }
-
   }
-
 }

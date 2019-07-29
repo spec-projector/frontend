@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, ComponentFactoryResolver, Inject, Injector, OnInit } from '@angular/core';
 import { Error } from 'junte-angular';
-import { UI } from 'junte-ui';
-import { finalize } from 'rxjs/operators';
+import { ModalService, UI } from 'junte-ui';
+import { finalize, switchMap } from 'rxjs/operators';
+import { EditProjectComponent } from 'src/app/components/projects/edit-project/edit-project.component';
 import { Project } from 'src/app/model/projects';
 import { IProjectsService, projects_service } from 'src/app/services/projects/projects.interface';
 
@@ -17,14 +17,11 @@ export class ProjectsComponent implements OnInit {
     loading = false;
     error: Error;
     ui = UI;
-    title = new FormControl();
-
-    form = this.formBuilder.group({
-        title: this.title
-    });
 
     constructor(@Inject(projects_service) private projectsService: IProjectsService,
-                private formBuilder: FormBuilder) {
+                private cfr: ComponentFactoryResolver,
+                private injector: Injector,
+                private modalService: ModalService) {
     }
 
     ngOnInit() {
@@ -39,13 +36,13 @@ export class ProjectsComponent implements OnInit {
     }
 
     create() {
-        if (!!this.title.value) {
-            this.projectsService.create(this.title.value)
-                .subscribe(() => {
-                    this.load();
-                    this.title.reset();
-                }, error => this.error = error);
-        }
+        const component = this.cfr.resolveComponentFactory(EditProjectComponent).create(this.injector);
+        component.instance.created.pipe(switchMap(title => this.projectsService.create(title)))
+            .subscribe(() => {
+                this.load();
+                this.modalService.close();
+            }, error => this.error = error);
+        this.modalService.open(component);
     }
 
     delete(id: string) {
