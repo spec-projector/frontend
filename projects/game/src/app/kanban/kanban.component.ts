@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UI } from 'junte-ui';
 import { KanbanManager } from 'projects/game/src/app/kanban/kanban.manager';
 import { Issue } from 'projects/game/src/models/issue';
 import { Kanban } from 'projects/game/src/models/kanban';
@@ -13,6 +14,7 @@ import { Kanban } from 'projects/game/src/models/kanban';
 export class KanbanComponent implements OnInit {
 
     kanban: Kanban;
+    ui = UI;
 
     constructor(private kanbanManager: KanbanManager,
                 private route: ActivatedRoute) {
@@ -36,5 +38,13 @@ export class KanbanComponent implements OnInit {
             this.kanbanManager.put(prev);
         }
         this.kanbanManager.put(current);
+    }
+
+    addIssue() {
+
+    }
+
+    addList() {
+
     }
 }

@@ -1,18 +1,21 @@
 @import "~junte-ui/lib/assets/styles/variables";
 
+:host {
+  display: block;
+  padding: $gutter-normal;
+}
+
 [container] {
-  width: 350px;
-  max-width: 100%;
-  margin: $gutter-normal;
+  width: 25%;
+  min-width: 200px;
   display: inline-block;
-  vertical-align: top;
   padding: $gutter-normal;
   color: $secondary-color;
   border-radius: $corner-normal;
   background-color: $gray-700;
 
   &[code="todo"] {
-    background-color: $primary-color;
+    background-color: $primary-light-color;
   }
 
   &[code="doing"] {
@@ -23,23 +26,30 @@
     background-color: $green-dark;
   }
 
-  [list] {
-    border: solid 1px $gray-700;
-    background: white;
-    border-radius: $corner-normal;
-    display: block;
-    overflow: hidden;
+  h2 {
+    margin: 0;
+  }
+
+  [empty] {
+    color: $primary-text-color;
+    font-size: 24px;
+
+    ::ng-deep {
+      [body] {
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
 }
 
 [item] {
   padding: $gutter-big;
-  border-bottom: solid 1px #ccc;
-  box-sizing: border-box;
-  cursor: move;
-  background: $secondary-background;
-  color: black;
-  font-size: $font-size-base;
+  cursor: pointer;
+  background: $primary-background;
+  color: $primary-text-color;
+  font-size: $font-size-large;
+  box-shadow: $shadow-primary;
 }
 
 .cdk-drag-preview {

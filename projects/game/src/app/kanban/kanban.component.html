@@ -1,10 +1,19 @@
-<div *ngIf="!!kanban">
-    <div container [attr.code]="group.code" *ngFor="let group of kanban.groups">
-        <h2>{{group.title}}</h2>
+<jnt-stack *ngIf="!!kanban" [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+    <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.large" (click)="addList()"></jnt-button>
 
-        <div cdkDropList [id]="group.code" [cdkDropListData]="group.issues"
-             [cdkDropListConnectedTo]="kanban | codes" list (cdkDropListDropped)="drop($event)">
-            <div item *ngFor="let issue of group.issues" cdkDrag>{{issue.title}}</div>
-        </div>
-    </div>
-</div>
+    <jnt-stack container [attr.code]="group.code" *ngFor="let group of kanban.groups">
+        <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
+            <h2>{{group.title}}</h2>
+            <jnt-button [icon]="ui.icons.plus" [scheme]="ui.schemes.secondary" (click)="addIssue()"></jnt-button>
+        </jnt-stack>
+
+        <jnt-stack cdkDropList [id]="group.code" [cdkDropListData]="group.issues"
+                   [cdkDropListConnectedTo]="kanban | codes" (cdkDropListDropped)="drop($event)"
+                   [align]="ui.flex.align.stretch">
+            <jnt-block item *ngFor="let issue of group.issues" cdkDrag>{{issue.title}}</jnt-block>
+            <jnt-block *ngIf="!group.issues.length" [padding]="ui.padding.huge" empty>
+                <jnt-icon [icon]="ui.icons.plus"></jnt-icon>
+            </jnt-block>
+        </jnt-stack>
+    </jnt-stack>
+</jnt-stack>
