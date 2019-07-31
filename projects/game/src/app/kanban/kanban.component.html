@@ -1,10 +1,14 @@
-<div *ngIf="!!kanban">
-    <div container [attr.code]="group.code" *ngFor="let group of kanban.groups">
-        <h2>{{group.title}}</h2>
+<jnt-stack *ngIf="!!kanban"
+           [type]="ui.stack.type.horizontal"
+           [wrap]="ui.flex.wrap.wrap">
+    <app-group *ngFor="let group of kanban.groups; let index = index"
+               [group]="group" [(kanban)]="kanban" [ids]="ids"
+               (deleted)="deleteGroup(index)" (edited)="kanbanManager.put($event)"
+               [attr.code]="group.code" container>
+    </app-group>
 
-        <div cdkDropList [id]="group.code" [cdkDropListData]="group.issues"
-             [cdkDropListConnectedTo]="kanban | codes" list (cdkDropListDropped)="drop($event)">
-            <div item *ngFor="let issue of group.issues" cdkDrag>{{issue.title}}</div>
-        </div>
-    </div>
-</div>
+    <jnt-button [icon]="ui.icons.plus"
+                [size]="ui.sizes.large"
+                (click)="addGroup()" add>
+    </jnt-button>
+</jnt-stack>

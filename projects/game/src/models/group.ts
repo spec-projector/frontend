@@ -5,8 +5,20 @@ import { persist, persistence, Persistence } from 'src/decorators/persistence';
 @persistence()
 export class Group extends Persistence {
 
+    private _title: string;
+
     @persist()
-    title: string;
+    get title() {
+        return this._title;
+    }
+
+    set title(title: string) {
+        this._title = title;
+
+        if (!this.code) {
+            this.code = this.title.toLowerCase().replace(' ', '_');
+        }
+    }
 
     @persist()
     code: string;

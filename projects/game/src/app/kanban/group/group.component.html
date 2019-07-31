@@ -1,0 +1,35 @@
+<jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [type]="ui.stack.type.horizontal"
+               [justify]="ui.flex.justify.between"
+               [align]="ui.flex.align.center">
+        <form [formGroup]="form">
+            <header (mouseenter)="mode =  editMode.edit" (mouseleave)="mode = editMode.view">
+                <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+                    <input title editable formControlName="title">
+                </ng-container>
+            </header>
+
+            <ng-template #viewHeader>
+                <h3 title editable>{{group.title}}</h3>
+            </ng-template>
+        </form>
+
+        <jnt-stack [type]="ui.stack.type.horizontal"
+                   [gutter]="ui.stack.gutter.small">
+            <jnt-button [icon]="ui.icons.plus"
+                        [scheme]="ui.schemes.secondary"
+                        (click)="addIssue()"></jnt-button>
+            <jnt-button [icon]="ui.icons.close"
+                        [scheme]="ui.schemes.fail"
+                        (click)="deleted.emit()"></jnt-button>
+        </jnt-stack>
+    </jnt-stack>
+
+    <jnt-stack cdkDropList [id]="group.id" [cdkDropListData]="group.issues"
+               [cdkDropListConnectedTo]="ids" (cdkDropListDropped)="drop($event)"
+               [align]="ui.flex.align.stretch" list>
+        <app-issue *ngFor="let issue of group.issues; let issueIndex = index" cdkDrag
+                   [issue]="issue" (deleted)="deleteIssue(issueIndex)" (edited)="kanbanManager.put($event)">
+        </app-issue>
+    </jnt-stack>
+</jnt-stack>
