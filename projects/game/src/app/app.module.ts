@@ -6,15 +6,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JunteUiModule } from 'junte-ui';
 import { AppRoutingModule } from 'projects/game/src/app/app-routing.module';
+import { GroupComponent } from 'projects/game/src/app/kanban/group/group.component';
 import { AppComponent } from './app.component';
 import { KanbanComponent } from './kanban/kanban.component';
-import { CodesPipe } from './kanban/kanban.pipe';
+import { IssueComponent } from './kanban/issue/issue.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         KanbanComponent,
-        CodesPipe
+        GroupComponent,
+        IssueComponent
     ],
     imports: [
         BrowserModule,

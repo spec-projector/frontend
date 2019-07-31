@@ -1,2 +1,23 @@
 @import "~junte-ui/lib/assets/styles/common";
 @import "~junte-ui/lib/assets/styles/components";
+@import "~junte-ui/lib/assets/styles/variables";
+
+header {
+  [editable] {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+    background-color: transparent;
+    white-space: nowrap;
+    width: 100%;
+
+    &:focus {
+      color: black;
+    }
+  }
+}

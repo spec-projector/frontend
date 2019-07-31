@@ -1,0 +1,20 @@
+@import "~junte-ui/lib/assets/styles/variables";
+
+[item] {
+  padding: $gutter-big;
+  cursor: pointer;
+  background: $primary-background;
+  color: $primary-text-light-color;
+  font-size: $font-size-large;
+  box-shadow: $shadow-primary;
+  width: 100%;
+
+  header {
+    [title] {
+      font-weight: $font-weight-bold;
+      height: 1.5em;
+      line-height: 1.1em;
+      font-size: 1em;
+    }
+  }
+}

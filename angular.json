@@ -87,7 +87,9 @@
               "projects/game/src/assets/kanban.json"
             ],
             "styles": [
-              "projects/game/src/styles.scss"
+              "projects/game/src/styles.scss",
+              "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss",
+              "node_modules/junte-ui/lib/assets/styles/icons.scss"
             ],
             "scripts": []
           },
@@ -143,7 +145,7 @@
             "tsConfig": "projects/game/tsconfig.spec.json",
             "karmaConfig": "projects/game/karma.conf.js",
             "styles": [
-              "projects/game/src/styles.scss"
+              "projects/game/src/styles.scss",
             ],
             "scripts": [],
             "assets": [

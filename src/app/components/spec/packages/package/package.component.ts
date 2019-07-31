@@ -22,7 +22,6 @@ export class PackageComponent {
 
     private _package: Package;
 
-
     mode = EditMode.view;
 
     title = new FormControl();
