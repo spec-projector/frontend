@@ -33,6 +33,7 @@ export class KanbanComponent implements OnInit {
         group.linking(this.kanban);
         this.kanban.groups.push(group);
         this.kanbanManager.put(group);
+        this.kanbanManager.put(this.kanban);
         this.ids.push(group.id);
     }
 

@@ -62,6 +62,7 @@ export class GroupComponent implements OnInit {
             this.kanbanManager.put(prev);
         }
         this.kanbanManager.put(current);
+        this.kanbanManager.put(this.kanban);
         this.kanbanChange.emit(this.kanban);
     }
 
@@ -70,12 +71,15 @@ export class GroupComponent implements OnInit {
         issue.linking(this.group);
         this.group.issues.push(issue);
         this.kanbanManager.put(issue);
+        this.kanbanManager.put(this.group);
+        this.kanbanManager.put(this.kanban);
         this.kanbanChange.emit(this.kanban);
     }
 
     deleteIssue(index: number) {
         this.group.issues.splice(index, 1);
         this.kanbanManager.put(this.group);
+        this.kanbanManager.put(this.kanban);
         this.kanbanChange.emit(this.kanban);
     }
 
