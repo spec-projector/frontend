@@ -40,11 +40,11 @@
         <ng-container [ngSwitch]="field.type">
             <ng-container *ngSwitchCase="fieldType.reference">
                 &rarr;
-                <jnt-link>{{field.links.reference?.title}}</jnt-link>
+                <jnt-link [title]="field.links.reference?.title"></jnt-link>
             </ng-container>
             <ng-container *ngSwitchCase="fieldType.array">
                 &rarr; [
-                <jnt-link>{{field.links.reference?.title}}</jnt-link>
+                <jnt-link [title]="field.links.reference?.title"></jnt-link>
                 , ...]
             </ng-container>
             <ng-container *ngSwitchDefault>
