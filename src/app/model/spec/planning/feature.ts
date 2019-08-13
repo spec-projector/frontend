@@ -74,7 +74,7 @@ export class Feature extends Persistence {
             this.epic = epic;
         }
 
-        if (!!this.actor) {
+        if (!!this.actor && !!this.actor.spec) {
             const entities = this.actor.spec.packages.reduce((res, pack) => res.concat(pack.entities), []);
             for (let i = 0; i < this.entities.length; i++) {
                 const entity = this.entities[i];
