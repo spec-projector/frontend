@@ -34,6 +34,7 @@ export class ActorsComponent implements OnInit {
             name: 'Some person'
         });
         this.spec.actors.unshift(actor);
+        actor.linking(this.spec);
 
         this.manager.put(actor);
         this.manager.put(this.spec);
