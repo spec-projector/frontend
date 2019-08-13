@@ -44,8 +44,9 @@ export class EntityField {
             this.entity = entity;
         }
 
-        if ((this.type === FieldType.reference || FieldType.array) && !!this.reference) {
-            const entities = this.entity.package.spec.packages.reduce((entities, pack) => entities.concat(pack.entities), []);
+        if ((this.type === FieldType.reference || FieldType.array) && !!this.reference && !!this.entity) {
+            const entities = this.entity.package.spec.packages
+                .reduce((entities, pack) => entities.concat(pack.entities), []);
             this.links.reference = entities.find(e => e.id === this.reference);
         }
     }
