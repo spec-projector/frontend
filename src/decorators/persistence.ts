@@ -187,7 +187,6 @@ export class Persistence {
         });
     }
 
-
     import(db: Database, progress: Subject<Object>, id: string = null): Observable<Persistence> {
         if (this.imported) {
             return of(this);
@@ -253,20 +252,20 @@ export class Persistence {
             if (!!metadata && !!metadata.serializer) {
                 Type(metadata.serializer)(prototype, property);
             }
-            // console.log(this[property]);
-            // if (isArray(this[property])) {
-            //     this[property].forEach(field => {
-            //         console.log(field);
-            //         if (!!field['deserialize']) {
-            //             field.deserialize();
-            //         }
-            //     });
-            // } else {
-            //     console.log(this[property]);
-            //     if (!!this[property]['deserialize']) {
-            //         this[property].deserialize();
-            //     }
-            // }
+            console.log(this[property]);
+            if (this[property] instanceof Array) {
+                this[property].forEach(field => {
+                    console.log(field);
+                    if (!!field['deserialize']) {
+                        field.deserialize();
+                    }
+                });
+            } else {
+                console.log(this[property]);
+                if (!!this[property]['deserialize']) {
+                    this[property].deserialize();
+                }
+            }
         }
 
         return deserialize(obj, prototype.constructor) as Persistence;

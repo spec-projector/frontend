@@ -21,7 +21,7 @@
                     cdkDropListConnectedTo="epics" [id]="'feature-' + feature.id"
                     (cdkDropListDropped)="onDropEpic(feature, $event)">
                     <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.tiny">
-                        <jnt-button [icon]="ui.icons.delete"
+                        <jnt-button [icon]="ui.icons.font.delete"
                                     [size]="ui.sizes.tiny"
                                     [scheme]="ui.schemes.secondary"
                                     (click)="deleteFeature(feature.id)">
@@ -32,7 +32,7 @@
             </ul>
         </li>
         <li *ngIf="manager.mode == editMode.edit">
-            <jnt-button [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+            <jnt-button [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
                         [scheme]="ui.schemes.secondary"
                         (click)="addFeature()">
             </jnt-button>

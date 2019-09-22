@@ -13,7 +13,7 @@
 
 <jnt-stack>
     <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-        <jnt-button [scheme]="ui.schemes.secondary" [icon]="opened ? ui.icons.minus : ui.icons.actions"
+        <jnt-button [scheme]="ui.schemes.secondary" [icon]="opened ? ui.icons.font.minus : ui.icons.font.actions"
                     [size]="ui.sizes.tiny"
                     (click)="opened = !opened">
         </jnt-button>
@@ -37,7 +37,7 @@
                 </li>
             </ol>
 
-            <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.check : null"
+            <jnt-button (click)="markdown(summary)" [icon]="copied ? ui.icons.font.check : null"
                         text="Copy to clipboard">
             </jnt-button>
 

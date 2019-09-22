@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from 'junte-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { deserialize } from 'serialize-ts/dist';
+import { deserialize } from 'serialize-ts';
 import { PagingProjects, Project } from 'src/app/model/projects';
+import { HttpService } from 'src/app/services/http.service';
 import { IProjectsService } from 'src/app/services/projects/projects.interface';
 
 @Injectable()
@@ -14,7 +14,11 @@ export class ProjectsService implements IProjectsService {
 
     list(): Observable<PagingProjects> {
         return this.http.get('projects')
-            .pipe(map(obj => deserialize(obj, PagingProjects)));
+            .pipe(map(obj => {
+                console.log(obj);
+                console.log(deserialize(obj, PagingProjects));
+                return deserialize(obj, PagingProjects);
+            }));
     }
 
     get(id: string): Observable<Project> {

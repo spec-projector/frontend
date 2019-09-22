@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
     {
         path: ':project',
-        loadChildren: '../spec/spec.module#SpecModule',
+        loadChildren: () => import('../spec/spec.module').then(m => m.SpecModule),
         canActivate: [AuthorizationGuard]
     }
 ];
