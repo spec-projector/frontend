@@ -5,7 +5,7 @@
         <ng-template #logo>
             <img src="src/assets/images/logo-white.svg" height="45">
         </ng-template>
-        <ng-container *ngIf="!!(me.user$ | async)">
+        <ng-container>
             <ng-template #topMenu>
                 <jnt-menu>
                     <jnt-menu-item link="projects" title="Projects"

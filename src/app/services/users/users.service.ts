@@ -1,10 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Authorization, HttpService } from 'junte-angular';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
+import { Authorization } from 'src/app/model/authorization';
 import { LoginCredentials } from 'src/app/model/login-credentials';
+import { HttpService } from 'src/app/services/http.service';
 import { IUsersService } from 'src/app/services/users/users.interface';
 
 @Injectable()

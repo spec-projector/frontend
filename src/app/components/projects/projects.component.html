@@ -1,7 +1,7 @@
 <jnt-app-content>
     <jnt-app-body app-body>
         <jnt-stack projects>
-            <jnt-button [icon]="ui.icons.plus" (click)="create()"></jnt-button>
+            <jnt-button [icon]="ui.icons.font.plus" (click)="create()"></jnt-button>
 
             <ng-template #skeleton>
                 <jnt-stack [align]="ui.flex.align.stretch" list>
@@ -18,12 +18,12 @@
                                    [align]="ui.flex.align.center">
                             <jnt-link [source]="[project.id]" [title]="project.title"></jnt-link>
                             <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny">
-                                <jnt-button [icon]="ui.icons.edit"
+                                <jnt-button [icon]="ui.icons.font.edit"
                                             [size]="ui.sizes.tiny"
                                             [scheme]="ui.schemes.secondary"
                                             (click)="edit(project)">
                                 </jnt-button>
-                                <jnt-button [icon]="ui.icons.delete"
+                                <jnt-button [icon]="ui.icons.font.delete"
                                             [size]="ui.sizes.tiny"
                                             [scheme]="ui.schemes.secondary"
                                             (click)="delete(project.id)">

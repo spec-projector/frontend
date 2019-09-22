@@ -29,7 +29,7 @@
             "styles": [
               "styles.scss",
               "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss",
-              "node_modules/junte-ui/lib/assets/styles/icons.scss"
+              "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons/junte-ui-icons-font.scss"
             ],
             "scripts": []
           },
@@ -89,7 +89,7 @@
             "styles": [
               "projects/game/src/styles.scss",
               "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss",
-              "node_modules/junte-ui/lib/assets/styles/icons.scss"
+              "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons/junte-ui-icons-font.scss"
             ],
             "scripts": []
           },
@@ -145,7 +145,7 @@
             "tsConfig": "projects/game/tsconfig.spec.json",
             "karmaConfig": "projects/game/karma.conf.js",
             "styles": [
-              "projects/game/src/styles.scss",
+              "projects/game/src/styles.scss"
             ],
             "scripts": [],
             "assets": [

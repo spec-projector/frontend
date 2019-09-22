@@ -1,6 +1,5 @@
 import { ValidationError } from 'src/app/model/validation/error';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { hasOwnProperty } from 'tslint/lib/utils';
 import { Package } from './orm/package';
 import { Actor } from './planning/actor';
 import { Epic } from './planning/epic';
@@ -39,27 +38,19 @@ export class Spec extends Persistence {
 
     linking() {
         for (const actor of this.actors) {
-            if (hasOwnProperty(actor, 'linking')) {
-                actor.linking(this);
-            }
+            actor.linking(this);
         }
 
         for (const epic of this.epics) {
-            if (hasOwnProperty(epic, 'linking')) {
-                epic.linking(this);
-            }
+            epic.linking(this);
         }
 
         for (const sprint of this.sprints) {
-            if (hasOwnProperty(sprint, 'linking')) {
-                sprint.linking(this);
-            }
+            sprint.linking(this);
         }
 
         for (const pack of this.packages) {
-            if (hasOwnProperty(pack, 'linking')) {
-                pack.linking(this);
-            }
+            pack.linking(this);
         }
     }
 

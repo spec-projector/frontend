@@ -27,11 +27,11 @@
             dndType="entity">
             <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny">
                 <jnt-button handle dndHandle
-                            [icon]="ui.icons.expand"
+                            [icon]="ui.icons.font.expand"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary">
                 </jnt-button>
-                <jnt-button [icon]="ui.icons.delete"
+                <jnt-button [icon]="ui.icons.font.delete"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary"
                             (click)="deleteEntity(i)">
@@ -41,7 +41,7 @@
         </li>
         <li add>
             <jnt-button *ngIf="manager.mode == editMode.edit"
-                        [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+                        [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
                         [scheme]="ui.schemes.secondary"
                         (click)="addEntity()"></jnt-button>
         </li>
