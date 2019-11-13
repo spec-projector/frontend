@@ -1,4 +1,4 @@
-image: docker:18
+image: node:10.9
 variables:
   DOCKER_DRIVER: overlay
   DOCKER_TEST_IMAGE: $CI_REGISTRY_IMAGE:_${CI_COMMIT_REF_NAME}
@@ -16,7 +16,7 @@ stages:
   - deploy
 
 build:
-  image: node:8
+  image: node:10.9
   stage: build
   variables:
     GIT_DEPTH: 5
@@ -33,7 +33,7 @@ build:
       - node_modules/
 
 pages:
-  image: node:8
+  image: node:10.9
   stage: deploy
   variables:
     GIT_DEPTH: 5

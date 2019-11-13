@@ -6,41 +6,39 @@ import { JunteUiModule } from 'junte-ui';
 import { ClickOutsideModule } from 'ng4-click-outside';
 import { ClipboardService } from 'ngx-clipboard';
 import { DndModule } from 'ngx-drag-drop';
-import { FeatureTermsPipe } from 'src/app/pipes/feature-terms';
+import { ActorComponent } from 'src/app/components/spec/actors/actor/actor.component';
+import { ActorsComponent } from 'src/app/components/spec/actors/actors.component';
+import { EntityFieldComponent } from 'src/app/components/spec/entities/entity-field/entity-field.component';
+import { EntityComponent } from 'src/app/components/spec/entities/entity/entity.component';
+import { EpicComponent } from 'src/app/components/spec/epics/epic/epic.component';
+import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
+import { FeatureComponent } from 'src/app/components/spec/feature/feature.component';
+import { IssueComponent } from 'src/app/components/spec/issue/issue.component';
+import { PackageComponent } from 'src/app/components/spec/packages/package/package.component';
+import { PackagesComponent } from 'src/app/components/spec/packages/packages.component';
+import { SpecRoutingModule } from 'src/app/components/spec/spec-routing.module';
+import { SpecComponent } from 'src/app/components/spec/spec.component';
+import { SprintComponent } from 'src/app/components/spec/sprints/sprint/sprint.component';
+import { SprintsComponent } from 'src/app/components/spec/sprints/sprints.component';
+import { StoryEntryComponent } from 'src/app/components/spec/story-entry/story-entry.component';
+import { TermComponent } from 'src/app/components/spec/terms/term/term.component';
+import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
+import { TokensComponent } from 'src/app/components/spec/tokens/tokens.component';
+import { ValidateComponent } from 'src/app/components/spec/validate/validate.component';
+import { FitWidthDirective } from 'src/app/directives/fit-width.directive';
+import { FeatureTermsPipe } from 'src/app/pipes/features/feature-terms';
+import { FeaturesPipe } from 'src/app/pipes/features/features';
 import { GroupEntitiesPipe } from 'src/app/pipes/group-entities';
 import { GroupFeaturesByActorPipe, GroupFeaturesByEpicPipe } from 'src/app/pipes/group-features';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { SpecResolver } from 'src/app/components/spec/spec.resolver';
 import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver';
-import { FitWidthDirective } from 'src/app/directives/fit-width.directive';
-import { SpecManager } from 'src/app/managers/spec.manager';
 import { FramesStorage } from 'src/app/services/frames-storage.service';
-import { ActorComponent } from './actors/actor/actor.component';
-import { ActorsComponent } from './actors/actors.component';
-import { EntityFieldComponent } from './entities/entity-field/entity-field.component';
-import { EntityComponent } from './entities/entity/entity.component';
-import { EpicComponent } from './epics/epic/epic.component';
-import { EpicsComponent } from './epics/epics.component';
-import { FeatureComponent } from './feature/feature.component';
-import { IssueComponent } from './issue/issue.component';
-import { PackageComponent } from './packages/package/package.component';
-import { PackagesComponent } from './packages/packages.component';
-import { FeaturesPipe } from '../../pipes/features';
-import { SpecRoutingModule } from './spec-routing.module';
-import { SpecComponent } from './spec.component';
-import { SprintComponent } from './sprints/sprint/sprint.component';
-import { SprintsComponent } from './sprints/sprints.component';
-import { StoryEntryComponent } from './story-entry/story-entry.component';
 import { SpaceSyncComponent } from './sync/space-sync.component';
-import { TermComponent } from './terms/term/term.component';
-import { TermsComponent } from './terms/terms.component';
-import { TokensComponent } from './tokens/tokens.component';
-import { ValidateComponent } from './validate/validate.component';
 
 @NgModule({
     declarations: [
         SpecComponent,
-        TokenTypePipe,
         SprintsComponent,
         EpicsComponent,
         EpicComponent,
@@ -48,8 +46,6 @@ import { ValidateComponent } from './validate/validate.component';
         ActorComponent,
         TermsComponent,
         ValidateComponent,
-        GroupFeaturesByEpicPipe,
-        GroupFeaturesByActorPipe,
         FeatureComponent,
         TokensComponent,
         IssueComponent,
@@ -57,13 +53,16 @@ import { ValidateComponent } from './validate/validate.component';
         EntityComponent,
         PackagesComponent,
         TermComponent,
-        FeatureTermsPipe,
         PackageComponent,
         FitWidthDirective,
         EntityFieldComponent,
-        GroupEntitiesPipe,
         SpaceSyncComponent,
         StoryEntryComponent,
+        TokenTypePipe,
+        GroupFeaturesByEpicPipe,
+        GroupFeaturesByActorPipe,
+        FeatureTermsPipe,
+        GroupEntitiesPipe,
         FeaturesPipe
     ],
     entryComponents: [SpaceSyncComponent],

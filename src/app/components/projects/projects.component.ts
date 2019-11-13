@@ -1,8 +1,8 @@
 import { Component, ComponentFactoryResolver, Inject, Injector, OnInit } from '@angular/core';
-import { Error } from 'junte-angular';
 import { ModalService, UI } from 'junte-ui';
 import { finalize, switchMap } from 'rxjs/operators';
 import { EditProjectComponent } from 'src/app/components/projects/edit-project/edit-project.component';
+import { Error } from 'src/app/model/errors';
 import { Project } from 'src/app/model/projects';
 import { IProjectsService, projects_service } from 'src/app/services/projects/projects.interface';
 
@@ -13,7 +13,7 @@ import { IProjectsService, projects_service } from 'src/app/services/projects/pr
 })
 export class ProjectsComponent implements OnInit {
 
-    projects: Project[];
+    projects: Project[] = [];
     loading = false;
     error: Error;
     ui = UI;

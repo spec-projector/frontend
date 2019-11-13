@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpMockService } from 'junte-angular';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts/dist';
 import { PagingProjects, Project } from 'src/app/model/projects';
+import { HttpMockService } from 'src/app/services/http-mock.service';
 import { IProjectsService } from 'src/app/services/projects/projects.interface';
 
 @Injectable({providedIn: 'root'})

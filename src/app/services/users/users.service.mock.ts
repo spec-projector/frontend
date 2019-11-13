@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Authorization } from 'junte-angular';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
+import { Authorization } from 'src/app/model/authorization';
 import { LoginCredentials } from 'src/app/model/login-credentials';
 import { IUsersService } from 'src/app/services/users/users.interface';
 

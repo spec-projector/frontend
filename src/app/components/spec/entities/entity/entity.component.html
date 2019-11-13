@@ -26,11 +26,11 @@
             <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny"
                        [type]="ui.stack.type.horizontal">
                 <jnt-button cdkDragHandle
-                            [icon]="ui.icons.expand"
+                            [icon]="ui.icons.font.expand"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary">
                 </jnt-button>
-                <jnt-button [icon]="ui.icons.delete"
+                <jnt-button [icon]="ui.icons.font.delete"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary"
                             (click)="deleteField(i)">
@@ -42,7 +42,7 @@
         </li>
     </ul>
     <jnt-button *ngIf="manager.mode == editMode.edit"
-                [icon]="ui.icons.plus" [size]="ui.sizes.tiny"
+                [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addField()"></jnt-button>
 </form>

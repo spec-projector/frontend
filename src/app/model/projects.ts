@@ -30,5 +30,4 @@ export class PagingProjects implements Paging<Project> {
         mock: '[{{#repeat 10 20}} {{> project}} {{/repeat}}]'
     })
     results: Project[];
-
 }

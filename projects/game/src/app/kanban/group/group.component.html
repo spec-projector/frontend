@@ -16,10 +16,10 @@
 
         <jnt-stack [type]="ui.stack.type.horizontal"
                    [gutter]="ui.stack.gutter.small">
-            <jnt-button [icon]="ui.icons.plus"
+            <jnt-button [icon]="ui.icons.font.plus"
                         [scheme]="ui.schemes.secondary"
                         (click)="addIssue()"></jnt-button>
-            <jnt-button [icon]="ui.icons.close"
+            <jnt-button [icon]="ui.icons.font.close"
                         [scheme]="ui.schemes.fail"
                         (click)="deleted.emit()"></jnt-button>
         </jnt-stack>

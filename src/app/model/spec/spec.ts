@@ -1,6 +1,5 @@
 import { ValidationError } from 'src/app/model/validation/error';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { hasOwnProperty } from 'tslint/lib/utils';
 import { Package } from './orm/package';
 import { Actor } from './planning/actor';
 import { Epic } from './planning/epic';

@@ -1,7 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { validate } from 'junte-angular';
-import { UI } from 'junte-ui';
+import { UI, validate } from 'junte-ui';
 
 @Component({
     selector: 'spec-edit-project',
