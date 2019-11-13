@@ -59,7 +59,8 @@ export class SpecComponent implements OnInit {
     }
 
     export(element: any) {
-        const file = new Blob([JSON.stringify(this.spec)], {type: 'text/plain'});
+        const file = new Blob([JSON.stringify(this.spec.serialize(), null, 4)],
+            {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
         element.download = 'test.json';
         element.click();

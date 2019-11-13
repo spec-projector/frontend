@@ -3,7 +3,7 @@
         <img src="src/assets/images/logo.svg" height="50">
     </div>
     <p>{{error}}</p>
-    <jnt-stack fields [gutter]="ui.stack.gutter.normal">
+    <jnt-stack fields [gutter]="ui.gutter.normal">
         <fieldset [class.error]="loginForm.get('login')?.dirty && loginForm.get('login')?.errors">
             <p class="message">Field is required!</p>
             <jnt-input formControlName="login" placeholder="Login" required></jnt-input>

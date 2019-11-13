@@ -20,7 +20,7 @@
                 <li *ngFor="let feature of group.features; trackBy: trackFeature" cdkDropList
                     cdkDropListConnectedTo="epics" [id]="'feature-' + feature.id"
                     (cdkDropListDropped)="onDropEpic(feature, $event)">
-                    <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.tiny">
+                    <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.tiny">
                         <jnt-button [icon]="ui.icons.delete"
                                     [size]="ui.sizes.tiny"
                                     [scheme]="ui.schemes.secondary"

@@ -1,6 +1,6 @@
 <form [formGroup]="form">
     <ng-container *ngIf="mode == editMode.edit; else view">
-        <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny">
+        <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny">
             <select type formControlName="type" tabindex="-1">
                 <option [value]="storyEntryType.see">I see:</option>
                 <option [value]="storyEntryType.can">I can:</option>

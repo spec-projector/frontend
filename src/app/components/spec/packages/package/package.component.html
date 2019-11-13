@@ -25,7 +25,7 @@
         <li *ngFor="let entity of package.entities; let i = index;"
             [dndDraggable]="i"
             dndType="entity">
-            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny">
+            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny">
                 <jnt-button handle dndHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"

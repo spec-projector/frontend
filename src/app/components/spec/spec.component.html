@@ -2,7 +2,7 @@
     <jnt-stack [align]="ui.flex.align.center" actions>
         <div>
             <jnt-button text="Import" (click)="importInput.click()"></jnt-button>
-            <input type="file" (change)="load($event)" #importInput fileInput/>
+            <input #importInput fileInput type="file" (change)="load($event)"/>
         </div>
         <div>
             <a href="" #exportFile></a>
@@ -10,12 +10,12 @@
         </div>
     </jnt-stack>
     <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-        <jnt-menu-item link="sprints" title="Sprints ({{spec?.sprints.length}})"></jnt-menu-item>
-        <jnt-menu-item link="epics" title="Epics ({{spec?.epics.length}})"></jnt-menu-item>
-        <jnt-menu-item link="actors" title="Features ({{spec?.actors.length}})"></jnt-menu-item>
-        <jnt-menu-item link="terms" title="Terms ({{spec?.terms.length}})"></jnt-menu-item>
-        <jnt-menu-item link="packages" title="Model ({{spec?.packages.length}})"></jnt-menu-item>
-        <jnt-menu-item link="validate" title="Validate ({{errors.length}})"></jnt-menu-item>
+        <jnt-menu-item [link]="['sprints']" title="Sprints ({{spec?.sprints.length}})"></jnt-menu-item>
+        <jnt-menu-item [link]="['epics']" title="Epics ({{spec?.epics.length}})"></jnt-menu-item>
+        <jnt-menu-item [link]="['actors']" title="Features ({{spec?.actors.length}})"></jnt-menu-item>
+        <jnt-menu-item [link]="['terms']" title="Terms ({{spec?.terms.length}})"></jnt-menu-item>
+        <jnt-menu-item [link]="['packages']" title="Model ({{spec?.packages.length}})"></jnt-menu-item>
+        <jnt-menu-item [link]="['validate']" title="Validate ({{errors.length}})"></jnt-menu-item>
     </jnt-menu>
     <div controls>
         <form [formGroup]="form">

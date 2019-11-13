@@ -23,7 +23,7 @@
 
     <ul cdkDropList (cdkDropListDropped)="moveField($event)" [cdkDropListData]="entity.fields">
         <li *ngFor="let field of entity.fields; let i = index; trackBy: trackField" cdkDrag field>
-            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.tiny"
+            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny"
                        [type]="ui.stack.type.horizontal">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"

@@ -1,4 +1,4 @@
-<jnt-stack [gutter]="ui.stack.gutter.large">
+<jnt-stack [gutter]="ui.gutter.large">
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.plus"
                 [size]="ui.sizes.tiny"
@@ -6,7 +6,7 @@
                 (click)="addEpic()"></jnt-button>
     <ul cdkDropList (cdkDropListDropped)="moveEpic($event)" [cdkDropListData]="spec.epics">
         <li *ngFor="let epic of spec.epics; let i = index;" cdkDrag field>
-            <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.stack.gutter.small">
+            <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.small">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"

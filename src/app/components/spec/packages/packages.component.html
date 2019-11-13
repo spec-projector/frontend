@@ -1,11 +1,11 @@
-<jnt-stack [gutter]="ui.stack.gutter.large">
+<jnt-stack [gutter]="ui.gutter.large">
     <jnt-button *ngIf="manager.mode == editMode.edit" [icon]="ui.icons.plus"
                 [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addPackage()"></jnt-button>
     <ul cdkDropList (cdkDropListDropped)="movePackage($event)" [cdkDropListData]="spec.packages">
         <li *ngFor="let pack of spec.packages; let i = index; trackBy: trackPackage" cdkDrag field>
-            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.stack.gutter.small">
+            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.small">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"

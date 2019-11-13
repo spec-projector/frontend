@@ -206,7 +206,11 @@ export class Persistence {
                     if (type === Array) {
                         const list = this[property];
                         for (const element of list) {
-                            queue.push(element.import(db, progress));
+                            try {
+                                queue.push(element.import(db, progress));
+                            }catch (e) {
+                                
+                            }
                         }
                     } else {
                         const obj = this[property];

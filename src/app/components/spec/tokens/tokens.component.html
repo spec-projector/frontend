@@ -1,4 +1,4 @@
-<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small" [wrap]="ui.flex.wrap.wrap">
+<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small" [wrap]="ui.flex.wrap.wrap">
     <ng-container *ngFor="let type of tokens">
         <ng-container [ngSwitch]="type | getTokenType">
             <ng-container *ngSwitchCase="tokenType.term">

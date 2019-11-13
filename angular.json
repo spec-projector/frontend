@@ -23,13 +23,28 @@
             "polyfills": "polyfills.ts",
             "tsConfig": "tsconfig.json",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/junte-ui/lib/assets/fonts/icons/",
+                "output": "./assets/fonts/icons/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/junte-ui/lib/assets/icons/animated/",
+                "output": "./assets/icons/animated/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/junte-ui/lib/assets/icons/svg/",
+                "output": "./assets/icons/svg/"
+              },
               "src/assets",
               "spec.json"
             ],
             "styles": [
-              "styles.scss",
-              "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss",
-              "node_modules/junte-ui/lib/assets/styles/icons.scss"
+              "src/styles.scss",
+              "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
+              "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
             ],
             "scripts": []
           },
@@ -145,7 +160,7 @@
             "tsConfig": "projects/game/tsconfig.spec.json",
             "karmaConfig": "projects/game/karma.conf.js",
             "styles": [
-              "projects/game/src/styles.scss",
+              "projects/game/src/styles.scss"
             ],
             "scripts": [],
             "assets": [

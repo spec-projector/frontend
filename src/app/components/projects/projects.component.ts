@@ -26,6 +26,7 @@ export class ProjectsComponent implements OnInit {
 
     ngOnInit() {
         this.load(true);
+        // this.projectsService.create('test').subscribe(() => null);
     }
 
     load(loading: boolean = false) {

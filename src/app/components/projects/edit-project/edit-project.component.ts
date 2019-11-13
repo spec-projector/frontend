@@ -19,8 +19,8 @@ export class EditProjectComponent {
     }
 
     save() {
-        if (validate(this.form)) {
+        //if (validate(this.form)) {
             this.saved.emit(this.title.value);
-        }
+        //}
     }
 }

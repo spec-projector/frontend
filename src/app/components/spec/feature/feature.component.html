@@ -17,9 +17,13 @@
                     [size]="ui.sizes.tiny"
                     (click)="opened = !opened">
         </jnt-button>
-        <jnt-label *ngIf="feature.frames.length" label="Design" [color]="ui.colors.blue100"></jnt-label>
-        <jnt-label *ngIf="feature.endpoints.length" label="API" [color]="ui.colors.purple"></jnt-label>
-        <spec-issue *ngFor="let issue of feature.issues" [issue]="issue"></spec-issue>
+        <jnt-label *ngIf="feature.frames.length"
+                   [size]="ui.sizes.small"
+                   label="Design" [color]="ui.colors.blue100"></jnt-label>
+        <jnt-label *ngIf="feature.endpoints.length"
+                   [size]="ui.sizes.small"
+                   label="API" [color]="ui.colors.purple"></jnt-label>
+        <!--<spec-issue *ngFor="let issue of feature.issues" [issue]="issue"></spec-issue>-->
 
     </jnt-stack>
     <ng-container *ngIf="opened">
@@ -51,14 +55,14 @@
                     <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}">
                     </ng-container>
                 </div>
-                <ng-container *ngIf="feature.frames.length">
+                <ng-container *ngIf="feature.frames?.length">
                     <br>
                     <div>**🚀 Design**</div>
                     <div *ngFor="let frame of feature.frames">
                         * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
                     </div>
                 </ng-container>
-                <ng-container *ngIf="feature.endpoints.length">
+                <ng-container *ngIf="feature.endpoints?.length">
                     <br>
                     <div>**⛳ API**</div>
                     <div *ngFor="let endpoint of feature.endpoints">
@@ -72,7 +76,7 @@
                         * {{issue.label}} {{issue.link}}
                     </div>
                 </ng-container>
-                <ng-container *ngIf="(feature | featureTerms).length">
+                <ng-container *ngIf="(feature | featureTerms)?.length">
                     <br>
                     <div>**❓Terms**</div>
                     <div *ngFor="let term of (feature | featureTerms)">
