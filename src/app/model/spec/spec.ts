@@ -37,6 +37,7 @@ export class Spec extends Persistence {
     }
 
     linking() {
+        console.log('spec linking');
         for (const actor of this.actors) {
             actor.linking(this);
         }

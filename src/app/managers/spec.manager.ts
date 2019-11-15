@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb-browser';
+import replication from 'pouchdb-replication-stream';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
 import { EditMode } from 'src/app/model/enums/edit-mode';
@@ -118,6 +119,7 @@ export class SpecManager {
         return new Observable(observer => {
             this.spec$.pipe(filter(spec => !!spec))
                 .subscribe(spec => {
+                    console.log('return');
                     observer.next(spec);
                     observer.complete();
                 }, err => observer.error(err));
@@ -219,6 +221,16 @@ export class SpecManager {
                         })).catch(err => console.log(err));
                 }
             });
+    }
+
+    dump(): Observable<any> {
+        return new Observable(o => {
+            this.local.allDocs({include_docs: true})
+                .then(docs => {
+                    o.next(docs.rows.map(({doc}) => doc));
+                    o.complete();
+                });
+        });
     }
 
 }

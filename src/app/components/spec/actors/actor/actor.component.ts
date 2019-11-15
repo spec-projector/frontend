@@ -1,13 +1,13 @@
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
-import {Component, Input} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
-import {SpecManager} from 'src/app/managers/spec.manager';
-import {EditMode} from 'src/app/model/enums/edit-mode';
-import {UI} from 'junte-ui';
-import {Actor} from 'src/app/model/spec/planning/actor';
-import {Feature} from 'src/app/model/spec/planning/feature';
-import {TextToken} from 'src/app/model/spec/planning/token';
-import {filter, tap} from 'rxjs/operators';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { SpecManager } from 'src/app/managers/spec.manager';
+import { EditMode } from 'src/app/model/enums/edit-mode';
+import { UI } from 'junte-ui';
+import { Actor } from 'src/app/model/spec/planning/actor';
+import { Feature } from 'src/app/model/spec/planning/feature';
+import { TextToken } from 'src/app/model/spec/planning/token';
+import { filter, tap } from 'rxjs/operators';
 import * as uuid from 'uuid/v1';
 
 @Component({
@@ -80,7 +80,7 @@ export class ActorComponent {
             title: [new TextToken('Great feature')]
         });
         this.actor.features.push(feature);
-        feature.linking({actor: this.actor});
+        feature.linking({spec: this.actor.spec, actor: this.actor});
 
         this.manager.put(feature);
         this.manager.put(this.actor);
@@ -89,11 +89,18 @@ export class ActorComponent {
     }
 
     deleteFeature(id: string) {
-        const index = this.actor.features.findIndex(f => f.id === id);
+        let index = this.actor.features.findIndex(f => f.id === id);
         const feature = this.actor.features[index];
         this.actor.features.splice(index, 1);
-        this.manager.remove(feature);
         this.manager.put(this.actor);
+
+        if (!!feature.epic) {
+            index = feature.epic.features.findIndex(f => f.id === id);
+            feature.epic.features.splice(index, 1);
+            this.manager.put(feature.epic);
+        }
+
+        this.manager.remove(feature);
 
         this.version++;
     }

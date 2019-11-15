@@ -1,17 +1,19 @@
-import {persist, persistence, Persistence} from 'src/decorators/persistence';
-import {Entity} from 'src/app/model/spec/orm/entity';
-import {TokenSerializer} from 'src/app/model/spec/serializers/token';
-import {Spec} from 'src/app/model/spec/spec';
-import {ArraySerializer} from 'serialize-ts';
-import {TermMissedError} from 'src/app/model/validation/error';
-import {Actor} from './actor';
-import {Algorithm} from './algorithm';
-import {Api} from './api';
-import {Epic} from './epic';
-import {Frame} from './frame';
-import {Issue} from './issue';
-import {Term} from './term';
-import {TermToken, Token} from './token';
+import { stripBom } from "@angular-devkit/build-angular/src/angular-cli-files/utilities/strip-bom";
+import { Sprint } from "src/app/model/spec/planning/sprint";
+import { persist, persistence, Persistence } from 'src/decorators/persistence';
+import { Entity } from 'src/app/model/spec/orm/entity';
+import { TokenSerializer } from 'src/app/model/spec/serializers/token';
+import { Spec } from 'src/app/model/spec/spec';
+import { ArraySerializer } from 'serialize-ts';
+import { TermMissedError } from 'src/app/model/validation/error';
+import { Actor } from './actor';
+import { Algorithm } from './algorithm';
+import { Api } from './api';
+import { Epic } from './epic';
+import { Frame } from './frame';
+import { Issue } from './issue';
+import { Term } from './term';
+import { TermToken, Token } from './token';
 
 export enum StoryEntryType {
     see = 'see',
@@ -59,19 +61,29 @@ export class Feature extends Persistence {
     spec: Spec;
     actor: Actor;
     epic: Epic;
+    sprint: Sprint;
 
     constructor(defs: any = {}) {
         super();
         Object.assign(this, defs);
     }
 
-    linking({actor, epic}: { actor?: Actor, epic?: Epic }) {
+    linking({spec, actor, epic, sprint}: { spec?: Spec, actor?: Actor, epic?: Epic, sprint?: Sprint }) {
+        console.log('feature linking', this.title.map(t => t.toString()).join(' '));
+        if (!!spec) {
+            this.spec = spec;
+        }
+
         if (!!actor) {
-            [this.actor, this.spec] = [actor, actor.spec];
+            this.actor = actor;
         }
 
         if (!!epic) {
             this.epic = epic;
+        }
+
+        if (!!sprint) {
+            this.sprint = sprint;
         }
 
         if (!!this.actor && !!this.actor.spec) {

@@ -24,6 +24,7 @@ export class SpecResolver implements Resolve<Spec> {
         // if (!!this.manager.spec$ && this.manager.spec.id !== project) {
         //     this.manager.clear();
         // }
+        console.log('spec resolver');
         return this.manager.get(project).pipe(finalize(() => this.modalService.close()));
     }
 }

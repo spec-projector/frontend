@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { FramesStorage } from 'src/app/services/frames-storage.service';
 import { SpecManager } from 'src/app/managers/spec.manager';
@@ -22,6 +22,8 @@ export class FeatureComponent implements OnInit {
     editMode = EditMode;
 
     private _feature: Feature;
+
+    @ViewChild('summary', {static: false}) summary: ElementRef<HTMLElement>;
 
     @ViewChildren('storyEntry') entries: QueryList<StoryEntry>;
 
@@ -90,6 +92,15 @@ export class FeatureComponent implements OnInit {
         // this.entries.changes.subscribe(s => console.log(s));
     }
 
+    addStory() {
+        const entry = new StoryEntry({
+            type: StoryEntryType.see,
+            description: [new TextToken('something...')]
+        });
+        this.feature.story.push(entry);
+        this.manager.put(this.feature);
+    }
+
     addStoryEntry(index: number) {
         const entry = new StoryEntry({
             type: StoryEntryType.see,
@@ -104,8 +115,10 @@ export class FeatureComponent implements OnInit {
         this.manager.put(this.feature);
     }
 
-    markdown(container: HTMLElement) {
-        container.style.display = 'block';
-        this.clipboard.copyFromContent(container.innerText);
+    markdown() {
+        const summary = this.summary.nativeElement;
+        summary.style.display = 'block';
+        this.clipboard.copyFromContent(summary.innerText);
+        setTimeout(() => summary.style.display = 'none', 5000);
     }
 }

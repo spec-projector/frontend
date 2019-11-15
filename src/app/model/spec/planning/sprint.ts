@@ -1,4 +1,4 @@
-import { persist, persistence } from 'src/decorators/persistence';
+import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { ValidationError } from 'src/app/model/validation/error';
 import { Spec } from '../spec';
@@ -6,7 +6,7 @@ import { Feature } from './feature';
 import { Improvement } from './improvement';
 
 @persistence()
-export class Sprint {
+export class Sprint extends Persistence {
 
     @persist()
     id: string;
@@ -20,16 +20,16 @@ export class Sprint {
     @persist({serializer: new ArraySerializer(new ModelSerializer(Improvement))})
     improvements: Improvement[] = [];
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
-    }
+    spec: Spec;
 
     linking(spec: Spec) {
+        console.log('sprint linking', this.title);
+        this.spec = spec;
         for (const feature of this.features) {
-            // feature.linking({spec: spec});
+            feature.linking({spec: spec, sprint: this});
         }
         for (const improvement of this.improvements) {
-            // improvement.feature.linking({spec: spec});
+            improvement.feature.linking({spec: spec, sprint: this});
         }
     }
 

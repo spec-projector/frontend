@@ -1,7 +1,17 @@
 import 'reflect-metadata';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { ArraySerializer, deserialize, Field, Model, ModelSerializer, Name, serialize, Serializer, Type } from 'serialize-ts';
+import {
+    ArraySerializer,
+    deserialize,
+    Field,
+    Model,
+    ModelSerializer,
+    Name,
+    serialize,
+    Serializer,
+    Type
+} from 'serialize-ts';
 import { characters, generate } from 'shortid';
 import Document = PouchDB.Core.Document;
 import Database = PouchDB.Database;
@@ -207,8 +217,8 @@ export class Persistence {
                         for (const element of list) {
                             try {
                                 queue.push(element.import(db, progress));
-                            }catch (e) {
-                                
+                            } catch (e) {
+
                             }
                         }
                     } else {
@@ -256,23 +266,9 @@ export class Persistence {
             if (!!metadata && !!metadata.serializer) {
                 Type(metadata.serializer)(prototype, property);
             }
-            console.log(this[property]);
-            if (this[property] instanceof Array) {
-                this[property].forEach(field => {
-                    console.log(field);
-                    if (!!field['deserialize']) {
-                        field.deserialize();
-                    }
-                });
-            } else {
-                console.log(this[property]);
-                if (!!this[property]['deserialize']) {
-                    this[property].deserialize();
-                }
-            }
         }
 
-        return deserialize(obj, prototype.constructor) as Persistence;
+        return deserialize(obj, prototype.constructor);
     }
 
     dirty(): boolean {
