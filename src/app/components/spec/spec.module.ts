@@ -26,6 +26,7 @@ import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
 import { TokensComponent } from 'src/app/components/spec/tokens/tokens.component';
 import { ValidateComponent } from 'src/app/components/spec/validate/validate.component';
 import { FitWidthDirective } from 'src/app/directives/fit-width.directive';
+import { SpecManager } from "src/app/managers/spec.manager";
 import { FeatureTermsPipe } from 'src/app/pipes/features/feature-terms';
 import { FeaturesPipe } from 'src/app/pipes/features/features';
 import { GroupEntitiesPipe } from 'src/app/pipes/group-entities';
@@ -79,7 +80,8 @@ import { SpaceSyncComponent } from './sync/space-sync.component';
         FramesStorage,
         SpecResolver,
         SprintResolver,
-        ClipboardService
+        ClipboardService,
+        SpecManager
     ]
 })
 export class SpecModule {

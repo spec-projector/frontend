@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb-browser';
-import replication from 'pouchdb-replication-stream';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
 import { EditMode } from 'src/app/model/enums/edit-mode';
@@ -26,7 +25,7 @@ class Remove implements Flush {
     }
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class SpecManager {
 
     private local: Database = null;
@@ -133,12 +132,6 @@ export class SpecManager {
     remove(object: Persistence) {
         console.log('deleting');
         this.flushing$.next(new Remove(object));
-    }
-
-    clear() {
-        this.spec$ = null;
-        this.local = null;
-        this.remote = null;
     }
 
     private pull() {
