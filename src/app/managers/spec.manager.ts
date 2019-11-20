@@ -5,6 +5,7 @@ import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { Spec } from 'src/app/model/spec/spec';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
+import { config } from 'src/environments/environment';
 import Database = PouchDB.Database;
 
 const BUFFER_TIME = 2500;
@@ -28,8 +29,8 @@ class Remove implements Flush {
 @Injectable()
 export class SpecManager {
 
-    private local: Database = null;
-    private remote: Database = null;
+    private local: Database;
+    private remote: Database;
     private flushing$ = new Subject<Flush>();
     spec$: BehaviorSubject<Spec>;
     mode: EditMode = EditMode.view;
@@ -46,50 +47,12 @@ export class SpecManager {
         this.flushing();
     }
 
-    import(project: string, progress = new Subject(), obj: any = null): Observable<Spec> {
-        this.spec$ = new BehaviorSubject<Spec>(null);
-        this.local = new PouchDB(`project_${project}`, {auto_compaction: true});
-        this.remote = new PouchDB('https://specprojector.com:5984/' + `project_${project}`);
-
-        this.local.sync(this.remote)
-            .on('complete', () => {
-                const spec = new Spec().deserialize(obj) as Spec;
-                console.group(`import`);
-                console.log(`project_${project}`);
-                console.log('synced');
-                console.log(obj);
-                console.log(spec);
-                console.groupEnd();
-                spec.id = project;
-                spec.import(this.local, progress, `project_${project}`)
-                    .pipe(finalize(() => this.spec = spec), tap(() => spec.linking()))
-                    .subscribe(() => {
-                        this.pull();
-                        this.push();
-                    }, (err: { status }) => {
-                        if (err.status === 404) {
-                            console.log('spec not found!');
-                        } else {
-                            this.spec$.error(err);
-                        }
-                    });
-            })
-            .on('error', err => this.spec$.error(err));
-
-        return new Observable(observer => {
-            this.spec$.pipe(filter(spec => !!spec))
-                .subscribe(spec => {
-                    observer.next(spec);
-                    observer.complete();
-                }, err => observer.error(err));
-        });
-    }
-
     get(project: string): Observable<Spec> {
         if (!this.spec$) {
+            const db = `project_${project}`;
             this.spec$ = new BehaviorSubject<Spec>(null);
             this.local = new PouchDB(project, {auto_compaction: true});
-            this.remote = new PouchDB('https://specprojector.com:5984/' + project);
+            this.remote = new PouchDB(`${config.storage}/${db}`);
 
             this.local.sync(this.remote).on('complete', () => {
                 const spec = new Spec();
@@ -216,12 +179,37 @@ export class SpecManager {
             });
     }
 
-    dump(): Observable<any> {
+    dump(): Observable<any[]> {
         return new Observable(o => {
             this.local.allDocs({include_docs: true})
-                .then(docs => {
-                    o.next(docs.rows.map(({doc}) => doc));
+                .then(({rows}: { rows: any[] }) => {
+                    o.next(rows.filter(({doc: {deleted}}) => !deleted)
+                        .map(({doc}) => doc));
                     o.complete();
+                });
+        });
+    }
+
+    restore(docs: any[]): Observable<number> {
+        return new Observable(o => {
+            this.local.allDocs()
+                .then(({rows}: { rows: { id: string, value: { rev: string } }[] }) => {
+                    const revs = new Map();
+                    for (const doc of rows) {
+                        console.log(doc);
+                        revs.set(doc.id, doc.value.rev);
+                    }
+
+                    for (const doc of docs) {
+                        doc['_rev'] = revs.get(doc._id);
+                    }
+                    this.local.bulkDocs(docs)
+                        .then(res => {
+                            console.log(res);
+                            o.next(docs.length);
+                            o.complete();
+                        });
+
                 });
         });
     }

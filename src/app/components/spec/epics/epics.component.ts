@@ -41,8 +41,14 @@ export class EpicsComponent implements OnInit {
 
     deleteEpic(index: number) {
         const epic = this.spec.epics[index];
-        this.spec.epics.splice(index, 1);
+        epic.features.forEach(f => {
+            f.linking({epic: null});
+            this.manager.put(f);
+        });
+
+
         this.manager.remove(epic);
+        this.spec.epics.splice(index, 1);
         this.manager.put(this.spec);
     }
 

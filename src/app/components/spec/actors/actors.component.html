@@ -1,10 +1,20 @@
+<ul>
+    <li *ngFor="let actor of spec.actors; trackBy: trackActor">
+        <jnt-link [source]="['.',{actor: actor.id}]" [title]="actor.name"></jnt-link>
+        <ul>
+            <li *ngFor="let feature of actor.features">
+                {{feature.title}}
+            </li>
+        </ul>
+    </li>
+</ul>
 <jnt-stack [gutter]="ui.gutter.large">
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.font.plus"
                 [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addActor()"></jnt-button>
-    <ul cdkDropList (cdkDropListDropped)="moveActor($event)" [cdkDropListData]="spec.actors">
+    <ul actors cdkDropList (cdkDropListDropped)="moveActor($event)" [cdkDropListData]="spec.actors">
         <li *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor" cdkDrag field>
             <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.small">
                 <jnt-button cdkDragHandle

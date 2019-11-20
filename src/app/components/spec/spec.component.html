@@ -5,8 +5,9 @@
             <jnt-button text="Dump" (click)="dump(dumpFile)"></jnt-button>
         </div>
         <div>
-            <jnt-button text="Import" (click)="importInput.click()"></jnt-button>
-            <input #importInput fileInput type="file" (change)="load($event)"/>
+            <jnt-button [loading]="progress.restore"
+                        text="Restore" (click)="restoreInput.click()"></jnt-button>
+            <input #restoreInput fileInput type="file" (change)="restore($event)"/>
         </div>
     </jnt-stack>
     <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">

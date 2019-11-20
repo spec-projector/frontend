@@ -8,11 +8,11 @@
         <li *ngFor="let epic of spec.epics; let i = index;" cdkDrag field>
             <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.small">
                 <jnt-button cdkDragHandle
-                            [icon]="ui.icons.font.expand"
+                            [icon]="ui.icons.expand"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary">
                 </jnt-button>
-                <jnt-button [icon]="ui.icons.font.delete"
+                <jnt-button [icon]="ui.icons.delete"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary"
                             (click)="deleteEpic(i)">

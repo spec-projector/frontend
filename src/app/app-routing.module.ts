@@ -10,12 +10,14 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
+        loadChildren: () => import('./components/login/login.module')
+            .then(m => m.LoginModule)
     },
     {
         path: 'projects',
-        loadChildren: () => import('./components/projects/projects.module').then(m => m.ProjectsModule),
-        canActivate: [AuthorizationGuard]
+        loadChildren: () => import('./components/projects/projects.module')
+            .then(m => m.ProjectsModule),
+        // canActivate: [AuthorizationGuard]
     }
 ];
 
