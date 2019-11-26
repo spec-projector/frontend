@@ -7,30 +7,30 @@
 
     <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
         <jnt-menu-item [link]="['details']" title="General"
-                       [icon]="ui.icons.information"></jnt-menu-item>
+                       [icon]="localUi.icons.general"></jnt-menu-item>
         <jnt-menu-item [link]="['actors']" title="Features"
-                       [icon]="ui.icons.minus">
+                       [icon]="localUi.icons.features">
             <jnt-badge [count]="spec?.actors.length"></jnt-badge>
         </jnt-menu-item>
         <jnt-menu-item [link]="['epics']" title="Epics"
-                       [icon]="ui.icons.minus">
+                       [icon]="localUi.icons.epics">
             <jnt-badge [count]="spec?.epics.length"></jnt-badge>
         </jnt-menu-item>
         <jnt-menu-item [link]="['terms']" title="Terms"
-                       [icon]="ui.icons.minus">
+                       [icon]="localUi.icons.terms">
             <jnt-badge [count]="spec?.terms.length"></jnt-badge>
         </jnt-menu-item>
         <jnt-menu-item [link]="['packages']" title="Model"
-                       [icon]="ui.icons.minus">
+                       [icon]="localUi.icons.model">
             <jnt-badge [count]="spec?.packages.length"></jnt-badge>
         </jnt-menu-item>
-        <jnt-menu-item [link]="['validate']" title="Validate"
-                       [icon]="ui.icons.minus">
-            <jnt-badge [count]="errors.length"></jnt-badge>
-        </jnt-menu-item>
         <jnt-menu-item [link]="['sprints']" title="Sprints"
-                       [icon]="ui.icons.minus">
+                       [icon]="localUi.icons.sprints">
             <jnt-badge [count]="spec?.sprints.length"></jnt-badge>
+        </jnt-menu-item>
+        <jnt-menu-item [link]="['validate']" title="Validate"
+                       [icon]="localUi.icons.validate">
+            <jnt-badge [count]="errors.length"></jnt-badge>
         </jnt-menu-item>
     </jnt-menu>
     <div controls>
