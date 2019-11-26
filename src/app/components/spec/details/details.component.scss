@@ -1,0 +1,9 @@
+@import "~junte-ui/lib/assets/styles/variables";
+
+[actions] {
+  padding: $gutter-normal;
+
+  [fileInput] {
+    display: none;
+  }
+}

@@ -1,10 +1,23 @@
+<p>Epics are groups of functions combined by some common things.</p>
+<h2>Contents</h2>
+<ul contents>
+    <li *ngFor="let epic of spec.epics">
+        <jnt-link [source]="['.', {epic: epic.id}]" [title]="epic.title"></jnt-link>
+        <ul>
+            <li *ngFor="let feature of epic.features">
+                <jnt-link [source]="['.', {feature: feature.id}]" [title]="feature.title | joinTokens"></jnt-link>
+            </li>
+        </ul>
+    </li>
+</ul>
+
 <jnt-stack [gutter]="ui.gutter.large">
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.font.plus"
                 [size]="ui.sizes.tiny"
                 [scheme]="ui.schemes.secondary"
                 (click)="addEpic()"></jnt-button>
-    <ul cdkDropList (cdkDropListDropped)="moveEpic($event)" [cdkDropListData]="spec.epics">
+    <ul epics cdkDropList (cdkDropListDropped)="moveEpic($event)" [cdkDropListData]="spec.epics">
         <li *ngFor="let epic of spec.epics; let i = index;" cdkDrag field>
             <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.small">
                 <jnt-button cdkDragHandle

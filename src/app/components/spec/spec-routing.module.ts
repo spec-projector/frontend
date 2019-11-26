@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActorsComponent } from 'src/app/components/spec/actors/actors.component';
+import { DetailsComponent } from 'src/app/components/spec/details/details.component';
 import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
 import { PackagesComponent } from 'src/app/components/spec/packages/packages.component';
 import { SpecComponent } from 'src/app/components/spec/spec.component';
@@ -22,6 +23,10 @@ export const routes: Routes = [
                 pathMatch: 'full',
                 redirectTo: 'sprints'
 
+            },
+            {
+                path: 'details',
+                component: DetailsComponent
             },
             {
                 path: 'sprints',

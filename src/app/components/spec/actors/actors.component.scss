@@ -1,5 +1,51 @@
 @import "../../../../../node_modules/junte-ui/lib/assets/styles/variables";
 
+ul[contents] {
+  [dot] {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    &[story] {
+      background-color: $primary-color;
+    }
+    &[frames] {
+      background-color: $green-dark-color;
+    }
+    &[graphql] {
+      background-color: $red-dark-color;
+    }
+  }
+  li {
+    ul {
+      font-size: $font-size-small;
+    }
+  }
+  [price] {
+    flex: 1;
+    text-align: right;
+    border-bottom: 1px dotted $gray-600-color;
+  }
+  [actor] [price] {
+    font-weight: bold;
+  }
+}
+
+[total] {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0 0 $gutter-big 0;
+  padding: 0;
+  font-size: $font-size-large;
+  text-align: right;
+  li:nth-child(2), li:nth-child(3) {
+    border-bottom: 1px dotted $gray-600-color;
+  }
+  li:nth-child(2) {
+    flex: 1;
+  }
+}
+
 ul[actors] {
   list-style: none;
   margin: 0;

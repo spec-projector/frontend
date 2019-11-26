@@ -1,5 +1,6 @@
-@import "../node_modules/junte-ui/lib/assets/styles/common";
-@import "../node_modules/junte-ui/lib/assets/styles/components";
+@import "~junte-ui/lib/assets/styles/variables";
+@import "~junte-ui/lib/assets/styles/common";
+@import "~junte-ui/lib/assets/styles/components";
 
 fieldset {
   width: 100%;
@@ -21,4 +22,3 @@ fieldset {
     }
   }
 }
-

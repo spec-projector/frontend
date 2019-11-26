@@ -5,7 +5,7 @@
   "projects": {
     "spec-project": {
       "root": "",
-      "sourceRoot": "./",
+      "sourceRoot": "src",
       "projectType": "application",
       "prefix": "spec",
       "schematics": {
@@ -38,8 +38,12 @@
                 "input": "node_modules/junte-ui/lib/assets/icons/svg/",
                 "output": "./assets/icons/svg/"
               },
-              "src/assets",
-              "spec.json"
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "./assets/monaco/"
+              },
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss",

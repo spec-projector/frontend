@@ -1,0 +1,37 @@
+<jnt-form [formGroup]="form" jntValidation (submitted)="save()" [footerForm]="footerForm">
+    <jnt-form-item>
+        <jnt-form-label>Title</jnt-form-label>
+        <jnt-form-control name="title">
+            <jnt-input placeholder="Title" formControlName="title"></jnt-input>
+            <jnt-form-message [type]="ui.form.validators.typeError.required">
+                This field is required
+            </jnt-form-message>
+        </jnt-form-control>
+    </jnt-form-item>
+
+    <ngx-monaco-editor editor
+                       [options]="{language: 'graphql', automaticLayout: true, minimap: {enabled: false}}"
+                       formControlName="text"></ngx-monaco-editor>
+
+    <ng-template #footerForm>
+        <jnt-stack [type]="ui.stack.type.horizontal"
+                   [align]="ui.flex.align.center"
+                   [justify]="ui.flex.justify.between">
+            <jnt-button [icon]="ui.icons.delete"
+                        [scheme]="ui.schemes.fail"
+                        [type]="ui.form.button.type.button"
+                        (click)="deleted.emit()"></jnt-button>
+            <jnt-stack [type]="ui.stack.type.horizontal">
+                <jnt-link title="Play"
+                          [icon]="ui.icons.externalLink"
+                          [outline]="ui.outline.ghost"
+                          [source]="spec.integration.graphqlPlaygroundUrl + '#query=' + (form.get('text').value | encodeURI)"
+                          target="_blank"></jnt-link>
+                <jnt-button text="Save"
+                            [icon]="ui.icons.check"
+                            [type]="ui.form.button.type.submit"></jnt-button>
+            </jnt-stack>
+
+        </jnt-stack>
+    </ng-template>
+</jnt-form>

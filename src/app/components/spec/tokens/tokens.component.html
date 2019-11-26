@@ -1,19 +1,20 @@
 <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small" [wrap]="ui.flex.wrap.wrap">
-    <ng-container *ngFor="let type of tokens">
-        <ng-container [ngSwitch]="type | getTokenType">
+    <ng-container *ngFor="let token of tokens">
+        <ng-container [ngSwitch]="token | getTokenType">
             <ng-container *ngSwitchCase="tokenType.term">
-                <a term [routerLink]="['..', 'terms']" [fragment]="type['term']">
-                    <dt>{{type['term']}}</dt>
+                <a term [routerLink]="['..', 'terms']" [fragment]="token['term']"
+                   [jntPopover]="{title: token['term'], content: (token['term'] | termDescription:spec), trigger: ui.popover.trigger.hover}">
+                    <dt>{{token['term']}}</dt>
                 </a>
             </ng-container>
             <ng-container *ngSwitchCase="tokenType.accent">
-                <span accent>{{type['text']}}</span>
+                <span accent>{{token['text']}}</span>
             </ng-container>
             <ng-container *ngSwitchCase="tokenType.url">
-                <a target="_blank" [attr.href]="type['url']">{{type['url']}}</a>
+                <a target="_blank" [attr.href]="token['url']">{{token['url']}}</a>
             </ng-container>
             <ng-container *ngSwitchDefault>
-                <span>{{type['text']}}</span>
+                <span>{{token['text']}}</span>
             </ng-container>
         </ng-container>
     </ng-container>

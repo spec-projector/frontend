@@ -1,6 +1,6 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div logo>
-        <img src="src/assets/images/logo.svg" height="50">
+        <img src="assets/images/logo.svg" height="50">
     </div>
     <p>{{error}}</p>
     <jnt-stack fields [gutter]="ui.gutter.normal">
@@ -20,7 +20,7 @@
         </jnt-button>
         <jnt-block gitlab [loading]="progress.gitlab">
             <a href="https://specprojector.com/api/login/gitlab/">
-                <img src="src/assets/images/gitlab.svg" height="30">
+                <img src="assets/images/gitlab.svg" height="30">
             </a>
         </jnt-block>
     </jnt-stack>

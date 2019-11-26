@@ -1,0 +1,91 @@
+<jnt-block title="Specification" [padding]="ui.padding.large" [width]="ui.width.fluid">
+    <jnt-form [formGroup]="form" jntValidation (submitted)="save()" [footerForm]="footerForm">
+        <h2>Common</h2>
+
+        <jnt-form-item>
+            <jnt-form-label>Description</jnt-form-label>
+            <jnt-form-control name="description">
+                <jnt-input placeholder="Specification description" formControlName="description"></jnt-input>
+            </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+            <jnt-form-label>Author</jnt-form-label>
+            <jnt-form-control name="author">
+                <jnt-input placeholder="Author" formControlName="author"></jnt-input>
+            </jnt-form-control>
+        </jnt-form-item>
+
+        <h2>Resources</h2>
+
+        <ng-container formArrayName="resourceTypes">
+            <jnt-stack [gutter]="ui.gutter.small">
+                <jnt-button [icon]="ui.icons.plus"
+                            [scheme]="ui.schemes.secondary"
+                            [size]="ui.sizes.small"
+                            (click)="addResource()"></jnt-button>
+                <jnt-stack *ngFor="let r of resourceTypes.controls; let i = index"
+                           [formGroupName]="i"
+                           [type]="ui.stack.type.horizontal"
+                           [gutter]="ui.gutter.small">
+                    <jnt-input placeholder="Title"
+                               [size]="ui.sizes.small"
+                               formControlName="title"></jnt-input>
+                    <jnt-input placeholder="Hour rate"
+                               [size]="ui.sizes.small"
+                               formControlName="hourRate"></jnt-input>
+                    <jnt-button [icon]="ui.icons.delete"
+                                [scheme]="ui.schemes.fail"
+                                [type]="ui.form.button.type.button"
+                                [size]="ui.sizes.small"
+                                (click)="deleteResourceType(i)"></jnt-button>
+                </jnt-stack>
+            </jnt-stack>
+        </ng-container>
+
+        <h2>Integration</h2>
+
+        <jnt-form-item>
+            <jnt-form-label>Git Lab key</jnt-form-label>
+            <jnt-form-control name="gitLabKey">
+                <jnt-input placeholder="Git Lab key" formControlName="gitLabKey"></jnt-input>
+            </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+            <jnt-form-label>Git Hub key</jnt-form-label>
+            <jnt-form-control name="gitHubKey">
+                <jnt-input placeholder="Git Hub key" formControlName="gitHubKey"></jnt-input>
+            </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+            <jnt-form-label>Graphql playground URL</jnt-form-label>
+            <jnt-form-control name="graphqlPlaygroundUrl">
+                <jnt-input placeholder="Graphql playground URL" formControlName="graphqlPlaygroundUrl"></jnt-input>
+            </jnt-form-control>
+        </jnt-form-item>
+
+        <ng-template #footerForm>
+            <jnt-button text="Save"
+                        [disabled]="processing.saved"
+                        [icon]="processing.saved ? ui.icons.check : ui.icons.save"
+                        [type]="ui.form.button.type.submit"></jnt-button>
+        </ng-template>
+    </jnt-form>
+</jnt-block>
+
+
+<h2>Maintenance</h2>
+
+<jnt-stack actions [type]="ui.stack.type.horizontal">
+    <div>
+        <a href="" #dumpFile></a>
+        <jnt-button text="Dump" (click)="dump(dumpFile)"></jnt-button>
+    </div>
+    <div>
+        <jnt-button [loading]="progress.restore"
+                    text="Restore" (click)="restoreInput.click()"></jnt-button>
+        <input #restoreInput fileInput type="file" (change)="restore($event)"/>
+    </div>
+</jnt-stack>

@@ -5,6 +5,7 @@ import { UI } from 'junte-ui';
 import { StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
 import { Token } from 'src/app/model/spec/planning/token';
 import { filter, tap } from 'rxjs/operators';
+import { Spec } from 'src/app/model/spec/spec';
 
 @Component({
     selector: 'spec-story-entry',
@@ -21,6 +22,9 @@ export class StoryEntryComponent implements OnInit {
     input: HTMLInputElement;
 
     private _entry: StoryEntry;
+
+    @Input()
+    spec: Spec;
 
     @Input() set entry(field: StoryEntry) {
         this._entry = field;

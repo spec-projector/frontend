@@ -14,13 +14,13 @@ import { ValidationError } from 'src/app/model/validation/error';
     styleUrls: ['./spec.component.scss']
 })
 export class SpecComponent implements OnInit {
+
     ui = UI;
 
     spec: Spec;
     errors: ValidationError[] = [];
     mode = new FormControl(true);
     form = this.formBuilder.group({mode: this.mode});
-    progress = {restore: false};
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
@@ -31,28 +31,5 @@ export class SpecComponent implements OnInit {
         this.route.data.subscribe(({spec}) => this.spec = spec);
         this.manager.mode = this.mode.value ? EditMode.edit : EditMode.view;
         this.mode.valueChanges.subscribe(mode => this.manager.mode = mode ? EditMode.edit : EditMode.view);
-    }
-
-    dump(element: HTMLAnchorElement) {
-        this.manager.dump()
-            .subscribe(dump => {
-                const file = new Blob([JSON.stringify(dump, null, 4)],
-                    {type: 'text/plain'});
-                element.href = URL.createObjectURL(file);
-                element.download = 'dump.json';
-                element.click();
-            });
-    }
-
-    restore({target: {files: [file]}}) {
-        this.progress.restore = true;
-        const reader = new FileReader();
-        reader.onload = () => {
-            const docs = JSON.parse(reader.result.toString());
-            this.manager.restore(docs)
-                .pipe(finalize(() => this.progress.restore = false))
-                .subscribe(() => document.location.reload());
-        }
-        reader.readAsText(file);
     }
 }

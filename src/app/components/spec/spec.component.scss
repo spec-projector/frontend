@@ -11,6 +11,7 @@ ul {
     padding: $gutter-small;
     cursor: pointer;
     user-select: none;
+    background-color: $secondary-color;
 
     &:not(:last-child) {
       margin-bottom: $gutter-small;
@@ -27,12 +28,13 @@ ul {
   }
 }
 
-[actions] {
+form {
   padding: $gutter-normal;
+  border-bottom: 1px solid $secondary-color;
+}
 
-  [fileInput] {
-    display: none;
-  }
+h3 {
+  margin: $gutter-normal $gutter-tiny;
 }
 
 [controls] {

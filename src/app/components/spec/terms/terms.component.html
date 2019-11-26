@@ -1,5 +1,10 @@
-<ng-container *ngIf="!!spec">
+<jnt-stack [gutter]="ui.gutter.large">
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.font.plus"
+                [size]="ui.sizes.tiny"
+                [scheme]="ui.schemes.secondary"
+                (click)="addTerm()"></jnt-button>
     <jnt-stack [align]="ui.flex.align.stretch">
         <spec-term *ngFor="let term of spec.terms" [term]="term"></spec-term>
     </jnt-stack>
-</ng-container>
+</jnt-stack>

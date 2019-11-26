@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JunteUiModule } from 'junte-ui';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppConfig } from 'src/app/app-config';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HttpMockService } from 'src/app/services/http-mock.service';
@@ -20,7 +21,8 @@ import { AppComponent } from './app.component';
         HttpClientModule,
         BrowserAnimationsModule,
         JunteUiModule,
-        AppRoutingModule
+        AppRoutingModule,
+        MonacoEditorModule.forRoot()
     ],
     bootstrap: [
         AppComponent

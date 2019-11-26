@@ -1,11 +1,25 @@
-import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import {
+    Component,
+    ComponentFactoryResolver,
+    ElementRef, Injector,
+    Input,
+    OnInit,
+    QueryList,
+    ViewChild,
+    ViewChildren
+} from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FeatureEditGraphqlComponent } from "src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component";
+import { FeatureMarkdownComponent } from "src/app/components/spec/feature/markdown/feature-markdown.component";
+import { Frame } from 'src/app/model/spec/planning/frame';
+import { Graphql } from "src/app/model/spec/planning/graphql";
+import { ResourceType } from "src/app/model/spec/spec";
 import { FramesStorage } from 'src/app/services/frames-storage.service';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import * as Figma from 'figma-api';
-import { UI } from 'junte-ui';
-import { Feature, StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
+import { ModalOptions, ModalService, PopoverService, UI } from 'junte-ui';
+import { Feature, FeatureResource, StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
 import { TextToken, Token, TokenType } from 'src/app/model/spec/planning/token';
 import { ClipboardService } from 'ngx-clipboard';
 import { filter, tap } from 'rxjs/operators';
@@ -18,22 +32,23 @@ import { filter, tap } from 'rxjs/operators';
 export class FeatureComponent implements OnInit {
 
     ui = UI;
-    tokenType = TokenType;
     editMode = EditMode;
 
     private _feature: Feature;
 
-    @ViewChild('summary', {static: false}) summary: ElementRef<HTMLElement>;
+    @ViewChild('summary', {static: false})
+    summary: FeatureMarkdownComponent;
 
-    @ViewChildren('storyEntry') entries: QueryList<StoryEntry>;
+    @ViewChildren('storyEntry')
+    entries: QueryList<StoryEntry>;
 
     mode = EditMode.view;
     storyMode = EditMode.view;
     opened = false;
-    copied = false;
+    markdown = false;
 
     title = new FormControl();
-    form = this.formBuilder.group({
+    form = this.fb.group({
         title: this.title
     });
 
@@ -49,19 +64,23 @@ export class FeatureComponent implements OnInit {
     }
 
     figma = new Figma.Api({
-        personalAccessToken: '12129-3a0f1d4d-ba86-4364-a226-954bd1c40120'
+        personalAccessToken: '26514-2ea7bfc4-e99d-4779-a77a-e1c9a269ee80'
     });
 
     constructor(public manager: SpecManager,
                 private clipboard: ClipboardService,
                 public storage: FramesStorage,
-                private formBuilder: FormBuilder) {
+                private fb: FormBuilder,
+                private popover: PopoverService,
+                private injector: Injector,
+                private cfr: ComponentFactoryResolver,
+                private modal: ModalService) {
 
         this.form.valueChanges
             .pipe(filter(() => !!this.feature),
                 tap(() => {
-                    const value = this.form.getRawValue();
-                    this.feature.title = Token.parse(value.title);
+                    const {title} = this.form.getRawValue();
+                    this.feature.title = Token.parse(title);
                 }))
             .subscribe(() => this.manager.put(this.feature));
 
@@ -79,10 +98,11 @@ export class FeatureComponent implements OnInit {
         this.figma.getImage(file, {ids: node, scale: 1.5, format: 'png'})
             .then(res => {
                 if (!!res.images) {
-                    this.storage.set(file, node, res.images.images[node]);
+                    this.storage.set(file, node, {thumbnail: res.images[node]});
                 }
             });
     }
+
 
     goto(url: string) {
         open(url);
@@ -115,10 +135,62 @@ export class FeatureComponent implements OnInit {
         this.manager.put(this.feature);
     }
 
-    markdown() {
-        const summary = this.summary.nativeElement;
-        summary.style.display = 'block';
+    copyMarkdown() {
+        const summary = this.summary.getMarkdown();
+        this.markdown = true;
         this.clipboard.copyFromContent(summary.innerText);
-        setTimeout(() => summary.style.display = 'none', 5000);
+        setTimeout(() => this.markdown = false, 5000);
+    }
+
+    saveResources(resources: FeatureResource[]) {
+        this.feature.resources = resources;
+        this.manager.put(this.feature);
+
+        this.feature.version++;
+    }
+
+    addFrame(frame: Frame) {
+        this.feature.frames.push(frame);
+        this.manager.put(this.feature);
+
+        this.popover.hide();
+    }
+
+    removeFrame(index: number) {
+        this.feature.frames.splice(index, 1);
+        this.manager.put(this.feature);
+    }
+
+    addGraphQL() {
+        const component = this.cfr.resolveComponentFactory(FeatureEditGraphqlComponent)
+            .create(this.injector);
+        component.instance.spec = this.feature.spec;
+        component.instance.saved.subscribe(q => {
+            this.feature.graphql.push(q);
+            this.manager.put(this.feature);
+        });
+        this.modal.open(component, new ModalOptions({
+            title: {text: 'Add Graph QL', icon: UI.icons.solar}
+        }));
+    }
+
+    editGraphQL(query: Graphql, index: number) {
+        const component = this.cfr.resolveComponentFactory(FeatureEditGraphqlComponent)
+            .create(this.injector);
+        component.instance.spec = this.feature.spec;
+        component.instance.query = query;
+        component.instance.saved.subscribe(q => {
+            this.feature.graphql.splice(index, 1, q);
+            this.manager.put(this.feature);
+            this.modal.close();
+        });
+        component.instance.deleted.subscribe(() => {
+            this.feature.graphql.splice(index, 1);
+            this.manager.put(this.feature);
+            this.modal.close();
+        });
+        this.modal.open(component, new ModalOptions({
+            title: {text: 'Edit Graph QL', icon: UI.icons.solar}
+        }));
     }
 }

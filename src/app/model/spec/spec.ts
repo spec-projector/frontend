@@ -1,3 +1,6 @@
+import { StoryEntry, StoryEntryType } from "src/app/model/spec/planning/feature";
+import { Token } from "src/app/model/spec/planning/token";
+import { TokenSerializer } from "src/app/model/spec/serializers/token";
 import { ValidationError } from 'src/app/model/validation/error';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Package } from './orm/package';
@@ -14,7 +17,51 @@ class ErrorValidate {
 }
 
 @persistence()
+export class Integration {
+
+    @persist()
+    gitLabKey: string;
+
+    @persist()
+    gitHubKey: string;
+
+    @persist()
+    graphqlPlaygroundUrl: string;
+}
+
+@persistence()
+export class ResourceType {
+
+    @persist()
+    title: string;
+
+    @persist()
+    hourRate: number;
+
+    constructor(defs: any = {}) {
+        Object.assign(this, defs);
+    }
+
+}
+
+@persistence()
 export class Spec extends Persistence {
+
+    @persist()
+    author: string;
+
+    @persist()
+    description: string;
+
+    @persist({type: StoryEntry})
+    integration: Integration = {
+        gitLabKey: null,
+        gitHubKey: null,
+        graphqlPlaygroundUrl: null
+    };
+
+    @persist({type: ResourceType})
+    resourceTypes: ResourceType[] = [];
 
     @persist({type: Actor})
     actors: Actor[] = [];
@@ -30,6 +77,8 @@ export class Spec extends Persistence {
 
     @persist({type: Package})
     packages: Package[] = [];
+
+    version = 0;
 
     constructor(defs: any = {}) {
         super();
@@ -52,6 +101,10 @@ export class Spec extends Persistence {
 
         for (const pack of this.packages) {
             pack.linking(this);
+        }
+
+        for (const term of this.terms) {
+            term.linking(this);
         }
     }
 

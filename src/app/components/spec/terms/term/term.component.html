@@ -13,7 +13,8 @@
     <div descripton>
         <ng-container [ngSwitch]="mode">
             <ng-container *ngSwitchCase="editMode.view">
-                <spec-tokens [tokens]="term.description"></spec-tokens>
+                <spec-tokens [spec]="term.spec"
+                             [tokens]="term.description"></spec-tokens>
             </ng-container>
             <ng-container *ngSwitchCase="editMode.edit">
                 <textarea (clickOutside)="normal()" #description formControlName="description"></textarea>

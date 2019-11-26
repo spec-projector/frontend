@@ -1,3 +1,4 @@
+import { Spec } from 'src/app/model/spec/spec';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { TokenSerializer } from 'src/app/model/spec/serializers/token';
 import { ArraySerializer } from 'serialize-ts';
@@ -12,8 +13,15 @@ export class Term extends Persistence {
     @persist({serializer: new ArraySerializer(new TokenSerializer())})
     description: Token[];
 
+    spec: Spec;
+
     constructor(defs: any = {}) {
         super();
         Object.assign(this, defs);
+    }
+
+    linking(spec: Spec) {
+        console.log('tern linking', this.name);
+        this.spec = spec;
     }
 }

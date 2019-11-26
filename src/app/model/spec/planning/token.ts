@@ -37,6 +37,10 @@ export class Token {
 
             });
     }
+
+    toText() {
+        throw 'Must be rewritten';
+    }
 }
 
 export class TextToken extends Token {
@@ -52,6 +56,10 @@ export class TextToken extends Token {
     toString() {
         return this.text;
     }
+
+    toText() {
+        return this.text;
+    }
 }
 
 export class AccentToken extends Token {
@@ -65,6 +73,10 @@ export class AccentToken extends Token {
     }
 
     toString() {
+        return this.text;
+    }
+
+    toText() {
         return this.text;
     }
 }
@@ -86,6 +98,10 @@ export class TermToken extends Token {
     toString() {
         return `{{${this.term}}}`;
     }
+
+    toText() {
+        return this.term;
+    }
 }
 
 export class UrlToken extends Token {
@@ -99,6 +115,10 @@ export class UrlToken extends Token {
     }
 
     toString() {
+        return this.url;
+    }
+
+    toText() {
         return this.url;
     }
 }

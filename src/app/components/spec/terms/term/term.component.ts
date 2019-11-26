@@ -54,7 +54,8 @@ export class TermComponent implements OnInit {
 
     ngOnInit() {
         this.form.valueChanges.subscribe(value => {
-            this.term.description = Token.parse(value.description);
+            [this.term.name, this.term.description] = [value.name,
+                Token.parse(value.description)];
             this.manager.put(this.term);
         });
     }

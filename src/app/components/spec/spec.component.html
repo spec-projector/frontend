@@ -1,37 +1,40 @@
 <jnt-app-aside #aside>
-    <jnt-stack [align]="ui.flex.align.center" actions>
-        <div>
-            <a href="" #dumpFile></a>
-            <jnt-button text="Dump" (click)="dump(dumpFile)"></jnt-button>
-        </div>
-        <div>
-            <jnt-button [loading]="progress.restore"
-                        text="Restore" (click)="restoreInput.click()"></jnt-button>
-            <input #restoreInput fileInput type="file" (change)="restore($event)"/>
-        </div>
-    </jnt-stack>
+    <form [formGroup]="form">
+        <jnt-switch formControlName="mode" label="edit"
+                    [size]="ui.sizes.tiny">
+        </jnt-switch>
+    </form>
+
     <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-        <jnt-menu-item [link]="['sprints']" title="Sprints ({{spec?.sprints.length}})"
-                       [icon]="ui.icons.minus"></jnt-menu-item>
-        <jnt-menu-item [link]="['epics']" title="Epics ({{spec?.epics.length}})"
-                       [icon]="ui.icons.minus"></jnt-menu-item>
-        <jnt-menu-item [link]="['actors']" title="Features ({{spec?.actors.length}})"
-                       [icon]="ui.icons.minus"></jnt-menu-item>
-        <jnt-menu-item [link]="['terms']" title="Terms ({{spec?.terms.length}})"
-                       [icon]="ui.icons.minus"></jnt-menu-item>
-        <jnt-menu-item [link]="['packages']" title="Model ({{spec?.packages.length}})"
-                       [icon]="ui.icons.minus"></jnt-menu-item>
-        <jnt-menu-item [link]="['validate']" title="Validate ({{errors.length}})"
-                       [icon]="ui.icons.minus"></jnt-menu-item>
+        <jnt-menu-item [link]="['details']" title="General"
+                       [icon]="ui.icons.information"></jnt-menu-item>
+        <jnt-menu-item [link]="['actors']" title="Features"
+                       [icon]="ui.icons.minus">
+            <jnt-badge [count]="spec?.actors.length"></jnt-badge>
+        </jnt-menu-item>
+        <jnt-menu-item [link]="['epics']" title="Epics"
+                       [icon]="ui.icons.minus">
+            <jnt-badge [count]="spec?.epics.length"></jnt-badge>
+        </jnt-menu-item>
+        <jnt-menu-item [link]="['terms']" title="Terms"
+                       [icon]="ui.icons.minus">
+            <jnt-badge [count]="spec?.terms.length"></jnt-badge>
+        </jnt-menu-item>
+        <jnt-menu-item [link]="['packages']" title="Model"
+                       [icon]="ui.icons.minus">
+            <jnt-badge [count]="spec?.packages.length"></jnt-badge>
+        </jnt-menu-item>
+        <jnt-menu-item [link]="['validate']" title="Validate"
+                       [icon]="ui.icons.minus">
+            <jnt-badge [count]="errors.length"></jnt-badge>
+        </jnt-menu-item>
+        <jnt-menu-item [link]="['sprints']" title="Sprints"
+                       [icon]="ui.icons.minus">
+            <jnt-badge [count]="spec?.sprints.length"></jnt-badge>
+        </jnt-menu-item>
     </jnt-menu>
     <div controls>
-        <form [formGroup]="form">
-            <jnt-switch formControlName="mode" label="edit"
-                        [size]="ui.sizes.tiny">
-            </jnt-switch>
-        </form>
-
-        <p><b>Epics</b></p>
+        <h3>Epics</h3>
         <ul cdkDropList id="epics" cdkDropListOrientation="horizontal"
             [cdkDropListConnectedTo]="spec | features">
             <li *ngFor="let epic of spec.epics"
@@ -42,7 +45,7 @@
                 </div>
             </li>
         </ul>
-        <p><b>Entities</b></p>
+        <h3>Entities</h3>
         <ul>
             <li *ngFor="let pack of spec.packages">
                 <p>{{pack.title}}</p>
@@ -54,13 +57,6 @@
                         {{entity.title}}
                     </li>
                 </ul>
-            </li>
-        </ul>
-
-        <p><b>Actors</b></p>
-        <ul>
-            <li *ngFor="let actor of spec.actors">
-                {{actor.name}}
             </li>
         </ul>
     </div>

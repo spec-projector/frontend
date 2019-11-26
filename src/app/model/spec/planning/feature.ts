@@ -1,11 +1,11 @@
-import { stripBom } from "@angular-devkit/build-angular/src/angular-cli-files/utilities/strip-bom";
-import { Sprint } from "src/app/model/spec/planning/sprint";
-import { persist, persistence, Persistence } from 'src/decorators/persistence';
+import { ArraySerializer } from 'serialize-ts';
 import { Entity } from 'src/app/model/spec/orm/entity';
+import { Graphql } from 'src/app/model/spec/planning/graphql';
+import { Sprint } from 'src/app/model/spec/planning/sprint';
 import { TokenSerializer } from 'src/app/model/spec/serializers/token';
 import { Spec } from 'src/app/model/spec/spec';
-import { ArraySerializer } from 'serialize-ts';
 import { TermMissedError } from 'src/app/model/validation/error';
+import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Actor } from './actor';
 import { Algorithm } from './algorithm';
 import { Api } from './api';
@@ -18,6 +18,20 @@ import { TermToken, Token } from './token';
 export enum StoryEntryType {
     see = 'see',
     can = 'can'
+}
+
+@persistence()
+export class FeatureResource {
+
+    @persist()
+    resource: string;
+
+    @persist()
+    hours: number;
+
+    constructor(defs: any = {}) {
+        Object.assign(this, defs);
+    }
 }
 
 @persistence()
@@ -52,16 +66,33 @@ export class Feature extends Persistence {
     @persist({type: Api})
     endpoints: Api[] = [];
 
+    @persist({type: Graphql})
+    graphql: Graphql[] = [];
+
     @persist({type: Entity})
     entities: Entity[] = [];
 
     @persist({type: Algorithm})
     algorithms: Algorithm[] = [];
 
+    @persist({type: FeatureResource})
+    resources: FeatureResource[] = [];
+
     spec: Spec;
     actor: Actor;
     epic: Epic;
     sprint: Sprint;
+
+    _version = 0;
+
+    set version(version: number) {
+        this._version = version;
+        this.actor.version++;
+    }
+
+    get version() {
+        return this._version;
+    }
 
     constructor(defs: any = {}) {
         super();

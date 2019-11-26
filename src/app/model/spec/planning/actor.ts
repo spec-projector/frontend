@@ -14,6 +14,17 @@ export class Actor extends Persistence {
 
     spec: Spec;
 
+    _version = 0;
+
+    set version(version: number) {
+        this._version = version;
+        this.spec.version++;
+    }
+
+    get version() {
+        return this._version;
+    }
+
     constructor(defs: any = {}) {
         super();
         Object.assign(this, defs);

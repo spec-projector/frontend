@@ -14,17 +14,17 @@ export class FramesStorage {
     }
 
 
-    set(file: string, node: string, preview: string = null) {
+    set(file: string, node: string, data: { [key: string]: any } = {}) {
         if (!this.cache[file]) {
             this.cache[file] = {};
         }
 
-        this.cache[file][node] = {preview: preview};
+        this.cache[file][node] = data;
         this.flush();
     }
 
     get(file: string, node: string) {
-        return this.cache[file][node];
+        return !!this.cache[file] ? this.cache[file][node] : null;
     }
 
     exists(file: string, node: string) {
