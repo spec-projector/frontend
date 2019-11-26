@@ -47,6 +47,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/fonts/local/local-font.scss",
               "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
               "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
             ],

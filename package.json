@@ -4,8 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "build:game": "ng build game --prod"
+    "build": "npm run iconfont && ng build --prod",
+    "build:game": "ng build game --prod",
+    "iconfont": "gulp build --gulpfile ./node_modules/junte-ui/iconfont.js --cwd ."
   },
   "dependencies": {
     "@angular/animations": "~7.1.0",
@@ -20,6 +21,8 @@
     "@junte/mocker-library": "0.0.58",
     "figma-api": "^1.5.5",
     "fs-extra": "^8.1.0",
+    "gulp-consolidate": "^0.2.0",
+    "gulp-iconfont": "^10.0.3",
     "junte-angular": "0.0.46",
     "junte-ui": "0.0.316",
     "ng4-click-outside": "^1.0.1",
