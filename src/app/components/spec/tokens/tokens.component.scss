@@ -1,8 +1,13 @@
-@import "../../../../../node_modules/junte-ui/lib/assets/styles/variables";
+@import "~junte-ui/lib/assets/styles/variables";
+
+:host {
+  display: inline-block;
+}
 
 [accent] {
-  background: $secondary-color;
+  background: $primary-color;
+  color: $white-color;
   border-radius: 5px;
-  padding: 2px 5px;
-  line-height: 1em;
+  padding: 2px $gutter-small;
+  font-size: $font-size-small;
 }
