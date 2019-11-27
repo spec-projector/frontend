@@ -15,8 +15,13 @@ form {
 }
 
 select {
+  display: inline-block;
   appearance: none;
   padding: 0;
+  border: 0;
+  font-weight: bold;
+  margin-right: $gutter-small;
+  background: none;
 }
 
 input {
@@ -27,8 +32,8 @@ input {
   border: none;
   box-sizing: border-box;
   outline: none;
-  height: 1.4em;
-  line-height: 1.1em;
+  height: 1.45em;
+  line-height: 1.2em;
   overflow: hidden;
   background-color: transparent;
   white-space: nowrap;

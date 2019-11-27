@@ -73,7 +73,7 @@ export class AccentToken extends Token {
     }
 
     toString() {
-        return this.text;
+        return `[${this.text}]`;
     }
 
     toText() {
