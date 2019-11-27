@@ -1,13 +1,10 @@
-image: node:10.9
+image: docker:18
 variables:
   DOCKER_DRIVER: overlay
-  DOCKER_TEST_IMAGE: $CI_REGISTRY_IMAGE:_${CI_COMMIT_REF_NAME}
-  DOCKER_PROD_IMAGE: $$CI_REGISTRY_IMAGE:prod
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
   DOCKER_DEV_IMAGE: $CI_REGISTRY_IMAGE:dev
+  DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE:cache
   GIT_STRATEGY: none
-
-services:
-  - docker:dind
 
 stages:
   - build
@@ -16,84 +13,54 @@ stages:
   - deploy
 
 build:
-  image: node:10.9
   stage: build
   variables:
     GIT_DEPTH: 5
     GIT_STRATEGY: fetch
-  before_script:
-    - npm install
-  script:
-    - npm run build
-  artifacts:
-    paths:
-      - dist/
-  cache:
-    paths:
-      - node_modules/
-
-pages:
-  image: node:10.9
-  stage: deploy
-  variables:
-    GIT_DEPTH: 5
-    GIT_STRATEGY: fetch
-  before_script:
-    - npm install
-  script:
-    - npm run build:game
-    - mv dist/game/* public/
-  artifacts:
-    paths:
-      - public
-  cache:
-    paths:
-      - node_modules/
-  only:
-    - master
-
-docker:
-  stage: docker
-  variables:
-    GIT_DEPTH: 5
-    GIT_STRATEGY: fetch
+  services:
+    - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker build --pull -t $DOCKER_TEST_IMAGE -f docker/Dockerfile .
-    - docker push $DOCKER_TEST_IMAGE
+    - docker pull $DOCKER_CACHE_IMAGE || true
+    - docker build --cache-from $DOCKER_CACHE_IMAGE --target build -t $DOCKER_CACHE_IMAGE -f deploy/Dockerfile .
+    - docker build --cache-from $DOCKER_CACHE_IMAGE -t $DOCKER_IMAGE -f deploy/Dockerfile .
+    - docker push $DOCKER_IMAGE
+    - docker push $DOCKER_CACHE_IMAGE
 
-publish_dev:
+publish_master:
   stage: publish
   dependencies: []
+  services:
+    - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker pull $DOCKER_TEST_IMAGE
-    - docker tag $DOCKER_TEST_IMAGE $DOCKER_DEV_IMAGE
+    - docker pull $DOCKER_IMAGE
+    - docker tag $DOCKER_IMAGE $DOCKER_DEV_IMAGE
     - docker push $DOCKER_DEV_IMAGE
   only:
     - master
 
-publish_prod:
-  stage: publish
-  dependencies: []
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker pull $DOCKER_TEST_IMAGE
-    - docker tag $DOCKER_TEST_IMAGE $DOCKER_PROD_IMAGE
-    - docker push $DOCKER_PROD_IMAGE
-  only:
-    - prod
-
-deploy_dev:
-  image: junte/ssh-agent
+deploy_master:
+  image: dtzar/helm-kubectl:2.16.1
   stage: deploy
   dependencies: []
   variables:
-    SSH_PRIVATE_KEY: $SSH_DEV_PRIVATE_KEY
+    GIT_DEPTH: 5
+    GIT_STRATEGY: fetch
+  before_script:
+    - kubectl config set-cluster prod --server="${K8S_URL}" --insecure-skip-tls-verify
+    - kubectl config set-credentials deploy --token="$K8S_TOKEN"
+    - kubectl config set-context default-context --cluster=prod --user=deploy
+    - kubectl config use-context default-context
+    - helm init --client-only
+    - cd deploy/helm
+    - helm repo update
   script:
-    - ssh deploy@${DEV_HOST} "/opt/junte/deploy/spec_projector/deploy.sh"
+    - export RELEASE_NAME=spec-projector--frontend
+    - export DEPLOYS=$(helm ls | grep $RELEASE_NAME | wc -l)    
+    - if [ ${DEPLOYS} -eq 0 ]; then helm install --set image.tag=$CI_PIPELINE_IID --name=${RELEASE_NAME} --namespace $K8S_NS . ; else helm upgrade ${RELEASE_NAME} --set image.tag=$CI_PIPELINE_IID --namespace $K8S_NS .; fi
   environment:
-    name: dev
-    url: https://${DEV_HOST}
+    name: production
+    url: $SITE_ADDRESS
   only:
     - master
