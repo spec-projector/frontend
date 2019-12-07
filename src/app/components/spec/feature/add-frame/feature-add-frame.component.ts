@@ -19,7 +19,6 @@ export class FeatureAddFrameComponent {
 
     @Input() feature: Feature;
 
-
     @Output()
     added = new EventEmitter<Frame>();
 

@@ -1,0 +1,12 @@
+<jnt-button add [size]="ui.sizes.tiny"
+            [icon]="ui.icons.plus"
+            [jntPopover]="{title: 'Attach issue', content: attachTemplate, trigger: ui.popover.trigger.click}"></jnt-button>
+<ng-template #attachTemplate>
+    <spec-attach-issue [spec]="spec" (attached)="add($event)"></spec-attach-issue>
+</ng-template>
+
+<table border="1">
+    <spec-issue *ngFor="let issue of issues;let i = index"
+                [issue]="issue"
+                (updated)="update(i, $event)"></spec-issue>
+</table>

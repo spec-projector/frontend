@@ -25,8 +25,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "node_modules/junte-ui/lib/assets/fonts/icons/",
-                "output": "./assets/fonts/icons/"
+                "input": "node_modules/junte-ui/lib/assets/fonts/",
+                "output": "./assets/fonts/"
               },
               {
                 "glob": "**/*",
@@ -40,7 +40,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco/",
                 "output": "./assets/monaco/"
               },
               "src/assets"

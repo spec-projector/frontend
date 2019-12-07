@@ -1,28 +1,20 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-    ElementRef, Injector,
-    Input,
-    OnInit,
-    QueryList,
-    ViewChild,
-    ViewChildren
-} from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { FeatureEditGraphqlComponent } from "src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component";
-import { FeatureMarkdownComponent } from "src/app/components/spec/feature/markdown/feature-markdown.component";
-import { Frame } from 'src/app/model/spec/planning/frame';
-import { Graphql } from "src/app/model/spec/planning/graphql";
-import { ResourceType } from "src/app/model/spec/spec";
-import { FramesStorage } from 'src/app/services/frames-storage.service';
-import { SpecManager } from 'src/app/managers/spec.manager';
-import { EditMode } from 'src/app/model/enums/edit-mode';
+import { Component, ComponentFactoryResolver, Injector, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import * as Figma from 'figma-api';
 import { ModalOptions, ModalService, PopoverService, UI } from 'junte-ui';
-import { Feature, FeatureResource, StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
-import { TextToken, Token, TokenType } from 'src/app/model/spec/planning/token';
 import { ClipboardService } from 'ngx-clipboard';
 import { filter, tap } from 'rxjs/operators';
+import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
+import { FeatureMarkdownComponent } from 'src/app/components/spec/feature/markdown/feature-markdown.component';
+import { LocalUI } from 'src/app/enums/local-ui';
+import { SpecManager } from 'src/app/managers/spec.manager';
+import { EditMode } from 'src/app/model/enums/edit-mode';
+import { Feature, Resource, StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
+import { Frame } from 'src/app/model/spec/planning/frame';
+import { Graphql } from 'src/app/model/spec/planning/graphql';
+import { Issue } from 'src/app/model/spec/planning/issue';
+import { TextToken, Token } from 'src/app/model/spec/planning/token';
+import { FramesStorage } from 'src/app/services/frames-storage.service';
 
 @Component({
     selector: 'spec-feature',
@@ -32,6 +24,7 @@ import { filter, tap } from 'rxjs/operators';
 export class FeatureComponent implements OnInit {
 
     ui = UI;
+    localUi = LocalUI;
     editMode = EditMode;
 
     private _feature: Feature;
@@ -142,8 +135,15 @@ export class FeatureComponent implements OnInit {
         setTimeout(() => this.markdown = false, 5000);
     }
 
-    saveResources(resources: FeatureResource[]) {
+    saveResources(resources: Resource[]) {
         this.feature.resources = resources;
+        this.manager.put(this.feature);
+
+        this.feature.version++;
+    }
+
+    saveIssues(issues: Issue[]) {
+        this.feature.issues = issues;
         this.manager.put(this.feature);
 
         this.feature.version++;
@@ -170,7 +170,7 @@ export class FeatureComponent implements OnInit {
             this.manager.put(this.feature);
         });
         this.modal.open(component, new ModalOptions({
-            title: {text: 'Add Graph QL', icon: UI.icons.solar}
+            title: {text: 'Add Graph QL', icon: LocalUI.icons.graphQl}
         }));
     }
 
@@ -190,7 +190,7 @@ export class FeatureComponent implements OnInit {
             this.modal.close();
         });
         this.modal.open(component, new ModalOptions({
-            title: {text: 'Edit Graph QL', icon: UI.icons.solar}
+            title: {text: 'Edit Graph QL', icon: LocalUI.icons.graphQl}
         }));
     }
 }

@@ -1,4 +1,4 @@
-<jnt-block title="Specification" [padding]="ui.padding.large" [width]="ui.width.fluid">
+<jnt-block #block title="Specification" [padding]="ui.padding.large" [width]="ui.width.fluid">
     <jnt-form [formGroup]="form" jntValidation (submitted)="save()" [footerForm]="footerForm">
         <h2>Common</h2>
 
@@ -32,9 +32,11 @@
                                [size]="ui.sizes.small"
                                formControlName="title"></jnt-input>
                     <jnt-input placeholder="Hour rate"
+                               [type]="ui.form.input.number"
                                [size]="ui.sizes.small"
                                formControlName="hourRate"></jnt-input>
                     <jnt-button [icon]="ui.icons.delete"
+                                [outline]="ui.outline.transparent"
                                 [scheme]="ui.schemes.fail"
                                 [type]="ui.form.button.type.button"
                                 [size]="ui.sizes.small"
@@ -68,8 +70,7 @@
 
         <ng-template #footerForm>
             <jnt-button text="Save"
-                        [disabled]="processing.saved"
-                        [icon]="processing.saved ? ui.icons.check : ui.icons.save"
+                        [icon]="ui.icons.save"
                         [type]="ui.form.button.type.submit"></jnt-button>
         </ng-template>
     </jnt-form>

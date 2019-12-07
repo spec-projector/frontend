@@ -16,10 +16,12 @@ import { EpicComponent } from 'src/app/components/spec/epics/epic/epic.component
 import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
 import { FeatureAddFrameComponent } from 'src/app/components/spec/feature/add-frame/feature-add-frame.component';
 import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
+import { AttachIssueComponent } from 'src/app/components/spec/feature/issues/attach-issue/attach-issue.component';
+import { IssueComponent } from 'src/app/components/spec/feature/issues/issue/issue.component';
+import { IssuesComponent } from 'src/app/components/spec/feature/issues/issues.component';
 import { FeatureMarkdownComponent } from 'src/app/components/spec/feature/markdown/feature-markdown.component';
 import { FeatureComponent } from 'src/app/components/spec/feature/feature.component';
-import { FeatureResourcesComponent } from 'src/app/components/spec/feature/resources/feature-resources.component';
-import { IssueComponent } from 'src/app/components/spec/issue/issue.component';
+import { ResourcesComponent } from 'src/app/components/spec/feature/resources/resources.component';
 import { PackageComponent } from 'src/app/components/spec/packages/package/package.component';
 import { PackagesComponent } from 'src/app/components/spec/packages/packages.component';
 import { SpecRoutingModule } from 'src/app/components/spec/spec-routing.module';
@@ -28,7 +30,7 @@ import { SpecResolver } from 'src/app/components/spec/spec.resolver';
 import { SprintComponent } from 'src/app/components/spec/sprints/sprint/sprint.component';
 import { SprintsComponent } from 'src/app/components/spec/sprints/sprints.component';
 import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver';
-import { StoryEntryComponent } from 'src/app/components/spec/story-entry/story-entry.component';
+import { StoryEntryComponent } from 'src/app/components/spec/feature/story-entry/story-entry.component';
 import { TermComponent } from 'src/app/components/spec/terms/term/term.component';
 import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
 import { TokensComponent } from 'src/app/components/spec/tokens/tokens.component';
@@ -84,10 +86,12 @@ import { SpaceSyncComponent } from './sync/space-sync.component';
         FeatureEditGraphqlComponent,
         EncodeURIPipe,
         FeatureMarkdownComponent,
-        FeatureResourcesComponent,
+        ResourcesComponent,
         FeaturePricePipe,
         ActorPricePipe,
-        SpecPricePipe
+        SpecPricePipe,
+        IssuesComponent,
+        AttachIssueComponent
     ],
     entryComponents: [
         SpaceSyncComponent,

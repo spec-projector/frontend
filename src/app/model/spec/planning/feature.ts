@@ -21,7 +21,7 @@ export enum StoryEntryType {
 }
 
 @persistence()
-export class FeatureResource {
+export class Resource {
 
     @persist()
     resource: string;
@@ -75,8 +75,8 @@ export class Feature extends Persistence {
     @persist({type: Algorithm})
     algorithms: Algorithm[] = [];
 
-    @persist({type: FeatureResource})
-    resources: FeatureResource[] = [];
+    @persist({type: Resource})
+    resources: Resource[] = [];
 
     spec: Spec;
     actor: Actor;

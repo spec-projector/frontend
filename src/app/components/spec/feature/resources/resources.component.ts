@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from 'junte-ui';
-import { Feature, FeatureResource } from 'src/app/model/spec/planning/feature';
+import { Feature, Resource } from 'src/app/model/spec/planning/feature';
 import { ResourceType } from 'src/app/model/spec/spec';
 
 @Component({
-    selector: 'spec-feature-resources',
-    templateUrl: './feature-resources.component.html',
-    styleUrls: ['./feature-resources.component.scss']
+    selector: 'spec-resources',
+    templateUrl: './resources.component.html',
+    styleUrls: ['./resources.component.scss']
 })
-export class FeatureResourcesComponent implements OnInit {
+export class ResourcesComponent {
 
     ui = UI;
 
@@ -36,7 +36,7 @@ export class FeatureResourcesComponent implements OnInit {
     }
 
     @Output()
-    changed = new EventEmitter<FeatureResource[]>();
+    changed = new EventEmitter<Resource[]>();
 
     resourcesGroup = () => this.fb.group({
         resource: [null, [Validators.required]],
@@ -49,7 +49,12 @@ export class FeatureResourcesComponent implements OnInit {
                 new ResourceType({resource, hours: +hours}))));
     }
 
-    ngOnInit() {
+    fillResources() {
+        for (const r of this.feature.spec.resourceTypes) {
+            const group = this.resourcesGroup();
+            group.patchValue({resource: r.title});
+            this.resources.push(group);
+        }
     }
 
     addResource() {

@@ -22,7 +22,6 @@
                      [tokens]="feature.title"></spec-tokens>
     </ng-template>
 
-
     <jnt-stack>
         <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small">
             <jnt-button [scheme]="ui.schemes.secondary"
@@ -33,7 +32,6 @@
             <jnt-button [scheme]="ui.schemes.secondary" [icon]="ui.icons.copy"
                         [size]="ui.sizes.tiny"
                         (click)="copyMarkdown()"></jnt-button>
-            <!--<spec-issue *ngFor="let issue of feature.issues" [issue]="issue"></spec-issue>-->
         </jnt-stack>
 
         <spec-feature-markdown #summary [feature]="feature"
@@ -58,16 +56,20 @@
                         </ng-container>
 
                         <ng-template #addStoryTemplate>
-                            <div>
+                            <p>
                                 <jnt-link title="Add story" (click)="addStory()"></jnt-link>
                                 here
-                            </div>
+                            </p>
                         </ng-template>
                     </jnt-tab>
                     <jnt-tab title="Resources">
-                        <spec-feature-resources [feature]="feature"
-                                                (changed)="saveResources($event)">
-                        </spec-feature-resources>
+                        <spec-resources [feature]="feature"
+                                        (changed)="saveResources($event)"></spec-resources>
+                    </jnt-tab>
+                    <jnt-tab title="Issues">
+                        <spec-issues [spec]="feature.spec"
+                                     [issues]="feature.issues"
+                                     (changed)="saveIssues($event)"></spec-issues>
                     </jnt-tab>
                 </jnt-tabs>
 
@@ -126,14 +128,19 @@
                                     </ng-template>
                                     <ng-template #dropdown let-action="trigger">
                                         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.tiny">
-                                            <jnt-menu-item title="Graph QL"
-                                                           (click)="addGraphQL();action();"></jnt-menu-item>
-                                            <jnt-menu-item title="REST API" (click)="action()"></jnt-menu-item>
+                                            <jnt-menu-item
+                                                    [icon]="localUi.icons.graphQl"
+                                                    title="Graph QL"
+                                                    (click)="addGraphQL();action();"></jnt-menu-item>
+                                            <jnt-menu-item
+                                                    [icon]="localUi.icons.rest"
+                                                    title="REST API" (click)="action()"></jnt-menu-item>
                                         </jnt-menu>
                                     </ng-template>
                                 </jnt-dropdown>
                                 <jnt-label api *ngFor="let query of feature.graphql;let i = index;"
-                                           [icon]="ui.icons.solar"
+                                           [icon]="localUi.icons.graphQl"
+                                           [color]="ui.colors.paleNavy"
                                            [label]="query.title"
                                            (click)="editGraphQL(query, i)"></jnt-label>
                             </jnt-stack>

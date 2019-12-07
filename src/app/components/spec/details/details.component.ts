@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from 'junte-ui';
-import { finalize } from "rxjs/operators";
+import { BlockComponent, UI } from 'junte-ui';
+import { finalize } from 'rxjs/operators';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { ResourceType, Spec } from 'src/app/model/spec/spec';
@@ -18,8 +18,10 @@ export class DetailsComponent implements OnInit {
 
     ui = UI;
     editMode = EditMode;
-    processing = {saved: false};
     progress = {restore: false};
+
+    @ViewChild('block', {static: false})
+    block: BlockComponent;
 
     set spec(spec: Spec) {
         this._spec = spec;
@@ -102,10 +104,7 @@ export class DetailsComponent implements OnInit {
 
         this.manager.put(this.spec);
 
-        console.log(this.spec);
-
-        this.processing.saved = true;
-        setTimeout(() => this.processing.saved = false, 2000);
+        this.block.success();
 
     }
 

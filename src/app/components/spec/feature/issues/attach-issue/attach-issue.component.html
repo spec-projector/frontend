@@ -1,0 +1,34 @@
+<jnt-form [formGroup]="form" jntValidation (submitted)="attach()" [footerForm]="footerForm">
+    <jnt-form-item>
+        <jnt-form-label>Resource</jnt-form-label>
+        <jnt-form-control name="resource">
+            <select placeholder="Resource" formControlName="resource">
+                <option *ngFor="let r of spec.resourceTypes"
+                        [value]="r.title">{{r.title}}
+                </option>
+            </select>
+            <jnt-form-message [type]="ui.form.validators.typeError.required">
+                This field is required
+            </jnt-form-message>
+        </jnt-form-control>
+    </jnt-form-item>
+
+    <jnt-form-item>
+        <jnt-form-label>URL</jnt-form-label>
+        <jnt-form-control name="url">
+            <jnt-input placeholder="Url of issue" formControlName="url"></jnt-input>
+            <jnt-form-message [type]="ui.form.validators.typeError.required">
+                This field is required
+            </jnt-form-message>
+        </jnt-form-control>
+    </jnt-form-item>
+
+    <ng-template #footerForm>
+        <jnt-stack [align]="ui.flex.align.end">
+            <jnt-button text="Attach"
+                        [size]="ui.sizes.small"
+                        [icon]="ui.icons.arrowRight"
+                        [type]="ui.form.button.type.submit"></jnt-button>
+        </jnt-stack>
+    </ng-template>
+</jnt-form>

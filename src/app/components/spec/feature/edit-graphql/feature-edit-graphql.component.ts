@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { Feature } from 'src/app/model/spec/planning/feature';
-import { Frame } from 'src/app/model/spec/planning/frame';
-import { Graphql } from "src/app/model/spec/planning/graphql";
-import { Spec } from "src/app/model/spec/spec";
+import { Graphql } from 'src/app/model/spec/planning/graphql';
+import { Spec } from 'src/app/model/spec/spec';
 
 @Component({
     selector: 'spec-feature-edit-graphql',

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IssueLabel, IssueState } from 'src/app/model/enums/issue';
 import { UI } from 'junte-ui';
-import { Issue } from 'src/app/model/spec/planning/issue';
 import { map } from 'rxjs/operators';
 import { deserialize, Field, Model } from 'serialize-ts';
+import { IssueState } from 'src/app/model/enums/issue';
+import { Issue } from 'src/app/model/spec/planning/issue';
 
 @Model()
 class IssueStatus {
@@ -15,6 +15,7 @@ class IssueStatus {
 
     @Field()
     state: IssueState;
+
 }
 
 @Component({
@@ -27,7 +28,6 @@ export class IssueComponent {
     private _issue: Issue;
 
     ui = UI;
-    issueLabel = IssueLabel;
     issueState = IssueState;
 
     status: IssueStatus;
@@ -41,6 +41,9 @@ export class IssueComponent {
         return this._issue;
     }
 
+    @Output()
+    updated = new EventEmitter<Issue>();
+
     constructor(private route: ActivatedRoute,
                 private http: HttpClient) {
     }
@@ -50,10 +53,13 @@ export class IssueComponent {
     }
 
     loadState() {
-        this.http.get('https://teamprojector.com/api/gitlab/issue/status?url='
-            + this.issue.link)
+        const request = 'https://teamprojector.com/api/gitlab/issue/status?url=' + this.issue.url;
+        this.http.get(request)
             .pipe(map(status => deserialize(status, IssueStatus)))
-            .subscribe(status => this.status = status);
+            .subscribe(({title}) => {
+                    [this.issue.title] = title;
+                },
+                err => this.issue.error = err);
     }
 
 }

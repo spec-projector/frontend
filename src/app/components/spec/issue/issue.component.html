@@ -1,6 +1,0 @@
-<jnt-label issue [label]="issue.label == issueLabel.design ? 'D' : (issue.label == issueLabel.frontend ? 'F' : 'B' )"
-           [color]="issue.label == issueLabel.design ? ui.colors.orange : (issue.label == issueLabel.frontend ? ui.colors.teal : ui.colors.purple )"
-           (click)="goto(issue.link)"
-           [style.opacity]="status?.state == issueState.closed ? .25 : 1"
-           [attr.title]="status?.title">
-</jnt-label>

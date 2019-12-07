@@ -1,8 +1,8 @@
 <form [formGroup]="form">
     <ng-container *ngIf="mode == editMode.edit; else view">
         <select type formControlName="type" tabindex="-1">
-            <option [value]="storyEntryType.see">I see:</option>
             <option [value]="storyEntryType.can">I can:</option>
+            <option [value]="storyEntryType.see">I see:</option>
         </select>
         <input #input formControlName="description" fitWidth (keyup)="keyup($event)">
     </ng-container>

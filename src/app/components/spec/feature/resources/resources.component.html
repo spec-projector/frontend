@@ -1,0 +1,37 @@
+<form [formGroup]="form">
+    <ng-template #fillResourcesTemplate>
+        <p>
+            <jnt-link title="Fill" (click)="fillResources()"></jnt-link>
+            resources for feature.
+        </p>
+    </ng-template>
+    <ng-container formArrayName="resources">
+        <ng-container *ngIf="resources.controls.length;else fillResourcesTemplate">
+            <jnt-stack [gutter]="ui.gutter.small">
+                <jnt-button [icon]="ui.icons.plus"
+                            [scheme]="ui.schemes.secondary"
+                            [size]="ui.sizes.tiny"
+                            (click)="addResource()"></jnt-button>
+                <jnt-stack *ngFor="let r of resources.controls; let i = index"
+                           [formGroupName]="i"
+                           [type]="ui.stack.type.horizontal"
+                           [gutter]="ui.gutter.small">
+                    <select placeholder="Title" formControlName="resource">
+                        <option *ngFor="let r of feature.spec.resourceTypes"
+                                [value]="r.title">{{r.title}}
+                        </option>
+                    </select>
+                    <jnt-input price placeholder="Hours"
+                               [type]="ui.form.input.text"
+                               [size]="ui.sizes.small"
+                               formControlName="hours"></jnt-input>
+                    <jnt-button [icon]="ui.icons.delete"
+                                [scheme]="ui.schemes.secondary"
+                                [size]="ui.sizes.tiny"
+                                [type]="ui.form.button.type.button"
+                                (click)="deleteResource(i)"></jnt-button>
+                </jnt-stack>
+            </jnt-stack>
+        </ng-container>
+    </ng-container>
+</form>
