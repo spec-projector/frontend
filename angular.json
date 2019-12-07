@@ -23,6 +23,7 @@
             "polyfills": "polyfills.ts",
             "tsConfig": "tsconfig.json",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "node_modules/junte-ui/lib/assets/fonts/",
@@ -42,8 +43,7 @@
                 "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco/",
                 "output": "./assets/monaco/"
-              },
-              "src/assets"
+              }
             ],
             "styles": [
               "src/styles.scss",

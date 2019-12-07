@@ -4,7 +4,7 @@
 <jnt-app-layout #layout>
     <jnt-app-header>
         <ng-template #logo>
-            <img src="/assets/images/logo-light.svg" logo>
+            <img src="/assets/images/logo-light.svg">
         </ng-template>
         <ng-container>
             <ng-template #topMenu>
@@ -19,7 +19,7 @@
                         <jnt-icon icon="user"></jnt-icon>
                     </ng-template>
                     <ng-template #userMenu>
-                        <jnt-user-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+                        <jnt-user-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
                             <jnt-button (click)="logout()" text="Logout"></jnt-button>
                         </jnt-user-menu>
                     </ng-template>
