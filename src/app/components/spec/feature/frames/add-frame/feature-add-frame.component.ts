@@ -17,8 +17,6 @@ export class FeatureAddFrameComponent {
         url: [null, [Validators.required]]
     });
 
-    @Input() feature: Feature;
-
     @Output()
     added = new EventEmitter<Frame>();
 

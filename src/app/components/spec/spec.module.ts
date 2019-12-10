@@ -14,8 +14,9 @@ import { EntityFieldComponent } from 'src/app/components/spec/entities/entity-fi
 import { EntityComponent } from 'src/app/components/spec/entities/entity/entity.component';
 import { EpicComponent } from 'src/app/components/spec/epics/epic/epic.component';
 import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
-import { FeatureAddFrameComponent } from 'src/app/components/spec/feature/add-frame/feature-add-frame.component';
+import { FeatureAddFrameComponent } from 'src/app/components/spec/feature/frames/add-frame/feature-add-frame.component';
 import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
+import { FramesComponent } from 'src/app/components/spec/feature/frames/frames.component';
 import { AttachIssueComponent } from 'src/app/components/spec/feature/issues/attach-issue/attach-issue.component';
 import { IssueComponent } from 'src/app/components/spec/feature/issues/issue/issue.component';
 import { IssuesComponent } from 'src/app/components/spec/feature/issues/issues.component';
@@ -48,7 +49,6 @@ import { EncodeURIPipe } from 'src/app/pipes/string/array';
 import { TermDescriptionPipe } from 'src/app/pipes/terms/description';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
-import { FramesStorage } from 'src/app/services/frames-storage.service';
 import { SpaceSyncComponent } from './sync/space-sync.component';
 
 @NgModule({
@@ -58,6 +58,7 @@ import { SpaceSyncComponent } from './sync/space-sync.component';
         SprintsComponent,
         EpicsComponent,
         EpicComponent,
+        FramesComponent,
         ActorsComponent,
         ActorComponent,
         TermsComponent,
@@ -108,7 +109,6 @@ import { SpaceSyncComponent } from './sync/space-sync.component';
         MonacoEditorModule
     ],
     providers: [
-        FramesStorage,
         SpecResolver,
         SprintResolver,
         ClipboardService,

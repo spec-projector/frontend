@@ -16,11 +16,10 @@
                            [formGroupName]="i"
                            [type]="ui.stack.type.horizontal"
                            [gutter]="ui.gutter.small">
-                    <select placeholder="Title" formControlName="resource">
-                        <option *ngFor="let r of feature.spec.resourceTypes"
-                                [value]="r.title">{{r.title}}
-                        </option>
-                    </select>
+                    <jnt-select placeholder="Title" formControlName="resource">
+                        <jnt-select-option *ngFor="let r of feature.spec.resourceTypes"
+                                           [key]="r.title" [label]="r.title"></jnt-select-option>
+                    </jnt-select>
                     <jnt-input price placeholder="Hours"
                                [type]="ui.form.input.text"
                                [size]="ui.sizes.small"

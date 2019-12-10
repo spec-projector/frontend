@@ -1,4 +1,4 @@
-<jnt-form [formGroup]="form" jntValidation (submitted)="attach()" [footerForm]="footerForm">
+<jnt-form [formGroup]="form" jntValidation (submitted)="attach()">
     <jnt-form-item>
         <jnt-form-label>Resource</jnt-form-label>
         <jnt-form-control name="resource">
@@ -23,7 +23,7 @@
         </jnt-form-control>
     </jnt-form-item>
 
-    <ng-template #footerForm>
+    <ng-template #formFooterTemplate>
         <jnt-stack [align]="ui.flex.align.end">
             <jnt-button text="Attach"
                         [size]="ui.sizes.small"

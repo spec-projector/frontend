@@ -15,13 +15,17 @@
                        [type]="ui.form.input.password">
             </jnt-input>
         </fieldset>
-        <jnt-button [loading]="progress.login" type="submit" text="Login"
-                    [width]="ui.width.fluid">
-        </jnt-button>
-        <jnt-block gitlab [loading]="progress.gitlab">
-            <a href="https://specprojector.com/api/login/gitlab/">
-                <img src="assets/images/gitlab.svg" height="30">
-            </a>
-        </jnt-block>
     </jnt-stack>
+    <ng-template #formFooterTemplate>
+        <jnt-stack fields [gutter]="ui.gutter.normal">
+            <jnt-button [loading]="progress.login" type="submit" text="Login"
+                        [width]="ui.width.fluid">
+            </jnt-button>
+            <jnt-block gitlab [loading]="progress.gitlab">
+                <a href="https://specprojector.com/api/login/gitlab/">
+                    <img src="assets/images/gitlab.svg" height="30">
+                </a>
+            </jnt-block>
+        </jnt-stack>
+    </ng-template>
 </form>

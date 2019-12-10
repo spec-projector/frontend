@@ -9,6 +9,9 @@ export class Frame {
     @persist()
     node: string;
 
+    @persist()
+    thumbnail: string;
+
     constructor(defs: any = {}) {
         Object.assign(this, defs);
     }

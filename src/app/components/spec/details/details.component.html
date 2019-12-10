@@ -1,5 +1,5 @@
 <jnt-block #block title="Specification" [padding]="ui.padding.large" [width]="ui.width.fluid">
-    <jnt-form [formGroup]="form" jntValidation (submitted)="save()" [footerForm]="footerForm">
+    <jnt-form [formGroup]="form" jntValidation (submitted)="save()">
         <h2>Common</h2>
 
         <jnt-form-item>
@@ -62,13 +62,20 @@
         </jnt-form-item>
 
         <jnt-form-item>
+            <jnt-form-label>Figma key</jnt-form-label>
+            <jnt-form-control name="figmaKey">
+                <jnt-input placeholder="Figma key" formControlName="figmaKey"></jnt-input>
+            </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
             <jnt-form-label>Graphql playground URL</jnt-form-label>
             <jnt-form-control name="graphqlPlaygroundUrl">
                 <jnt-input placeholder="Graphql playground URL" formControlName="graphqlPlaygroundUrl"></jnt-input>
             </jnt-form-control>
         </jnt-form-item>
 
-        <ng-template #footerForm>
+        <ng-template #formFooterTemplate>
             <jnt-button text="Save"
                         [icon]="ui.icons.save"
                         [type]="ui.form.button.type.submit"></jnt-button>

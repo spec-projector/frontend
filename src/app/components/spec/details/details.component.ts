@@ -31,6 +31,7 @@ export class DetailsComponent implements OnInit {
             author: spec.author,
             gitLabKey: spec.integration.gitLabKey,
             gitHubKey: spec.integration.gitHubKey,
+            figmaKey: spec.integration.figmaKey,
             graphqlPlaygroundUrl: spec.integration.graphqlPlaygroundUrl
         });
 
@@ -52,6 +53,7 @@ export class DetailsComponent implements OnInit {
         author: [null],
         gitLabKey: [],
         gitHubKey: [],
+        figmaKey: [],
         graphqlPlaygroundUrl: [],
         resourceTypes: this.resourceTypes
     });
@@ -84,6 +86,7 @@ export class DetailsComponent implements OnInit {
             author,
             gitLabKey,
             gitHubKey,
+            figmaKey,
             graphqlPlaygroundUrl,
             resourceTypes
         } = this.form.getRawValue();
@@ -92,12 +95,14 @@ export class DetailsComponent implements OnInit {
             this.spec.author,
             this.spec.integration.gitLabKey,
             this.spec.integration.gitHubKey,
+            this.spec.integration.figmaKey,
             this.spec.integration.graphqlPlaygroundUrl,
             this.spec.resourceTypes]
             = [description,
             author,
             gitLabKey,
             gitHubKey,
+            figmaKey,
             graphqlPlaygroundUrl,
             resourceTypes.map(({title, hourRate}) =>
                 new ResourceType({title, hourRate: +hourRate}))];

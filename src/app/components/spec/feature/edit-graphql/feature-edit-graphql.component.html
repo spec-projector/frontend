@@ -1,4 +1,4 @@
-<jnt-form [formGroup]="form" jntValidation (submitted)="save()" [footerForm]="footerForm">
+<jnt-form [formGroup]="form" jntValidation (submitted)="save()">
     <jnt-form-item>
         <jnt-form-label>Title</jnt-form-label>
         <jnt-form-control name="title">
@@ -13,7 +13,7 @@
                        [options]="{language: 'graphql', automaticLayout: true, minimap: {enabled: false}}"
                        formControlName="text"></ngx-monaco-editor>
 
-    <ng-template #footerForm>
+    <ng-template #formFooterTemplate>
         <jnt-stack [type]="ui.stack.type.horizontal"
                    [align]="ui.flex.align.center"
                    [justify]="ui.flex.justify.between">

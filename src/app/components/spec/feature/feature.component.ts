@@ -1,6 +1,5 @@
 import { Component, ComponentFactoryResolver, Injector, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import * as Figma from 'figma-api';
 import { ModalOptions, ModalService, PopoverService, UI } from 'junte-ui';
 import { ClipboardService } from 'ngx-clipboard';
 import { filter, tap } from 'rxjs/operators';
@@ -14,7 +13,6 @@ import { Frame } from 'src/app/model/spec/planning/frame';
 import { Graphql } from 'src/app/model/spec/planning/graphql';
 import { Issue } from 'src/app/model/spec/planning/issue';
 import { TextToken, Token } from 'src/app/model/spec/planning/token';
-import { FramesStorage } from 'src/app/services/frames-storage.service';
 
 @Component({
     selector: 'spec-feature',
@@ -56,13 +54,8 @@ export class FeatureComponent implements OnInit {
         return this._feature;
     }
 
-    figma = new Figma.Api({
-        personalAccessToken: '26514-2ea7bfc4-e99d-4779-a77a-e1c9a269ee80'
-    });
-
     constructor(public manager: SpecManager,
                 private clipboard: ClipboardService,
-                public storage: FramesStorage,
                 private fb: FormBuilder,
                 private popover: PopoverService,
                 private injector: Injector,
@@ -83,22 +76,6 @@ export class FeatureComponent implements OnInit {
         this.form.patchValue({
             title: this.feature.title.map(t => t.toString()).join(' ')
         });
-    }
-
-    preview(file: string, node: string) {
-        this.storage.set(file, node);
-
-        this.figma.getImage(file, {ids: node, scale: 1.5, format: 'png'})
-            .then(res => {
-                if (!!res.images) {
-                    this.storage.set(file, node, {thumbnail: res.images[node]});
-                }
-            });
-    }
-
-
-    goto(url: string) {
-        open(url);
     }
 
     ngOnInit() {
@@ -142,23 +119,18 @@ export class FeatureComponent implements OnInit {
         this.feature.version++;
     }
 
-    saveIssues(issues: Issue[]) {
-        this.feature.issues = issues;
+    saveFrames(frames: Frame[]) {
+        this.feature.frames = frames;
         this.manager.put(this.feature);
 
         this.feature.version++;
     }
 
-    addFrame(frame: Frame) {
-        this.feature.frames.push(frame);
+    saveIssues(issues: Issue[]) {
+        this.feature.issues = issues;
         this.manager.put(this.feature);
 
-        this.popover.hide();
-    }
-
-    removeFrame(index: number) {
-        this.feature.frames.splice(index, 1);
-        this.manager.put(this.feature);
+        this.feature.version++;
     }
 
     addGraphQL() {

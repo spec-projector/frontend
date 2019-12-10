@@ -26,6 +26,9 @@ export class Integration {
     gitHubKey: string;
 
     @persist()
+    figmaKey: string;
+
+    @persist()
     graphqlPlaygroundUrl: string;
 }
 
@@ -57,6 +60,7 @@ export class Spec extends Persistence {
     integration: Integration = {
         gitLabKey: null,
         gitHubKey: null,
+        figmaKey: null,
         graphqlPlaygroundUrl: null
     };
 

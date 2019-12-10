@@ -83,37 +83,10 @@
                     </thead>
                     <tr>
                         <td frontend>
-                            <jnt-button add [size]="ui.sizes.tiny"
-                                        [icon]="ui.icons.plus"
-                                        [jntPopover]="{title: 'Add frame', content: addFrameTemplate, trigger: ui.popover.trigger.click}"></jnt-button>
-                            <ng-template #addFrameTemplate>
-                                <spec-feature-add-frame [feature]="feature"
-                                                        (added)="addFrame($event)"></spec-feature-add-frame>
-                            </ng-template>
-                            <ul frames>
-                                <li *ngFor="let frame of feature.frames; let i = index">
-                                    <ng-container
-                                            *ngIf="this.storage.get(frame.file, frame.node) as render;else loading">
-                                        <img *ngIf="render['thumbnail'] as thumbnail;else generateRenderTemplate"
-                                             [src]="thumbnail">
-                                        <ng-template #generateRenderTemplate>
-                                            <jnt-spinner></jnt-spinner>
-                                        </ng-template>
-                                    </ng-container>
-                                    <ng-template #loading>
-                                        {{preview(frame.file, frame.node)}}
-                                    </ng-template>
-                                    <jnt-link figma
-                                              [outline]="ui.outline.fill"
-                                              title="Figma"
-                                              target="_blank"
-                                              [icon]="ui.icons.figma"
-                                              [source]="'http://figma.com/file/' + frame.file + '?node-id=' + frame.node"></jnt-link>
-                                    <jnt-button delete [scheme]="ui.schemes.secondary"
-                                                [icon]="ui.icons.delete"
-                                                (click)="removeFrame(i)"></jnt-button>
-                                </li>
-                            </ul>
+                            <spec-frames [spec]="feature.spec"
+                                         [frames]="feature.frames"
+                                         (changed)="saveFrames($event)">
+                            </spec-frames>
                         </td>
                         <td>
                             <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
@@ -127,11 +100,11 @@
                                                     (click)="action()"></jnt-button>
                                     </ng-template>
                                     <ng-template #dropdown let-action="trigger">
-                                        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.tiny">
+                                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.tiny">
                                             <jnt-menu-item
                                                     [icon]="localUi.icons.graphQl"
                                                     title="Graph QL"
-                                                    (click)="addGraphQL();action();"></jnt-menu-item>
+                                                    (click)="addGraphQL();action()"></jnt-menu-item>
                                             <jnt-menu-item
                                                     [icon]="localUi.icons.rest"
                                                     title="REST API" (click)="action()"></jnt-menu-item>

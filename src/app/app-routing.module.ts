@@ -17,7 +17,7 @@ const routes: Routes = [
         path: 'projects',
         loadChildren: () => import('./components/projects/projects.module')
             .then(m => m.ProjectsModule),
-        // canActivate: [AuthorizationGuard]
+        canActivate: [AuthorizationGuard]
     }
 ];
 
