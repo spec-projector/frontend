@@ -1,9 +1,4 @@
 import { field, model } from '@junte/mocker-library';
-import { ArraySerializer, PrimitiveSerializer } from 'serialize-ts/dist';
-
-export enum UserPermission {
-    inviteUser = 'invite_user',
-}
 
 @model()
 export class User {
@@ -17,11 +12,5 @@ export class User {
 
 @model()
 export class Me extends User {
-
-    @field({
-        serializer: new ArraySerializer(new PrimitiveSerializer()),
-        mock: [UserPermission.inviteUser]
-    })
-    permissions: UserPermission[];
 
 }

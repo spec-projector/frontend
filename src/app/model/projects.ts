@@ -1,6 +1,8 @@
 import { field, model } from '@junte/mocker-library';
-import { ArraySerializer, DateSerializer, ModelSerializer } from 'serialize-ts';
+import { SearchFilter } from 'junte-ui';
+import { ArraySerializer } from 'serialize-ts';
 import { Paging } from 'src/app/model/paging';
+import { EdgesToPaging } from 'src/app/serializers/graphql';
 
 @model()
 export class Project {
@@ -10,13 +12,6 @@ export class Project {
 
     @field({mock: '{{issue}}'})
     title: string;
-
-    @field({
-        name: 'create_date',
-        serializer: new DateSerializer(),
-        mock: '{{date \'2019\' \'2020\'}}'
-    })
-    createDate: Date;
 }
 
 @model()
@@ -26,8 +21,45 @@ export class PagingProjects implements Paging<Project> {
     count: number;
 
     @field({
-        serializer: new ArraySerializer(new ModelSerializer(Project)),
-        mock: '[{{#repeat 10 20}} {{> project}} {{/repeat}}]'
+        name: 'edges',
+        serializer: new ArraySerializer(new EdgesToPaging<Project>(Project)),
+        mock: '[{{#repeat 3 10}} {{> project}} {{/repeat}}]'
     })
     results: Project[];
+}
+
+@model()
+export class ProjectUpdate {
+
+    @field()
+    project: string;
+
+    @field()
+    title: string;
+
+    @field()
+    description?: string;
+
+    constructor(update: ProjectUpdate) {
+        Object.assign(this, update);
+    }
+}
+
+@model()
+export class ProjectsFilter implements SearchFilter {
+
+    @field()
+    first?: number;
+
+    @field()
+    offset?: number;
+
+    @field()
+    q?: string;
+
+    constructor(defs: ProjectsFilter = null) {
+        if (!!defs) {
+            Object.assign(this, defs);
+        }
+    }
 }

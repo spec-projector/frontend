@@ -5,7 +5,6 @@ import { JunteUiModule } from 'junte-ui';
 import { ProjectsRoutingModule } from 'src/app/components/projects/projects-routing.module';
 import { ArrayPipesModule } from 'src/app/pipes/array/array-pipes.module';
 import { FormPipesModule } from 'src/app/pipes/forms/forms.module';
-import { ProjectsServiceProvider } from 'src/app/services/projects/projects.provider';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { ProjectsComponent } from './projects.component';
 
@@ -22,10 +21,7 @@ import { ProjectsComponent } from './projects.component';
         ProjectsRoutingModule,
         FormPipesModule
     ],
-    entryComponents: [EditProjectComponent],
-    providers: [
-        ProjectsServiceProvider
-    ]
+    entryComponents: [EditProjectComponent]
 })
 export class ProjectsModule {
 }
