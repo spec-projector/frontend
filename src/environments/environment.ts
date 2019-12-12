@@ -3,3 +3,7 @@ export const config = {
     uiDebounceTime: 500
     // storage: 'http://localhost:5984'
 };
+
+export const environment = {
+    production: false
+};
