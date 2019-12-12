@@ -11,38 +11,24 @@
   left: 0;
 }
 
-form {
-  background-color: $primary-background;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: $shadow-normal;
+[form] {
   min-width: 300px;
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: $gutter-big;
+  }
 
   [logo] {
     text-align: center;
   }
-
   [fields] {
     margin-top: $gutter-normal;
   }
-
   button {
     display: block;
     margin: 20px 0;
     width: 100%;
-  }
-
-  [gitlab] {
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid silver;
-    overflow: hidden;
-
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-    }
   }
 }

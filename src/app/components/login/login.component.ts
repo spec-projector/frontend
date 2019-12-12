@@ -1,13 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApolloError } from 'apollo-client';
 import { UI, validate } from 'junte-ui';
 import 'reflect-metadata';
-import { filter, finalize } from 'rxjs/operators';
+import { filter, finalize, map } from 'rxjs/operators';
+import { deserialize } from 'serialize-ts/dist';
 import { AppConfig } from 'src/app/app-config';
+import { GitlabLoginGQL, LoginGQL } from 'src/app/components/login/login.graphql';
 import { Authorization } from 'src/app/model/authorization';
-import { LoginCredentials } from 'src/app/model/login-credentials';
-import { IUsersService, users_service } from 'src/app/services/users/users.interface';
 
 @Component({
     selector: 'spec-login',
@@ -21,11 +22,12 @@ export class LoginComponent implements OnInit {
     progress = {gitlab: false, login: false};
     error: Error;
     loginForm = this.builder.group({
-        login: [null, [Validators.required]],
+        username: [null, [Validators.required]],
         password: [null, [Validators.required]]
     });
 
-    constructor(@Inject(users_service) private usersService: IUsersService,
+    constructor(private loginApollo: LoginGQL,
+                private loginGitlabApollo: GitlabLoginGQL,
                 private config: AppConfig,
                 private builder: FormBuilder,
                 private route: ActivatedRoute,
@@ -33,23 +35,32 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.queryParams.pipe(filter(({code, state}) => !!code && !!state))
+        this.route.queryParams
+            .pipe(filter(({code, state}) => !!code && !!state))
             .subscribe(({code, state}) => {
                 this.progress.gitlab = true;
-                this.usersService.gitlab(code, state)
-                    .pipe(finalize(() => this.progress.gitlab = false))
-                    .subscribe(authorization => this.logged(authorization),
-                        error => this.error = error);
+                this.loginGitlabApollo.mutate({code: code, state: state})
+                    .pipe(
+                        finalize(() => this.progress.gitlab = false),
+                        map(({data: {completeGitlabAuth: {token}}}) =>
+                            deserialize(token, Authorization))
+                    )
+                    .subscribe((token: Authorization) => this.logged(token),
+                        (error: ApolloError) => this.error = error);
             });
     }
 
     login() {
         if (validate(this.loginForm)) {
             this.progress.login = true;
-            this.usersService.login(new LoginCredentials(this.loginForm.value))
-                .pipe(finalize(() => this.progress.login = false))
-                .subscribe(authorization => this.logged(authorization),
-                    error => this.error = error);
+            this.loginApollo.mutate(this.loginForm.value)
+                .pipe(
+                    finalize(() => this.progress.login = false),
+                    map(({data: {login: {token}}}) =>
+                        deserialize(token, Authorization))
+                )
+                .subscribe((token: Authorization) => this.logged(token),
+                    (error: ApolloError) => this.error = error);
         }
     }
 

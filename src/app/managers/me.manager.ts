@@ -1,17 +1,19 @@
 import { Inject, Injectable } from '@angular/core';
+import { isEqual } from 'junte-ui';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { deserialize } from 'serialize-ts/dist';
 import { AppConfig } from 'src/app/app-config';
+import { MeManagerGQL } from 'src/app/managers/me-manager.graphql';
 import { Me } from 'src/app/model/user';
-import { me_service } from 'src/app/services/me/me.interface';
-import { MeService } from 'src/app/services/me/me.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class MeManager {
 
     user$: BehaviorSubject<Me> = new BehaviorSubject<Me>(null);
 
     set user(user: Me) {
-        if (this.user !== user) {
+        if (!isEqual(this.user, user)) {
             this.user$.next(user);
         }
     }
@@ -20,13 +22,13 @@ export class MeManager {
         return this.user$.getValue();
     }
 
-    constructor(@Inject(me_service) private meService: MeService,
-                private config: AppConfig) {
+    constructor(@Inject(AppConfig) private config: AppConfig,
+                private meManagerApollo: MeManagerGQL) {
         this.config.authorization$.subscribe(token => {
             if (!!token) {
-                this.meService.getMe().subscribe(user => {
-                    this.user = user;
-                }, () => this.config.authorization = null);
+                this.meManagerApollo.fetch()
+                    .pipe(map(({data: {me}}) => deserialize(me, Me)))
+                    .subscribe(user => this.user = user);
             } else {
                 this.user = null;
             }

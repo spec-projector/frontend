@@ -6,10 +6,8 @@ import { JunteUiModule } from 'junte-ui';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppConfig } from 'src/app/app-config';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { HttpMockService } from 'src/app/services/http-mock.service';
-import { HttpService } from 'src/app/services/http.service';
-import { MeServiceProvider } from 'src/app/services/me/me.provider';
-import { UsersServiceProvider } from 'src/app/services/users/users.provider';
+import { GraphQLModule } from 'src/app/graphql.module';
+import { MeManager } from 'src/app/managers/me.manager';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -22,6 +20,7 @@ import { AppComponent } from './app.component';
         BrowserAnimationsModule,
         JunteUiModule,
         AppRoutingModule,
+        GraphQLModule,
         MonacoEditorModule.forRoot()
     ],
     bootstrap: [
@@ -30,10 +29,7 @@ import { AppComponent } from './app.component';
     providers: [
         AppConfig,
         HttpClient,
-        HttpService,
-        HttpMockService,
-        MeServiceProvider,
-        UsersServiceProvider
+        MeManager
     ]
 })
 export class AppModule {

@@ -5,7 +5,6 @@ import { JunteUiModule } from 'junte-ui';
 import { LoginRoutingModule } from 'src/app/components/login/login-routing.module';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { FormPipesModule } from 'src/app/pipes/forms/forms.module';
-import { UsersServiceProvider } from 'src/app/services/users/users.provider';
 
 @NgModule({
     declarations: [
@@ -17,8 +16,7 @@ import { UsersServiceProvider } from 'src/app/services/users/users.provider';
         ReactiveFormsModule,
         LoginRoutingModule,
         FormPipesModule
-    ],
-    providers: [UsersServiceProvider]
+    ]
 })
 export class LoginModule {
 }

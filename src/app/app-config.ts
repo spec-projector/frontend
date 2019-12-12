@@ -7,6 +7,7 @@ import { Authorization } from 'src/app/model/authorization';
 const DEFAULT_MOCKS_DELAY = 500;
 const DEFAULT_LANGUAGE = 'en';
 const AUTHORIZATION_KEY = 'Authorization';
+const GRAPHQL_URL = 'https://specprojector.com/api/graphql';
 
 @Injectable({providedIn: 'root'})
 export class AppConfig {
@@ -89,4 +90,6 @@ export class AppConfig {
     constructor(@Inject(HttpClient) private http: HttpClient,
                 @Inject(DOCUMENT) private document: Document) {
     }
+
+    graphqlUrl = this.localMode ? GRAPHQL_URL : `${location.origin}/api/graphql`;
 }

@@ -1,9 +1,9 @@
-import {Field} from 'serialize-ts';
+import { field } from '@junte/mocker-library';
 
 export class Authorization {
-  @Field()
-  token: string;
+    @field()
+    created: string;
 
-  @Field()
-  type: string;
+    @field()
+    key: string;
 }
