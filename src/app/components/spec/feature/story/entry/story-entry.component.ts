@@ -2,10 +2,12 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
 import { Token } from 'src/app/model/spec/planning/token';
 import { Spec } from 'src/app/model/spec/spec';
+import { config } from 'src/environments/environment';
 
 @Component({
     selector: 'spec-story-entry',
@@ -40,6 +42,7 @@ export class StoryEntryComponent {
         });
 
         this.subscriptions.form = this.form.valueChanges
+            .pipe(debounceTime(config.uiDebounceTime))
             .subscribe(() => {
                 const {type, description} = this.form.getRawValue();
                 [this.entry.type, this.entry.description] = [type, Token.parse(description)];
