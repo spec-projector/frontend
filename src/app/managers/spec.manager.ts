@@ -61,7 +61,7 @@ export class SpecManager {
                 console.log('synced');
                 console.log(spec);
                 console.groupEnd();
-                spec.id = project;
+                spec.id = 'spec';
                 const progress = new Subject();
                 spec.load(this.local, progress)
                     .pipe(finalize(() => this.spec = spec), tap(() => spec.linking()))

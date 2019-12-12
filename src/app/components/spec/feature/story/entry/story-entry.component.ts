@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { EditMode } from 'src/app/model/enums/edit-mode';
 import { UI } from 'junte-ui';
+import { Subscription } from 'rxjs';
+import { EditMode } from 'src/app/model/enums/edit-mode';
 import { StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
 import { Token } from 'src/app/model/spec/planning/token';
-import { filter, tap } from 'rxjs/operators';
 import { Spec } from 'src/app/model/spec/spec';
 
 @Component({
@@ -12,11 +12,13 @@ import { Spec } from 'src/app/model/spec/spec';
     templateUrl: './story-entry.component.html',
     styleUrls: ['./story-entry.component.scss']
 })
-export class StoryEntryComponent implements OnInit {
+export class StoryEntryComponent {
 
     ui = UI;
     editMode = EditMode;
     storyEntryType = StoryEntryType;
+
+    private subscriptions: { form: Subscription } = {form: null};
 
     @ViewChild('input', {static: false})
     input: HTMLInputElement;
@@ -26,21 +28,40 @@ export class StoryEntryComponent implements OnInit {
     @Input()
     spec: Spec;
 
-    @Input() set entry(field: StoryEntry) {
+    @Input()
+    set entry(field: StoryEntry) {
+        if (!!this.subscriptions.form) {
+            this.subscriptions.form.unsubscribe();
+        }
         this._entry = field;
         this.form.patchValue({
             type: field.type,
             description: field.description.map(t => t.toString()).join(' ')
         });
+
+        this.subscriptions.form = this.form.valueChanges
+            .subscribe(() => {
+                const {type, description} = this.form.getRawValue();
+                [this.entry.type, this.entry.description] = [type, Token.parse(description)];
+                this.changed.emit(this.entry);
+            });
     }
 
     get entry() {
         return this._entry;
     }
 
-    @Output() changed = new EventEmitter<StoryEntry>();
-    @Output() finished = new EventEmitter();
-    @Output() deleted = new EventEmitter();
+    @Input()
+    mode = EditMode.view;
+
+    @Output()
+    changed = new EventEmitter<StoryEntry>();
+
+    @Output()
+    finished = new EventEmitter();
+
+    @Output()
+    deleted = new EventEmitter();
 
     type = new FormControl();
     description = new FormControl();
@@ -50,21 +71,7 @@ export class StoryEntryComponent implements OnInit {
         description: this.description
     });
 
-    @Input()
-    mode = EditMode.view;
-
     constructor(private formBuilder: FormBuilder) {
-        this.form.valueChanges
-            .pipe(filter(() => !!this.entry),
-                tap(() => {
-                    const value = this.form.getRawValue();
-                    this.entry.type = value.type;
-                    this.entry.description = Token.parse(value.description);
-                }))
-            .subscribe(() => this.changed.emit(this.entry));
-    }
-
-    ngOnInit() {
     }
 
     keyup(e: KeyboardEvent) {

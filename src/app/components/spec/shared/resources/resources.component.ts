@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from 'junte-ui';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { Feature, Resource } from 'src/app/model/spec/planning/feature';
 import { ResourceType } from 'src/app/model/spec/spec';
+import { config } from 'src/environments/environment';
 
 @Component({
     selector: 'spec-resources',
@@ -13,22 +16,32 @@ export class ResourcesComponent {
 
     ui = UI;
 
-    _feature: Feature;
+    private _feature: Feature;
+    private subscriptions: { form: Subscription } = {form: null};
 
     resources = this.fb.array([]);
-
     form = this.fb.group({
         resources: this.resources
     });
 
     @Input()
     set feature(feature: Feature) {
+        if (!!this.subscriptions.form) {
+            this.subscriptions.form.unsubscribe();
+        }
+
         this._feature = feature;
         feature.resources.forEach(({resource, hours}) => {
             const g = this.resourcesGroup();
             g.patchValue({resource, hours});
             this.resources.push(g);
         });
+
+        this.subscriptions.form = this.form.valueChanges
+            .pipe(debounceTime(config.uiDebounceTime))
+            .subscribe(({resources}) =>
+                this.changed.emit(resources.map(({resource, hours}) =>
+                    new ResourceType({resource, hours: +hours}))));
     }
 
     get feature() {
@@ -44,9 +57,6 @@ export class ResourcesComponent {
     });
 
     constructor(private fb: FormBuilder) {
-        this.form.valueChanges.subscribe(({resources}) =>
-            this.changed.emit(resources.map(({resource, hours}) =>
-                new ResourceType({resource, hours: +hours}))));
     }
 
     fillResources() {

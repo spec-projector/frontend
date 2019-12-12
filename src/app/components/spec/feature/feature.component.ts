@@ -1,40 +1,38 @@
-import { Component, ComponentFactoryResolver, Injector, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ComponentFactoryResolver, Injector, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ModalOptions, ModalService, PopoverService, UI } from 'junte-ui';
 import { ClipboardService } from 'ngx-clipboard';
-import { filter, tap } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
+import { Subscription } from 'rxjs';
 import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
 import { FeatureMarkdownComponent } from 'src/app/components/spec/feature/markdown/feature-markdown.component';
 import { LocalUI } from 'src/app/enums/local-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { Feature, Resource, StoryEntry, StoryEntryType } from 'src/app/model/spec/planning/feature';
+import { Feature, Resource, StoryEntry } from 'src/app/model/spec/planning/feature';
 import { Frame } from 'src/app/model/spec/planning/frame';
 import { Graphql } from 'src/app/model/spec/planning/graphql';
 import { Issue } from 'src/app/model/spec/planning/issue';
-import { TextToken, Token } from 'src/app/model/spec/planning/token';
+import { Token } from 'src/app/model/spec/planning/token';
 
 @Component({
     selector: 'spec-feature',
     templateUrl: './feature.component.html',
     styleUrls: ['./feature.component.scss']
 })
-export class FeatureComponent implements OnInit {
+export class FeatureComponent {
 
     ui = UI;
     localUi = LocalUI;
     editMode = EditMode;
 
     private _feature: Feature;
+    private subscriptions: { form: Subscription } = {form: null};
 
     @ViewChild('summary', {static: false})
     summary: FeatureMarkdownComponent;
 
-    @ViewChildren('storyEntry')
-    entries: QueryList<StoryEntry>;
-
     mode = EditMode.view;
-    storyMode = EditMode.view;
     opened = false;
     markdown = false;
 
@@ -43,11 +41,22 @@ export class FeatureComponent implements OnInit {
         title: this.title
     });
 
-    @Input() set feature(feature: Feature) {
+    @Input()
+    set feature(feature: Feature) {
+        if (!!this.subscriptions.form) {
+            this.subscriptions.form.unsubscribe();
+        }
         this._feature = feature;
         this.updateForm();
 
         feature.changes.subscribe(() => this.updateForm());
+
+        this.subscriptions.form = this.form.valueChanges
+            .subscribe(() => {
+                const {title} = this.form.getRawValue();
+                this.feature.title = Token.parse(title);
+                this.manager.put(this.feature);
+            });
     }
 
     get feature() {
@@ -60,49 +69,14 @@ export class FeatureComponent implements OnInit {
                 private popover: PopoverService,
                 private injector: Injector,
                 private cfr: ComponentFactoryResolver,
-                private modal: ModalService) {
-
-        this.form.valueChanges
-            .pipe(filter(() => !!this.feature),
-                tap(() => {
-                    const {title} = this.form.getRawValue();
-                    this.feature.title = Token.parse(title);
-                }))
-            .subscribe(() => this.manager.put(this.feature));
-
+                private modal: ModalService,
+                private logger: NGXLogger) {
     }
 
     private updateForm() {
         this.form.patchValue({
             title: this.feature.title.map(t => t.toString()).join(' ')
         });
-    }
-
-    ngOnInit() {
-        // this.entries.changes.subscribe(s => console.log(s));
-    }
-
-    addStory() {
-        const entry = new StoryEntry({
-            type: StoryEntryType.see,
-            description: [new TextToken('something...')]
-        });
-        this.feature.story.push(entry);
-        this.manager.put(this.feature);
-    }
-
-    addStoryEntry(index: number) {
-        const entry = new StoryEntry({
-            type: StoryEntryType.see,
-            description: [new TextToken('something...')]
-        });
-        this.feature.story.splice(index + 1, 0, entry);
-        this.manager.put(this.feature);
-    }
-
-    deleteStoryEntry(index: number) {
-        this.feature.story.splice(index, 1);
-        this.manager.put(this.feature);
     }
 
     copyMarkdown() {
@@ -112,7 +86,16 @@ export class FeatureComponent implements OnInit {
         setTimeout(() => this.markdown = false, 5000);
     }
 
+    saveStory(story: StoryEntry[]) {
+        this.logger.log('save story for feature [', this.feature.title.toString(), ']');
+        this.feature.story = story;
+        this.manager.put(this.feature);
+
+        this.feature.version++;
+    }
+
     saveResources(resources: Resource[]) {
+        this.logger.log('save resources for feature [', this.feature.title.toString(), ']');
         this.feature.resources = resources;
         this.manager.put(this.feature);
 
@@ -120,6 +103,7 @@ export class FeatureComponent implements OnInit {
     }
 
     saveFrames(frames: Frame[]) {
+        this.logger.log('save frames for feature [', this.feature.title.toString(), ']');
         this.feature.frames = frames;
         this.manager.put(this.feature);
 

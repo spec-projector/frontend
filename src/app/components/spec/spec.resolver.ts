@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { ModalOptions, ModalService, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { SpaceSyncComponent } from 'src/app/components/spec/sync/space-sync.component';
+import { SpaceSyncComponent } from 'src/app/components/spec/shared/sync/space-sync.component';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { Spec } from 'src/app/model/spec/spec';
 

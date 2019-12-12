@@ -17,12 +17,13 @@ import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
 import { FeatureAddFrameComponent } from 'src/app/components/spec/feature/frames/add-frame/feature-add-frame.component';
 import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
 import { FramesComponent } from 'src/app/components/spec/feature/frames/frames.component';
-import { AttachIssueComponent } from 'src/app/components/spec/feature/issues/attach-issue/attach-issue.component';
-import { IssueComponent } from 'src/app/components/spec/feature/issues/issue/issue.component';
-import { IssuesComponent } from 'src/app/components/spec/feature/issues/issues.component';
+import { StoryComponent } from 'src/app/components/spec/feature/story/story.component';
+import { AttachIssueComponent } from 'src/app/components/spec/shared/issues/attach-issue/attach-issue.component';
+import { IssueComponent } from 'src/app/components/spec/shared/issues/issue/issue.component';
+import { IssuesComponent } from 'src/app/components/spec/shared/issues/issues.component';
 import { FeatureMarkdownComponent } from 'src/app/components/spec/feature/markdown/feature-markdown.component';
 import { FeatureComponent } from 'src/app/components/spec/feature/feature.component';
-import { ResourcesComponent } from 'src/app/components/spec/feature/resources/resources.component';
+import { ResourcesComponent } from 'src/app/components/spec/shared/resources/resources.component';
 import { PackageComponent } from 'src/app/components/spec/packages/package/package.component';
 import { PackagesComponent } from 'src/app/components/spec/packages/packages.component';
 import { SpecRoutingModule } from 'src/app/components/spec/spec-routing.module';
@@ -31,10 +32,10 @@ import { SpecResolver } from 'src/app/components/spec/spec.resolver';
 import { SprintComponent } from 'src/app/components/spec/sprints/sprint/sprint.component';
 import { SprintsComponent } from 'src/app/components/spec/sprints/sprints.component';
 import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver';
-import { StoryEntryComponent } from 'src/app/components/spec/feature/story-entry/story-entry.component';
+import { StoryEntryComponent } from 'src/app/components/spec/feature/story/entry/story-entry.component';
 import { TermComponent } from 'src/app/components/spec/terms/term/term.component';
 import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
-import { TokensComponent } from 'src/app/components/spec/tokens/tokens.component';
+import { TokensComponent } from 'src/app/components/spec/shared/tokens/tokens.component';
 import { ValidateComponent } from 'src/app/components/spec/validate/validate.component';
 import { FitWidthDirective } from 'src/app/directives/fit-width.directive';
 import { SpecManager } from 'src/app/managers/spec.manager';
@@ -49,7 +50,7 @@ import { EncodeURIPipe } from 'src/app/pipes/string/array';
 import { TermDescriptionPipe } from 'src/app/pipes/terms/description';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
-import { SpaceSyncComponent } from './sync/space-sync.component';
+import { SpaceSyncComponent } from './shared/sync/space-sync.component';
 
 @NgModule({
     declarations: [
@@ -92,7 +93,8 @@ import { SpaceSyncComponent } from './sync/space-sync.component';
         ActorPricePipe,
         SpecPricePipe,
         IssuesComponent,
-        AttachIssueComponent
+        AttachIssueComponent,
+        StoryComponent
     ],
     entryComponents: [
         SpaceSyncComponent,

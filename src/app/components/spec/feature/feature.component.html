@@ -40,27 +40,9 @@
             <jnt-stack>
                 <jnt-tabs>
                     <jnt-tab title="User story" [active]="true">
-                        <ng-container *ngIf="feature.story.length;else addStoryTemplate">
-                            <ol (mouseenter)="manager.mode ==  editMode.edit ? storyMode = editMode.edit : null"
-                                (mouseleave)="storyMode = editMode.view">
-                                <li *ngFor="let entry of feature.story; let i = index">
-                                    <spec-story-entry #storyEntry [entry]="entry"
-                                                      [mode]="storyMode"
-                                                      [spec]="feature.spec"
-                                                      (changed)="manager.put(feature)"
-                                                      (finished)="addStoryEntry(i)"
-                                                      (deleted)="deleteStoryEntry(i)">
-                                    </spec-story-entry>
-                                </li>
-                            </ol>
-                        </ng-container>
-
-                        <ng-template #addStoryTemplate>
-                            <p>
-                                <jnt-link title="Add story" (click)="addStory()"></jnt-link>
-                                here
-                            </p>
-                        </ng-template>
+                        <spec-story [spec]="feature.spec"
+                                    [story]="feature.story"
+                                    (changed)="saveStory($event)"></spec-story>
                     </jnt-tab>
                     <jnt-tab title="Resources">
                         <spec-resources [feature]="feature"
@@ -122,8 +104,7 @@
                             <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
                         </td>
                         <td>
-                            <jnt-label *ngFor="let entity of feature.entities"
-                                       [label]="entity.title"></jnt-label>
+
                         </td>
                     </tr>
                 </table>

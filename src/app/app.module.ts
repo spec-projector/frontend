@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JunteUiModule } from 'junte-ui';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppConfig } from 'src/app/app-config';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -21,7 +22,12 @@ import { AppComponent } from './app.component';
         JunteUiModule,
         AppRoutingModule,
         GraphQLModule,
-        MonacoEditorModule.forRoot()
+        MonacoEditorModule.forRoot(),
+        LoggerModule.forRoot({
+            serverLoggingUrl: '/api/logs',
+            level: NgxLoggerLevel.LOG,
+            serverLogLevel: NgxLoggerLevel.OFF
+        })
     ],
     bootstrap: [
         AppComponent
