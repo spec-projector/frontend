@@ -1,6 +1,6 @@
-import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { ValidationError } from 'src/app/model/validation/error';
+import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { Spec } from '../spec';
 import { Feature } from './feature';
 import { Improvement } from './improvement';
@@ -21,6 +21,11 @@ export class Sprint extends Persistence {
     improvements: Improvement[] = [];
 
     spec: Spec;
+
+    constructor(defs: any = {}) {
+        super();
+        Object.assign(this, defs);
+    }
 
     linking(spec: Spec) {
         console.log('sprint linking', this.title);
