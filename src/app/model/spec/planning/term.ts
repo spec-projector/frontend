@@ -21,7 +21,7 @@ export class Term extends Persistence {
     }
 
     linking(spec: Spec) {
-        console.log('tern linking', this.name);
+        // console.log('term linking', this.name);
         this.spec = spec;
     }
 }

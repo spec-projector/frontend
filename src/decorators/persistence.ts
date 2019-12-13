@@ -1,17 +1,7 @@
 import 'reflect-metadata';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import {
-    ArraySerializer,
-    deserialize,
-    Field,
-    Model,
-    ModelSerializer,
-    Name,
-    serialize,
-    Serializer,
-    Type
-} from 'serialize-ts';
+import { ArraySerializer, deserialize, Field, Model, ModelSerializer, Name, serialize, Serializer, Type } from 'serialize-ts';
 import { characters, generate } from 'shortid';
 import Document = PouchDB.Core.Document;
 import Database = PouchDB.Database;
@@ -257,8 +247,6 @@ export class Persistence {
     }
 
     deserialize(obj: Object): Persistence {
-        console.log('deserialize');
-
         const prototype = Object.getPrototypeOf(this);
         const fields = Reflect.getMetadata(PERSIST_METADATA_KEY, this) || [];
         for (const metadata of fields) {

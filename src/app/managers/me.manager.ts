@@ -7,7 +7,7 @@ import { AppConfig } from 'src/app/app-config';
 import { MeManagerGQL } from 'src/app/managers/me-manager.graphql';
 import { Me } from 'src/app/model/user';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MeManager {
 
     user$: BehaviorSubject<Me> = new BehaviorSubject<Me>(null);
