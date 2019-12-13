@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationGuard } from 'src/app/app.guard';
 import { ProjectsComponent } from 'src/app/components/projects/projects.component';
 
 const routes: Routes = [
@@ -11,8 +10,7 @@ const routes: Routes = [
     {
         path: ':project',
         loadChildren: () => import('./../spec/spec.module')
-            .then(m => m.SpecModule),
-        // canActivate: [AuthorizationGuard]
+            .then(m => m.SpecModule)
     }
 ];
 
