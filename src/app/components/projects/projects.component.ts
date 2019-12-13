@@ -1,10 +1,8 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { R } from 'apollo-angular/types';
 import { ModalService, UI } from 'junte-ui';
 import { finalize, map, switchMap } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts/dist';
-import { AppConfig } from 'src/app/app-config';
 import { EditProjectComponent } from 'src/app/components/projects/edit-project/edit-project.component';
 import { AllProjectsGQL, CreateProjectGQL, DeleteProjectGQL, UpdateProjectGQL } from 'src/app/components/projects/projects.graphql';
 import { Error } from 'src/app/model/errors';
@@ -29,9 +27,7 @@ export class ProjectsComponent implements OnInit {
                 private allProjectsGQL: AllProjectsGQL,
                 private cfr: ComponentFactoryResolver,
                 private injector: Injector,
-                private modalService: ModalService,
-                private router: Router,
-                public config: AppConfig) {
+                private modalService: ModalService) {
     }
 
     ngOnInit() {
@@ -67,10 +63,5 @@ export class ProjectsComponent implements OnInit {
 
     trackProject(index: number, project: Project) {
         return project.id;
-    }
-
-    logout() {
-        this.config.authorization = null;
-        this.router.navigate(['/login']).then(() => null);
     }
 }
