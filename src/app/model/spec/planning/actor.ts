@@ -31,7 +31,7 @@ export class Actor extends Persistence {
     }
 
     linking(spec: Spec) {
-        console.log('actor linking', this.name);
+        // console.log('actor linking', this.name);
         this.spec = spec;
         for (const feature of this.features) {
             feature.linking({spec: spec, actor: this});

@@ -5,10 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JunteUiModule } from 'junte-ui';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { AppConfig } from 'src/app/app-config';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { GraphQLModule } from 'src/app/graphql.module';
-import { MeManager } from 'src/app/managers/me.manager';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -33,9 +31,7 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     providers: [
-        AppConfig,
-        HttpClient,
-        MeManager
+        HttpClient
     ]
 })
 export class AppModule {

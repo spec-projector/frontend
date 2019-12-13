@@ -13,7 +13,7 @@ export class SprintResolver implements Resolve<Sprint> {
 
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<Sprint> {
-        return Observable.create(observer => {
+        return new Observable(observer => {
             this.manager.get(route.params['project'])
                 .subscribe(spec => {
                     const sprint = spec.sprints.find(s => s.id === route.params['sprint']);

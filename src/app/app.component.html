@@ -1,33 +1,3 @@
 <jnt-popover #popover></jnt-popover>
 <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
-
-<jnt-app-layout #layout>
-    <jnt-app-header>
-        <ng-template #logo>
-            <img src="/assets/images/logo-light.svg">
-        </ng-template>
-        <ng-container>
-            <ng-template #topMenu>
-                <jnt-menu>
-                    <jnt-menu-item [link]="['projects']" title="Projects">
-                    </jnt-menu-item>
-                    <jnt-menu-item [link]="['marketplace']" title="Marketplace">
-                    </jnt-menu-item>
-                </jnt-menu>
-            </ng-template>
-            <ng-template #userbar>
-                <jnt-userbar>
-                    <ng-template #avatar>
-                        <jnt-icon icon="user"></jnt-icon>
-                    </ng-template>
-                    <ng-template #userMenu>
-                        <jnt-user-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-                            <jnt-button (click)="logout()" text="Logout"></jnt-button>
-                        </jnt-user-menu>
-                    </ng-template>
-                </jnt-userbar>
-            </ng-template>
-        </ng-container>
-    </jnt-app-header>
-    <router-outlet></router-outlet>
-</jnt-app-layout>
+<router-outlet></router-outlet>
