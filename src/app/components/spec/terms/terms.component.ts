@@ -39,16 +39,20 @@ export class TermsComponent implements OnInit {
     ngOnInit() {
         this.route.data.subscribe(({spec}) => {
             this.spec = spec;
-            const terms = spec.terms.sort((a, b) => a.name.localeCompare(b.name));
-            terms.forEach(term => {
-                const last = this.terms[this.terms.length - 1];
+            this.load();
+        });
+    }
 
-                if (!!this.terms.length && !!last && last.char === term.name[0]) {
-                    last.terms.push(term);
-                } else {
-                    this.terms.push(new AlphabeticalTerms(term));
-                }
-            });
+    load() {
+        const terms = this.spec.terms.sort((a, b) => a.name.localeCompare(b.name));
+        terms.forEach(term => {
+            const last = this.terms[this.terms.length - 1];
+
+            if (!!this.terms.length && !!last && last.char === term.name[0]) {
+                last.terms.push(term);
+            } else {
+                this.terms.push(new AlphabeticalTerms(term));
+            }
         });
     }
 
@@ -59,7 +63,7 @@ export class TermsComponent implements OnInit {
             description: [new TextToken('description...')]
         });
         this.spec.terms.unshift(term);
-
+        this.load();
         this.manager.put(term);
         this.manager.put(this.spec);
     }

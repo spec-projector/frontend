@@ -24,7 +24,10 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes, {
         paramsInheritanceStrategy: 'always',
-        relativeLinkResolution: 'corrected'
+        relativeLinkResolution: 'corrected',
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled',
+        scrollOffset: [0, 70]
     })],
     exports: [RouterModule]
 })
