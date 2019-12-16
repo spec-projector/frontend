@@ -16,12 +16,13 @@
             <h4>
                 <span>{{group.epic?.title}}</span>
             </h4>
-            <ul>
+            <ul [attr.selected]="!!selected">
                 <li [attr.opened]="selected === feature.id"
                     *ngFor="let feature of group.features; trackBy: trackFeature" cdkDropList
                     cdkDropListConnectedTo="epics" [id]="'feature-' + feature.id"
                     (cdkDropListDropped)="onDropEpic(feature, $event)">
-                    <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.tiny">
+                    <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions
+                               [gutter]="ui.gutter.tiny">
                         <jnt-button [icon]="ui.icons.delete"
                                     [size]="ui.sizes.tiny"
                                     [scheme]="ui.schemes.secondary"
@@ -29,7 +30,7 @@
                         </jnt-button>
                     </jnt-stack>
                     <spec-feature [feature]="feature"
-                                  (selected)="router.navigate([!!selected ? {} : {feature: feature.id}], {relativeTo: route})"
+                                  (selected)="router.navigate([{feature: feature.id}], {relativeTo: route})"
                                   [opened]="selected === feature.id"
                                   feature>
                     </spec-feature>
@@ -44,5 +45,3 @@
         </li>
     </ul>
 </form>
-<div *ngIf="!!selected" backdrop
-     (click)="router.navigate([{}], {relativeTo: route})"></div>

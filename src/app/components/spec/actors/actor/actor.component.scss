@@ -70,7 +70,12 @@ ul {
       padding: 0 0 0 $gutter-small;
       display: flex;
       flex-direction: column;
-      border-left: 2px solid $primary-light-color;
+      border-left: 2px solid $shadow-normal;
+      &[selected='true'] {
+        li[opened='false']:not(:hover) {
+          opacity: .5;
+        }
+      }
 
       li {
         display: flex;
@@ -81,11 +86,12 @@ ul {
         margin-right: $gutter-normal;
         border: 1px solid $secondary-color;
         border-radius: 10px;
+        position: relative;
+        z-index: 1;
 
         &[opened='true'] {
           box-shadow: $shadow-primary-light;
-          position: relative;
-          z-index: 1;
+          border-color: transparent;
         }
 
         [actions] {
@@ -108,14 +114,4 @@ ul {
       }
     }
   }
-}
-
-[backdrop] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: black;
-  opacity: .1;
 }

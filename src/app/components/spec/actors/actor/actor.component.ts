@@ -16,13 +16,14 @@ import * as uuid from 'uuid/v1';
     templateUrl: './actor.component.html',
     styleUrls: ['./actor.component.scss']
 })
-export class ActorComponent implements OnInit {
+export class ActorComponent {
 
     ui = UI;
     editMode = EditMode;
 
     private _actor: Actor;
 
+    @Input()
     selected: string;
 
     version = 0;
@@ -52,10 +53,6 @@ export class ActorComponent implements OnInit {
             .pipe(filter(() => !!this.actor),
                 tap(() => Object.assign(this.actor, this.form.getRawValue())))
             .subscribe(() => this.manager.put(this.actor));
-    }
-
-    ngOnInit() {
-        this.route.params.subscribe(({feature}) => this.selected = feature);
     }
 
     private updateForm() {

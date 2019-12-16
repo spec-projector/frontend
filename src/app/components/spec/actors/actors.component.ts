@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { UI } from 'junte-ui';
@@ -19,13 +19,16 @@ export class ActorsComponent implements OnInit {
     editMode = EditMode;
 
     spec: Spec;
+    selected: string;
 
     constructor(public manager: SpecManager,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                public router: Router) {
     }
 
     ngOnInit() {
         this.route.data.subscribe(({spec}) => this.spec = spec);
+        this.route.params.subscribe(({feature}) => this.selected = feature);
     }
 
     addActor() {
