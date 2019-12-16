@@ -1,7 +1,15 @@
 <jnt-app-content>
     <jnt-app-body app-body>
         <jnt-stack projects>
-            <jnt-button [icon]="ui.icons.plus" (click)="edit()"></jnt-button>
+            <ng-template #addTemplate>
+                <spec-edit-project (saved)="edit($event)"></spec-edit-project>
+            </ng-template>
+            <jnt-button [icon]="ui.icons.plus"
+                        [jntPopover]="{
+                            content: addTemplate,
+                            title: 'Add project',
+                            trigger: ui.popover.trigger.click}">
+            </jnt-button>
 
             <ng-template #skeleton>
                 <jnt-stack [align]="ui.flex.align.stretch" list>
@@ -18,10 +26,18 @@
                                    [align]="ui.flex.align.center">
                             <jnt-link [source]="[project.id]" [title]="project.title"></jnt-link>
                             <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny">
+                                <ng-template #editTemplate>
+                                    <spec-edit-project (saved)="edit($event, project)"
+                                                       [title]="project?.title">
+                                    </spec-edit-project>
+                                </ng-template>
                                 <jnt-button [icon]="ui.icons.edit"
                                             [size]="ui.sizes.tiny"
                                             [scheme]="ui.schemes.secondary"
-                                            (click)="edit(project)">
+                                            [jntPopover]="{
+                                                title: project?.title,
+                                                content: editTemplate,
+                                                trigger: ui.popover.trigger.click}">
                                 </jnt-button>
                                 <jnt-button [icon]="ui.icons.delete"
                                             [size]="ui.sizes.tiny"

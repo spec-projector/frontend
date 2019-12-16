@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UI, validate } from 'junte-ui';
 
@@ -10,16 +10,21 @@ import { UI, validate } from 'junte-ui';
 export class EditProjectComponent {
 
     ui = UI;
-    title = new FormControl(null, Validators.required);
-    form = this.formBuilder.group({title: this.title});
-    saved = new EventEmitter<string>();
+    titleControl = new FormControl(null, Validators.required);
+    form = this.formBuilder.group({title: this.titleControl});
+
+    @Input() set title(title: string) {
+        this.titleControl.patchValue(title);
+    }
+
+    @Output() saved = new EventEmitter<string>();
 
     constructor(private formBuilder: FormBuilder) {
     }
 
     save() {
-        //if (validate(this.form)) {
-            this.saved.emit(this.title.value);
-        //}
+        if (validate(this.form)) {
+            this.saved.emit(this.titleControl.value);
+        }
     }
 }
