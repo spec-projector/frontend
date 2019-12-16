@@ -1,7 +1,7 @@
 <form [formGroup]="form">
     <ng-template #fillResourcesTemplate>
         <p>
-            <jnt-link title="Fill" (click)="fillResources()"></jnt-link>
+            <jnt-link title="Fill" (click)="fill()"></jnt-link>
             resources for feature.
         </p>
     </ng-template>
@@ -11,7 +11,7 @@
                 <jnt-button [icon]="ui.icons.plus"
                             [scheme]="ui.schemes.secondary"
                             [size]="ui.sizes.tiny"
-                            (click)="addResource()"></jnt-button>
+                            (click)="add()"></jnt-button>
                 <jnt-stack *ngFor="let r of resources.controls; let i = index"
                            [formGroupName]="i"
                            [type]="ui.stack.type.horizontal"
@@ -28,7 +28,7 @@
                                 [scheme]="ui.schemes.secondary"
                                 [size]="ui.sizes.tiny"
                                 [type]="ui.form.button.type.button"
-                                (click)="deleteResource(i)"></jnt-button>
+                                (click)="delete(i)"></jnt-button>
                 </jnt-stack>
             </jnt-stack>
         </ng-container>

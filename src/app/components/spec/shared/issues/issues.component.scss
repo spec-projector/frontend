@@ -1,0 +1,15 @@
+@import "~junte-ui/lib/assets/styles/variables";
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: $corner-small;
+  border: 1px solid $secondary-color;
+  th {
+    font-weight: bold;
+  }
+  td, th {
+    padding: $gutter-small;
+    border: 1px solid $secondary-color;
+  }
+}

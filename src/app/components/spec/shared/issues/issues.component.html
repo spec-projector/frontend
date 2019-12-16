@@ -1,13 +1,53 @@
-<jnt-button add [size]="ui.sizes.tiny"
-            [icon]="ui.icons.plus"
-            [scheme]="ui.schemes.secondary"
-            [jntPopover]="{title: 'Attach issue', content: attachTemplate, trigger: ui.popover.trigger.click}"></jnt-button>
 <ng-template #attachTemplate>
     <spec-attach-issue [spec]="spec" (attached)="add($event)"></spec-attach-issue>
 </ng-template>
 
-<table *ngIf="issues.length" border="1">
-    <spec-issue *ngFor="let issue of issues;let i = index"
-                [issue]="issue"
-                (updated)="update(i, $event)"></spec-issue>
-</table>
+<jnt-stack>
+    <jnt-stack buttons [type]="ui.stack.type.horizontal"
+               [gutter]="ui.gutter.small">
+        <jnt-button add [size]="ui.sizes.tiny"
+                    [icon]="ui.icons.plus"
+                    [scheme]="ui.schemes.secondary"
+                    [jntPopover]="{title: 'Attach issue', scheme: ui.schemes.secondary, content: attachTemplate, trigger: ui.popover.trigger.click}"></jnt-button>
+        <jnt-button [icon]="ui.icons.reload"
+                    [size]="ui.sizes.tiny"
+                    [scheme]="ui.schemes.secondary"
+                    [loading]="progress.refreshing"
+                    [disabled]="!issues.length"
+                    (click)="refresh(true)"></jnt-button>
+    </jnt-stack>
+
+    <table *ngIf="issues.length" border="1">
+        <tr *ngFor="let issue of issues;let i = index">
+            <td>
+                <jnt-stack [gutter]="ui.gutter.small">
+                    <jnt-stack [type]="ui.stack.type.horizontal">
+                        <div>{{issue.title | empty}}</div>
+                        <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
+                                   [label]="issue.resource"></jnt-label>
+                    </jnt-stack>
+
+                    <ng-container *ngIf="issue.assignee">
+                        <div>
+                            {{issue.assignee}}
+                        </div>
+                    </ng-container>
+                </jnt-stack>
+            </td>
+            <td>
+                {{issue.spent | empty}}
+            </td>
+            <td>
+                {{issue.state | empty}}
+            </td>
+            <td>
+                <jnt-button [icon]="ui.icons.delete"
+                            [scheme]="ui.schemes.secondary"
+                            [size]="ui.sizes.tiny"
+                            [type]="ui.form.button.type.button"
+                            (click)="delete(i)"></jnt-button>
+            </td>
+        </tr>
+    </table>
+</jnt-stack>
+

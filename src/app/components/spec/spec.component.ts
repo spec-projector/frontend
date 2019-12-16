@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from 'junte-ui';
-import { AppConfig } from 'src/app/app-config';
+import { ActivatedRoute } from '@angular/router';
+import { ModalComponent, ModalService, UI } from 'junte-ui';
 import { LocalUI } from 'src/app/enums/local-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
@@ -14,7 +13,7 @@ import { ValidationError } from 'src/app/model/validation/error';
     templateUrl: './spec.component.html',
     styleUrls: ['./spec.component.scss']
 })
-export class SpecComponent implements OnInit {
+export class SpecComponent implements OnInit, AfterViewInit {
 
     ui = UI;
     localUi = LocalUI;
@@ -24,10 +23,12 @@ export class SpecComponent implements OnInit {
     mode = new FormControl(true);
     form = this.formBuilder.group({mode: this.mode});
 
+    @ViewChild('layout', {read: ElementRef, static: false}) backdrop;
+    @ViewChild('modal', {static: false}) modal: ModalComponent;
+
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
-                private router: Router,
-                public config: AppConfig,
+                private modalService: ModalService,
                 public manager: SpecManager) {
     }
 
@@ -37,8 +38,7 @@ export class SpecComponent implements OnInit {
         this.mode.valueChanges.subscribe(mode => this.manager.mode = mode ? EditMode.edit : EditMode.view);
     }
 
-    logout() {
-        this.config.authorization = null;
-        this.router.navigate(['/login']).then(() => null);
+    ngAfterViewInit() {
+        this.modalService.register(this.modal);
     }
 }

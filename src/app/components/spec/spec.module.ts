@@ -14,7 +14,7 @@ import { EntityFieldComponent } from 'src/app/components/spec/entities/entity-fi
 import { EntityComponent } from 'src/app/components/spec/entities/entity/entity.component';
 import { EpicComponent } from 'src/app/components/spec/epics/epic/epic.component';
 import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
-import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
+import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/api/edit-graphql/feature-edit-graphql.component';
 import { FeatureComponent } from 'src/app/components/spec/feature/feature.component';
 import { FeatureAddFrameComponent } from 'src/app/components/spec/feature/frames/add-frame/feature-add-frame.component';
 import { FramesComponent } from 'src/app/components/spec/feature/frames/frames.component';
@@ -24,7 +24,6 @@ import { StoryComponent } from 'src/app/components/spec/feature/story/story.comp
 import { PackageComponent } from 'src/app/components/spec/packages/package/package.component';
 import { PackagesComponent } from 'src/app/components/spec/packages/packages.component';
 import { AttachIssueComponent } from 'src/app/components/spec/shared/issues/attach-issue/attach-issue.component';
-import { IssueComponent } from 'src/app/components/spec/shared/issues/issue/issue.component';
 import { IssuesComponent } from 'src/app/components/spec/shared/issues/issues.component';
 import { ResourcesComponent } from 'src/app/components/spec/shared/resources/resources.component';
 import { TokensComponent } from 'src/app/components/spec/shared/tokens/tokens.component';
@@ -51,6 +50,7 @@ import { TermDescriptionPipe } from 'src/app/pipes/terms/description';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
 import { SpaceSyncComponent } from './shared/sync/space-sync.component';
+import { ApiComponent } from './feature/api/api.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +67,6 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
         FeatureComponent,
         FeatureAddFrameComponent,
         TokensComponent,
-        IssueComponent,
         SprintComponent,
         EntityComponent,
         PackagesComponent,
@@ -94,7 +93,8 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
         SpecPricePipe,
         IssuesComponent,
         AttachIssueComponent,
-        StoryComponent
+        StoryComponent,
+        ApiComponent
     ],
     entryComponents: [
         SpaceSyncComponent,

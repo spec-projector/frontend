@@ -59,7 +59,7 @@ export class ResourcesComponent {
     constructor(private fb: FormBuilder) {
     }
 
-    fillResources() {
+    fill() {
         for (const r of this.feature.spec.resourceTypes) {
             const group = this.resourcesGroup();
             group.patchValue({resource: r.title});
@@ -67,11 +67,11 @@ export class ResourcesComponent {
         }
     }
 
-    addResource() {
+    add() {
         this.resources.push(this.resourcesGroup());
     }
 
-    deleteResource(index: number) {
+    delete(index: number) {
         this.resources.removeAt(index);
     }
 

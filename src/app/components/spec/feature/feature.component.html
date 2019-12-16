@@ -27,7 +27,7 @@
             <jnt-button [scheme]="ui.schemes.secondary"
                         [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
                         [size]="ui.sizes.tiny"
-                        (click)="opened = !opened">
+                        (click)="selected.emit()">
             </jnt-button>
             <jnt-button [scheme]="ui.schemes.secondary" [icon]="ui.icons.copy"
                         [size]="ui.sizes.tiny"
@@ -74,31 +74,9 @@
                             <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
                         </td>
                         <td>
-                            <jnt-stack>
-                                <jnt-dropdown>
-                                    <ng-template #trigger let-action="trigger">
-                                        <jnt-button [icon]="ui.icons.plus"
-                                                    [size]="ui.sizes.tiny"
-                                                    (click)="action()"></jnt-button>
-                                    </ng-template>
-                                    <ng-template #dropdown let-action="trigger">
-                                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.tiny">
-                                            <jnt-menu-item
-                                                    [icon]="localUi.icons.graphQl"
-                                                    title="Graph QL"
-                                                    (click)="addGraphQL();action()"></jnt-menu-item>
-                                            <jnt-menu-item
-                                                    [icon]="localUi.icons.rest"
-                                                    title="REST API" (click)="action()"></jnt-menu-item>
-                                        </jnt-menu>
-                                    </ng-template>
-                                </jnt-dropdown>
-                                <jnt-label api *ngFor="let query of feature.graphql;let i = index;"
-                                           [icon]="localUi.icons.graphQl"
-                                           [color]="ui.colors.paleNavy"
-                                           [label]="query.title"
-                                           (click)="editGraphQL(query, i)"></jnt-label>
-                            </jnt-stack>
+                            <spec-api [spec]="feature.spec"
+                                      [graphql]="feature.graphql"
+                                      (changed)="saveApi($event)"></spec-api>
                         </td>
                         <td>
                             <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
