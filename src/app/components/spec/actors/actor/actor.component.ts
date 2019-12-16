@@ -1,6 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { UI } from 'junte-ui';
@@ -15,12 +16,14 @@ import * as uuid from 'uuid/v1';
     templateUrl: './actor.component.html',
     styleUrls: ['./actor.component.scss']
 })
-export class ActorComponent {
+export class ActorComponent implements OnInit {
 
     ui = UI;
     editMode = EditMode;
 
     private _actor: Actor;
+
+    selected: string;
 
     version = 0;
     mode = EditMode.view;
@@ -42,11 +45,17 @@ export class ActorComponent {
     }
 
     constructor(public manager: SpecManager,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                public route: ActivatedRoute,
+                public router: Router) {
         this.form.valueChanges
             .pipe(filter(() => !!this.actor),
                 tap(() => Object.assign(this.actor, this.form.getRawValue())))
             .subscribe(() => this.manager.put(this.actor));
+    }
+
+    ngOnInit() {
+        this.route.params.subscribe(({feature}) => this.selected = feature);
     }
 
     private updateForm() {

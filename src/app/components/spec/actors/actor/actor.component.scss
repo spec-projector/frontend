@@ -82,6 +82,12 @@ ul {
         border: 1px solid $secondary-color;
         border-radius: 10px;
 
+        &[opened='true'] {
+          box-shadow: $shadow-primary-light;
+          position: relative;
+          z-index: 1;
+        }
+
         [actions] {
           opacity: .1;
           margin: 0 $gutter-small 0 0;
@@ -102,4 +108,14 @@ ul {
       }
     }
   }
+}
+
+[backdrop] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: black;
+  opacity: .1;
 }

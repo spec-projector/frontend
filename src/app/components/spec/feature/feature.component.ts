@@ -1,19 +1,18 @@
-import { Component, ComponentFactoryResolver, Injector, Input, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, EventEmitter, Injector, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { ModalOptions, ModalService, PopoverService, UI } from 'junte-ui';
+import { ModalService, PopoverService, UI } from 'junte-ui';
 import { ClipboardService } from 'ngx-clipboard';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
-import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/edit-graphql/feature-edit-graphql.component';
 import { FeatureMarkdownComponent } from 'src/app/components/spec/feature/markdown/feature-markdown.component';
 import { LocalUI } from 'src/app/enums/local-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { Feature, Resource, StoryEntry } from 'src/app/model/spec/planning/feature';
 import { Frame } from 'src/app/model/spec/planning/frame';
-import { Graphql } from 'src/app/model/spec/planning/graphql';
 import { Issue } from 'src/app/model/spec/planning/issue';
 import { Token } from 'src/app/model/spec/planning/token';
+import { Graphql } from '../../../model/spec/planning/graphql';
 
 @Component({
     selector: 'spec-feature',
@@ -33,13 +32,16 @@ export class FeatureComponent {
     summary: FeatureMarkdownComponent;
 
     mode = EditMode.view;
-    opened = false;
+
     markdown = false;
 
     title = new FormControl();
     form = this.fb.group({
         title: this.title
     });
+
+    @Input()
+    opened = false;
 
     @Input()
     set feature(feature: Feature) {
@@ -62,6 +64,9 @@ export class FeatureComponent {
     get feature() {
         return this._feature;
     }
+
+    @Output()
+    selected = new EventEmitter();
 
     constructor(public manager: SpecManager,
                 private clipboard: ClipboardService,
@@ -117,36 +122,13 @@ export class FeatureComponent {
         this.feature.version++;
     }
 
-    addGraphQL() {
-        const component = this.cfr.resolveComponentFactory(FeatureEditGraphqlComponent)
-            .create(this.injector);
-        component.instance.spec = this.feature.spec;
-        component.instance.saved.subscribe(q => {
-            this.feature.graphql.push(q);
-            this.manager.put(this.feature);
-        });
-        this.modal.open(component, new ModalOptions({
-            title: {text: 'Add Graph QL', icon: LocalUI.icons.graphQl}
-        }));
+    saveApi({graphql}: { graphql?: Graphql[] }) {
+        if (!!graphql) {
+            this.feature.graphql = graphql;
+        }
+        this.manager.put(this.feature);
+
+        this.feature.version++;
     }
 
-    editGraphQL(query: Graphql, index: number) {
-        const component = this.cfr.resolveComponentFactory(FeatureEditGraphqlComponent)
-            .create(this.injector);
-        component.instance.spec = this.feature.spec;
-        component.instance.query = query;
-        component.instance.saved.subscribe(q => {
-            this.feature.graphql.splice(index, 1, q);
-            this.manager.put(this.feature);
-            this.modal.close();
-        });
-        component.instance.deleted.subscribe(() => {
-            this.feature.graphql.splice(index, 1);
-            this.manager.put(this.feature);
-            this.modal.close();
-        });
-        this.modal.open(component, new ModalOptions({
-            title: {text: 'Edit Graph QL', icon: LocalUI.icons.graphQl}
-        }));
-    }
 }

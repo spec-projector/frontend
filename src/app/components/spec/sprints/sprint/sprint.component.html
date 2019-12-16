@@ -22,7 +22,7 @@
             <li *ngFor="let improvement of sprint.improvements">
                 <jnt-stack [type]="ui.stack.type.horizontal">
                     <spec-tokens [tokens]="improvement.title"></spec-tokens>
-                    <spec-issue *ngFor="let issue of improvement.issues" [issue]="issue"></spec-issue>
+
                 </jnt-stack>
                 <small>{{improvement.feature.actor?.name}}</small>
                 <spec-feature [feature]="improvement.feature"></spec-feature>

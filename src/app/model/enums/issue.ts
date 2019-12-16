@@ -8,3 +8,8 @@ export enum IssueState {
     opened = 'opened',
     closed = 'closed'
 }
+
+export enum IssueSystem {
+    gitlab = 'GITLAB',
+    github = 'GITHUB'
+}

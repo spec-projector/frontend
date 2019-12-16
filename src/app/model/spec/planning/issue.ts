@@ -1,4 +1,4 @@
-import { IssueState } from 'src/app/model/enums/issue';
+import { IssueState, IssueSystem } from 'src/app/model/enums/issue';
 import { persist, persistence } from 'src/decorators/persistence';
 
 @persistence()
@@ -9,6 +9,9 @@ export class Issue {
 
     @persist()
     url: string;
+
+    @persist()
+    system: IssueSystem;
 
     @persist()
     title: string;
