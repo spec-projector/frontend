@@ -5,6 +5,9 @@
                 [scheme]="ui.schemes.secondary"
                 (click)="addTerm()"></jnt-button>
     <jnt-stack [align]="ui.flex.align.stretch">
-        <spec-term *ngFor="let term of spec.terms" [term]="term"></spec-term>
+        <ng-container *ngFor="let aTerm of terms">
+            <a char>{{aTerm.char}}</a>
+            <spec-term *ngFor="let term of aTerm.terms" [term]="term"></spec-term>
+        </ng-container>
     </jnt-stack>
 </jnt-stack>
