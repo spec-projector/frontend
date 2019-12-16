@@ -1,5 +1,19 @@
 @import "~junte-ui/lib/assets/styles/variables";
 
+[alphabet] {
+  position: fixed;
+  height: 30px;
+  width: 100%;
+  background-color: $page-background;
+  z-index: 2;
+  padding: $gutter-tiny;
+}
+
+[terms] {
+  position: relative;
+  top: 38px;
+}
+
 [char] {
   border-bottom: 1px $control-border-color solid;
 }
