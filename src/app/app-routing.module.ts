@@ -15,9 +15,8 @@ const routes: Routes = [
     },
     {
         path: 'projects',
-        loadChildren: () => import('./components/projects/projects.module')
-            .then(m => m.ProjectsModule),
-        data: {breadcrumb: 'Projects'},
+        loadChildren: () => import('./components/dashboard/dashboard.module')
+            .then(m => m.DashboardModule),
         canActivate: [AuthorizationGuard]
     }
 ];

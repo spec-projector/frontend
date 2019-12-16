@@ -6,11 +6,6 @@ const routes: Routes = [
     {
         path: '',
         component: ProjectsComponent
-    },
-    {
-        path: ':project',
-        loadChildren: () => import('./../spec/spec.module')
-            .then(m => m.SpecModule)
     }
 ];
 
