@@ -1,1 +1,23 @@
 @import "~junte-ui/lib/assets/styles/variables";
+
+:host {
+  display: block;
+}
+
+[alphabet] {
+  position: fixed;
+  top: 100px;
+  height: 30px;
+  width: 100%;
+  background-color: $page-background;
+  z-index: 2;
+  padding: $gutter-tiny;
+}
+
+[terms] {
+  position: relative;
+}
+
+[char] {
+  border-bottom: 1px $control-border-color solid;
+}

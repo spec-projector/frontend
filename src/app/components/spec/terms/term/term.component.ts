@@ -1,10 +1,15 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { UI } from 'junte-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { UI } from 'junte-ui';
 import { Term } from 'src/app/model/spec/planning/term';
 import { Token } from 'src/app/model/spec/planning/token';
+
+class TermMode {
+    name: EditMode;
+    description: EditMode;
+}
 
 @Component({
     selector: 'spec-term',
@@ -21,7 +26,10 @@ export class TermComponent implements OnInit {
     ui = UI;
     editMode = EditMode;
 
-    mode = EditMode.view;
+    mode: TermMode = {
+        name: EditMode.view,
+        description: EditMode.view
+    };
 
     form = this.formBuilder.group({
         name: null,
@@ -40,22 +48,13 @@ export class TermComponent implements OnInit {
         return this._term;
     }
 
-    edit() {
-        this.mode = EditMode.edit;
-    }
-
-    normal() {
-        this.mode = EditMode.view;
-    }
-
-    constructor(private manager: SpecManager,
-                private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder,
+                public manager: SpecManager) {
     }
 
     ngOnInit() {
         this.form.valueChanges.subscribe(value => {
-            [this.term.name, this.term.description] = [value.name,
-                Token.parse(value.description)];
+            [this.term.name, this.term.description] = [value.name, Token.parse(value.description)];
             this.manager.put(this.term);
         });
     }
