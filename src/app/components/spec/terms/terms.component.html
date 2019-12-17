@@ -1,10 +1,19 @@
-<jnt-stack [gutter]="ui.gutter.large">
-    <jnt-button *ngIf="manager.mode ==  editMode.edit"
-                [icon]="ui.icons.font.plus"
-                [size]="ui.sizes.tiny"
+<jnt-stack [type]="ui.stack.type.horizontal" alphabet [align]="ui.flex.align.center">
+    <a *ngFor="let aTerm of terms" [routerLink]="['.']" [fragment]="aTerm.char">{{aTerm.char}}</a>
+</jnt-stack>
+
+<jnt-stack [gutter]="ui.gutter.small" terms>
+    <jnt-button *ngIf="manager.mode === editMode.edit"
+                [icon]="ui.icons.font.add"
                 [scheme]="ui.schemes.secondary"
-                (click)="addTerm()"></jnt-button>
+                [outline]="ui.outline.transparent"
+                (click)="addTerm()">
+    </jnt-button>
+
     <jnt-stack [align]="ui.flex.align.stretch">
-        <spec-term *ngFor="let term of spec.terms" [term]="term"></spec-term>
+        <ng-container *ngFor="let aTerm of terms">
+            <a char [id]="aTerm.char">{{aTerm.char}}</a>
+            <spec-term *ngFor="let term of aTerm.terms" [term]="term"></spec-term>
+        </ng-container>
     </jnt-stack>
 </jnt-stack>
