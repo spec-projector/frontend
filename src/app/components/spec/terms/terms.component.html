@@ -2,7 +2,7 @@
     <a *ngFor="let aTerm of terms" [routerLink]="['.']" [fragment]="aTerm.char">{{aTerm.char}}</a>
 </jnt-stack>
 
-<jnt-stack [gutter]="ui.gutter.large" terms>
+<jnt-stack [gutter]="ui.gutter.small" terms>
     <jnt-button *ngIf="manager.mode === editMode.edit"
                 [icon]="ui.icons.font.plus"
                 [size]="ui.sizes.tiny"
