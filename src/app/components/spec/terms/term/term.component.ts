@@ -48,8 +48,8 @@ export class TermComponent implements OnInit {
         return this._term;
     }
 
-    constructor(private manager: SpecManager,
-                private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder,
+                public manager: SpecManager) {
     }
 
     ngOnInit() {
