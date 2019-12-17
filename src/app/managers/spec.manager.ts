@@ -8,6 +8,7 @@ import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { config } from 'src/environments/environment';
 import Database = PouchDB.Database;
 
+const SPEC_OBJECT_ID = 'spec';
 const BUFFER_TIME = 2500;
 
 interface Flush {
@@ -61,7 +62,7 @@ export class SpecManager {
                 console.log('synced');
                 console.log(spec);
                 console.groupEnd();
-                spec.id = 'spec';
+                spec.id = SPEC_OBJECT_ID;
                 const progress = new Subject();
                 spec.load(this.local, progress)
                     .pipe(finalize(() => this.spec = spec), tap(() => spec.linking()))

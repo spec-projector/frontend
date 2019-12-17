@@ -1,7 +1,9 @@
 <form [formGroup]="form">
     <ng-template #fillResourcesTemplate>
         <p>
-            <jnt-link title="Fill" (click)="fill()"></jnt-link>
+            <jnt-link title="Fill" [outline]="ui.outline.ghost"
+                      [icon]="ui.icons.arrowRight"
+                      (click)="fill()"></jnt-link>
             resources for feature.
         </p>
     </ng-template>
@@ -12,24 +14,34 @@
                             [scheme]="ui.schemes.secondary"
                             [size]="ui.sizes.tiny"
                             (click)="add()"></jnt-button>
-                <jnt-stack *ngFor="let r of resources.controls; let i = index"
-                           [formGroupName]="i"
-                           [type]="ui.stack.type.horizontal"
-                           [gutter]="ui.gutter.small">
-                    <jnt-select placeholder="Title" formControlName="resource">
-                        <jnt-select-option *ngFor="let r of feature.spec.resourceTypes"
-                                           [key]="r.title" [label]="r.title"></jnt-select-option>
-                    </jnt-select>
-                    <jnt-input price placeholder="Hours"
-                               [type]="ui.form.input.text"
-                               [size]="ui.sizes.small"
-                               formControlName="hours"></jnt-input>
-                    <jnt-button [icon]="ui.icons.delete"
-                                [scheme]="ui.schemes.secondary"
-                                [size]="ui.sizes.tiny"
-                                [type]="ui.form.button.type.button"
-                                (click)="delete(i)"></jnt-button>
-                </jnt-stack>
+                <table border="0" cellpadding="4" cellspacing="0">
+                    <tr *ngFor="let r of resources.controls; let i = index"
+                        [formGroupName]="i">
+                        <td>
+                            <jnt-select resource placeholder="Title"
+                                        formControlName="resource"
+                                        [size]="ui.sizes.small"
+                                        [allowEmpty]="false">
+                                <jnt-select-option *ngFor="let r of feature.spec.resourceTypes"
+                                                   [key]="r.title" [label]="r.title"></jnt-select-option>
+                            </jnt-select>
+                        </td>
+                        <td>
+                            <jnt-input price placeholder="Hours"
+                                       [type]="ui.form.input.text"
+                                       [size]="ui.sizes.small"
+                                       [textAlign]="ui.text.align.right"
+                                       formControlName="hours"></jnt-input>
+                        </td>
+                        <td>
+                            <jnt-button [icon]="ui.icons.delete"
+                                        [scheme]="ui.schemes.secondary"
+                                        [size]="ui.sizes.tiny"
+                                        [type]="ui.form.button.type.button"
+                                        (click)="delete(i)"></jnt-button>
+                        </td>
+                    </tr>
+                </table>
             </jnt-stack>
         </ng-container>
     </ng-container>

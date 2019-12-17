@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PopoverService, UI } from 'junte-ui';
 import { combineLatest, Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
+import { deserialize } from 'serialize-ts/dist';
 import { Issue } from 'src/app/model/spec/planning/issue';
 import { Spec } from 'src/app/model/spec/spec';
+import { IssueState } from '../../../../model/enums/issue';
 import { IssueGQL } from './issues.graphql';
 
 @Component({
@@ -14,6 +16,7 @@ import { IssueGQL } from './issues.graphql';
 export class IssuesComponent {
 
     ui = UI;
+    issueState = IssueState;
 
     @Input()
     spec: Spec;
@@ -54,8 +57,9 @@ export class IssuesComponent {
             if (force || !issue.title) {
                 queue.push(new Observable<Issue>(o => {
                     this.issueGQL.fetch({url: issue.url, token: gitLabKey, system: 'GITLAB'})
-                        .subscribe(({data: {issue: {title, state}}}) => {
-                            [issue.title, issue.state] = [title, state];
+                        .pipe(map(({data: {issue: i}}) => deserialize(i, Issue)))
+                        .subscribe(i => {
+                            Object.assign(issue, i);
                             o.next(issue);
                             o.complete();
                         }, err => {

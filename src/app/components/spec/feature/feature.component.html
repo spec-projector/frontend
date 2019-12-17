@@ -18,7 +18,7 @@
     </header>
 
     <ng-template #viewHeader>
-        <spec-tokens title [spec]="feature.spec"
+        <spec-tokens title tokens [spec]="feature.spec"
                      [tokens]="feature.title"></spec-tokens>
     </ng-template>
 
@@ -38,20 +38,35 @@
                                [style.display]="markdown ? 'block' : 'none'"></spec-feature-markdown>
         <ng-container *ngIf="opened">
             <jnt-stack>
-                <jnt-tabs>
-                    <jnt-tab title="User story" [active]="true">
-                        <spec-story [spec]="feature.spec"
-                                    [story]="feature.story"
-                                    (changed)="saveStory($event)"></spec-story>
+                <jnt-tabs tabs>
+                    <jnt-tab title="User story">
+                        <jnt-badge *ngIf="feature.story.length"
+                                   [color]="ui.colors.paleNavy"
+                                   [count]="feature.story.length"></jnt-badge>
+                        <ng-template #tabContentTemplate>
+                            <spec-story [spec]="feature.spec"
+                                        [story]="feature.story"
+                                        (changed)="saveStory($event)"></spec-story>
+                        </ng-template>
                     </jnt-tab>
                     <jnt-tab title="Resources">
-                        <spec-resources [feature]="feature"
-                                        (changed)="saveResources($event)"></spec-resources>
+                        <jnt-badge *ngIf="feature.resources.length"
+                                   [color]="ui.colors.paleNavy"
+                                   [count]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"></jnt-badge>
+                        <ng-template #tabContentTemplate>
+                            <spec-resources [feature]="feature"
+                                            (changed)="saveResources($event)"></spec-resources>
+                        </ng-template>
                     </jnt-tab>
                     <jnt-tab title="Issues">
-                        <spec-issues [spec]="feature.spec"
-                                     [issues]="feature.issues"
-                                     (changed)="saveIssues($event)"></spec-issues>
+                        <jnt-badge *ngIf="feature.issues.length"
+                                   [color]="ui.colors.paleNavy"
+                                   [count]="feature.issues.length"></jnt-badge>
+                        <ng-template #tabContentTemplate>
+                            <spec-issues [spec]="feature.spec"
+                                         [issues]="feature.issues"
+                                         (changed)="saveIssues($event)"></spec-issues>
+                        </ng-template>
                     </jnt-tab>
                 </jnt-tabs>
 

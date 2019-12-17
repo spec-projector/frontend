@@ -21,24 +21,28 @@
         <tr *ngFor="let issue of issues;let i = index">
             <td>
                 <jnt-stack [gutter]="ui.gutter.small">
-                    <jnt-stack [type]="ui.stack.type.horizontal">
-                        <div>{{issue.title | empty}}</div>
-                        <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
-                                   [label]="issue.resource"></jnt-label>
+                    <jnt-stack [type]="ui.stack.type.horizontal"
+                               [gutter]="ui.gutter.small">
+                        <jnt-avatar *ngIf="issue.assignee?.avatar as avatar"
+                                    [size]="ui.sizes.tiny"
+                                    [image]="avatar"></jnt-avatar>
+                        <jnt-stack [type]="ui.stack.type.horizontal">
+                            <jnt-stack *ngIf="issue.title" [gutter]="ui.gutter.tiny">
+                                <jnt-link link [attr.closed]="issue.state === issueState.closed"
+                                          target="_blank"
+                                          [source]="issue.url"
+                                          [title]="issue.title"></jnt-link>
+                                <small *ngIf="issue.assignee?.name as name">{{name}}</small>
+                            </jnt-stack>
+                            <jnt-icon *ngIf="issue.state === issueState.closed" closed [icon]="ui.icons.check"></jnt-icon>
+                            <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
+                                       [label]="issue.resource"></jnt-label>
+                        </jnt-stack>
                     </jnt-stack>
-
-                    <ng-container *ngIf="issue.assignee">
-                        <div>
-                            {{issue.assignee}}
-                        </div>
-                    </ng-container>
                 </jnt-stack>
             </td>
             <td>
                 {{issue.spent | empty}}
-            </td>
-            <td>
-                {{issue.state | empty}}
             </td>
             <td>
                 <jnt-button [icon]="ui.icons.delete"
