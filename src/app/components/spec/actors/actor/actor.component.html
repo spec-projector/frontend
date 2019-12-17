@@ -30,7 +30,7 @@
                         </jnt-button>
                     </jnt-stack>
                     <spec-feature [feature]="feature"
-                                  (selected)="router.navigate([{feature: feature.id}], {relativeTo: route})"
+                                  (selected)="router.navigate([selected == feature.id ? {} : {feature: feature.id}], {relativeTo: route})"
                                   [opened]="selected === feature.id"
                                   feature>
                     </spec-feature>

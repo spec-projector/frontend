@@ -11,5 +11,11 @@ table {
   td, th {
     padding: $gutter-small;
     border: 1px solid $secondary-color;
+    [link][closed='true'] {
+      text-decoration: line-through;
+    }
+    [closed] {
+      color: $success-color;
+    }
   }
 }

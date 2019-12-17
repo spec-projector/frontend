@@ -1,5 +1,18 @@
 import { IssueState, IssueSystem } from 'src/app/model/enums/issue';
 import { persist, persistence } from 'src/decorators/persistence';
+import { TokenSerializer } from '../serializers/token';
+import { StoryEntryType } from './feature';
+import { Token } from './token';
+
+@persistence()
+export class Developer {
+
+    @persist()
+    name: string;
+
+    @persist()
+    avatar: string;
+}
 
 @persistence()
 export class Issue {
@@ -17,7 +30,7 @@ export class Issue {
     title: string;
 
     @persist()
-    assignee: string;
+    assignee: Developer;
 
     @persist()
     spent: number;

@@ -2,7 +2,9 @@
     <jnt-form-item>
         <jnt-form-label>Resource</jnt-form-label>
         <jnt-form-control name="resource">
-            <jnt-select placeholder="Resource" formControlName="resource">
+            <jnt-select placeholder="Resource"
+                        [size]="ui.sizes.small"
+                        formControlName="resource">
                 <jnt-select-option *ngFor="let r of spec.resourceTypes"
                                    [key]="r.title" [label]="r.title">
                 </jnt-select-option>
@@ -32,6 +34,7 @@
                                      [icon]="ui.icons.gitlab"
                                      [value]="issueSystem.gitlab"></jnt-switcher-option>
                 <jnt-switcher-option label="GitHub"
+                                     [icon]="ui.icons.github"
                                      [value]="issueSystem.github"></jnt-switcher-option>
             </jnt-switcher>
             <jnt-form-message [type]="ui.form.validators.typeError.required">
@@ -44,7 +47,6 @@
         <jnt-stack [align]="ui.flex.align.end">
             <jnt-button text="Attach"
                         [size]="ui.sizes.small"
-                        [icon]="ui.icons.arrowRight"
                         [type]="ui.form.button.type.submit"></jnt-button>
         </jnt-stack>
     </ng-template>

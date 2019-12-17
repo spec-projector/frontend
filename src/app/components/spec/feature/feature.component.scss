@@ -61,7 +61,14 @@ header {
     &:focus {
       color: black;
     }
+    &[tokens] {
+      margin-right: 30px;
+    }
   }
+}
+
+[tabs] {
+  width: 100%;
 }
 
 table {

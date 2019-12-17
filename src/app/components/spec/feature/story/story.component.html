@@ -15,7 +15,10 @@
 
 <ng-template #addStoryTemplate>
     <p>
-        <jnt-link title="Add story" (click)="fill()"></jnt-link>
-        here
+        <jnt-link title="Add story"
+                  [outline]="ui.outline.ghost"
+                  [icon]="ui.icons.arrowRight"
+                  (click)="fill()"></jnt-link>
+        to feature.
     </p>
 </ng-template>
