@@ -4,9 +4,9 @@
 
 <jnt-stack [gutter]="ui.gutter.small" terms>
     <jnt-button *ngIf="manager.mode === editMode.edit"
-                [icon]="ui.icons.font.plus"
-                [size]="ui.sizes.tiny"
+                [icon]="ui.icons.font.add"
                 [scheme]="ui.schemes.secondary"
+                [outline]="ui.outline.transparent"
                 (click)="addTerm()">
     </jnt-button>
 
