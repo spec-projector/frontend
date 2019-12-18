@@ -1,25 +1,49 @@
 <form [formGroup]="form">
-    <header (mouseenter)="manager.mode ==  editMode.edit ? mode.name = editMode.edit : null"
-            (mouseleave)="mode.name = editMode.view">
-        <ng-template #viewNameHeader>
-            <span>{{term.name}}</span>
-        </ng-template>
-        <ng-container *ngIf="mode.name == editMode.edit; else viewNameHeader">
-            <input title formControlName="name" fitWidth>
-        </ng-container>
-    </header>
-
-    <div gutter>&minus;</div>
-    <div descripton>
-        <header (mouseenter)="manager.mode ==  editMode.edit ? mode.description = editMode.edit : null"
-                (mouseleave)="mode.description = editMode.view">
-            <ng-template #viewDescriptionHeader>
-                <spec-tokens [spec]="term.spec"
-                             [tokens]="term.description"></spec-tokens>
-            </ng-template>
-            <ng-container *ngIf="mode.description == editMode.edit; else viewDescriptionHeader">
-                <input title formControlName="description" fitWidth>
-            </ng-container>
-        </header>
-    </div>
+    <jnt-container>
+        <jnt-row [direction]="ui.flex.direction.row"
+                 [align]="ui.flex.align.start"
+                 [alignContent]="ui.flex.alignContent.start"
+                 [justify]="ui.flex.justify.start"
+                 [wrap]="ui.flex.wrap.noWrap">
+            <jnt-col [mobile]="1" [tablet]="1" [desktop]="1" [wide]="1" [span]="6"
+                     [alignSelf]="ui.flex.alignSelf.center">
+                <jnt-button *ngIf="manager.mode === editMode.edit"
+                            [icon]="ui.icons.font.delete"
+                            [scheme]="ui.schemes.secondary"
+                            [outline]="ui.outline.transparent"
+                            (click)="delete()">
+                </jnt-button>
+            </jnt-col>
+            <jnt-col [mobile]="4" [tablet]="4" [desktop]="3" [wide]="2" [span]="6"
+                     [alignSelf]="ui.flex.alignSelf.center">
+                <header (mouseenter)="manager.mode == editMode.edit ? mode.name = editMode.edit : null"
+                        (mouseleave)="mode.name = editMode.view" name>
+                    <ng-template #viewNameHeader>
+                        <span>{{term.name}}</span>
+                    </ng-template>
+                    <ng-container *ngIf="mode.name == editMode.edit; else viewNameHeader">
+                        <input formControlName="name" fitWidth>
+                    </ng-container>
+                </header>
+            </jnt-col>
+            <jnt-col [mobile]="1" [tablet]="1" [desktop]="1" [wide]="1" [span]="6"
+                     [alignSelf]="ui.flex.alignSelf.center">
+                <jnt-icon [icon]="ui.icons.minus"></jnt-icon>
+            </jnt-col>
+            <jnt-col [mobile]="6" [tablet]="6" [desktop]="7" [wide]="8" [span]="6"
+                     [alignSelf]="ui.flex.alignSelf.center">
+                <header (mouseenter)="manager.mode ==  editMode.edit ? mode.description = editMode.edit : null"
+                        (mouseleave)="mode.description = editMode.view" description>
+                    <ng-template #viewDescriptionHeader>
+                        <spec-tokens [spec]="term.spec" [tokens]="term.description"></spec-tokens>
+                    </ng-template>
+                    <ng-container *ngIf="mode.description == editMode.edit; else viewDescriptionHeader">
+                        <textarea #description formControlName="description" rows="1"
+                                  (input)="adaptation($event.target)">
+                        </textarea>
+                    </ng-container>
+                </header>
+            </jnt-col>
+        </jnt-row>
+    </jnt-container>
 </form>

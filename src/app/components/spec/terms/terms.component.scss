@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  padding-top: $gutter-small;
 }
 
 [alphabet] {
@@ -16,8 +17,12 @@
 
 [terms] {
   position: relative;
-}
 
-[char] {
-  border-bottom: 1px $control-border-color solid;
+  [list] {
+    width: 100%;
+
+    [char] {
+      border-bottom: 1px $control-border-color solid;
+    }
+  }
 }

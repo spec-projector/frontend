@@ -47,11 +47,13 @@ import { GroupFeaturesByActorPipe, GroupFeaturesByEpicPipe } from 'src/app/pipes
 import { SpecPricePipe } from 'src/app/pipes/spec/actor-price';
 import { EncodeURIPipe } from 'src/app/pipes/string/array';
 import { TermDescriptionPipe } from 'src/app/pipes/terms/description';
+import { SameFirstCharPipe } from 'src/app/pipes/terms/same-first-char';
+import { SortByNamePipe } from 'src/app/pipes/terms/sort-by-name';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
+import { ApiComponent } from './feature/api/api.component';
 import { EstimatedTimePipe, SpentTimePipe } from './feature/pipes';
 import { SpaceSyncComponent } from './shared/sync/space-sync.component';
-import { ApiComponent } from './feature/api/api.component';
 
 @NgModule({
     declarations: [
@@ -86,6 +88,8 @@ import { ApiComponent } from './feature/api/api.component';
         GroupEntitiesPipe,
         FeaturesPipe,
         JoinTokensPipe,
+        SameFirstCharPipe,
+        SortByNamePipe,
         TermDescriptionPipe,
         FeatureEditGraphqlComponent,
         EncodeURIPipe,
