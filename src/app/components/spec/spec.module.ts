@@ -52,11 +52,12 @@ import { SortByNamePipe } from 'src/app/pipes/terms/sort-by-name';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
 import { ApiComponent } from './feature/api/api.component';
-import { EstimatedTimePipe } from './feature/pipes';
+import { EstimatedTimePipe, SpentTimePipe } from './feature/pipes';
 import { SpaceSyncComponent } from './shared/sync/space-sync.component';
 
 @NgModule({
     declarations: [
+        SpentTimePipe,
         EstimatedTimePipe,
         SpecComponent,
         DetailsComponent,

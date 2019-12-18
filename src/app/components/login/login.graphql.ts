@@ -15,12 +15,8 @@ export class LoginGQL extends Mutation<{ login: { token } }> {
           user {
             id
             lastLogin
-            isSuperuser
-            login
             name
             email
-            isStaff
-            isActive
           }
         }
       }

@@ -6,8 +6,8 @@
             </ng-template>
             <jnt-button [icon]="ui.icons.plus"
                         [jntPopover]="{
-                            content: addTemplate,
                             title: 'Add project',
+                            contentTemplate: addTemplate,
                             trigger: ui.popover.trigger.click}">
             </jnt-button>
 
@@ -36,7 +36,7 @@
                                             [scheme]="ui.schemes.secondary"
                                             [jntPopover]="{
                                                 title: project?.title,
-                                                content: editTemplate,
+                                                contentTemplate: editTemplate,
                                                 trigger: ui.popover.trigger.click}">
                                 </jnt-button>
                                 <jnt-button [icon]="ui.icons.delete"

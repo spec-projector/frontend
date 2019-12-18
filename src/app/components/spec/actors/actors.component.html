@@ -14,7 +14,7 @@
                     <jnt-stack [type]="ui.stack.type.horizontal"
                                [align]="ui.flex.align.center"
                                [gutter]="ui.gutter.small">
-                        <jnt-link [source]="['.', {feature: feature.id}]"
+                        <jnt-link (click)="router.navigate(['.', {feature: feature.id}], {relativeTo: route, fragment: feature.id})"
                                   [title]="feature.title | joinTokens"></jnt-link>
                         <div dot *ngIf="feature.story.length" story></div>
                         <div dot *ngIf="feature.frames.length" frames></div>

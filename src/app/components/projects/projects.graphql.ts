@@ -20,12 +20,9 @@ export class AllProjectsGQL extends Query<{ allProjects }> {
             owner {
                 id
                 lastLogin
-                isSuperuser
                 login
                 name
                 email
-                isStaff
-                isActive
               }
           }
         }

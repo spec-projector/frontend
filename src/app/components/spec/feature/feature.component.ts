@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, EventEmitter, Injector, Input, Output, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, EventEmitter, Injector, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ModalService, PopoverService, UI } from 'junte-ui';
 import { ClipboardService } from 'ngx-clipboard';
@@ -75,7 +75,8 @@ export class FeatureComponent {
                 private injector: Injector,
                 private cfr: ComponentFactoryResolver,
                 private modal: ModalService,
-                private logger: NGXLogger) {
+                private logger: NGXLogger,
+                public hostRef: ElementRef) {
     }
 
     private updateForm() {

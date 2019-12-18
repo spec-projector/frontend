@@ -11,7 +11,7 @@ table {
   td, th {
     padding: $gutter-small;
     border: 1px solid $secondary-color;
-    [link][closed='true'] {
+    [link][closed='true'] ::ng-deep span[child-of=#{$jnt-link-host}] {
       text-decoration: line-through;
     }
     [closed] {

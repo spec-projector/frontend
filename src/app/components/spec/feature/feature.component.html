@@ -61,7 +61,7 @@
                     <jnt-tab title="Issues">
                         <jnt-badge *ngIf="feature.issues.length"
                                    [color]="ui.colors.paleNavy"
-                                   [count]="feature.issues.length"></jnt-badge>
+                                   [count]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"></jnt-badge>
                         <ng-template #tabContentTemplate>
                             <spec-issues [spec]="feature.spec"
                                          [issues]="feature.issues"
