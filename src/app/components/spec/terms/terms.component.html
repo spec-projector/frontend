@@ -1,5 +1,10 @@
 <jnt-stack [type]="ui.stack.type.horizontal" alphabet [align]="ui.flex.align.center">
-    <a *ngFor="let aTerm of terms" [routerLink]="['.']" [fragment]="aTerm.char">{{aTerm.char}}</a>
+    <ng-container *ngFor="let term of terms; let i = index; let first = first">
+        <a *ngIf="!(term.name | sameFirstChar:terms[i - 1]?.name)"
+           [routerLink]="['.']" [fragment]="term.name[0]">
+            {{term.name[0]}}
+        </a>
+    </ng-container>
 </jnt-stack>
 
 <jnt-stack [gutter]="ui.gutter.small" terms>
@@ -11,9 +16,12 @@
     </jnt-button>
 
     <jnt-stack [align]="ui.flex.align.stretch">
-        <ng-container *ngFor="let aTerm of terms">
-            <a char [id]="aTerm.char">{{aTerm.char}}</a>
-            <spec-term *ngFor="let term of aTerm.terms" [term]="term"></spec-term>
+        <ng-container *ngFor="let term of terms; let i = index; let first = first">
+            <a *ngIf="!(term.name | sameFirstChar:terms[i - 1]?.name)"
+               char [id]="term.name[0]">
+                {{term.name[0]}}
+            </a>
+            <spec-term [term]="term"></spec-term>
         </ng-container>
     </jnt-stack>
 </jnt-stack>

@@ -27,7 +27,7 @@ export class TermsComponent implements OnInit {
 
     ui = UI;
     editMode = EditMode;
-    terms: AlphabeticalTerms[] = [];
+    terms: Term[] = [];
 
     mode = EditMode.view;
     spec: Spec;
@@ -44,16 +44,7 @@ export class TermsComponent implements OnInit {
     }
 
     load() {
-        const terms = this.spec.terms.sort((a, b) => a.name.localeCompare(b.name));
-        terms.forEach(term => {
-            const last = this.terms[this.terms.length - 1];
-
-            if (!!this.terms.length && !!last && last.char === term.name[0]) {
-                last.terms.push(term);
-            } else {
-                this.terms.push(new AlphabeticalTerms(term));
-            }
-        });
+        this.terms = this.spec.terms.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     addTerm() {
