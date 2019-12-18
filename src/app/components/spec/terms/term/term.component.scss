@@ -55,8 +55,9 @@ form {
     }
   }
 
-  textarea, span {
+  textarea {
     white-space: normal;
+    resize: none;
     overflow: hidden;
   }
 }
