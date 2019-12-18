@@ -1,6 +1,6 @@
 <jnt-stack [type]="ui.stack.type.horizontal" alphabet [align]="ui.flex.align.center">
-    <ng-container *ngFor="let term of terms; let i = index; let first = first">
-        <a *ngIf="!(term.name | sameFirstChar:terms[i - 1]?.name)"
+    <ng-container *ngFor="let term of (spec.terms | sortByName); let i = index; let first = first">
+        <a *ngIf="!(term.name | sameFirstChar:(spec.terms | sortByName)[i - 1]?.name)"
            [routerLink]="['.']" [fragment]="term.name[0]">
             {{term.name[0]}}
         </a>
@@ -16,8 +16,8 @@
     </jnt-button>
 
     <jnt-stack [align]="ui.flex.align.stretch">
-        <ng-container *ngFor="let term of terms; let i = index; let first = first">
-            <a *ngIf="!(term.name | sameFirstChar:terms[i - 1]?.name)"
+        <ng-container *ngFor="let term of (spec.terms | sortByName); let i = index; let first = first">
+            <a *ngIf="!(term.name | sameFirstChar:(spec.terms | sortByName)[i - 1]?.name)"
                char [id]="term.name[0]">
                 {{term.name[0]}}
             </a>

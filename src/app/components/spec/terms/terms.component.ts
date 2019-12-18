@@ -27,8 +27,6 @@ export class TermsComponent implements OnInit {
 
     ui = UI;
     editMode = EditMode;
-    terms: Term[] = [];
-
     mode = EditMode.view;
     spec: Spec;
 
@@ -37,14 +35,7 @@ export class TermsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.data.subscribe(({spec}) => {
-            this.spec = spec;
-            this.load();
-        });
-    }
-
-    load() {
-        this.terms = this.spec.terms.sort((a, b) => a.name.localeCompare(b.name));
+        this.route.data.subscribe(({spec}) => this.spec = spec);
     }
 
     addTerm() {
@@ -54,7 +45,6 @@ export class TermsComponent implements OnInit {
             description: [new TextToken('description...')]
         });
         this.spec.terms.unshift(term);
-        this.load();
         this.manager.put(term);
         this.manager.put(this.spec);
     }
