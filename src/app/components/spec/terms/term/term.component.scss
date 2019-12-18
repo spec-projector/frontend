@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  width: 100%;
 }
 
 form {
@@ -26,19 +27,13 @@ form {
     }
   }
 
-  [gutter] {
-    margin: 0 $gutter-large;
-  }
-
   [descripton] {
     flex: 1;
   }
 }
 
-header {
-  margin-bottom: $gutter-small;
-
-  [title] {
+[name], [description] {
+  input, textarea {
     display: flex;
     align-items: center;
     padding: 0;
@@ -47,8 +42,8 @@ header {
     border: none;
     box-sizing: border-box;
     outline: none;
-    height: 1.4em;
-    line-height: 1.1em;
+    height: fit-content;
+    line-height: 1.5em;
     overflow: hidden;
     background-color: transparent;
     white-space: nowrap;
@@ -58,9 +53,15 @@ header {
     &:focus {
       color: black;
     }
-
-    &[tokens] {
-      margin-right: 30px;
-    }
   }
+
+  textarea {
+    white-space: normal;
+    resize: none;
+    overflow: hidden;
+  }
+}
+
+[description] {
+  width: 100%;
 }

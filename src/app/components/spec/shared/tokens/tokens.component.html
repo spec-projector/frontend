@@ -3,7 +3,10 @@
         <ng-container [ngSwitch]="token | getTokenType">
             <ng-container *ngSwitchCase="tokenType.term">
                 <a term [routerLink]="['..', 'terms']" [fragment]="token['term']"
-                   [jntPopover]="{title: token['term'], content: (token['term'] | termDescription:spec), trigger: ui.popover.trigger.hover}">
+                   [jntPopover]="{
+                       title: token['term'],
+                       content: (token['term'] | termDescription:spec),
+                       trigger: ui.popover.trigger.hover}">
                     <dt>{{token['term']}}</dt>
                 </a>
             </ng-container>
@@ -14,7 +17,7 @@
                 <a target="_blank" [attr.href]="token['url']">{{token['url']}}</a>
             </ng-container>
             <ng-container *ngSwitchDefault>
-                <span>{{token['text']}}</span>
+                <span default>{{token['text']}}</span>
             </ng-container>
         </ng-container>
     </ng-container>
