@@ -33,8 +33,6 @@ form {
 }
 
 [name], [description] {
-  margin-bottom: $gutter-small;
-
   input, textarea {
     display: flex;
     align-items: center;
