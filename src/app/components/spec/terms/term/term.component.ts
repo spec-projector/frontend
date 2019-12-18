@@ -21,13 +21,6 @@ export class TermComponent implements OnInit {
 
     private _term: Term;
 
-    @ViewChild('description', {static: false})
-    set description(description: ElementRef<HTMLTextAreaElement>) {
-        if (!!description) {
-            this.adaptation(description.nativeElement);
-        }
-    }
-
     ui = UI;
     editMode = EditMode;
 
@@ -53,6 +46,13 @@ export class TermComponent implements OnInit {
 
     get term() {
         return this._term;
+    }
+
+    @ViewChild('description', {static: false})
+    set description(description: ElementRef<HTMLTextAreaElement>) {
+        if (!!description) {
+            this.adaptation(description.nativeElement);
+        }
     }
 
     constructor(private formBuilder: FormBuilder,
