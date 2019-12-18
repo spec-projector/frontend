@@ -16,8 +16,12 @@
 
 [terms] {
   position: relative;
-}
 
-[char] {
-  border-bottom: 1px $control-border-color solid;
+  [list] {
+    width: 100%;
+
+    [char] {
+      border-bottom: 1px $control-border-color solid;
+    }
+  }
 }
