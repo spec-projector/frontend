@@ -25,7 +25,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, {
         paramsInheritanceStrategy: 'always',
         relativeLinkResolution: 'corrected',
-        scrollPositionRestoration: 'enabled',
+        scrollPositionRestoration: 'disabled',
         anchorScrolling: 'enabled',
         scrollOffset: [0, 150]
     })],

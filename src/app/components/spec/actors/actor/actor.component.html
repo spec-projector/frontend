@@ -29,7 +29,7 @@
                                     (click)="deleteFeature(feature.id)">
                         </jnt-button>
                     </jnt-stack>
-                    <spec-feature [feature]="feature"
+                    <spec-feature [attr.id]="feature.id" [feature]="feature"
                                   (selected)="router.navigate([selected == feature.id ? {} : {feature: feature.id}], {relativeTo: route})"
                                   [opened]="selected === feature.id"
                                   feature>

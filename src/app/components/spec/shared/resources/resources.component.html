@@ -1,10 +1,10 @@
 <form [formGroup]="form">
     <ng-template #fillResourcesTemplate>
         <p>
-            <jnt-link title="Fill" [outline]="ui.outline.ghost"
-                      [icon]="ui.icons.arrowRight"
+            <jnt-link title="Fill resources" [outline]="ui.outline.ghost"
+                      [icon]="ui.icons.plus"
                       (click)="fill()"></jnt-link>
-            resources for feature.
+            for feature.
         </p>
     </ng-template>
     <ng-container formArrayName="resources">

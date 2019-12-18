@@ -45,7 +45,7 @@
                 </jnt-stack>
             </td>
             <td>
-                {{issue.spent | empty}}
+                {{!!issue.spent ? issue.spent + 'h' : '&mdash;'}}
             </td>
             <td>
                 <jnt-button [icon]="ui.icons.delete"

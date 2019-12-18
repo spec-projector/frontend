@@ -22,7 +22,7 @@ export class ActorsComponent implements OnInit {
     selected: string;
 
     constructor(public manager: SpecManager,
-                private route: ActivatedRoute,
+                public route: ActivatedRoute,
                 public router: Router) {
     }
 
