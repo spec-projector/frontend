@@ -16,7 +16,7 @@
             </jnt-col>
             <jnt-col [mobile]="4" [tablet]="4" [desktop]="3" [wide]="2" [span]="6"
                      [alignSelf]="ui.flex.alignSelf.center">
-                <header (mouseenter)="manager.mode ==  editMode.edit ? mode.name = editMode.edit : null"
+                <header (mouseenter)="manager.mode == editMode.edit ? mode.name = editMode.edit : null"
                         (mouseleave)="mode.name = editMode.view" name>
                     <ng-template #viewNameHeader>
                         <span>{{term.name}}</span>
@@ -35,11 +35,12 @@
                 <header (mouseenter)="manager.mode ==  editMode.edit ? mode.description = editMode.edit : null"
                         (mouseleave)="mode.description = editMode.view" description>
                     <ng-template #viewDescriptionHeader>
-                        <spec-tokens [spec]="term.spec"
-                                     [tokens]="term.description"></spec-tokens>
+                        <spec-tokens [spec]="term.spec" [tokens]="term.description"></spec-tokens>
                     </ng-template>
                     <ng-container *ngIf="mode.description == editMode.edit; else viewDescriptionHeader">
-                        <textarea formControlName="description"></textarea>
+                        <textarea #description formControlName="description" rows="1"
+                                  (input)="adaptation($event.target)">
+                        </textarea>
                     </ng-container>
                 </header>
             </jnt-col>

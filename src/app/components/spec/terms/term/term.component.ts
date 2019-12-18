@@ -22,7 +22,11 @@ export class TermComponent implements OnInit {
     private _term: Term;
 
     @ViewChild('description', {static: false})
-    description: ElementRef<HTMLTextAreaElement>;
+    set description(description: ElementRef<HTMLTextAreaElement>) {
+        if (!!description) {
+            this.adaptation(description.nativeElement);
+        }
+    }
 
     ui = UI;
     editMode = EditMode;
@@ -66,5 +70,9 @@ export class TermComponent implements OnInit {
         const index = this.spec.terms.findIndex(term => term.id === this.term.id);
         this.spec.terms.splice(index, 1);
         this.manager.put(this.spec);
+    }
+
+    adaptation(element) {
+        element.style.height = (element.scrollHeight) + 'px';
     }
 }
