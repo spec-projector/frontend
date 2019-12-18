@@ -73,6 +73,6 @@ export class TermComponent implements OnInit {
     }
 
     adaptation(element) {
-        element.style.height = (element.scrollHeight) + 'px';
+        element.style.height = `${element.scrollHeight}px`;
     }
 }

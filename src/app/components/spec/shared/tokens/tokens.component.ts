@@ -15,5 +15,4 @@ export class TokensComponent {
 
     @Input() spec: Spec;
     @Input() tokens: Token[] = [];
-
 }
