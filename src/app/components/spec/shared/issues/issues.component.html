@@ -8,7 +8,7 @@
         <jnt-button add [size]="ui.sizes.tiny"
                     [icon]="ui.icons.plus"
                     [scheme]="ui.schemes.secondary"
-                    [jntPopover]="{title: 'Attach issue', scheme: ui.schemes.secondary, content: attachTemplate, trigger: ui.popover.trigger.click}"></jnt-button>
+                    [jntPopover]="{title: 'Attach issue', scheme: ui.schemes.secondary, contentTemplate: attachTemplate, trigger: ui.popover.trigger.click}"></jnt-button>
         <jnt-button [icon]="ui.icons.reload"
                     [size]="ui.sizes.tiny"
                     [scheme]="ui.schemes.secondary"
@@ -27,15 +27,18 @@
                                     [size]="ui.sizes.tiny"
                                     [image]="avatar"></jnt-avatar>
                         <jnt-stack [type]="ui.stack.type.horizontal">
-                            <jnt-stack *ngIf="issue.title" [gutter]="ui.gutter.tiny">
+                            <div *ngIf="issue.title">
                                 <jnt-link link [attr.closed]="issue.state === issueState.closed"
                                           target="_blank"
                                           [source]="issue.url"
                                           [title]="issue.title"></jnt-link>
+                                <br>
                                 <small *ngIf="issue.assignee?.name as name">{{name}}</small>
-                            </jnt-stack>
-                            <jnt-icon *ngIf="issue.state === issueState.closed" closed [icon]="ui.icons.check"></jnt-icon>
+                            </div>
+                            <jnt-icon *ngIf="issue.state === issueState.closed" closed
+                                      [icon]="ui.icons.check"></jnt-icon>
                             <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
+                                       [size]="ui.sizes.small"
                                        [label]="issue.resource"></jnt-label>
                         </jnt-stack>
                     </jnt-stack>
