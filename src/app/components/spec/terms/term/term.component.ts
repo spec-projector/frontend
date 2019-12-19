@@ -5,6 +5,7 @@ import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { Term } from 'src/app/model/spec/planning/term';
 import { Token } from 'src/app/model/spec/planning/token';
+import { Spec } from 'src/app/model/spec/spec';
 
 class TermMode {
     name: EditMode;
@@ -20,9 +21,6 @@ export class TermComponent implements OnInit {
 
     private _term: Term;
 
-    @ViewChild('description', {static: false})
-    description: ElementRef<HTMLTextAreaElement>;
-
     ui = UI;
     editMode = EditMode;
 
@@ -36,6 +34,8 @@ export class TermComponent implements OnInit {
         description: null
     });
 
+    @Input() spec: Spec;
+
     @Input() set term(term: Term) {
         this._term = term;
         this.form.patchValue({
@@ -48,6 +48,13 @@ export class TermComponent implements OnInit {
         return this._term;
     }
 
+    @ViewChild('description', {static: false})
+    set description(description: ElementRef<HTMLTextAreaElement>) {
+        if (!!description) {
+            this.adaptation(description.nativeElement);
+        }
+    }
+
     constructor(private formBuilder: FormBuilder,
                 public manager: SpecManager) {
     }
@@ -57,5 +64,15 @@ export class TermComponent implements OnInit {
             [this.term.name, this.term.description] = [value.name, Token.parse(value.description)];
             this.manager.put(this.term);
         });
+    }
+
+    delete() {
+        const index = this.spec.terms.findIndex(term => term.id === this.term.id);
+        this.spec.terms.splice(index, 1);
+        this.manager.put(this.spec);
+    }
+
+    adaptation(element) {
+        element.style.height = `${element.scrollHeight}px`;
     }
 }
