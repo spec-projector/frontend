@@ -67,6 +67,9 @@ ul[actors] {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
+  [actor] {
+    flex: 1;
+  }
 }
 
 [field] {

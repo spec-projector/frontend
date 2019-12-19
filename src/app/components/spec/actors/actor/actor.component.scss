@@ -71,7 +71,7 @@ ul {
       padding: 0 0 0 $gutter-small;
       display: flex;
       flex-direction: column;
-      border-left: 2px solid $shadow-normal;
+      border-left: 2px solid $green-dark-color;
       &[selected='true'] {
         li[opened='false']:not(:hover) {
           opacity: .5;
@@ -90,6 +90,7 @@ ul {
         position: relative;
         z-index: 1;
         transition: .25s opacity;
+        width: 100%;
 
         &[opened='true'] {
           box-shadow: $shadow-primary;
