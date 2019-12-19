@@ -16,13 +16,7 @@ export class ProjectGQL extends Query<{ project }> {
         description
         owner {
             id
-            lastLogin
-            isSuperuser
-            login
             name
-            email
-            isStaff
-            isActive
         }
       }
     }`;
