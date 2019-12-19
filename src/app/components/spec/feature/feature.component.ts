@@ -87,8 +87,9 @@ export class FeatureComponent {
 
     copyMarkdown() {
         const summary = this.summary.getMarkdown();
+        console.log(summary);
         this.markdown = true;
-        this.clipboard.copyFromContent(summary.innerText);
+        this.clipboard.copyFromContent(summary);
         setTimeout(() => this.markdown = false, 5000);
     }
 

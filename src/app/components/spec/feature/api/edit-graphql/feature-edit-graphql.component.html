@@ -25,7 +25,7 @@
                 <jnt-link title="Play"
                           [icon]="ui.icons.externalLink"
                           [outline]="ui.outline.ghost"
-                          [source]="spec.integration.graphqlPlaygroundUrl + '#query=' + (form.get('text').value | encodeURI)"
+                          [source]="textControl.value | graphqlPlayground:spec"
                           target="_blank"></jnt-link>
                 <jnt-button text="Save"
                             [icon]="ui.icons.check"

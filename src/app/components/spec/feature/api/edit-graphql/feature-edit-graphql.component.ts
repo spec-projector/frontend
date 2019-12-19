@@ -20,9 +20,11 @@ export class FeatureEditGraphqlComponent {
         this.form.patchValue({title, text});
     }
 
+    textControl = this.fb.control(null, [Validators.required]);
+
     form = this.fb.group({
         title: [null, [Validators.required]],
-        text: [null, [Validators.required]]
+        text: this.textControl
     });
 
     @Input() feature: Feature;

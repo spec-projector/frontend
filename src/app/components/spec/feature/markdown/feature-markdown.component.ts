@@ -19,6 +19,9 @@ export class FeatureMarkdownComponent {
     }
 
     getMarkdown() {
-        return this.hostRef.nativeElement.innerText;
+        return this.hostRef.nativeElement.innerHTML
+            .replace(/\n/g, '')
+            .replace(/<br[^>]*>/g, '\r\n')
+            .replace(/<\/?[^>]+(>|$)/g, '');
     }
 }

@@ -1,49 +1,59 @@
 <ng-template #tokensTemplate let-tokens="tokens">
     <ng-container *ngFor="let token of tokens">
         <ng-container [ngSwitch]="token | getTokenType">
-            <ng-container *ngSwitchCase="tokenType.term"> **{{token['term']}}**</ng-container>
-            <ng-container *ngSwitchCase="tokenType.accent"> {{token['text']}}</ng-container>
-            <ng-container *ngSwitchDefault> {{token.text}}</ng-container>
+            <ng-container *ngSwitchCase="tokenType.term">**❓{{token['term']}}**&nbsp;</ng-container>
+            <ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container>
+            <ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container>
         </ng-container>
     </ng-container>
 </ng-template>
-
-<div>As a 👦 **{{feature.actor?.name}}** I want:
-    <ng-container
-            *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>
-</div>
-<div *ngFor="let entry of feature.story;let i = index">
+As a 👦 **{{feature.actor?.name}}** I want:&nbsp;**
+<ng-container
+        *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>**
+<ng-container *ngFor="let entry of feature.story;let i = index">
+    <br>
     1. **I {{entry.type}}:**
     <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}">
     </ng-container>
-</div>
+</ng-container>
+
+<br>
+
 <ng-container *ngIf="feature.frames?.length">
     <br>
-    <div>**🚀 Design**</div>
-    <div *ngFor="let frame of feature.frames">
-        * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
-    </div>
-</ng-container>
-<ng-container *ngIf="feature.endpoints?.length">
+    **🚀 Design**
     <br>
-    <div>**⛳ API**</div>
-    <div *ngFor="let endpoint of feature.endpoints">
-        * {{endpoint.title}} {{endpoint.url}}
-    </div>
+    <ng-container *ngFor="let frame of feature.frames">
+        * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}<br>
+    </ng-container>
 </ng-container>
+
+<ng-container *ngIf="feature.graphql?.length">
+    <br>
+    **⛳ API**
+    <br>
+    <ng-container *ngFor="let query of feature.graphql">
+        * [{{query.title}}]({{query.text | graphqlPlayground:feature.spec}})<br>
+    </ng-container>
+</ng-container>
+
 <ng-container *ngIf="feature.issues.length">
     <br>
-    <div>**💈 Issues**</div>
-    <div *ngFor="let issue of feature.issues">
-        * {{issue.label}} {{issue.link}}
-    </div>
+    **💈 Issues**
+    <br>
+    <ng-container *ngFor="let issue of feature.issues">
+        * **{{issue.resource}}**: [{{issue.title}}]({{issue.url}})<br>
+    </ng-container>
 </ng-container>
+
 <ng-container *ngIf="(feature | featureTerms)?.length">
     <br>
-    <div>**❓Terms**</div>
-    <div *ngFor="let term of (feature | featureTerms)">
+    **❓Terms**
+    <br>
+    <ng-container *ngFor="let term of (feature | featureTerms)">
         * **{{term.name}}** &mdash;
         <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}">
         </ng-container>
-    </div>
+        <br>
+    </ng-container>
 </ng-container>
