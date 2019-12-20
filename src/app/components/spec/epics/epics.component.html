@@ -5,7 +5,7 @@
         <jnt-link [source]="['.', {epic: epic.id}]" [title]="epic.title"></jnt-link>
         <ul>
             <li *ngFor="let feature of epic.features">
-                <div>for {{feature.actor.name}}er</div>
+                <div>for {{feature.actor.name}}</div>
                 <jnt-link [source]="['.', {feature: feature.id}]" [title]="feature.title | joinTokens"></jnt-link>
             </li>
         </ul>

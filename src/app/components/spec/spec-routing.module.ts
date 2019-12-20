@@ -33,7 +33,7 @@ export const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'sprints'
+                redirectTo: 'details'
             },
             {
                 path: 'details',
