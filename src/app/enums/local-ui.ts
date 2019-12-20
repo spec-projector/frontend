@@ -10,7 +10,10 @@ export enum FontLocalIcons {
 
 export enum SvgLocalIcons {
     graphQl = 'graphql',
-    restApi = 'rest'
+    restApi = 'rest',
+    story = 'story',
+    resources = 'resources',
+    issues = 'issues'
 }
 
 export class LocalUI {
@@ -19,7 +22,10 @@ export class LocalUI {
         svg: {
             default: {
                 graphQl: SvgLocalIcons.graphQl,
-                rest: SvgLocalIcons.restApi
+                rest: SvgLocalIcons.restApi,
+                story: SvgLocalIcons.story,
+                resources: SvgLocalIcons.resources,
+                issues: SvgLocalIcons.issues
             }
         },
         sprints: FontLocalIcons.sprints + ':font:local',
