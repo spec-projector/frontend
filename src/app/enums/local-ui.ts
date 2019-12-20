@@ -36,6 +36,9 @@ export class LocalUI {
         validate: FontLocalIcons.validate + ':font:local',
         general: FontLocalIcons.general + ':font:local',
         graphQl: SvgLocalIcons.graphQl + ':svg:local',
-        rest: SvgLocalIcons.restApi + ':svg:local'
+        rest: SvgLocalIcons.restApi + ':svg:local',
+        story: SvgLocalIcons.story + ':svg:local',
+        resources: SvgLocalIcons.resources + ':svg:local',
+        issues: SvgLocalIcons.issues + ':svg:local'
     };
 }

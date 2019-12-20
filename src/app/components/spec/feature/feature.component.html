@@ -39,7 +39,8 @@
         <ng-container *ngIf="opened">
             <jnt-stack>
                 <jnt-tabs tabs>
-                    <jnt-tab title="User story">
+                    <jnt-tab title="User story"
+                             [icon]="localUi.icons.story">
                         <jnt-badge *ngIf="feature.story.length"
                                    [color]="ui.colors.paleNavy"
                                    [count]="feature.story.length"></jnt-badge>
@@ -49,7 +50,8 @@
                                         (changed)="saveStory($event)"></spec-story>
                         </ng-template>
                     </jnt-tab>
-                    <jnt-tab title="Resources">
+                    <jnt-tab title="Resources"
+                             [icon]="localUi.icons.resources">
                         <jnt-badge *ngIf="feature.resources.length"
                                    [color]="ui.colors.paleNavy"
                                    [count]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"></jnt-badge>
@@ -58,7 +60,8 @@
                                             (changed)="saveResources($event)"></spec-resources>
                         </ng-template>
                     </jnt-tab>
-                    <jnt-tab title="Issues">
+                    <jnt-tab title="Issues"
+                             [icon]="localUi.icons.issues">
                         <jnt-badge *ngIf="feature.issues.length"
                                    [color]="ui.colors.paleNavy"
                                    [count]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"></jnt-badge>
