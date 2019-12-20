@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { UI } from 'junte-ui';
+import { PopoverService, UI } from 'junte-ui';
 import { Actor } from 'src/app/model/spec/planning/actor';
 import { Spec } from 'src/app/model/spec/spec';
 import * as uuid from 'uuid/v1';
@@ -22,6 +22,7 @@ export class ActorsComponent implements OnInit {
     selected: string;
 
     constructor(public manager: SpecManager,
+                public popover: PopoverService,
                 public route: ActivatedRoute,
                 public router: Router) {
     }

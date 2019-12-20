@@ -1,15 +1,15 @@
 <ng-template #tokensTemplate let-tokens="tokens">
     <ng-container *ngFor="let token of tokens">
         <ng-container [ngSwitch]="token | getTokenType">
-            <ng-container *ngSwitchCase="tokenType.term">**❓{{token['term']}}**&nbsp;</ng-container>
+            <ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container>
             <ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container>
             <ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container>
         </ng-container>
     </ng-container>
 </ng-template>
-As a 👦 **{{feature.actor?.name}}** I want:&nbsp;**
+As a 👦 **{{feature.actor?.name}}** I want:&nbsp;[
 <ng-container
-        *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>**
+        *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>](https://www.specprojector.com/)
 <ng-container *ngFor="let entry of feature.story;let i = index">
     <br>
     1. **I {{entry.type}}:**

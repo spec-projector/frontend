@@ -1,4 +1,5 @@
-<p>Features are a functionality of your application. Your app is a game with actors each of them wants to do something for reaching some goal.</p>
+<p>Features are a functionality of your application. Your app is a game with actors each of them wants to do something
+    for reaching some goal.</p>
 <h2>Contents</h2>
 <ul contents>
     <li *ngFor="let actor of spec.actors; trackBy: trackActor">
@@ -14,8 +15,9 @@
                     <jnt-stack [type]="ui.stack.type.horizontal"
                                [align]="ui.flex.align.center"
                                [gutter]="ui.gutter.small">
-                        <jnt-link (click)="router.navigate(['.', {feature: feature.id}], {relativeTo: route, fragment: feature.id})"
-                                  [title]="feature.title | joinTokens"></jnt-link>
+                        <jnt-link
+                                (click)="router.navigate(['.', {feature: feature.id}], {relativeTo: route, fragment: feature.id})"
+                                [title]="feature.title | joinTokens"></jnt-link>
                         <div dot *ngIf="feature.story.length" story></div>
                         <div dot *ngIf="feature.frames.length" frames></div>
                         <div dot *ngIf="feature.graphql.length" graphql></div>
@@ -53,8 +55,12 @@
                 <jnt-button [icon]="ui.icons.font.delete"
                             [size]="ui.sizes.tiny"
                             [scheme]="ui.schemes.secondary"
-                            (click)="deleteActor(i)">
+                            [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.popover.trigger.click}">
                 </jnt-button>
+                <ng-template #deleteTemplate>
+                    <jnt-confirm message="Are you sure to delete the actor?" (cancel)="popover.hide()"
+                                 (ok)="deleteActor(i);popover.hide()"></jnt-confirm>
+                </ng-template>
             </jnt-stack>
             <spec-actor actor [actor]="actor" [selected]="selected"></spec-actor>
         </li>

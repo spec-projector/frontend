@@ -26,8 +26,12 @@
                         <jnt-button [icon]="ui.icons.delete"
                                     [size]="ui.sizes.tiny"
                                     [scheme]="ui.schemes.secondary"
-                                    (click)="deleteFeature(feature.id)">
+                                    [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.popover.trigger.click}">
                         </jnt-button>
+                        <ng-template #deleteTemplate>
+                            <jnt-confirm message="Are you sure to delete the feature?" (cancel)="popover.hide()"
+                                         (ok)="deleteFeature(feature.id);popover.hide()"></jnt-confirm>
+                        </ng-template>
                     </jnt-stack>
                     <spec-feature [attr.id]="feature.id" [feature]="feature"
                                   (selected)="router.navigate([selected == feature.id ? {} : {feature: feature.id}], {relativeTo: route})"

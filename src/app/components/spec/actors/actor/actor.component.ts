@@ -4,7 +4,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { UI } from 'junte-ui';
+import { PopoverService, UI } from 'junte-ui';
 import { Actor } from 'src/app/model/spec/planning/actor';
 import { Feature } from 'src/app/model/spec/planning/feature';
 import { TextToken } from 'src/app/model/spec/planning/token';
@@ -46,6 +46,7 @@ export class ActorComponent {
     }
 
     constructor(public manager: SpecManager,
+                public popover: PopoverService,
                 private formBuilder: FormBuilder,
                 public route: ActivatedRoute,
                 public router: Router) {
