@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
         password: [null, [Validators.required]]
     });
 
-    constructor(private loginApollo: LoginGQL,
-                private loginGitlabApollo: GitlabLoginGQL,
+    constructor(private loginGQL: LoginGQL,
+                private loginGitlabGQL: GitlabLoginGQL,
                 private config: AppConfig,
                 private builder: FormBuilder,
                 private route: ActivatedRoute,
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
             .pipe(filter(({code, state}) => !!code && !!state))
             .subscribe(({code, state}) => {
                 this.progress.gitlab = true;
-                this.loginGitlabApollo.mutate({code: code, state: state})
+                this.loginGitlabGQL.mutate({code: code, state: state})
                     .pipe(
                         finalize(() => this.progress.gitlab = false),
                         map(({data: {completeGitlabAuth: {token}}}) =>
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     login() {
         if (validate(this.loginForm)) {
             this.progress.login = true;
-            this.loginApollo.mutate(this.loginForm.value)
+            this.loginGQL.mutate(this.loginForm.value)
                 .pipe(
                     finalize(() => this.progress.login = false),
                     map(({data: {login: {token}}}) =>

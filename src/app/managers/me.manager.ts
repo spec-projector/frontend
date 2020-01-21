@@ -23,10 +23,10 @@ export class MeManager {
     }
 
     constructor(@Inject(AppConfig) private config: AppConfig,
-                private meManagerApollo: MeManagerGQL) {
+                private meManagerGQL: MeManagerGQL) {
         this.config.authorization$.subscribe(token => {
             if (!!token) {
-                this.meManagerApollo.fetch()
+                this.meManagerGQL.fetch()
                     .pipe(map(({data: {me}}) => deserialize(me, Me)))
                     .subscribe(user => this.user = user);
             } else {
