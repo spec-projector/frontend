@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AccentToken, TermToken, TextToken, Token, TokenType, UrlToken } from 'src/app/model/spec/planning/token';
+import { AccentToken, QuoteToken, TermToken, TextToken, Token, TokenType, UrlToken } from 'src/app/model/spec/planning/token';
 
 @Pipe({name: 'getTokenType'})
 export class TokenTypePipe implements PipeTransform {
@@ -12,6 +12,8 @@ export class TokenTypePipe implements PipeTransform {
             return TokenType.url;
         } else if (token instanceof TermToken) {
             return TokenType.term;
+        } else if (token instanceof QuoteToken) {
+          return TokenType.quote;
         }
     }
 }

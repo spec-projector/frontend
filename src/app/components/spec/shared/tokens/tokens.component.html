@@ -16,6 +16,9 @@
             <ng-container *ngSwitchCase="tokenType.url">
                 <a target="_blank" [attr.href]="token['url']">{{token['url']}}</a>
             </ng-container>
+          <ng-container *ngSwitchCase="tokenType.quote">
+            <span quote>&laquo;{{token['text']}}&raquo;</span>
+          </ng-container>
             <ng-container *ngSwitchDefault>
                 <span default>{{token['text']}}</span>
             </ng-container>

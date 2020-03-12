@@ -90,7 +90,7 @@ export class FeatureComponent {
         console.log(summary);
         this.markdown = true;
         this.clipboard.copyFromContent(summary);
-        setTimeout(() => this.markdown = false, 5000);
+        setTimeout(() => this.markdown = false, 20000);
     }
 
     saveStory(story: StoryEntry[]) {

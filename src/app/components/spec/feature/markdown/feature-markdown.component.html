@@ -3,6 +3,7 @@
         <ng-container [ngSwitch]="token | getTokenType">
             <ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container>
             <ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container>
+            <ng-container *ngSwitchCase="tokenType.quote">«{{token['text']}}»</ng-container>
             <ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container>
         </ng-container>
     </ng-container>

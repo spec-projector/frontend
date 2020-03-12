@@ -15,163 +15,169 @@ import { Issue } from './issue';
 import { Term } from './term';
 import { TermToken, Token } from './token';
 
+function normalize(input: string) {
+  return input.replace(/[аеиоуэыюя]/gi, '')
+    .toLowerCase();
+}
+
 export enum StoryEntryType {
-    see = 'see',
-    can = 'can'
+  see = 'see',
+  can = 'can'
 }
 
 @persistence()
 export class Resource {
 
-    @persist()
-    resource: string;
+  @persist()
+  resource: string;
 
-    @persist()
-    hours: number;
+  @persist()
+  hours: number;
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
-    }
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
 }
 
 @persistence()
 export class StoryEntry {
 
-    @persist()
-    type: StoryEntryType;
+  @persist()
+  type: StoryEntryType;
 
-    @persist({serializer: new ArraySerializer(new TokenSerializer())})
-    description: Token[];
+  @persist({serializer: new ArraySerializer(new TokenSerializer())})
+  description: Token[];
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
-    }
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
 }
 
 @persistence()
 export class Feature extends Persistence {
 
-    @persist({serializer: new ArraySerializer(new TokenSerializer())})
-    title: Token[] = [];
+  @persist({serializer: new ArraySerializer(new TokenSerializer())})
+  title: Token[] = [];
 
-    @persist({type: StoryEntry})
-    story: StoryEntry[] = [];
+  @persist({type: StoryEntry})
+  story: StoryEntry[] = [];
 
-    @persist({type: Issue})
-    issues: Issue[] = [];
+  @persist({type: Issue})
+  issues: Issue[] = [];
 
-    @persist({type: Frame})
-    frames: Frame[] = [];
+  @persist({type: Frame})
+  frames: Frame[] = [];
 
-    @persist({type: Api})
-    endpoints: Api[] = [];
+  @persist({type: Api})
+  endpoints: Api[] = [];
 
-    @persist({type: Graphql})
-    graphql: Graphql[] = [];
+  @persist({type: Graphql})
+  graphql: Graphql[] = [];
 
-    @persist({type: Entity})
-    entities: Entity[] = [];
+  @persist({type: Entity})
+  entities: Entity[] = [];
 
-    @persist({type: Algorithm})
-    algorithms: Algorithm[] = [];
+  @persist({type: Algorithm})
+  algorithms: Algorithm[] = [];
 
-    @persist({type: Resource})
-    resources: Resource[] = [];
+  @persist({type: Resource})
+  resources: Resource[] = [];
 
-    spec: Spec;
-    actor: Actor;
-    epic: Epic;
-    sprint: Sprint;
+  spec: Spec;
+  actor: Actor;
+  epic: Epic;
+  sprint: Sprint;
 
-    _version = 0;
+  _version = 0;
 
-    set version(version: number) {
-        this._version = version;
-        this.actor.version++;
+  set version(version: number) {
+    this._version = version;
+    this.actor.version++;
+  }
+
+  get version() {
+    return this._version;
+  }
+
+  constructor(defs: any = {}) {
+    super();
+    Object.assign(this, defs);
+  }
+
+  linking({spec, actor, epic, sprint}: { spec?: Spec, actor?: Actor, epic?: Epic, sprint?: Sprint }) {
+    // console.log('feature linking', this.title.map(t => t.toString()).join(' '));
+    if (spec !== undefined) {
+      this.spec = spec;
     }
 
-    get version() {
-        return this._version;
+    if (actor !== undefined) {
+      this.actor = actor;
     }
 
-    constructor(defs: any = {}) {
-        super();
-        Object.assign(this, defs);
+    if (epic !== undefined) {
+      this.epic = epic;
     }
 
-    linking({spec, actor, epic, sprint}: { spec?: Spec, actor?: Actor, epic?: Epic, sprint?: Sprint }) {
-        // console.log('feature linking', this.title.map(t => t.toString()).join(' '));
-        if (spec !== undefined) {
-            this.spec = spec;
-        }
-
-        if (actor !== undefined) {
-            this.actor = actor;
-        }
-
-        if (epic !== undefined) {
-            this.epic = epic;
-        }
-
-        if (sprint !== undefined) {
-            this.sprint = sprint;
-        }
-
-        if (!!this.actor && !!this.actor.spec) {
-            const entities = this.actor.spec.packages.reduce((res, pack) => res.concat(pack.entities), []);
-            for (let i = 0; i < this.entities.length; i++) {
-                const entity = this.entities[i];
-                this.entities[i] = entities.find(e => e.id === entity.id);
-            }
-        }
+    if (sprint !== undefined) {
+      this.sprint = sprint;
     }
 
-    validate(spec: Spec) {
-        if (!this.spec) {
-            throw new Error('Object is not linked');
-        }
-        const errors: TermMissedError[] = [];
-        for (const token of this.title) {
-            if (token instanceof TermToken) {
-                const missed = token.validate(this.spec.terms.map(t => t.name));
-                if (!!missed) {
-                    const error = new TermMissedError();
-                    error.feature = this;
-                    error.term = missed;
+    if (!!this.actor && !!this.actor.spec) {
+      const entities = this.actor.spec.packages.reduce((res, pack) => res.concat(pack.entities), []);
+      for (let i = 0; i < this.entities.length; i++) {
+        const entity = this.entities[i];
+        this.entities[i] = entities.find(e => e.id === entity.id);
+      }
+    }
+  }
 
-                    errors.push(error);
-                }
-            }
-        }
+  validate(spec: Spec) {
+    if (!this.spec) {
+      throw new Error('Object is not linked');
+    }
+    const errors: TermMissedError[] = [];
+    for (const token of this.title) {
+      if (token instanceof TermToken) {
+        const missed = token.validate(this.spec.terms.map(t => t.name));
+        if (!!missed) {
+          const error = new TermMissedError();
+          error.feature = this;
+          error.term = missed;
 
-        return errors.length ? errors : null;
+          errors.push(error);
+        }
+      }
     }
 
-    private findTerms(tokens: Token[]) {
-        return tokens.filter(t => t instanceof TermToken)
-            .map((t1: TermToken) => this.spec.terms.find(t2 => t2.name === t1.term))
-            .filter(t => !!t);
+    return errors.length ? errors : null;
+  }
+
+  private findTerms(tokens: Token[]) {
+    return tokens.filter(t => t instanceof TermToken)
+      .map((t1: TermToken) => this.spec.terms
+        .find(t2 => normalize(t2.name) === normalize(t1.term)))
+      .filter(t => !!t);
+  }
+
+  getTerms() {
+    if (!this.spec) {
+      throw new Error('Object is not linked');
+    }
+    let terms: Term[] = [];
+    for (const entry of this.story) {
+      if (!!entry.description.length) {
+        terms = terms.concat(this.findTerms(entry.description)
+          .filter(x => terms.indexOf(x) === -1));
+      }
     }
 
-    getTerms() {
-        if (!this.spec) {
-            throw new Error('Object is not linked');
-        }
-        let terms: Term[] = [];
-        for (const entry of this.story) {
-            if (!!entry.description.length) {
-                terms = terms.concat(this.findTerms(entry.description)
-                    .filter(x => terms.indexOf(x) === -1));
-            }
-        }
+    let nested: Term[] = [];
 
-        let nested: Term[] = [];
-
-        for (const term of terms) {
-            nested = nested.concat(this.findTerms(term.description)
-                .filter(x => nested.indexOf(x) === -1));
-        }
-
-        return terms.concat(nested.filter(x => terms.indexOf(x) === -1));
+    for (const term of terms) {
+      nested = nested.concat(this.findTerms(term.description)
+        .filter(x => nested.indexOf(x) === -1));
     }
+
+    return terms.concat(nested.filter(x => terms.indexOf(x) === -1));
+  }
 }

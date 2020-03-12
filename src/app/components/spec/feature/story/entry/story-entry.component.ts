@@ -45,6 +45,7 @@ export class StoryEntryComponent {
             .pipe(debounceTime(config.uiDebounceTime))
             .subscribe(() => {
                 const {type, description} = this.form.getRawValue();
+                console.log(Token.parse(description));
                 [this.entry.type, this.entry.description] = [type, Token.parse(description)];
                 this.changed.emit(this.entry);
             });

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { IssueState } from '../../../../model/enums/issue';
-import { Issue } from '../../../../model/spec/planning/issue';
 
 @Injectable({
     providedIn: 'root'
