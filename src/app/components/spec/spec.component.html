@@ -6,8 +6,9 @@
     </form>
 
     <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-        <jnt-menu-item [link]="['details']" title="General"
-                       [icon]="localUi.icons.general"></jnt-menu-item>
+        <jnt-menu-item [link]="['print']" title="Print"></jnt-menu-item>
+      <jnt-menu-item [link]="['details']" title="General"
+                     [icon]="localUi.icons.general"></jnt-menu-item>
         <jnt-menu-item [link]="['actors']" title="Features"
                        [icon]="localUi.icons.features">
             <jnt-badge [count]="spec?.actors.length.toString()"></jnt-badge>

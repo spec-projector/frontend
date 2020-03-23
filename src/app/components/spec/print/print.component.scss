@@ -1,0 +1,21 @@
+@import "~junte-ui/lib/assets/styles/variables";
+
+:host {
+  display: block;
+  padding-top: $gutter-small;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+[feature]{
+  padding: $gutter-normal $gutter-big;
+  border: 1px solid $primary-color;
+  background: $white-color;
+  border-radius: $corner-normal;
+}

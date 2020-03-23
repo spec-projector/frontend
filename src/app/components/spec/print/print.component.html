@@ -1,0 +1,17 @@
+<h1>Функциональные требования</h1>
+
+<ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
+  <h2>{{actor.name}}</h2>
+  <ol>
+    <li *ngFor="let feature of actor.features">
+      {{feature.title | joinTokens}}
+      <ol feature>
+        <li *ngFor="let entry of feature.story; let i = index">
+          <b>Я {{entry.type === 'can' ? 'могу' : 'хочу'}}: </b>
+          <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</ng-container>
+
