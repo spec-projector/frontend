@@ -7,7 +7,7 @@
       {{feature.title | joinTokens}}
       <ol feature>
         <li *ngFor="let entry of feature.story; let i = index">
-          <b>Я {{entry.type === 'can' ? 'могу' : 'хочу'}}: </b>
+          <b>Я {{entry.type === 'can' ? 'могу' : 'вижу'}}: </b>
           <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
         </li>
       </ol>
