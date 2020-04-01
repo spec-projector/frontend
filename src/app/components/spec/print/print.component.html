@@ -1,17 +1,26 @@
 <h1>Функциональные требования</h1>
+<ol>
+  <li *ngFor="let actor of spec.actors; trackBy: trackActor">
+    {{actor.name}}
+    <ol>
+      <li *ngFor="let feature of actor.features">
+        {{feature.title | joinTokens}}
+      </li>
+    </ol>
+  </li>
+</ol>
 
 <ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
-  <h2>{{actor.name}}</h2>
-  <ol>
+  <h2>Как <b>{{actor.name}}</b> я хочу</h2>
+  <ol actor>
     <li *ngFor="let feature of actor.features">
-      {{feature.title | joinTokens}}
+      <h3>{{feature.title | joinTokens}}</h3>
       <ol feature>
         <li *ngFor="let entry of feature.story; let i = index">
-          <b>Я {{entry.type === 'can' ? 'могу' : 'вижу'}}: </b>
+          <div [attr.type]="entry.type">Я {{entry.type === 'can' ? 'могу' : 'вижу'}}</div>
           <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
         </li>
       </ol>
     </li>
   </ol>
 </ng-container>
-

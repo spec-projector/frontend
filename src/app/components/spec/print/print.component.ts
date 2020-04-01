@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from 'junte-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
@@ -8,7 +8,8 @@ import { Actor } from '../../../model/spec/planning/actor';
 @Component({
   selector: 'spec-print',
   templateUrl: './print.component.html',
-  styleUrls: ['./print.component.scss']
+  styleUrls: ['./print.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PrintComponent implements OnInit {
 

@@ -13,9 +13,31 @@ h2 {
   font-size: 25px;
 }
 
+h3 {
+  font-size: 18px;
+}
+
+[actor] > li {
+  margin-bottom: 20px;
+}
+
 [feature]{
-  padding: $gutter-normal $gutter-big;
-  border: 1px solid $primary-color;
+  padding: $gutter-normal 40px;
   background: $white-color;
   border-radius: $corner-normal;
+}
+
+[type='see'], [type='can'] {
+  display: inline-block;
+  padding: 1px 10px 1px;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+[type='see'] {
+  color: $green-dark-color;
+}
+
+[type='can'] {
+  color: $orange-color;
 }

@@ -3,51 +3,52 @@ import { Spec } from '../spec';
 import { Entity } from './entity';
 
 export enum FieldType {
-    number = 'number',
-    string = 'string',
-    date = 'date',
-    reference = 'reference',
-    array = 'array'
+  boolean = 'boolean',
+  number = 'number',
+  string = 'string',
+  date = 'date',
+  reference = 'reference',
+  array = 'array'
 }
 
 @persistence()
 export class EntityField {
 
-    @persist()
-    name: string;
+  @persist()
+  name: string;
 
-    @persist()
-    title: string;
+  @persist()
+  title: string;
 
-    @persist()
-    autoName: boolean = true;
+  @persist()
+  autoName: boolean = true;
 
-    @persist()
-    type: FieldType = FieldType.string;
+  @persist()
+  type: FieldType = FieldType.string;
 
-    @persist()
-    reference: string;
+  @persist()
+  reference: string;
 
-    @persist()
-    required: boolean;
+  @persist()
+  required: boolean;
 
-    spec: Spec;
-    entity: Entity;
-    links: { reference?: Entity } = {};
+  spec: Spec;
+  entity: Entity;
+  links: { reference?: Entity } = {};
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
+
+  linking(entity: Entity = null) {
+    if (!!entity) {
+      this.entity = entity;
     }
 
-    linking(entity: Entity = null) {
-        if (!!entity) {
-            this.entity = entity;
-        }
-
-        if ((this.type === FieldType.reference || FieldType.array) && !!this.reference && !!this.entity) {
-            const entities = this.entity.package.spec.packages
-                .reduce((entities, pack) => entities.concat(pack.entities), []);
-            this.links.reference = entities.find(e => e.id === this.reference);
-        }
+    if ((this.type === FieldType.reference || FieldType.array) && !!this.reference && !!this.entity) {
+      const entities = this.entity.package.spec.packages
+        .reduce((entities, pack) => entities.concat(pack.entities), []);
+      this.links.reference = entities.find(e => e.id === this.reference);
     }
+  }
 }
