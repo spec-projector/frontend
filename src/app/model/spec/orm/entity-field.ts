@@ -27,6 +27,9 @@ export class EntityField {
   type: FieldType = FieldType.string;
 
   @persist()
+  required: boolean = false;
+
+  @persist()
   reference: string;
 
   @persist()

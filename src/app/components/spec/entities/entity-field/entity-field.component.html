@@ -20,6 +20,14 @@
         <option [value]="fieldType.array">array</option>
       </select>
       <br>
+      <label>
+        <jnt-stack [type]="ui.stack.type.horizontal"
+                   [gutter]="ui.gutter.tiny">
+          <small>required</small>
+          <input type="checkbox" formControlName="required">
+        </jnt-stack>
+      </label>
+      <br>
       <ng-container *ngIf="typeControl.value == fieldType.reference || typeControl.value == fieldType.array">
         <select formControlName="reference">
           <option *ngFor="let entity of (field.entity.package.spec.packages | groupEntities);
@@ -31,7 +39,12 @@
     </div>
   </div>
   <header>
-    <h1 title>{{field.title}}</h1>
+    <h1 title>{{field.title}}
+      <jnt-label required *ngIf="field.required"
+                 [size]="ui.sizes.small"
+                 [color]="ui.colors.redDark"
+                 label="required"></jnt-label>
+    </h1>
     <div naming>
       <label [attr.checked]="autoName.value"> </label>
       <h2 name>{{field.name}}</h2>
