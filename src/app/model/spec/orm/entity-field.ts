@@ -32,9 +32,6 @@ export class EntityField {
   @persist()
   reference: string;
 
-  @persist()
-  required: boolean;
-
   spec: Spec;
   entity: Entity;
   links: { reference?: Entity } = {};
