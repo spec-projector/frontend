@@ -29,7 +29,7 @@ import { ResourcesComponent } from 'src/app/components/spec/shared/resources/res
 import { TokensComponent } from 'src/app/components/spec/shared/tokens/tokens.component';
 import { SpecRoutingModule } from 'src/app/components/spec/spec-routing.module';
 import { SpecComponent } from 'src/app/components/spec/spec.component';
-import { ProjectResolver, SpecResolver } from 'src/app/components/spec/spec.resolvers';
+import { ActorFeatureResolver, ProjectResolver, SpecResolver } from 'src/app/components/spec/spec.resolvers';
 import { SprintComponent } from 'src/app/components/spec/sprints/sprint/sprint.component';
 import { SprintsComponent } from 'src/app/components/spec/sprints/sprints.component';
 import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver';
@@ -51,8 +51,10 @@ import { SameFirstCharPipe } from 'src/app/pipes/terms/same-first-char';
 import { SortByNamePipe } from 'src/app/pipes/terms/sort-by-name';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
+import { ActorFeatureComponent } from './actors/actor/feature/feature.component';
 import { ApiComponent } from './feature/api/api.component';
 import { GraphqlPlaygroundPipe } from './feature/api/pipes';
+import { FeatureEditComponent } from './feature/edit/edit.component';
 import { EstimatedTimePipe, SpentTimePipe } from './feature/pipes';
 import { PrintComponent } from './print/print.component';
 import { SpaceSyncComponent } from './shared/sync/space-sync.component';
@@ -69,10 +71,12 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
     EpicComponent,
     FramesComponent,
     ActorsComponent,
+    ActorFeatureComponent,
     ActorComponent,
     TermsComponent,
     ValidateComponent,
     FeatureComponent,
+    FeatureEditComponent,
     PrintComponent,
     FeatureAddFrameComponent,
     TokensComponent,
@@ -125,6 +129,7 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
     SpecResolver,
     SprintResolver,
     ProjectResolver,
+    ActorFeatureResolver,
     ClipboardService,
     SpecManager
   ]

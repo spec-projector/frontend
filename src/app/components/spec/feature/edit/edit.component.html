@@ -1,0 +1,71 @@
+<jnt-stack>
+  <jnt-tabs tabs>
+    <jnt-tab title="Specification">
+      <ng-template #tabContentTemplate>
+        <table>
+          <thead>
+          <th style="width:35%">Frontend</th>
+          <th width="10"></th>
+          <th style="width:30%">API</th>
+          <th width="10"></th>
+          <th style="width:35%">Backend</th>
+          </thead>
+          <tr>
+            <td frontend>
+              <spec-frames [spec]="feature.spec"
+                           [frames]="feature.frames"
+                           (changed)="saveFrames($event)">
+              </spec-frames>
+            </td>
+            <td>
+              <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
+            </td>
+            <td>
+              <spec-api [spec]="feature.spec"
+                        [graphql]="feature.graphql"
+                        (changed)="saveApi($event)"></spec-api>
+            </td>
+            <td>
+              <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
+            </td>
+            <td>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="User story"
+             [icon]="localUi.icons.story">
+      <jnt-badge *ngIf="feature.story.length"
+                 [color]="ui.colors.paleNavy"
+                 [count]="feature.story.length"></jnt-badge>
+      <ng-template #tabContentTemplate>
+        <spec-story [spec]="feature.spec"
+                    [story]="feature.story"
+                    (changed)="saveStory($event)"></spec-story>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="Resources"
+             [icon]="localUi.icons.resources">
+      <jnt-badge *ngIf="feature.resources.length"
+                 [color]="ui.colors.paleNavy"
+                 [count]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"></jnt-badge>
+      <ng-template #tabContentTemplate>
+        <spec-resources [feature]="feature"
+                        (changed)="saveResources($event)"></spec-resources>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="Issues"
+             [icon]="localUi.icons.issues">
+      <jnt-badge *ngIf="feature.issues.length"
+                 [color]="ui.colors.paleNavy"
+                 [count]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"></jnt-badge>
+      <ng-template #tabContentTemplate>
+        <spec-issues [spec]="feature.spec"
+                     [issues]="feature.issues"
+                     (changed)="saveIssues($event)"></spec-issues>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-stack>

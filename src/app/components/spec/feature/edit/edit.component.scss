@@ -66,3 +66,32 @@ header {
     }
   }
 }
+
+[tabs] {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: $corner-small;
+  border: 1px solid $secondary-color;
+  th {
+    font-weight: bold;
+  }
+  td, th {
+    padding: $gutter-small;
+    border: 1px solid $secondary-color;
+  }
+  td {
+    vertical-align: top;
+  }
+}
+
+[api] {
+  cursor: pointer;
+}
+
+[story] {
+  display: flex;
+}

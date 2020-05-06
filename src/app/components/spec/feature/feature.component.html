@@ -1,7 +1,7 @@
 <ul filling>
-    <li *ngIf="feature.story.length" story></li>
-    <li *ngIf="feature.frames.length" frames></li>
-    <li *ngIf="feature.graphql.length" graphql></li>
+  <li *ngIf="feature.story.length" story></li>
+  <li *ngIf="feature.frames.length" frames></li>
+  <li *ngIf="feature.graphql.length" graphql></li>
 </ul>
 
 <jnt-label *ngIf="(feature | featurePrice:feature.version:feature.rev) as price"
@@ -10,102 +10,16 @@
            [label]="price | currency"></jnt-label>
 
 <form [formGroup]="form">
-    <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
-            (mouseleave)="mode = editMode.view">
-        <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-            <input title formControlName="title" fitWidth>
-        </ng-container>
-    </header>
+  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+          (mouseleave)="mode = editMode.view">
+    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+      <input title formControlName="title" fitWidth>
+    </ng-container>
+  </header>
 
-    <ng-template #viewHeader>
-        <spec-tokens title tokens [spec]="feature.spec"
-                     [tokens]="feature.title"></spec-tokens>
-    </ng-template>
-
-    <jnt-stack>
-        <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small">
-            <jnt-button [scheme]="ui.schemes.secondary"
-                        [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
-                        [size]="ui.sizes.tiny"
-                        (click)="selected.emit()">
-            </jnt-button>
-            <jnt-button [scheme]="ui.schemes.secondary" [icon]="ui.icons.copy"
-                        [size]="ui.sizes.tiny"
-                        (click)="copyMarkdown()"></jnt-button>
-        </jnt-stack>
-
-        <spec-feature-markdown #summary [feature]="feature"
-                               [style.display]="markdown ? 'block' : 'none'"></spec-feature-markdown>
-        <ng-container *ngIf="opened">
-            <jnt-stack>
-                <jnt-tabs tabs>
-                    <jnt-tab title="User story"
-                             [icon]="localUi.icons.story">
-                        <jnt-badge *ngIf="feature.story.length"
-                                   [color]="ui.colors.paleNavy"
-                                   [count]="feature.story.length"></jnt-badge>
-                        <ng-template #tabContentTemplate>
-                            <spec-story [spec]="feature.spec"
-                                        [story]="feature.story"
-                                        (changed)="saveStory($event)"></spec-story>
-                        </ng-template>
-                    </jnt-tab>
-                    <jnt-tab title="Resources"
-                             [icon]="localUi.icons.resources">
-                        <jnt-badge *ngIf="feature.resources.length"
-                                   [color]="ui.colors.paleNavy"
-                                   [count]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"></jnt-badge>
-                        <ng-template #tabContentTemplate>
-                            <spec-resources [feature]="feature"
-                                            (changed)="saveResources($event)"></spec-resources>
-                        </ng-template>
-                    </jnt-tab>
-                    <jnt-tab title="Issues"
-                             [icon]="localUi.icons.issues">
-                        <jnt-badge *ngIf="feature.issues.length"
-                                   [color]="ui.colors.paleNavy"
-                                   [count]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"></jnt-badge>
-                        <ng-template #tabContentTemplate>
-                            <spec-issues [spec]="feature.spec"
-                                         [issues]="feature.issues"
-                                         (changed)="saveIssues($event)"></spec-issues>
-                        </ng-template>
-                    </jnt-tab>
-                </jnt-tabs>
-
-                <table>
-                    <thead>
-                    <th style="width:35%">Frontend</th>
-                    <th width="10"></th>
-                    <th style="width:30%">API</th>
-                    <th width="10"></th>
-                    <th style="width:35%">Backend</th>
-                    </thead>
-                    <tr>
-                        <td frontend>
-                            <spec-frames [spec]="feature.spec"
-                                         [frames]="feature.frames"
-                                         (changed)="saveFrames($event)">
-                            </spec-frames>
-                        </td>
-                        <td>
-                            <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
-                        </td>
-                        <td>
-                            <spec-api [spec]="feature.spec"
-                                      [graphql]="feature.graphql"
-                                      (changed)="saveApi($event)"></spec-api>
-                        </td>
-                        <td>
-                            <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                </table>
-            </jnt-stack>
-        </ng-container>
-    </jnt-stack>
+  <ng-template #viewHeader>
+    <spec-tokens title tokens [spec]="feature.spec"
+                 [tokens]="feature.title"></spec-tokens>
+  </ng-template>
 </form>
 
