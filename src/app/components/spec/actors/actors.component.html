@@ -73,10 +73,8 @@
                        (ok)="deleteActor(i);popover.hide()"></jnt-confirm>
         </ng-template>
       </jnt-stack>
-      <spec-actor actor [actor]="actor" [selected]="selected"></spec-actor>
+      <spec-actor actor [actor]="actor"></spec-actor>
     </li>
   </ul>
 </jnt-stack>
 
-<div *ngIf="!!selected" backdrop
-     (click)="router.navigate([{}], {relativeTo: route})"></div>
