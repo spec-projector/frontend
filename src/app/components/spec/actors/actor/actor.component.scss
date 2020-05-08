@@ -98,18 +98,9 @@ ul[data-epics] {
           border-color: transparent;
         }
 
-        [actions] {
-          opacity: .1;
-          margin: 0 $gutter-small 0 0;
-
-          &:hover {
-            opacity: 1;
-            transition: .25s opacity;
-          }
-        }
-
         [feature] {
-          width: 100%;
+          flex: 1;
+          margin: 0 $gutter-small;
         }
       }
     }

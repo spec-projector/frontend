@@ -21,24 +21,23 @@
             *ngFor="let feature of group.features; trackBy: trackFeature" cdkDropList
             cdkDropListConnectedTo="epics" [id]="'feature-' + feature.id"
             (cdkDropListDropped)="onDropEpic(feature, $event)">
-          <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions
-                     [gutter]="ui.gutter.tiny">
-            <jnt-button [icon]="ui.icons.edit"
-                        [size]="ui.sizes.tiny"
-                        [scheme]="ui.schemes.secondary"
-                        (click)="router.navigate([actor.id, 'features', feature.id], {relativeTo: route})">
-            </jnt-button>
-            <jnt-button [icon]="ui.icons.delete"
-                        [size]="ui.sizes.tiny"
-                        [scheme]="ui.schemes.secondary"
-                        [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.popover.trigger.click}">
-            </jnt-button>
-            <ng-template #deleteTemplate>
-              <jnt-confirm message="Are you sure to delete the feature?" (cancel)="popover.hide()"
-                           (ok)="deleteFeature(feature.id);popover.hide()"></jnt-confirm>
-            </ng-template>
-          </jnt-stack>
+          <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                      [icon]="ui.icons.edit"
+                      [size]="ui.sizes.tiny"
+                      [scheme]="ui.schemes.secondary"
+                      (click)="router.navigate([actor.id, 'features', feature.id], {relativeTo: route})">
+          </jnt-button>
           <spec-feature feature [attr.id]="feature.id" [feature]="feature"></spec-feature>
+          <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                      [icon]="ui.icons.delete"
+                      [size]="ui.sizes.tiny"
+                      [scheme]="ui.schemes.secondary"
+                      [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.popover.trigger.click}">
+          </jnt-button>
+          <ng-template #deleteTemplate>
+            <jnt-confirm message="Are you sure to delete the feature?" (cancel)="popover.hide()"
+                         (ok)="deleteFeature(feature.id);popover.hide()"></jnt-confirm>
+          </ng-template>
         </li>
       </ul>
     </li>

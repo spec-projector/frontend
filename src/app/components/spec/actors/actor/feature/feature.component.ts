@@ -16,10 +16,7 @@ export class ActorFeatureComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({feature}) => {
-      console.log(feature);
-      this.feature = feature;
-    });
+    this.route.data.subscribe(({feature}) => this.feature = feature);
   }
 
 

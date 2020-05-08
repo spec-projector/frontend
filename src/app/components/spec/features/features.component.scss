@@ -51,6 +51,34 @@ ul[contents] {
   }
 }
 
+[data-feature] {
+  display: none;
+  z-index: 5;
+  position: fixed;
+  top: 70px;
+  right: 0;
+  bottom: 0;
+  left: 200px;
+  background: rgba(0, 0, 0, .5);
+  &[data-active="true"] {
+    display: block;
+  }
+  [data-block] {
+    position: absolute;
+    top: $gutter-normal;
+    right: $gutter-normal;
+    bottom: $gutter-normal;
+    left: $gutter-normal;
+    overflow: scroll;
+  }
+  [data-close] {
+    position: absolute;
+    top: $gutter-small;
+    right: $gutter-small;
+    z-index: 1;
+  }
+}
+
 ul[actors] {
   display: block;
   list-style: none;

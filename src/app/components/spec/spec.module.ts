@@ -56,6 +56,7 @@ import { ApiComponent } from './feature/api/api.component';
 import { GraphqlPlaygroundPipe } from './feature/api/pipes';
 import { FeatureEditComponent } from './feature/edit/edit.component';
 import { EstimatedTimePipe, SpentTimePipe } from './feature/pipes';
+import { FeaturesComponent } from './features/features.component';
 import { PrintComponent } from './print/print.component';
 import { SpaceSyncComponent } from './shared/sync/space-sync.component';
 
@@ -70,6 +71,7 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
     EpicsComponent,
     EpicComponent,
     FramesComponent,
+    FeaturesComponent,
     ActorsComponent,
     ActorFeatureComponent,
     ActorComponent,

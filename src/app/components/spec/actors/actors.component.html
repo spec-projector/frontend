@@ -39,16 +39,6 @@
   </li>
 </ul>-->
 
-<div data-feature [attr.data-active]="active">
-  <jnt-button data-close
-              [size]="ui.sizes.small"
-              [icon]="ui.icons.close"
-              (click)="router.navigate(['./'], {relativeTo: route})"></jnt-button>
-  <jnt-block data-block [padding]="ui.gutter.normal">
-    <router-outlet (activate)="active = true" (deactivate)="active = false"></router-outlet>
-  </jnt-block>
-</div>
-
 <jnt-stack [gutter]="ui.gutter.large">
   <jnt-button *ngIf="manager.mode ==  editMode.edit"
               [icon]="ui.icons.font.plus"

@@ -12,6 +12,7 @@ import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver
 import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
 import { ValidateComponent } from 'src/app/components/spec/validate/validate.component';
 import { ActorFeatureComponent } from './actors/actor/feature/feature.component';
+import { FeaturesComponent } from './features/features.component';
 import { PrintComponent } from './print/print.component';
 
 export function getProject(data: any) {
@@ -20,6 +21,10 @@ export function getProject(data: any) {
 
 export function getSprint(data: any) {
   return data.sprint.title;
+}
+
+export function getFeature({feature}) {
+  return [feature.actor.name, feature.title].join(': ');
 }
 
 export const routes: Routes = [
@@ -74,13 +79,19 @@ export const routes: Routes = [
       },
       {
         path: 'actors',
-        component: ActorsComponent,
+        component: FeaturesComponent,
         data: {breadcrumb: 'Actors'},
-        resolve: {spec: SpecResolver},
         children: [
+          {
+            path: '',
+            component: ActorsComponent,
+            resolve: {spec: SpecResolver},
+            pathMatch: 'full'
+          },
           {
             path: ':actor/features/:feature',
             component: ActorFeatureComponent,
+            data: {breadcrumb: getFeature},
             resolve: {feature: ActorFeatureResolver}
           }
         ]
