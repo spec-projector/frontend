@@ -11,9 +11,9 @@
   </ng-container>
 </ng-template>
 
-<pre #summary>
-<![CDATA[As a 👦 **]]>{{feature.actor?.name}}<![CDATA[** I want: []]><ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>](https://www.specprojector.com/)
-<ng-container *ngFor="let entry of feature.story;let i = index">{{i + 1}}. **I {{entry.type}}:**<ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}"></ng-container>
+<pre #raw style="display: none">
+As a 👦 **{{feature.actor?.name}}** I want: [<ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>](https://www.specprojector.com/)
+<ng-container *ngFor="let entry of feature.story;let i = index">{{i + 1}}. **I {{entry.type}}:** <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}"></ng-container>
 </ng-container>
 <ng-container *ngIf="feature.frames?.length">**🚀 Design**
 <ng-container *ngFor="let frame of feature.frames">* http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
@@ -29,3 +29,5 @@
 </ng-container>
 </ng-container>
 </pre>
+
+<pre #markdown></pre>

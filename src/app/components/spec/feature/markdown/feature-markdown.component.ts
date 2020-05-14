@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { Feature } from 'src/app/model/spec/planning/feature';
 import { TokenType } from 'src/app/model/spec/planning/token';
@@ -8,12 +8,15 @@ import { TokenType } from 'src/app/model/spec/planning/token';
   templateUrl: './feature-markdown.component.html',
   styleUrls: ['./feature-markdown.component.scss']
 })
-export class FeatureMarkdownComponent {
+export class FeatureMarkdownComponent implements AfterViewChecked {
 
   tokenType = TokenType;
 
-  @ViewChild('summary', {static: false, read: ElementRef})
-  summary: ElementRef<HTMLElement>;
+  @ViewChild('raw', {static: false, read: ElementRef})
+  raw: ElementRef<HTMLElement>;
+
+  @ViewChild('markdown', {static: false, read: ElementRef})
+  markdown: ElementRef<HTMLElement>;
 
   @Input()
   feature: Feature;
@@ -22,8 +25,11 @@ export class FeatureMarkdownComponent {
 
   }
 
+  ngAfterViewChecked() {
+    this.markdown.nativeElement.innerHTML = this.raw.nativeElement.innerText;
+  }
+
   copy() {
-    const summary = this.summary.nativeElement.innerText;
-    this.clipboard.copyFromContent(summary);
+    this.clipboard.copy(this.raw.nativeElement.innerText);
   }
 }
