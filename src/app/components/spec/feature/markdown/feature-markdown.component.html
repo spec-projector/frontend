@@ -1,60 +1,31 @@
+<jnt-button (click)="copy()" text="Copy"></jnt-button>
+
 <ng-template #tokensTemplate let-tokens="tokens">
-    <ng-container *ngFor="let token of tokens">
-        <ng-container [ngSwitch]="token | getTokenType">
-            <ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container>
-            <ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container>
-            <ng-container *ngSwitchCase="tokenType.quote">«{{token['text']}}»</ng-container>
-            <ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container>
-        </ng-container>
+  <ng-container *ngFor="let token of tokens">
+    <ng-container [ngSwitch]="token | getTokenType">
+      <ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container>
+      <ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container>
+      <ng-container *ngSwitchCase="tokenType.quote">«{{token['text']}}»</ng-container>
+      <ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container>
     </ng-container>
+  </ng-container>
 </ng-template>
-As a 👦 **{{feature.actor?.name}}** I want:&nbsp;[
-<ng-container
-        *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>](https://www.specprojector.com/)
-<ng-container *ngFor="let entry of feature.story;let i = index">
-    <br>
-    1. **I {{entry.type}}:**
-    <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}">
-    </ng-container>
-</ng-container>
 
-<br>
-
-<ng-container *ngIf="feature.frames?.length">
-    <br>
-    **🚀 Design**
-    <br>
-    <ng-container *ngFor="let frame of feature.frames">
-        * http://figma.com/file/{{frame.file}}?node-id={{frame.node}}<br>
-    </ng-container>
+<pre #summary>
+<![CDATA[As a 👦 **]]>{{feature.actor?.name}}<![CDATA[** I want: []]><ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>](https://www.specprojector.com/)
+<ng-container *ngFor="let entry of feature.story;let i = index">{{i + 1}}. **I {{entry.type}}:**<ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}"></ng-container>
 </ng-container>
-
-<ng-container *ngIf="feature.graphql?.length">
-    <br>
-    **⛳ API**
-    <br>
-    <ng-container *ngFor="let query of feature.graphql">
-        * [{{query.title}}]({{query.text | graphqlPlayground:feature.spec}})<br>
-    </ng-container>
+<ng-container *ngIf="feature.frames?.length">**🚀 Design**
+<ng-container *ngFor="let frame of feature.frames">* http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
+</ng-container></ng-container>
+<ng-container *ngIf="feature.graphql?.length">**⛳ API**
+<ng-container *ngFor="let query of feature.graphql">* [{{query.title}}]({{query.text | graphqlPlayground:feature.spec}})
+</ng-container></ng-container>
+<ng-container *ngIf="feature.issues.length">**💈 Issues**
+<ng-container *ngFor="let issue of feature.issues">* **{{issue.resource}}**: [{{issue.title}}]({{issue.url}})
+</ng-container></ng-container>
+<ng-container *ngIf="(feature | featureTerms)?.length">**❓Terms**
+<ng-container *ngFor="let term of (feature | featureTerms)">* **{{term.name}}** &mdash; <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}"></ng-container>
 </ng-container>
-
-<ng-container *ngIf="feature.issues.length">
-    <br>
-    **💈 Issues**
-    <br>
-    <ng-container *ngFor="let issue of feature.issues">
-        * **{{issue.resource}}**: [{{issue.title}}]({{issue.url}})<br>
-    </ng-container>
 </ng-container>
-
-<ng-container *ngIf="(feature | featureTerms)?.length">
-    <br>
-    **❓Terms**
-    <br>
-    <ng-container *ngFor="let term of (feature | featureTerms)">
-        * **{{term.name}}** &mdash;
-        <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}">
-        </ng-container>
-        <br>
-    </ng-container>
-</ng-container>
+</pre>

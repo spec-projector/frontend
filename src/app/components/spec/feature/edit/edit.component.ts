@@ -26,12 +26,7 @@ export class FeatureEditComponent {
 
   private _feature: Feature;
 
-  @ViewChild('summary', {static: false})
-  summary: FeatureMarkdownComponent;
-
   mode = EditMode.view;
-
-  markdown = false;
 
   @Input()
   set feature(feature: Feature) {
@@ -43,21 +38,12 @@ export class FeatureEditComponent {
   }
 
   constructor(public manager: SpecManager,
-              private clipboard: ClipboardService,
               private fb: FormBuilder,
               private popover: PopoverService,
               private injector: Injector,
               private cfr: ComponentFactoryResolver,
               private modal: ModalService,
               private logger: NGXLogger) {
-  }
-
-  copyMarkdown() {
-    const summary = this.summary.getMarkdown();
-    console.log(summary);
-    this.markdown = true;
-    this.clipboard.copyFromContent(summary);
-    setTimeout(() => this.markdown = false, 20000);
   }
 
   saveStory(story: StoryEntry[]) {

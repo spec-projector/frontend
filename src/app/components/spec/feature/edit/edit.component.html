@@ -67,5 +67,10 @@
                      (changed)="saveIssues($event)"></spec-issues>
       </ng-template>
     </jnt-tab>
+    <jnt-tab title="Markdown">
+      <ng-template #tabContentTemplate>
+        <spec-feature-markdown [feature]="feature"></spec-feature-markdown>
+      </ng-template>
+    </jnt-tab>
   </jnt-tabs>
 </jnt-stack>
