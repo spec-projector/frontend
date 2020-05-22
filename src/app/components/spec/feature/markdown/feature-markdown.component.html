@@ -1,15 +1,8 @@
 <jnt-button (click)="copy()" text="Copy"></jnt-button>
 
-<ng-template #tokensTemplate let-tokens="tokens">
-  <ng-container *ngFor="let token of tokens">
-    <ng-container [ngSwitch]="token | getTokenType">
-      <ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container>
-      <ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container>
-      <ng-container *ngSwitchCase="tokenType.quote">«{{token['text']}}»</ng-container>
-      <ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container>
-    </ng-container>
-  </ng-container>
-</ng-template>
+<!-- @formatter:off -->
+
+<ng-template #tokensTemplate let-tokens="tokens"><ng-container *ngFor="let token of tokens"><ng-container [ngSwitch]="token | getTokenType"><ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container><ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container><ng-container *ngSwitchCase="tokenType.quote">«{{token['text']}}»</ng-container><ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container></ng-container></ng-container></ng-template>
 
 <pre #raw style="display: none">
 As a 👦 **{{feature.actor?.name}}** I want: [<ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>](https://www.specprojector.com/)

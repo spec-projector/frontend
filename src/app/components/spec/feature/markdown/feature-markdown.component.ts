@@ -26,10 +26,12 @@ export class FeatureMarkdownComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    this.markdown.nativeElement.innerHTML = this.raw.nativeElement.innerText;
+    const formatted = this.raw.nativeElement
+      .innerHTML.replace(/\<\!\-\-\-\-\>\n*/, '');
+    this.markdown.nativeElement.innerHTML = formatted;
   }
 
   copy() {
-    this.clipboard.copy(this.raw.nativeElement.innerText);
+    this.clipboard.copy(this.markdown.nativeElement.innerText);
   }
 }
