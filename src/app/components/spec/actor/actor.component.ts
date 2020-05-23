@@ -1,15 +1,15 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PopoverService, UI } from 'junte-ui';
+import { filter, tap } from 'rxjs/operators';
+import { generate as shortid } from 'shortid';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { PopoverService, UI } from 'junte-ui';
 import { Actor } from 'src/app/model/spec/planning/actor';
 import { Feature } from 'src/app/model/spec/planning/feature';
 import { TextToken } from 'src/app/model/spec/planning/token';
-import { filter, tap } from 'rxjs/operators';
-import * as uuid from 'uuid/v1';
 
 @Component({
     selector: 'spec-actor',
@@ -83,7 +83,7 @@ export class ActorComponent {
 
     addFeature() {
         const feature = new Feature({
-            id: uuid(),
+            id: shortid(),
             title: [new TextToken('Great feature')]
         });
         this.actor.features.push(feature);

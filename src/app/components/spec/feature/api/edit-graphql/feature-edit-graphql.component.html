@@ -10,7 +10,7 @@
     </jnt-form-item>
 
     <ngx-monaco-editor editor
-                       [options]="{language: 'graphql', automaticLayout: true, minimap: {enabled: false}}"
+                       [options]="{language: 'graphql', scrollBeyondLastLine: false, automaticLayout: true, minimap: {enabled: false}}"
                        formControlName="text"></ngx-monaco-editor>
 
     <ng-template #formFooterTemplate>
@@ -20,12 +20,12 @@
             <jnt-button [icon]="ui.icons.delete"
                         [scheme]="ui.schemes.fail"
                         [type]="ui.form.button.type.button"
-                        (click)="deleted.emit()"></jnt-button>
+                        (click)="delete()"></jnt-button>
             <jnt-stack [type]="ui.stack.type.horizontal">
                 <jnt-link title="Play"
                           [icon]="ui.icons.externalLink"
                           [outline]="ui.outline.ghost"
-                          [source]="textControl.value | graphqlPlayground:spec"
+                          [source]="textControl.value | graphqlPlayground:feature.spec"
                           target="_blank"></jnt-link>
                 <jnt-button text="Save"
                             [icon]="ui.icons.check"

@@ -1,7 +1,7 @@
 import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { ModalOptions, ModalService, UI } from 'junte-ui';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts/dist';
 import { SpaceSyncComponent } from 'src/app/components/spec/shared/sync/space-sync.component';
@@ -9,9 +9,10 @@ import { ProjectGQL } from 'src/app/components/spec/spec.graphql';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { Project } from 'src/app/model/projects';
 import { Spec } from 'src/app/model/spec/spec';
+import { Actor } from '../../model/spec/planning/actor';
 import { Feature } from '../../model/spec/planning/feature';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class SpecResolver implements Resolve<Spec> {
 
   constructor(private manager: SpecManager,
@@ -33,7 +34,7 @@ export class SpecResolver implements Resolve<Spec> {
   }
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ProjectResolver implements Resolve<Observable<Project>> {
 
   constructor(private projectGQL: ProjectGQL) {
@@ -46,18 +47,46 @@ export class ProjectResolver implements Resolve<Observable<Project>> {
   }
 }
 
-@Injectable()
-export class ActorFeatureResolver implements Resolve<Observable<Feature>> {
+@Injectable({providedIn: 'root'})
+export class ActorResolver implements Resolve<Actor> {
 
   constructor() {
   }
 
   resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): Observable<Feature> {
+          state: RouterStateSnapshot): Actor {
     const {spec} = route.parent.data as { spec: Spec };
-    const {actor, feature} = route.params;
+    const {actor} = route.params as { actor: string };
 
-    return of(spec.actors.find(a => a.id === actor)
-      .features.find(f => f.id === feature));
+    return spec.actors.find(a => a.id === actor);
+  }
+}
+
+@Injectable({providedIn: 'root'})
+export class ActorFeatureResolver implements Resolve<Feature> {
+
+  constructor() {
+  }
+
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Feature {
+    const {actor} = route.parent.data as { actor: Actor };
+    const {feature} = route.params as { feature: string };
+
+    return actor.features.find(f => f.id === feature);
+  }
+}
+
+@Injectable({providedIn: 'root'})
+export class FeatureGraphqlResolver implements Resolve<number> {
+
+  constructor() {
+  }
+
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): number {
+    const {index} = route.params as { index: string };
+
+    return +index;
   }
 }

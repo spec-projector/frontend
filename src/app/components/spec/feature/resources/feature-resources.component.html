@@ -1,0 +1,48 @@
+<form [formGroup]="form">
+  <ng-template #fillResourcesTemplate>
+    <p>
+      <jnt-link title="Fill resources" [outline]="ui.outline.ghost"
+                [icon]="ui.icons.plus"
+                (click)="fill()"></jnt-link>
+      for feature.
+    </p>
+  </ng-template>
+  <ng-container formArrayName="resources">
+    <ng-container *ngIf="resources.controls.length;else fillResourcesTemplate">
+      <jnt-stack [gutter]="ui.gutter.small">
+        <jnt-button [icon]="ui.icons.plus"
+                    [scheme]="ui.schemes.secondary"
+                    [size]="ui.sizes.tiny"
+                    (click)="add()"></jnt-button>
+        <table border="0" cellpadding="4" cellspacing="0">
+          <tr *ngFor="let r of resources.controls; let i = index"
+              [formGroupName]="i">
+            <td>
+              <jnt-select resource placeholder="Title"
+                          formControlName="resource"
+                          [size]="ui.sizes.small"
+                          [allowEmpty]="false">
+                <jnt-select-option *ngFor="let r of feature.spec.resourceTypes"
+                                   [key]="r.title" [label]="r.title"></jnt-select-option>
+              </jnt-select>
+            </td>
+            <td>
+              <jnt-input price placeholder="Hours"
+                         [type]="ui.form.input.text"
+                         [size]="ui.sizes.small"
+                         [textAlign]="ui.text.align.right"
+                         formControlName="hours"></jnt-input>
+            </td>
+            <td>
+              <jnt-button [icon]="ui.icons.delete"
+                          [scheme]="ui.schemes.secondary"
+                          [size]="ui.sizes.tiny"
+                          [type]="ui.form.button.type.button"
+                          (click)="delete(i)"></jnt-button>
+            </td>
+          </tr>
+        </table>
+      </jnt-stack>
+    </ng-container>
+  </ng-container>
+</form>

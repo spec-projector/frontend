@@ -1,76 +1,37 @@
-<jnt-stack>
-  <jnt-tabs tabs>
-    <jnt-tab title="Specification">
-      <ng-template #tabContentTemplate>
-        <table>
-          <thead>
-          <th style="width:35%">Frontend</th>
-          <th width="10"></th>
-          <th style="width:30%">API</th>
-          <th width="10"></th>
-          <th style="width:35%">Backend</th>
-          </thead>
-          <tr>
-            <td frontend>
-              <spec-frames [spec]="feature.spec"
-                           [frames]="feature.frames"
-                           (changed)="saveFrames($event)">
-              </spec-frames>
-            </td>
-            <td>
-              <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
-            </td>
-            <td>
-              <spec-api [spec]="feature.spec"
-                        [graphql]="feature.graphql"
-                        (changed)="saveApi($event)"></spec-api>
-            </td>
-            <td>
-              <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
-            </td>
-            <td>
-            </td>
-          </tr>
-        </table>
-      </ng-template>
-    </jnt-tab>
+<jnt-stack [gutter]="ui.gutter.large"
+           [align]="ui.flex.align.stretch">
+  <h3>{{feature.title}}</h3>
 
-    <jnt-tab title="User story"
-             [icon]="localUi.icons.story">
-      <jnt-badge *ngIf="feature.story.length"
-                 [color]="ui.colors.paleNavy"
-                 [count]="feature.story.length"></jnt-badge>
-      <ng-template #tabContentTemplate>
-        <spec-story [spec]="feature.spec"
-                    [story]="feature.story"
-                    (changed)="saveStory($event)"></spec-story>
-      </ng-template>
-    </jnt-tab>
-    <jnt-tab title="Resources"
-             [icon]="localUi.icons.resources">
-      <jnt-badge *ngIf="feature.resources.length"
-                 [color]="ui.colors.paleNavy"
-                 [count]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"></jnt-badge>
-      <ng-template #tabContentTemplate>
-        <spec-resources [feature]="feature"
-                        (changed)="saveResources($event)"></spec-resources>
-      </ng-template>
-    </jnt-tab>
-    <jnt-tab title="Issues"
-             [icon]="localUi.icons.issues">
-      <jnt-badge *ngIf="feature.issues.length"
-                 [color]="ui.colors.paleNavy"
-                 [count]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"></jnt-badge>
-      <ng-template #tabContentTemplate>
-        <spec-issues [spec]="feature.spec"
-                     [issues]="feature.issues"
-                     (changed)="saveIssues($event)"></spec-issues>
-      </ng-template>
-    </jnt-tab>
-    <jnt-tab title="Markdown">
-      <ng-template #tabContentTemplate>
-        <spec-feature-markdown [feature]="feature"></spec-feature-markdown>
-      </ng-template>
-    </jnt-tab>
-  </jnt-tabs>
+  <jnt-menu>
+    <jnt-menu-item title="User story"
+                   [link]="['story']">
+      <jnt-badge [count]="feature.story.length"
+                 [color]="ui.colors.purpleLighten"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item title="Design"
+                   [link]="['frames']">
+      <jnt-badge [count]="feature.frames.length"
+                 [color]="ui.colors.purpleLighten"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item title="Resources"
+                   [link]="['resources']">
+      <jnt-badge [count]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"
+                 [color]="ui.colors.purpleLighten"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item title="API"
+                   [link]="['api']">
+      <jnt-badge [count]="feature.graphql.length"
+                 [color]="ui.colors.purpleLighten"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item title="Issues"
+                   [link]="['issues']">
+      <jnt-badge [count]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"
+                 [color]="ui.colors.purpleLighten"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item title="Markdown"
+                   [link]="['markdown']"></jnt-menu-item>
+  </jnt-menu>
+
+  <router-outlet></router-outlet>
+
 </jnt-stack>

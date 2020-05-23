@@ -1,11 +1,11 @@
-<ng-container *ngIf="story.length;else addStoryTemplate">
+<ng-container *ngIf="feature.story.length;else addStoryTemplate">
     <ol (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
         (mouseleave)="mode = editMode.view">
-        <li *ngFor="let entry of story; let i = index">
+        <li *ngFor="let entry of feature.story; let i = index">
             <spec-story-entry #storyEntry [entry]="entry"
                               [mode]="mode"
-                              [spec]="spec"
-                              (changed)="save(i, $event)"
+                              [spec]="feature.spec"
+                              (changed)="edit(i, $event)"
                               (finished)="add(i)"
                               (deleted)="delete(i)">
             </spec-story-entry>

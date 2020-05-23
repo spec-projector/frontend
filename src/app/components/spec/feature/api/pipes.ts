@@ -9,4 +9,3 @@ export class GraphqlPlaygroundPipe implements PipeTransform {
     }
 
 }
-

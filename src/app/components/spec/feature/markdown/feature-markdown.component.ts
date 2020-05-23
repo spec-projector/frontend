@@ -1,16 +1,20 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard';
 import { Feature } from 'src/app/model/spec/planning/feature';
 import { TokenType } from 'src/app/model/spec/planning/token';
+import { BASE_URI } from '../../../../../consts';
+import { Project } from '../../../../model/projects';
 
 @Component({
   selector: 'spec-feature-markdown',
   templateUrl: './feature-markdown.component.html',
   styleUrls: ['./feature-markdown.component.scss']
 })
-export class FeatureMarkdownComponent implements AfterViewChecked {
+export class FeatureMarkdownComponent implements OnInit, AfterViewChecked {
 
   tokenType = TokenType;
+  consts = {baseUri: BASE_URI};
 
   @ViewChild('raw', {static: false, read: ElementRef})
   raw: ElementRef<HTMLElement>;
@@ -18,20 +22,26 @@ export class FeatureMarkdownComponent implements AfterViewChecked {
   @ViewChild('markdown', {static: false, read: ElementRef})
   markdown: ElementRef<HTMLElement>;
 
-  @Input()
+  formatted: string;
+
+  project: Project;
   feature: Feature;
 
-  constructor(private clipboard: ClipboardService) {
+  constructor(private clipboard: ClipboardService,
+              private route: ActivatedRoute) {
 
+  }
+
+  ngOnInit() {
+    this.route.data.subscribe(({project, feature}) => [this.project, this.feature] = [project, feature]);
   }
 
   ngAfterViewChecked() {
-    const formatted = this.raw.nativeElement
-      .innerHTML.replace(/\<\!\-\-\-\-\>\n*/, '');
-    this.markdown.nativeElement.innerHTML = formatted;
-  }
-
-  copy() {
-    this.clipboard.copy(this.markdown.nativeElement.innerText);
+    if (!this.formatted) {
+      this.formatted = this.raw.nativeElement
+        .innerHTML.replace(/\<\!\-\-\-\-\>\n*/, '');
+      this.markdown.nativeElement.innerHTML = this.formatted;
+      this.clipboard.copy(this.formatted);
+    }
   }
 }

@@ -1,12 +1,12 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PopoverService, UI } from 'junte-ui';
+import { generate as shortid } from 'shortid';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { PopoverService, UI } from 'junte-ui';
 import { Actor } from 'src/app/model/spec/planning/actor';
 import { Spec } from 'src/app/model/spec/spec';
-import * as uuid from 'uuid/v1';
 
 @Component({
   selector: 'spec-actors',
@@ -19,7 +19,6 @@ export class ActorsComponent implements OnInit {
   editMode = EditMode;
 
   spec: Spec;
-  active: boolean;
 
   constructor(public manager: SpecManager,
               public popover: PopoverService,
@@ -33,7 +32,7 @@ export class ActorsComponent implements OnInit {
 
   addActor() {
     const actor = new Actor({
-      id: uuid(),
+      id: shortid(),
       name: 'Some person'
     });
     this.spec.actors.unshift(actor);

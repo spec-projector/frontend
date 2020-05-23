@@ -1,5 +1,5 @@
 <ng-template #attachTemplate>
-    <spec-attach-issue [spec]="spec" (attached)="add($event)"></spec-attach-issue>
+    <spec-attach-issue [spec]="feature.spec" (attached)="add($event)"></spec-attach-issue>
 </ng-template>
 
 <jnt-stack>
@@ -13,12 +13,12 @@
                     [size]="ui.sizes.tiny"
                     [scheme]="ui.schemes.secondary"
                     [loading]="progress.refreshing"
-                    [disabled]="!issues.length"
+                    [disabled]="!feature.issues.length"
                     (click)="refresh(true)"></jnt-button>
     </jnt-stack>
 
-    <table *ngIf="issues.length" border="1">
-        <tr *ngFor="let issue of issues;let i = index">
+    <table *ngIf="feature.issues.length > 0" border="1">
+        <tr *ngFor="let issue of feature.issues;let i = index">
             <td>
                 <jnt-stack [gutter]="ui.gutter.small">
                     <jnt-stack [type]="ui.stack.type.horizontal"

@@ -15,7 +15,7 @@
     <spec-feature-add-frame (added)="add($event)"></spec-feature-add-frame>
 </ng-template>
 <ul>
-    <li *ngFor="let frame of frames; let i = index">
+    <li *ngFor="let frame of feature.frames; let i = index">
         <ng-template #loadingTemplate>
             <jnt-spinner></jnt-spinner>
         </ng-template>
