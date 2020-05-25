@@ -1,0 +1,24 @@
+<ul cdkDropList (cdkDropListDropped)="moveField($event)" [cdkDropListData]="entity.fields">
+  <li *ngFor="let field of entity.fields; let i = index; trackBy: trackField" cdkDrag field>
+    <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny"
+               [type]="ui.stack.type.horizontal">
+      <jnt-button cdkDragHandle
+                  [icon]="ui.icons.font.expand"
+                  [size]="ui.sizes.tiny"
+                  [scheme]="ui.schemes.secondary">
+      </jnt-button>
+      <jnt-button [icon]="ui.icons.font.delete"
+                  [size]="ui.sizes.tiny"
+                  [scheme]="ui.schemes.secondary"
+                  (click)="deleteField(i)">
+      </jnt-button>
+    </jnt-stack>
+    <spec-entity-field [field]="field"
+                       (changed)="manager.put(entity)">
+    </spec-entity-field>
+  </li>
+</ul>
+<jnt-button *ngIf="manager.mode == editMode.edit"
+            [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
+            [scheme]="ui.schemes.secondary"
+            (click)="addField()"></jnt-button>

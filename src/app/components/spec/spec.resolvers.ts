@@ -9,6 +9,8 @@ import { ProjectGQL } from 'src/app/components/spec/spec.graphql';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { Project } from 'src/app/model/projects';
 import { Spec } from 'src/app/model/spec/spec';
+import { Entity } from '../../model/spec/orm/entity';
+import { Package } from '../../model/spec/orm/package';
 import { Actor } from '../../model/spec/planning/actor';
 import { Feature } from '../../model/spec/planning/feature';
 
@@ -88,5 +90,35 @@ export class FeatureGraphqlResolver implements Resolve<number> {
     const {index} = route.params as { index: string };
 
     return +index;
+  }
+}
+
+@Injectable({providedIn: 'root'})
+export class PackageResolver implements Resolve<Package> {
+
+  constructor() {
+  }
+
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Package {
+    const {spec} = route.parent.data as { spec: Spec };
+    const {pack} = route.params as { pack: string };
+
+    return spec.packages.find(p => p.id === pack);
+  }
+}
+
+@Injectable({providedIn: 'root'})
+export class EntityResolver implements Resolve<Entity> {
+
+  constructor() {
+  }
+
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Entity {
+    const {pack} = route.parent.data as { pack: Package };
+    const {entity} = route.params as { entity: string };
+
+    return pack.entities.find(e => e.id === entity);
   }
 }

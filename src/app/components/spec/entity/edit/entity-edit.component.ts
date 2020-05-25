@@ -4,20 +4,20 @@ import { UI } from 'junte-ui';
 import { LocalUI } from 'src/app/enums/local-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { Feature } from 'src/app/model/spec/planning/feature';
+import { Entity } from '../../../../model/spec/orm/entity';
 
 @Component({
-  selector: 'spec-feature-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: 'spec-entity-edit',
+  templateUrl: './entity-edit.component.html',
+  styleUrls: ['./entity-edit.component.scss']
 })
-export class FeatureEditComponent implements OnInit {
+export class EntityEditComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
   editMode = EditMode;
 
-  feature: Feature;
+  entity: Entity;
 
   mode = EditMode.view;
 
@@ -26,7 +26,7 @@ export class FeatureEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({feature}) => this.feature = feature);
+    this.route.data.subscribe(({entity}) => this.entity = entity);
   }
 
 }

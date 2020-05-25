@@ -1,49 +1,54 @@
 <form [formGroup]="form">
-    <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
-            (mouseleave)="mode = editMode.view">
-        <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-            <input title formControlName="title">
-            <div naming>
-                <label [attr.checked]="autoName.value">
-                    <input type="checkbox" formControlName="autoName">
-                </label>
-                <input name formControlName="name">
-            </div>
-        </ng-container>
-    </header>
+  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+          (mouseleave)="mode = editMode.view">
+    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+      <input title formControlName="title">
+      <div naming>
+        <label [attr.checked]="autoName.value">
+          <input type="checkbox" formControlName="autoName">
+        </label>
+        <input name formControlName="name">
+      </div>
+    </ng-container>
+  </header>
 
-    <ng-template #viewHeader>
-        <h1 title>{{package.title}}</h1>
-        <div naming>
-            <label [attr.checked]="autoName.value">
-            </label>
-            <h2 name>{{package.name}}</h2>
-        </div>
-    </ng-template>
-    <ul [dndDropzone]="['entity']" dndEffectAllowed="copyMove" (dndDrop)="moveEntity($event)">
-        <li placeholder dndPlaceholderRef></li>
-        <li *ngFor="let entity of package.entities; let i = index;"
-            [dndDraggable]="i"
-            dndType="entity">
-            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny">
-                <jnt-button handle dndHandle
-                            [icon]="ui.icons.font.expand"
-                            [size]="ui.sizes.tiny"
-                            [scheme]="ui.schemes.secondary">
-                </jnt-button>
-                <jnt-button [icon]="ui.icons.font.delete"
-                            [size]="ui.sizes.tiny"
-                            [scheme]="ui.schemes.secondary"
-                            (click)="deleteEntity(i)">
-                </jnt-button>
-            </jnt-stack>
-            <spec-entity [entity]="entity"></spec-entity>
-        </li>
-        <li add>
-            <jnt-button *ngIf="manager.mode == editMode.edit"
-                        [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
-                        [scheme]="ui.schemes.secondary"
-                        (click)="addEntity()"></jnt-button>
-        </li>
-    </ul>
+  <ng-template #viewHeader>
+    <h1 title>{{package.title}}</h1>
+    <div naming>
+      <label [attr.checked]="autoName.value">
+      </label>
+      <h2 name>{{package.name}}</h2>
+    </div>
+  </ng-template>
+  <ul [dndDropzone]="['entity']" dndEffectAllowed="copyMove" (dndDrop)="moveEntity($event)">
+    <li placeholder dndPlaceholderRef></li>
+    <li *ngFor="let entity of package.entities; let i = index;"
+        [dndDraggable]="i"
+        dndType="entity">
+      <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny">
+        <jnt-button [icon]="ui.icons.edit"
+                    [size]="ui.sizes.tiny"
+                    [scheme]="ui.schemes.secondary"
+                    (click)="router.navigate([package.id, 'entities', entity.id], {relativeTo: route})">
+        </jnt-button>
+        <jnt-button handle dndHandle
+                    [icon]="ui.icons.font.expand"
+                    [size]="ui.sizes.tiny"
+                    [scheme]="ui.schemes.secondary">
+        </jnt-button>
+      </jnt-stack>
+      <spec-entity data-entity [entity]="entity"></spec-entity>
+      <jnt-button [icon]="ui.icons.font.delete"
+                  [size]="ui.sizes.tiny"
+                  [scheme]="ui.schemes.secondary"
+                  (click)="deleteEntity(i)">
+      </jnt-button>
+    </li>
+    <li add>
+      <jnt-button *ngIf="manager.mode == editMode.edit"
+                  [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
+                  [scheme]="ui.schemes.secondary"
+                  (click)="addEntity()"></jnt-button>
+    </li>
+  </ul>
 </form>

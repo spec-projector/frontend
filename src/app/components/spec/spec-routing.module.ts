@@ -7,7 +7,7 @@ import { PackagesComponent } from 'src/app/components/spec/packages/packages.com
 import { SpecComponent } from 'src/app/components/spec/spec.component';
 import {
   ActorFeatureResolver,
-  ActorResolver, FeatureGraphqlResolver,
+  ActorResolver, EntityResolver, FeatureGraphqlResolver, PackageResolver,
   ProjectResolver,
   SpecResolver
 } from 'src/app/components/spec/spec.resolvers';
@@ -17,15 +17,19 @@ import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver
 import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
 import { ValidateComponent } from 'src/app/components/spec/validate/validate.component';
 import { ActorEditComponent } from './actor/edit/actor-edit.component';
+import { EntityEditComponent } from './entity/edit/entity-edit.component';
+import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
 import { FeatureEditGraphqlComponent } from './feature/api/edit-graphql/feature-edit-graphql.component';
 import { FeatureApiComponent } from './feature/api/feature-api.component';
-import { FeatureEditComponent } from './feature/edit/edit.component';
+import { FeatureEditComponent } from './feature/edit/feature-edit.component';
 import { FeatureFramesComponent } from './feature/frames/feature-frames.component';
 import { FeatureIssuesComponent } from './feature/issues/feature-issues.component';
 import { FeatureMarkdownComponent } from './feature/markdown/feature-markdown.component';
 import { FeatureResourcesComponent } from './feature/resources/feature-resources.component';
 import { FeatureStoryComponent } from './feature/story/feature-story.component';
 import { FeaturesComponent } from './features/features.component';
+import { ModelComponent } from './model/model.component';
+import { PackageEditComponent } from './package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
 
 export function getProject({project}) {
@@ -177,10 +181,38 @@ export const routes: Routes = [
       },
       {
         path: 'packages',
-        component: PackagesComponent,
+        component: ModelComponent,
         data: {breadcrumb: 'Model'},
-        resolve: {spec: SpecResolver}
-
+        children: [
+          {
+            path: '',
+            component: PackagesComponent,
+            resolve: {spec: SpecResolver}
+          },
+          {
+            path: ':pack',
+            component: PackageEditComponent,
+            resolve: {pack: PackageResolver},
+            children: [
+              {
+                path: 'entities/:entity',
+                component: EntityEditComponent,
+                resolve: {entity: EntityResolver},
+                children: [
+                  {
+                    path: '',
+                    pathMatch: 'full',
+                    redirectTo: 'fields'
+                  },
+                  {
+                    path: 'fields',
+                    component: EntityFieldsComponent
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         path: 'validate',

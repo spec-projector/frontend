@@ -10,8 +10,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { ActorComponent } from 'src/app/components/spec/actor/actor.component';
 import { ActorsComponent } from 'src/app/components/spec/actors/actors.component';
 import { DetailsComponent } from 'src/app/components/spec/details/details.component';
-import { EntityFieldComponent } from 'src/app/components/spec/entities/entity-field/entity-field.component';
-import { EntityComponent } from 'src/app/components/spec/entities/entity/entity.component';
+import { EntityFieldComponent } from 'src/app/components/spec/entity/fields/field/entity-field.component';
+import { EntityComponent } from 'src/app/components/spec/entity/entity.component';
 import { EpicComponent } from 'src/app/components/spec/epics/epic/epic.component';
 import { EpicsComponent } from 'src/app/components/spec/epics/epics.component';
 import { FeatureEditGraphqlComponent } from 'src/app/components/spec/feature/api/edit-graphql/feature-edit-graphql.component';
@@ -51,12 +51,16 @@ import { SortByNamePipe } from 'src/app/pipes/terms/sort-by-name';
 import { TokenTypePipe } from 'src/app/pipes/token-type';
 import { JoinTokensPipe } from 'src/app/pipes/tokens/join';
 import { ActorEditComponent } from './actor/edit/actor-edit.component';
+import { EntityEditComponent } from './entity/edit/entity-edit.component';
+import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
 import { FeatureApiComponent } from './feature/api/feature-api.component';
 import { GraphqlPlaygroundPipe } from './feature/api/pipes';
-import { FeatureEditComponent } from './feature/edit/edit.component';
+import { FeatureEditComponent } from './feature/edit/feature-edit.component';
 import { EstimatedTimePipe, SpentTimePipe } from './feature/pipes';
 import { FeatureResourcesComponent } from './feature/resources/feature-resources.component';
 import { FeaturesComponent } from './features/features.component';
+import { ModelComponent } from './model/model.component';
+import { PackageEditComponent } from './package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
 import { SpaceSyncComponent } from './shared/sync/space-sync.component';
 
@@ -83,6 +87,14 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
     AttachIssueComponent,
     FeatureMarkdownComponent,
 
+    ModelComponent,
+    PackagesComponent,
+    PackageEditComponent,
+    EntityComponent,
+    EntityEditComponent,
+    EntityFieldsComponent,
+    EntityFieldComponent,
+
     SprintsComponent,
     EpicsComponent,
     EpicComponent,
@@ -98,12 +110,12 @@ import { SpaceSyncComponent } from './shared/sync/space-sync.component';
 
     TokensComponent,
     SprintComponent,
-    EntityComponent,
-    PackagesComponent,
+
+
     TermComponent,
     PackageComponent,
     FitWidthDirective,
-    EntityFieldComponent,
+
     SpaceSyncComponent,
     StoryEntryComponent,
     TokenTypePipe,
