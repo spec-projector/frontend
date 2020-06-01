@@ -12,7 +12,7 @@ As a 👦 **{{feature.actor?.name}}** I want: [<ng-container *ngTemplateOutlet="
 <ng-container *ngFor="let frame of feature.frames">* http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
 </ng-container></ng-container>
 <ng-container *ngIf="feature.graphql?.length">**⛳ API**
-<ng-container *ngFor="let query of feature.graphql;let i = index">* [{{query.title}}]({{consts.baseUri}}/projects/{{project.id}}/features/{{feature.actor.id}}/{{feature.id}}/api/graphql/{{i}})
+<ng-container *ngFor="let query of feature.graphql;let i = index">* [{{query.title}}]({{consts.baseUri}}/projects/{{project.id}}/actors/{{feature.actor.id}}/features/{{feature.id}}/api/graphql/{{i}})
 </ng-container></ng-container>
 <ng-container *ngIf="feature.issues.length">**💈 Issues**
 <ng-container *ngFor="let issue of feature.issues">* **{{issue.resource}}**: [{{issue.title}}]({{issue.url}})
