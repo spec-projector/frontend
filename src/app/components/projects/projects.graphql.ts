@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 })
 export class AllProjectsGQL extends Query<{ allProjects }> {
     document = gql`
-    query AllProjects($offset: Int, $before: String, $after: String, $first: Int, $last: Int, $title: String, $orderBy: String) {
+    query($offset: Int, $before: String, $after: String, $first: Int, $last: Int, $title: String, $orderBy: String) {
       allProjects(offset: $offset, before: $before, after: $after, first: $first, last: $last, title: $title, orderBy: $orderBy) {
         count
         edges {
@@ -35,7 +35,7 @@ export class AllProjectsGQL extends Query<{ allProjects }> {
 })
 export class CreateProjectGQL extends Mutation<{ project }> {
     document = gql`
-    mutation CreateProject($title: String!) {
+    mutation($title: String!) {
       createProject(title: $title) {
         project {
           id
@@ -63,7 +63,7 @@ export class CreateProjectGQL extends Mutation<{ project }> {
 })
 export class UpdateProjectGQL extends Mutation<{ project }> {
     document = gql`
-    mutation UpdateProject($description: String, $project: String!, $title: String!) {
+    mutation($description: String, $project: String!, $title: String!) {
       updateProject(description: $description, project: $project, title: $title) {
         project {
           id
@@ -91,7 +91,7 @@ export class UpdateProjectGQL extends Mutation<{ project }> {
 })
 export class DeleteProjectGQL extends Mutation<{ status }> {
     document = gql`
-    mutation ($project: String!) {
+    mutation($project: String!) {
       deleteProject(project: $project) {
         status
       }

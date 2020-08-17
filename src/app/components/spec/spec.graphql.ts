@@ -14,6 +14,7 @@ export class ProjectGQL extends Query<{ project }> {
         updatedAt
         title
         description
+        dbName
         owner {
             id
             name

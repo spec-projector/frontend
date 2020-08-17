@@ -12,6 +12,9 @@ export class Project {
 
     @field({mock: '{{issue}}'})
     title: string;
+
+    @field({mock: '{{issue}}'})
+    dbName: string;
 }
 
 @model()

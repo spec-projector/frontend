@@ -50,15 +50,14 @@ export class SpecManager {
 
     get(project: string): Observable<Spec> {
         if (!this.spec$) {
-            const db = `project_${project}`;
             this.spec$ = new BehaviorSubject<Spec>(null);
             this.local = new PouchDB(project, {auto_compaction: true});
-            this.remote = new PouchDB(`${config.storage}/${db}`);
+            this.remote = new PouchDB(`${config.storage}/${project}`);
 
             this.local.sync(this.remote).on('complete', () => {
                 const spec = new Spec();
                 console.group('get');
-                console.log(`project_${project}`);
+                console.log(project);
                 console.log('synced');
                 console.log(spec);
                 console.groupEnd();

@@ -17,7 +17,8 @@ import { Feature } from '../../model/spec/planning/feature';
 @Injectable({providedIn: 'root'})
 export class SpecResolver implements Resolve<Spec> {
 
-  constructor(private manager: SpecManager,
+  constructor(private projectGQL: ProjectGQL,
+              private manager: SpecManager,
               private cfr: ComponentFactoryResolver,
               private injector: Injector,
               private modalService: ModalService) {
@@ -25,14 +26,25 @@ export class SpecResolver implements Resolve<Spec> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<Spec> {
-    const project = `project_${route.params['project']}`;
-    const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
-    this.modalService.open(component, new ModalOptions({
-      title: {text: 'Syncing project', icon: UI.icons.runningMan}
-    }));
-    console.log('spec resolver');
-    return this.manager.get(project)
-      .pipe(finalize(() => this.modalService.close()));
+
+    return new Observable(o => {
+      this.projectGQL.fetch({id: route.params['project']})
+        .pipe(map(({data: {project: p}}) => deserialize(p, Project)))
+        .subscribe(p => {
+          const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
+          this.modalService.open(component, new ModalOptions({
+            title: {text: 'Syncing project', icon: UI.icons.runningMan}
+          }));
+          console.log(p.dbName);
+          console.log('spec resolver');
+          this.manager.get(p.dbName)
+            .pipe(finalize(() => {
+              this.modalService.close();
+              o.complete();
+            }))
+            .subscribe(s => o.next(s));
+        });
+    });
   }
 }
 
