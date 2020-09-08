@@ -12,6 +12,8 @@ stages:
 
 build:
   stage: build
+  services:
+    - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
@@ -23,6 +25,8 @@ build:
 
 .base_publish:
   stage: publish
+  services:
+    - docker:dind
   dependencies: []
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
