@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit } from '@angular/core';
 import { R } from 'apollo-angular/types';
-import { PopoverService, UI } from 'junte-ui';
+import { PopoverService, UI } from '@junte/ui';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts/dist';
 import { AllProjectsGQL, CreateProjectGQL, DeleteProjectGQL, UpdateProjectGQL } from 'src/app/components/projects/projects.graphql';
@@ -46,7 +46,7 @@ export class ProjectsComponent implements OnInit {
         const update = new ProjectUpdate({title: title, project: !!project ? project.id : null});
         mutation.mutate(serialize(update) as R).subscribe(() => {
             this.load();
-            this.popover.hide();
+            // this.popover.hide();
         }, error => this.error = error);
     }
 

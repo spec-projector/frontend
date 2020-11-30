@@ -1,21 +1,21 @@
 <form [formGroup]="form">
     <jnt-container>
-        <jnt-row [direction]="ui.flex.direction.row"
-                 [align]="ui.flex.align.start"
-                 [alignContent]="ui.flex.alignContent.start"
-                 [justify]="ui.flex.justify.start"
-                 [wrap]="ui.flex.wrap.noWrap">
+        <jnt-row [direction]="ui.direction.row"
+                 [align]="ui.align.start"
+                 [alignContent]="ui.alignContent.start"
+                 [justify]="ui.justify.start"
+                 [wrap]="ui.wrap.noWrap">
             <jnt-col [mobile]="1" [tablet]="1" [desktop]="1" [wide]="1" [span]="6"
-                     [alignSelf]="ui.flex.alignSelf.center">
+                     [alignSelf]="ui.alignSelf.center">
                 <jnt-button *ngIf="manager.mode === editMode.edit"
-                            [icon]="ui.icons.font.delete"
-                            [scheme]="ui.schemes.secondary"
+                            [icon]="ui.icons.delete"
+                            [scheme]="ui.scheme.secondary"
                             [outline]="ui.outline.transparent"
                             (click)="delete()">
                 </jnt-button>
             </jnt-col>
             <jnt-col [mobile]="4" [tablet]="4" [desktop]="3" [wide]="2" [span]="6"
-                     [alignSelf]="ui.flex.alignSelf.center">
+                     [alignSelf]="ui.alignSelf.center">
                 <header (mouseenter)="manager.mode == editMode.edit ? mode.name = editMode.edit : null"
                         (mouseleave)="mode.name = editMode.view" name>
                     <ng-template #viewNameHeader>
@@ -27,11 +27,11 @@
                 </header>
             </jnt-col>
             <jnt-col [mobile]="1" [tablet]="1" [desktop]="1" [wide]="1" [span]="6"
-                     [alignSelf]="ui.flex.alignSelf.center">
+                     [alignSelf]="ui.alignSelf.center">
                 <jnt-icon [icon]="ui.icons.minus"></jnt-icon>
             </jnt-col>
             <jnt-col [mobile]="6" [tablet]="6" [desktop]="7" [wide]="8" [span]="6"
-                     [alignSelf]="ui.flex.alignSelf.center">
+                     [alignSelf]="ui.alignSelf.center">
                 <header (mouseenter)="manager.mode ==  editMode.edit ? mode.description = editMode.edit : null"
                         (mouseleave)="mode.description = editMode.view" description>
                     <ng-template #viewDescriptionHeader>

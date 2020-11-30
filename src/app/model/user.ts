@@ -1,16 +1,16 @@
-import { field, model } from '@junte/mocker-library';
+import { Field, Model } from 'serialize-ts';
 
-@model()
+@Model()
 export class User {
 
-    @field({mock: '{{int 0 100}}'})
+    @Field()
     id: string;
 
-    @field({mock: '{{login}}'})
+    @Field()
     login: string;
 }
 
-@model()
+@Model()
 export class Me extends User {
 
 }

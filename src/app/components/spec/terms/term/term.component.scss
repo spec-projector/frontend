@@ -1,4 +1,4 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -13,7 +13,7 @@ form {
     min-width: 200px;
 
     span {
-      border-bottom: 1px solid $primary-color;
+      border-bottom: 1px solid $jnt-primary-color;
     }
 
   }
@@ -22,7 +22,7 @@ form {
     input {
       width: 100%;
       border: 1px dotted silver;
-      padding: $gutter-small;
+      padding: $jnt-gutter-small;
       border-radius: 5px;
     }
   }

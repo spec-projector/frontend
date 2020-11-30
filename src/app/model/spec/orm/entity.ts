@@ -5,29 +5,32 @@ import { Package } from './package';
 @persistence()
 export class Entity extends Persistence {
 
-    @persist()
-    title: string;
+  @persist()
+  id: string;
 
-    @persist()
-    autoName: boolean = true;
+  @persist()
+  title: string;
 
-    @persist()
-    name: string;
+  @persist()
+  autoName: boolean = true;
 
-    @persist({type: EntityField})
-    fields: EntityField[] = [];
+  @persist()
+  name: string;
 
-    package: Package;
+  @persist({type: EntityField})
+  fields: EntityField[] = [];
 
-    constructor(defs: any = {}) {
-        super();
-        Object.assign(this, defs);
+  package: Package;
+
+  constructor(defs: any = {}) {
+    super();
+    Object.assign(this, defs);
+  }
+
+  linking(pack: Package) {
+    this.package = pack;
+    for (const entity of this.fields) {
+      entity.linking(this);
     }
-
-    linking(pack: Package) {
-        this.package = pack;
-        for (const entity of this.fields) {
-            entity.linking(this);
-        }
-    }
+  }
 }

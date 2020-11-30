@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { filter, tap } from 'rxjs/operators';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';

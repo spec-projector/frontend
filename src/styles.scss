@@ -1,24 +1,10 @@
-@import "~junte-ui/lib/assets/styles/variables";
-@import "~junte-ui/lib/assets/styles/common";
-@import "~junte-ui/lib/assets/styles/components";
+@import "~@junte/ui/lib/assets/styles/jnt-common";
+@import "~@junte/ui/lib/assets/styles/jnt-all";
 
-fieldset {
-  width: 100%;
-  border: none;
-  margin: 0;
-  padding: 0;
+html {
+  scroll-behavior: smooth;
+}
 
-  .message {
-    display: none;
-  }
-
-  &.error {
-    .message {
-      display: block;
-    }
-
-    input {
-      border: 1px solid red;
-    }
-  }
+body {
+  font-family: $jnt-font-family-base;
 }

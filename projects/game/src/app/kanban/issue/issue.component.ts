@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { Issue } from 'projects/game/src/models/issue';
 import { Kanban } from 'projects/game/src/models/kanban';
 import { EditMode } from 'src/app/model/enums/edit-mode';

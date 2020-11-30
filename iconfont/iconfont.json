@@ -1,7 +1,7 @@
 [
   {
-    "svgPath": "src/assets/icons/fonts",
+    "svgPath": "src/assets/icons/font",
     "fontsPath": "src/assets/fonts",
-    "fontName": "local"
+    "fontName": "icons"
   }
 ]

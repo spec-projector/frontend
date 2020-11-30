@@ -1,0 +1,23 @@
+<ul data-filling>
+  <li data-story *ngIf="feature.story.length"></li>
+  <li data-frames *ngIf="feature.frames.length"></li>
+  <li data-graphql *ngIf="feature.graphql.length"></li>
+</ul>
+
+<jnt-label data-price *ngIf="(feature | featurePrice:feature.version:feature.rev) as price"
+           [color]="ui.color.gray300"
+           [label]="price | currency"></jnt-label>
+
+<form [formGroup]="form">
+  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+          (mouseleave)="mode = editMode.view">
+    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+      <input data-title formControlName="title">
+    </ng-container>
+  </header>
+
+  <ng-template #viewHeader>
+    <spec-tokens data-title tokens [spec]="feature.spec"
+                 [tokens]="feature.title"></spec-tokens>
+  </ng-template>
+</form>

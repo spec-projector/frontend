@@ -1,0 +1,21 @@
+<ng-template #addStoryTemplate>
+  <jnt-button text="Add story"
+              [icon]="ui.icons.add"
+              (click)="fill()"></jnt-button>
+</ng-template>
+
+<ng-container *ngIf="feature.story.length;else addStoryTemplate">
+  <ol>
+    <li *ngFor="let entry of feature.story; let i = index">
+      <spec-story-entry #storyEntry [entry]="entry"
+                        [spec]="feature.spec"
+                        (changed)="edit(i, $event)"
+                        (up)="focus(i - 1)"
+                        (down)="focus(i + 1)"
+                        (finished)="add(i)"
+                        (deleted)="delete(i)">
+      </spec-story-entry>
+    </li>
+  </ol>
+</ng-container>
+

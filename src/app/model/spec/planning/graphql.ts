@@ -3,13 +3,17 @@ import { persist, persistence } from 'src/decorators/persistence';
 @persistence()
 export class Graphql {
 
-    @persist()
-    title: string;
+  @persist()
+  id: string;
 
-    @persist()
-    text: string;
+  @persist()
+  title: string;
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
-    }
+  @persist()
+  text: string;
+
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
+
 }

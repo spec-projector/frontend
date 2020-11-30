@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { characters, generate } from 'shortid';
 import { KanbanManager } from 'projects/game/src/app/kanban/kanban.manager';
 

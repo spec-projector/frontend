@@ -1,8 +1,8 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
-  padding-top: $gutter-small;
+  padding-top: $jnt-gutter-small;
 }
 
 [alphabet] {
@@ -10,9 +10,9 @@
   top: 100px;
   height: 30px;
   width: 100%;
-  background-color: $page-background;
+  background-color: $jnt-page-background;
   z-index: 2;
-  padding: $gutter-tiny;
+  padding: $jnt-gutter-tiny;
 }
 
 [terms] {
@@ -22,7 +22,7 @@
     width: 100%;
 
     [char] {
-      border-bottom: 1px $control-border-color solid;
+      border-bottom: 1px $jnt-control-border-color solid;
     }
   }
 }

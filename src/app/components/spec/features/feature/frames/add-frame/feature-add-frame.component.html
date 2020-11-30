@@ -1,0 +1,18 @@
+<jnt-form [formGroup]="form" jntValidation (submitted)="add()">
+  <jnt-form-item>
+    <jnt-form-label>URL</jnt-form-label>
+    <jnt-form-control name="url">
+      <jnt-input placeholder="Url of figma frame" formControlName="url"></jnt-input>
+      <jnt-form-message [validator]="ui.validator.required">
+        This field is required
+      </jnt-form-message>
+    </jnt-form-control>
+  </jnt-form-item>
+
+  <ng-template #formFooterTemplate>
+    <jnt-stack [align]="ui.align.end">
+      <jnt-button text="Save"
+                  [type]="ui.button.type.submit"></jnt-button>
+    </jnt-stack>
+  </ng-template>
+</jnt-form>

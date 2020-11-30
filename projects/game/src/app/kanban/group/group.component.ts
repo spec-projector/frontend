@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { KanbanManager } from 'projects/game/src/app/kanban/kanban.manager';
 import { Group } from 'projects/game/src/models/group';
 import { Issue } from 'projects/game/src/models/issue';

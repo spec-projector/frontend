@@ -4,44 +4,44 @@
             <ng-template #addTemplate>
                 <spec-edit-project (saved)="edit($event)"></spec-edit-project>
             </ng-template>
-            <jnt-button [icon]="ui.icons.plus"
+            <jnt-button [icon]="ui.icons.add"
                         [jntPopover]="{
                             title: 'Add project',
                             contentTemplate: addTemplate,
-                            trigger: ui.popover.trigger.click}">
+                            trigger: ui.trigger.click}">
             </jnt-button>
 
             <ng-template #skeleton>
-                <jnt-stack [align]="ui.flex.align.stretch" list>
-                    <jnt-block *ngFor="let i of 5 | mockArray" [padding]="ui.padding.normal">
+                <jnt-stack [align]="ui.align.stretch" list>
+                    <jnt-block *ngFor="let i of 5 | mockArray" [padding]="ui.gutter.normal">
                         <jnt-skeleton [lines]="1"></jnt-skeleton>
                     </jnt-block>
                 </jnt-stack>
             </ng-template>
             <ng-container *ngIf="!loading else skeleton">
-                <jnt-stack [align]="ui.flex.align.stretch" list>
+                <jnt-stack [align]="ui.align.stretch" list>
                     <jnt-block *ngFor="let project of projects; trackBy: trackProject"
-                               [padding]="ui.padding.normal">
-                        <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between"
-                                   [align]="ui.flex.align.center">
+                               [padding]="ui.gutter.normal">
+                        <jnt-stack [orientation]="ui.orientation.horizontal" [justify]="ui.justify.between"
+                                   [align]="ui.align.center">
                             <jnt-link [source]="[project.id]" [title]="project.title"></jnt-link>
-                            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny">
+                            <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.tiny">
                                 <ng-template #editTemplate>
                                     <spec-edit-project (saved)="edit($event, project)"
                                                        [title]="project?.title">
                                     </spec-edit-project>
                                 </ng-template>
                                 <jnt-button [icon]="ui.icons.edit"
-                                            [size]="ui.sizes.tiny"
-                                            [scheme]="ui.schemes.secondary"
+                                            [size]="ui.size.tiny"
+                                            [scheme]="ui.scheme.secondary"
                                             [jntPopover]="{
                                                 title: project?.title,
                                                 contentTemplate: editTemplate,
-                                                trigger: ui.popover.trigger.click}">
+                                                trigger: ui.trigger.click}">
                                 </jnt-button>
                                 <jnt-button [icon]="ui.icons.delete"
-                                            [size]="ui.sizes.tiny"
-                                            [scheme]="ui.schemes.secondary"
+                                            [size]="ui.size.tiny"
+                                            [scheme]="ui.scheme.secondary"
                                             (click)="delete(project.id)">
                                 </jnt-button>
                             </jnt-stack>

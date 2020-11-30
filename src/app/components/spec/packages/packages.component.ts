@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { Package } from 'src/app/model/spec/orm/package';
 import { Spec } from 'src/app/model/spec/spec';
 import * as uuid from 'uuid/v1';

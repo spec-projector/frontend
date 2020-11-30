@@ -1,4 +1,4 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -29,7 +29,7 @@ header {
       color: black;
     }
   }
-  margin-bottom: $gutter-normal;
+  margin-bottom: $jnt-gutter-normal;
 }
 
 ul {
@@ -38,7 +38,7 @@ ul {
   padding: 0;
   li {
     &:not(:last-child) {
-      margin-bottom: $gutter-normal;
+      margin-bottom: $jnt-gutter-normal;
     }
     position: relative;
     h4 {
@@ -46,7 +46,7 @@ ul {
       top: 0;
       left: 0;
       bottom: 0;
-      font-size: $font-size-base;
+      font-size: $jnt-font-size-base;
       span {
         position: absolute;
         top: 50%;
@@ -58,19 +58,19 @@ ul {
 
     ul {
       list-style: none;
-      margin: 0 0 0 $gutter-normal;
-      padding: 0 0 0 $gutter-small;
+      margin: 0 0 0 $jnt-gutter-normal;
+      padding: 0 0 0 $jnt-gutter-small;
       display: flex;
       flex-direction: column;
-      border-left: 2px solid $primary-light-color;
+      border-left: 2px solid $jnt-primary-light-color;
       li {
         display: flex;
         align-items: flex-start;
-        background-color: $white-color;
-        padding: $gutter-small;
+        background-color: $jnt-white-color;
+        padding: $jnt-gutter-small;
         box-sizing: border-box;
-        margin-right: $gutter-normal;
-        border: 1px solid $secondary-color;
+        margin-right: $jnt-gutter-normal;
+        border: 1px solid $jnt-secondary-color;
         border-radius: 10px;
         &[add] {
           width: 100px;
@@ -80,14 +80,14 @@ ul {
         }
         [actions] {
           opacity: .1;
-          margin: 0 $gutter-small 0 0;
+          margin: 0 $jnt-gutter-small 0 0;
           &:hover {
             opacity: 1;
             transition: .25s opacity;
           }
         }
         &:not(:last-child) {
-          margin-bottom: $gutter-normal;
+          margin-bottom: $jnt-gutter-normal;
         }
       }
     }

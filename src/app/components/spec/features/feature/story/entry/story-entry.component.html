@@ -1,0 +1,18 @@
+<form [formGroup]="form"
+      (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+      (mouseleave)="mode = editMode.view">
+  <ng-container *ngIf="mode == editMode.edit; else view">
+    <select type formControlName="type" tabindex="-1">
+      <option [value]="storyEntryType.can">I can</option>
+      <option [value]="storyEntryType.see">I see</option>
+    </select>
+    <input #input formControlName="description"
+           (keydown)="keydown($event)"
+           (keyup)="keyup($event)">
+  </ng-container>
+
+  <ng-template #view>
+    <b>I {{entry.type}}</b>
+    <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
+  </ng-template>
+</form>

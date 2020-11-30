@@ -1,9 +1,9 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 ul[contents] {
   li {
     ul {
-      font-size: $font-size-small;
+      font-size: $jnt-font-size-small;
       div {
         font-size: 10px;
         line-height: .75em;
@@ -16,16 +16,16 @@ ul[epics] {
   list-style: none;
   margin: 0;
   padding: 0;
-  padding: -($gutter-small);
+  padding: -($jnt-gutter-small);
 }
 
 [field] {
   display: flex;
   align-items: flex-start;
-  background-color: $white-color;
-  box-shadow: $shadow-primary-light;
+  background-color: $jnt-white-color;
+  box-shadow: $jnt-shadow-light;
   width: 100%;
-  padding: $gutter-small;
+  padding: $jnt-gutter-small;
   box-sizing: border-box;
   border-radius: 10px;
 
@@ -35,12 +35,12 @@ ul[epics] {
   }
 
   &:not(:last-child) {
-    margin-bottom: $gutter-large;
+    margin-bottom: $jnt-gutter-large;
   }
 
   [actions] {
     opacity: .1;
-    margin: 0 $gutter-small 0 0;
+    margin: 0 $jnt-gutter-small 0 0;
 
     &:hover {
       opacity: 1;
@@ -50,7 +50,7 @@ ul[epics] {
 }
 
 .cdk-drag-preview {
-  box-shadow: $shadow-primary;
+  box-shadow: $jnt-shadow-normal;
 }
 
 .cdk-drop-dragging .cdk-drag {

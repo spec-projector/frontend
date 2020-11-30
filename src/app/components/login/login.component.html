@@ -1,31 +1,31 @@
-<jnt-block [padding]="ui.padding.large" [loading]="progress.gitlab">
-    <jnt-form [formGroup]="loginForm" [layout]="ui.form.layout.horizontal" (submitted)="login()" jntValidation form>
-        <div logo>
-            <img src="assets/images/logo.svg" height="50">
-        </div>
-        <p>{{error}}</p>
-        <jnt-stack fields [gutter]="ui.gutter.normal">
-            <fieldset [class.error]="loginForm.get('username')?.dirty && loginForm.get('username')?.errors">
-                <p class="message">Field is required!</p>
-                <jnt-input formControlName="username" placeholder="Username" required></jnt-input>
-            </fieldset>
+<jnt-block [padding]="ui.gutter.large" [state]="progress.gitlab ? ui.state.loading : null">
+  <jnt-form [formGroup]="loginForm" (submitted)="login()" form>
+    <div logo>
+      <img src="assets/images/logo.svg" height="50">
+    </div>
+    <p>{{error}}</p>
+    <jnt-stack fields [gutter]="ui.gutter.normal">
+      <fieldset [class.error]="loginForm.get('username')?.dirty && loginForm.get('username')?.errors">
+        <p class="message">Field is required!</p>
+        <jnt-input formControlName="username" placeholder="Username" required></jnt-input>
+      </fieldset>
 
-            <fieldset [class.error]="loginForm.get('password')?.dirty && loginForm.get('password')?.errors">
-                <p class="message">Field is required!</p>
-                <jnt-input formControlName="password" placeholder="Password" required
-                           [type]="ui.form.input.password">
-                </jnt-input>
-            </fieldset>
-        </jnt-stack>
-        <ng-template #formFooterTemplate>
-            <jnt-form-item>
-                <jnt-button [loading]="progress.login" [type]="ui.form.button.type.submit" text="Login"
-                            [width]="ui.width.fluid">
-                </jnt-button>
-            </jnt-form-item>
-            <a href="https://teamprojector.com/api/login/gitlab/">
-                <img src="/assets/images/gitlab.svg" height="30">
-            </a>
-        </ng-template>
-    </jnt-form>
+      <fieldset [class.error]="loginForm.get('password')?.dirty && loginForm.get('password')?.errors">
+        <p class="message">Field is required!</p>
+        <jnt-input formControlName="password" placeholder="Password" required
+                   [type]="ui.input.type.password">
+        </jnt-input>
+      </fieldset>
+    </jnt-stack>
+    <ng-template #formFooterTemplate>
+      <jnt-form-item>
+        <jnt-button [loading]="progress.login" [type]="ui.button.type.submit" text="Login"
+                    [width]="ui.width.fluid">
+        </jnt-button>
+      </jnt-form-item>
+      <a href="https://teamprojector.com/api/login/gitlab/">
+        <img src="/assets/images/gitlab.svg" height="30">
+      </a>
+    </ng-template>
+  </jnt-form>
 </jnt-block>

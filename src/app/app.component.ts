@@ -1,24 +1,13 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
-    ui = UI;
+export class AppComponent {
 
-    @ViewChild('popover', {static: false}) popoverControl: PopoverComponent;
-    @ViewChild('modal', {static: false}) modal: ModalComponent;
-    @ViewChild('layout', {read: ElementRef, static: true}) backdrop;
+  ui = UI;
 
-    constructor(private modalService: ModalService,
-                private popover: PopoverService) {
-    }
-
-    ngAfterViewInit() {
-        this.modalService.register(this.modal);
-        this.popover.register(this.popoverControl);
-    }
 }

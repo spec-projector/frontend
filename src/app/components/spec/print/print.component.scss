@@ -1,8 +1,8 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
-  padding-top: $gutter-small;
+  padding-top: $jnt-gutter-small;
 }
 
 h1 {
@@ -22,9 +22,9 @@ h3 {
 }
 
 [feature]{
-  padding: $gutter-normal 40px;
-  background: $white-color;
-  border-radius: $corner-normal;
+  padding: $jnt-gutter-normal 40px;
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
 }
 
 [type='see'], [type='can'] {
@@ -35,9 +35,9 @@ h3 {
 }
 
 [type='see'] {
-  color: $green-dark-color;
+  color: $jnt-green-dark-color;
 }
 
 [type='can'] {
-  color: $orange-color;
+  color: $jnt-orange-color;
 }

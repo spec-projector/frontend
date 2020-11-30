@@ -20,7 +20,7 @@
         <h2>Improvements</h2>
         <ol improvements>
             <li *ngFor="let improvement of sprint.improvements">
-                <jnt-stack [type]="ui.stack.type.horizontal">
+                <jnt-stack [orientation]="ui.orientation.horizontal">
                     <spec-tokens [tokens]="improvement.title"></spec-tokens>
 
                 </jnt-stack>

@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JunteUiModule } from 'junte-ui';
+import { JunteUiModule } from '@junte/ui';
 import { AppRoutingModule } from 'projects/game/src/app/app-routing.module';
 import { GroupComponent } from 'projects/game/src/app/kanban/group/group.component';
 import { AppComponent } from './app.component';

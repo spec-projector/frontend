@@ -1,14 +1,14 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: inline-block;
 }
 
 [accent] {
-  background: $primary-color;
-  color: $white-color;
+  background: $jnt-primary-color;
+  color: $jnt-white-color;
   border-radius: 5px;
-  padding: 1px $gutter-small;
+  padding: 1px $jnt-gutter-small;
   font-size: .85em;
 }
 

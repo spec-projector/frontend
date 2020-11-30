@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { LocalUI } from 'src/app/enums/local-ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';

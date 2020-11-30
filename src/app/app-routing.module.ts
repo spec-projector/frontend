@@ -15,8 +15,8 @@ const routes: Routes = [
     },
     {
         path: 'projects',
-        loadChildren: () => import('./components/dashboard/dashboard.module')
-            .then(m => m.DashboardModule),
+        loadChildren: () => import('./components/layout/layout.module')
+            .then(m => m.LayoutModule),
         canActivate: [AuthorizationGuard]
     }
 ];
@@ -25,7 +25,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, {
         paramsInheritanceStrategy: 'always',
         relativeLinkResolution: 'corrected',
-        scrollPositionRestoration: 'disabled',
+        scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
         scrollOffset: [0, 150]
     })],

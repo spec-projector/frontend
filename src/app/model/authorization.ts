@@ -1,9 +1,12 @@
-import { field } from '@junte/mocker-library';
+import { Field, Model } from 'serialize-ts';
 
+@Model()
 export class Authorization {
-    @field()
-    created: string;
 
-    @field()
-    key: string;
+  @Field()
+  created: string;
+
+  @Field()
+  key: string;
+
 }

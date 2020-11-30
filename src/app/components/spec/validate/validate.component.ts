@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { Spec } from 'src/app/model/spec/spec';
 import { ValidationError } from 'src/app/model/validation/error';
 

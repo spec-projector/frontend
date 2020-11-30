@@ -21,7 +21,7 @@
       </select>
       <br>
       <label>
-        <jnt-stack [type]="ui.stack.type.horizontal"
+        <jnt-stack [orientation]="ui.orientation.horizontal"
                    [gutter]="ui.gutter.tiny">
           <small>required</small>
           <input type="checkbox" formControlName="required">
@@ -41,8 +41,8 @@
   <header>
     <h1 title>{{field.title}}
       <jnt-label required *ngIf="field.required"
-                 [size]="ui.sizes.small"
-                 [color]="ui.colors.redDark"
+                 [size]="ui.size.small"
+                 [color]="ui.color.redDark"
                  label="required"></jnt-label>
     </h1>
     <div naming>

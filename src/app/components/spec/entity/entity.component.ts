@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { Entity } from 'src/app/model/spec/orm/entity';
 import { EntityField } from 'src/app/model/spec/orm/entity-field';
 import { merge } from 'rxjs';

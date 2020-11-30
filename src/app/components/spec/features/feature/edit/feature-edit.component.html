@@ -1,0 +1,45 @@
+<jnt-app-page-header [icon]="localUi.icons.features"
+                     [title]="feature.title"
+                     [teaser]="feature.actor.name"></jnt-app-page-header>
+
+<jnt-block [width]="ui.width.fluid">
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-menu [style]="ui.menu.style.tabs"
+              [spacing]="ui.gutter.normal">
+      <jnt-menu-item title="User story"
+                     [link]="['story']">
+        <jnt-badge *ngIf="feature.story.length > 0"
+                   [value]="feature.story.length"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item title="Resources"
+                     [link]="['resources']">
+        <jnt-badge *ngIf="feature.resources.length > 0"
+                   [value]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item title="Design"
+                     [link]="['frames']">
+        <jnt-badge *ngIf="feature.frames.length > 0"
+                   [value]="feature.frames.length"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item title="API"
+                     [link]="['api']">
+        <jnt-badge *ngIf="feature.graphql.length > 0"
+                   [value]="feature.graphql.length"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item title="Issues"
+                     [link]="['issues']">
+        <jnt-badge *ngIf="feature.issues.length > 0"
+                   [value]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item title="Markdown"
+                     [link]="['markdown']"></jnt-menu-item>
+    </jnt-menu>
+
+    <router-outlet></router-outlet>
+  </jnt-stack>
+</jnt-block>

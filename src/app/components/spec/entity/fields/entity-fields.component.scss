@@ -1,4 +1,4 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -13,7 +13,7 @@ ul {
 [field] {
   display: flex;
   align-items: flex-start;
-  background-color: $white-color;
+  background-color: $jnt-white-color;
   width: 100%;
   box-sizing: border-box;
   border-radius: 10px;
@@ -29,13 +29,13 @@ ul {
   }
 
   &:not(:last-child) {
-    border-bottom: 1px dotted $secondary-color;
-    margin-bottom: $gutter-tiny;
+    border-bottom: 1px dotted $jnt-secondary-color;
+    margin-bottom: $jnt-gutter-tiny;
   }
 
   [actions] {
     opacity: .1;
-    margin: 0 $gutter-small 0 0;
+    margin: 0 $jnt-gutter-small 0 0;
 
     &:hover {
       opacity: 1;
@@ -45,7 +45,7 @@ ul {
 }
 
 .cdk-drag-preview {
-  box-shadow: $shadow-primary;
+  box-shadow: $jnt-shadow-normal;
 }
 
 .cdk-drop-dragging .cdk-drag {

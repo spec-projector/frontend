@@ -1,4 +1,4 @@
-@import "../../../../../../../node_modules/junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -12,13 +12,13 @@ form {
 
 [editor] {
   position: absolute;
-  top: -($gutter-small);
-  left: -($gutter-small);
-  background: $white-color;
-  border-radius: $corner-normal;
-  box-shadow: $shadow-light;
+  top: -($jnt-gutter-small);
+  left: -($jnt-gutter-small);
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
+  box-shadow: $jnt-shadow-light;
   box-sizing: border-box;
-  padding: $gutter-small;
+  padding: $jnt-gutter-small;
   z-index: 100;
   display: flex;
   align-items: flex-start;
@@ -58,7 +58,7 @@ header {
       height: 5px;
       background: transparent;
       border-radius: 50%;
-      margin-right: $gutter-tiny;
+      margin-right: $jnt-gutter-tiny;
       position: relative;
       z-index: 1;
       input[type='checkbox'] {
@@ -77,11 +77,11 @@ header {
 }
 
 [required] {
-  margin-left: $gutter-small;
+  margin-left: $jnt-gutter-small;
 }
 
 [typing] {
-  margin-left: $gutter-normal;
+  margin-left: $jnt-gutter-normal;
 }
 
 select {

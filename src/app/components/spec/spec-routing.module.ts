@@ -16,17 +16,17 @@ import { SprintsComponent } from 'src/app/components/spec/sprints/sprints.compon
 import { SprintResolver } from 'src/app/components/spec/sprints/sprints.resolver';
 import { TermsComponent } from 'src/app/components/spec/terms/terms.component';
 import { ValidateComponent } from 'src/app/components/spec/validate/validate.component';
-import { ActorEditComponent } from './actor/edit/actor-edit.component';
+import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { EntityEditComponent } from './entity/edit/entity-edit.component';
 import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
-import { FeatureEditGraphqlComponent } from './feature/api/edit-graphql/feature-edit-graphql.component';
-import { FeatureApiComponent } from './feature/api/feature-api.component';
-import { FeatureEditComponent } from './feature/edit/feature-edit.component';
-import { FeatureFramesComponent } from './feature/frames/feature-frames.component';
-import { FeatureIssuesComponent } from './feature/issues/feature-issues.component';
-import { FeatureMarkdownComponent } from './feature/markdown/feature-markdown.component';
-import { FeatureResourcesComponent } from './feature/resources/feature-resources.component';
-import { FeatureStoryComponent } from './feature/story/feature-story.component';
+import { FeatureEditGraphqlComponent } from './features/feature/api/edit-graphql/feature-edit-graphql.component';
+import { FeatureApiComponent } from './features/feature/api/feature-api.component';
+import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
+import { FeatureFramesComponent } from './features/feature/frames/feature-frames.component';
+import { FeatureIssuesComponent } from './features/feature/issues/feature-issues.component';
+import { FeatureMarkdownComponent } from './features/feature/markdown/feature-markdown.component';
+import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
+import { FeatureStoryComponent } from './features/feature/story/feature-story.component';
 import { FeaturesComponent } from './features/features.component';
 import { ModelComponent } from './model/model.component';
 import { PackageEditComponent } from './package/edit/package-edit.component';
@@ -147,9 +147,9 @@ export const routes: Routes = [
                     resolve: {feature: ActorFeatureResolver},
                     children: [
                       {
-                        path: 'graphql/:index',
+                        path: 'graphql/:id',
                         component: FeatureEditGraphqlComponent,
-                        resolve: {index: FeatureGraphqlResolver},
+                        resolve: {query: FeatureGraphqlResolver},
                       }
                     ]
                   },

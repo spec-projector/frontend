@@ -3,16 +3,19 @@ import { persist, persistence } from 'src/decorators/persistence';
 @persistence()
 export class Frame {
 
-    @persist()
-    file: string;
+  @persist()
+  id: string;
 
-    @persist()
-    node: string;
+  @persist()
+  file: string;
 
-    @persist()
-    thumbnail: string;
+  @persist()
+  node: string;
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
-    }
+  @persist()
+  thumbnail: string;
+
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
 }

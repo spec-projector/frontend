@@ -1,0 +1,27 @@
+<p>The markdown was copied to your clipboard!</p>
+
+<!-- @formatter:off -->
+
+<ng-template #tokensTemplate let-tokens="tokens"><ng-container *ngFor="let token of tokens"><ng-container [ngSwitch]="token | getTokenType"><ng-container *ngSwitchCase="tokenType.term">**{{token['term']}}❓**&nbsp;</ng-container><ng-container *ngSwitchCase="tokenType.accent">**{{token['text']}}**&nbsp;</ng-container><ng-container *ngSwitchCase="tokenType.quote">«{{token['text']}}»</ng-container><ng-container *ngSwitchDefault>{{token.text}}&nbsp;</ng-container></ng-container></ng-container></ng-template>
+
+<pre #raw style="display: none">
+As a 👦 **{{feature.actor?.name}}** I want: [<ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: feature.title}"></ng-container>]({{consts.baseUri}}/projects/{{project.id}}/actors/{{feature.actor.id}}/features/{{feature.id}})
+<ng-container *ngFor="let entry of feature.story;let i = index">{{i + 1}}. **I {{entry.type}}:** <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: entry.description}"></ng-container>
+</ng-container>
+<ng-container *ngIf="feature.frames?.length">**🚀 Design**
+
+<ng-container *ngFor="let frame of feature.frames"><![CDATA[<img src="]]>{{frame.thumbnail}}<![CDATA[" width="120">]]>
+
+http://figma.com/file/{{frame.file}}?node-id={{frame.node}}
+</ng-container></ng-container>
+<ng-container *ngIf="feature.graphql?.length">**⛳ API**
+<ng-container *ngFor="let query of feature.graphql;let i = index">* [{{query.title}}]({{consts.baseUri}}/projects/{{project.id}}/actors/{{feature.actor.id}}/features/{{feature.id}}/api/graphql/{{query.id || i}})
+</ng-container></ng-container>
+<ng-container *ngIf="feature.issues.length">**💈 Issues**
+<ng-container *ngFor="let issue of feature.issues">* **{{issue.resource}}**: [{{issue.title}}]({{issue.url}})
+</ng-container></ng-container>
+<ng-container *ngIf="(feature | featureTerms)?.length">**❓Terms**
+<ng-container *ngFor="let term of (feature | featureTerms)">* **{{term.name}}** &mdash; <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}"></ng-container>
+</ng-container></ng-container></pre>
+
+<pre #markdown></pre>

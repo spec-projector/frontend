@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { isEqual } from 'junte-ui';
+import { isEqual } from '@junte/ui';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts/dist';

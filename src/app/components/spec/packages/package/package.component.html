@@ -27,27 +27,27 @@
         dndType="entity">
       <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny">
         <jnt-button [icon]="ui.icons.edit"
-                    [size]="ui.sizes.tiny"
-                    [scheme]="ui.schemes.secondary"
+                    [size]="ui.size.tiny"
+                    [scheme]="ui.scheme.secondary"
                     (click)="router.navigate([package.id, 'entities', entity.id], {relativeTo: route})">
         </jnt-button>
         <jnt-button handle dndHandle
-                    [icon]="ui.icons.font.expand"
-                    [size]="ui.sizes.tiny"
-                    [scheme]="ui.schemes.secondary">
+                    [icon]="ui.icons.expand"
+                    [size]="ui.size.tiny"
+                    [scheme]="ui.scheme.secondary">
         </jnt-button>
       </jnt-stack>
       <spec-entity data-entity [entity]="entity"></spec-entity>
-      <jnt-button [icon]="ui.icons.font.delete"
-                  [size]="ui.sizes.tiny"
-                  [scheme]="ui.schemes.secondary"
+      <jnt-button [icon]="ui.icons.delete"
+                  [size]="ui.size.tiny"
+                  [scheme]="ui.scheme.secondary"
                   (click)="deleteEntity(i)">
       </jnt-button>
     </li>
     <li add>
       <jnt-button *ngIf="manager.mode == editMode.edit"
-                  [icon]="ui.icons.font.plus" [size]="ui.sizes.tiny"
-                  [scheme]="ui.schemes.secondary"
+                  [icon]="ui.icons.add" [size]="ui.size.tiny"
+                  [scheme]="ui.scheme.secondary"
                   (click)="addEntity()"></jnt-button>
     </li>
   </ul>

@@ -1,7 +1,7 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 [actions] {
-  padding: $gutter-normal;
+  padding: $jnt-gutter-normal;
 
   [fileInput] {
     display: none;

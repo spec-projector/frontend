@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { KanbanManager } from 'projects/game/src/app/kanban/kanban.manager';
 import { Group } from 'projects/game/src/models/group';
 import { Kanban } from 'projects/game/src/models/kanban';

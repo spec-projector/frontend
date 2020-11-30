@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { Term } from 'src/app/model/spec/planning/term';

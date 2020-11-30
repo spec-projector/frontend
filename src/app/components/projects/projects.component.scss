@@ -1,7 +1,7 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 [app-body] {
-  padding-left: $gutter-normal;
+  padding-left: $jnt-gutter-normal;
 
   [projects] {
     width: 300px;

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
-import { ModalService } from 'junte-ui';
+import { ModalService } from '@junte/ui';
 import PouchDB from 'pouchdb-browser';
 import { Kanban } from 'projects/game/src/models/kanban';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';

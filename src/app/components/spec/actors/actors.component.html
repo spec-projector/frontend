@@ -1,70 +1,59 @@
-<p>Features are a functionality of your application. Your app is a game with actors each of them wants to do something
-  for reaching some goal.</p>
-<!--<h2>Contents</h2>
-<ul contents>
-  <li *ngFor="let actor of spec.actors; trackBy: trackActor">
-    <jnt-stack actor [type]="ui.stack.type.horizontal">
-      <jnt-link [source]="['.', {actor: actor.id}]" [title]="actor.name"></jnt-link>
-      <ng-container *ngIf="(actor | actorPrice:actor.version:actor.rev) as price">
-        <div price>{{price | currency}}</div>
-      </ng-container>
-    </jnt-stack>
-    <ul>
-      <li *ngFor="let feature of actor.features">
-        <jnt-stack [type]="ui.stack.type.horizontal">
-          <jnt-stack [type]="ui.stack.type.horizontal"
-                     [align]="ui.flex.align.center"
-                     [gutter]="ui.gutter.small">
-            <jnt-link
-              (click)="router.navigate([actor.id,'features', feature.id], {relativeTo: route})"
-              [title]="feature.title | joinTokens"></jnt-link>
-            <div dot *ngIf="feature.story.length" story></div>
-            <div dot *ngIf="feature.frames.length" frames></div>
-            <div dot *ngIf="feature.graphql.length" graphql></div>
-          </jnt-stack>
-          <ng-container *ngIf="(feature | featurePrice:feature.version:feature.rev) as price">
-            <div price>{{price | currency}}</div>
-          </ng-container>
+<jnt-app-page-header [icon]="localUi.icons.features"
+                     title="Features"
+                     teaser="functionality of your application"></jnt-app-page-header>
+
+<p>Your app is a game with actors each of them wants to do something for reaching some goal.</p>
+
+<jnt-stack [align]="ui.align.stretch"
+           [gutter]="ui.gutter.large">
+  <jnt-collapsible data-library title="Library">
+    <ng-template #collapsibleContentTemplate>
+      <p>Epics</p>
+      <ul data-epics cdkDropList [cdkDropListConnectedTo]="spec | features">
+        <li cdkDrag *ngFor="let epic of spec.epics"
+            [cdkDragData]="{id: epic.id}">
+          {{epic.title}}
+        </li>
+      </ul>
+    </ng-template>
+  </jnt-collapsible>
+
+  <jnt-stack [orientation]="ui.orientation.horizontal">
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.add"
+                [shape]="ui.shape.circle"
+                (click)="addActor()"></jnt-button>
+  </jnt-stack>
+
+  <jnt-stack cdkDropList [align]="ui.align.stretch"
+             (cdkDropListDropped)="moveActor($event)"
+             [cdkDropListData]="spec?.actors">
+    <jnt-block cdkDrag *ngFor="let actor of spec?.actors; let i = index; trackBy: trackActor">
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
+                   [gutter]="ui.gutter.small">
+          <jnt-button cdkDragHandle
+                      [icon]="ui.icons.expand"
+                      [size]="ui.size.tiny"
+                      [shape]="ui.shape.circle"
+                      [scheme]="ui.scheme.secondary">
+          </jnt-button>
+          <jnt-button [icon]="ui.icons.cancel"
+                      [size]="ui.size.tiny"
+                      [shape]="ui.shape.circle"
+                      [scheme]="ui.scheme.secondary"
+                      [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
+                      (attached)="instance.popover = $event">
+          </jnt-button>
+          <ng-template #deleteTemplate>
+            <jnt-confirm message="Are you sure to delete the actor?"
+                         (cancel)="instance.popover.hide()"
+                         (ok)="deleteActor(i);instance.popover.hide()"></jnt-confirm>
+          </ng-template>
         </jnt-stack>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<ul total>
-  <li>Total</li>
-  <li></li>
-  <li>
-    {{spec | specPrice:spec.version:spec.rev | currency}}
-  </li>
-</ul>-->
-
-<jnt-stack [gutter]="ui.gutter.large">
-  <jnt-button *ngIf="manager.mode ==  editMode.edit"
-              [icon]="ui.icons.font.plus"
-              [size]="ui.sizes.tiny"
-              [scheme]="ui.schemes.secondary"
-              (click)="addActor()"></jnt-button>
-  <ul actors cdkDropList (cdkDropListDropped)="moveActor($event)" [cdkDropListData]="spec.actors">
-    <li *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor" cdkDrag field>
-      <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.small">
-        <jnt-button cdkDragHandle
-                    [icon]="ui.icons.font.expand"
-                    [size]="ui.sizes.tiny"
-                    [scheme]="ui.schemes.secondary">
-        </jnt-button>
-        <jnt-button [icon]="ui.icons.font.delete"
-                    [size]="ui.sizes.tiny"
-                    [scheme]="ui.schemes.secondary"
-                    [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.popover.trigger.click}">
-        </jnt-button>
-        <ng-template #deleteTemplate>
-          <jnt-confirm message="Are you sure to delete the actor?" (cancel)="popover.hide()"
-                       (ok)="deleteActor(i);popover.hide()"></jnt-confirm>
-        </ng-template>
+        <spec-actor data-actor [actor]="actor"></spec-actor>
       </jnt-stack>
-      <spec-actor actor [actor]="actor"></spec-actor>
-    </li>
-  </ul>
+    </jnt-block>
+  </jnt-stack>
 </jnt-stack>
 

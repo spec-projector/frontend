@@ -3,13 +3,16 @@ import { persist, persistence } from 'src/decorators/persistence';
 @persistence()
 export class Api {
 
-    @persist()
-    title: string;
+  @persist()
+  id: string;
 
-    @persist()
-    url: string;
+  @persist()
+  title: string;
 
-    constructor(defs: any = {}) {
-        Object.assign(this, defs);
-    }
+  @persist()
+  url: string;
+
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
 }

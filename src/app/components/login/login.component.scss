@@ -1,4 +1,4 @@
-@import '~junte-ui/lib/assets/styles/variables';
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
 
 :host {
   display: flex;
@@ -17,14 +17,14 @@
   a {
     display: block;
     text-align: center;
-    margin-top: $gutter-big;
+    margin-top: $jnt-gutter-big;
   }
 
   [logo] {
     text-align: center;
   }
   [fields] {
-    margin-top: $gutter-normal;
+    margin-top: $jnt-gutter-normal;
   }
   button {
     display: block;

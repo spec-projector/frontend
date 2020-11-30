@@ -1,4 +1,4 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -43,7 +43,7 @@ header {
       height: 5px;
       background: transparent;
       border-radius: 50%;
-      margin-right: $gutter-tiny;
+      margin-right: $jnt-gutter-tiny;
       position: relative;
       z-index: 1;
       input[type='checkbox'] {
@@ -71,11 +71,11 @@ ul {
   li {
     display: flex;
     align-items: flex-start;
-    background-color: $white-color;
-    padding: $gutter-small;
+    background-color: $jnt-white-color;
+    padding: $jnt-gutter-small;
     box-sizing: border-box;
-    margin-right: $gutter-normal;
-    border: 1px solid $secondary-color;
+    margin-right: $jnt-gutter-normal;
+    border: 1px solid $jnt-secondary-color;
     border-radius: 10px;
     &[placeholder] {
       border: 1px solid black;
@@ -89,16 +89,16 @@ ul {
       display: flex;
     }
     [actions] {
-      margin: 0 $gutter-small 0 0;
+      margin: 0 $jnt-gutter-small 0 0;
     }
 
     [data-entity] {
       flex: 1;
-      margin: 0 $gutter-small;
+      margin: 0 $jnt-gutter-small;
     }
 
     &:not(:last-child) {
-      margin-bottom: $gutter-normal;
+      margin-bottom: $jnt-gutter-normal;
     }
   }
 }

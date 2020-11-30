@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { Spec } from 'src/app/model/spec/spec';
 import { Actor } from '../../../model/spec/planning/actor';

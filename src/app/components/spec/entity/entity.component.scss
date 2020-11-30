@@ -1,4 +1,4 @@
-@import "../../../../../node_modules/junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 form {
   position: relative;
@@ -42,7 +42,7 @@ header {
       height: 5px;
       background: transparent;
       border-radius: 50%;
-      margin-right: $gutter-tiny;
+      margin-right: $jnt-gutter-tiny;
       position: relative;
       z-index: 1;
 

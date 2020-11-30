@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from 'junte-ui';
+import { UI } from '@junte/ui';
 import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { SpecManager } from 'src/app/managers/spec.manager';

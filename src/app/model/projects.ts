@@ -1,68 +1,70 @@
-import { field, model } from '@junte/mocker-library';
-import { SearchFilter } from 'junte-ui';
-import { ArraySerializer } from 'serialize-ts';
+import { SearchFilter } from '@junte/ui';
+import { ArraySerializer, Field, Model } from 'serialize-ts';
 import { Paging } from 'src/app/model/paging';
 import { EdgesToPaging } from 'src/app/serializers/graphql';
 
-@model()
+@Model()
 export class Project {
 
-    @field({mock: '{{id}}'})
-    id: string;
+  @Field()
+  id: string;
 
-    @field({mock: '{{issue}}'})
-    title: string;
+  @Field()
+  title: string;
 
-    @field({mock: '{{issue}}'})
-    dbName: string;
+  @Field()
+  dbName: string;
+
 }
 
-@model()
+@Model()
 export class PagingProjects implements Paging<Project> {
 
-    @field({mock: '{{int 50 1000}}'})
-    count: number;
+  @Field()
+  count: number;
 
-    @field({
-        name: 'edges',
-        serializer: new ArraySerializer(new EdgesToPaging<Project>(Project)),
-        mock: '[{{#repeat 3 10}} {{> project}} {{/repeat}}]'
-    })
-    results: Project[];
+  @Field({
+    jsonPropertyName: 'edges',
+    serializer: new ArraySerializer(new EdgesToPaging<Project>(Project))
+  })
+  results: Project[];
+
 }
 
-@model()
+@Model()
 export class ProjectUpdate {
 
-    @field()
-    project: string;
+  @Field()
+  project: string;
 
-    @field()
-    title: string;
+  @Field()
+  title: string;
 
-    @field()
-    description?: string;
+  @Field()
+  description?: string;
 
-    constructor(update: ProjectUpdate) {
-        Object.assign(this, update);
-    }
+  constructor(update: Partial<ProjectUpdate> = null) {
+    Object.assign(this, update);
+  }
+
 }
 
-@model()
+@Model()
 export class ProjectsFilter implements SearchFilter {
 
-    @field()
-    first?: number;
+  @Field()
+  first?: number;
 
-    @field()
-    offset?: number;
+  @Field()
+  offset?: number;
 
-    @field()
-    q?: string;
+  @Field()
+  q?: string;
 
-    constructor(defs: ProjectsFilter = null) {
-        if (!!defs) {
-            Object.assign(this, defs);
-        }
+  constructor(defs: Partial<ProjectsFilter> = null) {
+    if (!!defs) {
+      Object.assign(this, defs);
     }
+  }
+
 }

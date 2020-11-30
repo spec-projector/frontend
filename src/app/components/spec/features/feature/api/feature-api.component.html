@@ -1,0 +1,39 @@
+<jnt-stack [align]="ui.align.stretch">
+  <ng-template #apiTypeTemplate>
+    <jnt-menu [orientation]="ui.orientation.vertical">
+      <jnt-menu-item title="Graph QL"
+                     [icon]="localUi.icons.graphQl"
+                     (click)="addGraphQL()"></jnt-menu-item>
+      <jnt-menu-item title="REST API"
+                     [icon]="localUi.icons.rest"
+                     [disabled]="true"></jnt-menu-item>
+    </jnt-menu>
+  </ng-template>
+  <jnt-stack [orientation]="ui.orientation.horizontal">
+    <jnt-button [icon]="ui.icons.add"
+                [shape]="ui.shape.circle"
+                [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
+                (attached)="instance.popover = $event"></jnt-button>
+  </jnt-stack>
+
+  <ng-template #noDataTemplate>
+    <p>You did't attach frames before.</p>
+  </ng-template>
+
+  <jnt-row *ngIf="feature.graphql.length > 0;else noDataTemplate">
+    <jnt-col *ngFor="let query of feature.graphql;let i = index;"
+             [tablet]="3">
+      <jnt-card [color]="query.id === selected.query?.id ? ui.color.green : ui.color.paleNavy"
+                [width]="ui.width.fluid"
+                [features]="[ui.feature.clickable]"
+                (click)="router.navigate(['graphql', query.id || i], {relativeTo: route})">
+        <jnt-stack [gutter]="ui.gutter.small"
+                   [align]="ui.align.center">
+          <jnt-icon [icon]="localUi.icons.graphQl"></jnt-icon>
+          <div>{{query.title}}</div>
+        </jnt-stack>
+      </jnt-card>
+    </jnt-col>
+  </jnt-row>
+  <router-outlet></router-outlet>
+</jnt-stack>

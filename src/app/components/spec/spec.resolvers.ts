@@ -1,10 +1,8 @@
-import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { ModalOptions, ModalService, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts/dist';
-import { SpaceSyncComponent } from 'src/app/components/spec/shared/sync/space-sync.component';
 import { ProjectGQL } from 'src/app/components/spec/spec.graphql';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { Project } from 'src/app/model/projects';
@@ -13,15 +11,13 @@ import { Entity } from '../../model/spec/orm/entity';
 import { Package } from '../../model/spec/orm/package';
 import { Actor } from '../../model/spec/planning/actor';
 import { Feature } from '../../model/spec/planning/feature';
+import { Graphql } from '../../model/spec/planning/graphql';
 
 @Injectable({providedIn: 'root'})
 export class SpecResolver implements Resolve<Spec> {
 
   constructor(private projectGQL: ProjectGQL,
-              private manager: SpecManager,
-              private cfr: ComponentFactoryResolver,
-              private injector: Injector,
-              private modalService: ModalService) {
+              private manager: SpecManager) {
   }
 
   resolve(route: ActivatedRouteSnapshot,
@@ -31,17 +27,11 @@ export class SpecResolver implements Resolve<Spec> {
       this.projectGQL.fetch({id: route.params['project']})
         .pipe(map(({data: {project: p}}) => deserialize(p, Project)))
         .subscribe(p => {
-          const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
-          this.modalService.open(component, new ModalOptions({
-            title: {text: 'Syncing project', icon: UI.icons.runningMan}
-          }));
+
           console.log(p.dbName);
           console.log('spec resolver');
           this.manager.get(p.dbName)
-            .pipe(finalize(() => {
-              this.modalService.close();
-              o.complete();
-            }))
+            .pipe(finalize(() => o.complete()))
             .subscribe(s => o.next(s));
         });
     });
@@ -92,16 +82,20 @@ export class ActorFeatureResolver implements Resolve<Feature> {
 }
 
 @Injectable({providedIn: 'root'})
-export class FeatureGraphqlResolver implements Resolve<number> {
+export class FeatureGraphqlResolver implements Resolve<Graphql> {
 
   constructor() {
   }
 
   resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): number {
-    const {index} = route.params as { index: string };
+          state: RouterStateSnapshot): Graphql {
+    const {feature} = route.parent.data as { feature?: Feature };
 
-    return +index;
+    const {id} = route.params as { id: string };
+    if (/^[\d+]$/.test(id)) {
+      return feature.graphql[+id];
+    }
+    return feature.graphql.find(g => g.id === id);
   }
 }
 

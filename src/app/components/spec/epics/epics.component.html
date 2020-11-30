@@ -1,5 +1,5 @@
 <p>Epics are groups of functions combined by some common things.</p>
-<h2>Contents</h2>
+<!--<h2>Contents</h2>
 <ul contents>
     <li *ngFor="let epic of spec.epics">
         <jnt-link [source]="['.', {epic: epic.id}]" [title]="epic.title"></jnt-link>
@@ -10,25 +10,25 @@
             </li>
         </ul>
     </li>
-</ul>
+</ul>-->
 
 <jnt-stack [gutter]="ui.gutter.large">
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
-                [icon]="ui.icons.font.plus"
-                [size]="ui.sizes.tiny"
-                [scheme]="ui.schemes.secondary"
+                [icon]="ui.icons.add"
+                [size]="ui.size.tiny"
+                [scheme]="ui.scheme.secondary"
                 (click)="addEpic()"></jnt-button>
     <ul epics cdkDropList (cdkDropListDropped)="moveEpic($event)" [cdkDropListData]="spec.epics">
         <li *ngFor="let epic of spec.epics; let i = index;" cdkDrag field>
             <jnt-stack *ngIf="manager.mode ==  editMode.edit" actions [gutter]="ui.gutter.small">
                 <jnt-button cdkDragHandle
                             [icon]="ui.icons.expand"
-                            [size]="ui.sizes.tiny"
-                            [scheme]="ui.schemes.secondary">
+                            [size]="ui.size.tiny"
+                            [scheme]="ui.scheme.secondary">
                 </jnt-button>
                 <jnt-button [icon]="ui.icons.delete"
-                            [size]="ui.sizes.tiny"
-                            [scheme]="ui.schemes.secondary"
+                            [size]="ui.size.tiny"
+                            [scheme]="ui.scheme.secondary"
                             (click)="deleteEpic(i)">
                 </jnt-button>
             </jnt-stack>
