@@ -8,16 +8,21 @@
     </ng-template>
     <ng-container>
       <jnt-menu>
-        <jnt-menu-item [link]="['/projects']" title="Projects"></jnt-menu-item>
-        <jnt-menu-item [link]="['/marketplace']" title="Marketplace"></jnt-menu-item>
+        <jnt-menu-item [link]="['/projects']"
+                       title="Projects"></jnt-menu-item>
+        <jnt-menu-item [link]="['/marketplace']"
+                       title="Marketplace"
+                       [disabled]="true"></jnt-menu-item>
       </jnt-menu>
       <ng-template #headerUserbarTemplate>
         <jnt-app-header-userbar>
           <ng-template #userbarAvatarTemplate>
-            <jnt-icon icon="user"></jnt-icon>
+            <jnt-avatar [size]="ui.size.small"></jnt-avatar>
           </ng-template>
           <ng-template #userbarMenuTemplate>
-            <jnt-button (click)="logout()" text="Logout"></jnt-button>
+            <jnt-button (click)="logout()"
+                        text="Logout"
+                        [icon]="{icon:ui.icons.chevronRight, position: ui.position.right}"></jnt-button>
           </ng-template>
         </jnt-app-header-userbar>
       </ng-template>

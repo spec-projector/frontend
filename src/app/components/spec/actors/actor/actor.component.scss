@@ -46,7 +46,7 @@ h3 {
   > li {
     margin: $jnt-gutter-small 0 0 12px;
 
-    :not(:last-child) {
+    &:not(:last-child) {
       padding-bottom: $jnt-gutter-big;
     }
 

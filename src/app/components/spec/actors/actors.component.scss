@@ -41,10 +41,10 @@
 
 [data-library] {
   position: fixed;
-  top: 80px;
-  right: $jnt-gutter-normal;
+  top: 90px;
+  right: $jnt-gutter-big;
   box-shadow: $jnt-shadow-normal;
-  z-index: 1;
+  z-index: 5;
 }
 
 [data-epics] {

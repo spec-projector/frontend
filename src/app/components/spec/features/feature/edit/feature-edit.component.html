@@ -15,7 +15,7 @@
       <jnt-menu-item title="Resources"
                      [link]="['resources']">
         <jnt-badge *ngIf="feature.resources.length > 0"
-                   [value]="(feature.resources | estimatedTime:feature.version:feature.rev) + 'h'"
+                   [value]="(feature.resources | estimatedTime) + 'h'"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Design"
@@ -33,7 +33,7 @@
       <jnt-menu-item title="Issues"
                      [link]="['issues']">
         <jnt-badge *ngIf="feature.issues.length > 0"
-                   [value]="(feature.issues | spentTime:feature.version:feature.rev) + 'h'"
+                   [value]="(feature.issues | spentTime) + 'h'"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Markdown"

@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BlockComponent, UI } from '@junte/ui';
+import { UI } from '@junte/ui';
 import { delay, finalize } from 'rxjs/operators';
 import { SpecManager } from 'src/app/managers/spec.manager';
 import { EditMode } from 'src/app/model/enums/edit-mode';
 import { ResourceType, Spec } from 'src/app/model/spec/spec';
+import { LocalUI } from '../../../enums/local-ui';
 
 @Component({
   selector: 'spec-details',
@@ -17,6 +18,7 @@ export class DetailsComponent implements OnInit {
   _spec: Spec;
 
   ui = UI;
+  localUi = LocalUI;
   editMode = EditMode;
   progress = {restore: false};
 
