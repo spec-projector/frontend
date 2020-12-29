@@ -1,0 +1,21 @@
+@import "../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: inline-block;
+}
+
+[accent] {
+  background: $jnt-primary-color;
+  color: $jnt-white-color;
+  border-radius: 5px;
+  padding: 1px $jnt-gutter-small;
+  font-size: .85em;
+}
+
+[default] {
+  word-break: break-word;
+}
+
+[quote] {
+  color: forestgreen;
+}

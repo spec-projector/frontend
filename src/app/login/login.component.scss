@@ -1,0 +1,39 @@
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import '~@junte/ui/lib/assets/styles/layout/responsive';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $jnt-page-background;
+}
+
+[data-block] {
+  @include for-mobile() {
+    width: 100%;
+  }
+  @include min-for-tablet() {
+    min-width: 350px;
+  }
+}
+
+[data-logo] {
+  text-align: center;
+  padding-bottom: $jnt-gutter-big;
+}
+
+
+[data-form] {
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: $jnt-gutter-big;
+  }
+
+}

@@ -1,0 +1,57 @@
+<jnt-informer *ngIf="errors.length > 0"
+              [backdrop]="backdrop"
+              (ok)="this.errors = []">
+  <jnt-informer-message *ngFor="let e of errors"
+                        [message]="e.toString()"></jnt-informer-message>
+</jnt-informer>
+
+<jnt-block data-block
+           #content
+           [padding]="ui.gutter.large"
+           [features]="[ui.feature.adapted]"
+           [state]="progress.gitlab ? ui.state.loading : null">
+  <ng-template #blockHeaderTemplate>
+    <div data-logo>
+      <img src="../../assets/images/logo.svg" height="50">
+    </div>
+  </ng-template>
+
+  <jnt-form data-form
+            #formComponent
+            [state]="progress.login ? ui.state.loading : null"
+            [formGroup]="form"
+            (submitted)="login()">
+    <jnt-stack [align]="ui.align.stretch">
+      <jnt-form-item>
+        <jnt-form-control name="username">
+          <jnt-input formControlName="username" placeholder="Username"
+                     [icon]="ui.icons.user"></jnt-input>
+          <jnt-form-message [validator]="ui.validator.required">This field is required</jnt-form-message>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-control name="password">
+          <jnt-input formControlName="password" placeholder="Password"
+                     [icon]="ui.icons.lock"
+                     [type]="ui.input.type.password"
+                     [jntShortcuts]="[{key: ui.keyboard.key.enter, action: submit.bind(this)}]"></jnt-input>
+          <jnt-form-message [validator]="ui.validator.required">This field is required</jnt-form-message>
+        </jnt-form-control>
+      </jnt-form-item>
+
+    </jnt-stack>
+
+    <ng-template #formFooterTemplate>
+      <jnt-stack [align]="ui.align.stretch">
+        <jnt-button text="Login"
+                    [icon]="{icon: ui.icons.chevronRight, position: ui.position.right}"
+                    [type]="ui.button.type.submit">
+        </jnt-button>
+        <a href="https://teamprojector.com/api/login/gitlab/">
+          <img src="/src/assets/images/gitlab.svg" height="30">
+        </a>
+      </jnt-stack>
+    </ng-template>
+  </jnt-form>
+</jnt-block>

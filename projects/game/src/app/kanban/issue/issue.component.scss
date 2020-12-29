@@ -1,17 +1,17 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 [item] {
-  padding: $gutter-big;
+  padding: $jnt-gutter-big;
   cursor: pointer;
-  background: $primary-background;
-  color: $primary-text-light-color;
-  font-size: $font-size-large;
-  box-shadow: $shadow-primary;
+  background: $jnt-primary-background;
+  color: $jnt-primary-text-light-color;
+  font-size: $jnt-font-size-large;
+  box-shadow: $jnt-shadow-primary;
   width: 100%;
 
   header {
     [title] {
-      font-weight: $font-weight-bold;
+      font-weight: $jnt-font-weight-bold;
       height: 1.5em;
       line-height: 1.1em;
       font-size: 1em;

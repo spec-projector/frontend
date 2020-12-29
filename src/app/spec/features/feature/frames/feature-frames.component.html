@@ -1,0 +1,54 @@
+<jnt-stack [align]="ui.align.stretch">
+
+  <ng-template #noFigmaKeyTemplate>
+    <jnt-message [scheme]="ui.scheme.fail">
+      You have no <b>Figma</b> key in integration
+      <jnt-link title="settings"
+                [source]="['../../../../..', 'details']"
+                [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
+    </jnt-message>
+  </ng-template>
+
+  <ng-container *ngIf="!!feature.spec.integration.figmaKey;else noFigmaKeyTemplate">
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+
+      <ng-template #addFrameTemplate>
+        <spec-feature-add-frame (added)="add($event)"></spec-feature-add-frame>
+      </ng-template>
+
+      <jnt-button [icon]="ui.icons.add"
+                  [shape]="ui.shape.circle"
+                  [jntPopover]="{title: 'Add frame', contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
+                  (attached)="reference.popover = $event"></jnt-button>
+      <jnt-button [icon]="ui.icons.reload"
+                  [shape]="ui.shape.circle"
+                  [loading]="progress.refreshing"
+                  [disabled]="feature.frames.length <= 0"
+                  (click)="refresh(true)"></jnt-button>
+    </jnt-stack>
+
+    <jnt-row *ngIf="feature.frames.length > 0">
+      <jnt-col *ngFor="let frame of feature.frames; let i = index" [tablet]="4">
+        <jnt-card [width]="ui.width.fluid">
+          <ng-template #cardHeaderTemplate>
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [justify]="ui.justify.between">
+              <jnt-link title="Figma"
+                        target="_blank"
+                        [icon]="ui.icons.figma"
+                        [source]="'http://figma.com/file/' + frame.file + '?node-id=' + frame.node"></jnt-link>
+
+              <jnt-button [icon]="ui.icons.cancel"
+                          [shape]="ui.shape.circle"
+                          [size]="ui.size.tiny"
+                          [scheme]="ui.scheme.secondary"
+                          (click)="remove(i)"></jnt-button>
+            </jnt-stack>
+          </ng-template>
+          <jnt-picture width="100%" [src]="frame.thumbnail"></jnt-picture>
+        </jnt-card>
+      </jnt-col>
+    </jnt-row>
+  </ng-container>
+
+</jnt-stack>

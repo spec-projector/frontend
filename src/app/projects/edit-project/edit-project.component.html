@@ -1,0 +1,16 @@
+<jnt-form [formGroup]="form"
+          [state]="progress.saving ? ui.state.loading : null"
+          (submitted)="save()">
+
+  <jnt-stack [orientation]="ui.orientation.horizontal">
+    <jnt-form-control name="title">
+      <jnt-input formControlName="title"
+                 placeholder="Project title"></jnt-input>
+      <jnt-form-message [validator]="ui.validator.required">
+        Title is required
+      </jnt-form-message>
+    </jnt-form-control>
+    <jnt-button [type]="ui.button.type.submit"
+                [icon]="ui.icons.save"></jnt-button>
+  </jnt-stack>
+</jnt-form>

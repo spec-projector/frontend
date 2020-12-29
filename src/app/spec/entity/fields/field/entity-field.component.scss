@@ -1,0 +1,89 @@
+@import "../../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: block;
+}
+
+form {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+[editor] {
+  position: absolute;
+  top: -($jnt-gutter-small);
+  left: -($jnt-gutter-small);
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
+  box-shadow: $jnt-shadow-light;
+  box-sizing: border-box;
+  padding: $jnt-gutter-small;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+}
+
+header {
+  [title], [name] {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    height: 1.4em;
+    line-height: 1.4em;
+    overflow: hidden;
+    background-color: transparent;
+    white-space: nowrap;
+    &:focus {
+      color: black;
+    }
+  }
+
+  [title] {
+    font-size: 1em;
+  }
+  [naming] {
+    display: flex;
+    align-items: center;
+    label {
+      display: block;
+      cursor: pointer;
+      border: 1px solid silver;
+      width: 5px;
+      height: 5px;
+      background: transparent;
+      border-radius: 50%;
+      margin-right: $jnt-gutter-tiny;
+      position: relative;
+      z-index: 1;
+      input[type='checkbox'] {
+        visibility: collapse;
+      }
+      &[checked='true'] {
+        background: silver;
+      }
+    }
+    [name] {
+      color: silver;
+      font-size: .75em;
+      flex: 1;
+    }
+  }
+}
+
+[required] {
+  margin-left: $jnt-gutter-small;
+}
+
+[typing] {
+  margin-left: $jnt-gutter-normal;
+}
+
+select {
+  font-size: .85em;
+}

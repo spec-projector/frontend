@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Authorization } from 'src/app/model/authorization';
+import { Authorization } from 'src/model/authorization';
 
 const DEFAULT_MOCKS_DELAY = 500;
 const DEFAULT_LANGUAGE = 'en';

@@ -1,14 +1,14 @@
 <jnt-stack *ngIf="!!kanban"
-           [type]="ui.stack.type.horizontal"
-           [wrap]="ui.flex.wrap.wrap">
+           [orientation]="ui.orientation.horizontal"
+           [wrap]="ui.wrap.wrap">
     <app-group *ngFor="let group of kanban.groups; let index = index"
                [group]="group" [(kanban)]="kanban" [ids]="ids"
                (deleted)="deleteGroup(index)" (edited)="kanbanManager.put($event)"
                [attr.code]="group.code" container>
     </app-group>
 
-    <jnt-button [icon]="ui.icons.font.plus"
-                [size]="ui.sizes.large"
+    <jnt-button [icon]="ui.icons.add"
+                [size]="ui.size.large"
                 (click)="addGroup()" add>
     </jnt-button>
 </jnt-stack>

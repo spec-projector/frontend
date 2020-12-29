@@ -1,0 +1,61 @@
+<jnt-app-page-header [icon]="localUi.icons.features"
+                     title="Epics"
+                     teaser="groups of functions"></jnt-app-page-header>
+
+<!--<h2>Contents</h2>
+<ul contents>
+    <li *ngFor="let epic of spec.epics">
+        <jnt-link [source]="['.', {epic: epic.id}]" [title]="epic.title"></jnt-link>
+        <ul>
+            <li *ngFor="let feature of epic.features">
+                <div>for {{feature.actor.name}}</div>
+                <jnt-link [source]="['.', {feature: feature.id}]" [title]="feature.title | joinTokens"></jnt-link>
+            </li>
+        </ul>
+    </li>
+</ul>-->
+
+
+<jnt-stack [align]="ui.align.stretch"
+           [gutter]="ui.gutter.large">
+
+  <jnt-stack [orientation]="ui.orientation.horizontal">
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.add"
+                [shape]="ui.shape.circle"
+                (click)="addEpic()"></jnt-button>
+  </jnt-stack>
+
+  <jnt-stack cdkDropList [align]="ui.align.stretch"
+             (cdkDropListDropped)="moveEpic($event)"
+             [cdkDropListData]="spec.epics">
+    <jnt-block cdkDrag *ngFor="let epic of spec.epics; let i = index; trackBy: trackEpic">
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
+                   [gutter]="ui.gutter.small">
+          <jnt-button cdkDragHandle
+                      [icon]="ui.icons.expand"
+                      [size]="ui.size.tiny"
+                      [shape]="ui.shape.circle"
+                      [scheme]="ui.scheme.secondary">
+          </jnt-button>
+          <jnt-button [icon]="ui.icons.delete"
+                      [size]="ui.size.tiny"
+                      [shape]="ui.shape.circle"
+                      [scheme]="ui.scheme.secondary"
+                      [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
+                      (attached)="instance.popover = $event">
+          </jnt-button>
+          <ng-template #deleteTemplate>
+            <jnt-confirm message="Are you sure to delete the epic?"
+                         (cancel)="instance.popover.hide()"
+                         (ok)="deleteEpic(i);instance.popover.hide()"></jnt-confirm>
+          </ng-template>
+        </jnt-stack>
+        <spec-epic data-epic [epic]="epic"></spec-epic>
+      </jnt-stack>
+    </jnt-block>
+  </jnt-stack>
+</jnt-stack>
+
+

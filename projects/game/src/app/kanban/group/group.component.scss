@@ -1,20 +1,20 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   width: 25%;
   min-width: 200px;
   display: inline-block;
-  padding: $gutter-normal;
-  margin: $gutter-normal;
-  color: $secondary-color;
-  border-radius: $corner-normal;
-  background-color: $gray-600-color;
-  box-shadow: $shadow-normal;
+  padding: $jnt-gutter-normal;
+  margin: $jnt-gutter-normal;
+  color: $jnt-secondary-color;
+  border-radius: $jnt-corner-normal;
+  background-color: $jnt-gray-600-color;
+  box-shadow: $jnt-shadow-normal;
 }
 
 header {
   [title] {
-    font-weight: $font-weight-bold;
+    font-weight: $jnt-font-weight-bold;
     height: 1.4em;
     line-height: 1.1em;
     font-size: 2em;
@@ -23,12 +23,12 @@ header {
 
 [list] {
   min-height: 72px;
-  border-radius: $corner-normal;
+  border-radius: $jnt-corner-normal;
 }
 
 .cdk-drag-preview {
-  border-radius: $corner-normal;
-  box-shadow: $shadow-primary-dark;
+  border-radius: $jnt-corner-normal;
+  box-shadow: $jnt-shadow-primary;
 }
 
 .cdk-drop-dragging .cdk-drag {

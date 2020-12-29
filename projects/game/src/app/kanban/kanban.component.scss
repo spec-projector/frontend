@@ -1,19 +1,19 @@
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
-  padding: $gutter-normal;
+  padding: $jnt-gutter-normal;
 }
 
 [add] {
-  margin: $gutter-normal;
+  margin: $jnt-gutter-normal;
   position: absolute;
   right: 0;
 }
 
 [container] {
   &[code="todo"] {
-    background-color: $primary-light-color;
+    background-color: $jnt-primary-light-color;
   }
 
   &[code="doing"] {
@@ -21,7 +21,7 @@
   }
 
   &[code="done"] {
-    background-color: $green-dark-color;
+    background-color: $jnt-green-dark-color;
   }
 }
 

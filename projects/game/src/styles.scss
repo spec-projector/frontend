@@ -1,6 +1,6 @@
-@import "~junte-ui/lib/assets/styles/common";
-@import "~junte-ui/lib/assets/styles/components";
-@import "~junte-ui/lib/assets/styles/variables";
+@import "~@junte/ui/lib/assets/styles/jnt-common";
+@import "~@junte/ui/lib/assets/styles/jnt-all";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 header {
   [editable] {

@@ -1,0 +1,117 @@
+<jnt-app-page-header title="Specification"
+                     [icon]="localUi.icons.general"></jnt-app-page-header>
+<jnt-block [width]="ui.width.fluid"
+           [padding]="ui.gutter.none">
+  <jnt-form [formGroup]="form"
+            (submitted)="save()">
+    <jnt-tabs>
+
+      <jnt-tab title="Common">
+        <ng-template #tabContentTemplate>
+          <jnt-stack [align]="ui.align.stretch">
+            <jnt-form-item>
+              <jnt-form-label>Description</jnt-form-label>
+              <jnt-form-control name="description">
+                <jnt-input formControlName="description"
+                           placeholder="Great specification for project X"></jnt-input>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label>Author</jnt-form-label>
+              <jnt-form-control name="author">
+                <jnt-input formControlName="author"
+                           placeholder="Elon Musk"></jnt-input>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="Resources">
+        <jnt-badge *ngIf="resourceTypesArray.length > 0"
+                   [value]="resourceTypesArray.length"></jnt-badge>
+        <ng-template #tabContentTemplate>
+          <ng-container formArrayName="resourceTypes">
+            <jnt-stack [align]="ui.align.stretch">
+              <jnt-stack [orientation]="ui.orientation.horizontal">
+                <jnt-button [icon]="ui.icons.add"
+                            [shape]="ui.shape.circle"
+                            (click)="addResource()"></jnt-button>
+              </jnt-stack>
+              <jnt-row *ngFor="let r of resourceTypesArray.controls; let i = index"
+                       [formGroupName]="i">
+                <jnt-col [span]="4">
+                  <jnt-input placeholder="Title"
+                             formControlName="title"
+                             [width]="ui.width.fluid"></jnt-input>
+                </jnt-col>
+                <jnt-col [span]="2">
+                  <jnt-input placeholder="Hour rate"
+                             formControlName="hourRate"
+                             [type]="ui.input.type.number"
+                             [width]="ui.width.fluid"></jnt-input>
+                </jnt-col>
+                <jnt-col [span]="2">
+                  <jnt-button [icon]="ui.icons.delete"
+                              [scheme]="ui.scheme.secondary"
+                              [shape]="ui.shape.circle"
+                              [type]="ui.button.type.button"
+                              (click)="deleteResourceType(i)"></jnt-button>
+                </jnt-col>
+              </jnt-row>
+            </jnt-stack>
+          </ng-container>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="Integration">
+        <ng-template #tabContentTemplate>
+          <jnt-stack [align]="ui.align.stretch">
+            <jnt-form-item>
+              <jnt-form-label>Git Lab key</jnt-form-label>
+              <jnt-form-control name="gitLabKey">
+                <jnt-input formControlName="gitLabKey"
+                           placeholder="xxxx_xxxx_xxxxxxxxxx"></jnt-input>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label>Figma key</jnt-form-label>
+              <jnt-form-control name="figmaKey">
+                <jnt-input formControlName="figmaKey"
+                           placeholder="xxxxx-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></jnt-input>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label>Graphql playground URL</jnt-form-label>
+              <jnt-form-control name="graphqlPlaygroundUrl">
+                <jnt-input formControlName="graphqlPlaygroundUrl"
+                           placeholder="https://www.yousite.com/graphql/"></jnt-input>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="Maintenance">
+        <ng-template #tabContentTemplate>
+          <jnt-stack actions [orientation]="ui.orientation.horizontal">
+            <div>
+              <a href="javascript:;" #dumpFile></a>
+              <jnt-button text="Dump" (click)="dump(dumpFile)"></jnt-button>
+            </div>
+            <div>
+              <jnt-button [loading]="progress.restore"
+                          text="Restore" (click)="restoreInput.click()"></jnt-button>
+              <input #restoreInput fileInput type="file"
+                     (change)="restore($event)">
+            </div>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+    </jnt-tabs>
+  </jnt-form>
+</jnt-block>

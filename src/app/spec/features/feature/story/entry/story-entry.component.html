@@ -1,0 +1,18 @@
+<form [formGroup]="form"
+      [attr.data-mode]="mode"
+      (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+      (mouseleave)="mode = editMode.view">
+  <select formControlName="type"
+          tabindex="-1">
+    <option [value]="storyEntryType.can">I can</option>
+    <option [value]="storyEntryType.see">I see</option>
+  </select>
+  <input #input formControlName="description"
+         (keydown)="keydown($event)"
+         (keyup)="keyup($event)">
+
+  <b>I {{entry.type}}</b>
+  <spec-tokens data-tokens
+               [tokens]="entry.description"
+               [spec]="spec"></spec-tokens>
+</form>

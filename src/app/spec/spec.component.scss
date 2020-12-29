@@ -1,0 +1,10 @@
+@import "../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: block;
+}
+
+form {
+  padding: $jnt-gutter-normal;
+  border-bottom: 1px solid $jnt-secondary-color;
+}

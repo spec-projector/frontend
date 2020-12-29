@@ -1,0 +1,58 @@
+<jnt-form [formGroup]="form"
+          (submitted)="attach()">
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-form-item>
+      <jnt-form-label>Resource</jnt-form-label>
+      <jnt-form-control name="resource">
+        <jnt-switcher placeholder="Resource"
+                      formControlName="resource"
+                      [orientation]="ui.orientation.vertical"
+                      [features]="[ui.feature.marks]">
+          <jnt-switcher-option *ngFor="let r of spec.resourceTypes"
+                               [label]="r.title"
+                               [value]="r.title">
+          </jnt-switcher-option>
+        </jnt-switcher>
+        <jnt-form-message [validator]="ui.validator.required">
+          This field is required
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
+
+    <jnt-form-item>
+      <jnt-form-label>URL</jnt-form-label>
+      <jnt-form-control name="url">
+        <jnt-input placeholder="Url of issue"
+                   formControlName="url"></jnt-input>
+        <jnt-form-message [validator]="ui.validator.required">
+          This field is required
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
+
+    <jnt-form-item *ngIf="urlControl.value">
+      <jnt-form-control name="system">
+        <jnt-switcher formControlName="system">
+          <jnt-switcher-option label="GitLab"
+                               [icon]="ui.icons.gitlab"
+                               [value]="issueSystem.gitlab"></jnt-switcher-option>
+          <jnt-switcher-option label="GitHub"
+                               [icon]="ui.icons.github"
+                               [disabled]="true"
+                               [value]="issueSystem.github"></jnt-switcher-option>
+        </jnt-switcher>
+        <jnt-form-message [validator]="ui.validator.required">
+          This field is required
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
+  </jnt-stack>
+
+  <ng-template #formFooterTemplate>
+    <jnt-stack [align]="ui.align.end">
+      <jnt-button text="Attach"
+                  [type]="ui.button.type.submit"
+                  [icon]="{icon: ui.icons.chevronRight, position: ui.position.right}"></jnt-button>
+    </jnt-stack>
+  </ng-template>
+</jnt-form>

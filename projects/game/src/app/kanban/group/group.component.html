@@ -1,7 +1,7 @@
-<jnt-stack [align]="ui.flex.align.stretch">
-    <jnt-stack [type]="ui.stack.type.horizontal"
-               [justify]="ui.flex.justify.between"
-               [align]="ui.flex.align.center">
+<jnt-stack [align]="ui.align.stretch">
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [justify]="ui.justify.between"
+               [align]="ui.align.center">
         <form [formGroup]="form">
             <header (mouseenter)="mode =  editMode.edit" (mouseleave)="mode = editMode.view">
                 <ng-container *ngIf="mode == editMode.edit; else viewHeader">
@@ -14,20 +14,20 @@
             </ng-template>
         </form>
 
-        <jnt-stack [type]="ui.stack.type.horizontal"
+        <jnt-stack [orientation]="ui.orientation.horizontal"
                    [gutter]="ui.gutter.small">
-            <jnt-button [icon]="ui.icons.font.plus"
-                        [scheme]="ui.schemes.secondary"
+            <jnt-button [icon]="ui.icons.add"
+                        [scheme]="ui.scheme.secondary"
                         (click)="addIssue()"></jnt-button>
-            <jnt-button [icon]="ui.icons.font.close"
-                        [scheme]="ui.schemes.fail"
+            <jnt-button [icon]="ui.icons.close"
+                        [scheme]="ui.scheme.fail"
                         (click)="deleted.emit()"></jnt-button>
         </jnt-stack>
     </jnt-stack>
 
     <jnt-stack cdkDropList [id]="group.id" [cdkDropListData]="group.issues"
                [cdkDropListConnectedTo]="ids" (cdkDropListDropped)="drop($event)"
-               [align]="ui.flex.align.stretch" list>
+               [align]="ui.align.stretch" list>
         <app-issue *ngFor="let issue of group.issues; let issueIndex = index" cdkDrag
                    [issue]="issue" (deleted)="deleteIssue(issueIndex)" (edited)="kanbanManager.put($event)">
         </app-issue>

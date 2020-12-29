@@ -6,7 +6,7 @@ import { KanbanManager } from 'projects/game/src/app/kanban/kanban.manager';
 import { Group } from 'projects/game/src/models/group';
 import { Issue } from 'projects/game/src/models/issue';
 import { Kanban } from 'projects/game/src/models/kanban';
-import { EditMode } from 'src/app/model/enums/edit-mode';
+import { EditMode } from 'src/enums/edit-mode';
 import * as uuid from 'uuid/v1';
 
 @Component({

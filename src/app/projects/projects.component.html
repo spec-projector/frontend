@@ -1,0 +1,67 @@
+<jnt-app-content>
+  <jnt-app-body>
+    <jnt-container>
+      <jnt-app-page-header [icon]="localUi.icons.general"
+                           title="Your projects"
+                           teaser="for creating specifications">
+        <ng-template #headerActionsTemplate>
+          <ng-template #addTemplate>
+            <spec-edit-project (saved)="goto($event)"></spec-edit-project>
+          </ng-template>
+          <jnt-button [icon]="ui.icons.add"
+                      [shape]="ui.shape.circle"
+                      [jntPopover]="{title: 'Add project', contentTemplate: addTemplate, trigger: ui.trigger.click}"
+                      (attached)="reference.popover = $event">
+          </jnt-button>
+        </ng-template>
+      </jnt-app-page-header>
+
+      <ng-template #noDataTemplate>
+        <jnt-row>
+          <jnt-col [mobile]="2" [tablet]="3" *ngFor="let i of 8 | mockArray">
+            <jnt-skeleton [type]="ui.skeleton.type.card"
+                          [animated]="progress.loading"></jnt-skeleton>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+
+      <ng-container *ngIf="projects.length > 0; else noDataTemplate">
+        <jnt-row>
+          <jnt-col [mobile]="2" [tablet]="3"
+                   *ngFor="let project of projects; trackBy: trackProject;let i = index">
+            <jnt-card [width]="ui.width.fluid">
+              <jnt-stack [orientation]="ui.orientation.horizontal"
+                         [gutter]="ui.gutter.small">
+                <ng-template #editTemplate>
+                  <spec-edit-project [project]="project"
+                                     (saved)="reference.popover?.hide();projects[i] = $event">
+                  </spec-edit-project>
+                </ng-template>
+
+                <jnt-button [icon]="ui.icons.edit"
+                            [size]="ui.size.tiny"
+                            [shape]="ui.shape.circle"
+                            [scheme]="ui.scheme.secondary"
+                            [jntPopover]="{contentTemplate: editTemplate, position: ui.position.right, trigger: ui.trigger.click}"
+                            (attached)="reference.popover = $event">
+                </jnt-button>
+
+                <jnt-link [source]="[project.id]"
+                          [title]="project.title"></jnt-link>
+              </jnt-stack>
+              <ng-template #cardActionsTemplate>
+                <jnt-menu>
+                  <jnt-menu-item [icon]="ui.icons.delete"
+                                 [scheme]="ui.scheme.secondary"
+                                 [loading]="progress.deleting"
+                                 (click)="delete(project.id)">
+                  </jnt-menu-item>
+                </jnt-menu>
+              </ng-template>
+            </jnt-card>
+          </jnt-col>
+        </jnt-row>
+      </ng-container>
+    </jnt-container>
+  </jnt-app-body>
+</jnt-app-content>

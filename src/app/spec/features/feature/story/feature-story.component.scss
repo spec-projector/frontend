@@ -1,0 +1,9 @@
+@import "../../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: block;
+}
+
+li:not(:last-child) {
+  margin-bottom: $jnt-gutter-tiny;
+}

@@ -1,0 +1,39 @@
+<form [formGroup]="form">
+  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+          (mouseleave)="mode = editMode.view">
+    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+      <input data-title formControlName="title">
+    </ng-container>
+  </header>
+
+  <ng-template #viewHeader>
+    <h3 data-title>{{epic.title}}</h3>
+  </ng-template>
+
+
+  <ul data-actors *ngIf="epic.features.length;else noFeaturesTemplate">
+    <li *ngFor="let group of (epic.features | groupFeaturesByActor)">
+      <h4>
+        <span>{{group.actor?.name}}</span>
+      </h4>
+      <jnt-row>
+        <jnt-col *ngFor="let feature of group.features; trackBy: trackFeature"
+                 [wide]="4" [tablet]="6">
+          <jnt-stack data-feature-item [orientation]="ui.orientation.horizontal">
+            <jnt-button [icon]="manager.mode ==  editMode.edit ? ui.icons.edit : ui.icons.link"
+                        [size]="ui.size.tiny"
+                        [scheme]="ui.scheme.secondary"
+                        [shape]="ui.shape.circle"
+                        (click)="router.navigate(['../actors', group.actor.id, 'features', feature.id], {relativeTo: route})">
+            </jnt-button>
+            <spec-feature data-feature [attr.id]="feature.id"
+                          [feature]="feature"></spec-feature>
+          </jnt-stack>
+        </jnt-col>
+      </jnt-row>
+    </li>
+  </ul>
+  <ng-template #noFeaturesTemplate>
+    <p>Drag epics on <a [routerLink]="['..', 'actors']">features</a></p>
+  </ng-template>
+</form>

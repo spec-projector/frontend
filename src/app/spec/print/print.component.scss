@@ -1,0 +1,43 @@
+@import "../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: block;
+  padding-top: $jnt-gutter-small;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+[actor] > li {
+  margin-bottom: 20px;
+}
+
+[feature]{
+  padding: $jnt-gutter-normal 40px;
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
+}
+
+[type='see'], [type='can'] {
+  display: inline-block;
+  padding: 1px 10px 1px;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+[type='see'] {
+  color: $jnt-green-dark-color;
+}
+
+[type='can'] {
+  color: $jnt-orange-color;
+}
