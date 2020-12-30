@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from '@junte/ui';
 import { AppConfig } from 'src/app/app-config';
+import {LocalUI} from '../../enums/local-ui';
 
 @Component({
   selector: 'spec-layout',
@@ -11,6 +12,7 @@ import { AppConfig } from 'src/app/app-config';
 export class LayoutComponent implements AfterViewInit {
 
   ui = UI;
+  localUi = LocalUI;
 
   @ViewChild('popover', {static: false})
   popover: PopoverComponent;
