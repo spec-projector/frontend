@@ -26,6 +26,11 @@
               "src/assets",
               {
                 "glob": "**/*",
+                "input": "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/",
+                "output": "./assets/fonts/icons/"
+              },
+              {
+                "glob": "**/*",
                 "input": "node_modules/@junte/ui/lib/assets/icons/animated/",
                 "output": "./assets/icons/animated/"
               },
