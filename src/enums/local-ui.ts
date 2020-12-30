@@ -1,5 +1,7 @@
 export class LocalUI {
     static icons = {
+        projects: 'projects:svg:local',
+        market: 'market:svg:local',
         sprints: 'sprints:svg:local:stroked',
         terms: 'terms:svg:local:stroked',
         epics: 'epics:svg:local:stroked',
