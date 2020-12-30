@@ -7,7 +7,7 @@ import { Authorization } from 'src/model/authorization';
 const DEFAULT_MOCKS_DELAY = 500;
 const DEFAULT_LANGUAGE = 'en';
 const AUTHORIZATION_KEY = 'Authorization';
-const GRAPHQL_URL = 'https://specprojector.com/api/graphql';
+const GRAPHQL_URL = 'https://www.specprojector.com/api/graphql';
 
 @Injectable({providedIn: 'root'})
 export class AppConfig {
