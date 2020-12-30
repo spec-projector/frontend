@@ -1,16 +1,16 @@
 export class LocalUI {
     static icons = {
-        sprints: ':svg:local:stroked',
-        terms: ':svg:local:stroked',
-        epics: ':svg:local:stroked',
-        model: ':svg:local:stroked',
-        features: ':svg:local:stroked',
-        validate: ':svg:local:stroked',
-        general: ':svg:local:stroked',
-        graphQl: ':svg:local',
-        rest: ':svg:local',
-        story: ':svg:local',
-        resources: ':svg:local',
-        issues: ':svg:local'
+        sprints: 'sprints:svg:local:stroked',
+        terms: 'terms:svg:local:stroked',
+        epics: 'epics:svg:local:stroked',
+        model: 'model:svg:local:stroked',
+        features: 'features:svg:local:stroked',
+        validate: 'validate:svg:local:stroked',
+        general: 'general:svg:local:stroked',
+        graphQl: 'graphQl:svg:local',
+        rest: 'rest:svg:local',
+        story: 'story:svg:local',
+        resources: 'resources:svg:local',
+        issues: 'issues:svg:local'
     };
 }
