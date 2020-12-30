@@ -20,7 +20,7 @@
         <jnt-col *ngFor="let feature of group.features; trackBy: trackFeature"
                  [wide]="4" [tablet]="6">
           <jnt-stack data-feature-item [orientation]="ui.orientation.horizontal">
-            <jnt-button [icon]="manager.mode ==  editMode.edit ? ui.icons.edit : ui.icons.link"
+            <jnt-button [icon]="ui.icons.link"
                         [size]="ui.size.tiny"
                         [scheme]="ui.scheme.secondary"
                         [shape]="ui.shape.circle"

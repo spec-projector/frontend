@@ -23,7 +23,7 @@
                      [orientation]="ui.orientation.horizontal"
                      [id]="'feature-' + feature.id"
                      (cdkDropListDropped)="onDropEpic(feature, $event)">
-            <jnt-button [icon]="manager.mode ==  editMode.edit ? ui.icons.edit : ui.icons.link"
+            <jnt-button [icon]="ui.icons.link"
                         [size]="ui.size.tiny"
                         [scheme]="ui.scheme.secondary"
                         [shape]="ui.shape.circle"

@@ -7,7 +7,7 @@ export class LocalUI {
         features: 'features:svg:local:stroked',
         validate: 'validate:svg:local:stroked',
         general: 'general:svg:local:stroked',
-        graphQl: 'graphQl:svg:local',
+        graphQl: 'graphql:svg:local',
         rest: 'rest:svg:local',
         story: 'story:svg:local',
         resources: 'resources:svg:local',
