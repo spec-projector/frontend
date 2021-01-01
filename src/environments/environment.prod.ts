@@ -1,5 +1,5 @@
 export const config = {
-    storage: 'https://specprojector.com/couchdb',
+    storage: 'https://www.specprojector.com/couchdb',
     uiDebounceTime: 500
 };
 
