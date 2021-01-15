@@ -12,6 +12,9 @@ export class Project {
   title: string;
 
   @Field()
+  isPublic: boolean;
+
+  @Field()
   dbName: string;
 
 }
@@ -38,6 +41,9 @@ export class ProjectUpdate {
 
   @Field()
   title: string;
+
+  @Field()
+  isPublic: boolean;
 
   @Field()
   description?: string;

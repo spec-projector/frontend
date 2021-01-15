@@ -1,6 +1,13 @@
 <jnt-app-page-header [icon]="localUi.icons.features"
                      title="Features"
-                     teaser="functionality of your application"></jnt-app-page-header>
+                     teaser="functionality of your application">
+  <ng-template #headerActionsTemplate>
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.add"
+                [shape]="ui.shape.circle"
+                (click)="addActor()"></jnt-button>
+  </ng-template>
+</jnt-app-page-header>
 
 <jnt-collapsible data-library title="Library">
   <ng-template #collapsibleContentTemplate>
@@ -19,13 +26,6 @@
 
 <jnt-stack [align]="ui.align.stretch"
            [gutter]="ui.gutter.large">
-
-  <jnt-stack [orientation]="ui.orientation.horizontal">
-    <jnt-button *ngIf="manager.mode ==  editMode.edit"
-                [icon]="ui.icons.add"
-                [shape]="ui.shape.circle"
-                (click)="addActor()"></jnt-button>
-  </jnt-stack>
 
   <jnt-stack cdkDropList [align]="ui.align.stretch"
              (cdkDropListDropped)="moveActor($event)"

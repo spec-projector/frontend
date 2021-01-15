@@ -1,23 +1,32 @@
-<jnt-stack [gutter]="ui.gutter.large">
-    <jnt-button *ngIf="manager.mode == editMode.edit" [icon]="ui.icons.add"
-                [size]="ui.size.tiny"
-                [scheme]="ui.scheme.secondary"
+<jnt-app-page-header [icon]="localUi.icons.model"
+                     title="Model"
+                     teaser="of your subject area">
+  <ng-template #headerActionsTemplate>
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.add"
+                [shape]="ui.shape.circle"
                 (click)="addPackage()"></jnt-button>
-    <ul cdkDropList (cdkDropListDropped)="movePackage($event)" [cdkDropListData]="spec.packages">
-        <li *ngFor="let pack of spec.packages; let i = index; trackBy: trackPackage" cdkDrag field>
-            <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.small">
-                <jnt-button cdkDragHandle
-                            [icon]="ui.icons.expand"
-                            [size]="ui.size.tiny"
-                            [scheme]="ui.scheme.secondary">
-                </jnt-button>
-                <jnt-button [icon]="ui.icons.delete"
-                            [size]="ui.size.tiny"
-                            [scheme]="ui.scheme.secondary"
-                            (click)="deletePackage(i)">
-                </jnt-button>
-            </jnt-stack>
-            <spec-package [package]="pack"></spec-package>
-        </li>
-    </ul>
+  </ng-template>
+</jnt-app-page-header>
+
+<jnt-stack [align]="ui.align.stretch"
+           [gutter]="ui.gutter.large">
+  <ul cdkDropList (cdkDropListDropped)="movePackage($event)"
+      [cdkDropListData]="spec.packages">
+    <li *ngFor="let pack of spec.packages; let i = index; trackBy: trackPackage" cdkDrag field>
+      <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.small">
+        <jnt-button cdkDragHandle
+                    [icon]="ui.icons.expand"
+                    [size]="ui.size.tiny"
+                    [scheme]="ui.scheme.secondary">
+        </jnt-button>
+        <jnt-button [icon]="ui.icons.delete"
+                    [size]="ui.size.tiny"
+                    [scheme]="ui.scheme.secondary"
+                    (click)="deletePackage(i)">
+        </jnt-button>
+      </jnt-stack>
+      <spec-package [package]="pack"></spec-package>
+    </li>
+  </ul>
 </jnt-stack>

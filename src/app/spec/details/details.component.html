@@ -13,7 +13,7 @@
               <jnt-form-label>Description</jnt-form-label>
               <jnt-form-control name="description">
                 <jnt-input formControlName="description"
-                           placeholder="Great specification for project X"></jnt-input>
+                           placeholder="Great specification for CRM"></jnt-input>
               </jnt-form-control>
             </jnt-form-item>
 
@@ -48,18 +48,18 @@
               </jnt-stack>
               <jnt-row *ngFor="let r of resourceTypesArray.controls; let i = index"
                        [formGroupName]="i">
-                <jnt-col [span]="4">
+                <jnt-col [desktop]="4" [mobile]="6">
                   <jnt-input placeholder="Title"
                              formControlName="title"
                              [width]="ui.width.fluid"></jnt-input>
                 </jnt-col>
-                <jnt-col [span]="2">
+                <jnt-col [desktop]="2" [mobile]="4">
                   <jnt-input placeholder="Hour rate"
                              formControlName="hourRate"
                              [type]="ui.input.type.number"
                              [width]="ui.width.fluid"></jnt-input>
                 </jnt-col>
-                <jnt-col [span]="2">
+                <jnt-col [desktop]="2" [mobile]="2">
                   <jnt-button [icon]="ui.icons.delete"
                               [scheme]="ui.scheme.secondary"
                               [shape]="ui.shape.circle"

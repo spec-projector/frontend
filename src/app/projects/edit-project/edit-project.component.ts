@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { deserialize, serialize } from 'serialize-ts';
-import { UI } from '@junte/ui';
+import { InputComponent, UI } from '@junte/ui';
 import { R } from 'apollo-angular/types';
 import { finalize, map } from 'rxjs/operators';
 import { Project, ProjectUpdate } from '../../../model/projects';
@@ -13,7 +13,7 @@ import { CreateProjectGQL, UpdateProjectGQL } from '../projects.graphql';
   templateUrl: './edit-project.component.html',
   styleUrls: ['./edit-project.component.scss']
 })
-export class EditProjectComponent {
+export class EditProjectComponent implements AfterViewInit {
 
   ui = UI;
 
@@ -25,16 +25,19 @@ export class EditProjectComponent {
   form = this.formBuilder.group(
     {
       id: [null],
-      title: [null, Validators.required]
+      title: [null, Validators.required],
+      isPublic: [false]
     }
   );
 
   @Input()
   set project(project: Project) {
     this._project = project;
+    console.log(project);
     this.form.patchValue({
       id: project.id,
-      title: project.title
+      title: project.title,
+      isPublic: project.isPublic
     });
   }
 
@@ -45,9 +48,16 @@ export class EditProjectComponent {
   @Output()
   saved = new EventEmitter<Project>();
 
+  @ViewChild('titleInput')
+  titleInput: InputComponent;
+
   constructor(private createProjectGQL: CreateProjectGQL,
               private updateProjectGQL: UpdateProjectGQL,
               private formBuilder: FormBuilder) {
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => this.titleInput.focus(), 100);
   }
 
   save() {
@@ -55,7 +65,7 @@ export class EditProjectComponent {
     const request = new ProjectUpdate(this.form.getRawValue());
     this.progress.saving = true;
     mutation.mutate(serialize(request) as R)
-      .pipe(finalize(() => this.progress.saving = true),
+      .pipe(finalize(() => this.progress.saving = false),
         map(({data: {response: {project}}}) => deserialize(project, Project)))
       .subscribe(project => this.saved.emit(project),
         errors => this.errors = errors);

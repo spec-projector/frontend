@@ -2,15 +2,25 @@
           [state]="progress.saving ? ui.state.loading : null"
           (submitted)="save()">
 
-  <jnt-stack [orientation]="ui.orientation.horizontal">
+  <jnt-stack [align]="ui.align.stretch">
     <jnt-form-control name="title">
-      <jnt-input formControlName="title"
-                 placeholder="Project title"></jnt-input>
+      <jnt-form-label>Title</jnt-form-label>
+      <jnt-input #titleInput formControlName="title"
+                 placeholder="CRM system for sales"></jnt-input>
       <jnt-form-message [validator]="ui.validator.required">
         Title is required
       </jnt-form-message>
     </jnt-form-control>
-    <jnt-button [type]="ui.button.type.submit"
-                [icon]="ui.icons.save"></jnt-button>
+
+    <jnt-switch formControlName="isPublic" label="Public project"></jnt-switch>
   </jnt-stack>
+
+  <ng-template #formFooterTemplate>
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [justify]="ui.justify.end">
+      <jnt-button [type]="ui.button.type.submit"
+                  text="Save"
+                  [icon]="ui.icons.save"></jnt-button>
+    </jnt-stack>
+  </ng-template>
 </jnt-form>

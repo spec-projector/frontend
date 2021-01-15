@@ -7,7 +7,7 @@ import { EditMode } from 'src/enums/edit-mode';
 import { Spec } from 'src/model/spec/spec';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { config } from 'src/environments/environment';
-import { SpaceSyncComponent } from '../app/spec/shared/sync/space-sync.component';
+import { SpaceSyncComponent } from '../app/shared/sync/space-sync.component';
 import Database = PouchDB.Database;
 
 const SPEC_OBJECT_ID = 'spec';
@@ -60,8 +60,9 @@ export class SpecManager {
 
       const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
       try {
-        this.modal.open(component, new ModalOptions({
-          title: {text: 'Syncing project', icon: UI.icons.animated.settings}
+        this.modal.open(component, ({
+          title: {text: 'Syncing project'},
+          hold: true
         }));
       } catch {
       }

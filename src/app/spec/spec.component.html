@@ -15,21 +15,22 @@
                    [icon]="localUi.icons.general"></jnt-menu-item>
     <jnt-menu-item [link]="['actors']" title="Features"
                    [icon]="localUi.icons.features">
-      <jnt-badge [value]="spec?.actors.length.toString()"></jnt-badge>
+      <jnt-badge [value]="spec?.actors.length"></jnt-badge>
     </jnt-menu-item>
     <jnt-menu-item [link]="['epics']" title="Epics"
                    [icon]="localUi.icons.epics">
-      <jnt-badge [value]="spec?.epics.length.toString()"></jnt-badge>
+      <jnt-badge [value]="spec?.epics.length"></jnt-badge>
+    </jnt-menu-item>
+
+    <jnt-menu-item [link]="['packages']" title="Model"
+                   [icon]="localUi.icons.model">
+      <jnt-badge [value]="spec?.packages.length"></jnt-badge>
     </jnt-menu-item>
 
     <!--
     <jnt-menu-item [link]="['terms']" title="Knowledge"
                    [icon]="localUi.icons.terms">
       <jnt-badge [value]="spec?.terms.length.toString()"></jnt-badge>
-    </jnt-menu-item>
-    <jnt-menu-item [link]="['packages']" title="Model"
-                   [icon]="localUi.icons.model">
-      <jnt-badge [value]="spec?.packages.length.toString()"></jnt-badge>
     </jnt-menu-item>
     <jnt-menu-item [link]="['sprints']" title="Sprints"
                    [icon]="localUi.icons.sprints">

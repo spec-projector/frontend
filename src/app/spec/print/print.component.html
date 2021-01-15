@@ -14,7 +14,7 @@
     </li>
   </ol>
 
-  <div data-price>
+  <div data-price data-total>
     <div>Total</div>
     <div>
       {{spec | specPrice:spec.version:spec.rev | currency}}
@@ -28,9 +28,9 @@
     <h2>As <b>{{actor.name}}</b> I want</h2>
     <ol data-actor>
       <ng-container *ngFor="let feature of actor.features">
-        <li *ngIf="feature.story.length > 0">
+        <li>
           <h3>{{feature.title | joinTokens}}</h3>
-          <ol data-feature>
+          <ol data-feature *ngIf="feature.story.length > 0">
             <li *ngFor="let entry of feature.story; let i = index">
               <div [attr.type]="entry.type">I {{entry.type === 'can' ? 'can' : 'see'}}</div>
               <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>

@@ -33,7 +33,7 @@
 
           <jnt-row *ngFor="let r of resources.controls; let i = index"
                    [formGroupName]="i">
-            <jnt-col [wide]="3" [desktop]="4" [tablet]="4" [mobile]="8">
+            <jnt-col [wide]="3" [desktop]="4" [tablet]="4" [mobile]="6">
               <jnt-select placeholder="Title"
                           formControlName="resource"
                           [width]="ui.width.fluid">
@@ -41,14 +41,14 @@
                                    [key]="r.title" [label]="r.title"></jnt-select-option>
               </jnt-select>
             </jnt-col>
-            <jnt-col [wide]="2" [desktop]="2" [tablet]="3" [mobile]="3">
+            <jnt-col [tablet]="2" [mobile]="4">
               <jnt-input placeholder="Hours"
                          formControlName="hours"
                          [type]="ui.input.type.number"
                          [textAlign]="ui.text.align.right"
                          [width]="ui.width.fluid"></jnt-input>
             </jnt-col>
-            <jnt-col [span]="1">
+            <jnt-col [span]="2">
               <jnt-button [icon]="ui.icons.delete"
                           [scheme]="ui.scheme.secondary"
                           [shape]="ui.shape.circle"

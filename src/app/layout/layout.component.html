@@ -24,9 +24,11 @@
           <jnt-avatar [size]="ui.size.small"></jnt-avatar>
         </ng-template>
         <ng-template #userbarMenuTemplate>
-          <jnt-button (click)="logout()"
-                      text="Logout"
-                      [icon]="{icon:ui.icons.chevronRight, position: ui.position.right}"></jnt-button>
+          <jnt-menu [orientation]="ui.orientation.vertical">
+            <jnt-menu-item title="Logout"
+                           [icon]="{icon: ui.icons.chevronRight, position: ui.position.right}"
+                           (click)="logout()"></jnt-menu-item>
+          </jnt-menu>
         </ng-template>
       </jnt-app-header-userbar>
     </ng-template>

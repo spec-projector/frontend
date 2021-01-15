@@ -1,31 +1,16 @@
-<jnt-app-page-header [icon]="localUi.icons.features"
+<jnt-app-page-header [icon]="localUi.icons.epics"
                      title="Epics"
-                     teaser="groups of functions"></jnt-app-page-header>
-
-<!--<h2>Contents</h2>
-<ul contents>
-    <li *ngFor="let epic of spec.epics">
-        <jnt-link [source]="['.', {epic: epic.id}]" [title]="epic.title"></jnt-link>
-        <ul>
-            <li *ngFor="let feature of epic.features">
-                <div>for {{feature.actor.name}}</div>
-                <jnt-link [source]="['.', {feature: feature.id}]" [title]="feature.title | joinTokens"></jnt-link>
-            </li>
-        </ul>
-    </li>
-</ul>-->
-
-
-<jnt-stack [align]="ui.align.stretch"
-           [gutter]="ui.gutter.large">
-
-  <jnt-stack [orientation]="ui.orientation.horizontal">
+                     teaser="groups of functions">
+  <ng-template #headerActionsTemplate>
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.add"
                 [shape]="ui.shape.circle"
                 (click)="addEpic()"></jnt-button>
-  </jnt-stack>
+  </ng-template>
+</jnt-app-page-header>
 
+<jnt-stack [align]="ui.align.stretch"
+           [gutter]="ui.gutter.large">
   <jnt-stack cdkDropList [align]="ui.align.stretch"
              (cdkDropListDropped)="moveEpic($event)"
              [cdkDropListData]="spec.epics">

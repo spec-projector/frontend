@@ -5,44 +5,29 @@ import gql from 'graphql-tag';
 @Injectable({
   providedIn: 'root'
 })
-export class AllProjectsGQL extends Query<{ allProjects }> {
+export class AllProjectsGQL extends Query<{ projects }> {
   document = gql`
-query(
-    $offset: Int
-    $before: String
-    $after: String
-    $first: Int
-    $last: Int
-    $title: String
-    $orderBy: String
-) {
-    allProjects(
-        offset: $offset
-        before: $before
-        after: $after
-        first: $first
-        last: $last
-        title: $title
-        orderBy: $orderBy
-    ) {
-        count
-        edges {
-            node {
-                id
-                createdAt
-                updatedAt
-                title
-                description
-                owner {
-                    id
-                    lastLogin
-                    login
-                    name
-                    email
-                }
-            }
+{
+  projects: allProjects {
+    count
+    edges {
+      node {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        isPublic
+        owner {
+          id
+          lastLogin
+          login
+          name
+          email
         }
+      }
     }
+  }
 }`;
 }
 
@@ -51,11 +36,12 @@ query(
 })
 export class CreateProjectGQL extends Mutation<{ response: { project } }> {
   document = gql`
-mutation($title: String!) {
-    response:createProject(title: $title) {
+mutation($title: String!, $isPublic: Boolean) {
+    response:createProject(title: $title, isPublic: $isPublic) {
         project {
             id
             title
+            isPublic
         }
     }
 }`;
@@ -66,11 +52,12 @@ mutation($title: String!) {
 })
 export class UpdateProjectGQL extends Mutation<{ response: { project } }> {
   document = gql`
-mutation($id: ID!, $title: String!) {
-    response:updateProject(id: $id, title: $title) {
+mutation($id: ID!, $title: String!, $isPublic: Boolean) {
+    response:updateProject(id: $id, title: $title, isPublic: $isPublic) {
         project {
             id
             title
+            isPublic
         }
     }
 }`;

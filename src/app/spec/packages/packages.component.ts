@@ -7,6 +7,7 @@ import { UI } from '@junte/ui';
 import { Package } from 'src/model/spec/orm/package';
 import { Spec } from 'src/model/spec/spec';
 import * as uuid from 'uuid/v1';
+import { LocalUI } from '../../../enums/local-ui';
 
 @Component({
     selector: 'spec-packages',
@@ -16,6 +17,7 @@ import * as uuid from 'uuid/v1';
 export class PackagesComponent implements OnInit {
 
     ui = UI;
+    localUi = LocalUI;
     editMode = EditMode;
 
     spec: Spec;

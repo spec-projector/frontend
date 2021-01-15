@@ -48,7 +48,6 @@
             "styles": [
               "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
               "node_modules/@openfonts/open-sans_cyrillic/index.css",
-              "src/assets/fonts/icons/icons-font.scss",
               "src/styles.scss"
             ],
             "scripts": []

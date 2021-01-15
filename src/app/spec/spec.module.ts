@@ -25,7 +25,7 @@ import { PackageComponent } from 'src/app/spec/packages/package/package.componen
 import { PackagesComponent } from 'src/app/spec/packages/packages.component';
 import { AttachIssueComponent } from 'src/app/spec/features/feature/issues/attach-issue/attach-issue.component';
 import { FeatureIssuesComponent } from 'src/app/spec/features/feature/issues/feature-issues.component';
-import { TokensComponent } from 'src/app/spec/shared/tokens/tokens.component';
+import { TokensComponent } from 'src/app/shared/tokens/tokens.component';
 import { SpecRoutingModule } from 'src/app/spec/spec-routing.module';
 import { SpecComponent } from 'src/app/spec/spec.component';
 import { ActorFeatureResolver, ActorResolver, ProjectResolver, SpecResolver } from 'src/app/spec/spec.resolvers';
@@ -62,7 +62,7 @@ import { FeaturesComponent } from './features/features.component';
 import { ModelComponent } from './model/model.component';
 import { PackageEditComponent } from './package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
-import { SpaceSyncComponent } from './shared/sync/space-sync.component';
+import { SpaceSyncComponent } from '../shared/sync/space-sync.component';
 
 @NgModule({
   declarations: [
