@@ -9,18 +9,21 @@
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
   </ng-template>
-  <jnt-stack [orientation]="ui.orientation.horizontal">
-    <jnt-button [icon]="ui.icons.add"
-                [shape]="ui.shape.circle"
-                [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
-                (attached)="instance.popover = $event"></jnt-button>
+
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-message *ngIf="feature.graphql.length <= 0">
+      <p>API is a contract between front-end & back-end side.</p>
+    </jnt-message>
+
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <jnt-button [icon]="ui.icons.add"
+                  [shape]="ui.shape.circle"
+                  [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
+                  (attached)="instance.popover = $event"></jnt-button>
+    </jnt-stack>
   </jnt-stack>
 
-  <ng-template #noDataTemplate>
-    <p>You did't attach frames before.</p>
-  </ng-template>
-
-  <jnt-row *ngIf="feature.graphql.length > 0;else noDataTemplate">
+  <jnt-row *ngIf="feature.graphql.length > 0">
     <jnt-col *ngFor="let query of feature.graphql;let i = index;"
              [tablet]="3">
       <jnt-card [color]="query.id === selected.query?.id ? ui.color.green : ui.color.paleNavy"

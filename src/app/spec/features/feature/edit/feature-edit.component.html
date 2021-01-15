@@ -12,26 +12,29 @@
                    [value]="feature.story.length"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
+      <jnt-menu-item title="Design"
+                     [link]="['frames']"
+                     [icon]="ui.icons.figma">
+        <jnt-badge *ngIf="feature.frames.length > 0"
+                   [value]="feature.frames.length"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
       <jnt-menu-item title="Resources"
                      [link]="['resources']">
         <jnt-badge *ngIf="feature.resources.length > 0"
                    [value]="(feature.resources | estimatedTime) + 'h'"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
-      <jnt-menu-item title="Design"
-                     [link]="['frames']">
-        <jnt-badge *ngIf="feature.frames.length > 0"
-                   [value]="feature.frames.length"
-                   [color]="ui.color.purpleLighten"></jnt-badge>
-      </jnt-menu-item>
       <jnt-menu-item title="API"
-                     [link]="['api']">
+                     [link]="['api']"
+                     [icon]="localUi.icons.graphQl">
         <jnt-badge *ngIf="feature.graphql.length > 0"
                    [value]="feature.graphql.length"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Issues"
-                     [link]="['issues']">
+                     [link]="['issues']"
+                     [icon]="ui.icons.gitlab">
         <jnt-badge *ngIf="feature.issues.length > 0"
                    [value]="(feature.issues | spentTime) + 'h'"
                    [color]="ui.color.purpleLighten"></jnt-badge>

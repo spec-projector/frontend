@@ -75,6 +75,24 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  fillResources() {
+    let group = this.resourceTypesGroup();
+    group.patchValue({title: 'UI/UX', hourRate: 25});
+    this.resourceTypesArray.push(group);
+
+    group = this.resourceTypesGroup();
+    group.patchValue({title: 'Frontend', hourRate: 30});
+    this.resourceTypesArray.push(group);
+
+    group = this.resourceTypesGroup();
+    group.patchValue({title: 'Backend', hourRate: 30});
+    this.resourceTypesArray.push(group);
+
+    group = this.resourceTypesGroup();
+    group.patchValue({title: 'DevOps', hourRate: 40});
+    this.resourceTypesArray.push(group);
+  }
+
   addResource() {
     this.resourceTypesArray.push(this.resourceTypesGroup());
   }

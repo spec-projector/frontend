@@ -32,7 +32,14 @@
         <jnt-badge *ngIf="resourceTypesArray.length > 0"
                    [value]="resourceTypesArray.length"></jnt-badge>
         <ng-template #tabContentTemplate>
-          <ng-container formArrayName="resourceTypes">
+          <ng-template #noResourceTypesTemplate>
+            <p>Resources are used for implementing features.</p>
+            <jnt-button text="Fill resources"
+                        [icon]="ui.icons.add"
+                        (click)="fillResources()"></jnt-button>
+          </ng-template>
+          <ng-container *ngIf="resourceTypesArray.controls.length > 0;else noResourceTypesTemplate"
+                        formArrayName="resourceTypes">
             <jnt-stack [align]="ui.align.stretch">
               <jnt-stack [orientation]="ui.orientation.horizontal">
                 <jnt-button [icon]="ui.icons.add"

@@ -38,10 +38,10 @@ export class GraphQLModule {
     const errorLink = onError(({graphQLErrors, networkError}: ErrorResponse) => {
       if (!!networkError) {
         console.log('[Network error]: ', networkError);
-        const {statusCode} = networkError as ServerError;
-        if (statusCode === 401) {
+        const {status} = (networkError as ServerError).response;
+        if (status === 401) {
           config.authorization = null;
-          router.navigate(['/signup/login']);
+          router.navigate(['/login']);
         }
       }
       if (!!graphQLErrors) {

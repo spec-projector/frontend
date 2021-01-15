@@ -1,10 +1,28 @@
 <ng-template #addStoryTemplate>
-  <jnt-button text="Add story"
-              [icon]="ui.icons.add"
-              (click)="fill()"></jnt-button>
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-message>
+      <p>Feature is a <b>function</b> of the app which described by user's story.</p>
+      <p>Story is what an <b>actor</b> expects to see and how interact.
+        Story is used for creating <b>design</b> sketches by designer.</p>
+      <p>Use special keywords I <b>see</b>, I <b>can</b>. Please check some examples.</p>
+      <p>As <b>Manager</b> I want to <b>Upload avatar</b></p>
+      <ol>
+        <li><b>I see</b> personal interface</li>
+        <li><b>I can</b> press on avatar in main app menu</li>
+        <li><b>I see</b> dropdown menu</li>
+        <li><b>I can</b> select <b>personal settings</b> item</li>
+      </ol>
+    </jnt-message>
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <jnt-button text="Add story"
+                  [icon]="ui.icons.add"
+                  (click)="fill()"></jnt-button>
+    </jnt-stack>
+  </jnt-stack>
 </ng-template>
 
 <ng-container *ngIf="feature.story.length;else addStoryTemplate">
+  <p>As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title}}</b></p>
   <ol>
     <li *ngFor="let entry of feature.story; let i = index">
       <spec-story-entry #storyEntry [entry]="entry"

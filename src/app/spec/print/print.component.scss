@@ -1,8 +1,8 @@
-@import "../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "~@junte/ui/lib/assets/styles/jnt-common";
 
 :host {
   display: block;
-  padding-top: $jnt-gutter-small;
 }
 
 h1 {
@@ -10,21 +10,48 @@ h1 {
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 16px;
 }
 
-[actor] > li {
+[data-content] {
+  max-width: 50%;
+
+  li {
+    padding: $jnt-gutter-tiny 0;
+  }
+}
+
+[data-price] {
+  display: flex;
+  border-bottom: 1px dotted $jnt-gray-400-color;
+
+  :nth-child(1) {
+    flex: 1;
+    color: $jnt-muted-color;
+    &[data-has-story='true'] {
+      color: $jnt-primary-text-color;
+    }
+  }
+
+  :nth-child(2) {
+    font-weight: bold;
+  }
+}
+
+[data-actor] > li {
   margin-bottom: 20px;
+  font-size: 16px;
 }
 
-[feature]{
+[data-feature] {
   padding: $jnt-gutter-normal 40px;
   background: $jnt-white-color;
   border-radius: $jnt-corner-normal;
+  font-size: $jnt-font-size-base;
 }
 
 [type='see'], [type='can'] {

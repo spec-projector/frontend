@@ -5,7 +5,7 @@ import { NGXLogger } from 'ngx-logger';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { Feature, StoryEntry, StoryEntryType } from 'src/model/spec/planning/feature';
-import { TextToken } from 'src/model/spec/planning/token';
+import { AccentToken, TextToken } from 'src/model/spec/planning/token';
 import { StoryEntryComponent } from './entry/story-entry.component';
 
 @Component({
@@ -33,11 +33,14 @@ export class FeatureStoryComponent implements OnInit {
   }
 
   fill() {
-    const entry = new StoryEntry({
+    this.feature.story.push(new StoryEntry({
       type: StoryEntryType.see,
-      description: [new TextToken('something...')]
-    });
-    this.feature.story.push(entry);
+      description: [new TextToken('palm with '), new AccentToken('bananas')]
+    }));
+    this.feature.story.push(new StoryEntry({
+      type: StoryEntryType.can,
+      description: [new AccentToken('rip off'), new TextToken(' any banana')]
+    }));
     this.save();
   }
 

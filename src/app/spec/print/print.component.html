@@ -1,65 +1,43 @@
-<!--<h2>Contents</h2>
-<ul contents>
-  <li *ngFor="let actor of spec.actors; trackBy: trackActor">
-    <jnt-stack actor [orientation]="ui.orientation.horizontal">
-      <jnt-link [source]="['.', {actor: actor.id}]" [title]="actor.name"></jnt-link>
-      <ng-container *ngIf="(actor | actorPrice:actor.version:actor.rev) as price">
-        <div price>{{price | currency}}</div>
-      </ng-container>
-    </jnt-stack>
-    <ul>
-      <li *ngFor="let feature of actor.features">
-        <jnt-stack [orientation]="ui.orientation.horizontal">
-          <jnt-stack [orientation]="ui.orientation.horizontal"
-                     [align]="ui.align.center"
-                     [gutter]="ui.gutter.small">
-            <jnt-link
-              (click)="router.navigate([actor.id,'features', feature.id], {relativeTo: route})"
-              [title]="feature.title | joinTokens"></jnt-link>
-            <div dot *ngIf="feature.story.length" story></div>
-            <div dot *ngIf="feature.frames.length" frames></div>
-            <div dot *ngIf="feature.graphql.length" graphql></div>
-          </jnt-stack>
-          <ng-container *ngIf="(feature | featurePrice:feature.version:feature.rev) as price">
-            <div price>{{price | currency}}</div>
-          </ng-container>
-        </jnt-stack>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<ul total>
-  <li>Total</li>
-  <li></li>
-  <li>
-    {{spec | specPrice:spec.version:spec.rev | currency}}
-  </li>
-</ul>-->
-
-<h1>Функциональные требования</h1>
-<ol>
-  <li *ngFor="let actor of spec.actors; trackBy: trackActor">
-    {{actor.name}}
-    <ol>
-      <li *ngFor="let feature of actor.features">
-        {{feature.title | joinTokens}}
-      </li>
-    </ol>
-  </li>
-</ol>
-
-<ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
-  <h2>Как <b>{{actor.name}}</b> я хочу</h2>
-  <ol actor>
-    <li *ngFor="let feature of actor.features">
-      <h3>{{feature.title | joinTokens}}</h3>
-      <ol feature>
-        <li *ngFor="let entry of feature.story; let i = index">
-          <div [attr.type]="entry.type">Я {{entry.type === 'can' ? 'могу' : 'вижу'}}</div>
-          <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
+<h1>Content</h1>
+<div data-content>
+  <ol>
+    <li *ngFor="let actor of spec.actors; trackBy: trackActor">
+      <b>{{actor.name}}</b>
+      <ol>
+        <li data-price *ngFor="let feature of actor.features">
+          <div [attr.data-has-story]="feature.story.length > 0">{{feature.title | joinTokens}}</div>
+          <div *ngIf="(feature | featurePrice:feature.version:feature.rev) as price">
+            {{price | currency}}
+          </div>
         </li>
       </ol>
     </li>
   </ol>
+
+  <div data-price>
+    <div>Total</div>
+    <div>
+      {{spec | specPrice:spec.version:spec.rev | currency}}
+    </div>
+  </div>
+</div>
+
+<h1>Features</h1>
+<ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
+  <ng-container *ngIf="actor.features.length > 0">
+    <h2>As <b>{{actor.name}}</b> I want</h2>
+    <ol data-actor>
+      <ng-container *ngFor="let feature of actor.features">
+        <li *ngIf="feature.story.length > 0">
+          <h3>{{feature.title | joinTokens}}</h3>
+          <ol data-feature>
+            <li *ngFor="let entry of feature.story; let i = index">
+              <div [attr.type]="entry.type">I {{entry.type === 'can' ? 'can' : 'see'}}</div>
+              <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
+            </li>
+          </ol>
+        </li>
+      </ng-container>
+    </ol>
+  </ng-container>
 </ng-container>

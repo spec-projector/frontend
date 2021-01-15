@@ -44,7 +44,7 @@ export class FeatureResourcesComponent implements OnInit {
       .pipe(debounceTime(config.uiDebounceTime))
       .subscribe(({resources}) => {
         this.feature.resources = resources.map(({resource, hours}) =>
-          new ResourceType({resource, hours: +hours}));
+          new ResourceType({resource, hours: hours}));
         this.save();
       });
   }
