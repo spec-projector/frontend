@@ -61,10 +61,10 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'details'
+        redirectTo: 'actors'
       },
       {
-        path: 'actors',
+        path: 'details',
         component: DetailsComponent,
         data: {breadcrumb: 'General'}
       },
