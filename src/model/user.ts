@@ -19,7 +19,7 @@ export class Me extends User {
 export class UserCredentials {
 
   @Field()
-  username: string;
+  login: string;
 
   @Field()
   password: string;

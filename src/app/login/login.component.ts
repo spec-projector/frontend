@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   errors: BackendError[] = [];
 
   form = this.builder.group({
-    username: [null, [Validators.required]],
+    login: [null, [Validators.required]],
     password: [null, [Validators.required]]
   });
 
