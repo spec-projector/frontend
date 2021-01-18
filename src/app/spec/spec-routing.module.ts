@@ -64,7 +64,7 @@ export const routes: Routes = [
         redirectTo: 'details'
       },
       {
-        path: 'details',
+        path: 'actors',
         component: DetailsComponent,
         data: {breadcrumb: 'General'}
       },
@@ -113,7 +113,7 @@ export const routes: Routes = [
             path: ':actor',
             component: ActorEditComponent,
             resolve: {actor: ActorResolver},
-            data: {breadcrumb: {label: getActor, disabled: false}},
+            data: {breadcrumb: {label: getActor, disabled: true}},
             children: [
               {
                 path: 'features/:feature',
