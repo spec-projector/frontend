@@ -56,6 +56,7 @@ mutation($id: ID!, $title: String!, $description: String, $isPublic: Boolean) {
         project {
             id
             title
+            description
             isPublic
         }
     }
