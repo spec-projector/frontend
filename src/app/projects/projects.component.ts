@@ -68,7 +68,7 @@ export class ProjectsComponent implements OnInit {
       this.modal.close();
       this.projects[index] = p;
     });
-    this.modal.open(component, {title: {text: 'Edit project'}});
+    this.modal.open(component, { title: {text: 'Edit project'}});
   }
 
   goto(project: Project) {

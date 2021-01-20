@@ -13,8 +13,6 @@ export class AllProjectsGQL extends Query<{ projects }> {
     edges {
       node {
         id
-        createdAt
-        updatedAt
         title
         description
         isPublic
@@ -36,11 +34,12 @@ export class AllProjectsGQL extends Query<{ projects }> {
 })
 export class CreateProjectGQL extends Mutation<{ response: { project } }> {
   document = gql`
-mutation($title: String!, $isPublic: Boolean) {
-    response:createProject(title: $title, isPublic: $isPublic) {
+mutation($title: String!, $description: String, $isPublic: Boolean) {
+    response:createProject(title: $title, description: $description, isPublic: $isPublic) {
         project {
             id
             title
+            description
             isPublic
         }
     }
@@ -52,8 +51,8 @@ mutation($title: String!, $isPublic: Boolean) {
 })
 export class UpdateProjectGQL extends Mutation<{ response: { project } }> {
   document = gql`
-mutation($id: ID!, $title: String!, $isPublic: Boolean) {
-    response:updateProject(id: $id, title: $title, isPublic: $isPublic) {
+mutation($id: ID!, $title: String!, $description: String, $isPublic: Boolean) {
+    response:updateProject(id: $id, title: $title, description: $description, isPublic: $isPublic) {
         project {
             id
             title

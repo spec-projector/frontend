@@ -26,6 +26,7 @@ export class EditProjectComponent implements AfterViewInit {
     {
       id: [null],
       title: [null, Validators.required],
+      description: [null],
       isPublic: [false]
     }
   );
@@ -37,6 +38,7 @@ export class EditProjectComponent implements AfterViewInit {
     this.form.patchValue({
       id: project.id,
       title: project.title,
+      description: project.description,
       isPublic: project.isPublic
     });
   }

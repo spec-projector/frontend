@@ -12,6 +12,13 @@
       </jnt-form-message>
     </jnt-form-control>
 
+    <jnt-form-control name="description">
+      <jnt-form-label>Description</jnt-form-label>
+      <jnt-input formControlName="description"
+                 [features]="[ui.feature.multiline]"
+                 [rows]="3"></jnt-input>
+    </jnt-form-control>
+
     <jnt-switch formControlName="isPublic" label="Public project"></jnt-switch>
   </jnt-stack>
 

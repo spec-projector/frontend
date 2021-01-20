@@ -29,7 +29,10 @@
     <ol data-actor>
       <ng-container *ngFor="let feature of actor.features">
         <li>
-          <h3>{{feature.title | joinTokens}}</h3>
+          <h3>
+            {{feature.title | joinTokens}}
+            <jnt-label *ngIf="feature.epic" [label]="feature.epic.title"></jnt-label>
+          </h3>
           <ol data-feature *ngIf="feature.story.length > 0">
             <li *ngFor="let entry of feature.story; let i = index">
               <div [attr.type]="entry.type">I {{entry.type === 'can' ? 'can' : 'see'}}</div>

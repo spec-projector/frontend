@@ -12,6 +12,9 @@ export class Project {
   title: string;
 
   @Field()
+  description: string;
+
+  @Field()
   isPublic: boolean;
 
   @Field()
