@@ -14,6 +14,7 @@ export class LocalUI {
         story: 'story:svg:local',
         resources: 'resources:svg:local',
         issues: 'issues:svg:local',
-        print: 'print:svg:local:stroked'
+        print: 'print:svg:local:stroked',
+        public: 'public:svg:local:stroked'
     };
 }

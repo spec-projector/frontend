@@ -30,7 +30,7 @@
                      *ngFor="let project of projects; trackBy: trackProject;let i = index">
               <jnt-card [width]="ui.width.fluid">
                 <jnt-link [source]="[project.id]"
-                          [icon]="project.isPublic ? ui.icons.checked : null"
+                          [icon]="project.isPublic ? localUi.icons.public : null"
                           [title]="project.title"></jnt-link>
                 <ng-template #cardActionsTemplate let-hide="hide">
                   <jnt-menu [orientation]="ui.orientation.vertical">
