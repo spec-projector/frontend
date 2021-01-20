@@ -26,7 +26,7 @@ export class LayoutComponent implements AfterViewInit {
   constructor(private modalService: ModalService,
               private popoverService: PopoverService,
               private router: Router,
-              private config: AppConfig) {
+              public config: AppConfig) {
   }
 
   ngAfterViewInit() {

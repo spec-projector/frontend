@@ -7,7 +7,10 @@ import { PackagesComponent } from 'src/app/spec/packages/packages.component';
 import { SpecComponent } from 'src/app/spec/spec.component';
 import {
   ActorFeatureResolver,
-  ActorResolver, EntityResolver, FeatureGraphqlResolver, PackageResolver,
+  ActorResolver,
+  EntityResolver,
+  FeatureGraphqlResolver,
+  PackageResolver,
   ProjectResolver,
   SpecResolver
 } from 'src/app/spec/spec.resolvers';
@@ -231,4 +234,5 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class SpecRoutingModule {
+
 }

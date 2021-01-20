@@ -1,3 +1,10 @@
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import '~@junte/ui/lib/assets/styles/navigation/link';
+
+$jnt-ng-deep: true;
+
 :host {
   display: block;
+
+  @include jnt-link((color: $jnt-white-color));
 }

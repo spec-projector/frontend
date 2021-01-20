@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Inject, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo, ApolloModule } from 'apollo-angular';
@@ -37,8 +38,8 @@ export class GraphQLModule {
 
     const errorLink = onError(({graphQLErrors, networkError}: ErrorResponse) => {
       if (!!networkError) {
-        console.log('[Network error]: ', networkError);
-        const {status} = (networkError as ServerError).response;
+        console.log(networkError);
+        const {status} = (networkError as HttpErrorResponse);
         if (status === 401) {
           config.authorization = null;
           router.navigate(['/login']);

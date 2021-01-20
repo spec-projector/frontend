@@ -10,7 +10,7 @@
     </ng-template>
 
     <jnt-menu #headerTopMenu>
-      <jnt-menu-item [link]="['/projects']"
+      <jnt-menu-item *ngIf="!!config.authorization" [link]="['/projects']"
                      [icon]="localUi.icons.projects"
                      title="Projects"></jnt-menu-item>
       <jnt-menu-item [link]="['/marketplace']"
@@ -18,7 +18,14 @@
                      title="Marketplace"
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
-    <ng-template #headerUserbarTemplate>
+
+    <ng-template *ngIf="!config.authorization" #headerContentTemplate let-hide="hide">
+      <jnt-link title="Login"
+                [icon]="{icon: ui.icons.chevronRight, position: ui.position.right}"
+                [source]="['/login']"></jnt-link>
+    </ng-template>
+
+    <ng-template #headerUserbarTemplate *ngIf="!!config.authorization">
       <jnt-app-header-userbar>
         <ng-template #userbarAvatarTemplate>
           <jnt-avatar [size]="ui.size.small"></jnt-avatar>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationGuard } from 'src/app/app.guard';
 
 const routes: Routes = [
   {
@@ -16,8 +15,7 @@ const routes: Routes = [
   {
     path: 'projects',
     loadChildren: () => import('./layout/layout.module')
-      .then(m => m.LayoutModule),
-    canActivate: [AuthorizationGuard]
+      .then(m => m.LayoutModule)
   }
 ];
 
@@ -33,4 +31,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
+
 }
