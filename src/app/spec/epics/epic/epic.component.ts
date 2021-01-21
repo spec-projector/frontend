@@ -34,6 +34,18 @@ export class EpicComponent {
     this._epic = epic;
     this.updateForm();
 
+    // TODO: bug, actor was removed
+    /*[...this.epic.features].forEach(f => {
+      if (!f.spec) {
+        this.manager.remove(f);
+        const index = this.epic.features.findIndex(e => e.id === f.id);
+        if (index !== -1) {
+          this.epic.features.splice(index, 1);
+          this.manager.put(this.epic);
+        }
+      }
+    });*/
+
     epic.changes.subscribe(() => this.updateForm());
   }
 

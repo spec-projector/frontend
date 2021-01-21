@@ -14,11 +14,13 @@
     <jnt-menu-item [link]="['details']" title="General"
                    [icon]="localUi.icons.general"></jnt-menu-item>
     <jnt-menu-item [link]="['actors']" title="Features"
+                   [matching]="ui.matching.wildcard"
                    [icon]="localUi.icons.features">
       <jnt-badge [value]="spec?.actors.length"></jnt-badge>
     </jnt-menu-item>
     <jnt-menu-item [link]="['epics']" title="Epics"
-                   [icon]="localUi.icons.epics">
+                   [icon]="localUi.icons.epics"
+                   [matching]="ui.matching.wildcard">
       <jnt-badge [value]="spec?.epics.length"></jnt-badge>
     </jnt-menu-item>
 

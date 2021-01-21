@@ -27,7 +27,8 @@
       </jnt-menu-item>
       <jnt-menu-item title="API"
                      [link]="['api']"
-                     [icon]="localUi.icons.graphQl">
+                     [icon]="localUi.icons.graphQl"
+                     [matching]="ui.matching.wildcard">
         <jnt-badge *ngIf="feature.graphql.length > 0"
                    [value]="feature.graphql.length"
                    [color]="ui.color.purpleLighten"></jnt-badge>
