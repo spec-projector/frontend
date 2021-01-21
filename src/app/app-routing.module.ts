@@ -26,7 +26,8 @@ const routes: Routes = [
       relativeLinkResolution: 'corrected',
       scrollPositionRestoration: 'top',
       anchorScrolling: 'enabled',
-      scrollOffset: [0, 150]
+      scrollOffset: [0, 150],
+      initialNavigation: 'enabled'
     })],
   exports: [RouterModule]
 })
