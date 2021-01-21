@@ -1,6 +1,8 @@
 export class LocalUI {
     static icons = {
+        // color
         projects: 'projects:svg:local',
+        // other
         market: 'market:svg:local',
         sprints: 'sprints:svg:local:stroked',
         terms: 'terms:svg:local:stroked',
@@ -15,6 +17,7 @@ export class LocalUI {
         resources: 'resources:svg:local',
         issues: 'issues:svg:local',
         print: 'print:svg:local:stroked',
-        public: 'public:svg:local:stroked'
+        public: 'public:svg:local:stroked',
+        project: 'project:svg:local:stroked'
     };
 }
