@@ -21,7 +21,7 @@
 
     <ng-template *ngIf="!config.authorization" #headerContentTemplate let-hide="hide">
       <jnt-link title="Login"
-                [icon]="{icon: ui.icons.chevronRight, position: ui.position.right}"
+                [icon]="ui.icons.login"
                 [source]="['/login']"></jnt-link>
     </ng-template>
 

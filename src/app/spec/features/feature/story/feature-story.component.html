@@ -22,6 +22,19 @@
 </ng-template>
 
 <ng-container *ngIf="feature.story.length;else addStoryTemplate">
+  <small>Use keys
+    <jnt-label [size]="ui.size.small"
+               [color]="ui.color.paleNavy"
+               label="↑↓"></jnt-label>
+    for moving
+    <jnt-label [size]="ui.size.small"
+               [color]="ui.color.paleNavy"
+               label="↦"></jnt-label>
+    for switching and
+    <jnt-label [size]="ui.size.small"
+               [color]="ui.color.paleNavy"
+               label="↵"></jnt-label>
+    to add a line.</small>
   <p>As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title}}</b></p>
   <ol>
     <li *ngFor="let entry of feature.story; let i = index">

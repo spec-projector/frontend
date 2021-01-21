@@ -13,7 +13,9 @@
               <jnt-form-label>Description</jnt-form-label>
               <jnt-form-control name="description">
                 <jnt-input formControlName="description"
-                           placeholder="Great specification for CRM"></jnt-input>
+                           [features]="[ui.feature.multiline]"
+                           [rows]="4"
+                           placeholder="Great specification for CRM project"></jnt-input>
               </jnt-form-control>
             </jnt-form-item>
 
