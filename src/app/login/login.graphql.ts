@@ -28,13 +28,12 @@ mutation Login($login: String!, $password: String!) {
 })
 export class GitlabLoginGQL extends Mutation<{ completeGitlabAuth: { token } }> {
     document = gql`
-    mutation GitlabLogin($code: String!, $state: String!) {
-      completeGitlabAuth(code: $code, state: $state) {
-        token {
-          key
-          created
-          user
-        }
-      }
-    }`;
+mutation GitlabLogin($code: String!, $state: String!) {
+  completeGitlabAuth(code: $code, state: $state) {
+    token {
+      key
+      created
+    }
+  }
+}`;
 }
