@@ -6,7 +6,9 @@
 <jnt-app-layout #layout [position]="ui.placement.fixed">
   <jnt-app-header>
     <ng-template #headerLogoTemplate>
-      <img src="/assets/images/logo-light.svg">
+      <a [routerLink]="['/']">
+        <img src="/assets/images/logo-light.svg">
+      </a>
     </ng-template>
 
     <jnt-menu #headerTopMenu>

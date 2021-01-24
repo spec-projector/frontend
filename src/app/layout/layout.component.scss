@@ -8,3 +8,7 @@ $jnt-ng-deep: true;
 
   @include jnt-link((color: $jnt-white-color));
 }
+
+a, img {
+  display: block;
+}
