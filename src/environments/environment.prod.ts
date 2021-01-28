@@ -1,8 +1,5 @@
-export const config = {
-    storage: 'https://www.specprojector.com/couchdb',
-    uiDebounceTime: 500
-};
-
 export const environment = {
-    production: true
+  production: true,
+  uiDebounceTime: 500,
+  storage: 'https://admin:admin@www.specprojector.com/couchdb'
 };
