@@ -1,9 +1,5 @@
-export const config = {
-    // storage: 'http://localhost:5984'
-    storage: 'https://www.specprojector.com/couchdb',
-    uiDebounceTime: 500
-};
-
 export const environment = {
-    production: false
+  production: false,
+  uiDebounceTime: 500,
+  storage: 'https://admin:admin@www.specprojector.com/couchdb'
 };

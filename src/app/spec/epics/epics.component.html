@@ -11,7 +11,20 @@
 
 <jnt-stack [align]="ui.align.stretch"
            [gutter]="ui.gutter.large">
-  <jnt-stack cdkDropList [align]="ui.align.stretch"
+
+  <ng-template #emptyDataTemplate>
+    <jnt-message>
+      <p>Features could be grouped by similar area of applying.</p>
+      <p>E.g. an actor <b>Client</b> wants <b>Register</b>, <b>Login</b>, <b>Restore password</b>. These features can be grouped by epic <b>User Accounts</b>.</p>
+      <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                  [icon]="ui.icons.add"
+                  text="Add first epic"
+                  (click)="addEpic()"></jnt-button>
+    </jnt-message>
+  </ng-template>
+
+  <jnt-stack  *ngIf="spec.epics.length > 0; else emptyDataTemplate"
+              cdkDropList [align]="ui.align.stretch"
              (cdkDropListDropped)="moveEpic($event)"
              [cdkDropListData]="spec.epics">
     <jnt-block cdkDrag *ngFor="let epic of spec.epics; let i = index; trackBy: trackEpic">

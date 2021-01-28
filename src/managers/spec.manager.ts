@@ -6,8 +6,9 @@ import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
 import { EditMode } from 'src/enums/edit-mode';
 import { Spec } from 'src/model/spec/spec';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
-import { config } from 'src/environments/environment';
+import { AppConfig } from '../app/app-config';
 import { SpaceSyncComponent } from '../app/shared/sync/space-sync.component';
+import { environment } from '../environments/environment';
 import Database = PouchDB.Database;
 
 const SPEC_OBJECT_ID = 'spec';
@@ -48,15 +49,27 @@ export class SpecManager {
 
   constructor(private cfr: ComponentFactoryResolver,
               private injector: Injector,
-              private modal: ModalService) {
+              private modal: ModalService,
+              private config: AppConfig) {
     this.flushing();
   }
 
   get(project: string): Observable<Spec> {
     if (!this.spec$) {
       this.spec$ = new BehaviorSubject<Spec>(null);
-      this.local = new PouchDB(project, {auto_compaction: true});
-      this.remote = new PouchDB(`${config.storage}/${project}`);
+      this.local = new PouchDB(project,
+        {
+          auto_compaction: true
+        });
+      this.remote = new PouchDB(`${environment.storage}/${project}`,
+        {
+          skip_setup: true,
+          fetch: function (url, opts) {
+            const headers = opts.headers as Headers;
+            headers.append('SP-Authorization', `Bearer ${this.config.authorization.key}`);
+            return PouchDB.fetch(url, opts);
+          }
+        });
 
       const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
       try {

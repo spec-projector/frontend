@@ -27,35 +27,48 @@
 <jnt-stack [align]="ui.align.stretch"
            [gutter]="ui.gutter.large">
 
-  <jnt-stack cdkDropList [align]="ui.align.stretch"
+  <ng-template #emptyDataTemplate>
+    <jnt-message>
+      <p>Let's think your app is <b>a game</b>. Users are players with some goals. To reach their goals we should satisfy their <b>requirements</b>.</p>
+      <p>E.g. <b>Client</b> wants make an order. <b>Operator</b> wants process the order. <b>Carrier</b> wants deliver the order.</p>
+      <p>Try to split users of you app by groups - roles.</p>
+      <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                  [icon]="ui.icons.add"
+                  text="Add first actor"
+                  (click)="addActor()"></jnt-button>
+    </jnt-message>
+  </ng-template>
+
+  <jnt-stack  *ngIf="spec.actors.length > 0; else emptyDataTemplate"
+              cdkDropList [align]="ui.align.stretch"
              (cdkDropListDropped)="moveActor($event)"
              [cdkDropListData]="spec?.actors">
-    <jnt-block cdkDrag *ngFor="let actor of spec?.actors; let i = index; trackBy: trackActor">
-      <jnt-stack [orientation]="ui.orientation.horizontal">
-        <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
-                   [gutter]="ui.gutter.small">
-          <jnt-button cdkDragHandle
-                      [icon]="ui.icons.expand"
-                      [size]="ui.size.tiny"
-                      [shape]="ui.shape.circle"
-                      [scheme]="ui.scheme.secondary">
-          </jnt-button>
-          <jnt-button [icon]="ui.icons.delete"
-                      [size]="ui.size.tiny"
-                      [shape]="ui.shape.circle"
-                      [scheme]="ui.scheme.secondary"
-                      [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
-                      (attached)="instance.popover = $event">
-          </jnt-button>
-          <ng-template #deleteTemplate>
-            <jnt-confirm message="Are you sure to delete the actor?"
-                         (cancel)="instance.popover.hide()"
-                         (ok)="deleteActor(i);instance.popover.hide()"></jnt-confirm>
-          </ng-template>
+    <jnt-block cdkDrag *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor">
+        <jnt-stack [orientation]="ui.orientation.horizontal">
+          <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
+                     [gutter]="ui.gutter.small">
+            <jnt-button cdkDragHandle
+                        [icon]="ui.icons.expand"
+                        [size]="ui.size.tiny"
+                        [shape]="ui.shape.circle"
+                        [scheme]="ui.scheme.secondary">
+            </jnt-button>
+            <jnt-button [icon]="ui.icons.delete"
+                        [size]="ui.size.tiny"
+                        [shape]="ui.shape.circle"
+                        [scheme]="ui.scheme.secondary"
+                        [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
+                        (attached)="instance.popover = $event">
+            </jnt-button>
+            <ng-template #deleteTemplate>
+              <jnt-confirm message="Are you sure to delete the actor?"
+                           (cancel)="instance.popover.hide()"
+                           (ok)="deleteActor(i);instance.popover.hide()"></jnt-confirm>
+            </ng-template>
+          </jnt-stack>
+          <spec-actor data-actor [actor]="actor"></spec-actor>
         </jnt-stack>
-        <spec-actor data-actor [actor]="actor"></spec-actor>
-      </jnt-stack>
-    </jnt-block>
+      </jnt-block>
   </jnt-stack>
 </jnt-stack>
 

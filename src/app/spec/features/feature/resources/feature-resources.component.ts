@@ -5,7 +5,7 @@ import { PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { config } from '../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { SpecManager } from '../../../../../managers/spec.manager';
 import { Feature } from '../../../../../model/spec/planning/feature';
 import { ResourceType } from '../../../../../model/spec/spec';
@@ -41,7 +41,7 @@ export class FeatureResourcesComponent implements OnInit {
     });
 
     this.subscriptions.form = this.form.valueChanges
-      .pipe(debounceTime(config.uiDebounceTime))
+      .pipe(debounceTime(environment.uiDebounceTime))
       .subscribe(({resources}) => {
         this.feature.resources = resources.map(({resource, hours}) =>
           new ResourceType({resource, hours: hours}));

@@ -16,12 +16,14 @@
     <jnt-menu-item [link]="['actors']" title="Features"
                    [matching]="ui.matching.wildcard"
                    [icon]="localUi.icons.features">
-      <jnt-badge [value]="spec?.actors.length"></jnt-badge>
+      <jnt-badge *ngIf="spec.actors.length > 0"
+                 [value]="spec.actors.length"></jnt-badge>
     </jnt-menu-item>
     <jnt-menu-item [link]="['epics']" title="Epics"
                    [icon]="localUi.icons.epics"
                    [matching]="ui.matching.wildcard">
-      <jnt-badge [value]="spec?.epics.length"></jnt-badge>
+      <jnt-badge *ngIf="spec.epics.length > 0"
+                 [value]="spec.epics.length"></jnt-badge>
     </jnt-menu-item>
 
     <!--

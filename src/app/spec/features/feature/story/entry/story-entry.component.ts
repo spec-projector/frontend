@@ -7,7 +7,7 @@ import { EditMode } from 'src/enums/edit-mode';
 import { StoryEntry, StoryEntryType } from 'src/model/spec/planning/feature';
 import { Token } from 'src/model/spec/planning/token';
 import { Spec } from 'src/model/spec/spec';
-import { config } from 'src/environments/environment';
+import { environment } from '../../../../../../environments/environment';
 import { SpecManager } from '../../../../../../managers/spec.manager';
 
 @Component({
@@ -43,7 +43,7 @@ export class StoryEntryComponent {
     });
 
     this.subscriptions.form = this.form.valueChanges
-      .pipe(debounceTime(config.uiDebounceTime))
+      .pipe(debounceTime(environment.uiDebounceTime))
       .subscribe(() => {
         const {type, description} = this.form.getRawValue();
         console.log(Token.parse(description));
