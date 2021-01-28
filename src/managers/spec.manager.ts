@@ -64,7 +64,7 @@ export class SpecManager {
       this.remote = new PouchDB(`${environment.storage}/${project}`,
         {
           skip_setup: true,
-          fetch: function (url, opts) {
+          fetch: (url, opts) => {
             const headers = opts.headers as Headers;
             headers.append('SP-Authorization', `Bearer ${this.config.authorization.key}`);
             return PouchDB.fetch(url, opts);
