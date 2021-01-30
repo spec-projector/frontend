@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { Me } from 'src/model/user';
-import { MeGQL } from './me.graphql';
+import { MeGQL } from '../gql/me.graphql';
 
 @Injectable()
 export class MeUserResolver implements Resolve<Observable<Me>> {
