@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from '@junte/ui';
+import { UI } from '@junte/ui';
 import { AppConfig } from 'src/app/app-config';
 import {LocalUI} from '../../enums/local-ui';
 
@@ -9,29 +9,16 @@ import {LocalUI} from '../../enums/local-ui';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements AfterViewInit {
+export class LayoutComponent {
 
   ui = UI;
   localUi = LocalUI;
 
-  @ViewChild('popover', {static: false})
-  popover: PopoverComponent;
-
-  @ViewChild('modal', {static: false})
-  modal: ModalComponent;
-
   @ViewChild('layout', {read: ElementRef, static: true})
   backdrop;
 
-  constructor(private modalService: ModalService,
-              private popoverService: PopoverService,
-              private router: Router,
+  constructor(private router: Router,
               public config: AppConfig) {
-  }
-
-  ngAfterViewInit() {
-    this.modalService.register(this.modal);
-    this.popoverService.register(this.popover);
   }
 
   logout() {
