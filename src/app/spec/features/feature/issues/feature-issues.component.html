@@ -10,7 +10,7 @@
     </jnt-message>
   </ng-template>
 
-  <ng-container *ngIf="feature.spec.integration.figmaKey;else noGitlabKeyTemplate">
+  <ng-container *ngIf="feature.spec.integration.gitLabKey;else noGitlabKeyTemplate">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template #attachTemplate>
         <spec-attach-issue [spec]="feature.spec"
