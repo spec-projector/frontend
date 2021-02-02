@@ -61,6 +61,7 @@ export class SpecManager {
         {
           auto_compaction: true
         });
+      console.log(environment.storage);
       this.remote = new PouchDB(`${environment.storage}/${project}`,
         {
           skip_setup: true,
