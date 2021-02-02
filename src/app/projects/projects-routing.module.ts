@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectsComponent,
+    data: {breadcrumb: 'Projects'},
     canActivate: [AuthorizationGuard]
   }
 ];
