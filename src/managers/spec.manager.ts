@@ -67,6 +67,7 @@ export class SpecManager {
           skip_setup: true,
           fetch: (url, opts) => {
             const headers = opts.headers as Headers;
+            // kick publication
             headers.append('Authorization', this.config.authorization.key);
             return PouchDB.fetch(url, opts);
           }
