@@ -67,7 +67,9 @@ export class SpecManager {
           skip_setup: true,
           fetch: (url, opts) => {
             const headers = opts.headers as Headers;
-            headers.append('Authorization', `Bearer ${this.config.authorization.key}`);
+            if (!!this.config.authorization) {
+              headers.append('Authorization', `Bearer ${this.config.authorization.key}`);
+            }
             return PouchDB.fetch(url, opts);
           }
         });
