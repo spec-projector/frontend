@@ -1,6 +1,6 @@
 <ng-container *ngIf="sprint">
     <h1>{{sprint.title}}</h1>
-    <h2>Features</h2>
+    <h2 i18n="@@label.features">Features</h2>
     <jnt-stack>
         <ng-container *ngFor="let group of (sprint.features | groupFeaturesByEpic)">
             <h3>{{group.epic?.title}}</h3>
@@ -17,7 +17,7 @@
     </jnt-stack>
 
     <ng-container *ngIf="sprint.improvements.length">
-        <h2>Improvements</h2>
+        <h2 i18n="@@label.improvements">Improvements</h2>
         <ol improvements>
             <li *ngFor="let improvement of sprint.improvements">
                 <jnt-stack [orientation]="ui.orientation.horizontal">

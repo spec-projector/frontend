@@ -1,4 +1,5 @@
 <jnt-app-page-header title="Specification"
+                     i18n-title="@@label.specification"
                      [icon]="localUi.icons.general"></jnt-app-page-header>
 <jnt-block [width]="ui.width.fluid"
            [padding]="ui.gutter.none">
@@ -6,35 +7,40 @@
             (submitted)="save()">
     <jnt-tabs>
 
-      <jnt-tab title="Common">
+      <jnt-tab title="Common"
+               i18n-title="@@label.common">
         <ng-template #tabContentTemplate>
           <jnt-stack [align]="ui.align.stretch">
             <jnt-form-item>
-              <jnt-form-label>Description</jnt-form-label>
+              <jnt-form-label i18n="@@label.description">Description</jnt-form-label>
               <jnt-form-control name="description">
                 <jnt-input formControlName="description"
                            [features]="[ui.feature.multiline]"
                            [rows]="4"
-                           placeholder="Great specification for CRM project"></jnt-input>
+                           placeholder="Great specification for CRM project"
+                           i18n-placeholder="@@message.specifiation_for_crm"></jnt-input>
               </jnt-form-control>
             </jnt-form-item>
 
             <jnt-form-item>
-              <jnt-form-label>Author</jnt-form-label>
+              <jnt-form-label i18n="@@label.author">Author</jnt-form-label>
               <jnt-form-control name="author">
                 <jnt-input formControlName="author"
-                           placeholder="Elon Musk"></jnt-input>
+                           placeholder="Elon Musk"
+                           i18n-placeholder="@@label.elon_musk"></jnt-input>
               </jnt-form-control>
             </jnt-form-item>
           </jnt-stack>
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Resources">
+      <jnt-tab title="Resources"
+               i18n-title="@@label.resources">
         <jnt-badge *ngIf="resourceTypesArray.length > 0"
                    [value]="resourceTypesArray.length"></jnt-badge>
         <ng-template #tabContentTemplate>
           <ng-template #noResourceTypesTemplate>
+            <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
             <p>Resources are used for implementing features.</p>
             <jnt-button text="Fill resources"
                         [icon]="ui.icons.add"
@@ -52,11 +58,13 @@
                        [formGroupName]="i">
                 <jnt-col [desktop]="4" [mobile]="6">
                   <jnt-input placeholder="Title"
+                             i18n-placeholder="@@label.title"
                              formControlName="title"
                              [width]="ui.width.fluid"></jnt-input>
                 </jnt-col>
                 <jnt-col [desktop]="2" [mobile]="4">
                   <jnt-input placeholder="Hour rate"
+                             i18n-placeholder="@@label.hour_rate"
                              formControlName="hourRate"
                              [type]="ui.input.type.number"
                              [width]="ui.width.fluid"></jnt-input>
@@ -74,11 +82,12 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Integration">
+      <jnt-tab title="Integration"
+               i18n-title="@@label.integration">
         <ng-template #tabContentTemplate>
           <jnt-stack [align]="ui.align.stretch">
             <jnt-form-item>
-              <jnt-form-label>Git Lab key</jnt-form-label>
+              <jnt-form-label i18n="@@label.git_lab_key">Git Lab key</jnt-form-label>
               <jnt-form-control name="gitLabKey">
                 <jnt-input formControlName="gitLabKey"
                            placeholder="xxxx_xxxx_xxxxxxxxxx"></jnt-input>
@@ -86,7 +95,7 @@
             </jnt-form-item>
 
             <jnt-form-item>
-              <jnt-form-label>Figma key</jnt-form-label>
+              <jnt-form-label i18n="@@label.figma_key">Figma key</jnt-form-label>
               <jnt-form-control name="figmaKey">
                 <jnt-input formControlName="figmaKey"
                            placeholder="xxxxx-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></jnt-input>
@@ -104,16 +113,21 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Maintenance">
+      <jnt-tab title="Maintenance"
+               i18n-title="@@label.maintenance">
         <ng-template #tabContentTemplate>
           <jnt-stack actions [orientation]="ui.orientation.horizontal">
             <div>
               <a href="javascript:;" #dumpFile></a>
-              <jnt-button text="Dump" (click)="dump(dumpFile)"></jnt-button>
+              <jnt-button text="Dump"
+                          i18n-text="@@action.dump"
+                          (click)="dump(dumpFile)"></jnt-button>
             </div>
             <div>
               <jnt-button [loading]="progress.restore"
-                          text="Restore" (click)="restoreInput.click()"></jnt-button>
+                          text="Restore"
+                          i18n-text="@@action.restore"
+                          (click)="restoreInput.click()"></jnt-button>
               <input #restoreInput fileInput type="file"
                      (change)="restore($event)">
             </div>

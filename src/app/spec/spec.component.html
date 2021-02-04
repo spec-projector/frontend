@@ -9,17 +9,25 @@
   </ng-template>-->
 
   <jnt-menu [orientation]="ui.orientation.vertical">
-    <jnt-menu-item [link]="['print']" title="Print"
+    <jnt-menu-item [link]="['print']"
+                   title="Print"
+                   i18n-title="@@label.print"
                    [icon]="localUi.icons.print"></jnt-menu-item>
-    <jnt-menu-item [link]="['details']" title="General"
+    <jnt-menu-item [link]="['details']"
+                   title="General"
+                   i18n-title="@@label.general"
                    [icon]="localUi.icons.general"></jnt-menu-item>
-    <jnt-menu-item [link]="['actors']" title="Features"
+    <jnt-menu-item [link]="['actors']"
+                   title="Features"
+                   i18n-title="@@label.features"
                    [matching]="ui.matching.wildcard"
                    [icon]="localUi.icons.features">
       <jnt-badge *ngIf="spec.actors.length > 0"
                  [value]="spec.actors.length"></jnt-badge>
     </jnt-menu-item>
-    <jnt-menu-item [link]="['epics']" title="Epics"
+    <jnt-menu-item [link]="['epics']"
+                   title="Epics"
+                   i18n-title="@@label.epics"
                    [icon]="localUi.icons.epics"
                    [matching]="ui.matching.wildcard">
       <jnt-badge *ngIf="spec.epics.length > 0"
@@ -60,6 +68,7 @@
   </jnt-app-body>
 
   <jnt-app-footer #footer>
+    <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
     <small>Junte 2016 - 2021<br> Any rights are NOT reserved, use this as you want ;-)</small>
   </jnt-app-footer>
 </jnt-app-content>

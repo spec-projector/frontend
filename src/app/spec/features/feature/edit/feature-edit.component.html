@@ -7,12 +7,14 @@
     <jnt-menu [style]="ui.menu.style.tabs"
               [spacing]="ui.gutter.normal">
       <jnt-menu-item title="User story"
+                     i18n-title="@@label.user_story"
                      [link]="['story']">
         <jnt-badge *ngIf="feature.story.length > 0"
                    [value]="feature.story.length"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Design"
+                     i18n-title="@@label.design"
                      [link]="['frames']"
                      [icon]="ui.icons.figma">
         <jnt-badge *ngIf="feature.frames.length > 0"
@@ -20,6 +22,7 @@
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Resources"
+                     i18n-title="@@label.resources"
                      [link]="['resources']">
         <jnt-badge *ngIf="feature.resources.length > 0"
                    [value]="(feature.resources | estimatedTime) + 'h'"
@@ -34,6 +37,7 @@
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Issues"
+                     i18n-title="@@label.issues"
                      [link]="['issues']"
                      [icon]="ui.icons.gitlab">
         <jnt-badge *ngIf="feature.issues.length > 0"
@@ -41,6 +45,7 @@
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item title="Markdown"
+                     i18n-title="@@label.markdown"
                      [link]="['markdown']"></jnt-menu-item>
     </jnt-menu>
 

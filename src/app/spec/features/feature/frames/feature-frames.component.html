@@ -2,8 +2,10 @@
 
   <ng-template #noFigmaKeyTemplate>
     <jnt-message [scheme]="ui.scheme.fail">
+      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
       You have no <b>Figma</b> key in integration
       <jnt-link title="settings"
+                i18n-title="@@label.settings"
                 [source]="['../../../../..', 'details']"
                 [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
     </jnt-message>
@@ -12,6 +14,7 @@
   <ng-container *ngIf="!!feature.spec.integration.figmaKey;else noFigmaKeyTemplate">
     <jnt-stack [align]="ui.align.stretch">
       <jnt-message *ngIf="feature.frames.length <= 0">
+        <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
         <p>Designer using <b>user story</b> should draw design & prototype then <b>attach</b> it here.</p>
         <p>After that, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
       </jnt-message>

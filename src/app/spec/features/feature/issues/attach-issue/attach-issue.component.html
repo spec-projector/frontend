@@ -2,9 +2,10 @@
           (submitted)="attach()">
   <jnt-stack [align]="ui.align.stretch">
     <jnt-form-item>
-      <jnt-form-label>Resource</jnt-form-label>
+      <jnt-form-label i18n="@@label.resource">Resource</jnt-form-label>
       <jnt-form-control name="resource">
         <jnt-switcher placeholder="Resource"
+                      i18n-placeholder="@@label.resource"
                       formControlName="resource"
                       [orientation]="ui.orientation.vertical"
                       [features]="[ui.feature.marks]">
@@ -13,7 +14,8 @@
                                [value]="r.title">
           </jnt-switcher-option>
         </jnt-switcher>
-        <jnt-form-message [validator]="ui.validator.required">
+        <jnt-form-message [validator]="ui.validator.required"
+                          i18n="@@message.field_required">
           This field is required
         </jnt-form-message>
       </jnt-form-control>
@@ -23,8 +25,10 @@
       <jnt-form-label>URL</jnt-form-label>
       <jnt-form-control name="url">
         <jnt-input placeholder="Url of issue"
+                   i18n-placeholder="@@label.url_of_issue"
                    formControlName="url"></jnt-input>
-        <jnt-form-message [validator]="ui.validator.required">
+        <jnt-form-message [validator]="ui.validator.required"
+                          i18n="@@message.field_required">
           This field is required
         </jnt-form-message>
       </jnt-form-control>
@@ -41,7 +45,8 @@
                                [disabled]="true"
                                [value]="issueSystem.github"></jnt-switcher-option>
         </jnt-switcher>
-        <jnt-form-message [validator]="ui.validator.required">
+        <jnt-form-message [validator]="ui.validator.required"
+                          i18n="@@message.field_required">
           This field is required
         </jnt-form-message>
       </jnt-form-control>
@@ -51,6 +56,7 @@
   <ng-template #formFooterTemplate>
     <jnt-stack [align]="ui.align.end">
       <jnt-button text="Attach"
+                  i18n-text="@@action.attach"
                   [type]="ui.button.type.submit"
                   [icon]="ui.icons.add"></jnt-button>
     </jnt-stack>
