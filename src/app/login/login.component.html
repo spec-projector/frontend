@@ -24,19 +24,25 @@
     <jnt-stack [align]="ui.align.stretch">
       <jnt-form-item>
         <jnt-form-control name="login">
-          <jnt-input formControlName="login" placeholder="Username"
+          <jnt-input formControlName="login"
+                     placeholder="Username"
+                     i18n-placeholder="@@label.username"
                      [icon]="ui.icons.user"></jnt-input>
-          <jnt-form-message [validator]="ui.validator.required">This field is required</jnt-form-message>
+          <jnt-form-message [validator]="ui.validator.required"
+                            i18n="@@message.field_required">This field is required</jnt-form-message>
         </jnt-form-control>
       </jnt-form-item>
 
       <jnt-form-item>
         <jnt-form-control name="password">
-          <jnt-input formControlName="password" placeholder="Password"
+          <jnt-input formControlName="password"
+                     placeholder="Password"
+                     i18n-placeholder="@@label.password"
                      [icon]="ui.icons.lock"
                      [type]="ui.input.type.password"
                      [jntShortcuts]="[{key: ui.keyboard.key.enter, action: submit.bind(this)}]"></jnt-input>
-          <jnt-form-message [validator]="ui.validator.required">This field is required</jnt-form-message>
+          <jnt-form-message [validator]="ui.validator.required"
+                            i18n="@@message.field_required">This field is required</jnt-form-message>
         </jnt-form-control>
       </jnt-form-item>
 
@@ -45,6 +51,7 @@
     <ng-template #formFooterTemplate>
       <jnt-stack [align]="ui.align.stretch">
         <jnt-button text="Login"
+                    i18n-text="@@action.login"
                     [icon]="ui.icons.login"
                     [type]="ui.button.type.submit">
         </jnt-button>

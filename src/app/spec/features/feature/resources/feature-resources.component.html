@@ -1,8 +1,10 @@
 <form [formGroup]="form">
   <ng-template #noResourceTypesTemplate>
     <jnt-message [scheme]="ui.scheme.fail">
+      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
       You have no <b>resource types</b> in project
       <jnt-link title="settings"
+                i18n-title="@@label.settings"
                 [source]="['../../../../..', 'details']"
                 [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
     </jnt-message>
@@ -12,10 +14,12 @@
     <ng-template #fillResourcesTemplate>
       <jnt-stack [align]="ui.align.stretch">
         <jnt-message>
+          <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
           <p>Resources are used for implementing feature.</p>
         </jnt-message>
         <jnt-stack [orientation]="ui.orientation.horizontal">
           <jnt-button text="Fill resources"
+                      i18n-text="@@action.fill_resources"
                       [icon]="ui.icons.add"
                       (click)="fill()"></jnt-button>
         </jnt-stack>
@@ -35,6 +39,7 @@
                    [formGroupName]="i">
             <jnt-col [wide]="3" [desktop]="4" [tablet]="4" [mobile]="6">
               <jnt-select placeholder="Title"
+                          i18n-placeholder="@@label.title"
                           formControlName="resource"
                           [width]="ui.width.fluid">
                 <jnt-select-option *ngFor="let r of feature.spec.resourceTypes"
@@ -43,6 +48,7 @@
             </jnt-col>
             <jnt-col [tablet]="2" [mobile]="4">
               <jnt-input placeholder="Hours"
+                         i18n-placeholder="@@label.hours"
                          formControlName="hours"
                          [type]="ui.input.type.number"
                          [textAlign]="ui.text.align.right"

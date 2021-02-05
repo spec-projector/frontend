@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "npm run iconfont && ng build --prod",
     "build:game": "ng build game --prod",
+    "extract-i18n": "ng xi18n --outputPath src/locale && xliffmerge --profile xliffmerge.json",
     "iconfont": "gulp build --gulpfile ./node_modules/@junte/ui/iconfont.js --cwd ."
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "@angular/compiler": "^9.0.0-rc.11",
     "@angular/core": "^9.0.0-rc.11",
     "@angular/forms": "^9.0.0-rc.11",
+    "@angular/localize": "^11.1.2",
     "@angular/platform-browser": "^9.0.0-rc.11",
     "@angular/platform-browser-dynamic": "^9.0.0-rc.11",
     "@angular/router": "^9.0.0-rc.11",

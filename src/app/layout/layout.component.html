@@ -14,15 +14,18 @@
     <jnt-menu #headerTopMenu>
       <jnt-menu-item *ngIf="!!config.authorization" [link]="['/projects']"
                      [icon]="localUi.icons.projects"
-                     title="Projects"></jnt-menu-item>
+                     title="Projects"
+                     i18n-title="@@label.projects"></jnt-menu-item>
       <jnt-menu-item [link]="['/marketplace']"
                      [icon]="localUi.icons.market"
                      title="Marketplace"
+                     i18n-title="@@label.marketplace"
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
 
     <ng-template *ngIf="!config.authorization" #headerContentTemplate let-hide="hide">
       <jnt-link title="Login"
+                i18n-title="@@label.login"
                 [icon]="ui.icons.login"
                 [source]="['/login']"></jnt-link>
     </ng-template>
@@ -35,6 +38,7 @@
         <ng-template #userbarMenuTemplate>
           <jnt-menu [orientation]="ui.orientation.vertical">
             <jnt-menu-item title="Logout"
+                           i18n-title="@@label.logout"
                            [icon]="ui.icons.logout"
                            (click)="logout()"></jnt-menu-item>
           </jnt-menu>

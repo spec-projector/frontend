@@ -1,6 +1,8 @@
 <jnt-app-page-header [icon]="localUi.icons.epics"
                      title="Epics"
-                     teaser="groups of functions">
+                     i18n-title="@@label.epics"
+                     teaser="groups of functions"
+                     i18n-teaser="@@message.epics_teaser">
   <ng-template #headerActionsTemplate>
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.add"
@@ -14,6 +16,7 @@
 
   <ng-template #emptyDataTemplate>
     <jnt-message>
+      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
       <p>Features could be grouped by similar area of applying.</p>
       <p>E.g. an actor <b>Client</b> wants <b>Register</b>, <b>Login</b>, <b>Restore password</b>. These features can be grouped by epic <b>User Accounts</b>.</p>
       <jnt-button *ngIf="manager.mode ==  editMode.edit"
@@ -46,6 +49,7 @@
           </jnt-button>
           <ng-template #deleteTemplate>
             <jnt-confirm message="Are you sure to delete the epic?"
+                         i18n-message="@@message.sure_delete_epic"
                          (cancel)="instance.popover.hide()"
                          (ok)="deleteEpic(i);instance.popover.hide()"></jnt-confirm>
           </ng-template>

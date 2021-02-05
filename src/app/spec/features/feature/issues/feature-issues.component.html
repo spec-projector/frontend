@@ -2,9 +2,11 @@
 
   <ng-template #noGitlabKeyTemplate>
     <jnt-message [scheme]="ui.scheme.fail">
+      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
       You have no <b>Gitlab</b> key in integration
 
       <jnt-link title="settings"
+                i18n-title="@@label.settings"
                 [source]="['../../../../..', 'details']"
                 [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
     </jnt-message>
