@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="ru">
+    <body>
+      <trans-unit id="label.username" datatype="html">
+        <source>Username</source>
+        <target state="new">Username</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.field_required" datatype="html">
+        <source>This field is required</source>
+        <target state="new">This field is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/frames/add-frame/feature-add-frame.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.password" datatype="html">
+        <source>Password</source>
+        <target state="new">Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.login" datatype="html">
+        <source>Login</source>
+        <target state="new">Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.projects" datatype="html">
+        <source>Projects</source>
+        <target state="new">Projects</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/layout.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.marketplace" datatype="html">
+        <source>Marketplace</source>
+        <target state="new">Marketplace</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/layout.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.login" datatype="html">
+        <source>Login</source>
+        <target state="new">Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/layout.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.logout" datatype="html">
+        <source>Logout</source>
+        <target state="new">Logout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/layout.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.title" datatype="html">
+        <source>Title</source>
+        <target state="new">Title</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="messge.crm_system_for_sales" datatype="html">
+        <source>CRM system for sales</source>
+        <target state="new">CRM system for sales</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.title_is_required" datatype="html">
+        <source>
+        Title is required
+      </source>
+        <target state="new">
+        Title is required
+      </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.description" datatype="html">
+        <source>Description</source>
+        <target state="new">Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.public_project" datatype="html">
+        <source>Public project</source>
+        <target state="new">Public project</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.save" datatype="html">
+        <source>Save</source>
+        <target state="new">Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/frames/add-frame/feature-add-frame.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.add_project" datatype="html">
+        <source>Add project</source>
+        <target state="new">Add project</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/projects.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.your_projects" datatype="html">
+        <source>Your projects</source>
+        <target state="new">Your projects</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/projects.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.projects_teaser" datatype="html">
+        <source>for creating specifications</source>
+        <target state="new">for creating specifications</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/projects.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.edit" datatype="html">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/projects.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.delete" datatype="html">
+        <source>Delete</source>
+        <target state="new">Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/projects.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.print" datatype="html">
+        <source>Print</source>
+        <target state="new">Print</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/spec.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.general" datatype="html">
+        <source>General</source>
+        <target state="new">General</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/spec.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.features" datatype="html">
+        <source>Features</source>
+        <target state="new">Features</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/spec.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.epics" datatype="html">
+        <source>Epics</source>
+        <target state="new">Epics</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/spec.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/epics/epics.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.specification" datatype="html">
+        <source>Specification</source>
+        <target state="new">Specification</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.specifiation_for_crm" datatype="html">
+        <source>Great specification for CRM project</source>
+        <target state="new">Great specification for CRM project</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.author" datatype="html">
+        <source>Author</source>
+        <target state="new">Author</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.elon_musk" datatype="html">
+        <source>Elon Musk</source>
+        <target state="new">Elon Musk</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.common" datatype="html">
+        <source>Common</source>
+        <target state="new">Common</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.hour_rate" datatype="html">
+        <source>Hour rate</source>
+        <target state="new">Hour rate</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.resources" datatype="html">
+        <source>Resources</source>
+        <target state="new">Resources</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/edit/feature-edit.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.git_lab_key" datatype="html">
+        <source>Git Lab key</source>
+        <target state="new">Git Lab key</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.figma_key" datatype="html">
+        <source>Figma key</source>
+        <target state="new">Figma key</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.integration" datatype="html">
+        <source>Integration</source>
+        <target state="new">Integration</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.dump" datatype="html">
+        <source>Dump</source>
+        <target state="new">Dump</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.restore" datatype="html">
+        <source>Restore</source>
+        <target state="new">Restore</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.maintenance" datatype="html">
+        <source>Maintenance</source>
+        <target state="new">Maintenance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.features_teaser" datatype="html">
+        <source>functionality of your application</source>
+        <target state="new">functionality of your application</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.library" datatype="html">
+        <source>Library</source>
+        <target state="new">Library</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.sure_delete_actor" datatype="html">
+        <source>Are you sure to delete the actor?</source>
+        <target state="new">Are you sure to delete the actor?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.user_story" datatype="html">
+        <source>User story</source>
+        <target state="new">User story</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/edit/feature-edit.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.design" datatype="html">
+        <source>Design</source>
+        <target state="new">Design</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/edit/feature-edit.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.issues" datatype="html">
+        <source>Issues</source>
+        <target state="new">Issues</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/edit/feature-edit.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.markdown" datatype="html">
+        <source>Markdown</source>
+        <target state="new">Markdown</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/edit/feature-edit.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.add_story" datatype="html">
+        <source>Add story</source>
+        <target state="new">Add story</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/story/feature-story.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.settings" datatype="html">
+        <source>settings</source>
+        <target state="new">settings</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/frames/feature-frames.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.url_of_figma_frame" datatype="html">
+        <source>Url of figma frame</source>
+        <target state="new">Url of figma frame</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/frames/add-frame/feature-add-frame.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.fill_resources" datatype="html">
+        <source>Fill resources</source>
+        <target state="new">Fill resources</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.hours" datatype="html">
+        <source>Hours</source>
+        <target state="new">Hours</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.play" datatype="html">
+        <source>Play</source>
+        <target state="new">Play</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.resource" datatype="html">
+        <source>Resource</source>
+        <target state="new">Resource</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.url_of_issue" datatype="html">
+        <source>Url of issue</source>
+        <target state="new">Url of issue</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.attach" datatype="html">
+        <source>Attach</source>
+        <target state="new">Attach</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/attach-issue/attach-issue.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.model" datatype="html">
+        <source>Model</source>
+        <target state="new">Model</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/packages/packages.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.model_teaser" datatype="html">
+        <source>of your subject area</source>
+        <target state="new">of your subject area</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/packages/packages.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.required" datatype="html">
+        <source>required</source>
+        <target state="new">required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/entity/fields/field/entity-field.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.epics_teaser" datatype="html">
+        <source>groups of functions</source>
+        <target state="new">groups of functions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/epics/epics.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.sure_delete_epic" datatype="html">
+        <source>Are you sure to delete the epic?</source>
+        <target state="new">Are you sure to delete the epic?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/epics/epics.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.content" datatype="html">
+        <source>Content</source>
+        <target state="new">Content</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/print/print.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.total" datatype="html">
+        <source>Total</source>
+        <target state="new">Total</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/print/print.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.improvements" datatype="html">
+        <source>Improvements</source>
+        <target state="new">Improvements</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.import" datatype="html">
+        <source>Import</source>
+        <target state="new">Import</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/game/src/app/app.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

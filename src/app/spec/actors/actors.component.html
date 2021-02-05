@@ -1,6 +1,8 @@
 <jnt-app-page-header [icon]="localUi.icons.features"
                      title="Features"
-                     teaser="functionality of your application">
+                     i18n-title="@@label.features"
+                     teaser="functionality of your application"
+                     i18n-teaser="@@message.features_teaser">
   <ng-template #headerActionsTemplate>
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.add"
@@ -9,9 +11,11 @@
   </ng-template>
 </jnt-app-page-header>
 
-<jnt-collapsible data-library title="Library">
+<jnt-collapsible data-library
+                 title="Library"
+                 i18n-title="@@label.library">
   <ng-template #collapsibleContentTemplate>
-    <p><b>Epics</b></p>
+    <p><b i18n="@@label.epics">Epics</b></p>
     <jnt-stack cdkDropList [cdkDropListConnectedTo]="spec | features"
                [orientation]="ui.orientation.horizontal"
                [wrap]="ui.wrap.wrap"
@@ -28,6 +32,7 @@
            [gutter]="ui.gutter.large">
 
   <ng-template #emptyDataTemplate>
+    <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
     <jnt-message>
       <p>Let's think your app is <b>a game</b>. Users are players with some goals. To reach their goals we should satisfy their <b>requirements</b>.</p>
       <p>E.g. <b>Client</b> wants make an order. <b>Operator</b> wants process the order. <b>Carrier</b> wants deliver the order.</p>
@@ -62,6 +67,7 @@
             </jnt-button>
             <ng-template #deleteTemplate>
               <jnt-confirm message="Are you sure to delete the actor?"
+                           i18n-message="@@message.sure_delete_actor"
                            (cancel)="instance.popover.hide()"
                            (ok)="deleteActor(i);instance.popover.hide()"></jnt-confirm>
             </ng-template>

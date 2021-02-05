@@ -1,4 +1,4 @@
-<h1>Content</h1>
+<h1 i18n="@@label.content">Content</h1>
 <div data-content>
   <ol>
     <li *ngFor="let actor of spec.actors; trackBy: trackActor">
@@ -15,7 +15,7 @@
   </ol>
 
   <div data-price data-total>
-    <div>Total</div>
+    <div i18n="@@label.total">Total</div>
     <div>
       {{spec | specPrice:spec.version:spec.rev | currency}}
     </div>
@@ -25,6 +25,7 @@
 <h1>Features</h1>
 <ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
   <ng-container *ngIf="actor.features.length > 0">
+    <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
     <h2>As <b>{{actor.name}}</b> I want</h2>
     <ol data-actor>
       <ng-container *ngFor="let feature of actor.features">

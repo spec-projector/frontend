@@ -1,6 +1,8 @@
 <jnt-app-page-header [icon]="localUi.icons.model"
                      title="Model"
-                     teaser="of your subject area">
+                     i18n-title="@@label.model"
+                     teaser="of your subject area"
+                     i18n-teaser="@@message.model_teaser">
   <ng-template #headerActionsTemplate>
     <jnt-button *ngIf="manager.mode ==  editMode.edit"
                 [icon]="ui.icons.add"
