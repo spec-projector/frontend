@@ -54,6 +54,10 @@
           },
           "configurations": {
             "production": {
+              "localize": [
+                "ru",
+                "en"
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -66,6 +70,8 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
+              "baseHref": "/",
+              "outputPath": "dist/",
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -76,6 +82,14 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "ru": {
+              "aot": true,
+              "outputPath": "dist/ru/",
+              "baseHref": "/",
+              "i18nFile": "src/locale/messages.ru.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ru"
             }
           }
         },
@@ -87,6 +101,9 @@
           "configurations": {
             "production": {
               "browserTarget": "spec-project:build:production"
+            },
+            "ru": {
+              "browserTarget": "team-projector:build:ru"
             }
           }
         },
@@ -111,6 +128,18 @@
       }
     },
     "game": {
+      "i18n": {
+        "sourceLocale": {
+          "code": "en",
+          "baseHref": "/en/"
+        },
+        "locales": {
+          "ru": {
+            "translation": "src/locale/messages.ru.xlf",
+            "baseHref": "/ru/"
+          }
+        }
+      },
       "root": "projects/game/",
       "sourceRoot": "projects/game/src",
       "projectType": "application",
@@ -138,6 +167,9 @@
           },
           "configurations": {
             "production": {
+              "localize": [
+                "ru"
+              ],
               "fileReplacements": [
                 {
                   "replace": "projects/game/src/environments/environment.ts",
@@ -150,6 +182,8 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
+              "baseHref": "/",
+              "outputPath": "dist/",
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -206,18 +240,6 @@
             "exclude": [
               "**/node_modules/**"
             ]
-          }
-        }
-      },
-      "i18n": {
-        "sourceLocale": {
-          "code": "en",
-          "baseHref": "/en/"
-        },
-        "locales": {
-          "ru": {
-            "translation": "src/locale/messages.ru.xlf",
-            "baseHref": "/ru/"
           }
         }
       }
