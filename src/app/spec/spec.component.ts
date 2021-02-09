@@ -38,6 +38,6 @@ export class SpecComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('destroy');
-    this.manager.destroy();
+    this.manager.clear();
   }
 }

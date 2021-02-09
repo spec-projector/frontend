@@ -48,7 +48,6 @@ export class SpecManager {
         {
           auto_compaction: true
         });
-      console.log(environment.storage);
       this.remote = new PouchDB(`${environment.storage}/${project}`,
         {
           skip_setup: true,
@@ -93,7 +92,10 @@ export class SpecManager {
           console.log('return');
           observer.next(spec);
           observer.complete();
-        }, err => observer.error(err));
+        }, err => {
+          this.spec$ = null;
+          observer.error(err);
+        });
     });
   }
 
@@ -188,9 +190,7 @@ export class SpecManager {
       });
   }
 
-  destroy() {
-    // this.local.destroy();
-    // this.remote.destroy();
+  clear() {
     this.spec$ = null;
   }
 
