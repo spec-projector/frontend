@@ -34,15 +34,15 @@ export class AllProjectsGQL extends Query<{ projects }> {
 })
 export class CreateProjectGQL extends Mutation<{ response: { project } }> {
   document = gql`
-mutation($title: String!, $description: String, $isPublic: Boolean) {
-    response:createProject(title: $title, description: $description, isPublic: $isPublic) {
-        project {
-            id
-            title
-            description
-            isPublic
-        }
+mutation ($input: CreateProjectInput!) {
+  response: createProject(input: $input) {
+    project {
+      id
+      title
+      description
+      isPublic
     }
+  }
 }`;
 }
 
@@ -51,15 +51,15 @@ mutation($title: String!, $description: String, $isPublic: Boolean) {
 })
 export class UpdateProjectGQL extends Mutation<{ response: { project } }> {
   document = gql`
-mutation($id: ID!, $title: String!, $description: String, $isPublic: Boolean) {
-    response:updateProject(id: $id, title: $title, description: $description, isPublic: $isPublic) {
-        project {
-            id
-            title
-            description
-            isPublic
-        }
+mutation ($id: ID!, $input: UpdateProjectInput!) {
+  response: updateProject(id: $id, input: $input) {
+    project {
+      id
+      title
+      description
+      isPublic
     }
+  }
 }`;
 }
 

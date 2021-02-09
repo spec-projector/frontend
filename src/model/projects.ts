@@ -40,9 +40,6 @@ export class PagingProjects {
 export class ProjectUpdate {
 
   @Field()
-  id: string;
-
-  @Field()
   title: string;
 
   @Field()

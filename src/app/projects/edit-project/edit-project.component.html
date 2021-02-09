@@ -1,25 +1,42 @@
-<jnt-form [formGroup]="form"
+<jnt-informer *ngIf="errors.length > 0"
+              [backdrop]="backdrop"
+              [context]="ui.context.modal"
+              (ok)="this.errors = []">
+  <jnt-informer-message *ngFor="let e of errors"
+                        [message]="e.toString()"></jnt-informer-message>
+</jnt-informer>
+
+<jnt-form #content [formGroup]="form"
           [state]="progress.saving ? ui.state.loading : null"
           (submitted)="save()">
 
   <jnt-stack [align]="ui.align.stretch">
-    <jnt-form-control name="title">
-      <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
-      <jnt-input #titleInput formControlName="title"
-                 placeholder="CRM system for sales"
-                 i18n-placeholder="@@messge.crm_system_for_sales"></jnt-input>
-      <jnt-form-message [validator]="ui.validator.required"
-                        i18n="@@message.title_is_required">
-        Title is required
-      </jnt-form-message>
-    </jnt-form-control>
+    <jnt-form-item>
+      <jnt-form-control name="title">
+        <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
+        <jnt-input #titleInput formControlName="title"
+                   placeholder="CRM system for sales"
+                   i18n-placeholder="@@messge.crm_system_for_sales"></jnt-input>
+        <jnt-form-message [validator]="ui.validator.required"
+                          i18n="@@message.title_is_required">
+          Title is required
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
 
-    <jnt-form-control name="description">
-      <jnt-form-label i18n="@@label.description">Description</jnt-form-label>
-      <jnt-input formControlName="description"
-                 [features]="[ui.feature.multiline]"
-                 [rows]="3"></jnt-input>
-    </jnt-form-control>
+    <jnt-form-item>
+      <jnt-form-control name="description">
+        <jnt-form-label i18n="@@label.description">Description</jnt-form-label>
+        <jnt-input formControlName="description"
+                   placeholder="Nice CRM project"
+                   [features]="[ui.feature.multiline]"
+                   [rows]="3"></jnt-input>
+        <jnt-form-message [validator]="ui.validator.required"
+                          i18n="@@message.title_is_required">
+          Title is required
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
 
     <jnt-switch formControlName="isPublic"
                 label="Public project"

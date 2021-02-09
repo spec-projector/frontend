@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   @ViewChild('content', {read: ElementRef})
   backdrop: ElementRef<HTMLElement>;
 
-
   constructor(private loginGQL: LoginGQL,
               private loginGitlabGQL: GitlabLoginGQL,
               private config: AppConfig,
