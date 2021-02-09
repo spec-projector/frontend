@@ -1,13 +1,11 @@
-import { ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
-import { ModalOptions, ModalService, UI } from '@junte/ui';
+import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb-browser';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
+import { bufferTime, filter, finalize } from 'rxjs/operators';
+import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
 import { Spec } from 'src/model/spec/spec';
-import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { AppConfig } from '../app/app-config';
-import { SpaceSyncComponent } from '../app/shared/sync/space-sync.component';
 import { environment } from '../environments/environment';
 import Database = PouchDB.Database;
 
@@ -39,18 +37,7 @@ export class SpecManager {
   spec$: BehaviorSubject<Spec>;
   mode: EditMode = EditMode.edit;
 
-  get spec() {
-    return this.spec$.getValue();
-  }
-
-  set spec(spec: Spec) {
-    this.spec$.next(spec);
-  }
-
-  constructor(private cfr: ComponentFactoryResolver,
-              private injector: Injector,
-              private modal: ModalService,
-              private config: AppConfig) {
+  constructor(private config: AppConfig) {
     this.flushing();
   }
 
@@ -74,15 +61,6 @@ export class SpecManager {
           }
         });
 
-      const component = this.cfr.resolveComponentFactory(SpaceSyncComponent).create(this.injector);
-      try {
-        this.modal.open(component, ({
-          title: {text: 'Syncing project'},
-          hold: true
-        }));
-      } catch {
-      }
-
       this.local.sync(this.remote).on('complete', () => {
         const spec = new Spec();
         console.group('get');
@@ -93,18 +71,12 @@ export class SpecManager {
         spec.id = SPEC_OBJECT_ID;
         const progress = new Subject();
         spec.load(this.local, progress)
-          .pipe(finalize(() => {
-            this.spec = spec;
-            try {
-              this.modal.close();
-            } catch {
-            }
-          }), tap(() => spec.linking()))
           .subscribe(() => {
+            spec.linking();
+            this.spec$.next(spec);
             this.pull();
             this.push();
           }, (err: { status }) => {
-            console.log(err);
             if (err.status === 404) {
               console.log('spec not found!');
             } else {
@@ -115,7 +87,8 @@ export class SpecManager {
     }
 
     return new Observable(observer => {
-      this.spec$.pipe(filter(spec => !!spec))
+      this.spec$.pipe(finalize(() => observer.complete()),
+        filter(spec => !!spec))
         .subscribe(spec => {
           console.log('return');
           observer.next(spec);
@@ -141,13 +114,13 @@ export class SpecManager {
     }).on('change', (changes) => {
       console.log('changes from server');
       console.log(changes.docs);
-      const spec = this.spec$.getValue();
       const progress = new Subject();
       progress.subscribe(ref => {
         console.log('updated');
         console.log(ref);
       });
 
+      const spec = this.spec$.getValue();
       for (const doc of changes.docs) {
         spec.update(this.local, progress, doc)
           .subscribe(() => null);

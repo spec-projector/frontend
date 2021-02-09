@@ -62,7 +62,6 @@ import { FeaturesComponent } from './features/features.component';
 import { ModelComponent } from './model/model.component';
 import { PackageEditComponent } from './package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
-import { SpaceSyncComponent } from '../shared/sync/space-sync.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +115,6 @@ import { SpaceSyncComponent } from '../shared/sync/space-sync.component';
     PackageComponent,
     FitWidthDirective,
 
-    SpaceSyncComponent,
     StoryEntryComponent,
     TokenTypePipe,
     GroupFeaturesByEpicPipe,
@@ -135,7 +133,6 @@ import { SpaceSyncComponent } from '../shared/sync/space-sync.component';
     SpecPricePipe,
   ],
   entryComponents: [
-    SpaceSyncComponent,
     FeatureEditGraphqlComponent
   ],
   imports: [

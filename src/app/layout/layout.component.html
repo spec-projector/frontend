@@ -14,6 +14,7 @@
     <jnt-menu #headerTopMenu>
       <jnt-menu-item *ngIf="!!config.authorization" [link]="['/projects']"
                      [icon]="localUi.icons.projects"
+                     [matching]="ui.matching.wildcard"
                      title="Projects"
                      i18n-title="@@label.projects"></jnt-menu-item>
       <jnt-menu-item [link]="['/marketplace']"

@@ -27,12 +27,11 @@ export class SpecResolver implements Resolve<Spec> {
       this.projectGQL.fetch({id: route.params['project']})
         .pipe(map(({data: {project: p}}) => deserialize(p, Project)))
         .subscribe(p => {
-
           console.log(p.dbName);
           console.log('spec resolver');
           this.manager.get(p.dbName)
             .pipe(finalize(() => o.complete()))
-            .subscribe(s => o.next(s));
+            .subscribe(s => o.next(s), err => o.error(err));
         });
     });
   }
