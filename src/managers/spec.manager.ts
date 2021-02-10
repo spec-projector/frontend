@@ -50,7 +50,7 @@ export class SpecManager {
         });
       this.remote = new PouchDB(`${environment.storage}/${project}`,
         {
-          skip_setup: true,
+          skip_setup: false,
           fetch: (url, opts) => {
             const headers = opts.headers as Headers;
             if (!!this.config.authorization) {
@@ -77,7 +77,8 @@ export class SpecManager {
             this.push();
           }, (err: { status }) => {
             if (err.status === 404) {
-              console.log('spec not found!');
+              console.log('spec not found');
+              this.spec$.next(spec);
             } else {
               this.spec$.error(err);
             }
