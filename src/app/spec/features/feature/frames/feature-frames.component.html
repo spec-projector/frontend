@@ -2,8 +2,14 @@
 
   <ng-template #noFigmaKeyTemplate>
     <jnt-message [scheme]="ui.scheme.fail">
-      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-      You have no <b>Figma</b> key in integration
+      <span [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+           You have no <b>Figma</b> key in integration
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+           У вас нет ключа <b>Figma</b> в интеграции
+        </ng-container>
+      </span>
       <jnt-link title="settings"
                 i18n-title="@@label.settings"
                 [source]="['../../../../..', 'details']"
@@ -14,9 +20,16 @@
   <ng-container *ngIf="!!feature.spec.integration.figmaKey;else noFigmaKeyTemplate">
     <jnt-stack [align]="ui.align.stretch">
       <jnt-message *ngIf="feature.frames.length <= 0">
-        <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-        <p>Designer using <b>user story</b> should draw design & prototype then <b>attach</b> it here.</p>
-        <p>After that, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
+        <ng-container [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            <p>Designer using <b>user story</b> should draw design & prototype then <b>attach</b> it here.</p>
+            <p>After that, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            <p>Дизайнер, используя <b>юзер стори</b> должен нарисовать дизайн и прототип и затем <b>прикрепить</b> их здесь.</p>
+            <p>После этого, <b>Проджект Менеджер</b> должен согласовать дизайн с <b>Заказчиком</b>.</p>
+          </ng-container>
+        </ng-container>
       </jnt-message>
 
       <jnt-stack [orientation]="ui.orientation.horizontal">

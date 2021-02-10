@@ -68,7 +68,13 @@
   </jnt-app-body>
 
   <jnt-app-footer #footer>
-    <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-    <small>Junte 2016 - 2021<br> Any rights are NOT reserved, use this as you want ;-)</small>
+    <small [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        Junte 2016 - 2021<br> Any rights are NOT reserved, use this as you want ;-)
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Junte 2016 - 2021<br> Никакие права не защищены, используйте это так, как хотите ;-)
+      </ng-container>
+    </small>
   </jnt-app-footer>
 </jnt-app-content>

@@ -1,7 +1,8 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, LOCALE_ID, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
+import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { Feature, StoryEntry, StoryEntryType } from 'src/model/spec/planning/feature';
@@ -17,6 +18,7 @@ export class FeatureStoryComponent implements OnInit {
 
   ui = UI;
   editMode = EditMode;
+  language = Language;
 
   feature: Feature;
 
@@ -25,7 +27,8 @@ export class FeatureStoryComponent implements OnInit {
 
   constructor(public manager: SpecManager,
               private route: ActivatedRoute,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

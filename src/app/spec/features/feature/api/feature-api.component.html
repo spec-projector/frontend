@@ -12,8 +12,14 @@
 
   <jnt-stack [align]="ui.align.stretch">
     <jnt-message *ngIf="feature.graphql.length <= 0">
-      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-      <p>API is a contract between front-end & back-end side.</p>
+      <p [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          API is a contract between front-end & back-end side.
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          API это договор между front-end и back-end сторонами.
+        </ng-container>
+      </p>
     </jnt-message>
 
     <jnt-stack [orientation]="ui.orientation.horizontal">
