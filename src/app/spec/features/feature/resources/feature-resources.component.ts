@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { Language } from 'src/enums/language';
 import { environment } from '../../../../../environments/environment';
 import { SpecManager } from '../../../../../managers/spec.manager';
 import { Feature } from '../../../../../model/spec/planning/feature';
@@ -18,6 +19,7 @@ import { ResourceType } from '../../../../../model/spec/spec';
 export class FeatureResourcesComponent implements OnInit {
 
   ui = UI;
+  language = Language;
 
   private _feature: Feature;
   private subscriptions: { form: Subscription } = {form: null};
@@ -57,7 +59,8 @@ export class FeatureResourcesComponent implements OnInit {
               private fb: FormBuilder,
               private popover: PopoverService,
               private route: ActivatedRoute,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              @Inject(LOCALE_ID) public locale: string) {
 
   }
 

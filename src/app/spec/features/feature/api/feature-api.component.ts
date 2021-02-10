@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PopoverInstance, UI } from '@junte/ui';
 import { filter } from 'rxjs/operators';
 import { generate as shortid } from 'shortid';
+import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 import { Graphql } from 'src/model/spec/planning/graphql';
 import { SpecManager } from '../../../../../managers/spec.manager';
@@ -25,6 +26,7 @@ export class FeatureApiComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
 
   feature: Feature;
   selected: { query: Graphql } = {query: null};
@@ -32,7 +34,8 @@ export class FeatureApiComponent implements OnInit {
 
   constructor(public manager: SpecManager,
               public route: ActivatedRoute,
-              public router: Router) {
+              public router: Router,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

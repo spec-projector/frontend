@@ -40,8 +40,14 @@
                    [value]="resourceTypesArray.length"></jnt-badge>
         <ng-template #tabContentTemplate>
           <ng-template #noResourceTypesTemplate>
-            <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-            <p>Resources are used for implementing features.</p>
+            <p [ngSwitch]="locale">
+              <ng-container *ngSwitchDefault>
+                Resources are used for implementing features.
+              </ng-container>
+              <ng-container *ngSwitchCase="language.ru">
+                Ресурсы используемые для расширения возможности.
+              </ng-container>
+            </p>
             <jnt-button text="Fill resources"
                         [icon]="ui.icons.add"
                         (click)="fillResources()"></jnt-button>

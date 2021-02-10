@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { combineLatest, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
+import { Language } from 'src/enums/language';
 import { Issue } from 'src/model/spec/planning/issue';
 import { SpecManager } from '../../../../../managers/spec.manager';
 import { IssueState } from '../../../../../enums/issue';
@@ -20,6 +21,7 @@ export class FeatureIssuesComponent implements OnInit {
 
   ui = UI;
   issueState = IssueState;
+  language = Language;
 
   feature: Feature;
 
@@ -30,7 +32,8 @@ export class FeatureIssuesComponent implements OnInit {
               private popover: PopoverService,
               private issueGQL: IssueGQL,
               private route: ActivatedRoute,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              @Inject(LOCALE_ID) public locale: string) {
 
   }
 

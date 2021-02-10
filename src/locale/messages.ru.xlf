@@ -99,11 +99,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
@@ -120,8 +124,8 @@
       </trans-unit>
       <trans-unit id="message.title_is_required" datatype="html">
         <source>
-          Title is required
-        </source>
+        Title is required
+      </source>
         <target>
           Заголовок обязателен
         </target>
@@ -234,6 +238,10 @@
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/print/print.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
@@ -299,7 +307,7 @@
         <target>Часовая ставка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.resources" datatype="html">
@@ -319,7 +327,7 @@
         <target>Git Lab ключ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.figma_key" datatype="html">
@@ -327,7 +335,7 @@
         <target>Figma ключ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.integration" datatype="html">
@@ -335,7 +343,7 @@
         <target>Интеграция</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.dump" datatype="html">
@@ -343,7 +351,7 @@
         <target>Дамп</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.restore" datatype="html">
@@ -351,7 +359,7 @@
         <target>Восстановить</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.maintenance" datatype="html">
@@ -359,7 +367,7 @@
         <target>Обслуживание</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.features_teaser" datatype="html">
@@ -383,7 +391,7 @@
         <target>Вы действительно хотите удалить этого исполнителя?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.user_story" datatype="html">
@@ -423,7 +431,7 @@
         <target>Добавить историю</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/story/feature-story.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.settings" datatype="html">
@@ -431,15 +439,15 @@
         <target>настройки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/feature-frames.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.url_of_figma_frame" datatype="html">
@@ -455,7 +463,7 @@
         <target>Заполнить ресурсы</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.hours" datatype="html">
@@ -463,7 +471,7 @@
         <target>Часы</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.play" datatype="html">
@@ -539,7 +547,7 @@
         <target>Вы действительно хотите удалить этап?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/epics/epics.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.content" datatype="html">

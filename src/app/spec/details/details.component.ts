@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { delay, finalize } from 'rxjs/operators';
+import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { ResourceType, Spec } from 'src/model/spec/spec';
@@ -18,6 +19,7 @@ export class DetailsComponent implements OnInit {
   _spec: Spec;
 
   ui = UI;
+  language = Language;
   localUi = LocalUI;
   editMode = EditMode;
   progress = {restore: false};
@@ -59,7 +61,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               public manager: SpecManager,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {
