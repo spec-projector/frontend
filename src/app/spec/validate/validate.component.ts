@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
+import { Language } from 'src/enums/language';
 import { Spec } from 'src/model/spec/spec';
 import { ValidationError } from 'src/model/validation/error';
 
@@ -12,11 +13,13 @@ import { ValidationError } from 'src/model/validation/error';
 export class ValidateComponent implements OnInit {
 
     ui = UI;
+    language = Language;
 
     spec: Spec;
     errors: ValidationError[] = [];
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute,
+                @Inject(LOCALE_ID) public locale: string) {
     }
 
     ngOnInit() {

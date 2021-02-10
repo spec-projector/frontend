@@ -22,11 +22,17 @@
   </div>
 </div>
 
-<h1>Features</h1>
+<h1 i18n="@@label.features">Features</h1>
 <ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
   <ng-container *ngIf="actor.features.length > 0">
-    <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-    <h2>As <b>{{actor.name}}</b> I want</h2>
+    <h2 [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        As <b>{{actor.name}}</b> I want
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Как <b>{{actor.name}}</b> я хочу
+      </ng-container>
+    </h2>
     <ol data-actor>
       <ng-container *ngFor="let feature of actor.features">
         <li>

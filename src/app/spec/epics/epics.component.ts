@@ -1,7 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, UI } from '@junte/ui';
+import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { Epic } from 'src/model/spec/planning/epic';
@@ -18,6 +19,7 @@ import { Actor } from '../../../model/spec/planning/actor';
 export class EpicsComponent implements OnInit {
 
   ui = UI;
+  language = Language;
   localUi = LocalUI;
   editMode = EditMode;
 
@@ -25,7 +27,8 @@ export class EpicsComponent implements OnInit {
   instance: { popover: PopoverInstance } = {popover: null};
 
   constructor(public manager: SpecManager,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

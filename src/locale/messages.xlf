@@ -90,11 +90,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
@@ -210,6 +214,10 @@
           <context context-type="linenumber">2</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/print/print.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
@@ -268,7 +276,7 @@
         <source>Hour rate</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.resources" datatype="html">
@@ -286,42 +294,42 @@
         <source>Git Lab key</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.figma_key" datatype="html">
         <source>Figma key</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.integration" datatype="html">
         <source>Integration</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.dump" datatype="html">
         <source>Dump</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.restore" datatype="html">
         <source>Restore</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.maintenance" datatype="html">
         <source>Maintenance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.features_teaser" datatype="html">
@@ -342,7 +350,7 @@
         <source>Are you sure to delete the actor?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.user_story" datatype="html">
@@ -377,22 +385,22 @@
         <source>Add story</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/story/feature-story.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.settings" datatype="html">
         <source>settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/feature-frames.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.url_of_figma_frame" datatype="html">
@@ -406,14 +414,14 @@
         <source>Fill resources</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.hours" datatype="html">
         <source>Hours</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/resources/feature-resources.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.play" datatype="html">
@@ -480,7 +488,7 @@
         <source>Are you sure to delete the epic?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/epics/epics.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.content" datatype="html">

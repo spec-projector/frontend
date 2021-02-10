@@ -1,8 +1,9 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { generate as shortid } from 'shortid';
+import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { Actor } from 'src/model/spec/planning/actor';
@@ -18,6 +19,7 @@ export class ActorsComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   editMode = EditMode;
 
   spec: Spec;
@@ -26,7 +28,8 @@ export class ActorsComponent implements OnInit {
   constructor(public manager: SpecManager,
               public popover: PopoverService,
               public route: ActivatedRoute,
-              public router: Router) {
+              public router: Router,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

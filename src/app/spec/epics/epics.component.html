@@ -16,9 +16,16 @@
 
   <ng-template #emptyDataTemplate>
     <jnt-message>
-      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-      <p>Features could be grouped by similar area of applying.</p>
-      <p>E.g. an actor <b>Client</b> wants <b>Register</b>, <b>Login</b>, <b>Restore password</b>. These features can be grouped by epic <b>User Accounts</b>.</p>
+      <ng-container [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          <p>Features could be grouped by similar area of applying.</p>
+          <p>E.g. an actor <b>Client</b> wants <b>Register</b>, <b>Login</b>, <b>Restore password</b>. These features can be grouped by epic <b>User Accounts</b>.</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          <p>Возможности могут быть сгруппированы по схожей области применения.</p>
+          <p>Например актёр <b>Клиент</b> хочет <b>Зарегистрироваться</b>, <b>Войти</b>, <b>Восстановить пароль</b>. Эти возможности могут быть сгруппированы по эпиу <b>Учетные записи пользователей</b>.</p>
+        </ng-container>
+      </ng-container>
       <jnt-button *ngIf="manager.mode ==  editMode.edit"
                   [icon]="ui.icons.add"
                   text="Add first epic"

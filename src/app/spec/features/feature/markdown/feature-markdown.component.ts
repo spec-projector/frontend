@@ -1,6 +1,7 @@
-import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewChecked, Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard';
+import { Language } from 'src/enums/language';
 import { Feature } from 'src/model/spec/planning/feature';
 import { TokenType } from 'src/model/spec/planning/token';
 import { BASE_URI } from '../../../../../consts';
@@ -14,6 +15,7 @@ import { Project } from '../../../../../model/projects';
 export class FeatureMarkdownComponent implements OnInit, AfterViewChecked {
 
   tokenType = TokenType;
+  language = Language;
   consts = {baseUri: BASE_URI};
 
   @ViewChild('raw', {static: false, read: ElementRef})
@@ -28,7 +30,8 @@ export class FeatureMarkdownComponent implements OnInit, AfterViewChecked {
   feature: Feature;
 
   constructor(private clipboard: ClipboardService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              @Inject(LOCALE_ID) public locale: string) {
 
   }
 

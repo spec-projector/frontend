@@ -1,8 +1,14 @@
 <form [formGroup]="form">
   <ng-template #noResourceTypesTemplate>
     <jnt-message [scheme]="ui.scheme.fail">
-      <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-      You have no <b>resource types</b> in project
+      <span [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          You have no <b>resource types</b> in project
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          У Вас не определены <b>типы ресурсов</b> в проекте
+        </ng-container>
+      </span>
       <jnt-link title="settings"
                 i18n-title="@@label.settings"
                 [source]="['../../../../..', 'details']"
@@ -14,8 +20,14 @@
     <ng-template #fillResourcesTemplate>
       <jnt-stack [align]="ui.align.stretch">
         <jnt-message>
-          <!--    TO DO: USE LOCALE FOR TRANSLATE    -->
-          <p>Resources are used for implementing feature.</p>
+          <p [ngSwitch]="locale">
+            <ng-container *ngSwitchDefault>
+              Resources are used for implementing feature.
+            </ng-container>
+            <ng-container *ngSwitchCase="language.ru">
+              Ресурсы используемые для расширения возможности.
+            </ng-container>
+          </p>
         </jnt-message>
         <jnt-stack [orientation]="ui.orientation.horizontal">
           <jnt-button text="Fill resources"

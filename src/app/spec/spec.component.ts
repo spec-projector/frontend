@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
+import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
@@ -16,6 +17,7 @@ import { ValidationError } from 'src/model/validation/error';
 export class SpecComponent implements OnInit, OnDestroy {
 
   ui = UI;
+  language = Language;
   localUi = LocalUI;
 
   spec: Spec;
@@ -26,7 +28,8 @@ export class SpecComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private manager: SpecManager) {
+              private manager: SpecManager,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {
