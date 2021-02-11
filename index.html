@@ -52,12 +52,20 @@
         }
 
         [data-circle-stroked1] {
-          animation: scale-stroked 3s ease-out normal infinite;
+          animation: scale-stroked 6s ease-out normal infinite;
         }
 
         [data-circle-stroked2] {
-          animation: scale-stroked 3s ease-out normal infinite;
-          animation-delay: 0.5s;
+          animation: scale-stroked 6s ease-out normal infinite;
+          animation-delay: 1.5s;
+        }
+        [data-circle-stroked3] {
+          animation: scale-stroked 6s ease-out normal infinite;
+          animation-delay: 3s;
+        }
+        [data-circle-stroked4] {
+          animation: scale-stroked 6s ease-out normal infinite;
+          animation-delay: 4.5s;
         }
 
         [data-right-hand] {
@@ -171,10 +179,10 @@
         }
 
         @keyframes scale-filled {
-          0% {transform: translate(500px,485px) scale(2)}
-          50% {transform: translate(500px,485px)  scale(2.5)}
-          60% {transform: translate(500px,485px)  scale(2.5)}
-          100% {transform: translate(500px,485px)  scale(2)}
+          0% {transform: translate(500px,485px) scale(1.8)}
+          50% {transform: translate(500px,485px)  scale(2.2)}
+          60% {transform: translate(500px,485px)  scale(2.2)}
+          100% {transform: translate(500px,485px)  scale(1.8)}
         }
 
         @keyframes scale-stroked {
@@ -187,7 +195,7 @@
           }
           100% {
             opacity: 0;
-            transform: translate(500px,485px)  scale(1)
+            transform: translate(500px,485px)  scale(1.5)
           }
         }
 
@@ -252,8 +260,10 @@
         <circle data-mask-stars transform="translate(500,485)" cx="0" cy="0" r="146"  fill="#C4C4C4"/>
       </mask>
       <g mask="url(#mask-clip-circle)">
-        <circle data-circle-stroked1="" transform="translate(500,485)" cx="0" cy="0" r="400" stroke="#00227B" stroke-width="200"/>
-        <circle data-circle-stroked2="" transform="translate(500,485)" cx="0" cy="0" r="400" stroke="#00227B" stroke-width="200"/>
+        <circle data-circle-stroked1="" transform="translate(500,485)" cx="0" cy="0" r="146" stroke="#00227B" stroke-width="200"/>
+        <circle data-circle-stroked2="" transform="translate(500,485)" cx="0" cy="0" r="146" stroke="#00227B" stroke-width="200"/>
+        <circle data-circle-stroked3="" transform="translate(500,485)" cx="0" cy="0" r="146" stroke="#00227B" stroke-width="200"/>
+        <circle data-circle-stroked4="" transform="translate(500,485)" cx="0" cy="0" r="146" stroke="#00227B" stroke-width="200"/>
         <circle data-circle-filled="" transform="translate(500,485)" cx="0" cy="0" r="146" fill="#00227B"/>
       </g>
       <g mask="url(#mask-clip-stars)">
