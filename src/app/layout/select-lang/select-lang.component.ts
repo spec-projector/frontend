@@ -19,8 +19,8 @@ export class SelectLangComponent {
     lang: this.langControl
   });
 
-  constructor(private fb: FormBuilder,
-              @Inject(Language) private lang: Language) {
+  constructor(@Inject(Language) private lang: Language,
+              private fb: FormBuilder) {
   }
 
   change(lang: Language) {

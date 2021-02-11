@@ -7,6 +7,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { GraphQLModule } from 'src/app/graphql.module';
+import { APP_PROVIDERS } from '../consts';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -32,7 +33,7 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     HttpClient,
-    JunteUiModule.forRoot().providers
+    ...APP_PROVIDERS
   ]
 })
 export class AppModule {

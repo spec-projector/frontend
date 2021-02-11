@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JunteUiModule } from '@junte/ui';
-import { languageProvider } from 'src/consts';
 import { ArrayPipesModule } from 'src/pipes/array/array-pipes.module';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
@@ -20,10 +19,7 @@ import { SelectLangComponent } from './select-lang/select-lang.component';
     JunteUiModule,
     ArrayPipesModule,
     LayoutRoutingModule
-  ],
-  providers: [
-    languageProvider
-  ],
+  ]
 })
 export class LayoutModule {
 }
