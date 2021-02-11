@@ -5,6 +5,10 @@
   position: relative;
 }
 
+[data-features] {
+  width: 50%;
+}
+
 [data-actions] {
   opacity: .1;
   margin-right: $jnt-gutter-small;

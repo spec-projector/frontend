@@ -31,6 +31,8 @@
                   text="Add first epic"
                   (click)="addEpic()"></jnt-button>
     </jnt-message>
+
+    <img data-epics src="assets/images/epics.svg">
   </ng-template>
 
   <jnt-stack  *ngIf="spec.epics.length > 0; else emptyDataTemplate"
