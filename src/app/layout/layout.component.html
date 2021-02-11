@@ -36,7 +36,9 @@
         <ng-template #userbarAvatarTemplate>
           <jnt-avatar [size]="ui.size.small"></jnt-avatar>
         </ng-template>
+
         <ng-template #userbarMenuTemplate>
+          <jnt-select-lang></jnt-select-lang>
           <jnt-menu [orientation]="ui.orientation.vertical">
             <jnt-menu-item title="Logout"
                            i18n-title="@@label.logout"
