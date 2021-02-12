@@ -63,7 +63,7 @@
         <target>Проекты</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.marketplace" datatype="html">
@@ -71,7 +71,7 @@
         <target>Торговая площадка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.login" datatype="html">
@@ -79,7 +79,7 @@
         <target>Логин</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.logout" datatype="html">
@@ -87,7 +87,7 @@
         <target>Выйти</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.title" datatype="html">
@@ -95,7 +95,7 @@
         <target>Заголовок</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
@@ -119,19 +119,23 @@
         <target>CRM система для продаж</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.title_is_required" datatype="html">
         <source>
-        Title is required
-      </source>
+          Title is required
+        </source>
         <target>
           Заголовок обязателен
         </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.description" datatype="html">
@@ -139,7 +143,7 @@
         <target>Описание</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
@@ -151,7 +155,7 @@
         <target>Публичный проект</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.save" datatype="html">
@@ -159,7 +163,7 @@
         <target>Сохранить</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/add-frame/feature-add-frame.component.html</context>
@@ -426,6 +430,22 @@
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="label.i_can" datatype="html">
+        <source>I can</source>
+        <target>Я могу</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/story/entry/story-entry.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.i_see" datatype="html">
+        <source>I see</source>
+        <target>Я вижу</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/story/entry/story-entry.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="action.add_story" datatype="html">
         <source>Add story</source>
         <target>Добавить историю</target>
@@ -573,6 +593,26 @@
           <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="label.teams" datatype="html">
+        <source>Teams</source>
+        <target>Команды</target>
+      </trans-unit>
+      <trans-unit id="label.knowledge" datatype="html">
+        <source>Knowledge</source>
+        <target>Знания</target>
+      </trans-unit>
+      <trans-unit id="label.sprints" datatype="html">
+        <source>Sprints</source>
+        <target>Спринты</target>
+      </trans-unit>
+      <trans-unit id="label.actors" datatype="html">
+        <source>Actors</source>
+        <target>Актеры</target>
+      </trans-unit>
+      <trans-unit id="label.validate" datatype="html">
+        <source>Validate</source>
+        <target>Валидация</target>
       </trans-unit>
       <trans-unit id="action.import" datatype="html">
         <source>Import</source>

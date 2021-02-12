@@ -51,6 +51,15 @@ export function getFeature({feature}) {
   return feature.title;
 }
 
+export const GENERAL_BREADCRUMB = $localize`:@@label.general:General`;
+export const PRINT_BREADCRUMB = $localize`:@@label.print:Print`;
+export const SPRINTS_BREADCRUMB = $localize`:@@label.sprints:Sprints`;
+export const EPICS_BREADCRUMB = $localize`:@@label.epics:Epics`;
+export const ACTORS_BREADCRUMB = $localize`:@@label.teams:Actors`;
+export const KNOWLEDGE_BREADCRUMB = $localize`:@@label.knowledge:Knowledge`;
+export const MODEL_BREADCRUMB = $localize`:@@label.model:Model`;
+export const VALIDATE_BREADCRUMB = $localize`:@@label.validate:Validate`;
+
 export const routes: Routes = [
   {
     path: '',
@@ -69,16 +78,16 @@ export const routes: Routes = [
       {
         path: 'details',
         component: DetailsComponent,
-        data: {breadcrumb: 'General'}
+        data: {breadcrumb: GENERAL_BREADCRUMB}
       },
       {
         path: 'print',
         component: PrintComponent,
-        data: {breadcrumb: 'Print'}
+        data: {breadcrumb: PRINT_BREADCRUMB}
       },
       {
         path: 'sprints',
-        data: {breadcrumb: 'Sprints'},
+        data: {breadcrumb: SPRINTS_BREADCRUMB},
         children: [
           {
             path: '',
@@ -97,14 +106,14 @@ export const routes: Routes = [
       {
         path: 'epics',
         component: EpicsComponent,
-        data: {breadcrumb: 'Epics'},
+        data: {breadcrumb: EPICS_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
       },
       {
         path: 'actors',
         component: FeaturesComponent,
-        data: {breadcrumb: 'Actors'},
+        data: {breadcrumb: ACTORS_BREADCRUMB},
         children: [
           {
             path: '',
@@ -178,14 +187,14 @@ export const routes: Routes = [
       {
         path: 'terms',
         component: TermsComponent,
-        data: {breadcrumb: 'Knowledge'},
+        data: {breadcrumb: KNOWLEDGE_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
       },
       {
         path: 'packages',
         component: ModelComponent,
-        data: {breadcrumb: 'Model'},
+        data: {breadcrumb: MODEL_BREADCRUMB},
         children: [
           {
             path: '',
@@ -220,7 +229,7 @@ export const routes: Routes = [
       {
         path: 'validate',
         component: ValidateComponent,
-        data: {breadcrumb: 'Validate'},
+        data: {breadcrumb: VALIDATE_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
       }
