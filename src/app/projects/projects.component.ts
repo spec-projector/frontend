@@ -57,7 +57,7 @@ export class ProjectsComponent implements OnInit {
     const factory = this.cfr.resolveComponentFactory(EditProjectComponent);
     const component = factory.create(this.injector);
     component.instance.saved.subscribe(p => this.goto(p));
-    this.modal.open(component, {title: {text: 'Add project'}});
+    this.modal.open(component, {title: {icon: LocalUI.icons.project, text: 'Add project'}});
   }
 
   edit(project: Project, index: number) {
@@ -68,7 +68,7 @@ export class ProjectsComponent implements OnInit {
       this.modal.close();
       this.projects[index] = p;
     });
-    this.modal.open(component, { title: {text: 'Edit project'}});
+    this.modal.open(component, {title: {icon: LocalUI.icons.project, text: 'Edit project'}});
   }
 
   goto(project: Project) {
