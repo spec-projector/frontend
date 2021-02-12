@@ -58,35 +58,35 @@
         <source>Projects</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.marketplace" datatype="html">
         <source>Marketplace</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.login" datatype="html">
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.logout" datatype="html">
         <source>Logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.title" datatype="html">
         <source>Title</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
@@ -109,23 +109,27 @@
         <source>CRM system for sales</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.title_is_required" datatype="html">
         <source>
-        Title is required
-      </source>
+          Title is required
+        </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.description" datatype="html">
         <source>Description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/details/details.component.html</context>
@@ -136,14 +140,14 @@
         <source>Public project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.save" datatype="html">
         <source>Save</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/add-frame/feature-add-frame.component.html</context>
@@ -381,6 +385,20 @@
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="label.i_can" datatype="html">
+        <source>I can</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/story/entry/story-entry.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.i_see" datatype="html">
+        <source>I see</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/story/entry/story-entry.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="action.add_story" datatype="html">
         <source>Add story</source>
         <context-group purpose="location">
@@ -511,6 +529,26 @@
           <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="label.teams" datatype="html">
+        <source>Teams</source>
+        <target>Teams</target>
+      </trans-unit>
+      <trans-unit id="label.knowledge" datatype="html">
+        <source>Knowledge</source>
+        <target>Knowledge</target>
+      </trans-unit>
+      <trans-unit id="label.sprints" datatype="html">
+        <source>Sprints</source>
+        <target>Sprints</target>
+      </trans-unit>
+      <trans-unit id="label.actors" datatype="html">
+        <source>Actors</source>
+        <target>Actors</target>
+      </trans-unit>
+      <trans-unit id="label.validate" datatype="html">
+        <source>Validate</source>
+        <target>Validate</target>
       </trans-unit>
       <trans-unit id="action.import" datatype="html">
         <source>Import</source>
