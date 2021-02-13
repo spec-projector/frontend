@@ -1,25 +1,41 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JunteUiModule } from '@junte/ui';
+import {
+  AppLayoutModule,
+  ArrayPipesModule,
+  ButtonModule,
+  CardModule,
+  GridModule,
+  LinkModule,
+  MenuModule,
+  SkeletonModule,
+  StackModule
+} from '@junte/ui';
 import { ProjectsRoutingModule } from 'src/app/projects/projects-routing.module';
-import { ArrayPipesModule } from 'src/pipes/array/array-pipes.module';
-import { EditProjectComponent } from './edit-project/edit-project.component';
+import { ProjectEditModule } from './edit-project/edit-projects.module';
 import { ProjectsComponent } from './projects.component';
 
 @NgModule({
-    declarations: [
-        ProjectsComponent,
-        EditProjectComponent
-    ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        JunteUiModule,
-        ArrayPipesModule,
-        ProjectsRoutingModule
-    ],
-    entryComponents: [EditProjectComponent]
+  declarations: [
+    ProjectsComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ArrayPipesModule,
+    AppLayoutModule,
+    GridModule,
+    ButtonModule,
+    StackModule,
+    CardModule,
+    MenuModule,
+    LinkModule,
+    SkeletonModule,
+
+    ProjectEditModule,
+    ProjectsRoutingModule
+  ]
 })
 export class ProjectsModule {
 }

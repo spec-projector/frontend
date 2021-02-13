@@ -1,14 +1,18 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import * as Figma from 'figma-api';
+import { ActivatedRoute } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { combineLatest, Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
 import { Frame } from 'src/model/spec/planning/frame';
+import { environment } from '../../../../../environments/environment';
 import { SpecManager } from '../../../../../managers/spec.manager';
+import { UploadFigmaAssetRequest } from '../../../../../model/figma-asset';
+import { Project } from '../../../../../model/projects';
 import { Feature } from '../../../../../model/spec/planning/feature';
+import { UploadFigmaAssetGQL } from './frames.graphql';
 
 @Component({
   selector: 'spec-feature-frames',
@@ -19,11 +23,13 @@ export class FeatureFramesComponent implements OnInit {
 
   ui = UI;
   language = Language;
+  env = environment;
 
   private _feature: Feature;
 
   progress = {refreshing: false};
   reference: { popover: PopoverInstance } = {popover: null};
+  project: Project;
 
   set feature(feature: Feature) {
     this._feature = feature;
@@ -34,23 +40,24 @@ export class FeatureFramesComponent implements OnInit {
     return this._feature;
   }
 
-  constructor(public manager: SpecManager,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              private uploadFigmaAssetGQL: UploadFigmaAssetGQL,
+              public manager: SpecManager,
               private popover: PopoverService,
               private route: ActivatedRoute,
-              private logger: NGXLogger,
-              @Inject(LOCALE_ID) public locale: string) {
+              private logger: NGXLogger) {
 
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({feature}) => this.feature = feature);
+    this.route.data.subscribe(({project, feature}) =>
+      [this.project, this.feature] = [project, feature]);
   }
 
   add(frame: Frame) {
+    this.reference.popover?.hide();
     this.feature.frames.push(frame);
     this.save();
-    // TODO: refactor
-    // this.popover.hide();
   }
 
   remove(index: number) {
@@ -59,46 +66,37 @@ export class FeatureFramesComponent implements OnInit {
   }
 
   refresh(force = false) {
-    const figmaKey = this.feature.spec.integration.figmaKey;
-    if (!figmaKey) {
-      return;
-    }
-    const figma = new Figma.Api({
-      personalAccessToken: this.feature.spec.integration.figmaKey
-    });
-
     const queue = [];
     for (const frame of this.feature.frames) {
       if (force || !frame.thumbnail) {
         queue.push(new Observable<string>(o => {
-          figma.getImage(frame.file, {ids: frame.node, scale: 1.5, format: 'jpg'})
-            .then(res => {
-              if (!!res.err) {
-                o.error(res.err);
-              } else if (!!res.images) {
-                frame.thumbnail = res.images[frame.node];
-                o.next(frame.node);
-              }
+          const request = new UploadFigmaAssetRequest({
+            projectId: this.project.id,
+            url: frame.url
+          });
+          this.uploadFigmaAssetGQL.mutate({input: serialize(request)})
+            .subscribe(({data: {response: {frame: {file}}}}) => {
+              frame.thumbnail = file;
+              o.next();
               o.complete();
             });
         }));
       }
     }
 
-    this.progress.refreshing = true;
-    combineLatest(queue)
-      .pipe(finalize(() => this.progress.refreshing = false))
-      .subscribe(() => this.save());
+    if (queue.length > 0) {
+      this.progress.refreshing = true;
+      combineLatest(queue)
+        .pipe(finalize(() => this.progress.refreshing = false))
+        .subscribe(() => this.save());
+    }
   }
 
   save() {
-    this.reference.popover?.hide();
     this.logger.log('save frames for feature [', this.feature.title.toString(), ']');
     this.manager.put(this.feature);
 
     this.feature.version++;
-
-    this.refresh(true);
   }
 
 }

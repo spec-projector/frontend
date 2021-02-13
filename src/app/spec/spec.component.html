@@ -1,12 +1,19 @@
 <jnt-app-aside #aside>
 
-  <!--<ng-template #asideContentTemplate let-collapsed="collapsed">
-    <form *ngIf="!collapsed" [formGroup]="form">
+  <ng-template #asideContentTemplate let-collapsed="collapsed">
+    <!--<form *ngIf="!collapsed" [formGroup]="form">
       <jnt-switch formControlName="mode"
                   [tags]="{on: 'Edit', off: 'View'}">
       </jnt-switch>
-    </form>
-  </ng-template>-->
+    </form>-->
+    <jnt-stack data-edit [orientation]="ui.orientation.horizontal"
+               [justify]="ui.justify.center">
+      <jnt-button [scheme]="ui.scheme.secondary"
+                  [text]="collapsed ? null : 'Project'"
+                  [icon]="localUi.icons.project"
+                  (click)="editProject()"></jnt-button>
+    </jnt-stack>
+  </ng-template>
 
   <jnt-menu [orientation]="ui.orientation.vertical">
     <jnt-menu-item [link]="['print']"

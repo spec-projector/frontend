@@ -1,6 +1,31 @@
 import { SearchFilter } from '@junte/ui';
 import { ArraySerializer, Field, Model } from 'serialize-ts';
 import { EdgesToPaging } from 'src/serializers/graphql';
+import * as assign from 'assign-deep';
+
+@Model()
+export class FigmaIntegration {
+
+  @Field()
+  token: string;
+
+}
+
+@Model()
+export class GitlabIntegration {
+
+  @Field()
+  token: string;
+
+}
+
+@Model()
+export class GithubIntegration {
+
+  @Field()
+  token: string;
+
+}
 
 @Model()
 export class Project {
@@ -20,6 +45,15 @@ export class Project {
   @Field()
   dbName: string;
 
+  @Field()
+  figmaIntegration: FigmaIntegration;
+
+  @Field()
+  gitlabIntegration: GitlabIntegration;
+
+  @Field()
+  githubIntegration: GithubIntegration;
+
 }
 
 @Model()
@@ -37,6 +71,30 @@ export class PagingProjects {
 }
 
 @Model()
+export class FigmaIntegrationUpdate {
+
+  @Field()
+  token: string;
+
+}
+
+@Model()
+export class GitlabIntegrationUpdate {
+
+  @Field()
+  token: string;
+
+}
+
+@Model()
+export class GithubIntegrationUpdate {
+
+  @Field()
+  token: string;
+
+}
+
+@Model()
 export class ProjectUpdate {
 
   @Field()
@@ -48,8 +106,17 @@ export class ProjectUpdate {
   @Field()
   description?: string;
 
+  @Field()
+  figmaIntegration: FigmaIntegrationUpdate = new FigmaIntegrationUpdate();
+
+  @Field()
+  gitlabIntegration: GitlabIntegration = new GitlabIntegration();
+
+  @Field()
+  githubIntegration: GithubIntegration = new GithubIntegration();
+
   constructor(update: Partial<ProjectUpdate> = null) {
-    Object.assign(this, update);
+    assign(this, update);
   }
 
 }
@@ -68,7 +135,7 @@ export class ProjectsFilter implements SearchFilter {
 
   constructor(defs: Partial<ProjectsFilter> = null) {
     if (!!defs) {
-      Object.assign(this, defs);
+      assign(this, defs);
     }
   }
 

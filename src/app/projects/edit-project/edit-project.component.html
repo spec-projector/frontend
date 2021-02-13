@@ -10,38 +10,73 @@
           [state]="progress.saving ? ui.state.loading : null"
           (submitted)="save()">
 
-  <jnt-stack [align]="ui.align.stretch">
-    <jnt-form-item>
-      <jnt-form-control name="title">
-        <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
-        <jnt-input #titleInput formControlName="title"
-                   placeholder="CRM system for sales"
-                   i18n-placeholder="@@messge.crm_system_for_sales"></jnt-input>
-        <jnt-form-message [validator]="ui.validator.required"
-                          i18n="@@message.title_is_required">
-          Title is required
-        </jnt-form-message>
-      </jnt-form-control>
-    </jnt-form-item>
+  <jnt-tabs>
+    <jnt-tab title="Common">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <jnt-form-item>
+            <jnt-form-control name="title">
+              <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
+              <jnt-input #titleInput formControlName="title"
+                         placeholder="CRM system for sales"
+                         i18n-placeholder="@@messge.crm_system_for_sales"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.title_is_required">
+                Title is required
+              </jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
 
-    <jnt-form-item>
-      <jnt-form-control name="description">
-        <jnt-form-label i18n="@@label.description">Description</jnt-form-label>
-        <jnt-input formControlName="description"
-                   placeholder="Nice CRM project"
-                   [features]="[ui.feature.multiline]"
-                   [rows]="3"></jnt-input>
-        <jnt-form-message [validator]="ui.validator.required"
-                          i18n="@@message.title_is_required">
-          Title is required
-        </jnt-form-message>
-      </jnt-form-control>
-    </jnt-form-item>
+          <jnt-form-item>
+            <jnt-form-control name="description">
+              <jnt-form-label i18n="@@label.description">Description</jnt-form-label>
+              <jnt-input formControlName="description"
+                         placeholder="Nice CRM project"
+                         [features]="[ui.feature.multiline]"
+                         [rows]="3"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.title_is_required">
+                Title is required
+              </jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
 
-    <jnt-switch formControlName="isPublic"
-                label="Public project"
-                i18n-label="@@label.public_project"></jnt-switch>
-  </jnt-stack>
+          <jnt-switch formControlName="isPublic"
+                      label="Public project"
+                      i18n-label="@@label.public_project"></jnt-switch>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="Integration">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <jnt-form-item formGroupName="figmaIntegration">
+            <jnt-form-label i18n="@@label.figma_key">Figma key</jnt-form-label>
+            <jnt-form-control name="token">
+              <jnt-input formControlName="token"
+                         placeholder="xxxxx-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+
+          <jnt-form-item formGroupName="gitlabIntegration">
+            <jnt-form-label i18n="@@label.git_lab_key">Git Lab key</jnt-form-label>
+            <jnt-form-control name="token">
+              <jnt-input formControlName="token"
+                         placeholder="xxxx_xxxx_xxxxxxxxxx"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+
+          <jnt-form-item formGroupName="githubIntegration">
+            <jnt-form-label i18n="@@label.git_hub_key">Git Hub key</jnt-form-label>
+            <jnt-form-control name="token">
+              <jnt-input formControlName="token"
+                         placeholder="xxxx_xxxx_xxxxxxxxxx"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
   <ng-template #formFooterTemplate>
     <jnt-stack [orientation]="ui.orientation.horizontal"

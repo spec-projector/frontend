@@ -7,10 +7,7 @@ export class Frame {
   id: string;
 
   @persist()
-  file: string;
-
-  @persist()
-  node: string;
+  url: string;
 
   @persist()
   thumbnail: string;

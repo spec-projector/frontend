@@ -146,7 +146,10 @@ export const routes: Routes = [
                   {
                     path: 'frames',
                     component: FeatureFramesComponent,
-                    resolve: {feature: ActorFeatureResolver}
+                    resolve: {
+                      feature: ActorFeatureResolver,
+                      project: ProjectResolver
+                    }
                   },
                   {
                     path: 'resources',

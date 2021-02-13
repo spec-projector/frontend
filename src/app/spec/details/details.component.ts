@@ -1,11 +1,11 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { delay, finalize } from 'rxjs/operators';
+import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
-import { EditMode } from 'src/enums/edit-mode';
 import { ResourceType, Spec } from 'src/model/spec/spec';
 import { LocalUI } from '../../../enums/local-ui';
 
@@ -30,9 +30,6 @@ export class DetailsComponent implements OnInit {
     this.form.patchValue({
       description: spec.description,
       author: spec.author,
-      gitLabKey: spec.integration.gitLabKey,
-      gitHubKey: spec.integration.gitHubKey,
-      figmaKey: spec.integration.figmaKey,
       graphqlPlaygroundUrl: spec.integration.graphqlPlaygroundUrl
     }, {emitEvent: false});
 
@@ -52,8 +49,6 @@ export class DetailsComponent implements OnInit {
   form = this.fb.group({
     description: [null],
     author: [null],
-    gitLabKey: [],
-    gitHubKey: [],
     figmaKey: [],
     graphqlPlaygroundUrl: [],
     resourceTypes: this.resourceTypesArray
@@ -108,8 +103,6 @@ export class DetailsComponent implements OnInit {
     const {
       description,
       author,
-      gitLabKey,
-      gitHubKey,
       figmaKey,
       graphqlPlaygroundUrl,
       resourceTypes
@@ -117,16 +110,10 @@ export class DetailsComponent implements OnInit {
 
     [this.spec.description,
       this.spec.author,
-      this.spec.integration.gitLabKey,
-      this.spec.integration.gitHubKey,
-      this.spec.integration.figmaKey,
       this.spec.integration.graphqlPlaygroundUrl,
       this.spec.resourceTypes]
       = [description,
       author,
-      gitLabKey,
-      gitHubKey,
-      figmaKey,
       graphqlPlaygroundUrl,
       resourceTypes.map(({title, hourRate}) =>
         new ResourceType({title, hourRate: +hourRate}))];

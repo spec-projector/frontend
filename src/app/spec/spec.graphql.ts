@@ -7,18 +7,21 @@ import gql from 'graphql-tag';
 })
 export class ProjectGQL extends Query<{ project }> {
     document = gql`
-    query Project($id: ID!) {
-      project(id: $id) {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        dbName
-        owner {
-            id
-            name
-        }
-      }
-    }`;
+query Project($id: ID!) {
+  project(id: $id) {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    dbName
+    figmaIntegration {
+      token
+    }
+    owner {
+      id
+      name
+    }
+  }
+}`;
 }

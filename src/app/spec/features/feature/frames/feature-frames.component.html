@@ -10,14 +10,10 @@
            У вас нет ключа <b>Figma</b> в интеграции
         </ng-container>
       </span>
-      <jnt-link title="settings"
-                i18n-title="@@label.settings"
-                [source]="['../../../../..', 'details']"
-                [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
     </jnt-message>
   </ng-template>
 
-  <ng-container *ngIf="!!feature.spec.integration.figmaKey;else noFigmaKeyTemplate">
+  <ng-container *ngIf="!!project.figmaIntegration?.token;else noFigmaKeyTemplate">
     <jnt-stack [align]="ui.align.stretch">
       <jnt-message *ngIf="feature.frames.length <= 0">
         <ng-container [ngSwitch]="locale">
@@ -26,7 +22,8 @@
             <p>After that, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
           </ng-container>
           <ng-container *ngSwitchCase="language.ru">
-            <p>Дизайнер, используя <b>юзер стори</b> должен нарисовать дизайн и прототип и затем <b>прикрепить</b> их здесь.</p>
+            <p>Дизайнер, используя <b>юзер стори</b> должен нарисовать дизайн и прототип и затем <b>прикрепить</b> их
+              здесь.</p>
             <p>После этого, <b>Проджект Менеджер</b> должен согласовать дизайн с <b>Заказчиком</b>.</p>
           </ng-container>
         </ng-container>
@@ -59,7 +56,7 @@
             <jnt-link title="Figma"
                       target="_blank"
                       [icon]="ui.icons.figma"
-                      [source]="'http://figma.com/file/' + frame.file + '?node-id=' + frame.node"></jnt-link>
+                      [source]="frame.url"></jnt-link>
 
             <jnt-button [icon]="ui.icons.cancel"
                         [shape]="ui.shape.circle"
@@ -68,7 +65,9 @@
                         (click)="remove(i)"></jnt-button>
           </jnt-stack>
         </ng-template>
-        <jnt-picture width="100%" [src]="frame.thumbnail"></jnt-picture>
+        <jnt-picture width="100%"
+                     [alt]="frame.url"
+                     src="{{env.assets}}/{{frame.thumbnail}}"></jnt-picture>
       </jnt-card>
     </jnt-col>
   </jnt-row>

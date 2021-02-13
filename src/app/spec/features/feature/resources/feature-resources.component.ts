@@ -8,7 +8,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Language } from 'src/enums/language';
 import { environment } from '../../../../../environments/environment';
 import { SpecManager } from '../../../../../managers/spec.manager';
-import { Feature } from '../../../../../model/spec/planning/feature';
+import { Feature, Resource } from '../../../../../model/spec/planning/feature';
 import { ResourceType } from '../../../../../model/spec/spec';
 
 @Component({
@@ -46,7 +46,7 @@ export class FeatureResourcesComponent implements OnInit {
       .pipe(debounceTime(environment.uiDebounceTime))
       .subscribe(({resources}) => {
         this.feature.resources = resources.map(({resource, hours}) =>
-          new ResourceType({resource, hours: hours}));
+          new Resource({resource, hours: hours}));
         this.save();
       });
   }

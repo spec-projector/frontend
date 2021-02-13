@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { deserialize, serialize } from 'serialize-ts';
 import { InputComponent, UI } from '@junte/ui';
-import { R } from 'apollo-angular/types';
-import { finalize, map } from 'rxjs/operators';
+import { delay, finalize, map } from 'rxjs/operators';
+import { deserialize, serialize } from 'serialize-ts';
+import { UI_DELAY } from '../../../consts';
 import { Project, ProjectUpdate } from '../../../model/projects';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
@@ -27,7 +27,16 @@ export class EditProjectComponent implements AfterViewInit {
     {
       title: [null, Validators.required],
       description: [null, Validators.required],
-      isPublic: [false]
+      isPublic: [false],
+      figmaIntegration: this.formBuilder.group({
+        token: [null]
+      }),
+      gitlabIntegration: this.formBuilder.group({
+        token: [null]
+      }),
+      githubIntegration: this.formBuilder.group({
+        token: [null]
+      })
     }
   );
 
@@ -37,7 +46,16 @@ export class EditProjectComponent implements AfterViewInit {
     this.form.patchValue({
       title: project.title,
       description: project.description,
-      isPublic: project.isPublic
+      isPublic: project.isPublic,
+      figmaIntegration: {
+        token: project.figmaIntegration?.token || null
+      },
+      gitlabIntegration: {
+        token: project.gitlabIntegration?.token || null
+      },
+      githubIntegration: {
+        token: project.githubIntegration?.token || null
+      }
     });
   }
 
@@ -68,10 +86,11 @@ export class EditProjectComponent implements AfterViewInit {
     const request = new ProjectUpdate(this.form.getRawValue());
     this.progress.saving = true;
     mutation.mutate({id: this.project?.id, input: serialize(request)})
-      .pipe(finalize(() => this.progress.saving = false),
+      .pipe(delay(UI_DELAY), finalize(() => this.progress.saving = false),
         catchGQLErrors(),
         map(({data: {response: {project}}}) => deserialize(project, Project)))
       .subscribe(project => this.saved.emit(project),
         errors => this.errors = errors);
   }
+
 }

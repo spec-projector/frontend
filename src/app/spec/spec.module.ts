@@ -50,6 +50,7 @@ import { SameFirstCharPipe } from 'src/pipes/terms/same-first-char';
 import { SortByNamePipe } from 'src/pipes/terms/sort-by-name';
 import { TokenTypePipe } from 'src/pipes/token-type';
 import { JoinTokensPipe } from 'src/pipes/tokens/join';
+import { ProjectEditModule } from '../projects/edit-project/edit-projects.module';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { EntityEditComponent } from './entity/edit/entity-edit.component';
 import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
@@ -66,6 +67,7 @@ import { PrintComponent } from './print/print.component';
 @NgModule({
   declarations: [
     SpecComponent,
+
     DetailsComponent,
 
     FeaturesComponent,
@@ -143,7 +145,9 @@ import { PrintComponent } from './print/print.component';
     ClickOutsideModule,
     DndModule,
     DragDropModule,
-    MonacoEditorModule
+    MonacoEditorModule,
+
+    ProjectEditModule
   ],
   providers: [
     SpecResolver,

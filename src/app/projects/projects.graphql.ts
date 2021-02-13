@@ -16,6 +16,15 @@ export class AllProjectsGQL extends Query<{ projects }> {
         title
         description
         isPublic
+        figmaIntegration {
+          token
+        }
+        gitlabIntegration {
+          token
+        }
+        githubIntegration {
+          token
+        }
         owner {
           id
           lastLogin
@@ -41,6 +50,15 @@ mutation ($input: CreateProjectInput!) {
       title
       description
       isPublic
+      figmaIntegration {
+        token
+      }
+      gitlabIntegration {
+        token
+      }
+      githubIntegration {
+        token
+      }
     }
   }
 }`;
@@ -58,6 +76,15 @@ mutation ($id: ID!, $input: UpdateProjectInput!) {
       title
       description
       isPublic
+      figmaIntegration {
+        token
+      }
+      gitlabIntegration {
+        token
+      }
+      githubIntegration {
+        token
+      }
     }
   }
 }`;
