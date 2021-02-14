@@ -5,15 +5,30 @@
   <select formControlName="type"
           tabindex="-1">
     <option [value]="storyEntryType.can"
-            i18n="@@label.i_can">I can</option>
+            i18n="@@label.i_can">I can
+    </option>
     <option [value]="storyEntryType.see"
-            i18n="@@label.i_see">I see</option>
+            i18n="@@label.i_see">I see
+    </option>
   </select>
   <input #input formControlName="description"
          (keydown)="keydown($event)"
          (keyup)="keyup($event)">
 
-  <b>I {{entry.type}}</b>
+  <ng-container [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      <ng-container [ngSwitch]="entry.type">
+        <b *ngSwitchCase="storyEntryType.see">I see</b>
+        <b *ngSwitchCase="storyEntryType.can">I can</b>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <ng-container [ngSwitch]="entry.type">
+        <b *ngSwitchCase="storyEntryType.see">Я вижу</b>
+        <b *ngSwitchCase="storyEntryType.can">Я могу</b>
+      </ng-container>
+    </ng-container>
+  </ng-container>
   <spec-tokens data-tokens
                [tokens]="entry.description"
                [spec]="spec"></spec-tokens>

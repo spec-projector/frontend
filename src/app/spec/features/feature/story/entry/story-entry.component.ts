@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, LOCALE_ID, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { EditMode } from 'src/enums/edit-mode';
 import { StoryEntry, StoryEntryType } from 'src/model/spec/planning/feature';
 import { Token } from 'src/model/spec/planning/token';
 import { Spec } from 'src/model/spec/spec';
+import { Language } from '../../../../../../enums/language';
 import { environment } from '../../../../../../environments/environment';
 import { SpecManager } from '../../../../../../managers/spec.manager';
 
@@ -20,6 +21,7 @@ export class StoryEntryComponent {
   ui = UI;
   editMode = EditMode;
   storyEntryType = StoryEntryType;
+  language = Language;
 
   private subscriptions: { form: Subscription } = {form: null};
 
@@ -80,7 +82,8 @@ export class StoryEntryComponent {
     description: this.descriptionControl
   });
 
-  constructor(public manager: SpecManager,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              public manager: SpecManager,
               private fb: FormBuilder) {
   }
 

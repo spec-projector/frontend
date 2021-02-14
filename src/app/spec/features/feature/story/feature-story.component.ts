@@ -25,10 +25,10 @@ export class FeatureStoryComponent implements OnInit {
   @ViewChildren('storyEntry')
   entries!: QueryList<StoryEntryComponent>;
 
-  constructor(public manager: SpecManager,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              public manager: SpecManager,
               private route: ActivatedRoute,
-              private logger: NGXLogger,
-              @Inject(LOCALE_ID) public locale: string) {
+              private logger: NGXLogger) {
   }
 
   ngOnInit() {

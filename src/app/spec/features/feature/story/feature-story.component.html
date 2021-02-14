@@ -80,7 +80,8 @@
     </ng-container>
     <ng-container *ngSwitchCase="language.ru">
       Как <b>{{feature.actor.name}}</b> Я хочу <b>{{feature.title}}</b>
-    </ng-container></p>
+    </ng-container>
+  </p>
   <ol>
     <li *ngFor="let entry of feature.story; let i = index">
       <spec-story-entry #storyEntry [entry]="entry"

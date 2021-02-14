@@ -23,18 +23,18 @@ export class EditProjectComponent implements AfterViewInit {
   progress = {saving: false};
   errors: BackendError[] = [];
 
-  form = this.formBuilder.group(
+  form = this.fb.group(
     {
       title: [null, Validators.required],
       description: [null, Validators.required],
       isPublic: [false],
-      figmaIntegration: this.formBuilder.group({
+      figmaIntegration: this.fb.group({
         token: [null]
       }),
-      gitlabIntegration: this.formBuilder.group({
+      gitlabIntegration: this.fb.group({
         token: [null]
       }),
-      githubIntegration: this.formBuilder.group({
+      githubIntegration: this.fb.group({
         token: [null]
       })
     }
@@ -74,7 +74,7 @@ export class EditProjectComponent implements AfterViewInit {
 
   constructor(private createProjectGQL: CreateProjectGQL,
               private updateProjectGQL: UpdateProjectGQL,
-              private formBuilder: FormBuilder) {
+              private fb: FormBuilder) {
   }
 
   ngAfterViewInit() {
