@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input, LOCALE_ID } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
@@ -10,6 +10,7 @@ import { EditMode } from 'src/enums/edit-mode';
 import { Actor } from 'src/model/spec/planning/actor';
 import { Feature } from 'src/model/spec/planning/feature';
 import { TextToken } from 'src/model/spec/planning/token';
+import { Language } from '../../../../enums/language';
 
 @Component({
   selector: 'spec-actor',
@@ -20,6 +21,7 @@ export class ActorComponent {
 
   ui = UI;
   editMode = EditMode;
+  language = Language;
 
   private _actor: Actor;
 
@@ -48,7 +50,8 @@ export class ActorComponent {
     return this._actor;
   }
 
-  constructor(public manager: SpecManager,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              public manager: SpecManager,
               public popover: PopoverService,
               private fb: FormBuilder,
               public route: ActivatedRoute,
