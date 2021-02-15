@@ -252,7 +252,7 @@
       </trans-unit>
       <trans-unit id="label.epics" datatype="html">
         <source>Epics</source>
-        <target>Этапы</target>
+        <target>Эпики</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/spec.component.html</context>
           <context context-type="linenumber">29</context>
@@ -416,7 +416,7 @@
       </trans-unit>
       <trans-unit id="label.issues" datatype="html">
         <source>Issues</source>
-        <target>Проблемы</target>
+        <target>Задачи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/edit/feature-edit.component.html</context>
           <context context-type="linenumber">39</context>
