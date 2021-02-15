@@ -4,7 +4,7 @@
   <li data-graphql *ngIf="feature.graphql.length"></li>
 </ul>
 
-<jnt-label data-price *ngIf="(feature | featurePrice:feature.version:feature.rev) as price"
+<jnt-label data-price *ngIf="(feature | featurePrice:feature.version:feature.rev | async) as price"
            [color]="ui.color.gray300"
            [label]="price | currency"
            [size]="ui.size.small"></jnt-label>
