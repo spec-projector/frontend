@@ -2,11 +2,12 @@ import { SearchFilter } from '@junte/ui';
 import { ArraySerializer, Field, Model } from 'serialize-ts';
 import { EdgesToPaging } from 'src/serializers/graphql';
 import * as assign from 'assign-deep';
+import { SecureString } from '../serializers/string';
 
 @Model()
 export class FigmaIntegration {
 
-  @Field()
+  @Field({serializer: new SecureString()})
   token: string;
 
 }
@@ -14,7 +15,7 @@ export class FigmaIntegration {
 @Model()
 export class GitlabIntegration {
 
-  @Field()
+  @Field({serializer: new SecureString()})
   token: string;
 
 }
@@ -22,7 +23,7 @@ export class GitlabIntegration {
 @Model()
 export class GithubIntegration {
 
-  @Field()
+  @Field({serializer: new SecureString()})
   token: string;
 
 }
@@ -73,7 +74,7 @@ export class PagingProjects {
 @Model()
 export class FigmaIntegrationUpdate {
 
-  @Field()
+  @Field({serializer: new SecureString()})
   token: string;
 
 }
@@ -81,7 +82,7 @@ export class FigmaIntegrationUpdate {
 @Model()
 export class GitlabIntegrationUpdate {
 
-  @Field()
+  @Field({serializer: new SecureString()})
   token: string;
 
 }
@@ -89,7 +90,7 @@ export class GitlabIntegrationUpdate {
 @Model()
 export class GithubIntegrationUpdate {
 
-  @Field()
+  @Field({serializer: new SecureString()})
   token: string;
 
 }

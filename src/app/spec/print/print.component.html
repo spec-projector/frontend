@@ -6,7 +6,7 @@
       <ol>
         <li data-price *ngFor="let feature of actor.features">
           <div [attr.data-has-story]="feature.story.length > 0">{{feature.title | joinTokens}}</div>
-          <div *ngIf="(feature | featurePrice:feature.version:feature.rev) as price">
+          <div *ngIf="(feature | featurePrice:feature.version:feature.rev | async) as price">
             {{price | currency}}
           </div>
         </li>
