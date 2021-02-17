@@ -594,7 +594,7 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="label.teams" datatype="html">
+      <trans-unit id="label.actors" datatype="html">
         <source>Teams</source>
         <target>Teams</target>
       </trans-unit>
