@@ -530,10 +530,6 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="label.actors" datatype="html">
-        <source>Teams</source>
-        <target>Teams</target>
-      </trans-unit>
       <trans-unit id="label.knowledge" datatype="html">
         <source>Knowledge</source>
         <target>Knowledge</target>
