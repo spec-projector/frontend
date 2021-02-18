@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 })
 export class IssueGQL extends Query<{ issue }> {
   document = gql`
-query ($url: String!, $token: String!, $system: System!) {
-  issue(url: $url, token: $token, system: $system) {
+query ($input: IssueInput!) {
+  issue(input: $input) {
     state
     assignee {
       name

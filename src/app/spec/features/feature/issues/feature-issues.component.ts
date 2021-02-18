@@ -4,11 +4,14 @@ import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { combineLatest, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
-import { deserialize } from 'serialize-ts';
+import { deserialize, serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
 import { Issue } from 'src/model/spec/planning/issue';
 import { SpecManager } from '../../../../../managers/spec.manager';
 import { IssueState } from '../../../../../enums/issue';
+import { UploadFigmaAssetRequest } from '../../../../../model/figma-asset';
+import { IssueDataRequest } from '../../../../../model/issue-data';
+import { Project } from '../../../../../model/projects';
 import { Feature } from '../../../../../model/spec/planning/feature';
 import { IssueGQL } from './issues.graphql';
 
@@ -27,6 +30,7 @@ export class FeatureIssuesComponent implements OnInit {
 
   progress = {refreshing: false};
   reference: { popover: PopoverInstance } = {popover: null};
+  project: Project;
 
   constructor(public manager: SpecManager,
               private popover: PopoverService,
@@ -39,6 +43,8 @@ export class FeatureIssuesComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({feature}) => this.feature = feature);
+    this.route.data.subscribe(({project, feature}) =>
+      [this.project, this.feature] = [project, feature]);
   }
 
   add(issue: Issue) {
@@ -63,7 +69,12 @@ export class FeatureIssuesComponent implements OnInit {
     for (const issue of this.feature.issues) {
       if (force || !issue.title) {
         queue.push(new Observable<Issue>(o => {
-          this.issueGQL.fetch({url: issue.url, token: gitLabKey, system: 'GITLAB'})
+          const request = new IssueDataRequest({
+            project: this.project.id,
+            url: issue.url,
+            system: issue.system
+          });
+          this.issueGQL.fetch({input: serialize(request)})
             .pipe(map(({data: {issue: i}}) => deserialize(i, Issue)))
             .subscribe(i => {
               Object.assign(issue, i);

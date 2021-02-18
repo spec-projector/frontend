@@ -49,8 +49,8 @@ export class AttachIssueComponent implements OnInit {
     }
 
     attach() {
-        const {resource, url} = this.form.getRawValue();
-        this.attached.emit(new Issue({resource, url}));
+        const {resource, url, system} = this.form.getRawValue();
+        this.attached.emit(new Issue({resource, url, system}));
     }
 
 }
