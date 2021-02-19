@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Feature } from 'src/model/spec/planning/feature';
 
-@Pipe({name: 'featurePrice'})
+@Pipe({name: 'featurePrice', pure: false})
 export class FeaturePricePipe implements PipeTransform {
-  transform(feature: Feature, ..._): Observable<number> {
+  transform(feature: Feature): Observable<number> {
     return new Observable<number>(o => {
       const cost = feature.resources.reduce((price, r) => {
         const resource = feature.spec.resourceTypes.find(res => res.title === r.resource);

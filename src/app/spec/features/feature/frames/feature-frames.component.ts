@@ -58,6 +58,8 @@ export class FeatureFramesComponent implements OnInit {
     this.reference.popover?.hide();
     this.feature.frames.push(frame);
     this.save();
+
+    this.refresh(true);
   }
 
   remove(index: number) {

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
@@ -13,14 +14,18 @@ import { Token } from 'src/model/spec/planning/token';
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.scss']
 })
-export class FeatureComponent {
+export class FeatureComponent implements OnDestroy {
 
   ui = UI;
   localUi = LocalUI;
   editMode = EditMode;
 
+  private destroyed = new Subject();
   private _feature: Feature;
-  private subscriptions: { form: Subscription } = {form: null};
+  private subscriptions: Partial<{
+    feature: Subscription,
+    form: Subscription
+  }> = {};
 
   mode = EditMode.view;
 
@@ -31,14 +36,13 @@ export class FeatureComponent {
 
   @Input()
   set feature(feature: Feature) {
-    if (!!this.subscriptions.form) {
-      this.subscriptions.form.unsubscribe();
-    }
     this._feature = feature;
     this.updateForm();
 
-    feature.changes.subscribe(() => this.updateForm());
+    this.subscriptions.feature?.unsubscribe();
+    this.subscriptions.feature = feature.changes.subscribe(() => this.updateForm());
 
+    this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
       .subscribe(() => {
         const {title} = this.form.getRawValue();
@@ -53,6 +57,11 @@ export class FeatureComponent {
 
   constructor(public manager: SpecManager,
               private fb: FormBuilder) {
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.feature?.unsubscribe();
+    this.subscriptions.form?.unsubscribe();
   }
 
   private updateForm() {

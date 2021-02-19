@@ -1,15 +1,16 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Inject, Input, LOCALE_ID } from '@angular/core';
+import { Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
-import { filter, tap } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
+import { filter, takeUntil, tap } from 'rxjs/operators';
 import { generate as shortid } from 'shortid';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { Actor } from 'src/model/spec/planning/actor';
 import { Feature } from 'src/model/spec/planning/feature';
-import { TextToken } from 'src/model/spec/planning/token';
+import { TextToken, Token } from 'src/model/spec/planning/token';
 import { Language } from '../../../../enums/language';
 
 @Component({
@@ -17,13 +18,17 @@ import { Language } from '../../../../enums/language';
   templateUrl: './actor.component.html',
   styleUrls: ['./actor.component.scss']
 })
-export class ActorComponent {
+export class ActorComponent implements OnDestroy {
 
   ui = UI;
   editMode = EditMode;
   language = Language;
 
   private _actor: Actor;
+  private subscriptions: Partial<{
+    actor: Subscription,
+    form: Subscription
+  }> = {};
 
   instance: { popover: PopoverInstance } = {popover: null};
 
@@ -43,7 +48,16 @@ export class ActorComponent {
     this._actor = actor;
     this.updateForm();
 
-    actor.changes.subscribe(() => this.updateForm());
+    this.subscriptions.actor?.unsubscribe();
+    this.subscriptions.actor = actor.changes.subscribe(() => this.updateForm());
+
+    this.subscriptions.form?.unsubscribe();
+    this.subscriptions.form = this.form.valueChanges
+      .subscribe(() => {
+        const {name} = this.form.getRawValue();
+        this.actor.name = name;
+        this.manager.put(this.actor);
+      });
   }
 
   get actor() {
@@ -56,10 +70,12 @@ export class ActorComponent {
               private fb: FormBuilder,
               public route: ActivatedRoute,
               public router: Router) {
-    this.form.valueChanges
-      .pipe(filter(() => !!this.actor),
-        tap(() => Object.assign(this.actor, this.form.getRawValue())))
-      .subscribe(() => this.manager.put(this.actor));
+
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.actor?.unsubscribe();
+    this.subscriptions.form?.unsubscribe();
   }
 
   private updateForm() {

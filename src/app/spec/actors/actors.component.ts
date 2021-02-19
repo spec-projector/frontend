@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { generate as shortid } from 'shortid';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
@@ -15,12 +17,14 @@ import { LocalUI } from '../../../enums/local-ui';
   templateUrl: './actors.component.html',
   styleUrls: ['./actors.component.scss']
 })
-export class ActorsComponent implements OnInit {
+export class ActorsComponent implements OnInit, OnDestroy {
 
   ui = UI;
   localUi = LocalUI;
   language = Language;
   editMode = EditMode;
+
+  private destroyed = new Subject();
 
   spec: Spec;
   instance: { popover: PopoverInstance } = {popover: null};
@@ -33,7 +37,13 @@ export class ActorsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({spec}) => this.spec = spec);
+    this.route.data.pipe(takeUntil(this.destroyed))
+      .subscribe(({spec}) => this.spec = spec);
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
   addActor() {

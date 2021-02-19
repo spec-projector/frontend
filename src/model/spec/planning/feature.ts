@@ -105,7 +105,6 @@ export class Feature extends Persistence {
   }
 
   linking({spec, actor, epic, sprint}: { spec?: Spec, actor?: Actor, epic?: Epic, sprint?: Sprint }) {
-    // console.log('feature linking', this.title.map(t => t.toString()).join(' '));
     if (spec !== undefined) {
       this.spec = spec;
     }

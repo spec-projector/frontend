@@ -54,7 +54,8 @@
             <jnt-form-label i18n="@@label.figma_key">Figma key</jnt-form-label>
             <jnt-form-control name="token">
               <jnt-input formControlName="token"
-                         placeholder="xxxxx-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></jnt-input>
+                         placeholder="xxxxx-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                         [features]="[ui.feature.allowEmpty]"></jnt-input>
             </jnt-form-control>
           </jnt-form-item>
 
@@ -62,7 +63,8 @@
             <jnt-form-label i18n="@@label.git_lab_key">Git Lab key</jnt-form-label>
             <jnt-form-control name="token">
               <jnt-input formControlName="token"
-                         placeholder="xxxx_xxxx_xxxxxxxxxx"></jnt-input>
+                         placeholder="xxxx_xxxx_xxxxxxxxxx"
+                         [features]="[ui.feature.allowEmpty]"></jnt-input>
             </jnt-form-control>
           </jnt-form-item>
 
@@ -70,7 +72,8 @@
             <jnt-form-label i18n="@@label.git_hub_key">Git Hub key</jnt-form-label>
             <jnt-form-control name="token">
               <jnt-input formControlName="token"
-                         placeholder="xxxx_xxxx_xxxxxxxxxx"></jnt-input>
+                         placeholder="xxxx_xxxx_xxxxxxxxxx"
+                         [features]="[ui.feature.allowEmpty]"></jnt-input>
             </jnt-form-control>
           </jnt-form-item>
         </jnt-stack>
