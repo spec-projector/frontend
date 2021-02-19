@@ -1,16 +1,15 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, Inject, Input, LOCALE_ID, OnDestroy } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
-import { Subject, Subscription } from 'rxjs';
-import { filter, takeUntil, tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { generate as shortid } from 'shortid';
-import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
+import { SpecManager } from 'src/managers/spec.manager';
 import { Actor } from 'src/model/spec/planning/actor';
 import { Feature } from 'src/model/spec/planning/feature';
-import { TextToken, Token } from 'src/model/spec/planning/token';
+import { TextToken } from 'src/model/spec/planning/token';
 import { Language } from '../../../../enums/language';
 
 @Component({
@@ -134,4 +133,5 @@ export class ActorComponent implements OnDestroy {
 
     this.version++;
   }
+
 }

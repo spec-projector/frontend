@@ -12,6 +12,7 @@ import { SpecManager } from '../../../../../managers/spec.manager';
 import { UploadFigmaAssetRequest } from '../../../../../model/figma-asset';
 import { Project } from '../../../../../model/projects';
 import { Feature } from '../../../../../model/spec/planning/feature';
+import { catchGQLErrors } from '../../../../../utils/gql-errors';
 import { UploadFigmaAssetGQL } from './frames.graphql';
 
 @Component({
@@ -73,15 +74,16 @@ export class FeatureFramesComponent implements OnInit {
       if (force || !frame.thumbnail) {
         queue.push(new Observable<string>(o => {
           const request = new UploadFigmaAssetRequest({
-            projectId: this.project.id,
+            project: this.project.id,
             url: frame.url
           });
           this.uploadFigmaAssetGQL.mutate({input: serialize(request)})
+            .pipe(catchGQLErrors())
             .subscribe(({data: {response: {frame: {file}}}}) => {
               frame.thumbnail = file;
               o.next();
               o.complete();
-            });
+            }, err => o.error(err));
         }));
       }
     }

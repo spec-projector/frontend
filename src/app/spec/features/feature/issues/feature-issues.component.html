@@ -46,14 +46,14 @@
                         [image]="avatar"></jnt-avatar>
             <jnt-stack [orientation]="ui.orientation.horizontal">
               <div *ngIf="issue.title">
-                <jnt-link link [attr.closed]="issue.state === issueState.closed"
-                          target="_blank"
+                <jnt-link [attr.closed]="issue.state === issueState.closed"
+                          [target]="ui.target.blank"
                           [source]="issue.url"
                           [title]="issue.title"></jnt-link>
                 <br>
                 <small *ngIf="issue.assignee?.name as name">{{name}}</small>
               </div>
-              <jnt-icon *ngIf="issue.state === issueState.closed" closed
+              <jnt-icon *ngIf="issue.state === issueState.closed"
                         [icon]="ui.icons.checked"></jnt-icon>
               <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
                          [size]="ui.size.small"

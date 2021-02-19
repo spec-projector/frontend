@@ -2,10 +2,9 @@ import { Component, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/managers/spec.manager';
-import { EditMode } from 'src/enums/edit-mode';
 import { Feature } from 'src/model/spec/planning/feature';
 import { Token } from 'src/model/spec/planning/token';
 
@@ -20,7 +19,6 @@ export class FeatureComponent implements OnDestroy {
   localUi = LocalUI;
   editMode = EditMode;
 
-  private destroyed = new Subject();
   private _feature: Feature;
   private subscriptions: Partial<{
     feature: Subscription,

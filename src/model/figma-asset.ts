@@ -5,7 +5,7 @@ import { Field, Model } from 'serialize-ts';
 export class UploadFigmaAssetRequest {
 
   @Field()
-  projectId: string;
+  project: string;
 
   @Field()
   url: string;
