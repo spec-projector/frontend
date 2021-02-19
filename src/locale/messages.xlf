@@ -538,10 +538,6 @@
         <source>Sprints</source>
         <target>Sprints</target>
       </trans-unit>
-      <trans-unit id="label.actors" datatype="html">
-        <source>Actors</source>
-        <target>Actors</target>
-      </trans-unit>
       <trans-unit id="label.validate" datatype="html">
         <source>Validate</source>
         <target>Validate</target>
