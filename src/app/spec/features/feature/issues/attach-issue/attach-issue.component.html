@@ -1,4 +1,14 @@
-<jnt-form [formGroup]="form"
+<ng-template #noResourceTypesTemplate>
+  <jnt-message [icon]="ui.icons.warning">
+    You have no
+    <jnt-link title="resource types"
+              [icon]="{icon: ui.icons.link, position: ui.position.right}"
+              (click)="settings.emit()"></jnt-link>
+  </jnt-message>
+</ng-template>
+
+<jnt-form *ngIf="spec.resourceTypes.length > 0;else noResourceTypesTemplate"
+          [formGroup]="form"
           (submitted)="attach()">
   <jnt-stack [align]="ui.align.stretch">
     <jnt-form-item>

@@ -32,17 +32,16 @@ export class FeatureIssuesComponent implements OnInit {
   reference: { popover: PopoverInstance } = {popover: null};
   project: Project;
 
-  constructor(public manager: SpecManager,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              public manager: SpecManager,
               private popover: PopoverService,
               private issueGQL: IssueGQL,
               private route: ActivatedRoute,
-              private logger: NGXLogger,
-              @Inject(LOCALE_ID) public locale: string) {
-
+              public router: Router,
+              public logger: NGXLogger) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({feature}) => this.feature = feature);
     this.route.data.subscribe(({project, feature}) =>
       [this.project, this.feature] = [project, feature]);
   }

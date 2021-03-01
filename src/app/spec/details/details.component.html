@@ -34,8 +34,8 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Resources"
-               i18n-title="@@label.resources">
+      <jnt-tab title="Resource types"
+               i18n-title="@@label.resource_types">
         <jnt-badge *ngIf="resourceTypesArray.length > 0"
                    [value]="resourceTypesArray.length"></jnt-badge>
         <ng-template #tabContentTemplate>
@@ -60,6 +60,14 @@
                             [shape]="ui.shape.circle"
                             (click)="addResource()"></jnt-button>
               </jnt-stack>
+              <jnt-row>
+                <jnt-col [desktop]="4" [mobile]="6">
+                  <b>Title</b>
+                </jnt-col>
+                <jnt-col [desktop]="2" [mobile]="4">
+                  <b>Hour rate</b>
+                </jnt-col>
+              </jnt-row>
               <jnt-row *ngFor="let r of resourceTypesArray.controls; let i = index"
                        [formGroupName]="i">
                 <jnt-col [desktop]="4" [mobile]="6">

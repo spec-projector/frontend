@@ -1,56 +1,59 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { UI } from '@junte/ui';
-import { filter } from 'rxjs/operators';
-import { Issue } from 'src/model/spec/planning/issue';
-import { Spec } from 'src/model/spec/spec';
-import { IssueSystem } from '../../../../../../enums/issue';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {UI} from '@junte/ui';
+import {filter} from 'rxjs/operators';
+import {Issue} from 'src/model/spec/planning/issue';
+import {Spec} from 'src/model/spec/spec';
+import {IssueSystem} from '../../../../../../enums/issue';
 
 @Component({
-    selector: 'spec-attach-issue',
-    templateUrl: './attach-issue.component.html',
-    styleUrls: ['./attach-issue.component.scss']
+  selector: 'spec-attach-issue',
+  templateUrl: './attach-issue.component.html',
+  styleUrls: ['./attach-issue.component.scss']
 })
 export class AttachIssueComponent implements OnInit {
 
-    ui = UI;
-    issueSystem = IssueSystem;
+  ui = UI;
+  issueSystem = IssueSystem;
 
-    @Input()
-    spec: Spec;
+  @Input()
+  spec: Spec;
 
-    @Output()
-    attached = new EventEmitter<Issue>();
+  @Output()
+  settings = new EventEmitter();
 
-    urlControl = this.fb.control(null, [Validators.required]);
+  @Output()
+  attached = new EventEmitter<Issue>();
 
-    form = this.fb.group({
-        resource: [null, [Validators.required]],
-        url: this.urlControl,
-        system: [null, [Validators.required]]
-    });
+  urlControl = this.fb.control(null, [Validators.required]);
 
-    constructor(private fb: FormBuilder) {
-    }
+  form = this.fb.group({
+    resource: [null, [Validators.required]],
+    url: this.urlControl,
+    system: [null, [Validators.required]]
+  });
 
-    ngOnInit() {
-        this.form.valueChanges
-            .pipe(filter(({system}) => !system))
-            .subscribe(({url}) => {
-                if (/gitlab/.test(url)) {
-                    this.form.patchValue({system: IssueSystem.gitlab},
-                        {emitEvent: false});
-                }
-                if (/github/.test(url)) {
-                    this.form.patchValue({system: IssueSystem.github},
-                        {emitEvent: false});
-                }
-            });
-    }
+  constructor(private fb: FormBuilder) {
+  }
 
-    attach() {
-        const {resource, url, system} = this.form.getRawValue();
-        this.attached.emit(new Issue({resource, url, system}));
-    }
+  ngOnInit() {
+    this.form.valueChanges
+      .pipe(filter(({system}) => !system))
+      .subscribe(({url}) => {
+        if (/gitlab/.test(url)) {
+          this.form.patchValue({system: IssueSystem.gitlab},
+            {emitEvent: false});
+        }
+        if (/github/.test(url)) {
+          this.form.patchValue({system: IssueSystem.github},
+            {emitEvent: false});
+        }
+      });
+  }
+
+  attach() {
+    const {resource, url, system} = this.form.getRawValue();
+    this.attached.emit(new Issue({resource, url, system}));
+  }
 
 }

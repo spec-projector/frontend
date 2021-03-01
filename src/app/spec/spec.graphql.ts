@@ -18,6 +18,12 @@ query Project($id: ID!) {
     figmaIntegration {
       token
     }
+    gitlabIntegration {
+      token
+    }
+    githubIntegration {
+      token
+    }
     owner {
       id
       name

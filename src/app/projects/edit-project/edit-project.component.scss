@@ -1,7 +1,7 @@
 @import "~@junte/ui/lib/assets/styles/jnt-variables";
 @import "~@junte/ui/lib/assets/styles/layout/responsive";
 
-@include min-for-desktop() {
+@include min-for-tablet() {
   :host {
     display: block;
     min-width: 400px;

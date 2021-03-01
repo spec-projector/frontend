@@ -171,7 +171,10 @@ export const routes: Routes = [
                   {
                     path: 'issues',
                     component: FeatureIssuesComponent,
-                    resolve: {feature: ActorFeatureResolver}
+                    resolve: {
+                      feature: ActorFeatureResolver,
+                      project: ProjectResolver
+                    }
                   },
                   {
                     path: 'markdown',

@@ -7,24 +7,34 @@
                            teaser="for creating specifications"
                            i18n-teaser="@@message.projects_teaser">
         <ng-template #headerActionsTemplate>
-            <jnt-button text="Add project"
-                        i18n-text="@@action.add_project"
-                        [icon]="ui.icons.add"
-                        [shape]="ui.shape.circle"
-                        (click)="add()">
-            </jnt-button>
+          <jnt-button text="Add project"
+                      i18n-text="@@action.add_project"
+                      [icon]="ui.icons.add"
+                      [shape]="ui.shape.circle"
+                      (click)="add()">
+          </jnt-button>
         </ng-template>
       </jnt-app-page-header>
 
       <jnt-stack [align]="ui.align.stretch">
-
         <ng-template #noDataTemplate>
-          <jnt-row>
+          <jnt-row *ngIf="progress.loading;else emptyDateTemplate">
             <jnt-col [mobile]="6" [tablet]="3" *ngFor="let i of 8 | mockArray">
-              <jnt-skeleton [type]="ui.skeleton.type.card"
-                            [animated]="progress.loading"></jnt-skeleton>
+              <jnt-skeleton [type]="ui.skeleton.type.card"></jnt-skeleton>
             </jnt-col>
           </jnt-row>
+
+          <ng-template #emptyDateTemplate>
+            <jnt-empty message="No projects yet">
+              <ng-template #descriptionTemplate>
+                <jnt-stack [orientation]="ui.orientation.horizontal"
+                           [align]="ui.align.center">
+                  <jnt-button text="Add" [icon]="ui.icons.add" (click)="add()"></jnt-button>
+                  <p>your first project now!</p>
+                </jnt-stack>
+              </ng-template>
+            </jnt-empty>
+          </ng-template>
         </ng-template>
 
         <ng-container *ngIf="projects.length > 0; else noDataTemplate">

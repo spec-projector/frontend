@@ -18,16 +18,17 @@
     </jnt-message>
   </ng-template>
 
-  <ng-container *ngIf="feature.spec.integration.gitLabKey;else noGitlabKeyTemplate">
+  <ng-container *ngIf="!!project.gitlabIntegration?.token;else noGitlabKeyTemplate">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template #attachTemplate>
         <spec-attach-issue [spec]="feature.spec"
+                           (settings)="router.navigate(['../../../../../details'], {relativeTo: route});reference.popover?.hide()"
                            (attached)="add($event)"></spec-attach-issue>
       </ng-template>
 
       <jnt-button [icon]="ui.icons.add"
                   [shape]="ui.shape.circle"
-                  [jntPopover]="{title: 'Attach issue', contentTemplate: attachTemplate, trigger: ui.trigger.click}"
+                  [jntPopover]="{title: 'Attach issue', contentTemplate: attachTemplate, position: ui.position.right, trigger: ui.trigger.click}"
                   (attached)="reference.popover = $event"></jnt-button>
       <jnt-button [icon]="ui.icons.reload"
                   [shape]="ui.shape.circle"
