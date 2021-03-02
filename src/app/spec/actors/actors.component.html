@@ -58,8 +58,8 @@
     <img data-art src="assets/images/features.svg">
   </ng-template>
 
-  <jnt-stack *ngIf="spec.actors.length > 0; else emptyDataTemplate"
-             cdkDropList [align]="ui.align.stretch"
+  <jnt-stack cdkDropList *ngIf="spec.actors.length > 0; else emptyDataTemplate"
+             [align]="ui.align.stretch"
              (cdkDropListDropped)="moveActor($event)"
              [cdkDropListData]="spec?.actors">
     <jnt-block cdkDrag *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor">
@@ -69,13 +69,13 @@
           <jnt-button cdkDragHandle
                       [icon]="ui.icons.expand"
                       [size]="ui.size.tiny"
-                      [shape]="ui.shape.circle"
-                      [scheme]="ui.scheme.secondary">
+                      [scheme]="ui.scheme.secondary"
+                      [shape]="ui.shape.circle">
           </jnt-button>
           <jnt-button [icon]="ui.icons.delete"
                       [size]="ui.size.tiny"
-                      [shape]="ui.shape.circle"
                       [scheme]="ui.scheme.secondary"
+                      [shape]="ui.shape.circle"
                       [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
                       (attached)="instance.popover = $event">
           </jnt-button>

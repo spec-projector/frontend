@@ -2,38 +2,43 @@
   <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
           (mouseleave)="mode = editMode.view">
     <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-      <input title formControlName="title">
-      <div naming>
+      <input data-title formControlName="title">
+      <div data-auto-name>
         <label [attr.checked]="autoName.value">
           <input type="checkbox" formControlName="autoName">
         </label>
-        <input name formControlName="name">
+        <input data-name formControlName="name">
       </div>
     </ng-container>
   </header>
 
   <ng-template #viewHeader>
-    <h1 title>{{package.title}}</h1>
-    <div naming>
+    <h1 data-title>{{package.title}}</h1>
+    <div data-auto-name>
       <label [attr.checked]="autoName.value">
       </label>
-      <h2 name>{{package.name}}</h2>
+      <h2 data-name>{{package.name}}</h2>
     </div>
   </ng-template>
-  <ul [dndDropzone]="['entity']" dndEffectAllowed="copyMove" (dndDrop)="moveEntity($event)">
-    <li placeholder dndPlaceholderRef></li>
+  <ul data-entities dndEffectAllowed="copyMove"
+      [dndDropzone]="['entity']"
+      (dndDrop)="moveEntity($event)">
+    <li data-placeholder dndPlaceholderRef></li>
     <li *ngFor="let entity of package.entities; let i = index;"
         [dndDraggable]="i"
         dndType="entity">
-      <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny">
+      <jnt-stack data-actions *ngIf="manager.mode == editMode.edit"
+                 [gutter]="ui.gutter.small">
         <jnt-button [icon]="ui.icons.edit"
                     [size]="ui.size.tiny"
                     [scheme]="ui.scheme.secondary"
+                    [shape]="ui.shape.circle"
                     (click)="router.navigate([package.id, 'entities', entity.id], {relativeTo: route})">
         </jnt-button>
-        <jnt-button handle dndHandle
+        <jnt-button dndHandle
                     [icon]="ui.icons.expand"
                     [size]="ui.size.tiny"
+                    [shape]="ui.shape.circle"
                     [scheme]="ui.scheme.secondary">
         </jnt-button>
       </jnt-stack>
@@ -41,13 +46,16 @@
       <jnt-button [icon]="ui.icons.delete"
                   [size]="ui.size.tiny"
                   [scheme]="ui.scheme.secondary"
+                  [shape]="ui.shape.circle"
                   (click)="deleteEntity(i)">
       </jnt-button>
     </li>
-    <li add>
+    <li data-add>
       <jnt-button *ngIf="manager.mode == editMode.edit"
-                  [icon]="ui.icons.add" [size]="ui.size.tiny"
+                  [icon]="ui.icons.add"
+                  [size]="ui.size.tiny"
                   [scheme]="ui.scheme.secondary"
+                  [shape]="ui.shape.circle"
                   (click)="addEntity()"></jnt-button>
     </li>
   </ul>

@@ -1,4 +1,4 @@
-@import "../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -7,28 +7,28 @@
 
 form {
   position: relative;
+}
 
-  header {
-    [data-name] {
-      display: flex;
-      align-items: center;
-      padding: 0;
-      margin: 0;
-      font-weight: normal;
-      border: none;
-      box-sizing: border-box;
-      outline: none;
-      height: 1.4em;
-      line-height: 1.1em;
-      overflow: hidden;
-      background-color: transparent;
-      white-space: nowrap;
-      width: 100%;
-      font-size: 2em;
+header {
+  [data-name] {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    height: 1.4em;
+    line-height: 1.1em;
+    overflow: hidden;
+    background-color: transparent;
+    white-space: nowrap;
+    width: 100%;
+    font-size: 2em;
 
-      &:focus {
-        color: black;
-      }
+    &:focus {
+      color: black;
     }
   }
 }

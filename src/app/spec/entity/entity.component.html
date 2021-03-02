@@ -4,7 +4,7 @@
         <ng-container *ngIf="mode == editMode.edit; else viewHeader">
             <input title formControlName="title">
             <div naming>
-                <label [attr.checked]="autoName.value">
+                <label [attr.checked]="autoNameControl.value">
                     <input type="checkbox" formControlName="autoName">
                 </label>
                 <input name formControlName="name">
@@ -15,7 +15,7 @@
     <ng-template #viewHeader>
         <h1 title>{{entity.title}}</h1>
         <div naming>
-            <label [attr.checked]="autoName.value">
+            <label [attr.checked]="autoNameControl.value">
             </label>
             <h2 name>{{entity.name}}</h2>
         </div>
