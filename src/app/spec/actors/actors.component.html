@@ -11,7 +11,7 @@
   </ng-template>
 </jnt-app-page-header>
 
-<jnt-collapsible data-library
+<jnt-collapsible data-library *ngIf="spec.epics.length > 0"
                  title="Library"
                  i18n-title="@@label.library">
   <ng-template #collapsibleContentTemplate>
@@ -33,26 +33,31 @@
 
   <ng-template #emptyDataTemplate>
     <jnt-message>
-      <ng-container [ngSwitch]="locale">
-        <ng-container *ngSwitchDefault>
-          <p>Let's think your app is <b>a game</b>. Users are players with some goals. To reach their goals we should
-            satisfy their <b>requirements</b>.</p>
-          <p>E.g. <b>Client</b> wants make an order. <b>Operator</b> wants process the order. <b>Carrier</b> wants
-            deliver the order.</p>
-          <p>Try to split users of you app by groups - roles.</p>
+      <jnt-stack>
+        <ng-container [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            <p>Let's think your app is <b>a game</b>. Users are players with some goals.
+              To reach their goals we should satisfy their <b>requirements</b>.</p>
+            <p>E.g. <b>Client</b> wants make an order.
+              <b>Operator</b> wants process the order.
+              <b>Carrier</b> wants deliver the order.</p>
+            <p>Try to split users of you app by groups - roles.</p>
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            <p>Давайте представим, что ваше приложение это <b>игра</b>.
+              Пользователи - это игроки с некоторыми целями.
+              Для достижения их целей мы должны удовлетворить их <b>требования</b>.</p>
+            <p>Например. <b>Клиент</b> хочет сделать заказ.
+              <b>Оператор</b> хочет обработать заказ.
+              <b>Курьер</b> хочет доставить заказ.</p>
+            <p>Попробуйте разделить пользователей Вашего приложения по группам - ролям.</p>
+          </ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="language.ru">
-          <p>Давайте представим, что ваше приложение это <b>игра</b>. Пользователи - это игроки с некоторыми целями. Для
-            достижения их целей мы должны удовлетворить их <b>требования</b>.</p>
-          <p>Например. <b>Клиент</b> хочет сделать заказ. <b>Оператор</b> хочет обработать заказ. <b>Курьер</b> хочет
-            доставить заказ.</p>
-          <p>Попробуйте разбить пользователей вашего приложения по группам - ролям.</p>
-        </ng-container>
-      </ng-container>
-      <jnt-button *ngIf="manager.mode ==  editMode.edit"
-                  [icon]="ui.icons.add"
-                  text="Add first actor"
-                  (click)="addActor()"></jnt-button>
+        <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                    [icon]="ui.icons.add"
+                    text="Add first actor"
+                    (click)="addActor()"></jnt-button>
+      </jnt-stack>
     </jnt-message>
 
     <img data-art src="assets/images/features.svg">

@@ -16,27 +16,31 @@
 
   <ng-template #emptyDataTemplate>
     <jnt-message>
-      <ng-container [ngSwitch]="locale">
-        <ng-container *ngSwitchDefault>
-          <p>Features could be grouped by similar area of applying.</p>
-          <p>E.g. an actor <b>Client</b> wants <b>Register</b>, <b>Login</b>, <b>Restore password</b>. These features can be grouped by epic <b>User Accounts</b>.</p>
+      <jnt-stack>
+        <ng-container [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            <p>Features could be grouped by similar applying area.</p>
+            <p>E.g. an actor <b>Client</b> wants <b>Register</b>, <b>Login</b>,
+              <b>Restore password</b>. These features  can be grouped by epic <b>User Accounts</b>.</p>
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            <p>Возможности могут быть сгруппированы по схожей области применения.</p>
+            <p>Например актёр <b>Клиент</b> хочет <b>Зарегистрироваться</b>, <b>Войти</b>, <b>Восстановить пароль</b>.
+              Эти возможности могут быть сгруппированы по эпику <b>Учетные записи пользователей</b>.</p>
+          </ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="language.ru">
-          <p>Возможности могут быть сгруппированы по схожей области применения.</p>
-          <p>Например актёр <b>Клиент</b> хочет <b>Зарегистрироваться</b>, <b>Войти</b>, <b>Восстановить пароль</b>. Эти возможности могут быть сгруппированы по эпиу <b>Учетные записи пользователей</b>.</p>
-        </ng-container>
-      </ng-container>
-      <jnt-button *ngIf="manager.mode ==  editMode.edit"
-                  [icon]="ui.icons.add"
-                  text="Add first epic"
-                  (click)="addEpic()"></jnt-button>
+        <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                    [icon]="ui.icons.add"
+                    text="Add first epic"
+                    (click)="addEpic()"></jnt-button>
+      </jnt-stack>
     </jnt-message>
 
     <img data-art src="assets/images/epics.svg">
   </ng-template>
 
-  <jnt-stack  *ngIf="spec.epics.length > 0; else emptyDataTemplate"
-              cdkDropList [align]="ui.align.stretch"
+  <jnt-stack *ngIf="spec.epics.length > 0; else emptyDataTemplate"
+             cdkDropList [align]="ui.align.stretch"
              (cdkDropListDropped)="moveEpic($event)"
              [cdkDropListData]="spec.epics">
     <jnt-block cdkDrag *ngFor="let epic of spec.epics; let i = index; trackBy: trackEpic">

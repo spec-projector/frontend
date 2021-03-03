@@ -1,7 +1,7 @@
 <jnt-stack [align]="ui.align.stretch">
 
-  <ng-template #noGitlabKeyTemplate>
-    <jnt-message [scheme]="ui.scheme.fail">
+  <ng-template #notConfiguredTemplate>
+    <jnt-message *ngIf="!project.gitlabIntegration?.token" [scheme]="ui.scheme.secondary">
       <span [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
           You have no <b>Gitlab</b> key in integration
@@ -16,9 +16,25 @@
                 [source]="['../../../../..', 'details']"
                 [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
     </jnt-message>
+
+    <jnt-message *ngIf="feature.spec.resourceTypes.length <= 0" [scheme]="ui.scheme.secondary">
+      <span [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          You have no <b>Resource Types</b> in the project
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          У Вас нет <b>Gitlab</b> ключа в интеграции
+        </ng-container>
+      </span>
+
+      <jnt-link title="General"
+                i18n-title="@@label.general"
+                [source]="['../../../../..', 'details']"
+                [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
+    </jnt-message>
   </ng-template>
 
-  <ng-container *ngIf="!!project.gitlabIntegration?.token;else noGitlabKeyTemplate">
+  <ng-container *ngIf="!!project.gitlabIntegration?.token || feature.spec.resourceTypes.length <= 0;else notConfiguredTemplate">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template #attachTemplate>
         <spec-attach-issue [spec]="feature.spec"

@@ -1,33 +1,35 @@
 <form [formGroup]="form">
   <ng-template #noResourceTypesTemplate>
-    <jnt-message [scheme]="ui.scheme.fail">
-      <span [ngSwitch]="locale">
+    <jnt-message [icon]="ui.icons.question" [scheme]="ui.scheme.secondary">
+      <ng-container [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
-          You have no <b>resource types</b> in project
+          <span>You have no <b>resource types</b> in the </span>
+          <jnt-link title="project"
+                    [source]="['../../../../..', 'details', {page: 'resource_types'}]"
+                    [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
         </ng-container>
         <ng-container *ngSwitchCase="language.ru">
-          У Вас не определены <b>типы ресурсов</b> в проекте
+          <span>У Вас не определены <b>типы ресурсов</b> в </span>
+          <jnt-link title="проекте"
+                    [source]="['../../../../..', 'details', {page: 'resource_types'}]"
+                    [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
         </ng-container>
-      </span>
-      <jnt-link title="settings"
-                i18n-title="@@label.settings"
-                [source]="['../../../../..', 'details']"
-                [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
+      </ng-container>
     </jnt-message>
   </ng-template>
 
   <ng-container *ngIf="feature.spec.resourceTypes.length > 0;else noResourceTypesTemplate">
     <ng-template #fillResourcesTemplate>
       <jnt-stack [align]="ui.align.stretch">
-        <jnt-message>
-          <p [ngSwitch]="locale">
+        <jnt-message [icon]="ui.icons.question" [scheme]="ui.scheme.secondary">
+          <span [ngSwitch]="locale">
             <ng-container *ngSwitchDefault>
-              Resources are used for implementing feature.
+              Resources are how much hours team needs to implement the feature.
             </ng-container>
             <ng-container *ngSwitchCase="language.ru">
-              Ресурсы используемые для расширения возможности.
+              Ресурсы - это оценка времени которое потребуется команде для реализации функции.
             </ng-container>
-          </p>
+          </span>
         </jnt-message>
         <jnt-stack [orientation]="ui.orientation.horizontal">
           <jnt-button text="Fill resources"
@@ -47,6 +49,14 @@
                         (click)="add()"></jnt-button>
           </jnt-stack>
 
+          <jnt-row>
+            <jnt-col [wide]="3" [desktop]="4" [tablet]="4" [mobile]="6">
+              <b>Resource</b>
+            </jnt-col>
+            <jnt-col [tablet]="2" [mobile]="4">
+              <b>Hours</b>
+            </jnt-col>
+          </jnt-row>
           <jnt-row *ngFor="let r of resources.controls; let i = index"
                    [formGroupName]="i">
             <jnt-col [wide]="3" [desktop]="4" [tablet]="4" [mobile]="6">

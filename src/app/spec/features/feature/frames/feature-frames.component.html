@@ -1,7 +1,7 @@
 <jnt-stack [align]="ui.align.stretch">
 
   <ng-template #noFigmaKeyTemplate>
-    <jnt-message [scheme]="ui.scheme.fail">
+    <jnt-message [icon]="ui.icons.question" [scheme]="ui.scheme.fail">
       <span [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
            You have no <b>Figma</b> key in integration
@@ -15,7 +15,7 @@
 
   <ng-container *ngIf="!!project.figmaIntegration?.token;else noFigmaKeyTemplate">
     <jnt-stack [align]="ui.align.stretch">
-      <jnt-message *ngIf="feature.frames.length <= 0">
+      <jnt-message *ngIf="feature.frames.length <= 0" [icon]="ui.icons.question">
         <ng-container [ngSwitch]="locale">
           <ng-container *ngSwitchDefault>
             <p>Designer using <b>user story</b> should draw design & prototype then <b>attach</b> it here.</p>

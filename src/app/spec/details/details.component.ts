@@ -54,10 +54,10 @@ export class DetailsComponent implements OnInit {
     resourceTypes: this.resourceTypesArray
   });
 
-  constructor(private fb: FormBuilder,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              private fb: FormBuilder,
               public manager: SpecManager,
-              private route: ActivatedRoute,
-              @Inject(LOCALE_ID) public locale: string) {
+              public route: ActivatedRoute) {
   }
 
   ngOnInit() {
