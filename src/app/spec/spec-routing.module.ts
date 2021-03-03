@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ActorsComponent } from 'src/app/spec/actors/actors.component';
-import { DetailsComponent } from 'src/app/spec/details/details.component';
-import { EpicsComponent } from 'src/app/spec/epics/epics.component';
-import { PackagesComponent } from 'src/app/spec/packages/packages.component';
-import { SpecComponent } from 'src/app/spec/spec.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ActorsComponent} from 'src/app/spec/actors/actors.component';
+import {DetailsComponent} from 'src/app/spec/details/details.component';
+import {EpicsComponent} from 'src/app/spec/epics/epics.component';
+import {PackagesComponent} from 'src/app/spec/packages/packages.component';
+import {SpecComponent} from 'src/app/spec/spec.component';
 import {
   ActorFeatureResolver,
   ActorResolver,
@@ -14,33 +14,45 @@ import {
   ProjectResolver,
   SpecResolver
 } from 'src/app/spec/spec.resolvers';
-import { SprintComponent } from 'src/app/spec/sprints/sprint/sprint.component';
-import { SprintsComponent } from 'src/app/spec/sprints/sprints.component';
-import { SprintResolver } from 'src/app/spec/sprints/sprints.resolver';
-import { TermsComponent } from 'src/app/spec/terms/terms.component';
-import { ValidateComponent } from 'src/app/spec/validate/validate.component';
-import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
-import { EntityEditComponent } from './entity/edit/entity-edit.component';
-import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
-import { FeatureEditGraphqlComponent } from './features/feature/api/edit-graphql/feature-edit-graphql.component';
-import { FeatureApiComponent } from './features/feature/api/feature-api.component';
-import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
-import { FeatureFramesComponent } from './features/feature/frames/feature-frames.component';
-import { FeatureIssuesComponent } from './features/feature/issues/feature-issues.component';
-import { FeatureMarkdownComponent } from './features/feature/markdown/feature-markdown.component';
-import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
-import { FeatureStoryComponent } from './features/feature/story/feature-story.component';
-import { FeaturesComponent } from './features/features.component';
-import { ModelComponent } from './model/model.component';
-import { PackageEditComponent } from './package/edit/package-edit.component';
-import { PrintComponent } from './print/print.component';
+import {SprintComponent} from 'src/app/spec/sprints/sprint/sprint.component';
+import {SprintsComponent} from 'src/app/spec/sprints/sprints.component';
+import {SprintResolver} from 'src/app/spec/sprints/sprints.resolver';
+import {TermsComponent} from 'src/app/spec/terms/terms.component';
+import {ValidateComponent} from 'src/app/spec/validate/validate.component';
+import {ActorEditComponent} from './actors/actor/edit/actor-edit.component';
+import {EntityEditComponent} from './entity/edit/entity-edit.component';
+import {EntityFieldsComponent} from './entity/fields/entity-fields.component';
+import {FeatureEditGraphqlComponent} from './features/feature/api/edit-graphql/feature-edit-graphql.component';
+import {FeatureApiComponent} from './features/feature/api/feature-api.component';
+import {FeatureEditComponent} from './features/feature/edit/feature-edit.component';
+import {FeatureFramesComponent} from './features/feature/frames/feature-frames.component';
+import {FeatureIssuesComponent} from './features/feature/issues/feature-issues.component';
+import {FeatureMarkdownComponent} from './features/feature/markdown/feature-markdown.component';
+import {FeatureResourcesComponent} from './features/feature/resources/feature-resources.component';
+import {FeatureStoryComponent} from './features/feature/story/feature-story.component';
+import {FeaturesComponent} from './features/features.component';
+import {ModelComponent} from './model/model.component';
+import {PackageEditComponent} from './package/edit/package-edit.component';
+import {PrintComponent} from './print/print.component';
+import {Package} from '../../model/spec/orm/package';
+import {Project} from '../../model/projects';
+import {Actor} from '../../model/spec/planning/actor';
+import {Entity} from '../../model/spec/orm/entity';
 
-export function getProject({project}) {
+export function getProject({project}: { project: Project }) {
   return project.title;
 }
 
-export function getActor({actor}) {
+export function getActor({actor}: { actor: Actor }) {
   return actor.name;
+}
+
+export function getPackage({pack}: { pack: Package }) {
+  return pack.title;
+}
+
+export function getEntity({entity}: { entity: Entity }) {
+  return entity.title;
 }
 
 export function getSprint({sprint}) {
@@ -211,11 +223,13 @@ export const routes: Routes = [
             path: ':pack',
             component: PackageEditComponent,
             resolve: {pack: PackageResolver},
+            data: {breadcrumb: {label: getPackage, disabled: true}},
             children: [
               {
                 path: 'entities/:entity',
                 component: EntityEditComponent,
                 resolve: {entity: EntityResolver},
+                data: {breadcrumb: {label: getEntity}},
                 children: [
                   {
                     path: '',

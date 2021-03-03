@@ -41,12 +41,14 @@
                  [value]="spec.epics.length"></jnt-badge>
     </jnt-menu-item>
 
-    <!--
-    <jnt-menu-item [link]="['packages']" title="Model"
-                   [icon]="localUi.icons.model">
-      <jnt-badge [value]="spec?.packages.length"></jnt-badge>
+    <jnt-menu-item [link]="['packages']"
+                   title="Model"
+                   i18n-title="@@label.model"
+                   [icon]="localUi.icons.model"
+                   [matching]="ui.matching.wildcard">
+      <jnt-badge *ngIf="spec?.packages.length > 0"
+                 [value]="spec?.packages.length"></jnt-badge>
     </jnt-menu-item>
-    -->
 
     <!--
     <jnt-menu-item [link]="['terms']" title="Knowledge"
@@ -62,6 +64,7 @@
       <jnt-badge [value]="errors.length.toString()"></jnt-badge>
     </jnt-menu-item>
     -->
+
   </jnt-menu>
 </jnt-app-aside>
 

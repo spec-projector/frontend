@@ -39,8 +39,8 @@
     <img data-art src="assets/images/epics.svg">
   </ng-template>
 
-  <jnt-stack *ngIf="spec.epics.length > 0; else emptyDataTemplate"
-             cdkDropList [align]="ui.align.stretch"
+  <jnt-stack cdkDropList *ngIf="spec.epics.length > 0; else emptyDataTemplate"
+             [align]="ui.align.stretch"
              (cdkDropListDropped)="moveEpic($event)"
              [cdkDropListData]="spec.epics">
     <jnt-block cdkDrag *ngFor="let epic of spec.epics; let i = index; trackBy: trackEpic">

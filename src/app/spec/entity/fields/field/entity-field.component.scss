@@ -1,4 +1,4 @@
-@import "../../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
@@ -74,10 +74,6 @@ header {
       flex: 1;
     }
   }
-}
-
-[required] {
-  margin-left: $jnt-gutter-small;
 }
 
 [typing] {

@@ -1,30 +1,33 @@
 <form [formGroup]="form" (mouseenter)="manager.mode == editMode.edit ? mode = editMode.edit : null"
       (mouseleave)="mode = editMode.view">
-  <div *ngIf="mode == editMode.edit" editor>
+  <div editor *ngIf="mode == editMode.edit">
     <header>
-      <input fitWidth title formControlName="title">
+      <input title fitWidth formControlName="title">
       <div naming>
         <label [attr.checked]="autoName.value">
           <input type="checkbox" formControlName="autoName">
         </label>
-        <input fitWidth name formControlName="name">
+        <input name fitWidth formControlName="name">
       </div>
     </header>
     <div [attr.typing]="typeControl.value">
-      <select type formControlName="type">
-        <option [value]="fieldType.boolean">boolean</option>
-        <option [value]="fieldType.string">string</option>
-        <option [value]="fieldType.number">number</option>
-        <option [value]="fieldType.date">date</option>
-        <option [value]="fieldType.reference">reference</option>
-        <option [value]="fieldType.array">array</option>
-      </select>
+      <jnt-switcher formControlName="type"
+                    [orientation]="ui.orientation.vertical">
+        <jnt-switcher-option label="boolean" [value]="fieldType.boolean"></jnt-switcher-option>
+        <jnt-switcher-option label="string" [value]="fieldType.string"></jnt-switcher-option>
+        <jnt-switcher-option label="number" [value]="fieldType.number"></jnt-switcher-option>
+        <jnt-switcher-option label="date" [value]="fieldType.date"></jnt-switcher-option>
+        <jnt-switcher-option label="reference" [value]="fieldType.reference"></jnt-switcher-option>
+        <jnt-switcher-option label="array" [value]="fieldType.array"></jnt-switcher-option>
+      </jnt-switcher>
       <br>
       <label>
         <jnt-stack [orientation]="ui.orientation.horizontal"
                    [gutter]="ui.gutter.tiny">
-          <small i18n="@@label.required">required</small>
-          <input type="checkbox" formControlName="required">
+          <jnt-checkbox formControlName="required"
+                        label="required"
+                        label-i18n="@@label.required"
+                        [size]="ui.size.small"></jnt-checkbox>
         </jnt-stack>
       </label>
       <br>
@@ -40,7 +43,7 @@
   </div>
   <header>
     <h1 title>{{field.title}}
-      <jnt-label required *ngIf="field.required"
+      <jnt-label *ngIf="field.required"
                  [size]="ui.size.small"
                  [color]="ui.color.redDark"
                  label="required"></jnt-label>

@@ -29,11 +29,11 @@ export class ActorsComponent implements OnInit, OnDestroy {
   spec: Spec;
   instance: { popover: PopoverInstance } = {popover: null};
 
-  constructor(public manager: SpecManager,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              public manager: SpecManager,
               public popover: PopoverService,
               public route: ActivatedRoute,
-              public router: Router,
-              @Inject(LOCALE_ID) public locale: string) {
+              public router: Router) {
   }
 
   ngOnInit() {
