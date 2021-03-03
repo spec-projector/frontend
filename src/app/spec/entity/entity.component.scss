@@ -1,11 +1,11 @@
-@import "../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 form {
   position: relative;
 }
 
 header {
-  [title], [name] {
+  [data-title], [data-name] {
     display: flex;
     align-items: center;
     padding: 0;
@@ -26,11 +26,11 @@ header {
     }
   }
 
-  [title] {
+  [data-title] {
     font-size: 1em;
   }
 
-  [naming] {
+  [data-auto-name] {
     display: flex;
     align-items: center;
 
@@ -55,10 +55,11 @@ header {
       }
     }
 
-    [name] {
-      color: silver;
-      font-size: 1em;
+    [data-name] {
       flex: 1;
+      color: silver;
+      font-size: .85em;
+      line-height: 2em;
     }
   }
 }

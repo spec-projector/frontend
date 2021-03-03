@@ -11,15 +11,17 @@
   </ng-template>
 
   <jnt-stack [align]="ui.align.stretch">
-    <jnt-message *ngIf="feature.graphql.length <= 0">
-      <p [ngSwitch]="locale">
+    <jnt-message *ngIf="feature.graphql.length <= 0"
+                 [icon]="ui.icons.question"
+                 [scheme]="ui.scheme.secondary">
+      <ng-container [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
-          API is a contract between front-end & back-end side.
+          API is a contracts between front-end & back-end side.
         </ng-container>
         <ng-container *ngSwitchCase="language.ru">
-          API это договор между front-end и back-end сторонами.
+          API это договоренности между front-end и back-end разработчиками.
         </ng-container>
-      </p>
+      </ng-container>
     </jnt-message>
 
     <jnt-stack [orientation]="ui.orientation.horizontal">

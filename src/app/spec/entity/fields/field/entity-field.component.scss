@@ -4,26 +4,6 @@
   display: block;
 }
 
-form {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-}
-
-[editor] {
-  position: absolute;
-  top: -($jnt-gutter-small);
-  left: -($jnt-gutter-small);
-  background: $jnt-white-color;
-  border-radius: $jnt-corner-normal;
-  box-shadow: $jnt-shadow-light;
-  box-sizing: border-box;
-  padding: $jnt-gutter-small;
-  z-index: 100;
-  display: flex;
-  align-items: flex-start;
-}
-
 header {
   [title], [name] {
     display: flex;
@@ -74,12 +54,4 @@ header {
       flex: 1;
     }
   }
-}
-
-[typing] {
-  margin-left: $jnt-gutter-normal;
-}
-
-select {
-  font-size: .85em;
 }

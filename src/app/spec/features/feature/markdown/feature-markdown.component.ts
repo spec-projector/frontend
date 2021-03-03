@@ -1,5 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UI } from '@junte/ui';
 import { ClipboardService } from 'ngx-clipboard';
 import { Language } from 'src/enums/language';
 import { Feature } from 'src/model/spec/planning/feature';
@@ -16,6 +17,7 @@ export class FeatureMarkdownComponent implements OnInit, AfterViewChecked {
 
   tokenType = TokenType;
   language = Language;
+  ui = UI;
   consts = {baseUri: BASE_URI};
 
   @ViewChild('raw', {static: false, read: ElementRef})

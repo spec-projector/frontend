@@ -22,14 +22,16 @@
     <ng-template #fillResourcesTemplate>
       <jnt-stack [align]="ui.align.stretch">
         <jnt-message [icon]="ui.icons.question" [scheme]="ui.scheme.secondary">
-          <span [ngSwitch]="locale">
+          <jnt-stack [ngSwitch]="locale">
             <ng-container *ngSwitchDefault>
-              Resources are how much hours team needs to implement the feature.
+              <p>How much <b>hours</b> team needs to implement the feature?</p>
+              <p>Make <b>time estimates</b> with your <b>expert developers</b> and provide it to the <b>Customer</b>.</p>
             </ng-container>
             <ng-container *ngSwitchCase="language.ru">
-              Ресурсы - это оценка времени которое потребуется команде для реализации функции.
+              <p>Сколько времени потребуется команде для реализации функции?</p>
+              <p>Оцените преполагаемое время разработки с Вашими опытными разработчиками.</p>
             </ng-container>
-          </span>
+          </jnt-stack>
         </jnt-message>
         <jnt-stack [orientation]="ui.orientation.horizontal">
           <jnt-button text="Fill resources"

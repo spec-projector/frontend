@@ -1,62 +1,29 @@
-@import "../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
 
 :host {
   display: block;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+[data-field] {
+  flex: 1;
 }
 
-[field] {
-  display: flex;
-  align-items: flex-start;
-  background-color: $jnt-white-color;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 10px;
-  padding: 5px;
-
-  spec-entity-field {
-    flex: 1;
+.cdk-drag {
+  &-preview {
+    box-sizing: border-box;
+    box-shadow: $jnt-shadow-normal;
   }
 
-  &[placeholder] {
-    border: 1px solid black;
-    height: 30px;
+  &-dragging .cdk-drag {
+    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
   }
 
-  &:not(:last-child) {
-    border-bottom: 1px dotted $jnt-secondary-color;
-    margin-bottom: $jnt-gutter-tiny;
+  &-animating {
+    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
   }
 
-  [actions] {
-    opacity: .1;
-    margin: 0 $jnt-gutter-small 0 0;
-
-    &:hover {
-      opacity: 1;
-      transition: .25s opacity;
-    }
+  &-placeholder {
+    opacity: 0.5;
+    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
   }
-}
-
-.cdk-drag-preview {
-  box-shadow: $jnt-shadow-normal;
-}
-
-.cdk-drop-dragging .cdk-drag {
-  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.cdk-drag-animating {
-  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.cdk-drag-placeholder {
-  opacity: 0.5;
-  transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { UI } from '@junte/ui';
+import { PopoverInstance, UI } from '@junte/ui';
 import { Entity } from 'src/model/spec/orm/entity';
 import { EntityField, FieldType } from 'src/model/spec/orm/entity-field';
 import { merge } from 'rxjs';
@@ -36,7 +36,11 @@ export class EntityFieldComponent {
     reference: null
   });
 
-  mode = EditMode.view;
+  mode: { header: EditMode, required: EditMode, type: EditMode } = {
+    header: EditMode.view,
+    required: EditMode.view,
+    type: EditMode.view
+  };
 
   @Input() set field(field: EntityField) {
     this._field = field;

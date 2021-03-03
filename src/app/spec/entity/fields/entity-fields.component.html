@@ -10,25 +10,29 @@
   </ng-template>
 </jnt-app-page-header>
 
-<ul cdkDropList (cdkDropListDropped)="moveField($event)" [cdkDropListData]="entity.fields">
-  <li *ngFor="let field of entity.fields; let i = index; trackBy: trackField" cdkDrag field>
-    <jnt-stack *ngIf="manager.mode == editMode.edit" actions [gutter]="ui.gutter.tiny"
-               [orientation]="ui.orientation.horizontal">
+<jnt-stack cdkDropList (cdkDropListDropped)="moveField($event)"
+           [align]="ui.align.stretch"
+           [gutter]="ui.gutter.small"
+           [cdkDropListData]="entity.fields">
+  <jnt-card cdkDrag *ngFor="let field of entity.fields; let i = index; trackBy: trackField">
+    <jnt-stack [orientation]="ui.orientation.horizontal">
       <jnt-button cdkDragHandle
+                  *ngIf="manager.mode == editMode.edit"
                   [icon]="ui.icons.expand"
                   [size]="ui.size.tiny"
                   [scheme]="ui.scheme.secondary"
                   [shape]="ui.shape.circle">
       </jnt-button>
-      <jnt-button [icon]="ui.icons.delete"
+      <spec-entity-field data-field [field]="field"
+                         (changed)="manager.put(entity)">
+      </spec-entity-field>
+      <jnt-button *ngIf="manager.mode == editMode.edit"
+                  [icon]="ui.icons.delete"
                   [size]="ui.size.tiny"
                   [scheme]="ui.scheme.secondary"
                   [shape]="ui.shape.circle"
                   (click)="deleteField(i)">
       </jnt-button>
     </jnt-stack>
-    <spec-entity-field [field]="field"
-                       (changed)="manager.put(entity)">
-    </spec-entity-field>
-  </li>
-</ul>
+  </jnt-card>
+</jnt-stack>

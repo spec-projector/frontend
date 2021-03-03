@@ -31,6 +31,25 @@
   background-color: $jnt-secondary-color;
 }
 
+[data-library] {
+  position: fixed;
+  top: 90px;
+  right: 100px;
+  box-shadow: $jnt-shadow-normal;
+  z-index: 5;
+  width: 300px;
+
+  div {
+    @extend %epic;
+    cursor: move;
+    user-select: none;
+
+    &:not(:last-child) {
+      margin-right: $jnt-gutter-small;
+    }
+  }
+}
+
 .cdk-drag {
   &-preview {
     box-sizing: border-box;
@@ -51,23 +70,3 @@
     transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
   }
 }
-
-[data-library] {
-  position: fixed;
-  top: 90px;
-  right: 100px;
-  box-shadow: $jnt-shadow-normal;
-  z-index: 5;
-  width: 300px;
-
-  div {
-    @extend %epic;
-    cursor: move;
-    user-select: none;
-
-    &:not(:last-child) {
-      margin-right: $jnt-gutter-small;
-    }
-  }
-}
-

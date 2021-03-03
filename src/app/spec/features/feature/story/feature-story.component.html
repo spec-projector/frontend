@@ -1,18 +1,19 @@
 <ng-template #addStoryTemplate>
   <jnt-stack [align]="ui.align.stretch">
-    <jnt-message>
-      <ng-container [ngSwitch]="locale">
+    <jnt-message [icon]="ui.icons.question"
+                 [scheme]="ui.scheme.secondary">
+      <jnt-stack [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
-          <p>Feature is a <b>function</b> of the app which described by user's story.</p>
+          <p>Feature is a <b>function</b> of your application which is described by <b>User Story</b>.</p>
           <p>Story is what an <b>actor</b> expects to see and how interact.
             Story is used for creating <b>design</b> sketches by designer.</p>
-          <p>Use special keywords I <b>see</b>, I <b>can</b>. Please check some examples.</p>
+          <p>Use special keywords <b>I see</b>, <b>I can</b>. Please check some examples.</p>
           <p>As <b>Manager</b> I want to <b>Upload avatar</b></p>
           <ol>
-            <li><b>I see</b> personal interface</li>
+            <li><b>I see</b> home page</li>
             <li><b>I can</b> press on avatar in main app menu</li>
             <li><b>I see</b> dropdown menu</li>
-            <li><b>I can</b> select <b>personal settings</b> item</li>
+            <li><b>I can</b> select <b>personal settings</b></li>
           </ol>
         </ng-container>
         <ng-container *ngSwitchCase="language.ru">
@@ -28,7 +29,7 @@
             <li><b>Я могу</b> выбрать пункт<b>личные настройки</b>/li>
           </ol>
         </ng-container>
-      </ng-container>
+      </jnt-stack>
 
     </jnt-message>
     <jnt-stack [orientation]="ui.orientation.horizontal">
@@ -41,47 +42,49 @@
 </ng-template>
 
 <ng-container *ngIf="feature.story.length;else addStoryTemplate">
-  <small [ngSwitch]="locale">
-    <ng-container *ngSwitchDefault>
-      Use keys
-      <jnt-label [size]="ui.size.small"
-                 [color]="ui.color.paleNavy"
-                 label="↑↓"></jnt-label>
-      for moving
-      <jnt-label [size]="ui.size.small"
-                 [color]="ui.color.paleNavy"
-                 label="↦"></jnt-label>
-      for switching and
-      <jnt-label [size]="ui.size.small"
-                 [color]="ui.color.paleNavy"
-                 label="↵"></jnt-label>
-      to add a line.
-    </ng-container>
+  <jnt-stack>
+    <small [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        Use keys
+        <jnt-label [size]="ui.size.small"
+                   [color]="ui.color.paleNavy"
+                   label="↑↓"></jnt-label>
+        for moving
+        <jnt-label [size]="ui.size.small"
+                   [color]="ui.color.paleNavy"
+                   label="↦"></jnt-label>
+        for switching and
+        <jnt-label [size]="ui.size.small"
+                   [color]="ui.color.paleNavy"
+                   label="↵"></jnt-label>
+        to add a line.
+      </ng-container>
 
-    <ng-container *ngSwitchCase="language.ru">
-      Используйте клавиши
-      <jnt-label [size]="ui.size.small"
-                 [color]="ui.color.paleNavy"
-                 label="↑↓"></jnt-label>
-      для перемещения
-      <jnt-label [size]="ui.size.small"
-                 [color]="ui.color.paleNavy"
-                 label="↦"></jnt-label>
-      переключения и
-      <jnt-label [size]="ui.size.small"
-                 [color]="ui.color.paleNavy"
-                 label="↵"></jnt-label>
-      добавления линии.
-    </ng-container>
-  </small>
-  <p [ngSwitch]="locale">
-    <ng-container *ngSwitchDefault>
-      As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title}}</b>
-    </ng-container>
-    <ng-container *ngSwitchCase="language.ru">
-      Как <b>{{feature.actor.name}}</b> я хочу <b>{{feature.title}}</b>
-    </ng-container>
-  </p>
+      <ng-container *ngSwitchCase="language.ru">
+        Используйте клавиши
+        <jnt-label [size]="ui.size.small"
+                   [color]="ui.color.paleNavy"
+                   label="↑↓"></jnt-label>
+        для перемещения
+        <jnt-label [size]="ui.size.small"
+                   [color]="ui.color.paleNavy"
+                   label="↦"></jnt-label>
+        переключения и
+        <jnt-label [size]="ui.size.small"
+                   [color]="ui.color.paleNavy"
+                   label="↵"></jnt-label>
+        добавления линии.
+      </ng-container>
+    </small>
+    <p [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title}}</b>
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Как <b>{{feature.actor.name}}</b> я хочу <b>{{feature.title}}</b>
+      </ng-container>
+    </p>
+  </jnt-stack>
   <ol>
     <li *ngFor="let entry of feature.story; let i = index">
       <spec-story-entry #storyEntry [entry]="entry"

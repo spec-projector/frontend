@@ -67,7 +67,7 @@
              [align]="ui.align.stretch"
              (cdkDropListDropped)="moveActor($event)"
              [cdkDropListData]="spec?.actors">
-    <jnt-block cdkDrag *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor">
+    <jnt-card cdkDrag *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor">
       <jnt-stack [orientation]="ui.orientation.horizontal">
         <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
                    [gutter]="ui.gutter.small">
@@ -93,7 +93,7 @@
         </jnt-stack>
         <spec-actor data-actor [actor]="actor"></spec-actor>
       </jnt-stack>
-    </jnt-block>
+    </jnt-card>
   </jnt-stack>
 </jnt-stack>
 

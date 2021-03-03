@@ -37,7 +37,7 @@
              [align]="ui.align.stretch"
              (cdkDropListDropped)="movePackage($event)"
              [cdkDropListData]="spec.packages">
-    <jnt-block cdkDrag *ngFor="let pack of spec.packages; let i = index; trackBy: trackPackage">
+    <jnt-card cdkDrag *ngFor="let pack of spec.packages; let i = index; trackBy: trackPackage">
       <jnt-stack [orientation]="ui.orientation.horizontal">
         <jnt-stack data-actions *ngIf="manager.mode == editMode.edit"
                    [gutter]="ui.gutter.small">
@@ -63,6 +63,6 @@
         </jnt-stack>
         <spec-package data-package [package]="pack"></spec-package>
       </jnt-stack>
-    </jnt-block>
+    </jnt-card>
   </jnt-stack>
 </jnt-stack>

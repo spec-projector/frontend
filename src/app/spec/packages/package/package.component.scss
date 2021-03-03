@@ -54,9 +54,10 @@ header {
       }
     }
     [data-name] {
-      color: silver;
-      font-size: 1em;
       flex: 1;
+      color: silver;
+      font-size: .85em;
+      line-height: 2em;
     }
   }
 }

@@ -1,7 +1,8 @@
 <jnt-stack [align]="ui.align.stretch">
 
   <ng-template #noFigmaKeyTemplate>
-    <jnt-message [icon]="ui.icons.question" [scheme]="ui.scheme.fail">
+    <jnt-message [icon]="ui.icons.sad"
+                 [scheme]="ui.scheme.fail">
       <span [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
            You have no <b>Figma</b> key in integration
@@ -15,18 +16,20 @@
 
   <ng-container *ngIf="!!project.figmaIntegration?.token;else noFigmaKeyTemplate">
     <jnt-stack [align]="ui.align.stretch">
-      <jnt-message *ngIf="feature.frames.length <= 0" [icon]="ui.icons.question">
-        <ng-container [ngSwitch]="locale">
+      <jnt-message *ngIf="feature.frames.length <= 0"
+                   [icon]="ui.icons.question"
+                   [scheme]="ui.scheme.secondary">
+        <jnt-stack [ngSwitch]="locale">
           <ng-container *ngSwitchDefault>
-            <p>Designer using <b>user story</b> should draw design & prototype then <b>attach</b> it here.</p>
-            <p>After that, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
+            <p>Designer using <b>User Story</b> should draw design & prototype then <b>attach</b> it here.</p>
+            <p>Then, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
           </ng-container>
           <ng-container *ngSwitchCase="language.ru">
             <p>Дизайнер, используя <b>юзер стори</b> должен нарисовать дизайн и прототип и затем <b>прикрепить</b> их
               здесь.</p>
-            <p>После этого, <b>Проджект Менеджер</b> должен согласовать дизайн с <b>Заказчиком</b>.</p>
+            <p>Затем, <b>Менеджер проекта</b> должен согласовать дизайн с <b>Заказчиком</b>.</p>
           </ng-container>
-        </ng-container>
+        </jnt-stack>
       </jnt-message>
 
       <jnt-stack [orientation]="ui.orientation.horizontal">

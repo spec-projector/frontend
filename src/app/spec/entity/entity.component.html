@@ -2,22 +2,22 @@
     <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
             (mouseleave)="mode = editMode.view">
         <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-            <input title formControlName="title">
-            <div naming>
+            <input data-title formControlName="title">
+            <div data-auto-name>
                 <label [attr.checked]="autoNameControl.value">
                     <input type="checkbox" formControlName="autoName">
                 </label>
-                <input name formControlName="name">
+                <input data-name formControlName="name">
             </div>
         </ng-container>
     </header>
 
     <ng-template #viewHeader>
-        <h1 title>{{entity.title}}</h1>
-        <div naming>
+        <h1 data-title>{{entity.title}}</h1>
+        <div data-auto-name>
             <label [attr.checked]="autoNameControl.value">
             </label>
-            <h2 name>{{entity.name}}</h2>
+            <h2 data-name>{{entity.name}}</h2>
         </div>
     </ng-template>
 

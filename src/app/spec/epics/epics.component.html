@@ -43,7 +43,7 @@
              [align]="ui.align.stretch"
              (cdkDropListDropped)="moveEpic($event)"
              [cdkDropListData]="spec.epics">
-    <jnt-block cdkDrag *ngFor="let epic of spec.epics; let i = index; trackBy: trackEpic">
+    <jnt-card cdkDrag *ngFor="let epic of spec.epics; let i = index; trackBy: trackEpic">
       <jnt-stack [orientation]="ui.orientation.horizontal">
         <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
                    [gutter]="ui.gutter.small">
@@ -69,7 +69,7 @@
         </jnt-stack>
         <spec-epic data-epic [epic]="epic"></spec-epic>
       </jnt-stack>
-    </jnt-block>
+    </jnt-card>
   </jnt-stack>
 </jnt-stack>
 
