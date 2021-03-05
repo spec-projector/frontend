@@ -13,3 +13,5 @@
 /package-lock.json
 /src/assets/fonts/
 /dist
+
+/src/locale/messages.xlf
