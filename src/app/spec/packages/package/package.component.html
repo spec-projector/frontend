@@ -1,32 +1,34 @@
-<form [formGroup]="form">
-  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
-          (mouseleave)="mode = editMode.view">
-    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-      <input data-title formControlName="title">
-      <div data-auto-name>
-        <label [attr.checked]="autoName.value">
-          <input type="checkbox" formControlName="autoName">
-        </label>
-        <input data-name formControlName="name">
-      </div>
-    </ng-container>
-  </header>
-
-  <ng-template #viewHeader>
-    <h1 data-title>{{package.title}}</h1>
+<header [formGroup]="form"
+        (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+        (mouseleave)="mode = editMode.view">
+  <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+    <input data-title formControlName="title">
     <div data-auto-name>
       <label [attr.checked]="autoName.value">
+        <input type="checkbox" formControlName="autoName">
       </label>
-      <h2 data-name>{{package.name}}</h2>
+      <input data-name formControlName="name">
     </div>
-  </ng-template>
-  <ul data-entities dndEffectAllowed="copyMove"
-      [dndDropzone]="['entity']"
-      (dndDrop)="moveEntity($event)">
-    <li data-placeholder dndPlaceholderRef></li>
-    <li *ngFor="let entity of package.entities; let i = index;"
-        [dndDraggable]="i"
-        dndType="entity">
+  </ng-container>
+</header>
+
+<ng-template #viewHeader>
+  <h1 data-title>{{package.title}}</h1>
+  <div data-auto-name>
+    <label [attr.checked]="autoName.value">
+    </label>
+    <h2 data-name>{{package.name}}</h2>
+  </div>
+</ng-template>
+<jnt-row cdkDropList
+         (cdkDropListDropped)="moveEntity($event)"
+         [cdkDropListData]="package.entities">
+  <jnt-col cdkDrag *ngFor="let entity of package.entities; let i = index;"
+           [wide]="4"
+           [tablet]="6">
+    <jnt-stack data-entity-item
+               [orientation]="ui.orientation.horizontal"
+               [align]="ui.align.stretch">
       <jnt-stack data-actions *ngIf="manager.mode == editMode.edit"
                  [gutter]="ui.gutter.small">
         <jnt-button [icon]="ui.icons.edit"
@@ -35,7 +37,7 @@
                     [shape]="ui.shape.circle"
                     (click)="router.navigate([package.id, 'entities', entity.id], {relativeTo: route})">
         </jnt-button>
-        <jnt-button dndHandle
+        <jnt-button cdkDragHandle
                     [icon]="ui.icons.expand"
                     [size]="ui.size.tiny"
                     [shape]="ui.shape.circle"
@@ -49,14 +51,16 @@
                   [shape]="ui.shape.circle"
                   (click)="deleteEntity(i)">
       </jnt-button>
-    </li>
-    <li data-add>
-      <jnt-button *ngIf="manager.mode == editMode.edit"
-                  [icon]="ui.icons.add"
-                  [size]="ui.size.tiny"
-                  [scheme]="ui.scheme.secondary"
-                  [shape]="ui.shape.circle"
-                  (click)="addEntity()"></jnt-button>
-    </li>
-  </ul>
-</form>
+    </jnt-stack>
+  </jnt-col>
+  <jnt-col *ngIf="manager.mode == editMode.edit"
+           [wide]="4"
+           [tablet]="6">
+    <jnt-button [icon]="ui.icons.add"
+                [size]="ui.size.tiny"
+                [scheme]="ui.scheme.secondary"
+                [shape]="ui.shape.circle"
+                (click)="addEntity()"></jnt-button>
+  </jnt-col>
+</jnt-row>
+

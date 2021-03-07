@@ -10,9 +10,10 @@
   </ng-template>
 </jnt-app-page-header>
 
-<jnt-stack cdkDropList (cdkDropListDropped)="moveField($event)"
+<jnt-stack cdkDropList
            [align]="ui.align.stretch"
            [gutter]="ui.gutter.small"
+           (cdkDropListDropped)="moveField($event)"
            [cdkDropListData]="entity.fields">
   <jnt-card cdkDrag *ngFor="let field of entity.fields; let i = index; trackBy: trackField">
     <jnt-stack [orientation]="ui.orientation.horizontal">

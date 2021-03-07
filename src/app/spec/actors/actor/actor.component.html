@@ -1,68 +1,67 @@
-<form [formGroup]="form">
-  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
-          (mouseleave)="mode = editMode.view">
-    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-      <input data-name formControlName="name">
-    </ng-container>
-  </header>
+<header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+        (mouseleave)="mode = editMode.view">
+  <ng-container [formGroup]="form" *ngIf="mode == editMode.edit; else viewHeader">
+    <input data-name formControlName="name">
+  </ng-container>
+</header>
 
-  <ng-template #viewHeader>
-    <h1 data-name>{{actor.name}}</h1>
-  </ng-template>
+<ng-template #viewHeader>
+  <h1 data-name>{{actor.name}}</h1>
+</ng-template>
 
-  <h3 [ngSwitch]="locale">
-    <ng-container *ngSwitchDefault>
-      As <b>{{actor.name}}</b> I want:
-    </ng-container>
-    <ng-container *ngSwitchCase="language.ru">
-      Как <b>{{actor.name}}</b> я хочу:
-    </ng-container>
-  </h3>
+<h3 [ngSwitch]="locale">
+  <ng-container *ngSwitchDefault>
+    As <b>{{actor.name}}</b> I want:
+  </ng-container>
+  <ng-container *ngSwitchCase="language.ru">
+    Как <b>{{actor.name}}</b> я хочу:
+  </ng-container>
+</h3>
 
-  <ul data-epics>
-    <li data-epic *ngFor="let group of (actor.features | groupFeaturesByEpic:version); trackBy: trackFeature">
-      <h4>
-        <span>{{group.epic?.title}}</span>
-      </h4>
-      <jnt-row>
-        <jnt-col *ngFor="let feature of group.features; trackBy: trackFeature"
-                 [wide]="4" [tablet]="6">
-          <jnt-stack data-feature-item cdkDropList cdkDropListConnectedTo="epics"
-                     [orientation]="ui.orientation.horizontal"
-                     [id]="'feature-' + feature.id"
-                     (cdkDropListDropped)="onDropEpic(feature, $event)">
-            <jnt-button [icon]="ui.icons.link"
-                        [size]="ui.size.tiny"
-                        [scheme]="ui.scheme.secondary"
-                        [shape]="ui.shape.circle"
-                        (click)="router.navigate([actor.id, 'features', feature.id], {relativeTo: route})">
-            </jnt-button>
-            <spec-feature data-feature [attr.id]="feature.id"
-                          [feature]="feature"></spec-feature>
-            <jnt-button *ngIf="manager.mode ==  editMode.edit"
-                        [icon]="ui.icons.delete"
-                        [size]="ui.size.tiny"
-                        [shape]="ui.shape.circle"
-                        [scheme]="ui.scheme.secondary"
-                        [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
-                        (attached)="instance.popover = $event">
-            </jnt-button>
-            <ng-template #deleteTemplate>
-              <jnt-confirm message="Are you sure to delete the feature?"
-                           (cancel)="instance.popover?.hide()"
-                           (ok)="deleteFeature(feature.id)"></jnt-confirm>
-            </ng-template>
-          </jnt-stack>
-        </jnt-col>
-      </jnt-row>
-    </li>
-    <li *ngIf="manager.mode == editMode.edit">
-      <jnt-button [icon]="ui.icons.add"
-                  [size]="ui.size.tiny"
-                  [scheme]="ui.scheme.secondary"
-                  [shape]="ui.shape.circle"
-                  (click)="addFeature()">
-      </jnt-button>
-    </li>
-  </ul>
-</form>
+<ul data-epics>
+  <li data-epic *ngFor="let group of (actor.features | groupFeaturesByEpic:version); trackBy: trackFeature">
+    <h4>
+      <span>{{group.epic?.title}}</span>
+    </h4>
+    <jnt-row>
+      <jnt-col *ngFor="let feature of group.features; trackBy: trackFeature"
+               [wide]="4" [tablet]="6">
+        <jnt-stack data-feature-item cdkDropList cdkDropListConnectedTo="epics"
+                   [orientation]="ui.orientation.horizontal"
+                   [id]="'feature-' + feature.id"
+                   (cdkDropListDropped)="onDropEpic(feature, $event)">
+          <jnt-button [icon]="ui.icons.link"
+                      [size]="ui.size.tiny"
+                      [scheme]="ui.scheme.secondary"
+                      [shape]="ui.shape.circle"
+                      (click)="router.navigate([actor.id, 'features', feature.id], {relativeTo: route})">
+          </jnt-button>
+          <spec-feature data-feature [attr.id]="feature.id"
+                        [feature]="feature"></spec-feature>
+          <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                      [icon]="ui.icons.delete"
+                      [size]="ui.size.tiny"
+                      [shape]="ui.shape.circle"
+                      [scheme]="ui.scheme.secondary"
+                      [jntPopover]="{contentTemplate: deleteTemplate, trigger: ui.trigger.click}"
+                      (attached)="instance.popover = $event">
+          </jnt-button>
+          <ng-template #deleteTemplate>
+            <jnt-confirm message="Are you sure to delete the feature?"
+                         (cancel)="instance.popover?.hide()"
+                         (ok)="deleteFeature(feature.id)"></jnt-confirm>
+          </ng-template>
+        </jnt-stack>
+      </jnt-col>
+    </jnt-row>
+  </li>
+  <li *ngIf="manager.mode == editMode.edit">
+    <jnt-button [icon]="ui.icons.add"
+                [size]="ui.size.tiny"
+                [scheme]="ui.scheme.secondary"
+                [shape]="ui.shape.circle"
+                (click)="addFeature()">
+    </jnt-button>
+  </li>
+</ul>
+
