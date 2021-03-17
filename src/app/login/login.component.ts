@@ -11,15 +11,24 @@ import { Authorization } from 'src/model/authorization';
 import { UserCredentials } from '../../model/user';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
+import { state, style, transition, trigger } from '@angular/animations';
+import { Distance, moveKeyframes } from '../lp/animation';
 
 @Component({
   selector: 'spec-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('move', [
+      state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
+      transition('void => *', moveKeyframes, {params: {distance: '0,0,0'}})
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
 
   ui = UI;
+  distance = Distance;
 
   progress = {gitlab: false, login: false};
   errors: BackendError[] = [];
@@ -40,7 +49,7 @@ export class LoginComponent implements OnInit {
               private config: AppConfig,
               private builder: FormBuilder,
               private route: ActivatedRoute,
-              private router: Router) {
+              public router: Router) {
   }
 
   ngOnInit() {
