@@ -1,0 +1,59 @@
+<jnt-lp-layout>
+  <jnt-lp-header>
+    <ng-template #headerLogoTemplate>
+      <img src="../../assets/images/lp/logo.svg" height="104">
+    </ng-template>
+    <ng-template #contentTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [align]="ui.align.center"
+                 [gutter]="ui.gutter.big">
+        <span data-account>Already have account?</span>
+        <jnt-button [outline]="ui.outline.ghost"
+                    [icon]="ui.icons.login"
+                    text="Login"
+                    (click)="router.navigate(['/login'])">
+        </jnt-button>
+      </jnt-stack>
+    </ng-template>
+  </jnt-lp-header>
+  <jnt-lp-slide>
+    <jnt-container>
+      <ng-container *jntMinFor="ui.breakpoint.tablet">
+        <div data-hand [@move-hand]>
+          <img src="../../assets/images/lp/hand.png" width="170" height="154" alt="hand">
+          <h1 [@coloring]>make</h1>
+        </div>
+        <img data-decor data-specifications
+             src="../../assets/images/lp/specifications.png" width="845" height="840" alt="specifications">
+        <img data-decor data-bagel-half
+             [@move]="{value: '', params: {distance: distance.bagelHalf}}"
+             src="../../assets/images/lp/bagel-half.png" width="82" height="103" alt="bagel-half">
+        <img data-decor data-bagel-small
+             [@move]="{value: '', params: {distance: distance.bagelSmall}}"
+             src="../../assets/images/lp/bagel-small.png" width="86" height="82" alt="bagel-small">
+        <img data-decor data-diamond
+             [@move]="{value: '', params: {distance: distance.diamond}}"
+             src="../../assets/images/lp/diamond.png" width="124" height="123" alt="diamond">
+        <img data-decor data-bagel-pink
+             [@move]="{value: '', params: {distance: distance.bagelPink}}"
+             src="../../assets/images/lp/bagel-pink.png" width="284" height="274" alt="bagel-pink">
+      </ng-container>
+      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.huge">
+        <jnt-stack [align]="ui.align.stretch">
+          <h1>Where teams <br> specifications</h1>
+          <h3 data-teaser>SpecProjector helps teams write better <br> documentation for IT-products</h3>
+        </jnt-stack>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
+          <jnt-button text="Try it for free now"
+                      (click)="router.navigate(['/login'])">
+          </jnt-button>
+          <jnt-button data-how-works
+                      [scheme]="ui.scheme.secondary"
+                      text="How it works">
+          </jnt-button>
+        </jnt-stack>
+      </jnt-stack>
+    </jnt-container>
+  </jnt-lp-slide>
+  <jnt-lp-slide></jnt-lp-slide>
+</jnt-lp-layout>

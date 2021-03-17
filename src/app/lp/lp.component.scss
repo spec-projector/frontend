@@ -1,0 +1,77 @@
+@import 'src/variables';
+@import "common";
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import '~@junte/ui/lib/assets/styles/layout/responsive';
+@import '~@junte/ui/lib/assets/styles/layout/lp';
+@import '~@junte/ui/lib/assets/styles/forms/button';
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+
+  @include jnt-lp-header((position: absolute, padding: 50px 0 0 0));
+  @include jnt-button((text-transform: uppercase, font-weight: $jnt-font-weight-bold));
+}
+
+jnt-lp-header::ng-deep {
+  jnt-container {
+    width: 970px;
+    max-width: 970px;
+
+    [data-actions] {
+      align-items: flex-start;
+    }
+  }
+}
+
+h1 {
+  font-weight: $jnt-font-weight-extra-bold;
+  color: $jnt-primary-color;
+  font-size: 64px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h3 {
+  font-weight: 1.35;
+  margin: 0;
+}
+
+jnt-lp-slide {
+  display: flex;
+  overflow: hidden;
+  background: url(../../assets/images/lp/bg.png);
+  background-size: 100% 100%;
+}
+
+[data-account], [data-teaser] {
+  font-family: $jnt-font-family-base;
+}
+
+[data-hand] {
+  position: absolute;
+  left: 660px;
+  top: -45px;
+  width: 170px;
+  height: 154px;
+  transform: translate3D(-77px, 23px, 0) rotate(0);
+  z-index: 1;
+
+  img {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    position: absolute;
+    top: 144px;
+    left: -82px;
+    line-height: 0.8;
+  }
+}
+
+[data-how-works] {
+  @include jnt-button((color: $jnt-primary-color), '&');
+}
+

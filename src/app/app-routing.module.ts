@@ -8,14 +8,21 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module')
-      .then(m => m.LoginModule)
+    path: 'lp',
+    data: {animation: 'lp'},
+    loadChildren: () => import('./lp/lp.module')
+      .then(m => m.LPModule)
   },
   {
     path: 'projects',
     loadChildren: () => import('./layout/layout.module')
       .then(m => m.LayoutModule)
+  },
+  {
+    path: 'login',
+    data: {animation: 'login'},
+    loadChildren: () => import('./login/login.module')
+      .then(m => m.LoginModule)
   }
 ];
 

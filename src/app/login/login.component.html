@@ -5,60 +5,88 @@
                         [message]="e.toString()"></jnt-informer-message>
 </jnt-informer>
 
-<jnt-block data-block
-           #content
-           [padding]="ui.gutter.large"
-           [features]="[ui.feature.adapted]"
-           [state]="progress.gitlab ? ui.state.loading : null">
-  <ng-template #blockHeaderTemplate>
-    <div data-logo>
-      <img src="../../assets/images/logo.svg" height="50">
-    </div>
-  </ng-template>
-
-  <jnt-form data-form
-            #formComponent
-            [state]="progress.login ? ui.state.loading : null"
-            [formGroup]="form"
-            (submitted)="login()">
-    <jnt-stack [align]="ui.align.stretch">
-      <jnt-form-item>
-        <jnt-form-control name="login">
-          <jnt-input formControlName="login"
-                     placeholder="Username"
-                     i18n-placeholder="@@label.username"
-                     [icon]="ui.icons.user"></jnt-input>
-          <jnt-form-message [validator]="ui.validator.required"
-                            i18n="@@message.field_required">This field is required</jnt-form-message>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-control name="password">
-          <jnt-input formControlName="password"
-                     placeholder="Password"
-                     i18n-placeholder="@@label.password"
-                     [icon]="ui.icons.lock"
-                     [type]="ui.input.type.password"
-                     [jntShortcuts]="[{key: ui.keyboard.key.enter, action: submit.bind(this)}]"></jnt-input>
-          <jnt-form-message [validator]="ui.validator.required"
-                            i18n="@@message.field_required">This field is required</jnt-form-message>
-        </jnt-form-control>
-      </jnt-form-item>
-
-    </jnt-stack>
-
-    <ng-template #formFooterTemplate>
-      <jnt-stack [align]="ui.align.stretch">
-        <jnt-button text="Login"
-                    i18n-text="@@action.login"
-                    [icon]="ui.icons.login"
-                    [type]="ui.button.type.submit">
-        </jnt-button>
-        <a href="/api/login/gitlab/">
-          <img src="/assets/images/gitlab.svg" height="30">
+<jnt-container>
+  <ng-container *jntMinFor="ui.breakpoint.tablet">
+    <img data-decor data-bagel-half
+         [@move]="{value: '', params: {distance: distance.bagelHalf}}"
+         src="../../assets/images/lp/bagel-half.png" alt="bagel-half">
+    <img data-decor data-bagel-small
+         [@move]="{value: '', params: {distance: distance.bagelSmall}}"
+         src="../../assets/images/lp/bagel-small.png" alt="bagel-small">
+    <img data-decor data-diamond
+         [@move]="{value: '', params: {distance: distance.diamond}}"
+         src="../../assets/images/lp/diamond.png" alt="diamond">
+    <img data-decor data-bagel-pink
+         [@move]="{value: '', params: {distance: distance.bagelPink}}"
+         src="../../assets/images/lp/bagel-pink.png" alt="bagel-pink">
+    <img data-decor data-hand-up
+         [@move]="{value: '', params: {distance: distance.handUp}}"
+         src="../../assets/images/lp/hand-up.png" alt="hand-up">
+  </ng-container>
+  <jnt-stack [orientation]="ui.orientation.horizontal" [justify]="ui.justify.center">
+    <jnt-block data-block
+               #content
+               [padding]="ui.gutter.large"
+               [features]="[ui.feature.adapted]"
+               [state]="progress.gitlab ? ui.state.loading : null">
+      <ng-template #blockHeaderTemplate>
+        <a data-logo href="/">
+          <img src="../../assets/images/logo.svg" height="50">
         </a>
-      </jnt-stack>
-    </ng-template>
-  </jnt-form>
-</jnt-block>
+      </ng-template>
+
+      <jnt-form #formComponent
+                [state]="progress.login ? ui.state.loading : null"
+                [formGroup]="form"
+                (submitted)="login()">
+        <jnt-stack [align]="ui.align.stretch">
+          <jnt-form-item>
+            <jnt-form-control name="login">
+              <jnt-input formControlName="login"
+                         placeholder="Username"
+                         i18n-placeholder="@@label.username"
+                         [icon]="ui.icons.user"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.field_required">This field is required</jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
+
+          <jnt-form-item>
+            <jnt-form-control name="password">
+              <jnt-input formControlName="password"
+                         placeholder="Password"
+                         i18n-placeholder="@@label.password"
+                         [icon]="ui.icons.lock"
+                         [type]="ui.input.type.password"
+                         [jntShortcuts]="[{key: ui.keyboard.key.enter, action: submit.bind(this)}]"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.field_required">This field is required</jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
+
+          <jnt-link data-link title="Forgot password?"></jnt-link>
+
+        </jnt-stack>
+
+        <ng-template #formFooterTemplate>
+          <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.big">
+            <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+              <jnt-button text="Login"
+                          i18n-text="@@action.login"
+                          [scheme]="ui.scheme.secondary"
+                          [type]="ui.button.type.submit">
+              </jnt-button>
+              <jnt-stack data-links [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
+                <jnt-button text="Google" [scheme]="ui.scheme.secondary"></jnt-button>
+                <jnt-button text="Gitlab" [scheme]="ui.scheme.secondary"
+                            [icon]="ui.icons.gitlab"
+                            (click)="router.navigate(['/api/login/gitlab/'])"></jnt-button>
+              </jnt-stack>
+            </jnt-stack>
+            <jnt-button text="Registration"></jnt-button>
+          </jnt-stack>
+        </ng-template>
+      </jnt-form>
+    </jnt-block>
+  </jnt-stack>
+</jnt-container>

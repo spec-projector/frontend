@@ -48,6 +48,7 @@
             "styles": [
               "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
               "node_modules/@openfonts/open-sans_cyrillic/index.css",
+              "node_modules/@openfonts/montserrat_cyrillic/index.css",
               "src/styles.scss"
             ],
             "scripts": []

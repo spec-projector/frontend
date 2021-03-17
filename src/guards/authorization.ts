@@ -17,7 +17,7 @@ export class AuthorizationGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     if (!this.config.authorization) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/lp']);
     }
     return of(!!this.config.authorization);
   }
