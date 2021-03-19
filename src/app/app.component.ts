@@ -9,7 +9,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger('routeAnimations', [
-      transition('lp => login', [
+      transition('lp => login, lp => register, register <=> login', [
         group([
           query(':leave', [
             animate('.8s ease-in-out', keyframes([

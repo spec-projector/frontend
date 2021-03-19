@@ -1,0 +1,39 @@
+@import "src/app/login/login.component";
+
+h4 {
+  color: $jnt-success-color;
+  font-weight: $jnt-font-weight-bold;
+}
+
+[data-block] {
+  min-height: 285px;
+  overflow: hidden;
+
+  [data-success] {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+jnt-block::ng-deep {
+  [data-body] {
+    position: relative;
+    min-height: 130px;
+  }
+}
+
+[data-hand-ok] {
+  position: absolute;
+  top: 100%;
+  left: 300px;
+}
+
+jnt-form-control {
+  position: relative;
+}
+
+jnt-form-message {
+  position: absolute;
+  top: 90%;
+}

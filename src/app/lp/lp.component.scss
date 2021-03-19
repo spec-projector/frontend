@@ -40,8 +40,7 @@ h3 {
 
 jnt-lp-slide {
   display: flex;
-  overflow: hidden;
-  background: url(../../assets/images/lp/bg.png);
+  background: url(../../assets/images/lp/bg.png) fixed;
   background-size: 100% 100%;
 }
 

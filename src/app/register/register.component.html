@@ -21,26 +21,56 @@
          [@move]="{value: '', params: {distance: distance.bagelPink}}"
          src="../../assets/images/lp/bagel-pink.png" alt="bagel-pink">
     <img data-decor data-hand-up
+         *ngIf="view === views.register"
          [@move]="{value: '', params: {distance: distance.handUp}}"
          src="../../assets/images/lp/hand-up.png" alt="hand-up">
+    <img data-decor data-hand-ok
+         *ngIf="view === views.success"
+         [@move]="{value: '', params: {distance: distance.handOk}}"
+         src="../../assets/images/lp/hand-ok.png" alt="hand-ok">
   </ng-container>
   <jnt-stack [orientation]="ui.orientation.horizontal" [justify]="ui.justify.center">
     <jnt-block data-block
                #content
+               [@changeView]="view"
                [padding]="ui.gutter.large"
-               [features]="[ui.feature.adapted]"
-               [state]="progress.gitlab ? ui.state.loading : null">
+               [features]="[ui.feature.adapted]">
       <ng-template #blockHeaderTemplate>
         <a data-logo routerLink="/">
           <img src="../../assets/images/logo.svg" height="50">
         </a>
       </ng-template>
-
-      <jnt-form #formComponent
-                [state]="progress.login ? ui.state.loading : null"
+      <jnt-form *ngIf="view === views.register"
+                [@fadeOut]
                 [formGroup]="form"
-                (submitted)="login()">
+                (submitted)="register()">
         <jnt-stack [align]="ui.align.stretch">
+          <jnt-form-item>
+            <jnt-form-control name="name">
+              <jnt-input formControlName="name"
+                         placeholder="Name"
+                         i18n-placeholder="@@label.name"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.field_required">This field is required
+              </jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
+
+          <jnt-form-item>
+            <jnt-form-control name="email">
+              <jnt-input formControlName="email"
+                         placeholder="Email"
+                         [icon]="ui.icons.email"
+                         i18n-placeholder="@@label.email"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.field_required">This field is required
+              </jnt-form-message>
+              <jnt-form-message [validator]="ui.validator.email">
+                Enter email in full
+              </jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
+
           <jnt-form-item>
             <jnt-form-control name="login">
               <jnt-input formControlName="login"
@@ -59,42 +89,40 @@
                          placeholder="Password"
                          i18n-placeholder="@@label.password"
                          [icon]="ui.icons.lock"
-                         [type]="ui.input.type.password"
-                         [jntShortcuts]="[{key: ui.keyboard.key.enter, action: submit.bind(this)}]"></jnt-input>
+                         [type]="ui.input.type.password"></jnt-input>
               <jnt-form-message [validator]="ui.validator.required"
                                 i18n="@@message.field_required">This field is required
               </jnt-form-message>
             </jnt-form-control>
           </jnt-form-item>
-
-          <jnt-link data-link title="Forgot password?"></jnt-link>
-
         </jnt-stack>
 
         <ng-template #formFooterTemplate>
-          <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.big">
-            <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
-              <jnt-button text="Login"
-                          i18n-text="@@action.login"
-                          [scheme]="ui.scheme.secondary"
-                          [type]="ui.button.type.submit">
-              </jnt-button>
-              <jnt-stack data-links [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
-                <jnt-button text="Google"
-                            [icon]="ui.icons.google"
-                            [scheme]="ui.scheme.secondary">
-                </jnt-button>
-                <jnt-button text="Gitlab" [scheme]="ui.scheme.secondary"
-                            [icon]="ui.icons.gitlab"
-                            (click)="router.navigate(['/api/login/gitlab/'])"></jnt-button>
-              </jnt-stack>
-            </jnt-stack>
-            <jnt-button text="Registration"
-                        (click)="router.navigate(['/register'])">
+          <jnt-stack data-links [orientation]="ui.orientation.horizontal">
+            <jnt-button text="Back"
+                        [scheme]="ui.scheme.secondary"
+                        i18n-text="@@action.back"
+                        (click)="router.navigate(['..'])">
+            </jnt-button>
+            <jnt-button text="Register"
+                        i18n-text="@@action.registration"
+                        [loading]="progress.register"
+                        [type]="ui.button.type.submit">
             </jnt-button>
           </jnt-stack>
         </ng-template>
       </jnt-form>
+
+      <jnt-stack data-success *ngIf="view === views.success"
+                 [@fadeIn]
+                 [gutter]="ui.gutter.big"
+                 [align]="ui.align.stretch">
+        <jnt-stack [align]="ui.align.center">
+          <h4>Well done!</h4>
+          <div>Use your login and password for sign in.</div>
+        </jnt-stack>
+        <jnt-button text="Ok" (click)="router.navigate(['/'])"></jnt-button>
+      </jnt-stack>
     </jnt-block>
   </jnt-stack>
 </jnt-container>
