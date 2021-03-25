@@ -2,7 +2,6 @@
 @import "src/app/lp/common";
 @import '~@junte/ui/lib/assets/styles/jnt-variables';
 @import '~@junte/ui/lib/assets/styles/layout/responsive';
-@import '~@junte/ui/lib/assets/styles/navigation/link';
 @import '~@junte/ui/lib/assets/styles/layout/block';
 
 $jnt-ng-deep: true;
@@ -40,6 +39,7 @@ $jnt-ng-deep: true;
   }
   @include min-for-tablet() {
     min-width: 350px;
+    width: 350px;
   }
 }
 
@@ -49,10 +49,6 @@ $jnt-ng-deep: true;
   padding-bottom: $jnt-gutter-big;
 }
 
-[data-links] > * {
-  flex: 1;
-}
-
 [data-link] {
-  @include jnt-link((text-align: right), '&');
+  align-self: flex-end;
 }

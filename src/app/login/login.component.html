@@ -67,7 +67,7 @@
             </jnt-form-control>
           </jnt-form-item>
 
-          <jnt-link data-link title="Forgot password?"></jnt-link>
+          <jnt-link data-link title="Forgot password?" [source]="['/restore-password']"></jnt-link>
 
         </jnt-stack>
 
@@ -79,13 +79,15 @@
                           [scheme]="ui.scheme.secondary"
                           [type]="ui.button.type.submit">
               </jnt-button>
-              <jnt-stack data-links [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
+              <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
                 <jnt-button text="Google"
                             [icon]="ui.icons.google"
+                            [width]="ui.width.fluid"
                             [scheme]="ui.scheme.secondary">
                 </jnt-button>
                 <jnt-button text="Gitlab" [scheme]="ui.scheme.secondary"
                             [icon]="ui.icons.gitlab"
+                            [width]="ui.width.fluid"
                             (click)="router.navigate(['/api/login/gitlab/'])"></jnt-button>
               </jnt-stack>
             </jnt-stack>
