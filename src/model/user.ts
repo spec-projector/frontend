@@ -49,3 +49,33 @@ export class UserRegister {
   }
 }
 
+@Model()
+export class SendPasswordResetSecurityCodeInput {
+
+  @Field()
+  email: string;
+
+  constructor(defs: Partial<SendPasswordResetSecurityCodeInput> = {}) {
+    Object.assign(this, defs);
+  }
+
+}
+
+@Model()
+export class ResetPasswordInput {
+
+  @Field()
+  email: string;
+
+  @Field()
+  code: string;
+
+  @Field()
+  password: string;
+
+  constructor(defs: Partial<ResetPasswordInput> = {}) {
+    Object.assign(this, defs);
+  }
+
+}
+

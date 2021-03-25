@@ -29,6 +29,11 @@ const routes: Routes = [
     data: {animation: 'register'},
     loadChildren: () => import('./register/register.module')
       .then(m => m.RegisterModule)
+  },
+  {
+    path: 'restore-password',
+    loadChildren: () => import('./restore-password/restore-password.module')
+      .then(m => m.RestorePasswordModule)
   }
 ];
 
