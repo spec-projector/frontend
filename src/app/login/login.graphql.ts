@@ -3,10 +3,10 @@ import { Mutation } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class LoginGQL extends Mutation<{ login: { token } }> {
-    document = gql`
+  document = gql`
 mutation Login($login: String!, $password: String!) {
   login(login: $login, password: $password) {
     token {
@@ -24,15 +24,14 @@ mutation Login($login: String!, $password: String!) {
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class GitlabLoginGQL extends Mutation<{ completeGitlabAuth: { token } }> {
-    document = gql`
-mutation GitlabLogin($code: String!, $state: String!) {
-  completeGitlabAuth(code: $code, state: $state) {
+export class GitlabLoginGQL extends Mutation<{ socialLoginComplete: { token } }> {
+  document = gql`
+mutation ($code: String!, $state: String!) {
+  socialLoginComplete(code: $code, state: $state, system: GITLAB) {
     token {
       key
-      created
     }
   }
 }`;

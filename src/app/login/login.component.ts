@@ -11,7 +11,8 @@ import { Authorization } from 'src/model/authorization';
 import { UserCredentials } from '../../model/user';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
-import { state, style, transition, trigger } from '@angular/animations';
+import { style, transition, trigger } from '@angular/animations';
+import * as animations from '@angular/animations';
 import { Distance, moveKeyframes } from '../lp/animation';
 
 @Component({
@@ -20,7 +21,7 @@ import { Distance, moveKeyframes } from '../lp/animation';
   styleUrls: ['./login.component.scss'],
   animations: [
     trigger('move', [
-      state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
+      animations.state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
       transition('void => *', moveKeyframes, {params: {distance: '0,0,0'}})
     ])
   ]
@@ -57,10 +58,10 @@ export class LoginComponent implements OnInit {
       .pipe(filter(({code, state}) => !!code && !!state))
       .subscribe(({code, state}) => {
         this.progress.gitlab = true;
-        this.loginGitlabGQL.mutate({code: code, state: state})
+        this.loginGitlabGQL.mutate({code, state})
           .pipe(
             finalize(() => this.progress.gitlab = false),
-            map(({data: {completeGitlabAuth: {token}}}) =>
+            map(({data: {socialLoginComplete: {token}}}) =>
               deserialize(token, Authorization))
           )
           .subscribe((token: Authorization) => this.logged(token),
