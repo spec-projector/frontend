@@ -4,11 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'projects',
-    pathMatch: 'full'
-  },
-  {
-    path: 'lp',
+    pathMatch: 'full',
     data: {animation: 'lp'},
     loadChildren: () => import('./lp/lp.module')
       .then(m => m.LPModule)
@@ -34,7 +30,13 @@ const routes: Routes = [
     path: 'restore-password',
     loadChildren: () => import('./restore-password/restore-password.module')
       .then(m => m.RestorePasswordModule)
-  }
+  },
+  {
+    path: '**',
+    data: {animation: 'lp'},
+    loadChildren: () => import('./lp/lp.module')
+      .then(m => m.LPModule)
+  },
 ];
 
 @NgModule({

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LPComponent } from './lp.component';
+import { LpComponent } from './lp.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LPComponent
+    component: LpComponent
   }
 ];
 
@@ -14,4 +14,5 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class LPRoutingModule {
+
 }

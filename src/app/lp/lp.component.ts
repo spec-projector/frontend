@@ -40,10 +40,9 @@ const HAND_ROTATE = '20deg';
   ]
 })
 
-export class LPComponent {
+export class LpComponent {
 
   ui = UI;
-
   distance = Distance;
 
   constructor(public route: ActivatedRoute,

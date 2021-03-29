@@ -89,7 +89,8 @@
                          placeholder="Password"
                          i18n-placeholder="@@label.password"
                          [icon]="ui.icons.lock"
-                         [type]="ui.input.type.password"></jnt-input>
+                         [type]="ui.input.type.password"
+                         [autocomplete]="'new-password'"></jnt-input>
               <jnt-form-message [validator]="ui.validator.required"
                                 i18n="@@message.field_required">This field is required
               </jnt-form-message>

@@ -33,6 +33,6 @@ export class LayoutComponent {
 
   logout() {
     this.config.authorization = null;
-    this.router.navigate(['/login']).then(() => null);
+    this.router.navigate(['/']).then(() => null);
   }
 }

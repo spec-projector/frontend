@@ -38,13 +38,15 @@
         </ng-template>
 
         <ng-template #userbarMenuTemplate>
-          <jnt-select-lang></jnt-select-lang>
-          <jnt-menu [orientation]="ui.orientation.vertical">
-            <jnt-menu-item title="Logout"
-                           i18n-title="@@label.logout"
-                           [icon]="ui.icons.logout"
-                           (click)="logout()"></jnt-menu-item>
-          </jnt-menu>
+          <jnt-stack [align]="ui.align.stretch">
+            <jnt-select-lang></jnt-select-lang>
+            <jnt-menu [orientation]="ui.orientation.vertical">
+              <jnt-menu-item title="Logout"
+                             i18n-title="@@label.logout"
+                             [icon]="ui.icons.logout"
+                             (click)="logout()"></jnt-menu-item>
+            </jnt-menu>
+          </jnt-stack>
         </ng-template>
       </jnt-app-header-userbar>
     </ng-template>

@@ -65,33 +65,36 @@
                                 i18n="@@message.field_required">This field is required
               </jnt-form-message>
             </jnt-form-control>
+            <jnt-link data-link title="Forgot password?" [source]="['/restore-password']"></jnt-link>
           </jnt-form-item>
-
-          <jnt-link data-link title="Forgot password?" [source]="['/restore-password']"></jnt-link>
 
         </jnt-stack>
 
         <ng-template #formFooterTemplate>
-          <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.big">
-            <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+          <jnt-stack [align]="ui.align.stretch">
+            <jnt-stack [align]="ui.align.stretch">
               <jnt-button text="Login"
                           i18n-text="@@action.login"
-                          [scheme]="ui.scheme.secondary"
+                          [icon]="ui.icons.login"
                           [type]="ui.button.type.submit">
               </jnt-button>
+              <p>Or login by</p>
               <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
                 <jnt-button text="Google"
                             [icon]="ui.icons.google"
                             [width]="ui.width.fluid"
                             [scheme]="ui.scheme.secondary">
                 </jnt-button>
-                <jnt-button text="Gitlab" [scheme]="ui.scheme.secondary"
+                <jnt-button text="Gitlab"
+                            [scheme]="ui.scheme.secondary"
                             [icon]="ui.icons.gitlab"
                             [width]="ui.width.fluid"
-                            (click)="router.navigate(['/api/login/gitlab/'])"></jnt-button>
+                            (click)="goto('/api/login/gitlab/')"></jnt-button>
               </jnt-stack>
             </jnt-stack>
+            <p>Have no account yet?</p>
             <jnt-button text="Registration"
+                        [scheme]="ui.scheme.secondary"
                         (click)="router.navigate(['/register'])">
             </jnt-button>
           </jnt-stack>

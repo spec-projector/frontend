@@ -86,8 +86,13 @@ export class LoginComponent implements OnInit {
         errors => this.errors = errors);
   }
 
+  goto(url: string) {
+    document.location.href = url;
+  }
+
   private logged(authorization: Authorization) {
     this.config.authorization = authorization;
-    this.router.navigate(['/']).then(() => null);
+    this.router.navigate(['/projects'])
+      .then(() => null);
   }
 }
