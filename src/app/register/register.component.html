@@ -5,21 +5,6 @@
                         [message]="e.toString()"></jnt-informer-message>
 </jnt-informer>
 
-<jnt-informer *ngIf="config.authorization"
-              [backdrop]="backdrop">
-  <ng-template #informerContentTemplate>
-    <jnt-stack [align]="ui.align.center">
-      <p data-success i18n="@@message.you_registered">You have been registered, please waiting for been redirected to</p>
-      <jnt-link title="Home page"
-                i18n-title="@@action.home_page"
-                [disabled]="progress.redirecting"
-                [icon]="{icon: progress.redirecting ? ui.icons.animated.reload : ui.icons.link, position: ui.position.right}"
-                [outline]="ui.outline.fill"
-                (click)="redirect()"></jnt-link>
-    </jnt-stack>
-  </ng-template>
-</jnt-informer>
-
 <jnt-container>
 
   <img data-bagel-half
@@ -42,8 +27,7 @@
              [padding]="ui.gutter.large"
              [spacing]="ui.gutter.large"
              [width]="ui.width.fluid"
-             [features]="[ui.feature.adapted]"
-             [state]="progress.registering ? ui.state.loading : null">
+             [features]="[ui.feature.adapted]">
     <ng-template #blockHeaderTemplate>
       <jnt-stack [align]="ui.justify.center">
         <a data-logo routerLink="/">
@@ -52,7 +36,10 @@
         <h1 i18n="@@label.register">Make an account</h1>
       </jnt-stack>
     </ng-template>
-    <jnt-form #formRef [formGroup]="form"
+
+    <jnt-form #formRef
+              [formGroup]="form"
+              [state]="progress.registering || progress.redirecting ? ui.state.loading : null"
               (submitted)="register()">
       <jnt-stack [align]="ui.align.stretch">
         <jnt-form-item>
@@ -117,7 +104,7 @@
                       [width]="ui.width.fluid"
                       [type]="ui.button.type.submit">
           </jnt-button>
-          <p i18n="@@message.registered_already">Have you registered already?</p>
+          <p i18n="@@message.registered_already">Did you register already?</p>
           <jnt-button text="Login"
                       i18n-text="@@action.login"
                       [scheme]="ui.scheme.secondary"

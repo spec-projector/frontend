@@ -55,7 +55,7 @@ export class RegisterComponent implements AfterViewInit {
 
   constructor(private registerGQL: RegisterGQL,
               private fb: FormBuilder,
-              private config: AppConfig,
+              public config: AppConfig,
               public router: Router) {
   }
 
@@ -81,9 +81,10 @@ export class RegisterComponent implements AfterViewInit {
       }, errors => this.errors = errors);
   }
 
-  redirect() {
+  private redirect() {
     this.progress.redirecting = true;
-    setTimeout(() => this.router.navigate(['/projects']), UI_DELAY);
+    setTimeout(() => this.router.navigate(['/projects'])
+      .then(() => this.progress.redirecting = false), UI_DELAY);
   }
 
 }
