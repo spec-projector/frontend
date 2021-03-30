@@ -1,18 +1,19 @@
+import * as animations from '@angular/animations';
+import { style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { deserialize } from 'serialize-ts';
 import { FormComponent, UI } from '@junte/ui';
 import 'reflect-metadata';
-import { filter, finalize, map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
+import { deserialize, serialize } from 'serialize-ts';
 import { AppConfig } from 'src/app/app-config';
-import { GitlabLoginGQL, LoginGQL } from 'src/app/login/login.graphql';
+import { LoginGQL, SocialLoginCompleteGQL, SocialLoginGQL } from 'src/app/login/login.graphql';
 import { Authorization } from 'src/model/authorization';
-import { UserCredentials } from '../../model/user';
+import { SocialLoginSystem } from '../../enums/signin';
+import { CompleteSocialLoginRequest, MakeSocialLogin, SocialLoginRequest, UserCredentials } from '../../model/user';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
-import { style, transition, trigger } from '@angular/animations';
-import * as animations from '@angular/animations';
 import { Distance, moveKeyframes } from '../lp/animation';
 
 @Component({
@@ -30,8 +31,9 @@ export class LoginComponent implements OnInit {
 
   ui = UI;
   distance = Distance;
+  systemBackend = SocialLoginSystem;
 
-  progress = {gitlab: false, login: false};
+  progress = {login: false};
   errors: BackendError[] = [];
 
   form = this.builder.group({
@@ -46,7 +48,8 @@ export class LoginComponent implements OnInit {
   backdrop: ElementRef<HTMLElement>;
 
   constructor(private loginGQL: LoginGQL,
-              private loginGitlabGQL: GitlabLoginGQL,
+              private socialLoginGQL: SocialLoginGQL,
+              private socialLoginCompleteGQL: SocialLoginCompleteGQL,
               private config: AppConfig,
               private builder: FormBuilder,
               private route: ActivatedRoute,
@@ -54,19 +57,26 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams
-      .pipe(filter(({code, state}) => !!code && !!state))
-      .subscribe(({code, state}) => {
-        this.progress.gitlab = true;
-        this.loginGitlabGQL.mutate({code, state})
-          .pipe(
-            finalize(() => this.progress.gitlab = false),
-            map(({data: {socialLoginComplete: {token}}}) =>
-              deserialize(token, Authorization))
-          )
-          .subscribe((token: Authorization) => this.logged(token),
-            errors => this.errors = errors);
-      });
+    this.trySocialAuthorise();
+  }
+
+  private trySocialAuthorise() {
+    const snapshot = this.route.snapshot;
+    const {system} = snapshot.data;
+    if (!system) {
+      return;
+    }
+
+    const {code, state} = snapshot.queryParams;
+    const request = new CompleteSocialLoginRequest({system, code, state});
+    this.progress.login = true;
+    this.socialLoginCompleteGQL.mutate(serialize(request))
+      .pipe(
+        finalize(() => this.progress.login = false),
+        map(({data: {response: {token}}}) =>
+          deserialize(token, Authorization)))
+      .subscribe((token: Authorization) => this.logged(token),
+        errors => this.errors = errors);
   }
 
   submit() {
@@ -77,18 +87,24 @@ export class LoginComponent implements OnInit {
     const request = new UserCredentials(this.form.getRawValue());
     this.progress.login = true;
     this.loginGQL.mutate(request)
-      .pipe(
-        finalize(() => this.progress.login = false),
+      .pipe(finalize(() => this.progress.login = false),
         catchGQLErrors(),
-        map(({data: {login: {token}}}) =>
-          deserialize(token, Authorization))
-      )
+        map(({data: {response: {token}}}) =>
+          deserialize(token, Authorization)))
       .subscribe((token: Authorization) => this.logged(token),
         errors => this.errors = errors);
   }
 
-  goto(url: string) {
-    document.location.href = url;
+  socialLogin(system: SocialLoginSystem) {
+    const request = new SocialLoginRequest({system});
+    this.progress.login = true;
+    this.socialLoginGQL.mutate(serialize(request))
+      .pipe(finalize(() => this.progress.login = false),
+        catchGQLErrors(),
+        map(({data: {response}}) =>
+          deserialize(response, MakeSocialLogin)))
+      .subscribe(({redirectUrl}) => document.location.href = redirectUrl,
+        errors => this.errors = errors);
   }
 
   private logged(authorization: Authorization) {
@@ -96,4 +112,5 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/projects'])
       .then(() => null);
   }
+
 }

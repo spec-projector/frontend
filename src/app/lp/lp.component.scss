@@ -1,9 +1,9 @@
 @import 'src/variables';
-@import "common";
 @import '~@junte/ui/lib/assets/styles/jnt-variables';
 @import '~@junte/ui/lib/assets/styles/layout/responsive';
 @import '~@junte/ui/lib/assets/styles/layout/lp';
 @import '~@junte/ui/lib/assets/styles/forms/button';
+@import "decors";
 
 $jnt-ng-deep: true;
 

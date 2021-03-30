@@ -1,53 +1,8 @@
 @import 'src/variables';
-@import "src/app/lp/common";
-@import '~@junte/ui/lib/assets/styles/jnt-variables';
-@import '~@junte/ui/lib/assets/styles/layout/responsive';
-@import '~@junte/ui/lib/assets/styles/layout/block';
-
-$jnt-ng-deep: true;
-
-:host {
-  display: flex;
-  background: url(../../assets/images/lp/bg.png);
-  background-size: 100% 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: hidden;
-  @include min-for-tablet() {
-    padding-top: 154px;
-    @include jnt-block((corner: 16px, shadow: 0px 16px 32px rgba(57, 73, 171, 0.16)));
-  }
-}
-
-[data-hand-up] {
-  position: absolute;
-  top: 100%;
-  left: 385px;
-}
-
-[data-block] {
-
-  position: absolute;
-  top: 70px;
-  margin: 0 auto;
-
-  @include for-mobile() {
-    width: 100%;
-  }
-  @include min-for-tablet() {
-    min-width: 350px;
-    width: 350px;
-  }
-}
-
-[data-logo] {
-  display: block;
-  text-align: center;
-  padding-bottom: $jnt-gutter-big;
-}
+@import "~@junte/ui/lib/assets/styles/layout/grid";
+@import "~@junte/ui/lib/assets/styles/layout/responsive";
+@import "../lp/page";
+@import "../lp/decors";
 
 [data-link] {
   align-self: flex-end;

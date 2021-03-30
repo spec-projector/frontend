@@ -1,4 +1,5 @@
 import { Field, Model } from 'serialize-ts';
+import { SocialLoginSystem } from '../enums/signin';
 
 @Model()
 export class User {
@@ -62,6 +63,48 @@ export class SendPasswordResetSecurityCodeInput {
 }
 
 @Model()
+export class SocialLoginRequest {
+
+  @Field()
+  system: SocialLoginSystem;
+
+  constructor(defs: Partial<SocialLoginRequest> = {}) {
+    Object.assign(this, defs);
+  }
+
+}
+
+@Model()
+export class MakeSocialLogin {
+
+  @Field()
+  redirectUrl: string;
+
+  constructor(defs: Partial<MakeSocialLogin> = {}) {
+    Object.assign(this, defs);
+  }
+
+}
+
+@Model()
+export class CompleteSocialLoginRequest {
+
+  @Field()
+  system: SocialLoginSystem;
+
+  @Field()
+  state: string;
+
+  @Field()
+  code: string;
+
+  constructor(defs: Partial<CompleteSocialLoginRequest> = {}) {
+    Object.assign(this, defs);
+  }
+
+}
+
+@Model()
 export class ResetPasswordInput {
 
   @Field()
@@ -78,4 +121,3 @@ export class ResetPasswordInput {
   }
 
 }
-

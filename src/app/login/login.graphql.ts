@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Mutation } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { MakeSocialLogin } from '../../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import gql from 'graphql-tag';
 export class LoginGQL extends Mutation<{ login: { token } }> {
   document = gql`
 mutation Login($login: String!, $password: String!) {
-  login(login: $login, password: $password) {
+  response: login(login: $login, password: $password) {
     token {
       key
       created
@@ -26,10 +27,22 @@ mutation Login($login: String!, $password: String!) {
 @Injectable({
   providedIn: 'root'
 })
-export class GitlabLoginGQL extends Mutation<{ socialLoginComplete: { token } }> {
+export class SocialLoginGQL extends Mutation<{ response }> {
   document = gql`
-mutation ($code: String!, $state: String!) {
-  socialLoginComplete(code: $code, state: $state, system: GITLAB) {
+mutation ($system: SystemBackend!) {
+  response: socialLogin(system: $system) {
+    redirectUrl
+  }
+}`;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SocialLoginCompleteGQL extends Mutation<{ response: { token } }> {
+  document = gql`
+mutation ($system: SystemBackend!, $code: String!, $state: String!) {
+  response: socialLoginComplete(system: $system, code: $code, state: $state) {
     token {
       key
     }

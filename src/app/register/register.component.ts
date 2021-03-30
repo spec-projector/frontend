@@ -1,23 +1,18 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { UI } from '@junte/ui';
-import 'reflect-metadata';
-import { BackendError } from '../../types/gql-errors';
+import { state, style, transition, trigger } from '@angular/animations';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserRegister } from '../../model/user';
-import { RegisterGQL } from './register.graphql';
-import { finalize, map } from 'rxjs/operators';
-import { catchGQLErrors } from '../../utils/gql-errors';
-import { deserialize, serialize } from 'serialize-ts';
-import { Authorization } from '../../model/authorization';
 import { Router } from '@angular/router';
+import { FormComponent, InputComponent, UI } from '@junte/ui';
+import { finalize, map } from 'rxjs/operators';
+import { deserialize, serialize } from 'serialize-ts';
+import { UI_DELAY } from '../../consts';
+import { Authorization } from '../../model/authorization';
+import { UserRegister } from '../../model/user';
+import { BackendError } from '../../types/gql-errors';
+import { catchGQLErrors } from '../../utils/gql-errors';
 import { AppConfig } from '../app-config';
 import { Distance, moveDownKeyframes, moveKeyframes } from '../lp/animation';
-import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
-
-enum View {
-  register = 'register',
-  success = 'success'
-}
+import { RegisterGQL } from './register.graphql';
 
 @Component({
   selector: 'spec-register',
@@ -28,38 +23,27 @@ enum View {
       state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
       transition('void => *', moveKeyframes, {params: {distance: '0,0,0'}}),
       transition('* => void', moveDownKeyframes, {params: {distance: '0,0,0'}})
-    ]),
-    trigger('changeView', [
-      state('register', style({height: '455px'})),
-      state('success', style({height: '*'})),
-      transition('register => success', group([
-        animate('.5s ease'),
-        query('@fadeOut', animateChild(), {optional: true}),
-        query('@fadeIn', animateChild(), {optional: true})
-      ]))
-    ]),
-    trigger('fadeIn', [
-      state('void', style({opacity: 0})),
-      state('*', style({opacity: 1})),
-      transition('void => *', animate('.5s ease'))
-    ]),
-    trigger('fadeOut', [
-      state('void', style({opacity: 0})),
-      state('*', style({opacity: 1})),
-      transition('* => void', animate('.5s ease'))
     ])
   ]
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
 
   ui = UI;
-  errors: BackendError[] = [];
-  progress = {register: false};
   distance = Distance;
-  views = View;
-  view: View = View.register;
 
-  @ViewChild('content', {read: ElementRef})
+  errors: BackendError[] = [];
+  progress = {
+    registering: false,
+    redirecting: false
+  };
+
+  @ViewChild('formRef')
+  formRef: FormComponent;
+
+  @ViewChild('nameRef')
+  nameRef: InputComponent;
+
+  @ViewChild('blockRef', {read: ElementRef})
   backdrop: ElementRef<HTMLElement>;
 
   form = this.fb.group({
@@ -69,26 +53,37 @@ export class RegisterComponent {
     password: [null, [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder,
-              private registerGQL: RegisterGQL,
+  constructor(private registerGQL: RegisterGQL,
+              private fb: FormBuilder,
               private config: AppConfig,
               public router: Router) {
   }
 
-  register() {
-    const request = new UserRegister(this.form.getRawValue());
-    this.progress.register = true;
-    this.registerGQL.mutate({input: serialize(request)})
-      .pipe(finalize(() => this.progress.register = false),
-        catchGQLErrors(),
-        map(({data: {register: {token}}}) =>
-          deserialize(token, Authorization))
-      ).subscribe((token: Authorization) => this.logged(token),
-      errors => this.errors = errors);
+  ngAfterViewInit() {
+    setTimeout(() => this.nameRef.focus(), 100);
   }
 
-  private logged(authorization: Authorization) {
-    this.config.authorization = authorization;
-    this.view = View.success;
+  submit() {
+    this.formRef.submit();
   }
+
+  register() {
+    const request = new UserRegister(this.form.getRawValue());
+    this.progress.registering = true;
+    this.registerGQL.mutate({input: serialize(request)})
+      .pipe(finalize(() => this.progress.registering = false),
+        catchGQLErrors(),
+        map(({data: {register: {token}}}) =>
+          deserialize(token, Authorization)))
+      .subscribe((token: Authorization) => {
+        this.config.authorization = token;
+        this.redirect();
+      }, errors => this.errors = errors);
+  }
+
+  redirect() {
+    this.progress.redirecting = true;
+    setTimeout(() => this.router.navigate(['/projects']), UI_DELAY);
+  }
+
 }

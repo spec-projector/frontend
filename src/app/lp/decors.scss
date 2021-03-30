@@ -1,0 +1,50 @@
+@import 'src/variables';
+@import "~@junte/ui/lib/assets/styles/layout/responsive";
+
+%data-decor {
+  position: absolute;
+  height: auto;
+
+  @include for-mobile() {
+    display: none;
+  }
+}
+
+img {
+  &[data-bagel-half] {
+    @extend %data-decor;
+    right: -50px;
+    top: 740px;
+  }
+
+  &[data-bagel-small] {
+    @extend %data-decor;
+    left: 330px;
+    top: 560px;
+  }
+
+  &[data-diamond] {
+    @extend %data-decor;
+    right: -120px;
+    top: 20px;
+  }
+
+  &[data-bagel-pink] {
+    @extend %data-decor;
+    left: -150px;
+    top: 540px;
+  }
+
+  &[data-hand-up] {
+    @extend %data-decor;
+    top: 100%;
+    left: 385px;
+  }
+
+  &[data-specifications] {
+    @extend %data-decor;
+    top: -110px;
+    right: -330px;
+  }
+
+}

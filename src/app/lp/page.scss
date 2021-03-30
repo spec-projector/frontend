@@ -1,0 +1,33 @@
+@import 'src/variables';
+@import "~@junte/ui/lib/assets/styles/layout/grid";
+@import "~@junte/ui/lib/assets/styles/layout/responsive";
+
+$jnt-ng-deep: true;
+
+@include jnt-grid-container((width: 400px, padding: 0)) {
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  @include for-mobile() {
+    align-items: start;
+    padding: $jnt-gutter-normal 0;
+  }
+}
+
+:host {
+  display: flex;
+  background: url(../../assets/images/lp/bg.png);
+  background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: $jnt-font-size-big;
+  color: $jnt-primary-color;
+  font-weight: $jnt-font-weight-extra-bold;
+}
