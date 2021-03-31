@@ -7,12 +7,7 @@ const routes: Routes = [
     pathMatch: 'full',
     data: {animation: 'lp'},
     loadChildren: () => import('./lp/lp.module')
-      .then(m => m.LPModule)
-  },
-  {
-    path: 'projects',
-    loadChildren: () => import('./layout/layout.module')
-      .then(m => m.LayoutModule)
+      .then(m => m.LpModule)
   },
   {
     path: 'login',
@@ -32,11 +27,10 @@ const routes: Routes = [
       .then(m => m.RestorePasswordModule)
   },
   {
-    path: '**',
-    data: {animation: 'lp'},
-    loadChildren: () => import('./lp/lp.module')
-      .then(m => m.LPModule)
-  },
+    path: '',
+    loadChildren: () => import('./layout/layout.module')
+      .then(m => m.LayoutModule)
+  }
 ];
 
 @NgModule({

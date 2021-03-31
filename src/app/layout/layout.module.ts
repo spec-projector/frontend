@@ -15,11 +15,14 @@ import { SelectLangComponent } from './select-lang/select-lang.component';
   imports: [
     CommonModule,
     CommonModule,
+
+    LayoutRoutingModule,
+
     ReactiveFormsModule,
     JunteUiModule,
-    ArrayPipesModule,
-    LayoutRoutingModule
+    ArrayPipesModule
   ]
 })
 export class LayoutModule {
+
 }

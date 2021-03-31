@@ -67,15 +67,26 @@
     </jnt-container>
   </jnt-lp-slide>
   <jnt-container>
-    <jnt-menu [spacing]="ui.gutter.small">
-      <jnt-menu-item title="Pricing"></jnt-menu-item>
-      <jnt-menu-item title="Supporting"
-                     [link]="['supporting']"></jnt-menu-item>
-      <jnt-menu-item title="Contacts"
-                     [link]="['contacts']"></jnt-menu-item>
-    </jnt-menu>
-    <p>
-      <small>Junte, Russia, Ivanovo 2016-2021</small>
-    </p>
+    <div data-footer>
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [align]="ui.align.center"
+                 [justify]="ui.justify.between">
+        <small>Junte, Russia, Ivanovo 2016-2021</small>
+        <jnt-menu [spacing]="ui.gutter.small">
+          <jnt-menu-item title="Agreement"
+                         i18n-title="@@label.agreement"
+                         [link]="['agreement']"></jnt-menu-item>
+          <jnt-menu-item title="Policy"
+                         i18n-title="@@label.policy"
+                         [link]="['policy']"></jnt-menu-item>
+          <jnt-menu-item title="Security"
+                         i18n-title="@@label.security"
+                         [link]="['security']"></jnt-menu-item>
+          <jnt-menu-item title="Contacts"
+                         i18n-title="@@label.contacts"
+                         [link]="['contacts']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-stack>
+    </div>
   </jnt-container>
 </jnt-lp-layout>

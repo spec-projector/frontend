@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JunteUiModule, ResponsiveModule, ShortcutsModule } from '@junte/ui';
 import { LpComponent } from './lp.component';
-import { LPRoutingModule } from './lp-routing.module';
+import { LpRoutingModule } from './lp-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,12 +11,15 @@ import { LPRoutingModule } from './lp-routing.module';
   ],
   imports: [
     CommonModule,
+
+    LpRoutingModule,
+
     JunteUiModule,
     ShortcutsModule,
     ReactiveFormsModule,
-    LPRoutingModule,
     ResponsiveModule
   ]
 })
-export class LPModule {
+export class LpModule {
+
 }

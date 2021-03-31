@@ -13,6 +13,6 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LPRoutingModule {
+export class LpRoutingModule {
 
 }

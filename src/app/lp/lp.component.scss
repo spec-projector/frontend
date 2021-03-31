@@ -74,3 +74,6 @@ jnt-lp-slide {
   @include jnt-button((color: $jnt-primary-color), '&');
 }
 
+[data-footer] {
+  padding: $jnt-gutter-normal 0;
+}
