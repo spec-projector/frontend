@@ -1,1 +1,72 @@
-<h1>Security</h1>
+<jnt-app-content>
+  <jnt-app-body>
+    <jnt-container [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        <h1>Security Statement</h1>
+        <p>amoCRM.com takes advantage of some of the highest rated security software available today. This is so our customers can shop with ease and not worry about identity theft or fraudulent charges.</p>
+        <h4><b>Securing Data And Information With Starfield Technologies
+        </b></h4>
+        <p>
+          Your safety and the safety of the information you put onto our site is one of amoCRM.com’s highest priorities and biggest concerns. That’s why we use Deluxe SSL to protect you and your information while you’re on our site. Starfield Technologies ensures secure communication by encrypting all data to and from the site in an effort to make sure that your sensitive information stays secure, and out of the hands of hackers and criminals. All transmitted data between your browser and the server is protected by a security certificate SSL 256-bit encryption mechanism which prevents unauthorized access to packets transmitted between your computer and amoCRM. Starfield Technologies also uses the strongest identity authentication standard available on the market today.
+        </p>
+        <h4><b>Full Data Backup</b></h4>
+        <p>
+          Our system automatically and securely backs up all your data every few hours. This means that it can be immediately restored if there’s a server problem. In other words, once something is on amoCRM, it’s on there until you delete it.
+        </p>
+        <h4><b>Secure Authorization</b></h4>
+        <p>
+          User sessions are saved in a special database and are assigned a new session ID every few minutes. This makes stealing the sessions useless since the session ID won’t work by the time they get it.
+        </p>
+
+        <p>
+          amoCRM.com may update this policy at any time. You may always view the most current version by clicking the following link, http://www.amocrm.com/security/ to make sure you’re up-to-date and familiar with our most current policy. Your continued use of this site and its services constitutes your agreement and acceptance of said changes, if and when they occur.
+        </p>
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+      <h4><b>Ваши данные доступны только Вам</b></h4>
+      <p>
+        Доступ к вашим данным имеете только Вы и никто более. Никто из наших сотрудников, за исключением 2-х человек
+        нашей
+        компании, не имеет доступа к административной панели и серверам проекта. Мы не используем ваши данные в личных
+        целях и
+        не раскрываем их третьим лицам. Наш бизнес связан с реализацией удобного сервиса и никак не пересекается с
+        деятельностью вашей компании.
+      </p>
+      <h4><b>Полное резервирование данных</b></h4>
+      <p>
+        Все ваши данные мы бережно охраняем и принимаем все необходимые меры для их сохранности. С периодичностью в
+        несколько
+        часов в автоматическом режиме мы копируем все ваши данные и сохраняем их на защищенном внешнем носителе, что
+        позволяет
+        нам восстановить систему даже после полного выхода из строя серверов проекта.
+      </p>
+      <h4><b>Надежность работы системы</b></h4>
+      <p>
+        Для обеспечения надежности работы системы мы используем географически распределенную сеть серверов,
+        расположенную в
+        Российской Федерации. Данные между ними постоянно синхронизируются в режиме реального времени, что исключает
+        потерю
+        данных в случае нештатной ситуации. В случае какой-либо аварии, в кратчайшие сроки, все запросы будут переведены
+        на
+        доступный сервер.
+      </p>
+      <h4><b>Шифрование канала передачи данных</b></h4>
+      <p>
+        Все передаваемые данные между вашим браузером и серверами проекта защищены сертификатом безопасности SSL.
+        256-битный
+        механизм шифрования предотвращает несанкционированный доступ к передаваемым пакетам между вашим компьютером и
+        проектом
+        amoCRM.
+      </p>
+      <h4><b>Защита авторизации</b></h4>
+      <p>
+        Авторизовываясь на нашем проекте вы можете быть уверены, что ваша сессия не будет похищена и использована для
+        хищения
+        ваших данных. Сессии пользователей хранятся в специальных таблицах БД, имеют ограниченный период жизни,
+        идентификатор
+        сессии меняется раз в несколько минут, что позволяет делать хищение сессий бесполезным для злоумышленников.
+      </p>
+      </ng-container>
+    </jnt-container>
+  </jnt-app-body>
+</jnt-app-content>
