@@ -19,8 +19,16 @@
                      i18n-title="@@label.projects"></jnt-menu-item>
       <jnt-menu-item [link]="['/marketplace']"
                      [icon]="localUi.icons.market"
-                     title="Marketplace"
+                     title="Find specification"
                      i18n-title="@@label.marketplace"
+                     [disabled]="true"></jnt-menu-item>
+      <jnt-menu-item [link]="['/project-managers']"
+                     title="Hire project manager"
+                     i18n-title="@@label.project_manager"
+                     [disabled]="true"></jnt-menu-item>
+      <jnt-menu-item [link]="['/teams']"
+                     title="Hire team"
+                     i18n-title="@@label.teams"
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
 
@@ -28,6 +36,7 @@
       <jnt-link title="Login"
                 i18n-title="@@label.login"
                 [icon]="ui.icons.login"
+                [outline]="ui.outline.ghost"
                 [source]="['/login']"></jnt-link>
     </ng-template>
 
