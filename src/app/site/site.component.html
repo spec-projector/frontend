@@ -6,6 +6,9 @@
   </jnt-app-body>
   <jnt-app-footer>
     <jnt-menu [spacing]="ui.gutter.small">
+      <jnt-menu-item title="Contacts"
+                     i18n-title="@@label.contacts"
+                     [link]="['/contacts']"></jnt-menu-item>
       <jnt-menu-item title="Agreement"
                      i18n-title="@@label.agreement"
                      [link]="['/agreement']"></jnt-menu-item>
@@ -15,9 +18,6 @@
       <jnt-menu-item title="Security"
                      i18n-title="@@label.security"
                      [link]="['/security']"></jnt-menu-item>
-      <jnt-menu-item title="Contacts"
-                     i18n-title="@@label.contacts"
-                     [link]="['/contacts']"></jnt-menu-item>
     </jnt-menu>
   </jnt-app-footer>
 </jnt-app-content>

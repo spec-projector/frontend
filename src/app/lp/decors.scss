@@ -4,6 +4,7 @@
 %data-decor {
   position: absolute;
   height: auto;
+  pointer-events: none;
 
   @include for-mobile() {
     display: none;
