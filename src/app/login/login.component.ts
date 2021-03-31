@@ -9,12 +9,12 @@ import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { AppConfig } from 'src/app/app-config';
 import { LoginGQL, SocialLoginCompleteGQL, SocialLoginGQL } from 'src/app/login/login.graphql';
-import { Authorization } from 'src/model/authorization';
+import { AuthToken } from 'src/model/auth-token';
 import { SocialLoginSystem } from '../../enums/signin';
-import { CompleteSocialLoginRequest, MakeSocialLogin, SocialLoginRequest, UserCredentials } from '../../model/user';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { Distance, moveKeyframes } from '../lp/animation';
+import { CompleteSocialLogin, MakeSocialLogin, TrySocialLogin, UserCredentials } from './models';
 
 @Component({
   selector: 'spec-login',
@@ -60,15 +60,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.trySocialAuthorise();
+    this.completeSocialLogin();
   }
 
   ngAfterViewInit() {
     setTimeout(() => this.loginRef.focus(), 100);
   }
 
-
-  private trySocialAuthorise() {
+  private completeSocialLogin() {
     const snapshot = this.route.snapshot;
     const {system} = snapshot.data;
     if (!system) {
@@ -76,14 +75,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
 
     const {code, state} = snapshot.queryParams;
-    const request = new CompleteSocialLoginRequest({system, code, state});
+    const request = new CompleteSocialLogin({system, code, state});
     this.progress.login = true;
     this.socialLoginCompleteGQL.mutate(serialize(request))
-      .pipe(
-        finalize(() => this.progress.login = false),
-        map(({data: {response: {token}}}) =>
-          deserialize(token, Authorization)))
-      .subscribe((token: Authorization) => this.logged(token),
+      .pipe(finalize(() => this.progress.login = false),
+        map(({data: {response: {token}}}) => deserialize(token, AuthToken)))
+      .subscribe((token: AuthToken) => this.logged(token),
         errors => this.errors = errors);
   }
 
@@ -98,19 +95,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
       .pipe(finalize(() => this.progress.login = false),
         catchGQLErrors(),
         map(({data: {response: {token}}}) =>
-          deserialize(token, Authorization)))
-      .subscribe((token: Authorization) => this.logged(token),
+          deserialize(token, AuthToken)))
+      .subscribe((token: AuthToken) => this.logged(token),
         errors => this.errors = errors);
   }
 
   socialLogin(system: SocialLoginSystem) {
-    const request = new SocialLoginRequest({system});
+    const request = new TrySocialLogin({system});
     this.progress.login = true;
     this.socialLoginGQL.mutate(serialize(request))
       .pipe(finalize(() => this.progress.login = false),
         catchGQLErrors(),
-        map(({data: {response}}) =>
-          deserialize(response, MakeSocialLogin)))
+        map(({data: {response}}) => deserialize(response, MakeSocialLogin)))
       .subscribe(({redirectUrl}) => {
           this.progress.redirecting = true;
           document.location.href = redirectUrl;
@@ -118,8 +114,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         errors => this.errors = errors);
   }
 
-  private logged(authorization: Authorization) {
-    this.config.authorization = authorization;
+  private logged(token: AuthToken) {
+    this.config.token = token;
     this.progress.redirecting = true;
     this.router.navigate(['/projects'])
       .then(() => this.progress.redirecting = false);

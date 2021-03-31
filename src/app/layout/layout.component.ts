@@ -32,7 +32,7 @@ export class LayoutComponent {
   }
 
   logout() {
-    this.config.authorization = null;
+    this.config.token = null;
     this.router.navigate(['/']).then(() => null);
   }
 }

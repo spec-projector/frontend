@@ -11,7 +11,7 @@ export class NoneLoggedGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    return of(!!this.config.authorization ? this.router.createUrlTree(['/projects']) : true);
+    return of(!!this.config.token ? this.router.createUrlTree(['/projects']) : true);
   }
 
 }
@@ -24,7 +24,7 @@ export class LoggedGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    return of(!this.config.authorization ? this.router.createUrlTree(['/login']) : true);
+    return of(!this.config.token ? this.router.createUrlTree(['/login']) : true);
   }
 
 }

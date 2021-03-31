@@ -12,7 +12,7 @@
     </ng-template>
 
     <jnt-menu #headerTopMenu>
-      <jnt-menu-item *ngIf="!!config.authorization" [link]="['/projects']"
+      <jnt-menu-item *ngIf="!!config.token" [link]="['/projects']"
                      [icon]="localUi.icons.projects"
                      [matching]="ui.matching.wildcard"
                      title="Projects"
@@ -32,7 +32,7 @@
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
 
-    <ng-template *ngIf="!config.authorization" #headerContentTemplate let-hide="hide">
+    <ng-template *ngIf="!config.token" #headerContentTemplate let-hide="hide">
       <jnt-link title="Login"
                 i18n-title="@@label.login"
                 [icon]="ui.icons.login"
@@ -40,7 +40,7 @@
                 [source]="['/login']"></jnt-link>
     </ng-template>
 
-    <ng-template #headerUserbarTemplate *ngIf="!!config.authorization">
+    <ng-template #headerUserbarTemplate *ngIf="!!config.token">
       <jnt-app-header-userbar>
         <ng-template #userbarAvatarTemplate>
           <jnt-avatar [size]="ui.size.small"></jnt-avatar>

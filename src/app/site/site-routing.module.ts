@@ -5,6 +5,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { PolicyComponent } from './policy/policy.component';
 import { SecurityComponent } from './security/security.component';
 import { SiteComponent } from './site.component';
+import { SupportComponent } from './support/support.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'contacts',
         component: ContactsComponent
+      },
+      {
+        path: 'support',
+        component: SupportComponent
       }
     ]
   }

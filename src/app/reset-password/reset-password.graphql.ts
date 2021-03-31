@@ -3,10 +3,10 @@ import { Mutation } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class SendCodeGQL extends Mutation<{ ok }> {
-    document = gql`
+  document = gql`
 mutation($input: SendPasswordResetSecurityCodeInput!) {
     sendPasswordResetSecurityCode(input: $input) {
         ok
@@ -17,10 +17,10 @@ mutation($input: SendPasswordResetSecurityCodeInput!) {
 @Injectable({
   providedIn: 'root'
 })
-export class RestorePasswordGQL extends Mutation<{ resetPassword: { token } }> {
+export class RestorePasswordGQL extends Mutation<{ response: { token } }> {
   document = gql`
 mutation($input: ResetPasswordInput!) {
-    resetPassword(input: $input) {
+    response: resetPassword(input: $input) {
          token {
             key
             created

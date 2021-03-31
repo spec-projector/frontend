@@ -2,19 +2,20 @@
 <jnt-lp-layout>
   <jnt-lp-header>
     <ng-template #headerLogoTemplate>
-      <img src="../../assets/images/lp/logo.svg" height="104">
+      <img src="../../assets/images/lp/logo.svg" height="50">
     </ng-template>
+    <jnt-menu>
+      <jnt-menu-item title="Features"></jnt-menu-item>
+      <jnt-menu-item title="Pricing plans"></jnt-menu-item>
+      <jnt-menu-item title="Supporting"
+                     [link]="['support']"></jnt-menu-item>
+    </jnt-menu>
     <ng-template #contentTemplate>
-      <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.align.center"
-                 [gutter]="ui.gutter.big">
-        <span data-account>Already have account?</span>
-        <jnt-button [outline]="ui.outline.ghost"
-                    [icon]="ui.icons.login"
-                    text="Login"
-                    (click)="router.navigate(['/login'])">
-        </jnt-button>
-      </jnt-stack>
+      <jnt-button [outline]="ui.outline.ghost"
+                  [icon]="ui.icons.login"
+                  text="Login"
+                  (click)="router.navigate(['/login'])">
+      </jnt-button>
     </ng-template>
   </jnt-lp-header>
   <jnt-lp-slide>
@@ -88,5 +89,6 @@
         </jnt-menu>
       </jnt-stack>
     </div>
+
   </jnt-container>
 </jnt-lp-layout>

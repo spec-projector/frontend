@@ -6,12 +6,12 @@ import { FormComponent, InputComponent, UI } from '@junte/ui';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../consts';
-import { Authorization } from '../../model/authorization';
-import { UserRegister } from '../../model/user';
+import { AuthToken } from '../../model/auth-token';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { AppConfig } from '../app-config';
 import { Distance, moveDownKeyframes, moveKeyframes } from '../lp/animation';
+import { UserRegister } from './models';
 import { RegisterGQL } from './register.graphql';
 
 @Component({
@@ -74,9 +74,9 @@ export class RegisterComponent implements AfterViewInit {
       .pipe(finalize(() => this.progress.registering = false),
         catchGQLErrors(),
         map(({data: {register: {token}}}) =>
-          deserialize(token, Authorization)))
-      .subscribe((token: Authorization) => {
-        this.config.authorization = token;
+          deserialize(token, AuthToken)))
+      .subscribe((token: AuthToken) => {
+        this.config.token = token;
         this.redirect();
       }, errors => this.errors = errors);
   }

@@ -133,3 +133,8 @@ APP_PROVIDERS.push({
 
 APP_PROVIDERS = APP_PROVIDERS.concat(JunteUiModule.forRoot(config).providers);
 
+export const LOCAL_MODE = (href => {
+  // href = 'http://localhost';
+  const regex = /(localhost|127.0.0.1)/ig;
+  return regex.test(href);
+})(window.location.href);

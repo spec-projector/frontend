@@ -1,7 +1,7 @@
 import { Field, Model } from 'serialize-ts';
 
 @Model()
-export class Authorization {
+export class AuthToken {
 
   @Field()
   created: string;

@@ -7,6 +7,7 @@ import { PolicyComponent } from './policy/policy.component';
 import { SecurityComponent } from './security/security.component';
 import { SiteRoutingModule } from './site-routing.module';
 import { SiteComponent } from './site.component';
+import { SupportComponent } from './support/support.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SiteComponent } from './site.component';
     AgreementComponent,
     PolicyComponent,
     SecurityComponent,
-    ContactsComponent
+    ContactsComponent,
+    SupportComponent
   ],
   imports: [
     CommonModule,

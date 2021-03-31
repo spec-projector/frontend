@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Mutation } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { MakeSocialLogin } from '../../model/user';
 
 @Injectable({
   providedIn: 'root'

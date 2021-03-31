@@ -22,9 +22,9 @@ const routes: Routes = [
       .then(m => m.RegisterModule)
   },
   {
-    path: 'restore-password',
-    loadChildren: () => import('./restore-password/restore-password.module')
-      .then(m => m.RestorePasswordModule)
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module')
+      .then(m => m.ResetPasswordModule)
   },
   {
     path: '',

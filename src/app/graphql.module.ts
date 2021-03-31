@@ -25,10 +25,10 @@ export class GraphQLModule {
               router: Router) {
     const http = httpLink.create({uri: config.graphqlUrl});
     const authLink = new ApolloLink((operation, forward) => {
-      if (config.authorization) {
+      if (config.token) {
         operation.setContext({
           headers: {
-            'Authorization': `Bearer ${config.authorization.key}`
+            'Authorization': `Bearer ${config.token.key}`
           }
         });
       }
@@ -41,7 +41,7 @@ export class GraphQLModule {
         console.log(networkError);
         const {status} = (networkError as HttpErrorResponse);
         if (status === 401) {
-          config.authorization = null;
+          config.token = null;
           router.navigate(['/login']);
         }
       }
