@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
 import { SocialLoginSystem } from '../../enums/signin';
-import { NoneLoggedGuard } from '../guards/aurhorisation';
+import { NoneLoggedGuard } from '../../guards/aurhorisation';
 
 export const routes: Routes = [
   {

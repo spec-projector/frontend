@@ -63,11 +63,13 @@ import { FeaturesComponent } from './features/features.component';
 import { ModelComponent } from './model/model.component';
 import { PackageEditComponent } from './package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
+import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
 
 @NgModule({
   declarations: [
     SpecComponent,
 
+    SchemeInvalidComponent,
     DetailsComponent,
 
     FeaturesComponent,

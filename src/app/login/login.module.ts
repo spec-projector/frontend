@@ -1,7 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JunteUiModule, ResponsiveModule, ShortcutsModule } from '@junte/ui';
+import {
+  BlockModule,
+  ButtonModule,
+  FormModule,
+  GridModule,
+  InformerModule,
+  InputModule,
+  LinkModule,
+  ShortcutsModule,
+  StackModule
+} from '@junte/ui';
 import { LoginRoutingModule } from 'src/app/login/login-routing.module';
 import { LoginComponent } from 'src/app/login/login.component';
 
@@ -11,11 +21,19 @@ import { LoginComponent } from 'src/app/login/login.component';
   ],
   imports: [
     CommonModule,
-    JunteUiModule,
-    ShortcutsModule,
     ReactiveFormsModule,
+
     LoginRoutingModule,
-    ResponsiveModule
+
+    ShortcutsModule,
+    StackModule,
+    GridModule,
+    InformerModule,
+    BlockModule,
+    FormModule,
+    InputModule,
+    ButtonModule,
+    LinkModule
   ]
 })
 export class LoginModule {

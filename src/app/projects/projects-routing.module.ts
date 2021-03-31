@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectsComponent } from 'src/app/projects/projects.component';
-import { AuthorizationGuard } from '../../guards/authorization';
-
+import { LoggedGuard } from '../../guards/aurhorisation';
 
 export const PROJECTS_BREADCRUMB = $localize`:@@label.projects:Projects`;
 
@@ -11,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: ProjectsComponent,
     data: {breadcrumb: PROJECTS_BREADCRUMB},
-    canActivate: [AuthorizationGuard]
+    canActivate: [LoggedGuard]
   }
 ];
 
@@ -20,4 +19,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ProjectsRoutingModule {
+
 }

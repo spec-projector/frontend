@@ -38,13 +38,13 @@
     </ng-template>
 
     <jnt-form #formComponent
-              [state]="progress.login ? ui.state.loading : null"
               [formGroup]="form"
+              [state]="progress.login || progress.redirecting ? ui.state.loading : null"
               (submitted)="login()">
       <jnt-stack [align]="ui.align.stretch">
         <jnt-form-item>
           <jnt-form-control name="login">
-            <jnt-input formControlName="login"
+            <jnt-input #loginRef formControlName="login"
                        placeholder="Username"
                        i18n-placeholder="@@label.username"
                        [icon]="ui.icons.user"></jnt-input>

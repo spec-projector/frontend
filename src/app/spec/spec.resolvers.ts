@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
@@ -12,26 +12,35 @@ import { Package } from '../../model/spec/orm/package';
 import { Actor } from '../../model/spec/planning/actor';
 import { Feature } from '../../model/spec/planning/feature';
 import { Graphql } from '../../model/spec/planning/graphql';
+import { SchemeInvalidError } from '../../types/errors';
 
 @Injectable({providedIn: 'root'})
 export class SpecResolver implements Resolve<Spec> {
 
   constructor(private projectGQL: ProjectGQL,
-              private manager: SpecManager) {
+              private manager: SpecManager,
+              private router: Router) {
   }
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<Spec> {
-
+    const {project} = route.params;
     return new Observable(o => {
-      this.projectGQL.fetch({id: route.params['project']})
+      this.projectGQL.fetch({id: project})
         .pipe(map(({data: {project: p}}) => deserialize(p, Project)))
         .subscribe(p => {
           console.log(p.dbName);
           console.log('spec resolver');
           this.manager.get(p.dbName)
             .pipe(finalize(() => o.complete()))
-            .subscribe(s => o.next(s), err => o.error(err));
+            .subscribe(s => o.next(s), err => {
+              if (err instanceof SchemeInvalidError) {
+                this.router.navigate(['projects', project, 'updating'])
+                  .then(() => null);
+              } else {
+                o.error(err);
+              }
+            });
         });
     });
   }

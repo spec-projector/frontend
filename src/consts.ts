@@ -29,6 +29,7 @@ export const BACKEND: {
   }
 };
 
+export const SCHEME_VERSION = 1;
 export const PLATFORM_DELAY = 100;
 export const DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';

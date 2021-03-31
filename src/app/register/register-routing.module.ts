@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NoneLoggedGuard } from '../guards/aurhorisation';
+import { NoneLoggedGuard } from '../../guards/aurhorisation';
 import { RegisterComponent } from './register.component';
 
 export const routes: Routes = [

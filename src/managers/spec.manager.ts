@@ -6,7 +6,9 @@ import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
 import { Spec } from 'src/model/spec/spec';
 import { AppConfig } from '../app/app-config';
+import { SCHEME_VERSION } from '../consts';
 import { environment } from '../environments/environment';
+import { SchemeInvalidError } from '../types/errors';
 import Database = PouchDB.Database;
 
 const SPEC_OBJECT_ID = 'spec';
@@ -54,36 +56,43 @@ export class SpecManager {
           fetch: (url, opts) => {
             const headers = opts.headers as Headers;
             if (!!this.config.authorization) {
+              opts.credentials = 'omit';
               headers.append('Authorization', `Bearer ${this.config.authorization.key}`);
             }
             return PouchDB.fetch(url, opts);
           }
         });
 
-      this.local.sync(this.remote).on('complete', () => {
-        const spec = new Spec();
-        console.group('get');
-        console.log(project);
-        console.log('synced');
-        console.log(spec);
-        console.groupEnd();
-        spec.id = SPEC_OBJECT_ID;
-        const progress = new Subject();
-        spec.load(this.local, progress)
-          .subscribe(() => {
-            spec.linking();
-            this.spec$.next(spec);
-            this.pull();
-            this.push();
-          }, (err: { status }) => {
-            if (err.status === 404) {
-              console.log('spec not found');
+      this.local.sync(this.remote)
+        .on('complete', () => {
+          const spec = new Spec();
+          console.group('get');
+          console.log(project);
+          console.log('synced');
+          console.log(spec);
+          console.groupEnd();
+          spec.id = SPEC_OBJECT_ID;
+          const progress = new Subject();
+          spec.load(this.local, progress)
+            .subscribe(() => {
+              if (spec.scheme.version !== SCHEME_VERSION) {
+                this.spec$.error(new SchemeInvalidError());
+                return;
+              }
+
+              spec.linking();
               this.spec$.next(spec);
-            } else {
-              this.spec$.error(err);
-            }
-          });
-      }).on('error', err => this.spec$.error(err));
+              this.pull();
+              this.push();
+            }, (err: { status }) => {
+              if (err.status === 404) {
+                console.log('spec not found');
+                this.spec$.next(spec);
+              } else {
+                this.spec$.error(err);
+              }
+            });
+        }).on('error', err => this.spec$.error(err));
     }
 
     return new Observable(observer => {

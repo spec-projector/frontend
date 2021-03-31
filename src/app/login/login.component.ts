@@ -1,9 +1,9 @@
 import * as animations from '@angular/animations';
 import { style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormComponent, UI } from '@junte/ui';
+import { FormComponent, InputComponent, UI } from '@junte/ui';
 import 'reflect-metadata';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
@@ -27,13 +27,13 @@ import { Distance, moveKeyframes } from '../lp/animation';
     ])
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   distance = Distance;
   systemBackend = SocialLoginSystem;
 
-  progress = {login: false};
+  progress = {login: false, redirecting: false};
   errors: BackendError[] = [];
 
   form = this.builder.group({
@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
 
   @ViewChild(FormComponent)
   formComponent: FormComponent;
+
+  @ViewChild('loginRef')
+  loginRef: InputComponent;
 
   @ViewChild('content', {read: ElementRef})
   backdrop: ElementRef<HTMLElement>;
@@ -59,6 +62,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.trySocialAuthorise();
   }
+
+  ngAfterViewInit() {
+    setTimeout(() => this.loginRef.focus(), 100);
+  }
+
 
   private trySocialAuthorise() {
     const snapshot = this.route.snapshot;
@@ -103,14 +111,18 @@ export class LoginComponent implements OnInit {
         catchGQLErrors(),
         map(({data: {response}}) =>
           deserialize(response, MakeSocialLogin)))
-      .subscribe(({redirectUrl}) => document.location.href = redirectUrl,
+      .subscribe(({redirectUrl}) => {
+          this.progress.redirecting = true;
+          document.location.href = redirectUrl;
+        },
         errors => this.errors = errors);
   }
 
   private logged(authorization: Authorization) {
     this.config.authorization = authorization;
+    this.progress.redirecting = true;
     this.router.navigate(['/projects'])
-      .then(() => null);
+      .then(() => this.progress.redirecting = false);
   }
 
 }
