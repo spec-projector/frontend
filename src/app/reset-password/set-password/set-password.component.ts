@@ -61,6 +61,10 @@ export class SetPasswordComponent implements OnInit, AfterViewInit {
     setTimeout(() => this.codeRef.focus(), 100);
   }
 
+  submit() {
+    this.formComponent.submit();
+  }
+
   setPassword() {
     const {code, password} = this.form.getRawValue();
     const request = new ResetPasswordInput({email: this.email, code, password});

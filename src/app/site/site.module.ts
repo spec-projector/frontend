@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AppLayoutModule, BreadcrumbsModule, GridModule, MenuModule, ModalModule, PopoverModule } from '@junte/ui';
+import { AppLayoutModule, BreadcrumbsModule, GridModule, LinkModule, MenuModule, ModalModule, PopoverModule } from '@junte/ui';
 import { AgreementComponent } from './agreement/agreement.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { PolicyComponent } from './policy/policy.component';
@@ -29,7 +29,8 @@ import { SupportComponent } from './support/support.component';
     ModalModule,
     MenuModule,
     GridModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    LinkModule
   ]
 })
 export class SiteModule {

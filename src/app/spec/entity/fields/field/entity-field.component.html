@@ -20,8 +20,7 @@
       </ng-template>
     </header>
   </jnt-col>
-  <jnt-col [span]="2" (mouseenter)="manager.mode == editMode.edit ? mode.required = editMode.edit : null"
-           (mouseleave)="mode.required = editMode.view">
+  <jnt-col [span]="2" (mouseenter)="manager.mode == editMode.edit ? mode.required = editMode.edit : null">
     <ng-container *ngIf="mode.required === editMode.edit;else viewRequiredTemplate">
       <jnt-checkbox formControlName="required"
                     label="required"
@@ -40,8 +39,7 @@
                  label="required"></jnt-label>
     </ng-template>
   </jnt-col>
-  <jnt-col [span]="4" (mouseenter)="manager.mode == editMode.edit ? mode.type = editMode.edit : null"
-           (mouseleave)="mode.type = editMode.view">
+  <jnt-col [span]="4" (mouseenter)="manager.mode == editMode.edit ? mode.type = editMode.edit : null">
     <jnt-stack *ngIf="mode.type === editMode.edit;else viewTypeTemplate">
       <jnt-select formControlName="type"
                   [size]="ui.size.small">
