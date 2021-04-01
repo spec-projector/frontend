@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { UI } from '@junte/ui';
+import { Language } from '../../../enums/language';
 
 @Component({
   selector: 'spec-contacts',
@@ -9,5 +10,9 @@ import { UI } from '@junte/ui';
 export class ContactsComponent {
 
   ui = UI;
+  language = Language;
+
+  constructor(@Inject(LOCALE_ID) public locale: string) {
+  }
 
 }

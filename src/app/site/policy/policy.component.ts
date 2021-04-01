@@ -1,6 +1,6 @@
 import {Component, Inject, LOCALE_ID} from '@angular/core';
 import { UI } from '@junte/ui';
-import {Language} from '../../../../../junte-ui/src/enums/language';
+import { Language } from '../../../enums/language';
 
 @Component({
   selector: 'spec-policy',
