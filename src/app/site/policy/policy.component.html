@@ -1,912 +1,1265 @@
-<jnt-app-content>
-  <jnt-app-body>
-    <jnt-container [ngSwitch]="locale">
-      <ng-container *ngSwitchDefault>
-        <h1>Privacy Policy</h1>
-        <p>Effective Date<br>
+<jnt-container>
+  <jnt-app-page-header title="Privacy Policy"
+                       i18n-title="@@label.policy"
+                       [icon]="ui.icons.question"></jnt-app-page-header>
+
+  <ng-container [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      <h1>Privacy Policy</h1>
+      <p>Effective Date<br>
         September 25th, 2019
-        </p>
-        <p>
-        Welcome, and thank you for your interest in amoCRM (amoCRM is the product of QSOFT LLC, and is referred to in the following text as “amoCRM”, “QSOFT”, “we”, or “us”), our web site at https://www.amoCRM.com (the “Site”), and all related web sites, downloadable software, mobile applications, and other services provided by us and on which a link to this Privacy Policy is displayed, and all other communications with individuals though from written or oral means, such as email or phone (collectively, together with the Site, our “Service”).
-        </p>
-        <p>
-        This Privacy Policy (“Policy”) describes the information that we gather on or through the Service, how we use and disclose such information, and the steps we take to protect such information. By visiting the Site, or by purchasing or using the Service, you accept the privacy practices described in this Policy.
-        </p>
-        <p>
-        This Policy is incorporated into, and is subject to, the amoCRM Terms of Service. Capitalized terms used but not defined in this Policy have the meaning given to them in the amoCRM Terms of Service.
-        </p>
-        <ol>
-          <li>
-            <h4><b>Definitions</b></h4>
-            <p>
-              <b>“Client”</b> means a customer of amoCRM (QSOFT LLC).
-            </p>
-            <p>
-            <b>“Client Data”</b> means data of any type that is submitted to the Services by or on behalf of Client,including: data submitted, uploaded or imported to the Service by Users and data provided by or about People.
-            </p>
-            <p>
-            <b>“People”</b> (singular “Person”) means Client’s customers, potential customers, and other visitors.
-            </p>
-            <p>
-            <b>“Personal Data”</b> means any information relating to an identified or identifiable natural person.
-            </p>
-            <p>
-            <b>“Public Area”</b> means the area of the Site that can be accessed both by Users and Visitors, without needing to log in.
-            </p>
-            <p>
-            <b>“Restricted Area”</b> means the area of the Site that can be accessed only by Users, and where access requires logging in.
-            </p>
-            <p>
-            <b>“User”</b> means a Client or an employee, agent, or representative of a Client, who primarily uses the restricted areas of the Site for the purpose of accessing the Service in such capacity.
-            </p>
-            <p>
-            <b>“Visitor”</b> means an individual other than a User, who uses the public area, but has no access to the restricted areas of the Site or Service.
-            </p>
-          </li>
-          <li>
-            <h4><b>The Information We Collect</b></h4>
-            <p>
-        We collect different types of information from or through the Service. The legal bases for amoCRM’s processing of personal data are primarily that the processing is necessary for providing the Service in accordance with amoCRM’s Terms of Service and that the processing is carried out in amoCRM’s legitimate interests, which are further explained in the section “How We Use the Information We Collect” of this Policy. We may also process data upon your consent, asking for it as appropriate.
-            </p>
-            <ol>
-              <li><b>Registration and contact information</b>
-                <p>
-        We collect information about you when you register to use the Service and otherwise provide contact information to us via email, phone, or chat. This information may include your username, first and last name, email address or phone number.
-                </p>
-              </li>
-              <li><b>Payment information</b>
-                <p>
-        When you purchase the Service, we will also collect transaction information, which may include your credit card information, billing and mailing address, and other payment-related information. Any credit card information you provide is collected and processed directly by one of our two payment processors, Bank of America through First Data Software or PayPal through their online checkout service.
-                </p>
-                <p>
-        PayPal is committed to keeping card payments secured and operates in compliance with the Payment Card Industry Data Security Standard (PCI-DSS). PayPal may use your payment information in accordance with their own Privacy Policy, which can be viewed here: https://www.paypal.com/us/webapps/mpp/ua/privacy-full.
-                </p>
-              </li>
-              <li><b>Technical, usage and location information</b>
-                <p>
-        When a User or Visitor uses the Service, we automatically record certain information such as IP address, web browser or device type, location, pages viewed, dates and times of the visit and items clicked. This information is collected using various types of technology, including cookies, clear “gifs” or “log information.” We do not collect data regarding a particular user’s activity across websites or applications that are not owned by us. We also may use these technologies to collect information regarding a Visitor or User’s interaction with email messages, such as whether the Visitor or User opens or clicks on a message.
-                </p>
-              </li>
-              <li><b>Integrated Services</b>
-                <p>
-        We offer several user-facing features in amoCRM, such as email synchronization, that rely on Integrated Services including, but not limited to, Google, Facebook, and Microsoft. If you choose to use these features, we will store this data as Client Data in accordance with this Privacy Policy
-                </p>
-                <ol>
-                  <li><b>Integrated Services for Single Sign-On</b>
-                    <p>
-        You can register or log into our Service using single sign-on (SSO) services such as Google and Facebook (“Integrated Services”). These services allow the third party to authenticate your identity, and provide you the option to share your name and email address to pre-populate our sign-up form. By authorizing us to connect with an Integrated Service, you also allow us to collect and store other information that the Integrated Service makes available to us, such as your profile picture and current city.
-        If you choose to provide such information, during registration or otherwise, amoCRM will treat the information as Personal Information and will use it in the ways described in this Privacy Policy. You should check your privacy settings on each Integrated Service to understand what information that Integrated Service makes available to us, and make changes as appropriate. Please review each Integrated Service’s terms of use and privacy policies carefully before using their services and connecting to our Service.
-                    </p>
-                  </li>
-                  <li><b>Integrated Services: Google API Scopes</b>
-                    <p>
-        When connect Google services to your amoCRM account, we request the use of Google OAuth scopes. These are needed for the following reasons:
-                    </p>
-                    <ul>
-                      <li>https://www.googleapis.com/auth/gmail.insert: This scope is needed in order to read and modify the status of email data</li>
-                      <li>https://www.googleapis.com/auth/gmail.send: This scope is needed in order to send emails</li>
-                      <li>https://www.googleapis.com/auth/gmail.readonly: This scope is needed in order to read all email resources and their metadata (no write operations)</li>
-                      <li>https://www.googleapis.com/auth/userinfo.email: This scope is needed in order to view the email address</li>
-                      <li>https://www.googleapis.com/auth/userinfo.profile: This scope is needed in order to view personal information, including information you have made publically available.</li>
-                      <li>https://www.googleapis.com/auth/calendar: This scope is needed in order to read/write within your synchronized calendars</li>
-                    </ul>
-                    <p>In compliance with Google’s requirements for restricted scopes:</p>
-                    <ol>
-                      <li>We only use your data to provide you with user-facing features, and these features were specifically authorized by you;</li>
-                      <li>We do not transfer your data to third parties, except in the case of Legal Compliance or a Change of Ownership (outlined in Sections 4.5 and 4.5);</li>
-                      <li>We do not use or transfer your data for serving advertisements, including retargeting, personalized, or interest-based advertising; and</li>
-                      <li>We do not allow humans to read your data, unless
-                        <ul>
-                          <li>You have permitted a member of our support team to view your data in order to assist you in solving a specific problem;</li>
-                          <li>It is necessary for us to investigate technical problems, in which case the data has been aggregated and anonymized.</li>
-                        </ul>
-                      </li>
-                      <li>App’s use and transfer to any other app of information received from Google Accounts will adhere to Google API Services User Data Policy, including the Limited Use requirements</li>
-                    </ol>
-                  </li>
-                </ol>
-              </li>
-              <li>
-                <h4><b>Information from Other Sources</b></h4>
-                <p>
-        We may obtain information, including Personal Data, from third parties and sources other than the Service, such as our partners and advertisers. If we combine or associate information from other sources with Personal Data that we collect through the Service, we will treat the combined information as Personal Data in accordance with this Policy.
-                </p>
-              </li>
-              <li>
-                <h4><b>Client Data</b></h4>
-                <p>
-        A Client or User may store or upload various data into the Service (“Client Data”), including information about their own clients and potential customers (“People”), as well as other Users of the Service, such as colleagues. amoCRM has no direct relationship with the individuals whose Personal Data it hosts as part of Client Data. Each Client is responsible for providing notice to People concerning the collection and storage of Client Data in the Service.
-                </p>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>How We Use The Information We Collect</b></h4>
-            <p>
-        We use the information that we collect in a variety of ways in providing the Service and operating our business, including the following:
-            </p>
-            <ol>
-              <li>
-                <b>Operations</b>
-                <p>
-        We use your information (not including Client Data) to operate, maintain, enhance and provide all the features of the Service, to provide the services and information that you request, to respond to comments and questions and to provide support to users of the Service. We process Client Data solely in accordance with the directions provided by the applicable Client or User.
-                </p>
-              </li>
-              <li>
-                <b>Improvements</b>
-                <p>
-        We use the information to understand and analyze the usage trends and preferences of our Visitors and Users, to improve the Service, and to develop new products, services, feature, and functionality. Should this purpose require amoCRM to process Client Data, then the data will only be used in anonymized or aggregated form.
-                </p>
-              </li>
-              <li>
-                <b>Communications</b>
-                <p>
-        We may use a Visitor’s or User’s email address or other information (not including Client Data) to contact that Visitor or User
-                </p>
-                <ol>
-              <li>for administrative purposes such as customer service, to address intellectual property infringement, right of privacy violations or defamation issues related to the Client Data or Personal Data posted on the Service or</li>
-                  <li>With updates on promotions and events relating to the Service.</li>
-                </ol>
-                <p>
-        You have the ability to opt‐out of receiving any promotional communications as described below under “Your Choices.”
-                </p>
-              </li>
-              <li>
-                <b>Cookies and Tracking Technologies</b>
-                <p>
-        We use automatically collected information and other information collected on the Service through cookies and similar technologies to:
-                </p>
-                <ol>
-                  <li>personalize our Service, such as remembering a User’s or Visitor’s information so that the User or Visitor will not have to re-enter it during a visit or on subsequent visits;</li>
-                  <li>provide customized advertisements, content, and information;</li>
-                  <li>monitor and analyze the effectiveness of Service and third-party marketing activities;</li>
-                  <li>monitor aggregate site usage metrics such as total number of visitors and pages viewed; and</li>
-                  <li>track your entries, submissions, and status in any promotions or other activities on the Service.</li>
-                </ol>
-                  <p>You can obtain more information about cookies by visiting http://www.allaboutcookies.org.</p>
-              </li>
-              <li>
-                <b>Analytics</b>
-                <p>
-        We use Google Analytics to measure and evaluate access to and traffic on the Public Area of the Site, and create user navigation reports for our Site administrators. Google operates independently from us and has its own privacy policy, which we strongly suggest you review. Google may use the information collected through Google Analytics to evaluate Users' and Visitors' activity on our Site. For more information, see Google Analytics Privacy and Data Sharing.
-                </p>
-                <p>
-        We take measures to protect the technical information collected by our use of Google Analytics. The data collected will only be used on a need to know basis to resolve technical issues, administer the Site and identify visitor preferences; but in this case, the data will be in non-identifiable form. We do not use any of this information to identify Visitors or Users.
-                </p>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>To Whom We Disclose Information</b></h4>
-            <p>
-        Except as described in this Policy, we will not intentionally disclose the Personal Data or Client Data that we collect or store on the Service to third parties without the consent of the applicable Visitor, User or Client. We may disclose information to third parties if you consent to us doing so, as well as in the following circumstances:
-            </p>
-            <ol>
-              <li>
-                <b>Unrestricted Information</b>
-                <p>
-        Any information that you voluntarily choose to include in a Public Area of the Service, such as leaving a comment on a blog post, will be available to any Visitor or User who has access to that content.
-                </p>
-              </li>
-              <li>
-                <b>Service Providers</b>
-                <p>
-        We work with third party service providers who provide website, application development, hosting, maintenance, and other services for us. These third parties may have access to, or process Personal Data or Client Data as part of providing those services for us. We limit the information provided to these service providers to that which is reasonably necessary for them to perform their functions, and our contracts with them require them to maintain the confidentiality of such information.
-                </p>
-              </li>
-              <li>
-                <b>Certified amoCRM Expert Partners</b>
-                <p>
-        We do not sell personal information about you. However, we may share your information with Certified amoCRM Expert Partners in order to:
-                </p>
-                <ol>
-                  <li>Improve or customize our services;</li>
-                  <li>Provide support or technical services;</li>
-                  <li>Offer you additional value-added services including, but not limited to, CRM set-up and onboarding.</li>
-                </ol>
-                <p>
-        Our Certified Expert Partner list is available here: https://www.amocrm.com/partners/find-partner/
-                </p>
-              </li>
-              <li>
-                <b>Non Personally Identifiable Information</b>
-                <p>
-        We may make certain aggregated, non-personally-identifiable information available to third parties for various purposes, including
-                </p>
-                <ol>
-                  <li>compliance with various reporting obligations;</li>
-                  <li>for business or marketing purposes; or</li>
-                  <li>to assist such parties in understanding our Clients', Users' and Visitors' interests, habits, and usage patterns for certain programs, content, services, and/or functionality available through the Service.</li>
-                </ol>
-              </li>
-              <li>
-                <b>Law Enforcement, Legal Process and Compliance</b>
-                <p>
-        We may disclose Personal Data or other information if required to do so by law or in the good-faith belief that such action is necessary to comply with applicable laws, in response to a facially valid court order, judicial or other government subpoena or warrant, or to otherwise cooperate with law enforcement or other governmental agencies.
-                </p>
-                <p>
-        We also reserve the right to disclose Personal Data or other information that we believe, in good faith, is appropriate or necessary to
-                </p>
-                <ol>
-                  <li>take precautions against liability,</li>
-                  <li>protect ourselves or others from fraudulent, abusive, or unlawful uses or activity,</li>
-                  <li>investigate and defend ourselves against any third-party claims or allegations,</li>
-                  <li>protect the security or integrity of the Service and any facilities or equipment used to make the Service available, or</li>
-                  <li>protect our property or other legal rights, enforce our contracts, or protect the rights, property, or safety of others.</li>
-                </ol>
-              </li>
-              <li>
-                <b>Change of Ownership</b>
-                <p>
-        Information about Users and Visitors, including Personal Data, may be disclosed and otherwise transferred to an acquirer, successor or assignee as part of any merger, acquisition, debt financing, sale of assets, or similar transaction, as well as in the event of an insolvency, bankruptcy, or receivership in which information is transferred to one or more third parties as one of our business assets and only if the recipient of the User or Visitor Data commits to a Privacy Policy that has terms substantially consistent with this Privacy Policy.
-                </p>
-                <p>
-        Client Data may be physically or electronically transferred to an acquirer, or successor or assignee as part of any merger, acquisition, debt financing, sale of assets, or similar transaction, as well as in the event of an insolvency, bankruptcy, or receivership in which information is transferred to one or more third parties as one of our business assets, for the sole purpose of continuing the operation of the Service, and only if the recipient of the Client Data commits to a Privacy Policy that has terms substantially consistent with this Privacy Policy.
-                </p>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>Your Choices</b></h4>
-            <ol>
-              <li>
-                <b>Access, Correction, Deletion</b>
-                <p>
-        We respect your privacy rights and provide you with reasonable access to the Personal Data that you may have provided through your use of the Services. If you wish to access or amend any other Personal Data we hold about you, or to request that we delete or transfer any information about you that we have obtained from an Integrated Service, you may contact us as set forth in the “How to Contact Us” section. At your request, we will have any reference to you deleted or blocked in our database.
-                </p>
-                <p>
-        You may update, correct, or delete your Account information and preferences at any time by accessing your Account settings page in the Service. Please note that while any changes you make will be reflected in active user databases instantly or within a reasonable period of time, we may retain all information you submit for backups, archiving, prevention of fraud and abuse, analytics, satisfaction of legal obligations, or where we otherwise reasonably believe that we have a legitimate reason to do so.
-                </p>
-                <p>
-        You may decline to share certain Personal Data with us, in which case we may not be able to provide to you some of the features and functionality of the Service.
-                </p>
-                <p>
-        At any time, you may object to the processing of your Personal Data, on legitimate grounds, except if otherwise permitted by applicable law. If you believe your right to privacy granted by applicable data protection laws has been infringed upon, please contact us at support@amocrm.com. You also have a right to lodge a complaint with data protection authorities.
-                </p>
-                <p>
-        This provision does not apply to Personal Data that is part of Client Data. In this case, the management of the Client Data is subject to the Client's own Privacy Policy, and any request for access, correction or deletion should be made to the Client responsible for the uploading and storage of such data into the Service.
-                </p>
-              </li>
-              <li>
-                <b>Navigation Information</b>
-                <p>
-        You may opt out from the collection of information about your visit to the Site by Google Analytics by using the Google Analytics Opt-out feature.
-                </p>
-              </li>
-              <li>
-                <b>Opting out from Commercial Communications</b>
-                <p>
-        If you receive commercial emails from us, you may unsubscribe at any time by following the instructions contained within the email or by sending an email to the address provided in the “How to Contact Us” section.
-                </p>
-                <p>
-        Please be aware that if you opt-out of receiving commercial email from us or otherwise modify the nature or frequency of promotional communications you receive from us, it may take up to ten (10) business days for us to process your request. Additionally, even after you opt-out from receiving commercial messages from us, you will continue to receive administrative messages from us regarding the Service.
-                </p>
-                <p>
-        amoCRM has no direct relationship with the Client's customers or third parties whose Personal Data may be processed on behalf of a Client. Any Person who seeks access, or who seeks to correct, amend, delete inaccurate data or withdraw consent for further contact should direct his or her query to the Client or User directly. If the Client requests for amoCRM to remove the data, we will respond to the request within thirty (30) days. We will delete, amend or block access to any Personal Data that we are storing only if we receive a written request to do so from the Client who is responsible for such Personal Data, unless we have a legal right to retain such Personal Data. We reserve the right to retain a copy of such data for archiving purposes, or to defend our rights in litigation. Any such request regarding Client Data should be addressed as indicated in the “How to Contact Us” section, and include sufficient information for amoCRM to identify the Client or Person or third party and the information to delete or amend.
-                </p>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>Third-Party Services</b></h4>
-            <p>
-        The Service may contain features or links to web sites and services provided by third parties. Any information you provide on third-party sites or services is provided directly to the operators of such services and is subject to those operators' policies, if any, governing privacy and security, even if accessed through the Service. We are not responsible for the content or privacy and security practices and policies of third-party sites or services to which links or access are provided through the Service. We encourage you to learn about third parties' privacy and security policies before providing them with information.
-            </p>
-          </li>
-          <li>
-            <h4><b>Privacy Shield</b></h4>
-            <p>
-        The legal entity QSOFT LLC, which operates amoCRM, complies with the EU-U.S. and Swiss-U.S. Privacy Shield Frameworks as set forth by the U.S. Department of Commerce regarding the collection, use, and retention of personal information transferred from the European Union, the United Kingdom and Switzerland to the United States in reliance on Privacy Shield. QSOFT LLC has certified to the Department of Commerce that it adheres to the Privacy Shield Principles with respect to such information. If there is any conflict between the terms in this privacy policy and the Privacy Shield Principles, the Privacy Shield Principles shall govern. To learn more about the Privacy Shield program, and to view our certification, please visit https://www.privacyshield.gov/.
-            </p>
-            <p>
-        In compliance with the Privacy Shield Principles, QSOFT LLC commits to resolve complaints about our collection or use of your personal information. EU and Swiss individuals with inquiries or complaints regarding our Privacy Shield policy should first contact QSOFT LLC at support@amocrm.com.
-            </p>
-            <p>
-        QSOFT LLC has further committed to refer unresolved privacy complaints under the EU-U.S. Privacy Shield Principles and the Swiss-U.S. Privacy Shield Principles to JAMS, a non-profit alternative dispute resolution provider located in the United States to assist with the complaint resolution process. If you do not receive timely acknowledgment of your complaint, or if your complaint is not satisfactorily addressed, please visit https://www.jamsadr.com/eu-us-privacy-shield for more information and to file a complaint. The services of JAMS are provided at no cost to you.
-            </p>
-            <p>
-        QSOFT LLC is subject to the investigatory and enforcement powers of the Federal Trade Commission (FTC) to ensure compliance with the EU-US Privacy Shield Principles and the Swiss-U.S. Privacy Shield Principles outlined in this notice.
-            </p>
-            <p>
-        Under certain conditions, more fully described on the Privacy Shield website https://www.privacyshield.gov/article?id=How-to-Submit-a-Complaint, you may also be able to invoke binding arbitration when other dispute resolution procedures have been exhausted.
-            </p>
-            <p>
-        amoCRM shall comply with the Privacy Shield Principles for all onward transfers of personal data from the EU and Switzerland, including the onward transfer liability provisions.
-            </p>
-          </li>
-          <li>
-            <h4><b>Your California Privacy Rights</b></h4>
-            <p>
-        We will not share any Personal Data with third-parties for their direct marketing purposes to the extent prohibited by California law. If our practices change, we will do so in accordance with applicable laws and will notify you in advance.
-            </p>
-          </li>
-          <li>
-            <h4><b>Cookies</b></h4>
-            <p>
-        Like most websites, we and our Third Party Services (See Section 6 “Third Party Services”) collect certain information automatically when you visit our Service, read our emails, or interact with us. We typically collect this information through a variety of tracking technologies, including cookies, beacons, and similar technology (which we'll refer to collectively as “cookies”). For example, we collect information about your device and its software, such as your IP address, browser type, Internet service provider, platform type, device type, operating system, date and time stamp, a unique ID that allows us to uniquely identify your browser, mobile device or your account, and other such information. We also collect information about the way you use the Service, for example, the site from which you came and the site to which you are going when you leave our website, the pages you visit, the links you click, how frequently you access the Service, whether you open emails or click the links contained in emails, whether you access the Service from multiple devices, and other actions you take on the Service. We use cookies to better display our Service, to save you time, to provide better technical support, and to anonymously track Service usage. For example, cookies help us to:
-            </p>
-            <ul>
-              <li>Keep track of whether you are signed in or have previously signed in so that we can display all the features that are available to you;</li>
-              <li>remember your settings on the pages you visit, so that we can display your preferred content the next time you visit;</li>
-              <li>display personalized content and targeted advertisements on our Service as well as on other websites and services;</li>
-              <li>perform analytics, and measure traffic and usage trends, and better understand the demographics of our users;</li>
-              <li>diagnose and fix technology problems; and</li>
-              <li>otherwise plan for and enhance our Service.</li>>
-            </ul>
-            <p>
-        Most or all browsers permit you to disable or reject certain cookies. You can do this by setting the preferences in the browser. Use the "help" feature of your browser to obtain more information about refusing cookies. However, if you set the browser you use to reject cookies or otherwise disable them, you may not be able to use any or all of the functionality at one or more of the sites or it may take additional time to utilize such functionality. If you wish to use any such functionality that requires the use of cookies at any of our sites, then you must accept the use of cookies for that site, and thereby, give us your permission to link your data as discussed above.
-            </p>
-          </li>
-          <li>
-            <h4><b>Do Not Track Policy</b></h4>
-            <p>
-        California law requires that operators of websites and online services disclose how they respond to a Do Not Track signal. Some browsers have incorporated “Do Not Track” features. Most of these features, when turned on, send a signal or preference to the website or online service that a user visits, indicating that the user does not wish to be tracked. Because there is not yet a common understanding of how to interpret Do Not Track signals, we do not currently respond to Do Not Track signal. We continue to work with the online industry to define a common understanding of how to treat Do Not Track signals.
-            </p>
-            <p>
-        In the meantime, you may opt out of receiving interest based advertising from advertising networks that may be delivered on our platform and other websites by visiting the following websites. If you want to opt out of this online behavioral advertising, visit the following sites: http://www.aboutads.info/consumers and http://www.networkadvertising.org.
-            </p>
-            <p>
-        This will opt you out of many, but not all, of the interest-based advertising activities in which we or third parties engage. Choices you make may be browser and device specific. If you delete your cookies or use a different browser or a different computer or device, you may need to update your opt-out choices. Other third-party Sites provide visitors with the ability to opt-out of receiving interest-based ads on their Sites that you need to control through your settings on that Site. For example, to opt out of Google's use of your online behavior for advertising purposes, visit Google's Ad Settings page.
-            </p>
-          </li>
-          <li>
-            <h4><b>Third Party Tracking And Interest-Based Advertising</b></h4>
-            <p>
-        We may permit third parties to collect data about your use of our Site to understand the various activities and behaviors of our Clients, Users and Visitors. We do this for many reasons, including: to recognize new or past visitors to our Sites; to present more personalized content; to provide useful and relevant ads - for example, if we know what ads you are shown we can try not to show you the same ones repeatedly; to identify visitors across devices, sales channels, third party websites and Sites, or to display or send personalized or targeted ads and other custom content that is more focused on a person’s perceived interest in products or services similar to those that we offer.
-            </p>
-            <p>
-        Typically, though not always, these third parties collect information through cookies or similar tracking technologies, which recognize the device you are using and collect information about your online browsing behaviors so that they may personalize the ads you see.
-            </p>
-            <p>
-        We may use and support one or more Google tools including without limitation, Google Analytics (including Universal Analytics), (hereinafter, collectively, “Google Analytics”), Google AdWords (including Smart Pixel), Google Developer Console, Google Displaying Advertising and Google Customer Match which may include, without limitation, one or more of the following features:
-            </p>
-            <ol>
-              <li>Remarketing (as such term is defined below),</li>
-              <li>Google Display Network Impression Reporting,</li>
-              <li>the DoubleClick Campaign Manager integration, and</li>
-              <li>Google Analytics Demographics and Interest Reporting.</li>
-            </ol>
-            <p>
-        We connect Google Analytics with Google Developer Console in order to better understand user behavior in connection with the applications we provide. Google's use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Site or other sites on the Internet.
-            </p>
-            <p>
-        You may opt out of the use of Google Analytics for Display Advertising (including disabling the DoubleClick Cookie for interest-based advertising, if applicable) and customize Google Display Network ads by visiting the Google Ads Settings page. Even though you may opt out of the use of such Google services, we may still use other third party services, including, without limitation, to collect and/or analyze data.
-            </p>
-            <p>
-        We use remarketing with Google Analytics (including Universal Analytics) and/or Google Adwords (including Smart Pixel) (collectively, “Remarketing”) to advertise online including after you've visited our Site. Remarketing may be based on your interests, location and other information collected about you in compliance with Google’s Policy For Advertising Based On Interests And Location. In connection with Remarking and otherwise
-            </p>
-            <ol>
-              <li>We and our third party vendors, including, without limitation, Google, may show you ads on sites across the internet, and</li>
-              <li>We and our third party vendors, including, without limitation, Google, use first party cookies (including, without limitation, the Google Analytics cookie) and third party cookies (including, without limitation, the DoubleClick cookie) to inform, optimize and serve you ads based on your past visits to our Site. We also use third-party tags (including, without limitation, Twitter conversion tag, Facebook conversion tag, LinkedIn conversion tag, Capterra conversion tag, Quora conversion tag, Crozdesk conversion tag, Yandex metrika, Adwords conversion tag and Google Tag Manager) in connection with our online marketing and analytics.</li>
-              <li>We and our third-party vendors, including Google, may also use first-party cookies (such as the Google Analytics cookies) and third-party cookies (such as the DoubleClick cookie) together to report how our ad impressions, other uses of ad services, and interactions with these ad impressions and ad services are related to visits to our Site.</li>
-            </ol>
-            <p>
-              You may opt out of having your activity tracked by Google Analytics (e.g. through cookies) by following the instructions contained in Section below entitled “Information about Unsubscribing and Opting Out.” In connection with our use of Google Analytics Demographics and Interest Reporting we use data from Google's Interest-based advertising or 3rd-party audience data (such as age, gender, and interests) with Google Analytics for several purposes, including, without limitation:
-            </p>
-            <ol>
-              <li>understanding our audience and the interests and demographics of the Site's users,</li>
-              <li>improving Site content to better serve our audience,</li>
-              <li>segmenting Remarketing campaigns by demographics, location or interests, and/or</li>
-              <li>targeting ads in Google Adwords.</li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>Information About Unsubscribing And Opting Out</b></h4>
-            <p>
-        You can opt-out of Google Analytics for Display Advertising and customize the Google Display Network ads by visiting the Google Ads Settings page. Google also allows you to install the Google Analytics Opt-out Browser Add-on for your browser. The Google Analytics Opt-out Browser Add-on provides visitors with the ability to restrict their data from being collected and used by Google Analytics via the browsers where it is installed.
-            </p>
-            <p>
-        You can also opt-out of certain third-parties’ use of cookies for targeted advertising purposes by visiting the Network Advertising Initiative opt-out page.
-            </p>
-            <p>
-        Our interest-based ads may be served to you on third-party platforms, such as Facebook. We may serve these ads about our products or services or send commercial communications directly ourselves or through these third parties.
-            </p>
-            <p>
-        Visitors may opt out of receiving interest based advertising by advertising networks that may be delivered to them on our platform and other websites by visiting the following websites: http://www.aboutads.info/consumers and http://www.networkadvertising.org. These features will opt a Visitor out of many – but not all – of the interest-based advertising activities in which we or third parties engage.
-            </p>
-          </li>
-          <li>
-            <h4><b>Minors And Children's Privacy</b></h4>
-            <p>
-        Protecting the privacy of young children is especially important. Our Service is not directed to children under the age of 18, and we do not knowingly collect Personal Data from children under the age of 18 without obtaining parental consent. If you are under 18 years of age, then please do not use or access the Service at any time or in any manner. If we learn that Personal Data has been collected on the Service from persons under 18 years of age and without verifiable parental consent, then we will take the appropriate steps to delete this information. If you are a parent or guardian and discover that your child under 18 years of age has obtained an Account on the Service, then you may alert us at support@amocrm.com and request that we delete that child's Personal Data from our systems.
-            </p>
-            <p>
-        The Service is not intended to be used by minors, and is not intended to be used to post content to share publicly or with friends. To the extent that a minor has posted such content on the Service, the minor has the right to have this content deleted or removed using the deletion or removal options detailed in this Privacy Policy. If you have any question regarding this topic, please contact us as indicated in the “How to Contact Us” section. Please be aware that, although we offer this deletion capability, the removal of content may not ensure complete or comprehensive removal of that content or information.
-            </p>
-          </li>
-          <li>
-            <h4><b>Data Security And Data Transfer</b></h4>
-            <p>
-        We follow generally accepted industry standards to protect the information submitted to us, both during transmission and once we receive it. We maintain appropriate administrative, technical and physical safeguards to protect Personal Data against accidental or unlawful destruction, accidental loss, unauthorized alteration, unauthorized disclosure or access, misuse, and any other unlawful form of processing of the Personal Data in our possession. This includes, for example, firewalls, password protection and other access and authentication controls. We use SSL technology to encrypt data during transmission through public internet, and we also employ application-layer security features to further anonymize Personal Data.
-            </p>
-            <p>
-        However, no method of transmission over the Internet, or method of electronic storage, is 100% secure. We cannot ensure or warrant the security of any information you transmit to us or store on the Service, and you do so at your own risk. We also cannot guarantee that such information may not be accessed, disclosed, altered, or destroyed by breach of any of our physical, technical, or managerial safeguards. If you believe your Personal Data has been compromised, please contact us as set forth in the “How to Contact Us” section.
-            </p>
-            <p>
-        If we learn of a security systems breach, we will inform you and the authorities of the occurrence of the breach in accordance with applicable law.
-            </p>
-            <p>
-        We may store all Personal Information we collect anywhere in the world, including but not limited to, in the United States, in the cloud, on our servers, on the servers of our affiliates or the servers of our service providers.
-            </p>
-          </li>
-          <li>
-            <h4><b>Data Retention</b></h4>
-            <p>
-        How long we retain your Personal Data depends of the type of data and the purpose for which we process the data, which is explained further in the section “The Information We Collect”. We will retain your Personal Information for the period necessary to fulfill the purposes outlined in this Privacy Notice unless a longer retention period is required or permitted by law. If you wish to request that we no longer use your data, please contact us at support@amocrm.com. Except as otherwise set forth below, Personal Data contained in the Service Data is retained and deleted in accordance with the Terms.
-            </p>
-          </li>
-          <li>
-            <h4><b>Settings</b></h4>
-            <p>
-        Although we may allow you to adjust your privacy settings to limit access to certain Personal Data, please be aware that no security measures are perfect or impenetrable. We are not responsible for circumvention of any privacy settings or security measures on the Service. Additionally, we cannot control the actions of other users with whom you may choose to share your information. Further, even after information posted on the Service is removed, caching and archiving services may have saved that information, and other users or third parties may have copied or stored the information available on the Service. We cannot and do not guarantee that information you post on or transmit to the Service will not be viewed by unauthorized persons.
-            </p>
-          </li>
-          <li>
-            <h4><b>Additional Users</b></h4>
-            <p>
-        When you add additional Users to your account we send them an invitation to join our site and request that such Users provide us with certain additional contact information including their email addresses. When you use such a service, you represent and warrant to us that you have an existing business or personal relationship with the invited User, sufficient to avoid liability under any law that applies to unsolicited email. You will be deemed to be the sender of any such email (or other electronic communication), and we will be deemed to merely be a service provider facilitating your sending of the email (or other electronic communication).
-            </p>
-          </li>
-          <li>
-            <h4><b>Data Controller And Data Processor</b></h4>
-            <p>
-        amoCRM does not own, control or direct the use of any of the Client Data stored or processed by a Client or User via the Service. Only the Client or Users are entitled to access, retrieve and direct the use of such Client Data. amoCRM is unaware of what Client Data is actually being stored or made available by a Client or User to the Service and does not directly access such Client Data except as authorized by the Client, or as necessary to provide Services to the Client and its Users.
-            </p>
-            <p>
-        Because amoCRM does not collect or determine the use of any Personal Data contained in the Client Data and because it does not determine the purposes for which such Personal Data is collected, the means of collecting such Personal Data, or the uses of such Personal Data, amoCRM is not acting in the capacity of data controller in terms of the European Union's General Data Protection Regulation (Regulation (EU) 2016/679, hereinafter “GDPR”) and does not have the associated responsibilities under the GDPR. amoCRM should be considered only as a processor on behalf of its Clients and Users as to any Client Data containing Personal Data that is subject to the requirements of the GDPR. Except as provided in this Privacy Policy, amoCRM does not independently cause Client Data containing Personal Data stored in connection with the Services to be transferred or otherwise made available to third parties, except to third party subcontractors who may process such data on behalf of amoCRM in connection with amoCRM's provision of Services to Clients. Such actions are performed or authorized only by the applicable Client or User.
-            </p>
-            <p>
-        The Client or the User is the data controller under the Regulation for any Client Data containing Personal Data, meaning that such party controls the manner such Personal Data is collected and used as well as the determination of the purposes and means of the processing of such Personal Data.
-            </p>
-            <p>
-        amoCRM is not responsible for the content of the Personal Data contained in the Client Data or other information stored on its servers (or its subcontractors' servers) at the discretion of the Client or User nor is amoCRM responsible for the manner in which the Client or User collects, handles disclosure, distributes or otherwise processes such information.
-            </p>
-          </li>
-          <li>
-            <h4><b>Changes And Updates To This Policy</b></h4>
-            <p>
-        Please revisit this page periodically to stay aware of any changes to this Policy, which we may update from time to time. If we modify the Policy, we will make it available through the Service, and indicate the date of the latest revision, and will comply with applicable law. Your continued use of the Service after the revised Policy has become effective indicates that you have read, understood and agreed to the current version of the Policy.
-            </p>
-          </li>
-          <li>
-            <h4><b>How To Contact Us</b></h4>
-            <p>
-        Please contact us with any questions or comments about this Policy, your Personal Data, our use and disclosure practices, or your consent choices by email at support@amocrm.com.
-            </p>
-          </li>
-        </ol>
-      </ng-container>
-      <ng-container *ngSwitchCase="language.ru">
-        <h1>ПОЛИТИКА КОМПАНИИ В ОТНОШЕНИИ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</h1>
-        <ol>
-          <li>
-            <h4><b>ОБЩИЕ ПОЛОЖЕНИЯ</b></h4>
-            <p>
-              Политика обработки персональных данных (далее – Политика) разработана в соответствии с Федеральным законом
-              от
-              27.07.2006. №152-ФЗ «О персональных данных» (далее – ФЗ-152).
-            </p>
-            <p>
-              Настоящая Политика определяет порядок обработки персональных данных и меры по обеспечению безопасности
-              персональных данных в АО “Амоцрм” (далее – Оператор) с целью защиты прав и свобод человека и гражданина
-              при
-              обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и
-              семейную
-              тайну.
-            </p>
-            <p>
-              В Политике используются следующие основные понятия:
-            </p>
-            <p>
-              <b>автоматизированная обработка персональных данных</b> – обработка персональных данных с помощью средств
-              вычислительной
-              техники;
-            </p>
-            <p>
-              <b>блокирование персональных данных</b> - временное прекращение обработки персональных данных (за
-              исключением
-              случаев,
-              если обработка необходима для уточнения персональных данных);
-            </p>
-            <p>
-              <b>информационная система персональных данных</b> - совокупность содержащихся в базах данных персональных
-              данных,
-              и
-              обеспечивающих их обработку информационных технологий и технических средств;
-            </p>
-            <p>
-              <b>обезличивание персональных данных</b> - действия, в результате которых невозможно определить без
-              использования
-              дополнительной информации принадлежность персональных данных конкретному субъекту персональных данных;
-            </p>
-            <p>
-              <b>обработка персональных данных</b> - любое действие (операция) или совокупность действий (операций),
-              совершаемых
-              с
-              использованием средств автоматизации или без использования таких средств с персональными данными, включая
-              сбор,
-              запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение,
-              использование,
-              передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение
-              персональных данных;
-            </p>
-            <p>
-              <b>оператор</b> - государственный орган, муниципальный орган, юридическое или физическое лицо,
-              самостоятельно или
-              совместно с другими лицами организующие и (или) осуществляющие обработку персональных данных, а также
-              определяющие
-              цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции),
-              совершаемые с персональными данными;
-            </p>
-            <p>
-              <b>персональные данные</b> – любая информация, относящаяся к прямо или косвенно определенному или
-              определяемому
-              физическому лицу (субъекту персональных данных);
-            </p>
-            <p>
-              <b>предоставление персональных данных</b> – действия, направленные на раскрытие персональных данных
-              определенному
-              лицу
-              или определенному кругу лиц;
-            </p>
-            <p>
-              <b>распространение персональных данных</b> - действия, направленные на раскрытие персональных данных
-              неопределенному
-              кругу лиц (передача персональных данных) или на ознакомление с персональными данными неограниченного круга
-              лиц, в
-              том числе обнародование персональных данных в средствах массовой информации, размещение в информационно-
-              телекоммуникационных сетях или предоставление доступа к персональным данным каким-либо иным способом;
-            </p>
-            <p>
-              <b>трансграничная передача персональных данных</b> - передача персональных данных на территорию
-              иностранного
-              государства
-              органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу.
-            </p>
-            <p>
-              <b>уничтожение персональных данных</b> - действия, в результате которых невозможно восстановить содержание
-              персональных
-              данных в информационной системе персональных данных и (или) результате которых уничтожаются материальные
-              носители
-              персональных данных;
-            </p>
-            <p>
-              Компания обязана опубликовать или иным образом обеспечить неограниченный доступ к настоящей Политике
-              обработки
-              персональных данных в соответствии с ч. 2 ст. 18.1. ФЗ-152.
-            </p>
-          </li>
-          <li>
-            <h4><b>ПРИНЦИПЫ И УСЛОВИЯ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</b></h4>
-            <ol>
-              <li>Принципы обработки персональных данных
-                <p>
-                  Обработка персональных данных у Оператора осуществляется на основе следующих принципов:
-                </p>
-                <ul>
-                  <li>законности и справедливой основы;</li>
-                  <li>ограничения обработки персональных данных достижением конкретных, заранее определенных и законных
-                    целей;
-                  </li>
-                  <li>недопущения обработки персональных данных, несовместимой с целями сбора персональных данных;</li>
-                  <li>недопущения объединения баз данных, содержащих персональные данные, обработка которых
-                    осуществляется в целях,
-                    несовместимых между собой;
-                  </li>
-                  <li>обработки только тех персональных данных, которые отвечают целям их обработки;</li>
-                  <li>соответствия содержания и объема обрабатываемых персональных данных заявленным целям обработки;
-                  </li>
-                  <li>недопущения обработки персональных данных, избыточных по отношению к заявленным целям их
-                    обработки;
-                  </li>
-                  <li>обеспечения точности, достаточности и актуальности персональных данных по отношению к целям
-                    обработки
-                    персональных данных;
-                  </li>
-                  <li>уничтожения либо обезличивания персональных данных по достижении целей их обработки или в случае
-                    утраты
-                    необходимости в достижении этих целей, при невозможности устранения Оператором допущенных нарушений
-                    персональных данных, если иное не предусмотрено федеральным законом.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                Условия обработки персональных данных
-                <p>
-                  Оператор производит обработку персональных данных при наличии хотя бы одного из следующих условий:
-                </p>
-                <ul>
-                  <li>обработка персональных данных осуществляется с согласия субъекта персональных данных на обработку
-                    его
-                    персональных данных;
-                  </li>
-                  <li>обработка персональных данных необходима для достижения целей, предусмотренных международным
-                    договором
-                    Российской Федерации или законом, для осуществления и выполнения возложенных законодательством
-                    Российской
-                    Федерации на оператора функций, полномочий и обязанностей;
-                  </li>
-                  <li>обработка персональных данных необходима для осуществления правосудия, исполнения судебного акта,
-                    акта другого
-                    органа или должностного лица, подлежащих исполнению в соответствии с законодательством Российской
-                    Федерации об
-                    исполнительном производстве;
-                  </li>
-                  <li>обработка персональных данных необходима для исполнения договора, стороной которого либо
-                    выгодоприобретателем
-                    или поручителем по которому является субъект персональных данных, а также для заключения договора по
-                    инициативе субъекта персональных данных или договора, по которому субъект персональных данных будет
-                    являться
-                    выгодоприобретателем или поручителем;
-                  </li>
-                  <li>обработка персональных данных необходима для осуществления прав и законных интересов оператора или
-                    третьих лиц
-                    либо для достижения общественно значимых целей при условии, что при этом не нарушаются права и
-                    свободы
-                    субъекта персональных данных;
-                  </li>
-                  <li>осуществляется обработка персональных данных, доступ неограниченного круга лиц к которым
-                    предоставлен
-                    субъектом персональных данных либо по его просьбе (далее - общедоступные персональные данные);
-                  </li>
-                  <li>осуществляется обработка персональных данных, подлежащих опубликованию или обязательному раскрытию
-                    в
-                    соответствии с федеральным законом.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                Конфиденциальность персональных данных
-                <p>
-                  Оператор и иные лица, получившие доступ к персональным данным, обязаны не раскрывать третьим лицам и
-                  не
-                  распространять персональные данные без согласия субъекта персональных данных, если иное не
-                  предусмотрено
-                  федеральным законом.</p>
-              </li>
-              <li>
-                Общедоступные источники персональных данных
-                <p>
-                  В целях информационного обеспечения у Оператора могут создаваться общедоступные источники персональных
-                  данных
-                  субъектов, в том числе справочники и адресные книги. В общедоступные источники персональных данных с
-                  письменного согласия субъекта могут включаться его фамилия, имя, отчество, дата и место рождения,
-                  должность,
-                  номера контактных телефонов, адрес электронной почты и иные персональные данные, сообщаемые субъектом
-                  персональных данных.
-                </p>
-                <p>
-                  Сведения о субъекте должны быть в любое время исключены из общедоступных источников персональных
-                  данных по
-                  требованию субъекта либо по решению суда или иных уполномоченных государственных органов.
-                </p>
-              </li>
-              <li>
-                Специальные категории персональных данных
-                <p>
-                  Обработка Оператором специальных категорий персональных данных, касающихся расовой, национальной
-                  принадлежности, политических взглядов, религиозных или философских убеждений, состояния здоровья,
-                  интимной
-                  жизни, допускается в случаях, если:
-                </p>
-                <ul>
-                  <li>субъект персональных данных дал согласие в письменной форме на обработку своих персональных
-                    данных;
-                  </li>
-                  <li>персональные данные сделаны общедоступными субъектом персональных данных;</li>
-                  <li>обработка персональных данных осуществляется в соответствии с законодательством о государственной
-                    социальной
-                    помощи, трудовым законодательством, законодательством Российской Федерации о пенсиях по
-                    государственному
-                    пенсионному обеспечению, о трудовых пенсиях;
-                  </li>
-                  <li>обработка персональных данных необходима для защиты жизни, здоровья или иных жизненно важных
-                    интересов
-                    субъекта персональных данных либо жизни, здоровья или иных жизненно важных интересов других лиц и
-                    получение
-                    согласия субъекта персональных данных невозможно;
-                  </li>
-                  <li>обработка персональных данных осуществляется в медико-профилактических целях, в целях установления
-                    медицинского диагноза, оказания медицинских и медико- социальных услуг при условии, что обработка
-                    персональных
-                    данных осуществляется лицом, профессионально занимающимся медицинской деятельностью и обязанным в
-                    соответствии
-                    с законодательством Российской Федерации сохранять врачебную тайну;
-                  </li>
-                  <li>обработка персональных данных необходима для установления или осуществления прав субъекта
-                    персональных данных
-                    или третьих лиц, а равно и в связи с осуществлением правосудия;
-                  </li>
-                  <li>обработка персональных данных осуществляется в соответствии с законодательством об обязательных
-                    видах
-                    страхования, со страховым законодательством.
-                  </li>
-                </ul>
-                <p>
-                  Обработка специальных категорий персональных данных должна быть незамедлительно прекращена, если
-                  устранены
-                  причины, вследствие которых осуществлялась их обработка, если иное не установлено федеральным законом.<br>
-                </p>
-                <p>
-                  Обработка персональных данных о судимости может осуществляться Оператором исключительно в случаях и в
-                  порядке,
-                  которые определяются в соответствии с федеральными законами.
-                </p>
-              </li>
-              <li>
-                Биометрические персональные данные
-                <p>
-                  Сведения, которые характеризуют физиологические и биологические особенности человека, на основании
-                  которых
-                  можно установить его личность - биометрические персональные данные - могут обрабатываться Оператором
-                  только
-                  при наличии согласия в письменной форме субъекта.
-                </p>
-              </li>
-              <li>
-                Поручение обработки персональных данных другому лицу
-                <p>
-                  Оператор вправе поручить обработку персональных данных другому лицу с согласия субъекта персональных
-                  данных,
-                  если иное не предусмотрено федеральным законом, на основании заключаемого с этим лицом договора. Лицо,
-                  осуществляющее обработку персональных данных по поручению Оператора, обязано соблюдать принципы и
-                  правила
-                  обработки персональных данных, предусмотренные ФЗ-152.
-                </p>
-              </li>
-              <li>
-                Трансграничная передача персональных данных
-                <p>
-                  Оператор обязана убедиться в том, что иностранным государством, на территорию которого предполагается
-                  осуществлять передачу персональных данных, обеспечивается адекватная защита прав субъектов
-                  персональных
-                  данных, до начала осуществления такой передачи.
-                </p>
-                <p>
-                  Трансграничная передача персональных данных на территории иностранных государств, не обеспечивающих
-                  адекватной
-                  защиты прав субъектов персональных данных, может осуществляться в случаях:
-                </p>
-                <ul>
-                  <li>наличия согласия в письменной форме субъекта персональных данных на трансграничную передачу его
-                    персональных
-                    данных;
-                  </li>
-                  <li>исполнения договора, стороной которого является субъект персональных данных.</li>
-                </ul>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>ПРАВА СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ</b></h4>
-            <ol>
-              <li>
-                Согласие субъекта персональных данных на обработку его персональных данных
-                <p>
-                  Субъект персональных данных принимает решение о предоставлении его персональных данных и дает согласие
-                  на их
-                  обработку свободно, своей волей и в своем интересе. Согласие на обработку персональных данных может
-                  быть дано
-                  субъектом персональных данных или его представителем в любой позволяющей подтвердить факт его
-                  получения форме,
-                  если иное не установлено федеральным законом.
-                </p>
-                <p>
-                  Обязанность предоставить доказательство получения согласия субъекта персональных данных на обработку
+      </p>
+      <p>
+        Welcome, and thank you for your interest in amoCRM (amoCRM is the product of QSOFT LLC, and is referred to in
+        the following text as «amoCRM», «QSOFT», «we», or «us»), our web site at https://www.amoCRM.com (the «Site»),
+        and all related web sites, downloadable software, mobile applications, and other services provided by us and
+        on which a link to this Privacy Policy is displayed, and all other communications with individuals though from
+        written or oral means, such as email or phone (collectively, together with the Site, our «Service»).
+      </p>
+      <p>
+        This Privacy Policy («Policy») describes the information that we gather on or through the Service, how we use
+        and disclose such information, and the steps we take to protect such information. By visiting the Site, or by
+        purchasing or using the Service, you accept the privacy practices described in this Policy.
+      </p>
+      <p>
+        This Policy is incorporated into, and is subject to, the amoCRM Terms of Service. Capitalized terms used but
+        not defined in this Policy have the meaning given to them in the amoCRM Terms of Service.
+      </p>
+      <ol>
+        <li><span><b>Definitions</b></span>
+          <p>
+            <b>«Client»</b> means a customer of amoCRM (QSOFT LLC).
+          </p>
+          <p>
+            <b>«Client Data»</b> means data of any type that is submitted to the Services by or on behalf of
+            Client,including: data submitted, uploaded or imported to the Service by Users and data provided by or
+            about People.
+          </p>
+          <p>
+            <b>«People»</b> (singular «Person») means Client’s customers, potential customers, and other visitors.
+          </p>
+          <p>
+            <b>«Personal Data»</b> means any information relating to an identified or identifiable natural person.
+          </p>
+          <p>
+            <b>«Public Area»</b> means the area of the Site that can be accessed both by Users and Visitors, without
+            needing to log in.
+          </p>
+          <p>
+            <b>«Restricted Area»</b> means the area of the Site that can be accessed only by Users, and where access
+            requires logging in.
+          </p>
+          <p>
+            <b>«User»</b> means a Client or an employee, agent, or representative of a Client, who primarily uses the
+            restricted areas of the Site for the purpose of accessing the Service in such capacity.
+          </p>
+          <p>
+            <b>«Visitor»</b> means an individual other than a User, who uses the public area, but has no access to the
+            restricted areas of the Site or Service.
+          </p>
+        </li>
+        <li>
+          <span><b>The Information We Collect</b></span>
+          <p>
+            We collect different types of information from or through the Service. The legal bases for amoCRM’s
+            processing of personal data are primarily that the processing is necessary for providing the Service in
+            accordance with amoCRM’s Terms of Service and that the processing is carried out in amoCRM’s legitimate
+            interests, which are further explained in the section «How We Use the Information We Collect» of this
+            Policy. We may also process data upon your consent, asking for it as appropriate.
+          </p>
+          <ol>
+            <li><b>Registration and contact information</b>
+              <p>
+                We collect information about you when you register to use the Service and otherwise provide contact
+                information to us via email, phone, or chat. This information may include your username, first and
+                last name, email address or phone number.
+              </p>
+            </li>
+            <li><b>Payment information</b>
+              <p>
+                When you purchase the Service, we will also collect transaction information, which may include your
+                credit card information, billing and mailing address, and other payment-related information. Any
+                credit card information you provide is collected and processed directly by one of our two payment
+                processors, Bank of America through First Data Software or PayPal through their online checkout
+                service.
+              </p>
+              <p>
+                PayPal is committed to keeping card payments secured and operates in compliance with the Payment Card
+                Industry Data Security Standard (PCI-DSS). PayPal may use your payment information in accordance with
+                their own Privacy Policy, which can be viewed here:
+                https://www.paypal.com/us/webapps/mpp/ua/privacy-full.
+              </p>
+            </li>
+            <li><b>Technical, usage and location information</b>
+              <p>
+                When a User or Visitor uses the Service, we automatically record certain information such as IP
+                address, web browser or device type, location, pages viewed, dates and times of the visit and items
+                clicked. This information is collected using various types of technology, including cookies, clear
+                «gifs» or «log information.» We do not collect data regarding a particular user’s activity across
+                websites or applications that are not owned by us. We also may use these technologies to collect
+                information regarding a Visitor or User’s interaction with email messages, such as whether the Visitor
+                or User opens or clicks on a message.
+              </p>
+            </li>
+            <li><b>Integrated Services</b>
+              <p>
+                We offer several user-facing features in amoCRM, such as email synchronization, that rely on
+                Integrated Services including, but not limited to, Google, Facebook, and Microsoft. If you choose to
+                use these features, we will store this data as Client Data in accordance with this Privacy Policy
+              </p>
+              <ol>
+                <li><b>Integrated Services for Single Sign-On</b>
+                  <p>
+                    You can register or log into our Service using single sign-on (SSO) services such as Google and
+                    Facebook («Integrated Services»). These services allow the third party to authenticate your
+                    identity, and provide you the option to share your name and email address to pre-populate our
+                    sign-up form. By authorizing us to connect with an Integrated Service, you also allow us to
+                    collect and store other information that the Integrated Service makes available to us, such as
+                    your profile picture and current city.
+                    If you choose to provide such information, during registration or otherwise, amoCRM will treat the
+                    information as Personal Information and will use it in the ways described in this Privacy Policy.
+                    You should check your privacy settings on each Integrated Service to understand what information
+                    that Integrated Service makes available to us, and make changes as appropriate. Please review each
+                    Integrated Service’s terms of use and privacy policies carefully before using their services and
+                    connecting to our Service.
+                  </p>
+                </li>
+                <li><b>Integrated Services: Google API Scopes</b>
+                  <p>
+                    When connect Google services to your amoCRM account, we request the use of Google OAuth scopes.
+                    These are needed for the following reasons:
+                  </p>
+                  <ul>
+                    <li>https://www.googleapis.com/auth/gmail.insert: This scope is needed in order to read and modify
+                      the status of email data
+                    </li>
+                    <li>https://www.googleapis.com/auth/gmail.send: This scope is needed in order to send emails</li>
+                    <li>https://www.googleapis.com/auth/gmail.readonly: This scope is needed in order to read all
+                      email resources and their metadata (no write operations)
+                    </li>
+                    <li>https://www.googleapis.com/auth/userinfo.email: This scope is needed in order to view the
+                      email address
+                    </li>
+                    <li>https://www.googleapis.com/auth/userinfo.profile: This scope is needed in order to view
+                      personal information, including information you have made publically available.
+                    </li>
+                    <li>https://www.googleapis.com/auth/calendar: This scope is needed in order to read/write within
+                      your synchronized calendars
+                    </li>
+                  </ul>
+                  <p>In compliance with Google’s requirements for restricted scopes:</p>
+                  <ol>
+                    <li>We only use your data to provide you with user-facing features, and these features were
+                      specifically authorized by you;
+                    </li>
+                    <li>We do not transfer your data to third parties, except in the case of Legal Compliance or a
+                      Change of Ownership (outlined in Sections 4.5 and 4.5);
+                    </li>
+                    <li>We do not use or transfer your data for serving advertisements, including retargeting,
+                      personalized, or interest-based advertising; and
+                    </li>
+                    <li>We do not allow humans to read your data, unless
+                      <ul>
+                        <li>You have permitted a member of our support team to view your data in order to assist you
+                          in solving a specific problem;
+                        </li>
+                        <li>It is necessary for us to investigate technical problems, in which case the data has been
+                          aggregated and anonymized.
+                        </li>
+                      </ul>
+                    </li>
+                    <li>App’s use and transfer to any other app of information received from Google Accounts will
+                      adhere to Google API Services User Data Policy, including the Limited Use requirements
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <span><b>Information from Other Sources</b></span>
+              <p>
+                We may obtain information, including Personal Data, from third parties and sources other than the
+                Service, such as our partners and advertisers. If we combine or associate information from other
+                sources with Personal Data that we collect through the Service, we will treat the combined information
+                as Personal Data in accordance with this Policy.
+              </p>
+            </li>
+            <li>
+              <span><b>Client Data</b></span>
+              <p>
+                A Client or User may store or upload various data into the Service («Client Data»), including
+                information about their own clients and potential customers («People»), as well as other Users of the
+                Service, such as colleagues. amoCRM has no direct relationship with the individuals whose Personal
+                Data it hosts as part of Client Data. Each Client is responsible for providing notice to People
+                concerning the collection and storage of Client Data in the Service.
+              </p>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span><b>How We Use The Information We Collect</b></span>
+          <p>
+            We use the information that we collect in a variety of ways in providing the Service and operating our
+            business, including the following:
+          </p>
+          <ol>
+            <li>
+              <b>Operations</b>
+              <p>
+                We use your information (not including Client Data) to operate, maintain, enhance and provide all the
+                features of the Service, to provide the services and information that you request, to respond to
+                comments and questions and to provide support to users of the Service. We process Client Data solely
+                in accordance with the directions provided by the applicable Client or User.
+              </p>
+            </li>
+            <li>
+              <b>Improvements</b>
+              <p>
+                We use the information to understand and analyze the usage trends and preferences of our Visitors and
+                Users, to improve the Service, and to develop new products, services, feature, and functionality.
+                Should this purpose require amoCRM to process Client Data, then the data will only be used in
+                anonymized or aggregated form.
+              </p>
+            </li>
+            <li>
+              <b>Communications</b>
+              <p>
+                We may use a Visitor’s or User’s email address or other information (not including Client Data) to
+                contact that Visitor or User
+              </p>
+              <ol>
+                <li>for administrative purposes such as customer service, to address intellectual property
+                  infringement, right of privacy violations or defamation issues related to the Client Data or
+                  Personal Data posted on the Service or
+                </li>
+                <li>With updates on promotions and events relating to the Service.</li>
+              </ol>
+              <p>
+                You have the ability to opt‐out of receiving any promotional communications as described below under
+                «Your Choices.»
+              </p>
+            </li>
+            <li>
+              <b>Cookies and Tracking Technologies</b>
+              <p>
+                We use automatically collected information and other information collected on the Service through
+                cookies and similar technologies to:
+              </p>
+              <ol>
+                <li>personalize our Service, such as remembering a User’s or Visitor’s information so that the User or
+                  Visitor will not have to re-enter it during a visit or on subsequent visits;
+                </li>
+                <li>provide customized advertisements, content, and information;</li>
+                <li>monitor and analyze the effectiveness of Service and third-party marketing activities;</li>
+                <li>monitor aggregate site usage metrics such as total number of visitors and pages viewed; and</li>
+                <li>track your entries, submissions, and status in any promotions or other activities on the
+                  Service.
+                </li>
+              </ol>
+              <p>You can obtain more information about cookies by visiting http://www.allaboutcookies.org.</p>
+            </li>
+            <li>
+              <b>Analytics</b>
+              <p>
+                We use Google Analytics to measure and evaluate access to and traffic on the Public Area of the Site,
+                and create user navigation reports for our Site administrators. Google operates independently from us
+                and has its own privacy policy, which we strongly suggest you review. Google may use the information
+                collected through Google Analytics to evaluate Users' and Visitors' activity on our Site. For more
+                information, see Google Analytics Privacy and Data Sharing.
+              </p>
+              <p>
+                We take measures to protect the technical information collected by our use of Google Analytics. The
+                data collected will only be used on a need to know basis to resolve technical issues, administer the
+                Site and identify visitor preferences; but in this case, the data will be in non-identifiable form. We
+                do not use any of this information to identify Visitors or Users.
+              </p>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span><b>To Whom We Disclose Information</b></span>
+          <p>
+            Except as described in this Policy, we will not intentionally disclose the Personal Data or Client Data
+            that we collect or store on the Service to third parties without the consent of the applicable Visitor,
+            User or Client. We may disclose information to third parties if you consent to us doing so, as well as in
+            the following circumstances:
+          </p>
+          <ol>
+            <li>
+              <b>Unrestricted Information</b>
+              <p>
+                Any information that you voluntarily choose to include in a Public Area of the Service, such as
+                leaving a comment on a blog post, will be available to any Visitor or User who has access to that
+                content.
+              </p>
+            </li>
+            <li>
+              <b>Service Providers</b>
+              <p>
+                We work with third party service providers who provide website, application development, hosting,
+                maintenance, and other services for us. These third parties may have access to, or process Personal
+                Data or Client Data as part of providing those services for us. We limit the information provided to
+                these service providers to that which is reasonably necessary for them to perform their functions, and
+                our contracts with them require them to maintain the confidentiality of such information.
+              </p>
+            </li>
+            <li>
+              <b>Certified amoCRM Expert Partners</b>
+              <p>
+                We do not sell personal information about you. However, we may share your information with Certified
+                amoCRM Expert Partners in order to:
+              </p>
+              <ol>
+                <li>Improve or customize our services;</li>
+                <li>Provide support or technical services;</li>
+                <li>Offer you additional value-added services including, but not limited to, CRM set-up and
+                  onboarding.
+                </li>
+              </ol>
+              <p>
+                Our Certified Expert Partner list is available here: https://www.amocrm.com/partners/find-partner/
+              </p>
+            </li>
+            <li>
+              <b>Non Personally Identifiable Information</b>
+              <p>
+                We may make certain aggregated, non-personally-identifiable information available to third parties for
+                various purposes, including
+              </p>
+              <ol>
+                <li>compliance with various reporting obligations;</li>
+                <li>for business or marketing purposes; or</li>
+                <li>to assist such parties in understanding our Clients', Users' and Visitors' interests, habits, and
+                  usage patterns for certain programs, content, services, and/or functionality available through the
+                  Service.
+                </li>
+              </ol>
+            </li>
+            <li>
+              <b>Law Enforcement, Legal Process and Compliance</b>
+              <p>
+                We may disclose Personal Data or other information if required to do so by law or in the good-faith
+                belief that such action is necessary to comply with applicable laws, in response to a facially valid
+                court order, judicial or other government subpoena or warrant, or to otherwise cooperate with law
+                enforcement or other governmental agencies.
+              </p>
+              <p>
+                We also reserve the right to disclose Personal Data or other information that we believe, in good
+                faith, is appropriate or necessary to
+              </p>
+              <ol>
+                <li>take precautions against liability,</li>
+                <li>protect ourselves or others from fraudulent, abusive, or unlawful uses or activity,</li>
+                <li>investigate and defend ourselves against any third-party claims or allegations,</li>
+                <li>protect the security or integrity of the Service and any facilities or equipment used to make the
+                  Service available, or
+                </li>
+                <li>protect our property or other legal rights, enforce our contracts, or protect the rights,
+                  property, or safety of others.
+                </li>
+              </ol>
+            </li>
+            <li>
+              <b>Change of Ownership</b>
+              <p>
+                Information about Users and Visitors, including Personal Data, may be disclosed and otherwise
+                transferred to an acquirer, successor or assignee as part of any merger, acquisition, debt financing,
+                sale of assets, or similar transaction, as well as in the event of an insolvency, bankruptcy, or
+                receivership in which information is transferred to one or more third parties as one of our business
+                assets and only if the recipient of the User or Visitor Data commits to a Privacy Policy that has
+                terms substantially consistent with this Privacy Policy.
+              </p>
+              <p>
+                Client Data may be physically or electronically transferred to an acquirer, or successor or assignee
+                as part of any merger, acquisition, debt financing, sale of assets, or similar transaction, as well as
+                in the event of an insolvency, bankruptcy, or receivership in which information is transferred to one
+                or more third parties as one of our business assets, for the sole purpose of continuing the operation
+                of the Service, and only if the recipient of the Client Data commits to a Privacy Policy that has
+                terms substantially consistent with this Privacy Policy.
+              </p>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span><b>Your Choices</b></span>
+          <ol>
+            <li>
+              <b>Access, Correction, Deletion</b>
+              <p>
+                We respect your privacy rights and provide you with reasonable access to the Personal Data that you
+                may have provided through your use of the Services. If you wish to access or amend any other Personal
+                Data we hold about you, or to request that we delete or transfer any information about you that we
+                have obtained from an Integrated Service, you may contact us as set forth in the «How to Contact Us»
+                section. At your request, we will have any reference to you deleted or blocked in our database.
+              </p>
+              <p>
+                You may update, correct, or delete your Account information and preferences at any time by accessing
+                your Account settings page in the Service. Please note that while any changes you make will be
+                reflected in active user databases instantly or within a reasonable period of time, we may retain all
+                information you submit for backups, archiving, prevention of fraud and abuse, analytics, satisfaction
+                of legal obligations, or where we otherwise reasonably believe that we have a legitimate reason to do
+                so.
+              </p>
+              <p>
+                You may decline to share certain Personal Data with us, in which case we may not be able to provide to
+                you some of the features and functionality of the Service.
+              </p>
+              <p>
+                At any time, you may object to the processing of your Personal Data, on legitimate grounds, except if
+                otherwise permitted by applicable law. If you believe your right to privacy granted by applicable data
+                protection laws has been infringed upon, please contact us at support@amocrm.com. You also have a
+                right to lodge a complaint with data protection authorities.
+              </p>
+              <p>
+                This provision does not apply to Personal Data that is part of Client Data. In this case, the
+                management of the Client Data is subject to the Client's own Privacy Policy, and any request for
+                access, correction or deletion should be made to the Client responsible for the uploading and storage
+                of such data into the Service.
+              </p>
+            </li>
+            <li>
+              <b>Navigation Information</b>
+              <p>
+                You may opt out from the collection of information about your visit to the Site by Google Analytics by
+                using the Google Analytics Opt-out feature.
+              </p>
+            </li>
+            <li>
+              <b>Opting out from Commercial Communications</b>
+              <p>
+                If you receive commercial emails from us, you may unsubscribe at any time by following the
+                instructions contained within the email or by sending an email to the address provided in the «How to
+                Contact Us» section.
+              </p>
+              <p>
+                Please be aware that if you opt-out of receiving commercial email from us or otherwise modify the
+                nature or frequency of promotional communications you receive from us, it may take up to ten (10)
+                business days for us to process your request. Additionally, even after you opt-out from receiving
+                commercial messages from us, you will continue to receive administrative messages from us regarding
+                the Service.
+              </p>
+              <p>
+                amoCRM has no direct relationship with the Client's customers or third parties whose Personal Data may
+                be processed on behalf of a Client. Any Person who seeks access, or who seeks to correct, amend,
+                delete inaccurate data or withdraw consent for further contact should direct his or her query to the
+                Client or User directly. If the Client requests for amoCRM to remove the data, we will respond to the
+                request within thirty (30) days. We will delete, amend or block access to any Personal Data that we
+                are storing only if we receive a written request to do so from the Client who is responsible for such
+                Personal Data, unless we have a legal right to retain such Personal Data. We reserve the right to
+                retain a copy of such data for archiving purposes, or to defend our rights in litigation. Any such
+                request regarding Client Data should be addressed as indicated in the «How to Contact Us» section, and
+                include sufficient information for amoCRM to identify the Client or Person or third party and the
+                information to delete or amend.
+              </p>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span><b>Third-Party Services</b></span>
+          <p>
+            The Service may contain features or links to web sites and services provided by third parties. Any
+            information you provide on third-party sites or services is provided directly to the operators of such
+            services and is subject to those operators' policies, if any, governing privacy and security, even if
+            accessed through the Service. We are not responsible for the content or privacy and security practices and
+            policies of third-party sites or services to which links or access are provided through the Service. We
+            encourage you to learn about third parties' privacy and security policies before providing them with
+            information.
+          </p>
+        </li>
+        <li>
+          <span><b>Privacy Shield</b></span>
+          <p>
+            The legal entity QSOFT LLC, which operates amoCRM, complies with the EU-U.S. and Swiss-U.S. Privacy Shield
+            Frameworks as set forth by the U.S. Department of Commerce regarding the collection, use, and retention of
+            personal information transferred from the European Union, the United Kingdom and Switzerland to the United
+            States in reliance on Privacy Shield. QSOFT LLC has certified to the Department of Commerce that it
+            adheres to the Privacy Shield Principles with respect to such information. If there is any conflict
+            between the terms in this privacy policy and the Privacy Shield Principles, the Privacy Shield Principles
+            shall govern. To learn more about the Privacy Shield program, and to view our certification, please visit
+            https://www.privacyshield.gov/.
+          </p>
+          <p>
+            In compliance with the Privacy Shield Principles, QSOFT LLC commits to resolve complaints about our
+            collection or use of your personal information. EU and Swiss individuals with inquiries or complaints
+            regarding our Privacy Shield policy should first contact QSOFT LLC at support@amocrm.com.
+          </p>
+          <p>
+            QSOFT LLC has further committed to refer unresolved privacy complaints under the EU-U.S. Privacy Shield
+            Principles and the Swiss-U.S. Privacy Shield Principles to JAMS, a non-profit alternative dispute
+            resolution provider located in the United States to assist with the complaint resolution process. If you
+            do not receive timely acknowledgment of your complaint, or if your complaint is not satisfactorily
+            addressed, please visit https://www.jamsadr.com/eu-us-privacy-shield for more information and to file a
+            complaint. The services of JAMS are provided at no cost to you.
+          </p>
+          <p>
+            QSOFT LLC is subject to the investigatory and enforcement powers of the Federal Trade Commission (FTC) to
+            ensure compliance with the EU-US Privacy Shield Principles and the Swiss-U.S. Privacy Shield Principles
+            outlined in this notice.
+          </p>
+          <p>
+            Under certain conditions, more fully described on the Privacy Shield website
+            https://www.privacyshield.gov/article?id=How-to-Submit-a-Complaint, you may also be able to invoke binding
+            arbitration when other dispute resolution procedures have been exhausted.
+          </p>
+          <p>
+            amoCRM shall comply with the Privacy Shield Principles for all onward transfers of personal data from the
+            EU and Switzerland, including the onward transfer liability provisions.
+          </p>
+        </li>
+        <li>
+          <span><b>Your California Privacy Rights</b></span>
+          <p>
+            We will not share any Personal Data with third-parties for their direct marketing purposes to the extent
+            prohibited by California law. If our practices change, we will do so in accordance with applicable laws
+            and will notify you in advance.
+          </p>
+        </li>
+        <li>
+          <span><b>Cookies</b></span>
+          <p>
+            Like most websites, we and our Third Party Services (See Section 6 «Third Party Services») collect certain
+            information automatically when you visit our Service, read our emails, or interact with us. We typically
+            collect this information through a variety of tracking technologies, including cookies, beacons, and
+            similar technology (which we'll refer to collectively as «cookies»). For example, we collect information
+            about your device and its software, such as your IP address, browser type, Internet service provider,
+            platform type, device type, operating system, date and time stamp, a unique ID that allows us to uniquely
+            identify your browser, mobile device or your account, and other such information. We also collect
+            information about the way you use the Service, for example, the site from which you came and the site to
+            which you are going when you leave our website, the pages you visit, the links you click, how frequently
+            you access the Service, whether you open emails or click the links contained in emails, whether you access
+            the Service from multiple devices, and other actions you take on the Service. We use cookies to better
+            display our Service, to save you time, to provide better technical support, and to anonymously track
+            Service usage. For example, cookies help us to:
+          </p>
+          <ul>
+            <li>Keep track of whether you are signed in or have previously signed in so that we can display all the
+              features that are available to you;
+            </li>
+            <li>remember your settings on the pages you visit, so that we can display your preferred content the next
+              time you visit;
+            </li>
+            <li>display personalized content and targeted advertisements on our Service as well as on other websites
+              and services;
+            </li>
+            <li>perform analytics, and measure traffic and usage trends, and better understand the demographics of our
+              users;
+            </li>
+            <li>diagnose and fix technology problems; and</li>
+            <li>otherwise plan for and enhance our Service.</li>
+            >
+          </ul>
+          <p>
+            Most or all browsers permit you to disable or reject certain cookies. You can do this by setting the
+            preferences in the browser. Use the «help» feature of your browser to obtain more information about
+            refusing cookies. However, if you set the browser you use to reject cookies or otherwise disable them, you
+            may not be able to use any or all of the functionality at one or more of the sites or it may take
+            additional time to utilize such functionality. If you wish to use any such functionality that requires the
+            use of cookies at any of our sites, then you must accept the use of cookies for that site, and thereby,
+            give us your permission to link your data as discussed above.
+          </p>
+        </li>
+        <li>
+          <span><b>Do Not Track Policy</b></span>
+          <p>
+            California law requires that operators of websites and online services disclose how they respond to a Do
+            Not Track signal. Some browsers have incorporated «Do Not Track» features. Most of these features, when
+            turned on, send a signal or preference to the website or online service that a user visits, indicating
+            that the user does not wish to be tracked. Because there is not yet a common understanding of how to
+            interpret Do Not Track signals, we do not currently respond to Do Not Track signal. We continue to work
+            with the online industry to define a common understanding of how to treat Do Not Track signals.
+          </p>
+          <p>
+            In the meantime, you may opt out of receiving interest based advertising from advertising networks that
+            may be delivered on our platform and other websites by visiting the following websites. If you want to opt
+            out of this online behavioral advertising, visit the following sites: http://www.aboutads.info/consumers
+            and http://www.networkadvertising.org.
+          </p>
+          <p>
+            This will opt you out of many, but not all, of the interest-based advertising activities in which we or
+            third parties engage. Choices you make may be browser and device specific. If you delete your cookies or
+            use a different browser or a different computer or device, you may need to update your opt-out choices.
+            Other third-party Sites provide visitors with the ability to opt-out of receiving interest-based ads on
+            their Sites that you need to control through your settings on that Site. For example, to opt out of
+            Google's use of your online behavior for advertising purposes, visit Google's Ad Settings page.
+          </p>
+        </li>
+        <li>
+          <span><b>Third Party Tracking And Interest-Based Advertising</b></span>
+          <p>
+            We may permit third parties to collect data about your use of our Site to understand the various
+            activities and behaviors of our Clients, Users and Visitors. We do this for many reasons, including: to
+            recognize new or past visitors to our Sites; to present more personalized content; to provide useful and
+            relevant ads - for example, if we know what ads you are shown we can try not to show you the same ones
+            repeatedly; to identify visitors across devices, sales channels, third party websites and Sites, or to
+            display or send personalized or targeted ads and other custom content that is more focused on a person’s
+            perceived interest in products or services similar to those that we offer.
+          </p>
+          <p>
+            Typically, though not always, these third parties collect information through cookies or similar tracking
+            technologies, which recognize the device you are using and collect information about your online browsing
+            behaviors so that they may personalize the ads you see.
+          </p>
+          <p>
+            We may use and support one or more Google tools including without limitation, Google Analytics (including
+            Universal Analytics), (hereinafter, collectively, «Google Analytics»), Google AdWords (including Smart
+            Pixel), Google Developer Console, Google Displaying Advertising and Google Customer Match which may
+            include, without limitation, one or more of the following features:
+          </p>
+          <ol>
+            <li>Remarketing (as such term is defined below),</li>
+            <li>Google Display Network Impression Reporting,</li>
+            <li>the DoubleClick Campaign Manager integration, and</li>
+            <li>Google Analytics Demographics and Interest Reporting.</li>
+          </ol>
+          <p>
+            We connect Google Analytics with Google Developer Console in order to better understand user behavior in
+            connection with the applications we provide. Google's use of the DoubleClick cookie enables it and its
+            partners to serve ads to our users based on their visit to our Site or other sites on the Internet.
+          </p>
+          <p>
+            You may opt out of the use of Google Analytics for Display Advertising (including disabling the
+            DoubleClick Cookie for interest-based advertising, if applicable) and customize Google Display Network ads
+            by visiting the Google Ads Settings page. Even though you may opt out of the use of such Google services,
+            we may still use other third party services, including, without limitation, to collect and/or analyze
+            data.
+          </p>
+          <p>
+            We use remarketing with Google Analytics (including Universal Analytics) and/or Google Adwords (including
+            Smart Pixel) (collectively, «Remarketing») to advertise online including after you've visited our Site.
+            Remarketing may be based on your interests, location and other information collected about you in
+            compliance with Google’s Policy For Advertising Based On Interests And Location. In connection with
+            Remarking and otherwise
+          </p>
+          <ol>
+            <li>We and our third party vendors, including, without limitation, Google, may show you ads on sites
+              across the internet, and
+            </li>
+            <li>We and our third party vendors, including, without limitation, Google, use first party cookies
+              (including, without limitation, the Google Analytics cookie) and third party cookies (including, without
+              limitation, the DoubleClick cookie) to inform, optimize and serve you ads based on your past visits to
+              our Site. We also use third-party tags (including, without limitation, Twitter conversion tag, Facebook
+              conversion tag, LinkedIn conversion tag, Capterra conversion tag, Quora conversion tag, Crozdesk
+              conversion tag, Yandex metrika, Adwords conversion tag and Google Tag Manager) in connection with our
+              online marketing and analytics.
+            </li>
+            <li>We and our third-party vendors, including Google, may also use first-party cookies (such as the Google
+              Analytics cookies) and third-party cookies (such as the DoubleClick cookie) together to report how our
+              ad impressions, other uses of ad services, and interactions with these ad impressions and ad services
+              are related to visits to our Site.
+            </li>
+          </ol>
+          <p>
+            You may opt out of having your activity tracked by Google Analytics (e.g. through cookies) by following
+            the instructions contained in Section below entitled «Information about Unsubscribing and Opting Out.» In
+            connection with our use of Google Analytics Demographics and Interest Reporting we use data from Google's
+            Interest-based advertising or 3rd-party audience data (such as age, gender, and interests) with Google
+            Analytics for several purposes, including, without limitation:
+          </p>
+          <ol>
+            <li>understanding our audience and the interests and demographics of the Site's users,</li>
+            <li>improving Site content to better serve our audience,</li>
+            <li>segmenting Remarketing campaigns by demographics, location or interests, and/or</li>
+            <li>targeting ads in Google Adwords.</li>
+          </ol>
+        </li>
+        <li>
+          <span><b>Information About Unsubscribing And Opting Out</b></span>
+          <p>
+            You can opt-out of Google Analytics for Display Advertising and customize the Google Display Network ads
+            by visiting the Google Ads Settings page. Google also allows you to install the Google Analytics Opt-out
+            Browser Add-on for your browser. The Google Analytics Opt-out Browser Add-on provides visitors with the
+            ability to restrict their data from being collected and used by Google Analytics via the browsers where it
+            is installed.
+          </p>
+          <p>
+            You can also opt-out of certain third-parties’ use of cookies for targeted advertising purposes by
+            visiting the Network Advertising Initiative opt-out page.
+          </p>
+          <p>
+            Our interest-based ads may be served to you on third-party platforms, such as Facebook. We may serve these
+            ads about our products or services or send commercial communications directly ourselves or through these
+            third parties.
+          </p>
+          <p>
+            Visitors may opt out of receiving interest based advertising by advertising networks that may be delivered
+            to them on our platform and other websites by visiting the following websites:
+            http://www.aboutads.info/consumers and http://www.networkadvertising.org. These features will opt a
+            Visitor out of many – but not all – of the interest-based advertising activities in which we or third
+            parties engage.
+          </p>
+        </li>
+        <li>
+          <span><b>Minors And Children's Privacy</b></span>
+          <p>
+            Protecting the privacy of young children is especially important. Our Service is not directed to children
+            under the age of 18, and we do not knowingly collect Personal Data from children under the age of 18
+            without obtaining parental consent. If you are under 18 years of age, then please do not use or access the
+            Service at any time or in any manner. If we learn that Personal Data has been collected on the Service
+            from persons under 18 years of age and without verifiable parental consent, then we will take the
+            appropriate steps to delete this information. If you are a parent or guardian and discover that your child
+            under 18 years of age has obtained an Account on the Service, then you may alert us at support@amocrm.com
+            and request that we delete that child's Personal Data from our systems.
+          </p>
+          <p>
+            The Service is not intended to be used by minors, and is not intended to be used to post content to share
+            publicly or with friends. To the extent that a minor has posted such content on the Service, the minor has
+            the right to have this content deleted or removed using the deletion or removal options detailed in this
+            Privacy Policy. If you have any question regarding this topic, please contact us as indicated in the «How
+            to Contact Us» section. Please be aware that, although we offer this deletion capability, the removal of
+            content may not ensure complete or comprehensive removal of that content or information.
+          </p>
+        </li>
+        <li>
+          <span><b>Data Security And Data Transfer</b></span>
+          <p>
+            We follow generally accepted industry standards to protect the information submitted to us, both during
+            transmission and once we receive it. We maintain appropriate administrative, technical and physical
+            safeguards to protect Personal Data against accidental or unlawful destruction, accidental loss,
+            unauthorized alteration, unauthorized disclosure or access, misuse, and any other unlawful form of
+            processing of the Personal Data in our possession. This includes, for example, firewalls, password
+            protection and other access and authentication controls. We use SSL technology to encrypt data during
+            transmission through public internet, and we also employ application-layer security features to further
+            anonymize Personal Data.
+          </p>
+          <p>
+            However, no method of transmission over the Internet, or method of electronic storage, is 100% secure. We
+            cannot ensure or warrant the security of any information you transmit to us or store on the Service, and
+            you do so at your own risk. We also cannot guarantee that such information may not be accessed, disclosed,
+            altered, or destroyed by breach of any of our physical, technical, or managerial safeguards. If you
+            believe your Personal Data has been compromised, please contact us as set forth in the «How to Contact Us»
+            section.
+          </p>
+          <p>
+            If we learn of a security systems breach, we will inform you and the authorities of the occurrence of the
+            breach in accordance with applicable law.
+          </p>
+          <p>
+            We may store all Personal Information we collect anywhere in the world, including but not limited to, in
+            the United States, in the cloud, on our servers, on the servers of our affiliates or the servers of our
+            service providers.
+          </p>
+        </li>
+        <li>
+          <span><b>Data Retention</b></span>
+          <p>
+            How long we retain your Personal Data depends of the type of data and the purpose for which we process the
+            data, which is explained further in the section «The Information We Collect». We will retain your Personal
+            Information for the period necessary to fulfill the purposes outlined in this Privacy Notice unless a
+            longer retention period is required or permitted by law. If you wish to request that we no longer use your
+            data, please contact us at support@amocrm.com. Except as otherwise set forth below, Personal Data
+            contained in the Service Data is retained and deleted in accordance with the Terms.
+          </p>
+        </li>
+        <li>
+          <span><b>Settings</b></span>
+          <p>
+            Although we may allow you to adjust your privacy settings to limit access to certain Personal Data, please
+            be aware that no security measures are perfect or impenetrable. We are not responsible for circumvention
+            of any privacy settings or security measures on the Service. Additionally, we cannot control the actions
+            of other users with whom you may choose to share your information. Further, even after information posted
+            on the Service is removed, caching and archiving services may have saved that information, and other users
+            or third parties may have copied or stored the information available on the Service. We cannot and do not
+            guarantee that information you post on or transmit to the Service will not be viewed by unauthorized
+            persons.
+          </p>
+        </li>
+        <li>
+          <span><b>Additional Users</b></span>
+          <p>
+            When you add additional Users to your account we send them an invitation to join our site and request that
+            such Users provide us with certain additional contact information including their email addresses. When
+            you use such a service, you represent and warrant to us that you have an existing business or personal
+            relationship with the invited User, sufficient to avoid liability under any law that applies to
+            unsolicited email. You will be deemed to be the sender of any such email (or other electronic
+            communication), and we will be deemed to merely be a service provider facilitating your sending of the
+            email (or other electronic communication).
+          </p>
+        </li>
+        <li>
+          <span><b>Data Controller And Data Processor</b></span>
+          <p>
+            amoCRM does not own, control or direct the use of any of the Client Data stored or processed by a Client
+            or User via the Service. Only the Client or Users are entitled to access, retrieve and direct the use of
+            such Client Data. amoCRM is unaware of what Client Data is actually being stored or made available by a
+            Client or User to the Service and does not directly access such Client Data except as authorized by the
+            Client, or as necessary to provide Services to the Client and its Users.
+          </p>
+          <p>
+            Because amoCRM does not collect or determine the use of any Personal Data contained in the Client Data and
+            because it does not determine the purposes for which such Personal Data is collected, the means of
+            collecting such Personal Data, or the uses of such Personal Data, amoCRM is not acting in the capacity of
+            data controller in terms of the European Union's General Data Protection Regulation (Regulation (EU)
+            2016/679, hereinafter «GDPR») and does not have the associated responsibilities under the GDPR. amoCRM
+            should be considered only as a processor on behalf of its Clients and Users as to any Client Data
+            containing Personal Data that is subject to the requirements of the GDPR. Except as provided in this
+            Privacy Policy, amoCRM does not independently cause Client Data containing Personal Data stored in
+            connection with the Services to be transferred or otherwise made available to third parties, except to
+            third party subcontractors who may process such data on behalf of amoCRM in connection with amoCRM's
+            provision of Services to Clients. Such actions are performed or authorized only by the applicable Client
+            or User.
+          </p>
+          <p>
+            The Client or the User is the data controller under the Regulation for any Client Data containing Personal
+            Data, meaning that such party controls the manner such Personal Data is collected and used as well as the
+            determination of the purposes and means of the processing of such Personal Data.
+          </p>
+          <p>
+            amoCRM is not responsible for the content of the Personal Data contained in the Client Data or other
+            information stored on its servers (or its subcontractors' servers) at the discretion of the Client or User
+            nor is amoCRM responsible for the manner in which the Client or User collects, handles disclosure,
+            distributes or otherwise processes such information.
+          </p>
+        </li>
+        <li>
+          <span><b>Changes And Updates To This Policy</b></span>
+          <p>
+            Please revisit this page periodically to stay aware of any changes to this Policy, which we may update
+            from time to time. If we modify the Policy, we will make it available through the Service, and indicate
+            the date of the latest revision, and will comply with applicable law. Your continued use of the Service
+            after the revised Policy has become effective indicates that you have read, understood and agreed to the
+            current version of the Policy.
+          </p>
+        </li>
+        <li>
+          <span><b>How To Contact Us</b></span>
+          <p>
+            Please contact us with any questions or comments about this Policy, your Personal Data, our use and
+            disclosure practices, or your consent choices by email at support@amocrm.com.
+          </p>
+        </li>
+      </ol>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <h1>ПОЛИТИКА КОМПАНИИ В ОТНОШЕНИИ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</h1>
+      <ol>
+        <li>
+          <span><b>ОБЩИЕ ПОЛОЖЕНИЯ</b></span>
+          <p>
+            Политика обработки персональных данных (далее – Политика) разработана в соответствии с Федеральным законом
+            от
+            27.07.2006. №152-ФЗ «О персональных данных» (далее – ФЗ-152).
+          </p>
+          <p>
+            Настоящая Политика определяет порядок обработки персональных данных и меры по обеспечению безопасности
+            персональных данных в АО «Амоцрм» (далее – Оператор) с целью защиты прав и свобод человека и гражданина
+            при
+            обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и
+            семейную
+            тайну.
+          </p>
+          <p>
+            В Политике используются следующие основные понятия:
+          </p>
+          <p>
+            <b>автоматизированная обработка персональных данных</b> – обработка персональных данных с помощью средств
+            вычислительной
+            техники;
+          </p>
+          <p>
+            <b>блокирование персональных данных</b> - временное прекращение обработки персональных данных (за
+            исключением
+            случаев,
+            если обработка необходима для уточнения персональных данных);
+          </p>
+          <p>
+            <b>информационная система персональных данных</b> - совокупность содержащихся в базах данных персональных
+            данных,
+            и
+            обеспечивающих их обработку информационных технологий и технических средств;
+          </p>
+          <p>
+            <b>обезличивание персональных данных</b> - действия, в результате которых невозможно определить без
+            использования
+            дополнительной информации принадлежность персональных данных конкретному субъекту персональных данных;
+          </p>
+          <p>
+            <b>обработка персональных данных</b> - любое действие (операция) или совокупность действий (операций),
+            совершаемых
+            с
+            использованием средств автоматизации или без использования таких средств с персональными данными, включая
+            сбор,
+            запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение,
+            использование,
+            передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение
+            персональных данных;
+          </p>
+          <p>
+            <b>оператор</b> - государственный орган, муниципальный орган, юридическое или физическое лицо,
+            самостоятельно или
+            совместно с другими лицами организующие и (или) осуществляющие обработку персональных данных, а также
+            определяющие
+            цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции),
+            совершаемые с персональными данными;
+          </p>
+          <p>
+            <b>персональные данные</b> – любая информация, относящаяся к прямо или косвенно определенному или
+            определяемому
+            физическому лицу (субъекту персональных данных);
+          </p>
+          <p>
+            <b>предоставление персональных данных</b> – действия, направленные на раскрытие персональных данных
+            определенному
+            лицу
+            или определенному кругу лиц;
+          </p>
+          <p>
+            <b>распространение персональных данных</b> - действия, направленные на раскрытие персональных данных
+            неопределенному
+            кругу лиц (передача персональных данных) или на ознакомление с персональными данными неограниченного круга
+            лиц, в
+            том числе обнародование персональных данных в средствах массовой информации, размещение в информационно-
+            телекоммуникационных сетях или предоставление доступа к персональным данным каким-либо иным способом;
+          </p>
+          <p>
+            <b>трансграничная передача персональных данных</b> - передача персональных данных на территорию
+            иностранного
+            государства
+            органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу.
+          </p>
+          <p>
+            <b>уничтожение персональных данных</b> - действия, в результате которых невозможно восстановить содержание
+            персональных
+            данных в информационной системе персональных данных и (или) результате которых уничтожаются материальные
+            носители
+            персональных данных;
+          </p>
+          <p>
+            Компания обязана опубликовать или иным образом обеспечить неограниченный доступ к настоящей Политике
+            обработки
+            персональных данных в соответствии с ч. 2 ст. 18.1. ФЗ-152.
+          </p>
+        </li>
+        <li>
+          <span><b>ПРИНЦИПЫ И УСЛОВИЯ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</b></span>
+          <ol>
+            <li>Принципы обработки персональных данных
+              <p>
+                Обработка персональных данных у Оператора осуществляется на основе следующих принципов:
+              </p>
+              <ul>
+                <li>законности и справедливой основы;</li>
+                <li>ограничения обработки персональных данных достижением конкретных, заранее определенных и законных
+                  целей;
+                </li>
+                <li>недопущения обработки персональных данных, несовместимой с целями сбора персональных данных;</li>
+                <li>недопущения объединения баз данных, содержащих персональные данные, обработка которых
+                  осуществляется в целях,
+                  несовместимых между собой;
+                </li>
+                <li>обработки только тех персональных данных, которые отвечают целям их обработки;</li>
+                <li>соответствия содержания и объема обрабатываемых персональных данных заявленным целям обработки;
+                </li>
+                <li>недопущения обработки персональных данных, избыточных по отношению к заявленным целям их
+                  обработки;
+                </li>
+                <li>обеспечения точности, достаточности и актуальности персональных данных по отношению к целям
+                  обработки
+                  персональных данных;
+                </li>
+                <li>уничтожения либо обезличивания персональных данных по достижении целей их обработки или в случае
+                  утраты
+                  необходимости в достижении этих целей, при невозможности устранения Оператором допущенных нарушений
+                  персональных данных, если иное не предусмотрено федеральным законом.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Условия обработки персональных данных
+              <p>
+                Оператор производит обработку персональных данных при наличии хотя бы одного из следующих условий:
+              </p>
+              <ul>
+                <li>обработка персональных данных осуществляется с согласия субъекта персональных данных на обработку
                   его
-                  персональных данных или доказательство наличия оснований, указанных в ФЗ-152, возлагается на
-                  Оператора.
-                </p>
-              </li>
-              <li>
-                Права субъекта персональных данных
-                <p>
-                  Субъект персональных данных имеет право на получение у Оператора информации, касающейся обработки его
-                  персональных данных, если такое право не ограничено в соответствии с федеральными законами. Субъект
-                  персональных данных вправе требовать от Оператора уточнения его персональных данных, их блокирования
-                  или
-                  уничтожения в случае, если персональные данные являются неполными, устаревшими, неточными, незаконно
-                  полученными или не являются необходимыми для заявленной цели обработки, а также принимать
-                  предусмотренные
-                  законом меры по защите своих прав.
-                  Обработка персональных данных в целях продвижения товаров, работ, услуг на рынке путем осуществления
-                  прямых
-                  контактов с потенциальным потребителем с помощью средств связи, а также в целях политической агитации
-                  допускается только при условии предварительного согласия субъекта персональных данных. Указанная
-                  обработка
-                  персональных данных признается осуществляемой без предварительного согласия субъекта персональных
-                  данных, если
-                  Компания не докажет, что такое согласие было получено.
-                </p>
-                <p>
-                  Оператор обязан немедленно прекратить по требованию субъекта персональных данных обработку его
-                  персональных
-                  данных в вышеуказанных целях.
-                </p>
-                <p>
-                  Запрещается принятие на основании исключительно автоматизированной обработки персональных данных
-                  решений,
-                  порождающих юридические последствия в отношении субъекта персональных данных или иным образом
-                  затрагивающих
-                  его права и законные интересы, за исключением случаев, предусмотренных федеральными законами, или при
-                  наличии
-                  согласия в письменной форме субъекта персональных данных.
-                </p>
-                <p>
-                  Если субъект персональных данных считает, что Оператор осуществляет обработку его персональных данных
-                  с
-                  нарушением требований ФЗ-152 или иным образом нарушает его права и свободы, субъект персональных
-                  данных вправе
-                  обжаловать действия или бездействие Оператора в Уполномоченный орган по защите прав субъектов
-                  персональных
-                  данных или в судебном порядке.
-                </p>
-                <p>
-                  Субъект персональных данных имеет право на защиту своих прав и законных интересов, в том числе на
-                  возмещение
-                  убытков и (или) компенсацию морального вреда в судебном порядке.
-                </p>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h4><b>ОБЕСПЕЧЕНИЕ БЕЗОПАСНОСТИ ПЕРСОНАЛЬНЫХ ДАННЫХ</b></h4>
-            <p>
-              Безопасность персональных данных, обрабатываемых Оператора, обеспечивается реализацией правовых,
-              организационных и
-              технических мер, необходимых для обеспечения требований федерального законодательства в области защиты
-              персональных данных.
-            </p>
-            <p>
-              Для предотвращения несанкционированного доступа к персональным данным Оператором применяются следующие
-              организационно-технические меры:
-            </p>
-            <ul>
-              <li>назначение должностных лиц, ответственных за организацию обработки и защиты персональных данных;</li>
-              <li>ограничение состава лиц, имеющих доступ к персональным данным;</li>
-              <li>ознакомление субъектов с требованиями федерального законодательства и нормативных документов Оператора
-                по
-                обработке и защите персональных данных;
-              </li>
-              <li>организация учета, хранения и обращения носителей информации;</li>
-              <li>определение угроз безопасности персональных данных при их обработке, формирование на их основе моделей
-                угроз;
-              </li>
-              <li>разработка на основе модели угроз системы защиты персональных данных;</li>
-              <li>проверка готовности и эффективности использования средств защиты информации;</li>
-              <li>разграничение доступа пользователей к информационным ресурсам и программно- аппаратным средствам
-                обработки
-                информации;
-              </li>
-              <li>регистрация и учет действий пользователей информационных систем персональных данных;</li>
-              <li>использование антивирусных средств и средств восстановления системы защиты персональных данных;</li>
-              <li>применение в необходимых случаях средств межсетевого экранирования, обнаружения вторжений, анализа
-                защищенности и
-                средств криптографической защиты информации;
-              </li>
-              <li>организация пропускного режима на территорию Оператора, охраны помещений с техническими средствами
-                обработки
+                  персональных данных;
+                </li>
+                <li>обработка персональных данных необходима для достижения целей, предусмотренных международным
+                  договором
+                  Российской Федерации или законом, для осуществления и выполнения возложенных законодательством
+                  Российской
+                  Федерации на оператора функций, полномочий и обязанностей;
+                </li>
+                <li>обработка персональных данных необходима для осуществления правосудия, исполнения судебного акта,
+                  акта другого
+                  органа или должностного лица, подлежащих исполнению в соответствии с законодательством Российской
+                  Федерации об
+                  исполнительном производстве;
+                </li>
+                <li>обработка персональных данных необходима для исполнения договора, стороной которого либо
+                  выгодоприобретателем
+                  или поручителем по которому является субъект персональных данных, а также для заключения договора по
+                  инициативе субъекта персональных данных или договора, по которому субъект персональных данных будет
+                  являться
+                  выгодоприобретателем или поручителем;
+                </li>
+                <li>обработка персональных данных необходима для осуществления прав и законных интересов оператора или
+                  третьих лиц
+                  либо для достижения общественно значимых целей при условии, что при этом не нарушаются права и
+                  свободы
+                  субъекта персональных данных;
+                </li>
+                <li>осуществляется обработка персональных данных, доступ неограниченного круга лиц к которым
+                  предоставлен
+                  субъектом персональных данных либо по его просьбе (далее - общедоступные персональные данные);
+                </li>
+                <li>осуществляется обработка персональных данных, подлежащих опубликованию или обязательному раскрытию
+                  в
+                  соответствии с федеральным законом.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Конфиденциальность персональных данных
+              <p>
+                Оператор и иные лица, получившие доступ к персональным данным, обязаны не раскрывать третьим лицам и
+                не
+                распространять персональные данные без согласия субъекта персональных данных, если иное не
+                предусмотрено
+                федеральным законом.</p>
+            </li>
+            <li>
+              Общедоступные источники персональных данных
+              <p>
+                В целях информационного обеспечения у Оператора могут создаваться общедоступные источники персональных
+                данных
+                субъектов, в том числе справочники и адресные книги. В общедоступные источники персональных данных с
+                письменного согласия субъекта могут включаться его фамилия, имя, отчество, дата и место рождения,
+                должность,
+                номера контактных телефонов, адрес электронной почты и иные персональные данные, сообщаемые субъектом
                 персональных данных.
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h4><b>ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</b></h4>
-            <p>
-              Иные права и обязанности Оператора, как оператора персональных данных определяются законодательством
-              Российской
-              Федерации в области персональных данных.
-            </p>
-            <p>
-              Должностные лица Оператора, виновные в нарушении норм, регулирующих обработку и защиту персональных
-              данных, несут
-              материальную, дисциплинарную, административную, гражданско-правовую или уголовную ответственность в
-              порядке,
-              установленном федеральными законами.
-            </p>
-          </li>
-        </ol>
-      </ng-container>
-    </jnt-container>
-  </jnt-app-body>
-</jnt-app-content>
+              </p>
+              <p>
+                Сведения о субъекте должны быть в любое время исключены из общедоступных источников персональных
+                данных по
+                требованию субъекта либо по решению суда или иных уполномоченных государственных органов.
+              </p>
+            </li>
+            <li>
+              Специальные категории персональных данных
+              <p>
+                Обработка Оператором специальных категорий персональных данных, касающихся расовой, национальной
+                принадлежности, политических взглядов, религиозных или философских убеждений, состояния здоровья,
+                интимной
+                жизни, допускается в случаях, если:
+              </p>
+              <ul>
+                <li>субъект персональных данных дал согласие в письменной форме на обработку своих персональных
+                  данных;
+                </li>
+                <li>персональные данные сделаны общедоступными субъектом персональных данных;</li>
+                <li>обработка персональных данных осуществляется в соответствии с законодательством о государственной
+                  социальной
+                  помощи, трудовым законодательством, законодательством Российской Федерации о пенсиях по
+                  государственному
+                  пенсионному обеспечению, о трудовых пенсиях;
+                </li>
+                <li>обработка персональных данных необходима для защиты жизни, здоровья или иных жизненно важных
+                  интересов
+                  субъекта персональных данных либо жизни, здоровья или иных жизненно важных интересов других лиц и
+                  получение
+                  согласия субъекта персональных данных невозможно;
+                </li>
+                <li>обработка персональных данных осуществляется в медико-профилактических целях, в целях установления
+                  медицинского диагноза, оказания медицинских и медико- социальных услуг при условии, что обработка
+                  персональных
+                  данных осуществляется лицом, профессионально занимающимся медицинской деятельностью и обязанным в
+                  соответствии
+                  с законодательством Российской Федерации сохранять врачебную тайну;
+                </li>
+                <li>обработка персональных данных необходима для установления или осуществления прав субъекта
+                  персональных данных
+                  или третьих лиц, а равно и в связи с осуществлением правосудия;
+                </li>
+                <li>обработка персональных данных осуществляется в соответствии с законодательством об обязательных
+                  видах
+                  страхования, со страховым законодательством.
+                </li>
+              </ul>
+              <p>
+                Обработка специальных категорий персональных данных должна быть незамедлительно прекращена, если
+                устранены
+                причины, вследствие которых осуществлялась их обработка, если иное не установлено федеральным
+                законом.<br>
+              </p>
+              <p>
+                Обработка персональных данных о судимости может осуществляться Оператором исключительно в случаях и в
+                порядке,
+                которые определяются в соответствии с федеральными законами.
+              </p>
+            </li>
+            <li>
+              Биометрические персональные данные
+              <p>
+                Сведения, которые характеризуют физиологические и биологические особенности человека, на основании
+                которых
+                можно установить его личность - биометрические персональные данные - могут обрабатываться Оператором
+                только
+                при наличии согласия в письменной форме субъекта.
+              </p>
+            </li>
+            <li>
+              Поручение обработки персональных данных другому лицу
+              <p>
+                Оператор вправе поручить обработку персональных данных другому лицу с согласия субъекта персональных
+                данных,
+                если иное не предусмотрено федеральным законом, на основании заключаемого с этим лицом договора. Лицо,
+                осуществляющее обработку персональных данных по поручению Оператора, обязано соблюдать принципы и
+                правила
+                обработки персональных данных, предусмотренные ФЗ-152.
+              </p>
+            </li>
+            <li>
+              Трансграничная передача персональных данных
+              <p>
+                Оператор обязана убедиться в том, что иностранным государством, на территорию которого предполагается
+                осуществлять передачу персональных данных, обеспечивается адекватная защита прав субъектов
+                персональных
+                данных, до начала осуществления такой передачи.
+              </p>
+              <p>
+                Трансграничная передача персональных данных на территории иностранных государств, не обеспечивающих
+                адекватной
+                защиты прав субъектов персональных данных, может осуществляться в случаях:
+              </p>
+              <ul>
+                <li>наличия согласия в письменной форме субъекта персональных данных на трансграничную передачу его
+                  персональных
+                  данных;
+                </li>
+                <li>исполнения договора, стороной которого является субъект персональных данных.</li>
+              </ul>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span><b>ПРАВА СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ</b></span>
+          <ol>
+            <li>
+              Согласие субъекта персональных данных на обработку его персональных данных
+              <p>
+                Субъект персональных данных принимает решение о предоставлении его персональных данных и дает согласие
+                на их
+                обработку свободно, своей волей и в своем интересе. Согласие на обработку персональных данных может
+                быть дано
+                субъектом персональных данных или его представителем в любой позволяющей подтвердить факт его
+                получения форме,
+                если иное не установлено федеральным законом.
+              </p>
+              <p>
+                Обязанность предоставить доказательство получения согласия субъекта персональных данных на обработку
+                его
+                персональных данных или доказательство наличия оснований, указанных в ФЗ-152, возлагается на
+                Оператора.
+              </p>
+            </li>
+            <li>
+              Права субъекта персональных данных
+              <p>
+                Субъект персональных данных имеет право на получение у Оператора информации, касающейся обработки его
+                персональных данных, если такое право не ограничено в соответствии с федеральными законами. Субъект
+                персональных данных вправе требовать от Оператора уточнения его персональных данных, их блокирования
+                или
+                уничтожения в случае, если персональные данные являются неполными, устаревшими, неточными, незаконно
+                полученными или не являются необходимыми для заявленной цели обработки, а также принимать
+                предусмотренные
+                законом меры по защите своих прав.
+                Обработка персональных данных в целях продвижения товаров, работ, услуг на рынке путем осуществления
+                прямых
+                контактов с потенциальным потребителем с помощью средств связи, а также в целях политической агитации
+                допускается только при условии предварительного согласия субъекта персональных данных. Указанная
+                обработка
+                персональных данных признается осуществляемой без предварительного согласия субъекта персональных
+                данных, если
+                Компания не докажет, что такое согласие было получено.
+              </p>
+              <p>
+                Оператор обязан немедленно прекратить по требованию субъекта персональных данных обработку его
+                персональных
+                данных в вышеуказанных целях.
+              </p>
+              <p>
+                Запрещается принятие на основании исключительно автоматизированной обработки персональных данных
+                решений,
+                порождающих юридические последствия в отношении субъекта персональных данных или иным образом
+                затрагивающих
+                его права и законные интересы, за исключением случаев, предусмотренных федеральными законами, или при
+                наличии
+                согласия в письменной форме субъекта персональных данных.
+              </p>
+              <p>
+                Если субъект персональных данных считает, что Оператор осуществляет обработку его персональных данных
+                с
+                нарушением требований ФЗ-152 или иным образом нарушает его права и свободы, субъект персональных
+                данных вправе
+                обжаловать действия или бездействие Оператора в Уполномоченный орган по защите прав субъектов
+                персональных
+                данных или в судебном порядке.
+              </p>
+              <p>
+                Субъект персональных данных имеет право на защиту своих прав и законных интересов, в том числе на
+                возмещение
+                убытков и (или) компенсацию морального вреда в судебном порядке.
+              </p>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <span><b>ОБЕСПЕЧЕНИЕ БЕЗОПАСНОСТИ ПЕРСОНАЛЬНЫХ ДАННЫХ</b></span>
+          <p>
+            Безопасность персональных данных, обрабатываемых Оператора, обеспечивается реализацией правовых,
+            организационных и
+            технических мер, необходимых для обеспечения требований федерального законодательства в области защиты
+            персональных данных.
+          </p>
+          <p>
+            Для предотвращения несанкционированного доступа к персональным данным Оператором применяются следующие
+            организационно-технические меры:
+          </p>
+          <ul>
+            <li>назначение должностных лиц, ответственных за организацию обработки и защиты персональных данных;</li>
+            <li>ограничение состава лиц, имеющих доступ к персональным данным;</li>
+            <li>ознакомление субъектов с требованиями федерального законодательства и нормативных документов Оператора
+              по
+              обработке и защите персональных данных;
+            </li>
+            <li>организация учета, хранения и обращения носителей информации;</li>
+            <li>определение угроз безопасности персональных данных при их обработке, формирование на их основе моделей
+              угроз;
+            </li>
+            <li>разработка на основе модели угроз системы защиты персональных данных;</li>
+            <li>проверка готовности и эффективности использования средств защиты информации;</li>
+            <li>разграничение доступа пользователей к информационным ресурсам и программно- аппаратным средствам
+              обработки
+              информации;
+            </li>
+            <li>регистрация и учет действий пользователей информационных систем персональных данных;</li>
+            <li>использование антивирусных средств и средств восстановления системы защиты персональных данных;</li>
+            <li>применение в необходимых случаях средств межсетевого экранирования, обнаружения вторжений, анализа
+              защищенности и
+              средств криптографической защиты информации;
+            </li>
+            <li>организация пропускного режима на территорию Оператора, охраны помещений с техническими средствами
+              обработки
+              персональных данных.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span><b>ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</b></span>
+          <p>
+            Иные права и обязанности Оператора, как оператора персональных данных определяются законодательством
+            Российской
+            Федерации в области персональных данных.
+          </p>
+          <p>
+            Должностные лица Оператора, виновные в нарушении норм, регулирующих обработку и защиту персональных
+            данных, несут
+            материальную, дисциплинарную, административную, гражданско-правовую или уголовную ответственность в
+            порядке,
+            установленном федеральными законами.
+          </p>
+        </li>
+      </ol>
+    </ng-container>
+  </ng-container>
+</jnt-container>
