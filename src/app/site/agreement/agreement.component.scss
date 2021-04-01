@@ -1,3 +1,18 @@
 p {
   margin: 10px 0;
 }
+span {
+  font-size: 18px;
+  font-weight: 300;
+}
+ol {
+  counter-reset: item;
+}
+ol li { display: block }
+
+ol li:before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  font-weight: bold;
+}
+
