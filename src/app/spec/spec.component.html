@@ -16,10 +16,6 @@
   </ng-template>
 
   <jnt-menu [orientation]="ui.orientation.vertical">
-    <jnt-menu-item [link]="['print']"
-                   title="Contract"
-                   i18n-title="@@label.contract"
-                   [icon]="localUi.icons.print"></jnt-menu-item>
     <jnt-menu-item [link]="['details']"
                    title="General"
                    i18n-title="@@label.general"
@@ -49,6 +45,11 @@
       <jnt-badge *ngIf="spec?.packages.length > 0"
                  [value]="spec?.packages.length"></jnt-badge>
     </jnt-menu-item>
+
+    <jnt-menu-item [link]="['print']"
+                   title="Contract"
+                   i18n-title="@@label.contract"
+                   [icon]="localUi.icons.print"></jnt-menu-item>
 
     <!--
     <jnt-menu-item [link]="['terms']" title="Knowledge"
