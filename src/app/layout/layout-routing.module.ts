@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from 'src/app/layout/layout.component';
+import { MeUserResolver } from '../../resolvers/me';
 
 const routes: Routes = [
   {
@@ -16,6 +17,14 @@ const routes: Routes = [
         path: 'projects/:project',
         loadChildren: () => import('../spec/spec.module')
           .then(m => m.SpecModule)
+      },
+      {
+        path: 'subscription',
+        resolve: {
+          me: MeUserResolver
+        },
+        loadChildren: () => import('../subscription/subscription.module')
+          .then(m => m.SubscriptionModule)
       },
       {
         path: '',

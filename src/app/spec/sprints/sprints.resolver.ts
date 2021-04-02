@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SpecManager } from 'src/managers/spec.manager';
-import { Sprint } from 'src/model/spec/planning/sprint';
+import { Sprint } from 'src/models/spec/planning/sprint';
 
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { UI } from '@junte/ui';
-import { Token, TokenType } from 'src/model/spec/planning/token';
-import { Spec } from 'src/model/spec/spec';
+import { Token, TokenType } from 'src/models/spec/planning/token';
+import { Spec } from 'src/models/spec/spec';
 
 @Component({
   selector: 'spec-tokens',

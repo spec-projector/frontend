@@ -1,15 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from '@junte/ui';
+import { PopoverInstance, UI } from '@junte/ui';
 import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Entity } from 'src/model/spec/orm/entity';
-import { Package } from 'src/model/spec/orm/package';
+import { Entity } from 'src/models/spec/orm/entity';
+import { Package } from 'src/models/spec/orm/package';
 import { isUndefined } from 'util';
 import * as uuid from 'uuid/v1';
+import { Enum } from '../../../../models/spec/orm/enum';
 
 @Component({
   selector: 'spec-package',
@@ -24,18 +25,19 @@ export class PackageComponent {
   private _package: Package;
 
   mode = EditMode.view;
+  instance: { popover: PopoverInstance } = {popover: null};
 
-  title = new FormControl();
-  name = new FormControl();
-  autoName = new FormControl();
-
-  form = this.formBuilder.group({
-    title: this.title,
-    name: this.name,
-    autoName: this.autoName
+  titleControl = this.fb.control(null);
+  nameControl = this.fb.control(null);
+  autoNameControl = this.fb.control(false);
+  form = this.fb.group({
+    title: this.titleControl,
+    name: this.nameControl,
+    autoName: this.autoNameControl
   });
 
-  @Input() set package(pack: Package) {
+  @Input()
+  set package(pack: Package) {
     this._package = pack;
     this.updateForm();
 
@@ -47,13 +49,13 @@ export class PackageComponent {
   }
 
   constructor(public manager: SpecManager,
-              private formBuilder: FormBuilder,
+              private fb: FormBuilder,
               public route: ActivatedRoute,
               public router: Router) {
-    this.autoName.valueChanges.subscribe(() =>
-      this.autoName.value ? this.name.disable() : this.name.enable());
+    this.autoNameControl.valueChanges.subscribe(() =>
+      this.autoNameControl.value ? this.nameControl.disable() : this.nameControl.enable());
 
-    merge(this.title.valueChanges, this.autoName.valueChanges)
+    merge(this.titleControl.valueChanges, this.autoNameControl.valueChanges)
       .subscribe(() => this.updateName());
 
     this.form.valueChanges
@@ -71,14 +73,16 @@ export class PackageComponent {
   }
 
   private updateName() {
-    if (this.autoName.value) {
-      let name = this.title.value.toLowerCase();
+    if (this.autoNameControl.value) {
+      let name = this.titleControl.value.toLowerCase();
       name = name.replace(/\s+/g, '_');
-      this.name.patchValue(name);
+      this.nameControl.patchValue(name);
     }
   }
 
   addEntity() {
+    this.instance.popover?.hide();
+
     const entity = new Entity({
       id: uuid(),
       name: 'entity',
@@ -90,10 +94,31 @@ export class PackageComponent {
     this.manager.put(this.package);
   }
 
+  addEnum() {
+    this.instance.popover?.hide();
+
+    const e = new Enum({
+      id: uuid(),
+      name: 'enum',
+      title: 'Enum'
+    });
+    this.package.enums.push(e);
+
+    this.manager.put(e);
+    this.manager.put(this.package);
+  }
+
   deleteEntity(index: number) {
     const entity = this.package.entities[index];
     this.package.entities.splice(index, 1);
     this.manager.remove(entity);
+    this.manager.put(this.package);
+  }
+
+  deleteEnum(index: number) {
+    const _enum = this.package.enums[index];
+    this.package.enums.splice(index, 1);
+    this.manager.remove(_enum);
     this.manager.put(this.package);
   }
 

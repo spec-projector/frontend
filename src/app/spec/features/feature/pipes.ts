@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Resource } from '../../../../model/spec/planning/feature';
-import { Issue } from '../../../../model/spec/planning/issue';
+import { Resource } from '../../../../models/spec/planning/feature';
+import { Issue } from '../../../../models/spec/planning/issue';
 
 @Pipe({name: 'estimatedTime', pure: false})
 export class EstimatedTimePipe implements PipeTransform {

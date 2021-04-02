@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Spec } from '../../../../../model/spec/spec';
+import { Spec } from '../../../../../models/spec/spec';
 
 @Pipe({name: 'graphqlPlayground'})
 export class GraphqlPlaygroundPipe implements PipeTransform {

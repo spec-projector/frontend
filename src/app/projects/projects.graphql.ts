@@ -25,13 +25,6 @@ export class AllProjectsGQL extends Query<{ projects }> {
         githubIntegration {
           token
         }
-        owner {
-          id
-          lastLogin
-          login
-          name
-          email
-        }
       }
     }
   }

@@ -5,8 +5,8 @@ import { PopoverInstance, UI } from '@junte/ui';
 import { filter, tap } from 'rxjs/operators';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Epic } from 'src/model/spec/planning/epic';
-import { Feature } from '../../../../model/spec/planning/feature';
+import { Epic } from 'src/models/spec/planning/epic';
+import { Feature } from '../../../../models/spec/planning/feature';
 
 @Component({
   selector: 'spec-epic',

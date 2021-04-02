@@ -4,13 +4,13 @@ import { Field, Model } from 'serialize-ts';
 export class UserRegister {
 
   @Field()
-  name: string;
+  firstName: string;
+
+  @Field()
+  lastName: string;
 
   @Field()
   email: string;
-
-  @Field()
-  login: string;
 
   @Field()
   password: string;

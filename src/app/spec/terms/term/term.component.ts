@@ -3,9 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Term } from 'src/model/spec/planning/term';
-import { Token } from 'src/model/spec/planning/token';
-import { Spec } from 'src/model/spec/spec';
+import { Term } from 'src/models/spec/planning/term';
+import { Token } from 'src/models/spec/planning/token';
+import { Spec } from 'src/models/spec/spec';
 
 class TermMode {
     name: EditMode;

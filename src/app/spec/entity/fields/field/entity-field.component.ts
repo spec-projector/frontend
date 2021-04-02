@@ -3,10 +3,11 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { PopoverInstance, UI } from '@junte/ui';
-import { Entity } from 'src/model/spec/orm/entity';
-import { EntityField, FieldType } from 'src/model/spec/orm/entity-field';
+import { Entity } from 'src/models/spec/orm/entity';
+import { EntityField, FieldType } from 'src/models/spec/orm/entity-field';
 import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
+import { Enum } from '../../../../../models/spec/orm/enum';
 
 @Component({
   selector: 'spec-entity-field',
@@ -15,34 +16,31 @@ import { filter, tap } from 'rxjs/operators';
 })
 export class EntityFieldComponent {
 
-  private _field: EntityField;
-
   ui = UI;
   fieldType = FieldType;
   editMode = EditMode;
 
-  title = new FormControl();
-  name = new FormControl();
-  autoName = new FormControl();
-  typeControl = new FormControl();
-  requiredControl = new FormControl();
+  private _field: EntityField;
 
-  form = this.formBuilder.group({
-    name: this.name,
-    title: this.title,
-    autoName: this.autoName,
-    type: this.typeControl,
-    required: this.requiredControl,
-    reference: null
+  mode = EditMode.view;
+
+  titleControl = this.fb.control(null);
+  nameControl = this.fb.control(null);
+  autoNameControl = this.fb.control(false);
+  typeControlControl = this.fb.control(null);
+  form = this.fb.group({
+    name: this.nameControl,
+    title: this.titleControl,
+    autoName: this.autoNameControl,
+    type: this.typeControlControl,
+    required: [false],
+    isArray: [false],
+    reference: [null],
+    enum: [null]
   });
 
-  mode: { header: EditMode, required: EditMode, type: EditMode } = {
-    header: EditMode.view,
-    required: EditMode.view,
-    type: EditMode.view
-  };
-
-  @Input() set field(field: EntityField) {
+  @Input()
+  set field(field: EntityField) {
     this._field = field;
     this.form.patchValue({
       name: field.name,
@@ -50,7 +48,9 @@ export class EntityFieldComponent {
       autoName: field.autoName,
       type: field.type,
       required: field.required,
-      reference: field.reference
+      isArray: field.isArray,
+      reference: field.reference,
+      enum: field.enum
     });
   }
 
@@ -58,14 +58,15 @@ export class EntityFieldComponent {
     return this._field;
   }
 
-  @Output() changed = new EventEmitter<EntityField>();
+  @Output()
+  changed = new EventEmitter<EntityField>();
 
   constructor(public manager: SpecManager,
-              private formBuilder: FormBuilder) {
-    this.autoName.valueChanges.subscribe(() =>
-      this.autoName.value ? this.name.disable() : this.name.enable());
+              private fb: FormBuilder) {
+    this.autoNameControl.valueChanges.subscribe(() =>
+      this.autoNameControl.value ? this.nameControl.disable() : this.nameControl.enable());
 
-    merge(this.title.valueChanges, this.autoName.valueChanges)
+    merge(this.titleControl.valueChanges, this.autoNameControl.valueChanges)
       .subscribe(() => this.updateName());
 
     this.form.valueChanges
@@ -78,15 +79,19 @@ export class EntityFieldComponent {
   }
 
   private updateName() {
-    if (this.autoName.value) {
-      let title = this.title.value.toLowerCase();
+    if (this.autoNameControl.value) {
+      let title = this.titleControl.value.toLowerCase();
       title = title.replace(/\s+/g, '_');
-      this.name.patchValue(title);
+      this.nameControl.patchValue(title);
     }
   }
 
   trackEntity(index: number, entity: Entity) {
     return !!entity ? entity.id : null;
+  }
+
+  trackEnum(index: number, _enum: Enum) {
+    return !!_enum ? _enum.id : null;
   }
 
 }

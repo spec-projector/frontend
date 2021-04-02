@@ -14,4 +14,7 @@ export class User {
 @Model()
 export class Me extends User {
 
+  @Field()
+  email: string;
+
 }

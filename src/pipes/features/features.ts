@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Spec } from 'src/model/spec/spec';
+import { Spec } from 'src/models/spec/spec';
 
 @Pipe({name: 'features'})
 export class FeaturesPipe implements PipeTransform {

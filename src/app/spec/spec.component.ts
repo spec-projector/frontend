@@ -6,9 +6,9 @@ import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Spec } from 'src/model/spec/spec';
-import { ValidationError } from 'src/model/validation/error';
-import { Project } from '../../model/projects';
+import { Spec } from 'src/models/spec/spec';
+import { ValidationError } from 'src/models/validation/error';
+import { Project } from '../../models/projects';
 import { EditProjectComponent } from '../projects/edit-project/edit-project.component';
 
 @Component({

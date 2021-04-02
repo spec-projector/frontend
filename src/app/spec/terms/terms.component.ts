@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Term } from 'src/model/spec/planning/term';
-import { TextToken } from 'src/model/spec/planning/token';
-import { Spec } from 'src/model/spec/spec';
+import { Term } from 'src/models/spec/planning/term';
+import { TextToken } from 'src/models/spec/planning/token';
+import { Spec } from 'src/models/spec/spec';
 import * as uuid from 'uuid/v1';
 
 class AlphabeticalTerms {

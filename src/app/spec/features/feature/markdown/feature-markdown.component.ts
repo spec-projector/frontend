@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { ClipboardService } from 'ngx-clipboard';
 import { Language } from 'src/enums/language';
-import { Feature } from 'src/model/spec/planning/feature';
-import { TokenType } from 'src/model/spec/planning/token';
+import { Feature } from 'src/models/spec/planning/feature';
+import { TokenType } from 'src/models/spec/planning/token';
 import { BASE_URI } from '../../../../../consts';
-import { Project } from '../../../../../model/projects';
+import { Project } from '../../../../../models/projects';
 
 @Component({
   selector: 'spec-feature-markdown',

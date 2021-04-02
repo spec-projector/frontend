@@ -1,12 +1,13 @@
 import { state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormComponent, InputComponent, UI } from '@junte/ui';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../consts';
-import { AuthToken } from '../../model/auth-token';
+import { AuthToken } from '../../models/auth-token';
+import { Tariff } from '../../models/tariffs';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { AppConfig } from '../app-config';
@@ -26,7 +27,7 @@ import { RegisterGQL } from './register.graphql';
     ])
   ]
 })
-export class RegisterComponent implements AfterViewInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   distance = Distance;
@@ -36,6 +37,8 @@ export class RegisterComponent implements AfterViewInit {
     registering: false,
     redirecting: false
   };
+
+  tariff: Tariff;
 
   @ViewChild('formRef')
   formRef: FormComponent;
@@ -47,16 +50,21 @@ export class RegisterComponent implements AfterViewInit {
   backdrop: ElementRef<HTMLElement>;
 
   form = this.fb.group({
-    name: [null, [Validators.required]],
+    firstName: [null, [Validators.required]],
+    lastName: [null, [Validators.required]],
     email: [null, [Validators.required, Validators.email]],
-    login: [null, [Validators.required]],
     password: [null, [Validators.required]]
   });
 
   constructor(private registerGQL: RegisterGQL,
               private fb: FormBuilder,
               public config: AppConfig,
+              private route: ActivatedRoute,
               public router: Router) {
+  }
+
+  ngOnInit() {
+    this.route.data.subscribe(({tariff}) => this.tariff = tariff);
   }
 
   ngAfterViewInit() {
@@ -83,7 +91,7 @@ export class RegisterComponent implements AfterViewInit {
 
   private redirect() {
     this.progress.redirecting = true;
-    setTimeout(() => this.router.navigate(['/projects'])
+    setTimeout(() => this.router.navigate(!!this.tariff ? ['/subscription', {tariff: this.tariff.id}] : ['/projects'])
       .then(() => this.progress.redirecting = false), UI_DELAY);
   }
 

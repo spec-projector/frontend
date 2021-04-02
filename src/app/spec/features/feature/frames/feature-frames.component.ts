@@ -6,12 +6,12 @@ import { combineLatest, Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
-import { Frame } from 'src/model/spec/planning/frame';
+import { Frame } from 'src/models/spec/planning/frame';
 import { environment } from '../../../../../environments/environment';
 import { SpecManager } from '../../../../../managers/spec.manager';
-import { UploadFigmaAssetRequest } from '../../../../../model/figma-asset';
-import { Project } from '../../../../../model/projects';
-import { Feature } from '../../../../../model/spec/planning/feature';
+import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
+import { Project } from '../../../../../models/projects';
+import { Feature } from '../../../../../models/spec/planning/feature';
 import { catchGQLErrors } from '../../../../../utils/gql-errors';
 import { UploadFigmaAssetGQL } from './frames.graphql';
 

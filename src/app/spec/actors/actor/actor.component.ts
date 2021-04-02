@@ -7,9 +7,9 @@ import { Subscription } from 'rxjs';
 import { generate as shortid } from 'shortid';
 import { EditMode } from 'src/enums/edit-mode';
 import { SpecManager } from 'src/managers/spec.manager';
-import { Actor } from 'src/model/spec/planning/actor';
-import { Feature } from 'src/model/spec/planning/feature';
-import { TextToken } from 'src/model/spec/planning/token';
+import { Actor } from 'src/models/spec/planning/actor';
+import { Feature } from 'src/models/spec/planning/feature';
+import { TextToken } from 'src/models/spec/planning/token';
 import { Language } from '../../../../enums/language';
 
 @Component({

@@ -5,11 +5,11 @@ import { PopoverInstance, UI } from '@junte/ui';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Epic } from 'src/model/spec/planning/epic';
-import { Spec } from 'src/model/spec/spec';
+import { Epic } from 'src/models/spec/planning/epic';
+import { Spec } from 'src/models/spec/spec';
 import * as uuid from 'uuid/v1';
 import { LocalUI } from '../../../enums/local-ui';
-import { Actor } from '../../../model/spec/planning/actor';
+import { Actor } from '../../../models/spec/planning/actor';
 
 @Component({
   selector: 'spec-epics',

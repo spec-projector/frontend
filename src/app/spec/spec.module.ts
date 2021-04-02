@@ -10,8 +10,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { ActorComponent } from 'src/app/spec/actors/actor/actor.component';
 import { ActorsComponent } from 'src/app/spec/actors/actors.component';
 import { DetailsComponent } from 'src/app/spec/details/details.component';
-import { EntityFieldComponent } from 'src/app/spec/entity/fields/field/entity-field.component';
-import { EntityComponent } from 'src/app/spec/entity/entity.component';
+import { EnumComponent } from 'src/app/spec/enum/enum.component';
 import { EpicComponent } from 'src/app/spec/epics/epic/epic.component';
 import { EpicsComponent } from 'src/app/spec/epics/epics.component';
 import { FeatureEditGraphqlComponent } from 'src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component';
@@ -41,7 +40,7 @@ import { ActorPricePipe } from 'src/pipes/actors/actor-price';
 import { FeaturePricePipe } from 'src/pipes/features/feature-price';
 import { FeatureTermsPipe } from 'src/pipes/features/feature-terms';
 import { FeaturesPipe } from 'src/pipes/features/features';
-import { GroupEntitiesPipe } from 'src/pipes/group-entities';
+import { GroupEntitiesPipe, GroupEnumsPipe } from 'src/pipes/group-entities';
 import { GroupFeaturesByActorPipe, GroupFeaturesByEpicPipe } from 'src/pipes/group-features';
 import { SpecPricePipe } from 'src/pipes/spec/actor-price';
 import { EncodeURIPipe } from 'src/pipes/string/encode-uri';
@@ -53,7 +52,11 @@ import { JoinTokensPipe } from 'src/pipes/tokens/join';
 import { ProjectEditModule } from '../projects/edit-project/edit-projects.module';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { EntityEditComponent } from './entity/edit/entity-edit.component';
+import { EntityComponent } from './entity/entity.component';
 import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
+import { EntityFieldComponent } from './entity/fields/field/entity-field.component';
+import { EnumEditComponent } from './enum/edit/enum-edit.component';
+import { EnumOptionComponent } from './enum/option/enum-option.component';
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
 import { GraphqlPlaygroundPipe } from './features/feature/api/pipes';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
@@ -61,7 +64,7 @@ import { EstimatedTimePipe, SpentTimePipe } from './features/feature/pipes';
 import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
 import { FeaturesComponent } from './features/features.component';
 import { ModelComponent } from './model/model.component';
-import { PackageEditComponent } from './package/edit/package-edit.component';
+import { PackageEditComponent } from './packages/package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
 
@@ -98,6 +101,10 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     EntityFieldsComponent,
     EntityFieldComponent,
 
+    EnumComponent,
+    EnumEditComponent,
+    EnumOptionComponent,
+
     SprintsComponent,
     EpicsComponent,
     EpicComponent,
@@ -125,6 +132,7 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     GroupFeaturesByActorPipe,
     FeatureTermsPipe,
     GroupEntitiesPipe,
+    GroupEnumsPipe,
     FeaturesPipe,
     JoinTokensPipe,
     SameFirstCharPipe,

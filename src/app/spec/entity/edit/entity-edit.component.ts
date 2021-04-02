@@ -4,7 +4,7 @@ import { UI } from '@junte/ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Entity } from '../../../../model/spec/orm/entity';
+import { Entity } from '../../../../models/spec/orm/entity';
 
 @Component({
   selector: 'spec-entity-edit',
@@ -13,13 +13,7 @@ import { Entity } from '../../../../model/spec/orm/entity';
 })
 export class EntityEditComponent implements OnInit {
 
-  ui = UI;
-  localUi = LocalUI;
-  editMode = EditMode;
-
   entity: Entity;
-
-  mode = EditMode.view;
 
   constructor(public manager: SpecManager,
               private route: ActivatedRoute) {

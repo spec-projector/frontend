@@ -4,7 +4,7 @@ import { InputComponent, UI } from '@junte/ui';
 import { delay, finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../../consts';
-import { Project, ProjectUpdate } from '../../../model/projects';
+import { Project, ProjectUpdate } from '../../../models/projects';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
 import { CreateProjectGQL, UpdateProjectGQL } from '../projects.graphql';

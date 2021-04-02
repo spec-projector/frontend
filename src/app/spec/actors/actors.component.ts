@@ -8,8 +8,8 @@ import { generate as shortid } from 'shortid';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Actor } from 'src/model/spec/planning/actor';
-import { Spec } from 'src/model/spec/spec';
+import { Actor } from 'src/models/spec/planning/actor';
+import { Spec } from 'src/models/spec/spec';
 import { LocalUI } from '../../../enums/local-ui';
 
 @Component({

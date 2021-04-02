@@ -1,5 +1,5 @@
 import { persist, persistence } from 'src/decorators/persistence';
-import { TokenSerializer } from 'src/model/spec/serializers/token';
+import { TokenSerializer } from 'src/models/spec/serializers/token';
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { Feature } from './feature';
 import { Issue } from './issue';

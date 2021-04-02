@@ -22,15 +22,15 @@ export class Entity extends Persistence {
 
   package: Package;
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<Entity> = {}) {
     super();
     Object.assign(this, defs);
   }
 
   linking(pack: Package) {
     this.package = pack;
-    for (const entity of this.fields) {
-      entity.linking(this);
+    for (const f of this.fields) {
+      f.linking(this);
     }
   }
 }

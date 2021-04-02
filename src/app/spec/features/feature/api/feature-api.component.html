@@ -1,14 +1,15 @@
+<ng-template #apiTypeTemplate>
+  <jnt-menu [orientation]="ui.orientation.vertical">
+    <jnt-menu-item title="Graph QL"
+                   [icon]="localUi.icons.graphQl"
+                   (click)="addGraphQL()"></jnt-menu-item>
+    <jnt-menu-item title="REST API"
+                   [icon]="localUi.icons.rest"
+                   [disabled]="true"></jnt-menu-item>
+  </jnt-menu>
+</ng-template>
+
 <jnt-stack [align]="ui.align.stretch">
-  <ng-template #apiTypeTemplate>
-    <jnt-menu [orientation]="ui.orientation.vertical">
-      <jnt-menu-item title="Graph QL"
-                     [icon]="localUi.icons.graphQl"
-                     (click)="addGraphQL()"></jnt-menu-item>
-      <jnt-menu-item title="REST API"
-                     [icon]="localUi.icons.rest"
-                     [disabled]="true"></jnt-menu-item>
-    </jnt-menu>
-  </ng-template>
 
   <jnt-stack [align]="ui.align.stretch">
     <jnt-message *ngIf="feature.graphql.length <= 0"

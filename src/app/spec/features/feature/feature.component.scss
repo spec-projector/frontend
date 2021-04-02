@@ -5,12 +5,6 @@
   position: relative;
 }
 
-[data-price] {
-  position: absolute;
-  top: -$jnt-gutter-big;
-  right: 0;
-}
-
 [data-filling] {
   position: absolute;
   z-index: 1;
@@ -19,27 +13,58 @@
   padding: 0;
   margin: 0;
   width: calc(100% - #{$jnt-gutter-normal});
-  bottom: -9px;
+  bottom: -14px;
+
   li {
-    display: block;
-    height: 2px;
-    width: 33%;
-    &[data-story] {
-      background-color: $jnt-primary-color;
+    font-size: 9px;
+
+    &[data-chevron] {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $jnt-muted-color;
+      font-size: 15px;
+
+      div {
+        width: 10px;
+        max-width: 10px;
+        background: $jnt-white-color;
+        line-height: 1;
+        text-align: center;
+      }
     }
-    &[data-frames] {
-      background-color: $jnt-green-dark-color;
-    }
-    &[data-graphql] {
-      background-color: $jnt-red-dark-color;
+
+    &[data-step] {
+      flex: 1;
+      text-align: center;
+
+      span {
+        border: 1px solid $jnt-muted-color;
+        background: $jnt-white-color;
+        border-radius: 5px;
+        padding: 2px 5px;
+      }
+
+      &[data-step=true] {
+        span {
+          border-color: $jnt-green-color;
+        }
+      }
+
+      &[data-step=false] {
+        color: $jnt-muted-color;
+      }
     }
   }
 }
 
 form {
   position: relative;
+
   header {
     margin-bottom: $jnt-gutter-small;
+
     [data-title] {
       display: flex;
       align-items: center;
@@ -56,6 +81,7 @@ form {
       white-space: nowrap;
       width: 100%;
       font-size: 1em;
+
       &:focus {
         color: black;
       }

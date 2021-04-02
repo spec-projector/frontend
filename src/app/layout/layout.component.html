@@ -32,12 +32,24 @@
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
 
-    <ng-template *ngIf="!config.token" #headerContentTemplate let-hide="hide">
+    <ng-template #notLoggedTemplate>
       <jnt-link title="Login"
                 i18n-title="@@label.login"
                 [icon]="ui.icons.login"
                 [outline]="ui.outline.ghost"
                 [source]="['/login']"></jnt-link>
+    </ng-template>
+
+    <ng-template #headerContentTemplate
+                 let-hide="hide">
+      <ng-container *ngIf="!!config.token;else notLoggedTemplate">
+        <jnt-link title="Subscription"
+                  i18n-title="@@label.subscription"
+                  [icon]="ui.icons.link"
+                  [outline]="ui.outline.ghost"
+                  [source]="['/subscription']"></jnt-link>
+      </ng-container>
+
     </ng-template>
 
     <ng-template #headerUserbarTemplate *ngIf="!!config.token">
@@ -51,7 +63,7 @@
             <jnt-select-lang></jnt-select-lang>
             <jnt-menu [orientation]="ui.orientation.vertical">
               <jnt-menu-item title="Logout"
-                             i18n-title="@@label.logout"
+                             i18n-title="@@action.logout"
                              [icon]="ui.icons.logout"
                              (click)="logout()"></jnt-menu-item>
             </jnt-menu>

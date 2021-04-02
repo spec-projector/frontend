@@ -8,7 +8,7 @@ import { SpecComponent } from 'src/app/spec/spec.component';
 import {
   ActorFeatureResolver,
   ActorResolver,
-  EntityResolver,
+  EntityResolver, EnumResolver,
   FeatureGraphqlResolver,
   PackageResolver,
   ProjectResolver,
@@ -19,9 +19,11 @@ import { SprintsComponent } from 'src/app/spec/sprints/sprints.component';
 import { SprintResolver } from 'src/app/spec/sprints/sprints.resolver';
 import { TermsComponent } from 'src/app/spec/terms/terms.component';
 import { ValidateComponent } from 'src/app/spec/validate/validate.component';
+import { Enum } from '../../models/spec/orm/enum';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { EntityEditComponent } from './entity/edit/entity-edit.component';
 import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
+import { EnumEditComponent } from './enum/edit/enum-edit.component';
 import { FeatureEditGraphqlComponent } from './features/feature/api/edit-graphql/feature-edit-graphql.component';
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
@@ -32,12 +34,12 @@ import { FeatureResourcesComponent } from './features/feature/resources/feature-
 import { FeatureStoryComponent } from './features/feature/story/feature-story.component';
 import { FeaturesComponent } from './features/features.component';
 import { ModelComponent } from './model/model.component';
-import { PackageEditComponent } from './package/edit/package-edit.component';
+import { PackageEditComponent } from './packages/package/edit/package-edit.component';
 import { PrintComponent } from './print/print.component';
-import { Package } from '../../model/spec/orm/package';
-import { Project } from '../../model/projects';
-import { Actor } from '../../model/spec/planning/actor';
-import { Entity } from '../../model/spec/orm/entity';
+import { Package } from '../../models/spec/orm/package';
+import { Project } from '../../models/projects';
+import { Actor } from '../../models/spec/planning/actor';
+import { Entity } from '../../models/spec/orm/entity';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
 
 export function getProject({project}: { project: Project }) {
@@ -54,6 +56,10 @@ export function getPackage({pack}: { pack: Package }) {
 
 export function getEntity({entity}: { entity: Entity }) {
   return entity.title;
+}
+
+export function getEnum({enum: _enum}: { enum: Enum }) {
+  return _enum.title;
 }
 
 export function getSprint({sprint}) {
@@ -246,6 +252,12 @@ export const routes: Routes = [
                     component: EntityFieldsComponent
                   }
                 ]
+              },
+              {
+                path: 'enums/:enum',
+                component: EnumEditComponent,
+                resolve: {enum: EnumResolver},
+                data: {breadcrumb: {label: getEnum}}
               }
             ]
           }

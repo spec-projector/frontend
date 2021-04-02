@@ -1,13 +1,31 @@
 <ul data-filling>
-  <li data-story *ngIf="feature.story.length"></li>
-  <li data-frames *ngIf="feature.frames.length"></li>
-  <li data-graphql *ngIf="feature.graphql.length"></li>
+  <li [attr.data-step]="feature.story.length > 0">
+    <span>Story</span>
+  </li>
+  <li data-chevron>
+    <div>&rsaquo;</div>
+  </li>
+  <li [attr.data-step]="feature.frames.length > 0">
+    <span>Design</span>
+  </li>
+  <li data-chevron>
+    <div>&rsaquo;</div>
+  </li>
+  <li [attr.data-step]="feature.resources.length > 0">
+    <span>
+      <ng-container *ngIf="(feature | featurePrice | async) as price;else estimatesTemplate">
+              {{price | currency}}
+      </ng-container>
+      <ng-template #estimatesTemplate>Estimates</ng-template>
+    </span>
+  </li>
+  <li data-chevron>
+    <div>&rsaquo;</div>
+  </li>
+  <li [attr.data-step]="feature.graphql.length > 0">
+    <span>API</span>
+  </li>
 </ul>
-
-<jnt-label data-price *ngIf="(feature | featurePrice | async) as price"
-           [color]="ui.color.gray300"
-           [label]="price | currency"
-           [size]="ui.size.small"></jnt-label>
 
 <form [formGroup]="form">
   <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"

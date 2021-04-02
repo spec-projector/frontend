@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Token } from 'src/model/spec/planning/token';
-import { Spec } from 'src/model/spec/spec';
+import { Token } from 'src/models/spec/planning/token';
+import { Spec } from 'src/models/spec/spec';
 
 @Pipe({name: 'termDescription'})
 export class TermDescriptionPipe implements PipeTransform {

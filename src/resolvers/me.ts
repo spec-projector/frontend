@@ -3,18 +3,18 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
-import { Me } from 'src/model/user';
-import { MeGQL } from '../gql/me.graphql';
+import { Me } from 'src/models/user';
+import { MeGQL } from './graphql';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MeUserResolver implements Resolve<Observable<Me>> {
 
-    constructor(private meGQL: MeGQL) {
-    }
+  constructor(private meGQL: MeGQL) {
+  }
 
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<Me> {
-        return this.meGQL.fetch()
-            .pipe(map(({data: {me}}) => deserialize(me, Me)));
-    }
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Observable<Me> {
+    return this.meGQL.fetch()
+      .pipe(map(({data: {me}}) => deserialize(me, Me)));
+  }
 }

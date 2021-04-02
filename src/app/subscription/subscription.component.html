@@ -1,0 +1,21 @@
+<jnt-app-content>
+  <jnt-app-body>
+    <jnt-container>
+      <jnt-app-page-header [icon]="localUi.icons.project"
+                           title="Your subscription"
+                           i18n-title="@@label.subscription"
+                           teaser="to our services"
+                           i18n-teaser="@@message.subscription_teaser">
+      </jnt-app-page-header>
+
+      <ul>
+        <li *ngFor="let t of tariffs">
+          <h2>{{t.title}}</h2>
+          <p>{{t.teaser}}</p>
+          <jnt-button [text]="t.price > 0 ? 'Buy' : 'Select'" (click)="t.price > 0 ? pay(t) : changeTariff(t)"></jnt-button>
+        </li>
+      </ul>
+
+    </jnt-container>
+  </jnt-app-body>
+</jnt-app-content>

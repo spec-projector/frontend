@@ -1,5 +1,5 @@
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
-import { ValidationError } from 'src/model/validation/error';
+import { ValidationError } from 'src/models/validation/error';
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { Spec } from '../spec';
 import { Feature } from './feature';

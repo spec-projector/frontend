@@ -6,7 +6,7 @@ import { delay, finalize } from 'rxjs/operators';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
-import { ResourceType, Spec } from 'src/model/spec/spec';
+import { ResourceType, Spec } from 'src/models/spec/spec';
 import { LocalUI } from '../../../enums/local-ui';
 
 @Component({

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { EditMode } from 'src/enums/edit-mode';
-import { Feature } from 'src/model/spec/planning/feature';
+import { Feature } from 'src/models/spec/planning/feature';
 
 @Component({
   selector: 'spec-feature-edit',

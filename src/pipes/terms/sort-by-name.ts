@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Term } from 'src/model/spec/planning/term';
+import { Term } from 'src/models/spec/planning/term';
 
 @Pipe({name: 'sortByName'})
 export class SortByNamePipe implements PipeTransform {

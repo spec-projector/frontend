@@ -43,13 +43,17 @@
               (submitted)="login()">
       <jnt-stack [align]="ui.align.stretch">
         <jnt-form-item>
-          <jnt-form-control name="login">
-            <jnt-input #loginRef formControlName="login"
-                       placeholder="Username"
-                       i18n-placeholder="@@label.username"
+          <jnt-form-control name="email">
+            <jnt-input #emailRef formControlName="email"
+                       placeholder="Email"
+                       i18n-placeholder="@@label.email"
                        [icon]="ui.icons.user"></jnt-input>
             <jnt-form-message [validator]="ui.validator.required"
                               i18n="@@message.field_required">This field is required
+            </jnt-form-message>
+            <jnt-form-message [validator]="ui.validator.email"
+                              i18n="@@message.enter_valid_email">
+              Enter valid email
             </jnt-form-message>
           </jnt-form-control>
         </jnt-form-item>

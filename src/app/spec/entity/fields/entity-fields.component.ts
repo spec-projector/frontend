@@ -5,8 +5,8 @@ import { UI } from '@junte/ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Entity } from '../../../../model/spec/orm/entity';
-import { EntityField } from '../../../../model/spec/orm/entity-field';
+import { Entity } from '../../../../models/spec/orm/entity';
+import { EntityField } from '../../../../models/spec/orm/entity-field';
 
 @Component({
   selector: 'spec-entity-edit',

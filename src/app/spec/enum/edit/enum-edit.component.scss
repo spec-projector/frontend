@@ -1,0 +1,29 @@
+@import "~@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: block;
+}
+
+[data-option] {
+  flex: 1;
+}
+
+.cdk-drag {
+  &-preview {
+    box-sizing: border-box;
+    box-shadow: $jnt-shadow-normal;
+  }
+
+  &-dragging .cdk-drag {
+    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  &-animating {
+    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  &-placeholder {
+    opacity: 0.5;
+    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+  }
+}

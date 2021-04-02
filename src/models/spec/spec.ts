@@ -1,6 +1,6 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { StoryEntry } from 'src/model/spec/planning/feature';
-import { ValidationError } from 'src/model/validation/error';
+import { StoryEntry } from 'src/models/spec/planning/feature';
+import { ValidationError } from 'src/models/validation/error';
 import { Package } from './orm/package';
 import { Actor } from './planning/actor';
 import { Epic } from './planning/epic';

@@ -1,7 +1,7 @@
-import { Actor } from 'src/model/spec/planning/actor';
-import { Epic } from 'src/model/spec/planning/epic';
-import { Feature } from 'src/model/spec/planning/feature';
-import { Sprint } from 'src/model/spec/planning/sprint';
+import { Actor } from 'src/models/spec/planning/actor';
+import { Epic } from 'src/models/spec/planning/epic';
+import { Feature } from 'src/models/spec/planning/feature';
+import { Sprint } from 'src/models/spec/planning/sprint';
 
 export enum ErrorType {
     termMissed

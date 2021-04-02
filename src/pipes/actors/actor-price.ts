@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Actor } from 'src/model/spec/planning/actor';
+import { Actor } from 'src/models/spec/planning/actor';
 
 @Pipe({name: 'actorPrice'})
 export class ActorPricePipe implements PipeTransform {

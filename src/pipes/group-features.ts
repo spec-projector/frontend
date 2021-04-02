@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Actor } from 'src/model/spec/planning/actor';
-import { Epic } from 'src/model/spec/planning/epic';
-import { Feature } from 'src/model/spec/planning/feature';
+import { Actor } from 'src/models/spec/planning/actor';
+import { Epic } from 'src/models/spec/planning/epic';
+import { Feature } from 'src/models/spec/planning/feature';
 
 export class EpicGroup {
     constructor(public epic: Epic,

@@ -5,8 +5,8 @@ import { NGXLogger } from 'ngx-logger';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
-import { Feature, StoryEntry, StoryEntryType } from 'src/model/spec/planning/feature';
-import { AccentToken, TextToken } from 'src/model/spec/planning/token';
+import { Feature, StoryEntry, StoryEntryType } from 'src/models/spec/planning/feature';
+import { AccentToken, TextToken } from 'src/models/spec/planning/token';
 import { StoryEntryComponent } from './entry/story-entry.component';
 
 @Component({

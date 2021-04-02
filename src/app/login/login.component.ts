@@ -9,7 +9,7 @@ import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { AppConfig } from 'src/app/app-config';
 import { LoginGQL, SocialLoginCompleteGQL, SocialLoginGQL } from 'src/app/login/login.graphql';
-import { AuthToken } from 'src/model/auth-token';
+import { AuthToken } from 'src/models/auth-token';
 import { SocialLoginSystem } from '../../enums/signin';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
@@ -37,15 +37,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   errors: BackendError[] = [];
 
   form = this.builder.group({
-    login: [null, [Validators.required]],
+    email: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required]]
   });
 
   @ViewChild(FormComponent)
   formComponent: FormComponent;
 
-  @ViewChild('loginRef')
-  loginRef: InputComponent;
+  @ViewChild('emailRef')
+  emailRef: InputComponent;
 
   @ViewChild('content', {read: ElementRef})
   backdrop: ElementRef<HTMLElement>;
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => this.loginRef.focus(), 100);
+    setTimeout(() => this.emailRef.focus(), 100);
   }
 
   private completeSocialLogin() {

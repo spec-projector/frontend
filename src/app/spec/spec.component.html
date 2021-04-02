@@ -1,11 +1,11 @@
 <jnt-app-aside #aside>
 
   <ng-template #asideContentTemplate let-collapsed="collapsed">
-    <!--<form *ngIf="!collapsed" [formGroup]="form">
+    <form *ngIf="!collapsed" [formGroup]="form">
       <jnt-switch formControlName="mode"
                   [tags]="{on: 'Edit', off: 'View'}">
       </jnt-switch>
-    </form>-->
+    </form>
     <jnt-stack data-edit [orientation]="ui.orientation.horizontal"
                [justify]="ui.justify.center">
       <jnt-button [scheme]="ui.scheme.secondary"

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Feature } from 'src/model/spec/planning/feature';
+import { Feature } from 'src/models/spec/planning/feature';
 
 @Pipe({name: 'featurePrice', pure: false})
 export class FeaturePricePipe implements PipeTransform {

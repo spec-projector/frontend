@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize } from 'rxjs/operators';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
-import { Spec } from 'src/model/spec/spec';
+import { Spec } from 'src/models/spec/spec';
 import { AppConfig } from '../app/app-config';
 import { SCHEME_VERSION } from '../consts';
 import { environment } from '../environments/environment';

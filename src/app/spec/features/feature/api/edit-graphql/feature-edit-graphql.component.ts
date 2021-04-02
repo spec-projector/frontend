@@ -3,8 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
-import { Feature } from 'src/model/spec/planning/feature';
-import { Graphql } from 'src/model/spec/planning/graphql';
+import { Feature } from 'src/models/spec/planning/feature';
+import { Graphql } from 'src/models/spec/planning/graphql';
 import { SpecManager } from '../../../../../../managers/spec.manager';
 import { generate as shortid } from 'shortid';
 

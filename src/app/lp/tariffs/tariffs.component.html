@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let t of tariffs">
+    <h2>{{t.title}}</h2>
+    <p>{{t.teaser}}</p>
+    <jnt-button [text]="t.price > 0 ? 'Buy' : 'Try'"
+                (click)="buy(t)"></jnt-button>
+  </li>
+</ul>

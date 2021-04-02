@@ -1,6 +1,6 @@
-import { Spec } from 'src/model/spec/spec';
+import { Spec } from 'src/models/spec/spec';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { TokenSerializer } from 'src/model/spec/serializers/token';
+import { TokenSerializer } from 'src/models/spec/serializers/token';
 import { ArraySerializer } from 'serialize-ts';
 import { Token } from './token';
 

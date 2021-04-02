@@ -2,8 +2,8 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { Language } from 'src/enums/language';
-import { Spec } from 'src/model/spec/spec';
-import { ValidationError } from 'src/model/validation/error';
+import { Spec } from 'src/models/spec/spec';
+import { ValidationError } from 'src/models/validation/error';
 
 @Component({
     selector: 'spec-validate',

@@ -1,0 +1,39 @@
+<jnt-app-page-header [icon]="localUi.icons.model"
+                     [title]="enum.title"
+                     teaser="options list"
+                     i18n-teaser="@@message.enums_options_teaser">
+  <ng-template #headerActionsTemplate>
+    <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                [icon]="ui.icons.add"
+                [shape]="ui.shape.circle"
+                (click)="addOption()"></jnt-button>
+  </ng-template>
+</jnt-app-page-header>
+
+<jnt-stack cdkDropList
+           [align]="ui.align.stretch"
+           [gutter]="ui.gutter.small"
+           (cdkDropListDropped)="moveOption($event)"
+           [cdkDropListData]="enum.options">
+  <jnt-card cdkDrag *ngFor="let option of enum.options; let i = index; trackBy: trackOption">
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <jnt-button cdkDragHandle
+                  *ngIf="manager.mode == editMode.edit"
+                  [icon]="ui.icons.expand"
+                  [size]="ui.size.tiny"
+                  [scheme]="ui.scheme.secondary"
+                  [shape]="ui.shape.circle">
+      </jnt-button>
+      <spec-enum-option data-option [option]="option"
+                         (changed)="manager.put(enum)">
+      </spec-enum-option>
+      <jnt-button *ngIf="manager.mode == editMode.edit"
+                  [icon]="ui.icons.delete"
+                  [size]="ui.size.tiny"
+                  [scheme]="ui.scheme.secondary"
+                  [shape]="ui.shape.circle"
+                  (click)="deleteOption(i)">
+      </jnt-button>
+    </jnt-stack>
+  </jnt-card>
+</jnt-stack>

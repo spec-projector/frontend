@@ -8,8 +8,8 @@ import { debounceTime } from 'rxjs/operators';
 import { Language } from 'src/enums/language';
 import { environment } from '../../../../../environments/environment';
 import { SpecManager } from '../../../../../managers/spec.manager';
-import { Feature, Resource } from '../../../../../model/spec/planning/feature';
-import { ResourceType } from '../../../../../model/spec/spec';
+import { Feature, Resource } from '../../../../../models/spec/planning/feature';
+import { ResourceType } from '../../../../../models/spec/spec';
 
 @Component({
   selector: 'spec-feature-resources',

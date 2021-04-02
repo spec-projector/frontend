@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AccentToken, TermToken, TextToken, Token, TokenType, UrlToken } from 'src/model/spec/planning/token';
+import { AccentToken, TermToken, TextToken, Token, TokenType, UrlToken } from 'src/models/spec/planning/token';
 
 @Pipe({name: 'joinTokens'})
 export class JoinTokensPipe implements PipeTransform {

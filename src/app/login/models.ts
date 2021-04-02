@@ -5,7 +5,7 @@ import { SocialLoginSystem } from '../../enums/signin';
 export class UserCredentials {
 
   @Field()
-  login: string;
+  email: string;
 
   @Field()
   password: string;

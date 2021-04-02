@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AuthToken } from 'src/model/auth-token';
+import { AuthToken } from 'src/models/auth-token';
 import { LOCAL_MODE } from '../consts';
 
 const AUTH_TOKEN_KEY = 'auth_token';

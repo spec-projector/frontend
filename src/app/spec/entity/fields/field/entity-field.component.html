@@ -1,11 +1,11 @@
 <jnt-row [formGroup]="form">
-  <jnt-col [span]="4" (mouseenter)="manager.mode == editMode.edit ? mode.header = editMode.edit : null"
-           (mouseleave)="mode.header = editMode.view">
+  <jnt-col [span]="4" (mouseenter)="manager.mode == editMode.edit ? mode = editMode.edit : null"
+           (mouseleave)="mode = editMode.view">
     <header>
-      <ng-container *ngIf="mode.header == editMode.edit;else viewHeaderTemplate">
+      <ng-container *ngIf="mode == editMode.edit;else viewHeaderTemplate">
         <input title formControlName="title">
         <div naming>
-          <label [attr.checked]="autoName.value">
+          <label [attr.checked]="autoNameControl.value">
             <input type="checkbox" formControlName="autoName">
           </label>
           <input name formControlName="name">
@@ -14,33 +14,27 @@
       <ng-template #viewHeaderTemplate>
         <h1 title>{{field.title}}</h1>
         <div naming>
-          <label [attr.checked]="autoName.value"> </label>
+          <label [attr.checked]="autoNameControl.value"> </label>
           <h2 name>{{field.name}}</h2>
         </div>
       </ng-template>
     </header>
   </jnt-col>
-  <jnt-col [span]="2" (mouseenter)="manager.mode == editMode.edit ? mode.required = editMode.edit : null">
-    <ng-container *ngIf="mode.required === editMode.edit;else viewRequiredTemplate">
+  <jnt-col [span]="2">
+    <ng-container *ngIf="manager.mode == editMode.edit;else viewRequiredTemplate">
       <jnt-checkbox formControlName="required"
                     label="required"
                     label-i18n="@@label.required"></jnt-checkbox>
     </ng-container>
     <ng-template #viewRequiredTemplate>
-      <ng-template #notRequiredTemplate>
-        <jnt-label *ngIf="manager.mode == editMode.edit"
-                   [size]="ui.size.small"
-                   [color]="ui.color.paleNavy"
-                   label="not required"></jnt-label>
-      </ng-template>
-      <jnt-label *ngIf="field.required;else notRequiredTemplate"
+      <jnt-label *ngIf="field.required"
                  [size]="ui.size.small"
                  [color]="ui.color.redDark"
                  label="required"></jnt-label>
     </ng-template>
   </jnt-col>
-  <jnt-col [span]="4" (mouseenter)="manager.mode == editMode.edit ? mode.type = editMode.edit : null">
-    <jnt-stack *ngIf="mode.type === editMode.edit;else viewTypeTemplate">
+  <jnt-col [span]="4">
+    <jnt-stack *ngIf="manager.mode === editMode.edit;else viewTypeTemplate">
       <jnt-select formControlName="type"
                   [size]="ui.size.small">
         <jnt-select-option label="boolean"
@@ -53,47 +47,84 @@
                            [key]="fieldType.date"></jnt-select-option>
         <jnt-select-option label="reference"
                            [key]="fieldType.reference"></jnt-select-option>
+        <jnt-select-option label="enum"
+                           [key]="fieldType.enum"></jnt-select-option>
         <jnt-select-option label="array"
                            [key]="fieldType.array"></jnt-select-option>
       </jnt-select>
-      <ng-template #entityOptionTemplate let-entity="value">
-        <jnt-stack [orientation]="ui.orientation.horizontal"
-                   [align]="ui.align.center"
-                   [gutter]="ui.gutter.small">
-          <ng-container *ngIf="entity.package != field.entity.package">
-            <span>{{entity.package.title}}</span>
-            <jnt-icon [icon]="ui.icons.chevronRight"
-                      [size]="ui.size.tiny"></jnt-icon>
-          </ng-container>
-          <span>{{entity.title}}</span>
-        </jnt-stack>
-      </ng-template>
-      <jnt-select formControlName="reference"
-                  *ngIf="typeControl.value == fieldType.reference || typeControl.value == fieldType.array"
-                  placeholder="Select entity"
-                  [optionTemplate]="entityOptionTemplate"
-                  [size]="ui.size.small">
-        <jnt-select-option
-          *ngFor="let entity of (field.entity.package.spec.packages | groupEntities);trackBy: trackEntity"
-          [value]="entity"
-          [key]="entity.id">
-        </jnt-select-option>
-      </jnt-select>
+      <ng-container [ngSwitch]="field.type">
+        <ng-template #entityOptionTemplate let-entity="value">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center"
+                     [gutter]="ui.gutter.small">
+            <ng-container *ngIf="entity.package != field.entity.package">
+              <span>{{entity.package.title}}</span>
+              <jnt-icon [icon]="ui.icons.chevronRight"
+                        [size]="ui.size.tiny"></jnt-icon>
+            </ng-container>
+            <span>{{entity.title}}</span>
+          </jnt-stack>
+        </ng-template>
+        <jnt-select *ngSwitchCase="fieldType.reference"
+                    formControlName="reference"
+                    placeholder="Select entity"
+                    [optionTemplate]="entityOptionTemplate"
+                    [size]="ui.size.small">
+          <jnt-select-option
+            *ngFor="let entity of (field.entity.package.spec.packages | groupEntities);trackBy: trackEntity"
+            [value]="entity"
+            [key]="entity.id">
+          </jnt-select-option>
+        </jnt-select>
+
+        <ng-template #enumOptionTemplate let-enum="value">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center"
+                     [gutter]="ui.gutter.small">
+            <ng-container *ngIf="enum.package != field.entity.package">
+              <span>{{enum.package.title}}</span>
+              <jnt-icon [icon]="ui.icons.chevronRight"
+                        [size]="ui.size.tiny"></jnt-icon>
+            </ng-container>
+            <span>{{enum.title}}</span>
+          </jnt-stack>
+        </ng-template>
+
+        <jnt-select *ngSwitchCase="fieldType.enum"
+                    formControlName="enum"
+                    placeholder="Select enum"
+                    [optionTemplate]="enumOptionTemplate"
+                    [size]="ui.size.small">
+          <jnt-select-option
+            *ngFor="let enum of (field.entity.package.spec.packages | groupEnums);trackBy: trackEnum"
+            [value]="enum"
+            [key]="enum.id">
+          </jnt-select-option>
+        </jnt-select>
+      </ng-container>
+      <jnt-checkbox formControlName="isArray"
+                    label="array"
+                    label-i18n="@@label.array"></jnt-checkbox>
     </jnt-stack>
 
     <ng-template #viewTypeTemplate>
-      <ng-container [ngSwitch]="field.type">
-        <ng-container *ngSwitchCase="fieldType.reference">
-          <jnt-link [title]="field.links.reference?.title"></jnt-link>
+      <ng-template #singleTemplate>
+        <ng-container [ngSwitch]="field.type">
+          <ng-container *ngSwitchCase="fieldType.reference">
+            <jnt-link [title]="field.links.reference?.title"></jnt-link>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.enum">
+            <jnt-link [title]="field.links.enum?.title"></jnt-link>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <small>{{field.type}}</small>
+          </ng-container>
         </ng-container>
-        <ng-container *ngSwitchCase="fieldType.array">
-          [
-          <jnt-link [title]="field.links.reference?.title"></jnt-link>
-          , ...]
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <small>{{field.type}}</small>
-        </ng-container>
+      </ng-template>
+      <ng-container *ngIf="field.isArray;else singleTemplate">
+        [
+        <ng-container *ngTemplateOutlet="singleTemplate"></ng-container>
+        , ...]
       </ng-container>
     </ng-template>
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormComponent, InputComponent, UI } from '@junte/ui';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
-import { AuthToken } from '../../../model/auth-token';
+import { AuthToken } from '../../../models/auth-token';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
 import { AppConfig } from '../../app-config';

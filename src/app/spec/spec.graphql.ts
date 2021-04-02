@@ -26,7 +26,8 @@ query Project($id: ID!) {
     }
     owner {
       id
-      name
+      firstName
+      lastName
     }
   }
 }`;

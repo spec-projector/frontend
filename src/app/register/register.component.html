@@ -34,6 +34,9 @@
           <img src="../../assets/images/logo.svg" height="50">
         </a>
         <h1 i18n="@@label.register">Make an account</h1>
+        <ng-container *ngIf="!!tariff">
+          <h2>{{tariff.title}}</h2>
+        </ng-container>
       </jnt-stack>
     </ng-template>
 
@@ -43,10 +46,21 @@
               (submitted)="register()">
       <jnt-stack [align]="ui.align.stretch">
         <jnt-form-item>
-          <jnt-form-control name="name">
-            <jnt-input #nameRef formControlName="name"
-                       placeholder="Name"
-                       i18n-placeholder="@@label.name"></jnt-input>
+          <jnt-form-control name="firstName">
+            <jnt-input #nameRef formControlName="firstName"
+                       placeholder="First name"
+                       i18n-placeholder="@@label.first_name"></jnt-input>
+            <jnt-form-message [validator]="ui.validator.required"
+                              i18n="@@message.field_required">This field is required
+            </jnt-form-message>
+          </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+          <jnt-form-control name="lastName">
+            <jnt-input formControlName="lastName"
+                       placeholder="Last name"
+                       i18n-placeholder="@@label.last_name"></jnt-input>
             <jnt-form-message [validator]="ui.validator.required"
                               i18n="@@message.field_required">This field is required
             </jnt-form-message>
@@ -62,20 +76,9 @@
             <jnt-form-message [validator]="ui.validator.required"
                               i18n="@@message.field_required">This field is required
             </jnt-form-message>
-            <jnt-form-message [validator]="ui.validator.email">
+            <jnt-form-message [validator]="ui.validator.email"
+                              i18n="@@message.enter_valid_email">
               Enter valid email
-            </jnt-form-message>
-          </jnt-form-control>
-        </jnt-form-item>
-
-        <jnt-form-item>
-          <jnt-form-control name="login">
-            <jnt-input formControlName="login"
-                       placeholder="Username"
-                       i18n-placeholder="@@label.username"
-                       [icon]="ui.icons.user"></jnt-input>
-            <jnt-form-message [validator]="ui.validator.required"
-                              i18n="@@message.field_required">This field is required
             </jnt-form-message>
           </jnt-form-control>
         </jnt-form-item>

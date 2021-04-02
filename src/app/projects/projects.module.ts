@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-    AppLayoutModule,
-    ArrayPipesModule,
-    ButtonModule,
-    CardModule, EmptyModule,
-    GridModule,
-    LinkModule,
-    MenuModule,
-    SkeletonModule,
-    StackModule
+  AppLayoutModule,
+  ArrayPipesModule,
+  ButtonModule,
+  CardModule,
+  EmptyModule,
+  GridModule,
+  LinkModule,
+  MenuModule,
+  SkeletonModule,
+  StackModule
 } from '@junte/ui';
-import { ProjectsRoutingModule } from 'src/app/projects/projects-routing.module';
 import { ProjectEditModule } from './edit-project/edit-projects.module';
+import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
 
 @NgModule({
@@ -39,4 +40,5 @@ import { ProjectsComponent } from './projects.component';
     ]
 })
 export class ProjectsModule {
+
 }

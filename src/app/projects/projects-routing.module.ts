@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectsComponent } from 'src/app/projects/projects.component';
 import { LoggedGuard } from '../../guards/aurhorisation';
+import { ProjectsComponent } from './projects.component';
 
 export const PROJECTS_BREADCRUMB = $localize`:@@label.projects:Projects`;
 

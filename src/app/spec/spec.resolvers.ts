@@ -5,13 +5,14 @@ import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { ProjectGQL } from 'src/app/spec/spec.graphql';
 import { SpecManager } from 'src/managers/spec.manager';
-import { Project } from 'src/model/projects';
-import { Spec } from 'src/model/spec/spec';
-import { Entity } from '../../model/spec/orm/entity';
-import { Package } from '../../model/spec/orm/package';
-import { Actor } from '../../model/spec/planning/actor';
-import { Feature } from '../../model/spec/planning/feature';
-import { Graphql } from '../../model/spec/planning/graphql';
+import { Project } from 'src/models/projects';
+import { Spec } from 'src/models/spec/spec';
+import { Entity } from '../../models/spec/orm/entity';
+import { Enum } from '../../models/spec/orm/enum';
+import { Package } from '../../models/spec/orm/package';
+import { Actor } from '../../models/spec/planning/actor';
+import { Feature } from '../../models/spec/planning/feature';
+import { Graphql } from '../../models/spec/planning/graphql';
 import { SchemeInvalidError } from '../../types/errors';
 
 @Injectable({providedIn: 'root'})
@@ -119,5 +120,17 @@ export class EntityResolver implements Resolve<Entity> {
     const {entity} = route.params as { entity: string };
 
     return pack.entities.find(e => e.id === entity);
+  }
+}
+
+@Injectable({providedIn: 'root'})
+export class EnumResolver implements Resolve<Enum> {
+
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Enum {
+    const {pack} = route.parent.data as { pack: Package };
+    const {enum: _enum} = route.params as { enum: string };
+
+    return pack.enums.find(e => e.id === _enum);
   }
 }

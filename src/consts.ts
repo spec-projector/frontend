@@ -10,6 +10,11 @@ import { detectLanguage } from 'src/utils/lang';
 import { Language } from './enums/language';
 
 export const BASE_URI = 'https://www.specprojector.com';
+export const CLOUD_PAYMENT_KEY = 'pk_7cebed1a56517f44b949ad8651ce2';
+export const CLOUD_PAYMENT_SKIN = 'modern';
+export const PAYMENT_CURRENCY = 'USD';
+export const CLOUD_PAYMENT_RECURRENT_INTERVAL = 'Month';
+export const CLOUD_PAYMENT_RECURRENT_PERIOD = 1;
 export const UI_DELAY = 250;
 
 enum CurrencyCode {

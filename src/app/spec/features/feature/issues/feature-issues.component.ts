@@ -6,13 +6,13 @@ import { combineLatest, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
-import { Issue } from 'src/model/spec/planning/issue';
+import { Issue } from 'src/models/spec/planning/issue';
 import { SpecManager } from '../../../../../managers/spec.manager';
-import { IssueState } from '../../../../../enums/issue';
-import { UploadFigmaAssetRequest } from '../../../../../model/figma-asset';
-import { IssueDataRequest } from '../../../../../model/issue-data';
-import { Project } from '../../../../../model/projects';
-import { Feature } from '../../../../../model/spec/planning/feature';
+import { IssueState, IssueSystem } from '../../../../../enums/issue';
+import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
+import { IssueDataRequest } from '../../../../../models/issue-data';
+import { Project } from '../../../../../models/projects';
+import { Feature } from '../../../../../models/spec/planning/feature';
 import { IssueGQL } from './issues.graphql';
 
 @Component({
@@ -71,7 +71,7 @@ export class FeatureIssuesComponent implements OnInit {
           const request = new IssueDataRequest({
             project: this.project.id,
             url: issue.url,
-            system: issue.system
+            system: issue.system || IssueSystem.gitlab
           });
           this.issueGQL.fetch({input: serialize(request)})
             .pipe(map(({data: {issue: i}}) => deserialize(i, Issue)))

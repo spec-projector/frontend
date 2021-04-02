@@ -1,6 +1,6 @@
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
-import { Spec } from 'src/model/spec/spec';
-import { ValidationError } from 'src/model/validation/error';
+import { Spec } from 'src/models/spec/spec';
+import { ValidationError } from 'src/models/validation/error';
 import { Feature } from './feature';
 
 @persistence()

@@ -1,0 +1,23 @@
+<jnt-row [formGroup]="form">
+  <jnt-col [span]="4" (mouseenter)="manager.mode == editMode.edit ? mode = editMode.edit : null"
+           (mouseleave)="mode = editMode.view">
+    <header>
+      <ng-container *ngIf="mode == editMode.edit;else viewHeaderTemplate">
+        <input title formControlName="title">
+        <div naming>
+          <label [attr.checked]="autoNameControl.value">
+            <input type="checkbox" formControlName="autoName">
+          </label>
+          <input name formControlName="name">
+        </div>
+      </ng-container>
+      <ng-template #viewHeaderTemplate>
+        <h1 title>{{option.title}}</h1>
+        <div naming>
+          <label [attr.checked]="autoNameControl.value"></label>
+          <h2 name>{{option.name}}</h2>
+        </div>
+      </ng-template>
+    </header>
+  </jnt-col>
+</jnt-row>

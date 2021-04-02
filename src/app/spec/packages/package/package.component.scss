@@ -74,7 +74,7 @@ header {
   border-radius: 10px;
   z-index: 1;
 
-  [data-entity] {
+  [data-entity], [data-enum] {
     flex: 1;
   }
 }

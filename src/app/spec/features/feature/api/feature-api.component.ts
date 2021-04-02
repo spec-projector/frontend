@@ -5,9 +5,9 @@ import { filter } from 'rxjs/operators';
 import { generate as shortid } from 'shortid';
 import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
-import { Graphql } from 'src/model/spec/planning/graphql';
+import { Graphql } from 'src/models/spec/planning/graphql';
 import { SpecManager } from '../../../../../managers/spec.manager';
-import { Feature } from '../../../../../model/spec/planning/feature';
+import { Feature } from '../../../../../models/spec/planning/feature';
 
 const GRAPHQL_TEXT = `
 query ($id: ID) {

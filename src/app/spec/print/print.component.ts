@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
-import { Spec } from 'src/model/spec/spec';
-import { Actor } from '../../../model/spec/planning/actor';
+import { Spec } from 'src/models/spec/spec';
+import { Actor } from '../../../models/spec/planning/actor';
 
 @Component({
   selector: 'spec-print',

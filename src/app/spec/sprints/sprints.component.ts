@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
-import { Spec } from 'src/model/spec/spec';
+import { Spec } from 'src/models/spec/spec';
 
 @Component({
     selector: 'spec-sprints',

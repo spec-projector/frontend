@@ -1,10 +1,10 @@
 import { ArraySerializer } from 'serialize-ts';
-import { Entity } from 'src/model/spec/orm/entity';
-import { Graphql } from 'src/model/spec/planning/graphql';
-import { Sprint } from 'src/model/spec/planning/sprint';
-import { TokenSerializer } from 'src/model/spec/serializers/token';
-import { Spec } from 'src/model/spec/spec';
-import { TermMissedError } from 'src/model/validation/error';
+import { Entity } from 'src/models/spec/orm/entity';
+import { Graphql } from 'src/models/spec/planning/graphql';
+import { Sprint } from 'src/models/spec/planning/sprint';
+import { TokenSerializer } from 'src/models/spec/serializers/token';
+import { Spec } from 'src/models/spec/spec';
+import { TermMissedError } from 'src/models/validation/error';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Actor } from './actor';
 import { Algorithm } from './algorithm';
