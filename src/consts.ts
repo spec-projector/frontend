@@ -16,6 +16,10 @@ export const PAYMENT_CURRENCY = 'USD';
 export const CLOUD_PAYMENT_RECURRENT_INTERVAL = 'Month';
 export const CLOUD_PAYMENT_RECURRENT_PERIOD = 1;
 export const UI_DELAY = 250;
+export const SCHEME_VERSION = 2;
+export const PLATFORM_DELAY = 100;
+export const DATE_FORMAT = 'yyyy-MM-dd';
+export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 
 enum CurrencyCode {
   usd = 'usd',
@@ -33,11 +37,6 @@ export const BACKEND: {
     firstWeekDay: 1
   }
 };
-
-export const SCHEME_VERSION = 1;
-export const PLATFORM_DELAY = 100;
-export const DATE_FORMAT = 'yyyy-MM-dd';
-export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 
 const CURRENCY_CODE = BACKEND.config.currencyCode;
 export const FIRST_DAY_OF_WEEK: 0 | 1 = BACKEND.config.firstWeekDay;

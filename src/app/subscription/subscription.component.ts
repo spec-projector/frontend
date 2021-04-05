@@ -15,6 +15,7 @@ import { Language } from '../../enums/language';
 import { LocalUI } from '../../enums/local-ui';
 import { PagingTariffs, Tariff, TariffFeatures } from '../../models/tariffs';
 import { TariffsGQL } from './graphql';
+import { generate as shortid } from 'shortid';
 
 declare var cp: {
   CloudPayments
@@ -97,9 +98,11 @@ export class SubscriptionComponent implements OnInit {
         }
     };
 
+    const hash = shortid();
     const data = {
       user: this.me.id,
       tariff: tariff.id,
+      hash,
       cloudPayments: {
         recurrent: {
           interval: CLOUD_PAYMENT_RECURRENT_INTERVAL,
@@ -119,13 +122,11 @@ export class SubscriptionComponent implements OnInit {
         skin: CLOUD_PAYMENT_SKIN,
         data: data
       },
-      () => this.changeTariff(tariff),
-      (reason, options) => {
-      }
+      () => this.changeTariff(tariff, hash)
     );
   }
 
-  changeTariff(tariff: Tariff) {
+  changeTariff(tariff: Tariff, request: string) {
 
   }
 
