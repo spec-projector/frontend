@@ -1,1 +1,7 @@
 @import "~@junte/ui/lib/assets/styles/jnt-variables";
+
+h4 {
+  text-align: center;
+  font-weight: $jnt-font-weight-semi-bold;
+  color: $jnt-primary-text-light-color;
+}

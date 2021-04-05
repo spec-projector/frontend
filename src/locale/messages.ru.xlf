@@ -7,7 +7,7 @@
         <target state="new">Agreement</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">116</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
@@ -15,7 +15,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/agreement/agreement.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.policy" datatype="html">
@@ -23,11 +23,15 @@
         <target state="new">Policy</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">119</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
           <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/site/policy/policy.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.security" datatype="html">
@@ -35,11 +39,15 @@
         <target state="new">Security</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">122</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
           <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/site/security/security.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.contacts" datatype="html">
@@ -47,7 +55,7 @@
         <target state="new">Contacts</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">125</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
@@ -76,23 +84,23 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">96</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -136,11 +144,11 @@
         <target>Пароль</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">89</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/set-password/set-password.component.html</context>
@@ -156,11 +164,11 @@
         <target>Войти</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">111</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -191,6 +199,22 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="label.first_name" datatype="html">
+        <source>First name</source>
+        <target state="new">First name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.last_name" datatype="html">
+        <source>Last name</source>
+        <target state="new">Last name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="label.name" datatype="html">
         <source>Name</source>
         <target state="new">Name</target>
@@ -203,8 +227,12 @@
         <source>Email</source>
         <target state="new">Email</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -216,7 +244,7 @@
         <target state="new">Register</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.registered_already" datatype="html">
@@ -224,7 +252,7 @@
         <target state="new">Have you registered already?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">110</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -240,10 +268,19 @@
         </context-group>
       </trans-unit>
       <trans-unit id="message.enter_valid_email" datatype="html">
-        <source>Enter valid email
-        </source>
+        <source>
+              Enter valid email
+            </source>
         <target state="new">Enter valid email
         </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
           <context context-type="linenumber">27</context>
@@ -319,6 +356,26 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.subscription" datatype="html">
+        <source>Subscription</source>
+        <target state="new">Subscription</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/layout.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/subscription/subscription.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.logout" datatype="html">
+        <source>Logout</source>
+        <target state="new">Logout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/layout.component.html</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.login" datatype="html">
@@ -470,7 +527,19 @@
         <target state="new">Contract</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/spec.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="massage.database_updating_now" datatype="html">
+        <source>
+          Sorry, your project's database is updating now. Please wait a little bit.
+        </source>
+        <target>
+          К сожалению, база данных вашего проекта сейчас обновляется. Пожалуйста, подождите немного.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/scheme/scheme-invalid.component.html</context>
+          <context context-type="linenumber">275</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.print" datatype="html">
@@ -486,7 +555,7 @@
         <target>Главная</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/spec.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
@@ -498,7 +567,7 @@
         <target>Возможности</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/spec.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
@@ -518,7 +587,7 @@
         <target>Эпики</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/spec.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/actors/actors.component.html</context>
@@ -804,7 +873,7 @@
         <target>Модель</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/spec.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/packages/packages.component.html</context>
@@ -832,6 +901,14 @@
         <target state="new">fields list</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/entity/fields/entity-fields.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.enums_options_teaser" datatype="html">
+        <source>options list</source>
+        <target state="new">options list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/enum/edit/enum-edit.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
@@ -881,6 +958,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/sprints/sprint/sprint.component.html</context>
           <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.subscription_teaser" datatype="html">
+        <source>to our services</source>
+        <target state="new">to our services</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/subscription/subscription.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.knowledge" datatype="html">
