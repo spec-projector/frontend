@@ -8,6 +8,6 @@ export function detectLanguage() {
       return Language.ru;
     case '/en/':
     default:
-      return Language.en;
+      return Language.ru;
   }
 }

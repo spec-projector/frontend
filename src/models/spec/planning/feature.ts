@@ -179,4 +179,5 @@ export class Feature extends Persistence {
 
     return terms.concat(nested.filter(x => terms.indexOf(x) === -1));
   }
+
 }

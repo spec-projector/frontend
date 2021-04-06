@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "spec-project": {
+    "sp": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -97,21 +97,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "spec-project:build"
+            "browserTarget": "sp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "spec-project:build:production"
+              "browserTarget": "sp:build:production"
             },
             "ru": {
-              "browserTarget": "spec-projector:build:ru"
+              "browserTarget": "sp:build:ru"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spec-project:build"
+            "browserTarget": "sp:build"
           }
         }
       },
@@ -246,7 +246,7 @@
       }
     }
   },
-  "defaultProject": "spec-project",
+  "defaultProject": "sp",
   "cli": {
     "analytics": false
   }

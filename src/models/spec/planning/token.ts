@@ -46,7 +46,7 @@ export class Token {
   }
 
   toText() {
-    throw 'Must be rewritten';
+    throw new Error('Must be rewritten');
   }
 }
 

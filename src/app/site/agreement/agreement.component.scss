@@ -1,18 +1,18 @@
+@import 'src/variables';
+
 p {
-  margin: 10px 0;
+  margin: $jnt-gutter-normal 0;
 }
-span {
-  font-size: 18px;
-  font-weight: 300;
+
+h1 {
+  font-size: $jnt-font-size-normal;
+  margin: $jnt-gutter-normal 0;
+  font-weight: $jnt-font-weight-bold;
 }
+
 ol {
-  counter-reset: item;
+  > li::marker {
+    font-size: $jnt-font-size-normal;
+    font-weight: $jnt-font-weight-bold;
+  }
 }
-ol li { display: block }
-
-ol li:before {
-  content: counter(item) ". ";
-  counter-increment: item;
-  font-weight: bold;
-}
-

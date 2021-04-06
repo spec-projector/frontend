@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "ru": "ng serve -c ru",
     "build": "npm run iconfont && ng build --prod",
     "build:game": "ng build game --prod",
     "i18n": "ng xi18n --outputPath src/locale && xliffmerge --profile xliffmerge.json",
