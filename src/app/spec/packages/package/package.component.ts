@@ -88,6 +88,7 @@ export class PackageComponent {
       name: 'entity',
       title: 'Entity'
     });
+    entity.linking(this.package);
     this.package.entities.push(entity);
 
     this.manager.put(entity);
@@ -97,14 +98,15 @@ export class PackageComponent {
   addEnum() {
     this.instance.popover?.hide();
 
-    const e = new Enum({
+    const _enum = new Enum({
       id: uuid(),
       name: 'enum',
       title: 'Enum'
     });
-    this.package.enums.push(e);
+    _enum.linking(this.package);
+    this.package.enums.push(_enum);
 
-    this.manager.put(e);
+    this.manager.put(_enum);
     this.manager.put(this.package);
   }
 
