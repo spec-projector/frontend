@@ -42,14 +42,10 @@ export class GraphQLModule {
       };
       if (!!config.token) {
         Object.assign(headers, {
-          headers: {
-            'Authorization': `Bearer ${config.token.key}`
-          }
+          'Authorization': `Bearer ${config.token.key}`
         });
       }
-
       operation.setContext({headers});
-
       return forward(operation);
     });
 

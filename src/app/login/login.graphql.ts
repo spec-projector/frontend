@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 })
 export class LoginGQL extends Mutation<{ login: { token } }> {
   document = gql`
-mutation Login($email: String!, $password: String!) {
-  response: login(email: $email, password: $password) {
+mutation Login($input: LoginInput!) {
+  response: login(input: $input) {
     token {
       key
       created

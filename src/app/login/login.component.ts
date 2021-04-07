@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   login() {
     const request = new UserCredentials(this.form.getRawValue());
     this.progress.login = true;
-    this.loginGQL.mutate(request)
+    this.loginGQL.mutate({input: request})
       .pipe(finalize(() => this.progress.login = false),
         catchGQLErrors(),
         map(({data: {response: {token}}}) =>
