@@ -1,13 +1,13 @@
 import { Language } from '../enums/language';
 
 export function detectLanguage() {
-  const base = document.querySelector('base')
-    .getAttribute('href');
+  const base = localStorage.language || document.querySelector('base')
+    .getAttribute('href').replace('/', '');
   switch (base) {
-    case '/ru/':
+    case 'ru':
       return Language.ru;
-    case '/en/':
+    case 'en':
     default:
-      return Language.ru;
+      return Language.en;
   }
 }
