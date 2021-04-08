@@ -15,6 +15,6 @@ export class MeUserResolver implements Resolve<Observable<MeUser>> {
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<MeUser> {
     return this.meGQL.fetch()
-      .pipe(map(({data: {me}}) => deserialize(me, MeUser)));
+      .pipe(map(({data: {me}}) => !!me ? deserialize(me, MeUser) : null));
   }
 }
