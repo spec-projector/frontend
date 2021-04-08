@@ -3,6 +3,8 @@
 @import '~@junte/ui/lib/assets/styles/layout/responsive';
 @import '~@junte/ui/lib/assets/styles/layout/lp';
 @import '~@junte/ui/lib/assets/styles/forms/button';
+@import '~@junte/ui/lib/assets/styles/navigation/menu';
+@import '~@junte/ui/lib/assets/styles/layout/grid';
 @import "decors";
 
 $jnt-ng-deep: true;
@@ -10,18 +12,20 @@ $jnt-ng-deep: true;
 :host {
   display: block;
 
-  @include jnt-lp-header((position: absolute, padding: 50px 0 0 0));
+  @include jnt-lp-header((position: fixed, padding: $jnt-gutter-big 0));
   @include jnt-button((text-transform: uppercase, font-weight: $jnt-font-weight-bold));
+
+  &[data-scrolled='true'] {
+    @include jnt-lp-header((background: $jnt-white-color));
+  }
 }
 
 jnt-lp-header::ng-deep {
+  transition: background .5s ease;
+
   jnt-container {
     width: 970px;
     max-width: 970px;
-
-    [data-actions] {
-      align-items: flex-start;
-    }
   }
 }
 
@@ -31,6 +35,10 @@ h1 {
   font-size: 64px;
   line-height: 1.2;
   margin: 0;
+
+  &[data-header] {
+    margin: 155px 0 0 0;
+  }
 }
 
 h3 {
@@ -40,18 +48,22 @@ h3 {
 
 jnt-lp-slide {
   display: flex;
-  background: url(../../assets/images/lp/bg.png) fixed;
-  background-size: 100% 100%;
+  position: static;
+  background: url(../../assets/images/lp/bg.svg) fixed;
 }
 
-[data-account], [data-teaser] {
+[data-teaser] {
   font-family: $jnt-font-family-base;
+}
+
+[data-lang] {
+  @include jnt-menu((top: (item: (color: $jnt-primary-color, text-transform: uppercase))), '&');
 }
 
 [data-hand] {
   position: absolute;
   left: 660px;
-  top: -45px;
+  top: 0;
   width: 170px;
   height: 154px;
   transform: translate3D(-77px, 23px, 0) rotate(0);
@@ -72,6 +84,32 @@ jnt-lp-slide {
 
 [data-how-works] {
   @include jnt-button((color: $jnt-primary-color), '&');
+}
+
+[data-features], [data-tariffs] {
+
+  h1 {
+    margin: 50px 0 $jnt-gutter-normal 0;
+  }
+
+  [data-teaser] {
+    margin-bottom: 50px;
+  }
+
+  img {
+    position: absolute;
+
+    &[data-torus-small] {
+      top: 200px;
+      left: -120px;
+    }
+
+    &[data-torus-half] {
+      top: 780px;
+      right: -85px;
+    }
+  }
+
 }
 
 [data-footer] {

@@ -1,0 +1,106 @@
+<jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.huge">
+  <div data-video>
+    <ng-container [ngSwitch]="feature">
+      <div *ngSwitchCase="features.cleanWorkflow">clean Workflow</div>
+      <div *ngSwitchCase="features.featuresMap">features Map</div>
+      <div *ngSwitchCase="features.userStories">user Stories</div>
+      <div *ngSwitchCase="features.attachDesign">attach Design</div>
+      <div *ngSwitchCase="features.costFeatures">cost Features</div>
+      <div *ngSwitchCase="features.tasksDescription">tasks Description</div>
+      <div *ngSwitchCase="features.printContract">print Contract</div>
+    </ng-container>
+  </div>
+  <jnt-stack data-list-features [align]="ui.align.stretch" [gutter]="ui.gutter.big">
+    <div data-feature [@changeView]="feature === features.cleanWorkflow ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.cleanWorkflow"
+           [@fadeOut]
+           (click)="feature = features.cleanWorkflow">
+        <h4>Clean workflow</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.cleanWorkflow" [@fadeIn]>
+        <h4>Clean workflow</h4>
+        <p>Make specification and develop your app following strong process.</p>
+      </jnt-block>
+    </div>
+
+    <div data-feature [@changeView]="feature === features.featuresMap ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.featuresMap"
+           [@fadeOut]
+           (click)="feature = features.featuresMap">
+        <h4>Your app features map</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.featuresMap" [@fadeIn]>
+        <h4>Your app features map</h4>
+        <p>Structure features of your app by roles and epics.</p>
+      </jnt-block>
+    </div>
+
+    <div data-feature [@changeView]="feature === features.userStories ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.userStories"
+           [@fadeOut]
+           (click)="feature = features.userStories">
+        <h4>User stories</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.userStories" [@fadeIn]>
+        <h4>User stories</h4>
+        <p>Describe what see and can your user in simple steps then draw UI
+          in Figma.</p>
+      </jnt-block>
+    </div>
+
+    <div data-feature [@changeView]="feature === features.attachDesign ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.attachDesign"
+           [@fadeOut]
+           (click)="feature = features.attachDesign">
+        <h4>Attach design</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.attachDesign" [@fadeIn]>
+        <h4>Attach design</h4>
+        <p>Move directly to Figma frames for your features.</p>
+      </jnt-block>
+    </div>
+
+    <div data-feature [@changeView]="feature === features.costFeatures ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.costFeatures"
+           [@fadeOut]
+           (click)="feature = features.costFeatures">
+        <h4>Cost features</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.costFeatures" [@fadeIn]>
+        <h4>Cost features</h4>
+        <p>Show to your client required resources and cost for each
+          feature.</p>
+      </jnt-block>
+    </div>
+
+    <div data-feature [@changeView]="feature === features.tasksDescription ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.tasksDescription"
+           [@fadeOut]
+           (click)="feature = features.tasksDescription">
+        <h4>Tasks description</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.tasksDescription" [@fadeIn]>
+        <h4>Tasks description</h4>
+        <p>Generate beautiful tasks descriptions for your
+          developers.</p>
+      </jnt-block>
+    </div>
+
+    <div data-feature [@changeView]="feature === features.printContract ? 'extend' : 'short'">
+      <div *ngIf="feature !== features.printContract"
+           [@fadeOut]
+           (click)="feature = features.printContract">
+        <h4>Print contract</h4>
+      </div>
+      <jnt-block data-active *ngIf="feature === features.printContract" [@fadeIn]>
+        <h4>Print contract</h4>
+        <p>Generate and print contract for your client on app
+          developing.</p>
+      </jnt-block>
+    </div>
+
+    <jnt-button text="Try it for free now"
+                (click)="router.navigate(['/register'])">
+    </jnt-button>
+  </jnt-stack>
+</jnt-stack>
