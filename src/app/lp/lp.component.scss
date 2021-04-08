@@ -9,6 +9,16 @@
 
 $jnt-ng-deep: true;
 
+@include jnt-grid-container((width: 970px)) {
+  width: 970px;
+  position: relative;
+  text-align: center;
+
+  @include for-mobile() {
+    width: 100%;
+  }
+};
+
 :host {
   display: block;
 
@@ -22,11 +32,10 @@ $jnt-ng-deep: true;
 
 jnt-lp-header::ng-deep {
   transition: background .5s ease;
+}
 
-  jnt-container {
-    width: 970px;
-    max-width: 970px;
-  }
+[data-lang] {
+  @include jnt-menu((top: (item: (color: $jnt-primary-color, text-transform: uppercase))), '&');
 }
 
 h1 {
@@ -54,10 +63,6 @@ jnt-lp-slide {
 
 [data-teaser] {
   font-family: $jnt-font-family-base;
-}
-
-[data-lang] {
-  @include jnt-menu((top: (item: (color: $jnt-primary-color, text-transform: uppercase))), '&');
 }
 
 [data-hand] {

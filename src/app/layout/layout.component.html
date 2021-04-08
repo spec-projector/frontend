@@ -42,10 +42,9 @@
 
     <ng-template #headerContentTemplate
                  let-hide="hide">
-      <ng-container *ngIf="!!config.token;else notLoggedTemplate">
-        <jnt-link title="Subscription"
-                  i18n-title="@@label.subscription"
-                  [icon]="ui.icons.link"
+      <ng-container *ngIf="!!me;else notLoggedTemplate">
+        <jnt-link title="{{me.subscription.tariff.title}} plan"
+                  [icon]="me.subscription.tariff.icon + ':svg:local:stroked'"
                   [outline]="ui.outline.ghost"
                   [source]="['/subscription']"></jnt-link>
       </ng-container>

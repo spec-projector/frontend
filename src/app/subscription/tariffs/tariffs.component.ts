@@ -1,13 +1,12 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output } from '@angular/core';
 import { UI } from '@junte/ui';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { Language } from '../../../enums/language';
-import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariffs';
-import { AppConfig } from '../../app-config';
-import { TariffsGQL } from '../graphql';
 import { LocalUI } from '../../../enums/local-ui';
+import { Subscription } from '../../../models/subscription';
+import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariffs';
+import { TariffsGQL } from './graphql';
 
 @Component({
   selector: 'spec-lp-tariffs',
@@ -24,10 +23,14 @@ export class TariffsComponent implements OnInit {
   progress = {loading: false};
   tariffs: Tariff[] = [];
 
+  @Input()
+  subscription: Subscription;
+
+  @Output()
+  selected = new EventEmitter<Tariff>();
+
   constructor(@Inject(LOCALE_ID) public locale: string,
-              private tariffsGQL: TariffsGQL,
-              private config: AppConfig,
-              private router: Router) {
+              private tariffsGQL: TariffsGQL) {
   }
 
   ngOnInit() {
@@ -42,9 +45,8 @@ export class TariffsComponent implements OnInit {
       .subscribe(tariffs => this.tariffs = tariffs.results);
   }
 
-  buy(tariff: Tariff) {
-    this.router.navigate([this.config.token ? '/subscription' : '/register', {tariff: tariff.id}])
-      .then(() => null);
+  select(tariff: Tariff) {
+    this.selected.emit(tariff);
   }
 
 }

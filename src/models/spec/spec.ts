@@ -19,20 +19,12 @@ class ErrorValidate {
 export class Integration {
 
   @persist()
-  gitLabKey: string;
-
-  @persist()
-  gitHubKey: string;
-
-  @persist()
-  figmaKey: string;
-
-  @persist()
   graphqlPlaygroundUrl: string;
 
   constructor(defs: Partial<Integration> = {}) {
     assign(this, defs);
   }
+
 }
 
 @persistence()
@@ -77,12 +69,7 @@ export class Spec extends Persistence {
   description: string;
 
   @persist({type: StoryEntry})
-  integration: Integration = new Integration({
-    gitLabKey: null,
-    gitHubKey: null,
-    figmaKey: null,
-    graphqlPlaygroundUrl: null
-  });
+  integration: Integration = new Integration();
 
   @persist({type: ResourceType})
   resourceTypes: ResourceType[] = [];

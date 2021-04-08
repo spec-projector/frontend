@@ -11,16 +11,6 @@
   }
 }
 
-@include jnt-grid-container((width: 970px)) {
-  width: 970px;
-  position: relative;
-  text-align: center;
-
-  @include for-mobile() {
-    width: 100%;
-  }
-};
-
 img {
   &[data-plus] {
     @extend %data-decor;

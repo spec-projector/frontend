@@ -14,6 +14,14 @@ query Me {
     email
     isStaff
     isActive
+    subscription {
+      tariff {
+        id
+        title
+        icon
+      }
+      activeUntil
+    }
   }
 }`;
 }

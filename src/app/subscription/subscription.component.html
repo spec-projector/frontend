@@ -8,14 +8,8 @@
                            i18n-teaser="@@message.subscription_teaser">
       </jnt-app-page-header>
 
-      <ul>
-        <li *ngFor="let t of tariffs">
-          <h2>{{t.title}}</h2>
-          <p>{{t.teaser}}</p>
-          <jnt-button [text]="t.price > 0 ? 'Buy' : 'Select'" (click)="t.price > 0 ? pay(t) : changeTariff(t)"></jnt-button>
-        </li>
-      </ul>
-
+      <spec-lp-tariffs [subscription]="me.subscription"
+                       (selected)="$event.price > 0 ? pay($event) : changeTariff($event)"></spec-lp-tariffs>
     </jnt-container>
   </jnt-app-body>
 </jnt-app-content>

@@ -1,8 +1,9 @@
 <jnt-popover></jnt-popover>
+
 <jnt-lp-layout>
   <jnt-lp-header>
     <ng-template #headerLogoTemplate>
-      <img src="../../assets/images/lp/logo.svg" height="49">
+      <img src="/assets/images/lp/logo.svg" height="49">
     </ng-template>
     <jnt-menu>
       <jnt-menu-item title="Features"></jnt-menu-item>
@@ -11,39 +12,53 @@
                      [link]="['support']"></jnt-menu-item>
     </jnt-menu>
     <ng-template #contentTemplate>
-      <jnt-stack [orientation]="ui.orientation.horizontal">
-        <jnt-button [outline]="ui.outline.ghost"
-                    [icon]="ui.icons.login"
-                    text="Login"
-                    (click)="router.navigate(['/login'])">
-        </jnt-button>
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [align]="ui.align.center">
         <jnt-menu data-lang>
-          <jnt-menu-item title="Ru" link="/ru/"></jnt-menu-item>
+          <jnt-menu-item [active]="true" title="Ru" link="/ru/"></jnt-menu-item>
           <jnt-menu-item title="En" link="/en/"></jnt-menu-item>
         </jnt-menu>
+        <ng-container *ngIf="!!me;else notLoggedTemplate">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.small"
+                     [align]="ui.align.center">
+            <jnt-avatar [name]="me.firstName"
+                        [size]="ui.size.small"></jnt-avatar>
+            <jnt-link [title]="me.firstName"
+                      [source]="['/projects']"
+                      [icon]="{position: ui.position.right, icon: ui.icons.link}"></jnt-link>
+          </jnt-stack>
+        </ng-container>
+        <ng-template #notLoggedTemplate>
+          <jnt-button [outline]="ui.outline.ghost"
+                      [icon]="ui.icons.login"
+                      text="Login"
+                      (click)="router.navigate(['/login'])">
+          </jnt-button>
+        </ng-template>
       </jnt-stack>
     </ng-template>
   </jnt-lp-header>
   <jnt-lp-slide>
     <jnt-container>
       <div data-hand [@move-hand]>
-        <img src="../../assets/images/lp/hand.png" width="170" height="154" alt="hand">
+        <img src="/assets/images/lp/hand.png" width="170" height="154" alt="hand">
         <h1 [@coloring]>make</h1>
       </div>
       <img data-specifications
-           src="../../assets/images/lp/specifications.png" width="798" height="749">
+           src="/assets/images/lp/welcome.webp" width="798" height="749">
       <img data-plus
            [@move]="{value: '', params: {distance: distance.plus}}"
-           src="../../assets/images/lp/plus.png" width="89" height="87">
+           src="/assets/images/lp/plus.png" width="89" height="87">
       <img data-torus-small
            [@move]="{value: '', params: {distance: distance.torusSmall}}"
-           src="../../assets/images/lp/torus-small.png" width="100" height="100">
+           src="/assets/images/lp/torus-small.png" width="100" height="100">
       <img data-figma
            [@move]="{value: '', params: {distance: distance.figma}}"
-           src="../../assets/images/lp/figma.png" width="119" height="118">
+           src="/assets/images/lp/figma.png" width="119" height="118">
       <img data-torus-big
            [@move]="{value: '', params: {distance: distance.torusBig}}"
-           src="../../assets/images/lp/torus-big.png" width="272" height="273">
+           src="/assets/images/lp/torus-big.png" width="272" height="273">
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.huge">
         <jnt-stack [align]="ui.align.stretch">
           <h1 data-header>Where teams <br> specifications</h1>
@@ -51,11 +66,12 @@
         </jnt-stack>
         <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
           <jnt-button text="Try it for free now"
-                      (click)="router.navigate(['/register'])">
+                      (click)="jumpTo('tariffs')">
           </jnt-button>
           <jnt-button data-how-works
                       [scheme]="ui.scheme.secondary"
-                      text="How it works">
+                      text="How it works"
+                      (click)="jumpTo('features')">
           </jnt-button>
         </jnt-stack>
       </jnt-stack>
@@ -63,22 +79,25 @@
   </jnt-lp-slide>
   <jnt-lp-slide>
     <jnt-container data-features>
-      <h1>Features</h1>
-      <h3 data-teaser>SpecProjector helps teams write better <br> documentation for IT-products</h3>
+      <h1 id="features">Key features</h1>
+      <h3 data-teaser>Please, meet short review of our service</h3>
       <spec-lp-features></spec-lp-features>
       <img data-torus-small
-           src="../../assets/images/lp/torus-small.png" width="100" height="100">
+           src="/assets/images/lp/torus-small.png" width="100" height="100">
       <img data-torus-half
-           src="../../assets/images/lp/torus-half.png" width="128" height="148">
+           src="/assets/images/lp/torus-half.png" width="128" height="148">
     </jnt-container>
   </jnt-lp-slide>
+
   <jnt-lp-slide>
     <jnt-container data-tariffs>
-      <h1>Pricing plans</h1>
-      <h3 data-teaser>SpecProjector helps teams write better <br> documentation for IT-products</h3>
-      <spec-lp-tariffs></spec-lp-tariffs>
+      <h1 id="tariffs">Pricing plans</h1>
+      <h3 data-teaser>Please, choose optimal plan for you</h3>
+      <spec-lp-tariffs [subscription]="me?.subscription"
+                       (selected)="buy($event)"></spec-lp-tariffs>
     </jnt-container>
   </jnt-lp-slide>
+
   <jnt-container>
     <div data-footer>
       <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -101,6 +120,6 @@
         </jnt-menu>
       </jnt-stack>
     </div>
-
   </jnt-container>
+
 </jnt-lp-layout>

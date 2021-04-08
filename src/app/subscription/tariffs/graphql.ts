@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 export class TariffsGQL extends Query<{ tariffs }> {
   document = gql`
 {
-  tariffs: allTariffs {
+  tariffs: allTariffs(sort: ORDER_DESC) {
     count
     edges {
       node {

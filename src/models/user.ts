@@ -1,5 +1,5 @@
 import { Field, Model } from 'serialize-ts';
-import { SocialLoginSystem } from '../enums/signin';
+import { Subscription } from './subscription';
 
 @Model()
 export class User {
@@ -8,11 +8,20 @@ export class User {
   id: string;
 
   @Field()
-  login: string;
+  firstName: string;
+
+  @Field()
+  lastName: string;
+
+  @Field()
+  avatar: string;
 }
 
 @Model()
-export class Me extends User {
+export class MeUser extends User {
+
+  @Field()
+  subscription: Subscription;
 
   @Field()
   email: string;

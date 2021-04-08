@@ -59,11 +59,6 @@ export class FeatureIssuesComponent implements OnInit {
   }
 
   refresh(force = false) {
-    const gitLabKey = this.feature.spec.integration.gitLabKey;
-    if (!gitLabKey) {
-      return;
-    }
-
     const queue = [];
     for (const issue of this.feature.issues) {
       if (force || !issue.title) {

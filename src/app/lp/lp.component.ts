@@ -1,8 +1,11 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import 'reflect-metadata';
-import { ActivatedRoute, Router } from '@angular/router';
-import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
+import { Tariff } from '../../models/tariffs';
+import { MeUser } from '../../models/user';
+import { AppConfig } from '../app-config';
 import { Distance, moveKeyframes } from './animation';
 
 const HAND_DISTANCE = '-77px, 23px, 0';
@@ -40,16 +43,23 @@ const HAND_ROTATE = '20deg';
   ]
 })
 
-export class LpComponent {
+export class LpComponent implements OnInit {
 
   ui = UI;
   distance = Distance;
 
+  me: MeUser;
+
   @HostBinding('attr.data-scrolled')
   scrolled = false;
 
-  constructor(public route: ActivatedRoute,
+  constructor(private config: AppConfig,
+              private route: ActivatedRoute,
               public router: Router) {
+  }
+
+  ngOnInit() {
+    this.route.data.subscribe(({me}) => this.me = me);
   }
 
   @HostListener('window:scroll', ['event'])
@@ -58,6 +68,16 @@ export class LpComponent {
       || document.documentElement.scrollTop
       || document.body.scrollTop || 0;
     this.scrolled = offset > 0;
+  }
+
+  jumpTo(fragment: string) {
+    this.router.navigate([], {fragment});
+  }
+
+  buy(tariff: Tariff) {
+    this.router.navigate([this.config.token ? '/subscription'
+      : '/register', {tariff: tariff.id}])
+      .then(() => null);
   }
 
 }

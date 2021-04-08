@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppLayoutModule, ButtonModule, GridModule } from '@junte/ui';
 import { SubscriptionRoutingModule } from 'src/app/subscription/subscription-routing.module';
+import { TariffsModule } from './tariffs/tarrifs.module';
 import { SubscriptionComponent } from './subscription.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SubscriptionComponent } from './subscription.component';
     AppLayoutModule,
     GridModule,
     ButtonModule,
+    TariffsModule,
 
     SubscriptionRoutingModule
   ]

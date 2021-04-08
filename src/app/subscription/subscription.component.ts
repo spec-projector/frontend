@@ -1,9 +1,8 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
-import { finalize, map } from 'rxjs/operators';
-import { deserialize } from 'serialize-ts';
-import { Me } from 'src/models/user';
+import { generate as shortid } from 'shortid';
+import { MeUser } from 'src/models/user';
 import {
   CLOUD_PAYMENT_KEY,
   CLOUD_PAYMENT_RECURRENT_INTERVAL,
@@ -13,9 +12,7 @@ import {
 } from '../../consts';
 import { Language } from '../../enums/language';
 import { LocalUI } from '../../enums/local-ui';
-import { PagingTariffs, Tariff, TariffFeatures } from '../../models/tariffs';
-import { TariffsGQL } from './graphql';
-import { generate as shortid } from 'shortid';
+import { Tariff, TariffFeatures } from '../../models/tariffs';
 
 declare var cp: {
   CloudPayments
@@ -35,10 +32,9 @@ export class SubscriptionComponent implements OnInit {
 
   progress = {loading: false};
   tariffs: Tariff[] = [];
-  me: Me;
+  me: MeUser;
 
   constructor(@Inject(LOCALE_ID) public locale: string,
-              private tariffsGQL: TariffsGQL,
               private route: ActivatedRoute) {
   }
 
@@ -49,15 +45,6 @@ export class SubscriptionComponent implements OnInit {
         this.pay(tariff);
       }
     });
-    this.loadTariffs();
-  }
-
-  private loadTariffs() {
-    this.progress.loading = true;
-    return this.tariffsGQL.fetch()
-      .pipe(finalize(() => this.progress.loading = false),
-        map(({data: {tariffs}}) => deserialize(tariffs, PagingTariffs)))
-      .subscribe(tariffs => this.tariffs = tariffs.results);
   }
 
   pay(tariff: Tariff) {
@@ -126,7 +113,7 @@ export class SubscriptionComponent implements OnInit {
     );
   }
 
-  changeTariff(tariff: Tariff, request: string) {
+  changeTariff(tariff: Tariff, request: string = null) {
 
   }
 

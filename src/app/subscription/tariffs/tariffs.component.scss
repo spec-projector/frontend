@@ -1,0 +1,70 @@
+@import '../../../variables';
+@import '../../../../node_modules/@junte/ui/lib/assets/styles/elements/icon';
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+[data-tariff] {
+  font-family: $jnt-lp-layout-font-family;
+
+  &[data-current=true] {
+    border: 2px solid $jnt-success-color;
+
+    [data-selected] {
+      @include jnt-icon((size: 32px, stroke: 2px, color: $jnt-success-color), '&');
+    }
+  }
+
+  [data-tarrif-icon] {
+    @include jnt-icon((size: 64px, stroke: 3px, color: $jnt-primary-color), '&');
+  }
+
+  h3 {
+    font-weight: $jnt-font-weight-bold;
+    color: $jnt-primary-color;
+    line-height: 1.25;
+    margin: 0;
+
+    span {
+      font-size: .65em;
+      color: $jnt-secondary-dark-color;
+      font-weight: $jnt-font-weight-light;
+    }
+  }
+
+  [data-teaser] {
+    margin-top: $jnt-gutter-normal;
+    text-align: center;
+  }
+
+  hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid $jnt-secondary-color;
+  }
+
+  %feature {
+    div:first-child {
+      padding: $jnt-gutter-tiny;
+      border-radius: 50%;
+      background-color: $jnt-green-color;
+      @include jnt-icon((color: $jnt-white-color));
+    }
+  }
+
+  [data-feature-on] {
+    @extend %feature;
+  }
+
+  [data-feature-off] {
+    @extend %feature;
+
+    div:first-child {
+      background-color: $jnt-secondary-dark-color;
+    }
+  }
+
+}

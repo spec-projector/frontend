@@ -7,6 +7,9 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    resolve: {
+      me: MeUserResolver
+    },
     children: [
       {
         path: 'projects',

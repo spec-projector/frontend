@@ -17,10 +17,10 @@
            (click)="feature = features.cleanWorkflow">
         <h4>Clean workflow</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.cleanWorkflow" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.cleanWorkflow" [@fadeIn]>
         <h4>Clean workflow</h4>
         <p>Make specification and develop your app following strong process.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <div data-feature [@changeView]="feature === features.featuresMap ? 'extend' : 'short'">
@@ -29,10 +29,10 @@
            (click)="feature = features.featuresMap">
         <h4>Your app features map</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.featuresMap" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.featuresMap" [@fadeIn]>
         <h4>Your app features map</h4>
         <p>Structure features of your app by roles and epics.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <div data-feature [@changeView]="feature === features.userStories ? 'extend' : 'short'">
@@ -41,11 +41,11 @@
            (click)="feature = features.userStories">
         <h4>User stories</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.userStories" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.userStories" [@fadeIn]>
         <h4>User stories</h4>
         <p>Describe what see and can your user in simple steps then draw UI
           in Figma.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <div data-feature [@changeView]="feature === features.attachDesign ? 'extend' : 'short'">
@@ -54,10 +54,10 @@
            (click)="feature = features.attachDesign">
         <h4>Attach design</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.attachDesign" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.attachDesign" [@fadeIn]>
         <h4>Attach design</h4>
         <p>Move directly to Figma frames for your features.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <div data-feature [@changeView]="feature === features.costFeatures ? 'extend' : 'short'">
@@ -66,11 +66,11 @@
            (click)="feature = features.costFeatures">
         <h4>Cost features</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.costFeatures" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.costFeatures" [@fadeIn]>
         <h4>Cost features</h4>
         <p>Show to your client required resources and cost for each
           feature.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <div data-feature [@changeView]="feature === features.tasksDescription ? 'extend' : 'short'">
@@ -79,11 +79,11 @@
            (click)="feature = features.tasksDescription">
         <h4>Tasks description</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.tasksDescription" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.tasksDescription" [@fadeIn]>
         <h4>Tasks description</h4>
         <p>Generate beautiful tasks descriptions for your
           developers.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <div data-feature [@changeView]="feature === features.printContract ? 'extend' : 'short'">
@@ -92,11 +92,11 @@
            (click)="feature = features.printContract">
         <h4>Print contract</h4>
       </div>
-      <jnt-block data-active *ngIf="feature === features.printContract" [@fadeIn]>
+      <jnt-card data-active *ngIf="feature === features.printContract" [@fadeIn]>
         <h4>Print contract</h4>
         <p>Generate and print contract for your client on app
           developing.</p>
-      </jnt-block>
+      </jnt-card>
     </div>
 
     <jnt-button text="Try it for free now"

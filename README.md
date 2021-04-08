@@ -32,3 +32,12 @@ https://junte.gitlab.io/team-projector/spec - specs site
 
 Sprint 3
 *  https://gitlab.com/junte/team-projector/backend/issues/80
+
+# Using WebP
+https://developers.google.com/speed/webp/docs/using
+
+```
+brew install webp
+cd src/assets/images/lp
+cwebp -q 99 welcome.png -o welcome.webp
+```
