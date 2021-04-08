@@ -1,3 +1,55 @@
+@import 'src/variables';
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import '~@junte/ui/lib/assets/styles/layout/block';
+@import '~@junte/ui/lib/assets/styles/elements/icon';
+
+$jnt-ng-deep: true;
+
 :host {
   display: block;
+  @include jnt-block((shadow: none, corner: 16px));
+  @include jnt-icon((size: 64px));
+}
+
+[data-tariff] {
+  font-family: $jnt-lp-layout-font-family;
+  height: 100%;
+
+  h3, h2 {
+    font-weight: $jnt-font-weight-bold;
+    color: $jnt-primary-color;
+    margin: 0;
+  }
+
+  h2 {
+    span {
+      font-size: $jnt-font-size-big;
+      color: $jnt-primary-text-color;
+      font-weight: $jnt-font-weight-light;
+    }
+  }
+
+  [data-inactive-features] {
+    color: $jnt-primary-text-light-color;
+  }
+
+  hr {
+    width: 100%;
+    border-color: $jnt-white-color;
+    border-style: solid;
+  }
+
+  //TODO: add height fluid in block
+  ::ng-deep {
+    [data-block], [data-body] {
+      flex: 1;
+    }
+
+    [data-body] {
+      > jnt-stack {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
 }

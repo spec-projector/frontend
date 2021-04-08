@@ -7,6 +7,7 @@ import { Language } from '../../../enums/language';
 import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariffs';
 import { AppConfig } from '../../app-config';
 import { TariffsGQL } from '../graphql';
+import { LocalUI } from '../../../enums/local-ui';
 
 @Component({
   selector: 'spec-lp-tariffs',
@@ -17,6 +18,7 @@ export class TariffsComponent implements OnInit {
 
   ui = UI;
   language = Language;
+  localUi = LocalUI;
   tariffFeatures = TariffFeatures;
 
   progress = {loading: false};

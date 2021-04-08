@@ -2,7 +2,7 @@
 <jnt-lp-layout>
   <jnt-lp-header>
     <ng-template #headerLogoTemplate>
-      <img src="../../assets/images/lp/logo.svg" height="50">
+      <img src="../../assets/images/lp/logo.svg" height="49">
     </ng-template>
     <jnt-menu>
       <jnt-menu-item title="Features"></jnt-menu-item>
@@ -12,45 +12,41 @@
     </jnt-menu>
     <ng-template #contentTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal">
-        <jnt-menu>
-          <jnt-menu-item [icon]="ui.icons.russia"
-                         link="/ru/"></jnt-menu-item>
-          <jnt-menu-item [icon]="ui.icons.unitedStatesOfAmerica"
-                         link="/en/"></jnt-menu-item>
-        </jnt-menu>
         <jnt-button [outline]="ui.outline.ghost"
                     [icon]="ui.icons.login"
                     text="Login"
                     (click)="router.navigate(['/login'])">
         </jnt-button>
+        <jnt-menu data-lang>
+          <jnt-menu-item title="Ru" link="/ru/"></jnt-menu-item>
+          <jnt-menu-item title="En" link="/en/"></jnt-menu-item>
+        </jnt-menu>
       </jnt-stack>
     </ng-template>
   </jnt-lp-header>
   <jnt-lp-slide>
     <jnt-container>
-      <ng-container *jntMinFor="ui.breakpoint.tablet">
-        <div data-hand [@move-hand]>
-          <img src="../../assets/images/lp/hand.png" width="170" height="154" alt="hand">
-          <h1 [@coloring]>make</h1>
-        </div>
-        <img data-specifications
-             src="../../assets/images/lp/specifications.png" width="845" height="840">
-        <img data-bagel-half
-             [@move]="{value: '', params: {distance: distance.bagelHalf}}"
-             src="../../assets/images/lp/bagel-half.png" width="82" height="103">
-        <img ddata-bagel-small
-             [@move]="{value: '', params: {distance: distance.bagelSmall}}"
-             src="../../assets/images/lp/bagel-small.png" width="86" height="82">
-        <img data-diamond
-             [@move]="{value: '', params: {distance: distance.diamond}}"
-             src="../../assets/images/lp/diamond.png" width="124" height="123">
-        <img data-bagel-pink
-             [@move]="{value: '', params: {distance: distance.bagelPink}}"
-             src="../../assets/images/lp/bagel-pink.png" width="284" height="274">
-      </ng-container>
+      <div data-hand [@move-hand]>
+        <img src="../../assets/images/lp/hand.png" width="170" height="154" alt="hand">
+        <h1 [@coloring]>make</h1>
+      </div>
+      <img data-specifications
+           src="../../assets/images/lp/specifications.png" width="798" height="749">
+      <img data-plus
+           [@move]="{value: '', params: {distance: distance.plus}}"
+           src="../../assets/images/lp/plus.png" width="89" height="87">
+      <img data-torus-small
+           [@move]="{value: '', params: {distance: distance.torusSmall}}"
+           src="../../assets/images/lp/torus-small.png" width="100" height="100">
+      <img data-figma
+           [@move]="{value: '', params: {distance: distance.figma}}"
+           src="../../assets/images/lp/figma.png" width="119" height="118">
+      <img data-torus-big
+           [@move]="{value: '', params: {distance: distance.torusBig}}"
+           src="../../assets/images/lp/torus-big.png" width="272" height="273">
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.huge">
         <jnt-stack [align]="ui.align.stretch">
-          <h1>Where teams <br> specifications</h1>
+          <h1 data-header>Where teams <br> specifications</h1>
           <h3 data-teaser>We help teams write better <br> documentation for IT-products</h3>
         </jnt-stack>
         <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
@@ -66,43 +62,20 @@
     </jnt-container>
   </jnt-lp-slide>
   <jnt-lp-slide>
-    <jnt-container>
-      <h1>Key features</h1>
-      <ul>
-        <li>
-          <h2>Clean workflow</h2>
-          <p>Make specification and develop your app following strong process.</p>
-        </li>
-        <li>
-          <h2>Your app features map</h2>
-          <p>Structure features of your app by roles and epics.</p>
-        </li>
-        <li>
-          <h2>User stories</h2>
-          <p>Describe what see and can your user in simple steps then draw UI in Figma.</p>
-        </li>
-        <li>
-          <h2>Attach design</h2>
-          <p>Move directly to Figma frames for your features.</p>
-        </li>
-        <li>
-          <h2>Cost features</h2>
-          <p>Show to your client required resources and cost for each feature.</p>
-        </li>
-        <li>
-          <h2>Tasks description</h2>
-          <p>Generate beautiful tasks descriptions for your developers.</p>
-        </li>
-        <li>
-          <h2>Print contract</h2>
-          <p>Generate and print contract for your client on app developing.</p>
-        </li>
-      </ul>
+    <jnt-container data-features>
+      <h1>Features</h1>
+      <h3 data-teaser>SpecProjector helps teams write better <br> documentation for IT-products</h3>
+      <spec-lp-features></spec-lp-features>
+      <img data-torus-small
+           src="../../assets/images/lp/torus-small.png" width="100" height="100">
+      <img data-torus-half
+           src="../../assets/images/lp/torus-half.png" width="128" height="148">
     </jnt-container>
   </jnt-lp-slide>
   <jnt-lp-slide>
-    <jnt-container>
+    <jnt-container data-tariffs>
       <h1>Pricing plans</h1>
+      <h3 data-teaser>SpecProjector helps teams write better <br> documentation for IT-products</h3>
       <spec-lp-tariffs></spec-lp-tariffs>
     </jnt-container>
   </jnt-lp-slide>

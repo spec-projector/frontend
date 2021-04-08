@@ -1,0 +1,43 @@
+@import 'src/variables';
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import '~@junte/ui/lib/assets/styles/layout/block';
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+[data-video] {
+  background-color: $jnt-white-color;
+  width: 570px;
+  height: 500px;
+}
+
+[data-list-features] {
+  font-family: $jnt-font-family-base;
+  flex: 1;
+
+  [data-feature] {
+    position: relative;
+    cursor: pointer;
+    height: 135px;
+
+    div, [data-active] {
+      position: absolute;
+
+      h4 {
+        font-weight: $jnt-font-weight-bold;
+      }
+    }
+
+    [data-active] {
+      @include jnt-block((shadow: none, padding: (normal: $jnt-gutter-big $jnt-gutter-normal)), '&');
+      margin-left: -$jnt-gutter-normal;
+
+      h4 {
+        color: $jnt-primary-light-color;
+      }
+    }
+  }
+}

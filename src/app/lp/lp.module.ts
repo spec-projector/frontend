@@ -5,11 +5,13 @@ import { JunteUiModule, ResponsiveModule, ShortcutsModule } from '@junte/ui';
 import { LpComponent } from './lp.component';
 import { LpRoutingModule } from './lp-routing.module';
 import { TariffsComponent } from './tariffs/tariffs.component';
+import { FeaturesComponent } from './features/features.component';
 
 @NgModule({
   declarations: [
     LpComponent,
-    TariffsComponent
+    TariffsComponent,
+    FeaturesComponent
   ],
   imports: [
     CommonModule,

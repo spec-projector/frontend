@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 import { UI } from '@junte/ui';
 import 'reflect-metadata';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -45,8 +45,19 @@ export class LpComponent {
   ui = UI;
   distance = Distance;
 
+  @HostBinding('attr.data-scrolled')
+  scrolled = false;
+
   constructor(public route: ActivatedRoute,
               public router: Router) {
+  }
+
+  @HostListener('window:scroll', ['event'])
+  onPageScroll() {
+    const offset = window.pageYOffset
+      || document.documentElement.scrollTop
+      || document.body.scrollTop || 0;
+    this.scrolled = offset > 0;
   }
 
 }

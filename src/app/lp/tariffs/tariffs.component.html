@@ -1,8 +1,47 @@
-<ul>
-  <li *ngFor="let t of tariffs">
-    <h2>{{t.title}}</h2>
-    <p>{{t.teaser}}</p>
-    <jnt-button [text]="t.price > 0 ? 'Buy' : 'Try'"
-                (click)="buy(t)"></jnt-button>
-  </li>
-</ul>
+<jnt-row [gutter]="ui.gutter.normal" [align]="ui.align.stretch">
+  <jnt-col *ngFor="let t of tariffs" [tablet]="4">
+    <jnt-block data-tariff [padding]="ui.gutter.big" [width]="ui.width.fluid">
+      <jnt-stack [justify]="ui.justify.between">
+        <jnt-stack>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.big"
+                     [justify]="ui.justify.center"
+                     [align]="ui.align.center">
+            <jnt-icon [icon]="t.icon + ':svg:local:stroked'"></jnt-icon>
+            <h3>{{t.title}}</h3>
+          </jnt-stack>
+          <h2>${{t.price}} <span>per month</span></h2>
+          <p>{{t.teaser}}</p>
+
+          <hr>
+
+          <p>{{t.maxProjects}}</p>
+          <p>{{t.maxProjectMembers}}</p>
+<!--          <p *ngFor="let f of t.features">{{f}}</p>-->
+
+          <jnt-stack *ngIf="t.features | includes: [tariffFeatures.projectMembersRoles,
+          tariffFeatures.printContract, tariffFeatures.exportImport]; else inactiveFeatures">
+            <span>All features</span>
+          </jnt-stack>
+
+          <ng-template #inactiveFeatures>
+            <jnt-stack data-inactive-features>
+              <span *ngIf="!(t.features | includes: tariffFeatures.projectMembersRoles)">Roles for members</span>
+              <span *ngIf="!(t.features | includes: tariffFeatures.printContract)">Print contract</span>
+              <span *ngIf="!(t.features | includes: tariffFeatures.exportImport)">Export / import</span>
+            </jnt-stack>
+          </ng-template>
+
+          <div *ngIf="t.features | includes: tariffFeatures.communityChat">
+<!--            <span i18n="@@label.community_chat">Community chat</span>-->
+            <span>Community chat</span>
+          </div>
+
+        </jnt-stack>
+
+        <jnt-button [text]="t.price > 0 ? 'Buy' : 'Try'"
+                    (click)="buy(t)"></jnt-button>
+      </jnt-stack>
+    </jnt-block>
+  </jnt-col>
+</jnt-row>
