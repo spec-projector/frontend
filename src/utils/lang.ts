@@ -2,7 +2,7 @@ import { Language } from '../enums/language';
 
 export function detectLanguage() {
   const base = localStorage.language || document.querySelector('base')
-    .getAttribute('href').replace('/', '');
+    .getAttribute('href').replace(/\//g, '');
   switch (base) {
     case 'ru':
       return Language.ru;
