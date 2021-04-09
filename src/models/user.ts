@@ -1,5 +1,5 @@
 import { Field, Model } from 'serialize-ts';
-import { Subscription } from './subscription';
+import { ChangeSubscriptionRequest, Subscription } from './subscription';
 
 @Model()
 export class User {
@@ -22,6 +22,9 @@ export class MeUser extends User {
 
   @Field()
   subscription: Subscription;
+
+  @Field()
+  changeSubscriptionRequest: ChangeSubscriptionRequest;
 
   @Field()
   email: string;

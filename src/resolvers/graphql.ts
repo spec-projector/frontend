@@ -22,6 +22,12 @@ query Me {
       }
       activeUntil
     }
+    changeSubscriptionRequest {
+      createdAt
+      tariff {
+        title
+      }
+    }
   }
 }`;
 }

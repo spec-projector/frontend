@@ -4,7 +4,9 @@
 @import '~@junte/ui/lib/assets/styles/layout/lp';
 @import '~@junte/ui/lib/assets/styles/forms/button';
 @import '~@junte/ui/lib/assets/styles/navigation/menu';
+@import '~@junte/ui/lib/assets/styles/navigation/link';
 @import '~@junte/ui/lib/assets/styles/layout/grid';
+@import '~@junte/ui/lib/assets/styles/elements/icon';
 @import "decors";
 
 $jnt-ng-deep: true;
@@ -17,7 +19,9 @@ $jnt-ng-deep: true;
   @include for-mobile() {
     width: 100%;
   }
-};
+}
+
+;
 
 :host {
   display: block;
@@ -119,4 +123,8 @@ jnt-lp-slide {
 
 [data-footer] {
   padding: $jnt-gutter-normal 0;
+
+  [data-junte] {
+    @include jnt-link((color: $jnt-gray-900-color), '&');
+  }
 }

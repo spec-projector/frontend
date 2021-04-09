@@ -1,0 +1,31 @@
+@import 'src/variables';
+@import "~@junte/ui/lib/assets/styles/layout/grid";
+
+@include jnt-grid-container((width: $jnt-tablet-breakpoint));
+
+p {
+  margin: $jnt-gutter-normal 0;
+}
+
+h1, h2 {
+  font-size: $jnt-font-size-normal;
+  margin: $jnt-gutter-normal 0;
+  font-weight: $jnt-font-weight-bold;
+}
+
+h2 {
+  font-size: inherit;
+}
+
+:host > * > ol {
+  > li::marker {
+    font-size: $jnt-font-size-normal;
+    font-weight: $jnt-font-weight-bold;
+  }
+
+  > li > ol {
+    > li::marker {
+      font-weight: $jnt-font-weight-bold;
+    }
+  }
+}

@@ -1,18 +1,1 @@
-@import 'src/variables';
-
-p {
-  margin: $jnt-gutter-normal 0;
-}
-
-h1 {
-  font-size: $jnt-font-size-normal;
-  margin: $jnt-gutter-normal 0;
-  font-weight: $jnt-font-weight-bold;
-}
-
-ol {
-  > li::marker {
-    font-size: $jnt-font-size-normal;
-    font-weight: $jnt-font-weight-bold;
-  }
-}
+@import '../law';

@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  AvatarModule,
-  ButtonModule,
-  CardModule,
-  GridModule, LinkModule,
-  LpModule as JntLpModule,
-  MenuModule,
-  PopoverModule,
-  StackModule
+    AvatarModule,
+    ButtonModule,
+    CardModule,
+    GridModule, IconModule, LinkModule,
+    LpModule as JntLpModule,
+    MenuModule,
+    PopoverModule,
+    StackModule
 } from '@junte/ui';
 import { FeaturesComponent } from './features/features.component';
 import { LpRoutingModule } from './lp-routing.module';
@@ -20,23 +20,24 @@ import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
     LpComponent,
     FeaturesComponent
   ],
-  imports: [
-    CommonModule,
+    imports: [
+        CommonModule,
 
-    LpRoutingModule,
+        LpRoutingModule,
 
-    PopoverModule,
-    StackModule,
-    CardModule,
-    GridModule,
-    JntLpModule,
-    MenuModule,
-    ButtonModule,
+        PopoverModule,
+        StackModule,
+        CardModule,
+        GridModule,
+        JntLpModule,
+        MenuModule,
+        ButtonModule,
 
-    TariffsModule,
-    AvatarModule,
-    LinkModule
-  ]
+        TariffsModule,
+        AvatarModule,
+        LinkModule,
+        IconModule
+    ]
 })
 export class LpModule {
 

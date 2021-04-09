@@ -6,6 +6,7 @@ import { Language } from '../../../enums/language';
 import { LocalUI } from '../../../enums/local-ui';
 import { Subscription } from '../../../models/subscription';
 import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariffs';
+import { MeUser } from '../../../models/user';
 import { TariffsGQL } from './graphql';
 
 @Component({
@@ -24,7 +25,7 @@ export class TariffsComponent implements OnInit {
   tariffs: Tariff[] = [];
 
   @Input()
-  subscription: Subscription;
+  me: MeUser;
 
   @Output()
   selected = new EventEmitter<Tariff>();

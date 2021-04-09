@@ -1,4 +1,4 @@
-import { Field, Model } from 'serialize-ts';
+import { DateSerializer, Field, Model } from 'serialize-ts';
 import { Tariff } from './tariffs';
 
 @Model()
@@ -9,3 +9,13 @@ export class Subscription {
 
 }
 
+@Model()
+export class ChangeSubscriptionRequest {
+
+  @Field()
+  createdAt: Date;
+
+  @Field()
+  tariff: Tariff;
+
+}

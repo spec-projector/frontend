@@ -26,7 +26,7 @@
                         [size]="ui.size.small"></jnt-avatar>
             <jnt-link [title]="me.firstName"
                       [source]="['/projects']"
-                      [icon]="{position: ui.position.right, icon: ui.icons.link}"></jnt-link>
+                      [icon]="{position: ui.position.right, icon: ui.icons.chevronRight}"></jnt-link>
           </jnt-stack>
         </ng-container>
         <ng-template #notLoggedTemplate>
@@ -93,7 +93,7 @@
     <jnt-container data-tariffs>
       <h1 id="tariffs">Pricing plans</h1>
       <h3 data-teaser>Please, choose optimal plan for you</h3>
-      <spec-lp-tariffs [subscription]="me?.subscription"
+      <spec-lp-tariffs [me]="me"
                        (selected)="buy($event)"></spec-lp-tariffs>
     </jnt-container>
   </jnt-lp-slide>
@@ -103,7 +103,10 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center"
                  [justify]="ui.justify.between">
-        <small>Junte 2016-2021</small>
+        <jnt-link data-junte title="Junte Team 2016 – 2021"
+                  [icon]="ui.icons.junteStroke"
+                  [target]="ui.target.blank"
+                  source="//junte.team"></jnt-link>
         <jnt-menu [spacing]="ui.gutter.small">
           <jnt-menu-item title="Agreement"
                          i18n-title="@@label.agreement"

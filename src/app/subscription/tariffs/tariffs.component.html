@@ -1,137 +1,151 @@
-<jnt-row [gutter]="ui.gutter.normal"
-         [align]="ui.align.stretch">
-  <jnt-col *ngFor="let t of tariffs" [tablet]="4">
-    <jnt-card data-tariff [attr.data-current]="t.id === subscription?.tariff.id"
-              [padding]="ui.gutter.big"
-              [height]="ui.height.fluid"
-              [width]="ui.width.fluid">
+<jnt-message *ngIf="me?.changeSubscriptionRequest as r; else selectTariffTemplate"
+             [icon]="ui.icons.animated.reload"
+             [scheme]="ui.scheme.secondary">
+  Вы отправили запрос на смену тарифа на
+  <jnt-label [label]="r.tariff.title"></jnt-label>
 
-      <jnt-stack [align]="ui.align.stretch">
-        <jnt-stack [orientation]="ui.orientation.horizontal"
-                   [gutter]="ui.gutter.big"
-                   [justify]="ui.justify.center"
-                   [align]="ui.align.center">
-          <jnt-icon data-tarrif-icon [icon]="t.icon + ':svg:local:stroked'"></jnt-icon>
-          <h3>
-            {{t.price | currency:'USD':'symbol':'1.0-0'}} <span>per month</span><br>
-            {{t.title}}
-          </h3>
-        </jnt-stack>
-        <p data-teaser>{{t.teaser}}</p>
-        <hr>
-        <jnt-stack>
-          <jnt-stack data-feature-on
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
+  Пожалуйста, подождите. В случае проблем обратитесь в службу
+  <jnt-link title="поддержки"
+            [icon]="{icon: ui.icons.link, position: ui.position.right}"
+            [source]="['/support']"></jnt-link>
+</jnt-message>
+
+<ng-template #selectTariffTemplate>
+  <jnt-row [gutter]="ui.gutter.normal"
+           [align]="ui.align.stretch">
+    <jnt-col *ngFor="let t of tariffs" [tablet]="4">
+      <jnt-card data-tariff [attr.data-current]="t.id === me?.subscription?.tariff.id"
+                [padding]="ui.gutter.big"
+                [height]="ui.height.fluid"
+                [width]="ui.width.fluid">
+
+        <jnt-stack [align]="ui.align.stretch">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.big"
+                     [justify]="ui.justify.center"
                      [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
-            </div>
-            <div>{{t.maxProjects < 999 ? t.maxProjects : '∞'}} projects</div>
+            <jnt-icon data-tarrif-icon [icon]="t.icon + ':svg:local:stroked'"></jnt-icon>
+            <h3>
+              {{t.price | currency:'USD':'symbol':'1.0-0'}} <span>per month</span><br>
+              {{t.title}}
+            </h3>
           </jnt-stack>
+          <p data-teaser>{{t.teaser}}</p>
+          <hr>
+          <jnt-stack>
+            <jnt-stack data-feature-on
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
+              </div>
+              <div>{{t.maxProjects < 999 ? t.maxProjects : '∞'}} projects</div>
+            </jnt-stack>
 
-          <jnt-stack data-feature-on
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
-            </div>
-            <div>{{t.maxProjectMembers < 999 ? t.maxProjectMembers : '∞'}} members for project</div>
-          </jnt-stack>
+            <jnt-stack data-feature-on
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
+              </div>
+              <div>{{t.maxProjectMembers < 999 ? t.maxProjectMembers : '∞'}} members for project</div>
+            </jnt-stack>
 
-          <jnt-stack data-feature-on
-                     *ngIf="t.features | includes: tariffFeatures.communityChat"
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
-            </div>
-            <div>Community chat</div>
-          </jnt-stack>
+            <jnt-stack data-feature-on
+                       *ngIf="t.features | includes: tariffFeatures.communityChat"
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
+              </div>
+              <div>Community chat</div>
+            </jnt-stack>
 
-          <jnt-stack data-feature-on
-                     *ngIf="t.features | includes: tariffFeatures.slackSupport"
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
-            </div>
-            <div>Slack support</div>
-          </jnt-stack>
+            <jnt-stack data-feature-on
+                       *ngIf="t.features | includes: tariffFeatures.slackSupport"
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
+              </div>
+              <div>Slack support</div>
+            </jnt-stack>
 
-          <jnt-stack data-feature-on
-                     *ngIf="t.features | includes: tariffFeatures.exclusiveSlackSupport"
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
-            </div>
-            <div>Exclusive slack support</div>
-          </jnt-stack>
+            <jnt-stack data-feature-on
+                       *ngIf="t.features | includes: tariffFeatures.exclusiveSlackSupport"
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
+              </div>
+              <div>Exclusive slack support</div>
+            </jnt-stack>
 
-          <jnt-stack data-feature-on
-                     *ngIf="t.features | includes: [tariffFeatures.projectMembersRoles,
+            <jnt-stack data-feature-on
+                       *ngIf="t.features | includes: [tariffFeatures.projectMembersRoles,
                         tariffFeatures.printContract, tariffFeatures.exportImport]; else inactiveFeaturesTemplate"
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
-            </div>
-            <div>All features</div>
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
+              </div>
+              <div>All features</div>
+            </jnt-stack>
           </jnt-stack>
+
+          <ng-template #inactiveFeaturesTemplate>
+            <jnt-stack data-feature-off
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
+              </div>
+              <div>Roles for members</div>
+            </jnt-stack>
+
+            <jnt-stack data-feature-off
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
+              </div>
+              <div>Print contract</div>
+            </jnt-stack>
+
+            <jnt-stack data-feature-off
+                       [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <div>
+                <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
+              </div>
+              <div>Export / import</div>
+            </jnt-stack>
+          </ng-template>
         </jnt-stack>
 
-        <ng-template #inactiveFeaturesTemplate>
-          <jnt-stack data-feature-off
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
-            </div>
-            <div>Roles for members</div>
-          </jnt-stack>
-
-          <jnt-stack data-feature-off
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
-            </div>
-            <div>Print contract</div>
-          </jnt-stack>
-
-          <jnt-stack data-feature-off
-                     [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <div>
-              <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
-            </div>
-            <div>Export / import</div>
+        <ng-template #cardFooterTemplate>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [justify]="ui.justify.center">
+            <ng-template #currentTemplate>
+              <jnt-icon data-selected [icon]="ui.icons.checked"></jnt-icon>
+            </ng-template>
+            <ng-container *ngIf="t.id !== me?.subscription?.tariff.id; else currentTemplate">
+              <jnt-button [text]="t.price > 0 ? 'Buy' : 'Try'"
+                          [scheme]="ui.scheme.accent"
+                          (click)="select(t)"></jnt-button>
+            </ng-container>
           </jnt-stack>
         </ng-template>
-      </jnt-stack>
-
-      <ng-template #cardFooterTemplate>
-        <jnt-stack [orientation]="ui.orientation.horizontal"
-                   [justify]="ui.justify.center">
-          <ng-template #currentTemplate>
-            <jnt-icon data-selected [icon]="ui.icons.checked"></jnt-icon>
-          </ng-template>
-          <ng-container *ngIf="t.id !== subscription?.tariff.id; else currentTemplate">
-            <jnt-button [text]="t.price > 0 ? 'Buy' : 'Try'"
-                        [scheme]="ui.scheme.accent"
-                        (click)="select(t)"></jnt-button>
-          </ng-container>
-        </jnt-stack>
-      </ng-template>
-    </jnt-card>
-  </jnt-col>
-</jnt-row>
+      </jnt-card>
+    </jnt-col>
+  </jnt-row>
+</ng-template>

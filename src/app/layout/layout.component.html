@@ -42,13 +42,20 @@
 
     <ng-template #headerContentTemplate
                  let-hide="hide">
-      <ng-container *ngIf="!!me;else notLoggedTemplate">
-        <jnt-link title="{{me.subscription.tariff.title}} plan"
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-menu>
+          <jnt-menu-item title="Ru"
+                         [link]="language.ru | localizePage"></jnt-menu-item>
+          <jnt-menu-item title="En"
+                         [link]="language.en | localizePage"></jnt-menu-item>
+        </jnt-menu>
+
+        <jnt-link *ngIf="!!me;else notLoggedTemplate"
+                  title="{{me.subscription.tariff.title}} plan"
                   [icon]="me.subscription.tariff.icon + ':svg:local:stroked'"
                   [outline]="ui.outline.ghost"
                   [source]="['/subscription']"></jnt-link>
-      </ng-container>
-
+      </jnt-stack>
     </ng-template>
 
     <ng-template #headerUserbarTemplate *ngIf="!!config.token">
@@ -59,7 +66,6 @@
 
         <ng-template #userbarMenuTemplate>
           <jnt-stack [align]="ui.align.stretch">
-            <jnt-select-lang></jnt-select-lang>
             <jnt-menu [orientation]="ui.orientation.vertical">
               <jnt-menu-item title="Logout"
                              i18n-title="@@action.logout"
