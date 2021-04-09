@@ -40,7 +40,6 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  tariffFeatures = TariffFeatures;
 
   errors: BackendError[] = [];
   progress = {changing: false, checking: false};
@@ -113,6 +112,8 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
     const data = {
       user: this.me.id,
       tariff: tariff.id,
+      tariff_id: tariff.id,
+      targetTariff: tariff.id,
       hash,
       cloudPayments: {
         recurrent: {
