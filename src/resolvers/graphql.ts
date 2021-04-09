@@ -15,6 +15,7 @@ query Me {
     isStaff
     isActive
     subscription {
+      id
       tariff {
         id
         title
@@ -26,6 +27,9 @@ query Me {
       createdAt
       tariff {
         title
+      }
+      toSubscription {
+        id
       }
     }
   }

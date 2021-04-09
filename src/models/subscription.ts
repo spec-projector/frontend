@@ -5,6 +5,9 @@ import { Tariff } from './tariffs';
 export class Subscription {
 
   @Field()
+  id: number;
+
+  @Field()
   tariff: Tariff;
 
 }
@@ -17,5 +20,8 @@ export class ChangeSubscriptionRequest {
 
   @Field()
   tariff: Tariff;
+
+  @Field()
+  toSubscription: Subscription;
 
 }

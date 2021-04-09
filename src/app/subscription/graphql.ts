@@ -25,10 +25,22 @@ export class CheckSubscriptionGQL extends Query<{ me }> {
   document = gql`
 query Me {
   me {
+    subscription {
+      id
+      tariff {
+        id
+        title
+        icon
+      }
+      activeUntil
+    }
     changeSubscriptionRequest {
       createdAt
       tariff {
         title
+      }
+      toSubscription {
+        id
       }
     }
   }

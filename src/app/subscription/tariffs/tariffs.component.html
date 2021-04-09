@@ -1,8 +1,8 @@
-<jnt-message *ngIf="me?.changeSubscriptionRequest as r; else selectTariffTemplate"
+<jnt-message *ngIf="!!me?.changeSubscriptionRequest && me?.changeSubscriptionRequest?.toSubscription?.id !== me?.subscription?.id; else selectTariffTemplate"
              [icon]="ui.icons.animated.reload"
              [scheme]="ui.scheme.secondary">
   Вы отправили запрос на смену тарифа на
-  <jnt-label [label]="r.tariff.title"></jnt-label>
+  <jnt-label [label]="me.changeSubscriptionRequest.tariff.title"></jnt-label>
 
   Пожалуйста, подождите. В случае проблем обратитесь в службу
   <jnt-link title="поддержки"

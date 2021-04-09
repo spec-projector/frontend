@@ -1,7 +1,8 @@
 import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
-import { finalize, map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, finalize, map, takeUntil } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { generate as shortid } from 'shortid';
 import { MeUser } from 'src/models/user';
@@ -34,7 +35,7 @@ declare var cp: {
 })
 export class SubscriptionComponent implements OnInit, OnDestroy {
 
-  private destroyed = false;
+  private destroyed$ = new Subject();
 
   ui = UI;
   localUi = LocalUI;
@@ -66,7 +67,8 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroyed = true;
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   pay(tariff: Tariff) {
@@ -121,6 +123,8 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
       }
     };
 
+    console.log(data);
+
     // https://developers.cloudpayments.ru/#rekurrentnye-platezhi-podpiska
     widget.charge({
         publicId: CLOUD_PAYMENT_KEY,
@@ -130,8 +134,10 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
         accountId: this.me.email,
         skin: CLOUD_PAYMENT_SKIN,
         data: data
-      },
-      () => this.changeTariff(tariff, hash)
+      }, d => {
+        console.log(d);
+        this.changeTariff(tariff, hash);
+      }
     );
   }
 
@@ -152,12 +158,13 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
   private checkSubscription() {
     this.progress.checking = true;
     this.checkSubscriptionGQL.fetch()
-      .pipe(finalize(() => this.progress.checking = false),
+      .pipe(takeUntil(this.destroyed$),
+        finalize(() => this.progress.checking = false),
         catchGQLErrors(),
         map(({data: {me}}) => deserialize(me, MeUser)))
-      .subscribe(({changeSubscriptionRequest}) => {
-          this.me.changeSubscriptionRequest = changeSubscriptionRequest;
-          if (!!changeSubscriptionRequest && !this.destroyed) {
+      .subscribe(me => {
+          this.me = me;
+          if (!!me.changeSubscriptionRequest && me.changeSubscriptionRequest.toSubscription?.id !== me.subscription.id) {
             setTimeout(() => this.checkSubscription(), CHECK_INTERVAL);
           }
         },
