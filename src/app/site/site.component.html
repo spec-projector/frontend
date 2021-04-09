@@ -5,20 +5,28 @@
     </jnt-container>
   </jnt-app-body>
   <jnt-app-footer>
-    <jnt-menu [spacing]="ui.gutter.small">
-      <jnt-menu-item title="Contacts"
-                     i18n-title="@@label.contacts"
-                     [link]="['/contacts']"></jnt-menu-item>
-      <jnt-menu-item title="Agreement"
-                     i18n-title="@@label.agreement"
-                     [link]="['/agreement']"></jnt-menu-item>
-      <jnt-menu-item title="Policy"
-                     i18n-title="@@label.policy"
-                     [link]="['/policy']"></jnt-menu-item>
-      <jnt-menu-item title="Security"
-                     i18n-title="@@label.security"
-                     [link]="['/security']"></jnt-menu-item>
-    </jnt-menu>
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [align]="ui.align.center"
+               [justify]="ui.justify.between">
+      <jnt-link data-junte title="Junte Team 2016 – 2021"
+                [icon]="ui.icons.junteStroke"
+                [target]="ui.target.blank"
+                source="//junte.team"></jnt-link>
+      <jnt-menu [spacing]="ui.gutter.small">
+        <jnt-menu-item title="Agreement"
+                       i18n-title="@@label.agreement"
+                       [link]="['/agreement']"></jnt-menu-item>
+        <jnt-menu-item title="Policy"
+                       i18n-title="@@label.policy"
+                       [link]="['/policy']"></jnt-menu-item>
+        <jnt-menu-item title="Security"
+                       i18n-title="@@label.security"
+                       [link]="['/security']"></jnt-menu-item>
+        <jnt-menu-item title="Contacts"
+                       i18n-title="@@label.contacts"
+                       [link]="['/contacts']"></jnt-menu-item>
+      </jnt-menu>
+    </jnt-stack>
   </jnt-app-footer>
 </jnt-app-content>
 

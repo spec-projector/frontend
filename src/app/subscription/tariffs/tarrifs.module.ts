@@ -1,6 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ArrayPipesModule, ButtonModule, CardModule, GridModule, IconModule, LabelModule, StackModule } from '@junte/ui';
+import {
+  ArrayPipesModule,
+  ButtonModule,
+  CardModule,
+  GridModule,
+  IconModule,
+  LabelModule,
+  LinkModule,
+  MessageModule,
+  StackModule
+} from '@junte/ui';
 import { TariffsComponent } from './tariffs.component';
 
 @NgModule({
@@ -19,7 +29,9 @@ import { TariffsComponent } from './tariffs.component';
     IconModule,
     ButtonModule,
     ArrayPipesModule,
-    LabelModule
+    LabelModule,
+    MessageModule,
+    LinkModule
   ]
 })
 export class TariffsModule {

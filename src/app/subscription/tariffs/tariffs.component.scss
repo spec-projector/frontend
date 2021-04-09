@@ -8,6 +8,8 @@ $jnt-ng-deep: true;
 }
 
 [data-tariff] {
+  // TODO: @junte/ui
+  height: 100%;
   font-family: $jnt-lp-layout-font-family;
 
   &[data-current=true] {
@@ -30,8 +32,8 @@ $jnt-ng-deep: true;
 
     span {
       font-size: .65em;
-      color: $jnt-secondary-dark-color;
-      font-weight: $jnt-font-weight-light;
+      color: $jnt-gray-700-color;
+      font-weight: $jnt-font-weight-base;
     }
   }
 

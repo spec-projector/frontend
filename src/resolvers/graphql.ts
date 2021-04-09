@@ -15,12 +15,22 @@ query Me {
     isStaff
     isActive
     subscription {
+      id
       tariff {
         id
         title
         icon
       }
       activeUntil
+    }
+    changeSubscriptionRequest {
+      createdAt
+      tariff {
+        title
+      }
+      toSubscription {
+        id
+      }
     }
   }
 }`;

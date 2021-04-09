@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SubscriptionComponent } from 'src/app/subscription/subscription.component';
 import { LoggedGuard } from '../../guards/aurhorisation';
+import { MeUserResolver } from '../../resolvers/me';
 import { TariffResolver } from '../../resolvers/tariff';
 
 export const SUBSCRIPTION_BREADCRUMB = $localize`:@@label.subscription:Subscription`;
@@ -12,6 +13,7 @@ const routes: Routes = [
     component: SubscriptionComponent,
     data: {breadcrumb: SUBSCRIPTION_BREADCRUMB},
     resolve: {
+      me: MeUserResolver,
       tariff: TariffResolver
     },
     canActivate: [LoggedGuard]

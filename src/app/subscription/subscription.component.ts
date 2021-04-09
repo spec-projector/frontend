@@ -1,6 +1,9 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
+import { Subject } from 'rxjs';
+import { filter, finalize, map, takeUntil } from 'rxjs/operators';
+import { deserialize, serialize } from 'serialize-ts';
 import { generate as shortid } from 'shortid';
 import { MeUser } from 'src/models/user';
 import {
@@ -12,7 +15,14 @@ import {
 } from '../../consts';
 import { Language } from '../../enums/language';
 import { LocalUI } from '../../enums/local-ui';
+import { ChangeSubscriptionRequest } from '../../models/subscription';
 import { Tariff, TariffFeatures } from '../../models/tariffs';
+import { BackendError } from '../../types/gql-errors';
+import { catchGQLErrors } from '../../utils/gql-errors';
+import { ChangeSubscriptionGQL, CheckSubscriptionGQL } from './graphql';
+import { ChangeSubscription } from './models';
+
+const CHECK_INTERVAL = 5000;
 
 declare var cp: {
   CloudPayments
@@ -23,28 +33,42 @@ declare var cp: {
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.scss']
 })
-export class SubscriptionComponent implements OnInit {
+export class SubscriptionComponent implements OnInit, OnDestroy {
+
+  private destroyed$ = new Subject();
 
   ui = UI;
   localUi = LocalUI;
   language = Language;
   tariffFeatures = TariffFeatures;
 
-  progress = {loading: false};
+  errors: BackendError[] = [];
+  progress = {changing: false, checking: false};
+
   tariffs: Tariff[] = [];
   me: MeUser;
 
   constructor(@Inject(LOCALE_ID) public locale: string,
+              private changeSubscriptionGQL: ChangeSubscriptionGQL,
+              private checkSubscriptionGQL: CheckSubscriptionGQL,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.route.data.subscribe(({me, tariff}) => {
       this.me = me;
+      if (!!me.changeSubscriptionRequest) {
+        this.checkSubscription();
+      }
       if (!!tariff) {
         this.pay(tariff);
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   pay(tariff: Tariff) {
@@ -99,6 +123,8 @@ export class SubscriptionComponent implements OnInit {
       }
     };
 
+    console.log(data);
+
     // https://developers.cloudpayments.ru/#rekurrentnye-platezhi-podpiska
     widget.charge({
         publicId: CLOUD_PAYMENT_KEY,
@@ -108,13 +134,41 @@ export class SubscriptionComponent implements OnInit {
         accountId: this.me.email,
         skin: CLOUD_PAYMENT_SKIN,
         data: data
-      },
-      () => this.changeTariff(tariff, hash)
+      }, d => {
+        console.log(d);
+        this.changeTariff(tariff, hash);
+      }
     );
   }
 
-  changeTariff(tariff: Tariff, request: string = null) {
+  changeTariff(tariff: Tariff, hash: string = null) {
+    const req = new ChangeSubscription({tariff: tariff.id, hash});
+    this.progress.changing = true;
+    this.changeSubscriptionGQL.mutate({input: serialize(req)})
+      .pipe(finalize(() => this.progress.changing = false),
+        catchGQLErrors(),
+        map(({data: {response: {request}}}) => deserialize(request, ChangeSubscriptionRequest)))
+      .subscribe(request => {
+          this.me.changeSubscriptionRequest = request;
+          this.checkSubscription();
+        },
+        errors => this.errors = errors);
+  }
 
+  private checkSubscription() {
+    this.progress.checking = true;
+    this.checkSubscriptionGQL.fetch()
+      .pipe(takeUntil(this.destroyed$),
+        finalize(() => this.progress.checking = false),
+        catchGQLErrors(),
+        map(({data: {me}}) => deserialize(me, MeUser)))
+      .subscribe(me => {
+          this.me = me;
+          if (!!me.changeSubscriptionRequest && me.changeSubscriptionRequest.toSubscription?.id !== me.subscription.id) {
+            setTimeout(() => this.checkSubscription(), CHECK_INTERVAL);
+          }
+        },
+        errors => this.errors = errors);
   }
 
 }

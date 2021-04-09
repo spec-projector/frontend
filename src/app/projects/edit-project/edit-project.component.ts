@@ -7,7 +7,7 @@ import { UI_DELAY } from '../../../consts';
 import { Project, ProjectUpdate } from '../../../models/projects';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
-import { CreateProjectGQL, UpdateProjectGQL } from '../projects.graphql';
+import { CreateProjectGQL, UpdateProjectGQL } from '../graphql';
 
 @Component({
   selector: 'spec-edit-project',
