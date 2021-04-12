@@ -25,6 +25,7 @@ export class CheckSubscriptionGQL extends Query<{ me }> {
   document = gql`
 query Me {
   me {
+    id
     subscription {
       id
       tariff {
