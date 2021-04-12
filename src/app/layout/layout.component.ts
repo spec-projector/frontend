@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { AppConfig } from 'src/app/app-config';
 import { Language } from 'src/enums/language';
+import { LOCALIZE_REGEX } from '../../consts';
 import { LocalUI } from '../../enums/local-ui';
 import { MeUser } from '../../models/user';
 
@@ -28,7 +29,8 @@ export class LayoutComponent implements OnInit {
   @ViewChild('layout', {read: ElementRef, static: true})
   backdrop;
 
-  constructor(public config: AppConfig,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              public config: AppConfig,
               private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router) {
@@ -36,6 +38,11 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({me}) => this.me = me);
+  }
+
+  localize(language: Language) {
+    document.location.href = document.location.pathname
+      .replace(LOCALIZE_REGEX, `/${language}/`);
   }
 
   logout() {

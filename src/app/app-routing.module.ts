@@ -1,5 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadingStrategy, Route, RouterModule, Routes } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { delay, mergeMap } from 'rxjs/operators';
+
+const PRELOADING_DELAY = 5000;
+
+export class DelayedModulePreloading implements PreloadingStrategy {
+  preloadedModules: string[] = [];
+
+  preload(route: Route, load: () => Observable<boolean>): Observable<boolean> {
+    if (route.data && route.data['preload']) {
+      // console.log(`preload module ${route.path}`);
+      this.preloadedModules.push(route.path);
+      return of(true).pipe(
+        delay(PRELOADING_DELAY),
+        mergeMap(() => load()));
+    } else {
+      return of(null);
+    }
+  }
+}
 
 const routes: Routes = [
   {
@@ -36,6 +56,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
+      preloadingStrategy: DelayedModulePreloading,
       paramsInheritanceStrategy: 'always',
       relativeLinkResolution: 'corrected',
       scrollPositionRestoration: 'top',
@@ -43,7 +64,12 @@ const routes: Routes = [
       scrollOffset: [0, 150],
       initialNavigation: 'enabled'
     })],
-  exports: [RouterModule]
+  providers: [
+    DelayedModulePreloading
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {
 

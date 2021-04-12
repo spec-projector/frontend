@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from 'src/app/layout/layout.component';
 import { MeUserResolver } from '../../resolvers/me';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'projects/:project',
+        data: {preload: true},
         loadChildren: () => import('../spec/spec.module')
           .then(m => m.SpecModule)
       },

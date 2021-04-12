@@ -9,6 +9,7 @@ import { DateFnsConfigurationService } from 'ngx-date-fns';
 import { detectLanguage } from 'src/utils/lang';
 import { Language } from './enums/language';
 
+export const LOCALIZE_REGEX = /^\/(ru|en)\//;
 export const BASE_URI = 'https://www.specprojector.com';
 export const CLOUD_PAYMENT_KEY = 'pk_7cebed1a56517f44b949ad8651ce2';
 export const CLOUD_PAYMENT_SKIN = 'modern';

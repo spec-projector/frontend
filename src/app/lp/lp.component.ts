@@ -1,8 +1,9 @@
 import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import 'reflect-metadata';
+import { Language } from '../../enums/language';
 import { Tariff } from '../../models/tariffs';
 import { MeUser } from '../../models/user';
 import { AppConfig } from '../app-config';
@@ -47,13 +48,15 @@ export class LpComponent implements OnInit {
 
   ui = UI;
   distance = Distance;
+  language = Language;
 
   me: MeUser;
 
   @HostBinding('attr.data-scrolled')
   scrolled = false;
 
-  constructor(private config: AppConfig,
+  constructor(@Inject(LOCALE_ID) public locale: string,
+              private config: AppConfig,
               private route: ActivatedRoute,
               public router: Router) {
   }

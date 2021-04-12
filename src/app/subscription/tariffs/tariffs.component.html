@@ -157,7 +157,8 @@
                              [justify]="ui.justify.center">
                     <jnt-icon data-selected [icon]="ui.icons.checked"></jnt-icon>
                   </jnt-stack>
-                  <jnt-date-period [start]="today" [end]="me?.subscription.activeUntil"></jnt-date-period>
+                  <jnt-date-period *ngIf="!!me?.subscription.activeUntil"
+                                   [start]="today" [end]="me?.subscription.activeUntil"></jnt-date-period>
                 </jnt-stack>
               </ng-template>
               <ng-container *ngIf="t.id !== me?.subscription?.tariff.id; else currentTemplate">

@@ -43,12 +43,12 @@ import { FeaturesPipe } from 'src/pipes/features/features';
 import { GroupEntitiesPipe, GroupEnumsPipe } from 'src/pipes/group-entities';
 import { GroupFeaturesByActorPipe, GroupFeaturesByEpicPipe } from 'src/pipes/group-features';
 import { SpecPricePipe } from 'src/pipes/spec/actor-price';
-import { EncodeURIPipe } from 'src/pipes/string/encode-uri';
 import { TermDescriptionPipe } from 'src/pipes/terms/description';
 import { SameFirstCharPipe } from 'src/pipes/terms/same-first-char';
 import { SortByNamePipe } from 'src/pipes/terms/sort-by-name';
 import { TokenTypePipe } from 'src/pipes/token-type';
 import { JoinTokensPipe } from 'src/pipes/tokens/join';
+import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { ProjectEditModule } from '../projects/edit-project/edit-projects.module';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { EntityEditComponent } from './entity/edit/entity-edit.component';
@@ -139,7 +139,6 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     SortByNamePipe,
     TermDescriptionPipe,
 
-    EncodeURIPipe,
     FeaturePricePipe,
     ActorPricePipe,
     SpecPricePipe,
@@ -156,6 +155,7 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     DndModule,
     DragDropModule,
     MonacoEditorModule,
+    StringPipesModule,
 
     ProjectEditModule
   ],

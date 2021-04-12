@@ -45,9 +45,11 @@
       <jnt-stack [orientation]="ui.orientation.horizontal">
         <jnt-menu>
           <jnt-menu-item title="Ru"
-                         [link]="language.ru | localizePage"></jnt-menu-item>
+                         [active]="locale === language.ru"
+                         (click)="localize(language.ru)"></jnt-menu-item>
           <jnt-menu-item title="En"
-                         [link]="language.en | localizePage"></jnt-menu-item>
+                         [active]="locale === language.en"
+                         (click)="localize(language.en)"></jnt-menu-item>
         </jnt-menu>
 
         <jnt-link *ngIf="!!me;else notLoggedTemplate"

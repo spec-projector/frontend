@@ -19,8 +19,14 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
         <jnt-menu data-lang>
-          <jnt-menu-item [active]="true" title="Ru" link="/ru/"></jnt-menu-item>
-          <jnt-menu-item title="En" link="/en/"></jnt-menu-item>
+          <jnt-menu-item
+            title="ru"
+            [active]="locale === language.ru"
+            link="/ru/"></jnt-menu-item>
+          <jnt-menu-item
+            title="en"
+            [active]="locale === language.ru"
+            link="/en/"></jnt-menu-item>
         </jnt-menu>
         <ng-container *ngIf="!!me;else notLoggedTemplate">
           <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -70,6 +76,7 @@
         </jnt-stack>
         <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
           <jnt-button text="Try it for free now"
+                      [icon]="ui.icons.arrowDown"
                       (click)="jumpTo('tariffs')">
           </jnt-button>
           <jnt-button data-how-works

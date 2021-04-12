@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LocalizePagePipe } from './location';
+import { EncodeURIPipe } from './encode-uri';
 
 @NgModule({
   declarations: [
-    LocalizePagePipe
+    EncodeURIPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    LocalizePagePipe
+    EncodeURIPipe
   ]
 })
 export class StringPipesModule {
