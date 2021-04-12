@@ -116,6 +116,8 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
       hash,
       cloudPayments: {
         recurrent: {
+          Amount: tariff.price,
+          StartDate: new Date(),
           interval: CLOUD_PAYMENT_RECURRENT_INTERVAL,
           period: CLOUD_PAYMENT_RECURRENT_PERIOD,
           customerReceipt: receipt
@@ -149,10 +151,9 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
         catchGQLErrors(),
         map(({data: {response: {request}}}) => deserialize(request, ChangeSubscriptionRequest)))
       .subscribe(request => {
-          this.me.changeSubscriptionRequest = request;
-          this.checkSubscription();
-        },
-        errors => this.errors = errors);
+        this.me.changeSubscriptionRequest = request;
+        this.checkSubscription();
+      }, errors => this.errors = errors);
   }
 
   private checkSubscription() {

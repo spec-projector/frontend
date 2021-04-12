@@ -35,7 +35,9 @@
         </a>
         <h1 i18n="@@label.register">Make an account</h1>
         <ng-container *ngIf="!!tariff">
-          <h2>{{tariff.title}}</h2>
+          <p>You selected plan</p>
+          <jnt-icon [icon]="tariff.icon + ':svg:local:stroked'"></jnt-icon>
+          <p>{{tariff.title}}</p>
         </ng-container>
       </jnt-stack>
     </ng-template>
@@ -107,6 +109,21 @@
                       [width]="ui.width.fluid"
                       [type]="ui.button.type.submit">
           </jnt-button>
+          <p>Or register by</p>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.small">
+            <jnt-button text="Google"
+                        [icon]="ui.icons.google"
+                        [scheme]="ui.scheme.secondary"
+                        [width]="ui.width.fluid"
+                        (click)="socialRegister(loginSystem.google)">
+            </jnt-button>
+            <jnt-button text="Gitlab"
+                        [scheme]="ui.scheme.secondary"
+                        [icon]="ui.icons.gitlab"
+                        [width]="ui.width.fluid"
+                        (click)="socialRegister(loginSystem.gitLab)"></jnt-button>
+          </jnt-stack>
           <p i18n="@@message.registered_already">Did you register already?</p>
           <jnt-button text="Login"
                       i18n-text="@@action.login"

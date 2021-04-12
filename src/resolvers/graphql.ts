@@ -20,6 +20,7 @@ query Me {
         id
         title
         icon
+        price
       }
       activeUntil
     }
@@ -27,6 +28,7 @@ query Me {
       createdAt
       tariff {
         title
+        price
       }
       toSubscription {
         id

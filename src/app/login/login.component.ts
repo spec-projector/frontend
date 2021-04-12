@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   distance = Distance;
-  systemBackend = SocialLoginSystem;
+  loginSystem = SocialLoginSystem;
 
   progress = {login: false, redirecting: false};
   errors: BackendError[] = [];

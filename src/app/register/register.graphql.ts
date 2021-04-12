@@ -16,3 +16,15 @@ mutation($input: RegisterInput!) {
     }
 }`;
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SocialLoginGQL extends Mutation<{ response }> {
+  document = gql`
+mutation ($system: SystemBackend!) {
+  response: socialLogin(system: $system) {
+    redirectUrl
+  }
+}`;
+}

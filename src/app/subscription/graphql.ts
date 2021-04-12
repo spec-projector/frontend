@@ -31,6 +31,7 @@ query Me {
         id
         title
         icon
+        price
       }
       activeUntil
     }

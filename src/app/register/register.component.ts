@@ -6,14 +6,16 @@ import { FormComponent, InputComponent, UI } from '@junte/ui';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../consts';
+import { SocialLoginSystem } from '../../enums/signin';
 import { AuthToken } from '../../models/auth-token';
 import { Tariff } from '../../models/tariffs';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { AppConfig } from '../app-config';
+import { MakeSocialLogin, TrySocialLogin } from '../login/models';
 import { Distance, moveDownKeyframes, moveKeyframes } from '../lp/animation';
 import { UserRegister } from './models';
-import { RegisterGQL } from './register.graphql';
+import { RegisterGQL, SocialLoginGQL } from './register.graphql';
 
 @Component({
   selector: 'spec-register',
@@ -31,6 +33,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   distance = Distance;
+  loginSystem = SocialLoginSystem;
 
   errors: BackendError[] = [];
   progress = {
@@ -57,6 +60,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   });
 
   constructor(private registerGQL: RegisterGQL,
+              private socialLoginGQL: SocialLoginGQL,
               private fb: FormBuilder,
               public config: AppConfig,
               private route: ActivatedRoute,
@@ -87,6 +91,20 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         this.config.token = token;
         this.redirect();
       }, errors => this.errors = errors);
+  }
+
+  socialRegister(system: SocialLoginSystem) {
+    const request = new TrySocialLogin({system});
+    this.progress.registering = true;
+    this.socialLoginGQL.mutate(serialize(request))
+      .pipe(finalize(() => this.progress.registering = false),
+        catchGQLErrors(),
+        map(({data: {response}}) => deserialize(response, MakeSocialLogin)))
+      .subscribe(({redirectUrl}) => {
+          this.progress.redirecting = true;
+          document.location.href = redirectUrl;
+        },
+        errors => this.errors = errors);
   }
 
   private redirect() {

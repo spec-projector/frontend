@@ -20,6 +20,7 @@ export class TariffsComponent implements OnInit {
   language = Language;
   localUi = LocalUI;
   tariffFeatures = TariffFeatures;
+  today = new Date();
 
   progress = {loading: false};
   tariffs: Tariff[] = [];

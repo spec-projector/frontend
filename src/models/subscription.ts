@@ -10,6 +10,9 @@ export class Subscription {
   @Field()
   tariff: Tariff;
 
+  @Field({serializer: new DateSerializer()})
+  activeUntil: Date;
+
 }
 
 @Model()

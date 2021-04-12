@@ -1,5 +1,6 @@
 @import '../../../variables';
-@import '../../../../node_modules/@junte/ui/lib/assets/styles/elements/icon';
+@import '~@junte/ui/lib/assets/styles/elements/icon';
+@import '~@junte/ui/lib/assets/styles/layout/card';
 
 $jnt-ng-deep: true;
 
@@ -67,6 +68,10 @@ $jnt-ng-deep: true;
     div:first-child {
       background-color: $jnt-secondary-dark-color;
     }
+  }
+
+  [data-footer] {
+    padding-top: $jnt-gutter-normal;
   }
 
 }

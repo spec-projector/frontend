@@ -3,11 +3,15 @@
 <jnt-lp-layout>
   <jnt-lp-header>
     <ng-template #headerLogoTemplate>
-      <img src="assets/images/lp/logo.svg" height="49">
+      <a routerLink="/">
+        <img src="assets/images/lp/logo.svg" height="49">
+      </a>
     </ng-template>
     <jnt-menu>
-      <jnt-menu-item title="Features"></jnt-menu-item>
-      <jnt-menu-item title="Pricing plans"></jnt-menu-item>
+      <jnt-menu-item title="Features"
+                     [link]="{source: [], fragment: 'features'}"></jnt-menu-item>
+      <jnt-menu-item title="Pricing plans"
+                     [link]="{source: [], fragment: 'tariffs'}"></jnt-menu-item>
       <jnt-menu-item title="Support"
                      [link]="['support']"></jnt-menu-item>
     </jnt-menu>

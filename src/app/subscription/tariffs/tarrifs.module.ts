@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  ArrayPipesModule,
-  ButtonModule,
-  CardModule,
-  GridModule,
-  IconModule,
-  LabelModule,
-  LinkModule,
-  MessageModule,
-  StackModule
+    ArrayPipesModule,
+    ButtonModule,
+    CardModule, DatePeriodModule,
+    GridModule,
+    IconModule,
+    LabelModule,
+    LinkModule,
+    MessageModule,
+    StackModule
 } from '@junte/ui';
 import { TariffsComponent } from './tariffs.component';
 
@@ -20,19 +20,20 @@ import { TariffsComponent } from './tariffs.component';
   exports: [
     TariffsComponent
   ],
-  imports: [
-    CommonModule,
+    imports: [
+        CommonModule,
 
-    GridModule,
-    StackModule,
-    CardModule,
-    IconModule,
-    ButtonModule,
-    ArrayPipesModule,
-    LabelModule,
-    MessageModule,
-    LinkModule
-  ]
+        GridModule,
+        StackModule,
+        CardModule,
+        IconModule,
+        ButtonModule,
+        ArrayPipesModule,
+        LabelModule,
+        MessageModule,
+        LinkModule,
+        DatePeriodModule
+    ]
 })
 export class TariffsModule {
 
