@@ -36,6 +36,11 @@ const routes: Routes = [
       .then(m => m.LoginModule)
   },
   {
+    path: 'oauth',
+    loadChildren: () => import('./login/login.module')
+      .then(m => m.LoginModule)
+  },
+  {
     path: 'register',
     data: {animation: 'register'},
     loadChildren: () => import('./register/register.module')
