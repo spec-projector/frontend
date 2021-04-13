@@ -69,6 +69,10 @@
         <ng-template #userbarMenuTemplate>
           <jnt-stack [align]="ui.align.stretch">
             <jnt-menu [orientation]="ui.orientation.vertical">
+              <jnt-menu-item title="Change password"
+                             i18n-title="@@action.changePassword"
+                             [icon]="ui.icons.lock"
+                             (click)="changePassword()"></jnt-menu-item>
               <jnt-menu-item title="Logout"
                              i18n-title="@@action.logout"
                              [icon]="ui.icons.logout"

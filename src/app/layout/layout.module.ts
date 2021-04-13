@@ -5,6 +5,7 @@ import { ArrayPipesModule } from 'src/pipes/array/array-pipes.module';
 import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
+import { ChangePasswordModule } from '../change-password/change-password.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { LayoutComponent } from './layout.component';
   ],
   imports: [
     CommonModule,
-    CommonModule,
+    ChangePasswordModule,
 
     MenuModule,
     AppLayoutModule,
