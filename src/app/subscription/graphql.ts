@@ -28,6 +28,7 @@ query Me {
     id
     subscription {
       id
+      createdAt
       tariff {
         id
         title

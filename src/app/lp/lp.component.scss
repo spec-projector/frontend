@@ -127,4 +127,6 @@ jnt-lp-slide {
   [data-junte] {
     @include jnt-link((color: $jnt-gray-900-color), '&');
   }
+
+  @include jnt-menu((top: (item: (font-size: $jnt-font-size-small))));
 }

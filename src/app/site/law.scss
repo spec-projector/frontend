@@ -17,6 +17,10 @@ h2 {
   font-size: inherit;
 }
 
+ol {
+  padding-inline-start: 20px;
+}
+
 :host > * > ol {
   > li::marker {
     font-size: $jnt-font-size-normal;

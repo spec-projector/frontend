@@ -1,91 +1,93 @@
 <jnt-container>
   <ng-container [ngSwitch]="locale">
     <ng-container *ngSwitchDefault>
-      <jnt-app-page-header title="Security Statement"
-                           teaser="for our services"
+      <jnt-app-page-header title="Security Statement" teaser="for our services"
                            [icon]="ui.icons.question"></jnt-app-page-header>
-      <p>
-        <b>«Spec&nbsp;Projector»</b> takes advantage of some of the highest rated security software available today.
-      <p>
-      <p>This is so our customers can shop with ease and not worry about identity theft or fraudulent charges.</p>
-      <h1>Securing Data And Information With Starfield Technologies</h1>
-      <p>
-        Your safety and the safety of the information you put onto our site is one of «Spec&nbsp;Projector’s» highest priorities
-        and biggest concerns. That’s why we use Deluxe SSL to protect you and your information while you’re on our
-        site. Starfield Technologies ensures secure communication by encrypting all data to and from the site in an
-        effort to make sure that your sensitive information stays secure, and out of the hands of hackers and
-        criminals. All transmitted data between your browser and the server is protected by a security certificate SSL
-        256-bit encryption mechanism which prevents unauthorized access to packets transmitted between your computer
-        and «Spec&nbsp;Projector». Starfield Technologies also uses the strongest identity authentication standard available on the
-        market today.
-      </p>
-      <h1>Full Data Backup</h1>
-      <p>
-        Our system automatically and securely backs up all your data every few hours. This means that it can be
-        immediately restored if there’s a server problem. In other words, once something is on «Spec&nbsp;Projector», it’s on there
-        until you delete it.
-      </p>
-      <h1>Secure Authorization</h1>
-      <p>
-        User sessions are saved in a special database and are assigned a new session ID every few minutes. This makes
-        stealing the sessions useless since the session ID won’t work by the time they get it.
-      </p>
+      <jnt-stack [align]="ui.align.stretch">
+        <jnt-message [icon]="ui.icons.information" [scheme]="ui.scheme.secondary"><b>«Spec&nbsp;Projector»</b> takes
+          advantage of some of the highest rated security software available today. This is so our customers can shop
+          with ease and not worry about identity theft or fraudulent charges.
+        </jnt-message>
 
-      <p>
-        specprojector.com may update this policy at any time. You may always view the most current version by clicking
-        the
-        following link, https://www.specprojector.com/security to make sure you’re up-to-date and familiar with our most
-        current policy. Your continued use of this site and its services constitutes your agreement and acceptance of
-        said changes, if and when they occur.
-      </p>
+        <jnt-timeline>
+          <jnt-timeline-item title="Securing Data And Information">
+            <ng-template #timelineItemContentTemplate><p>Your safety and the safety of the information you put onto our
+              site is one of «Spec&nbsp;Projector’s» highest priorities and biggest concerns. That’s why we use Deluxe
+              SSL to protect you and your information while you’re on our site. Starfield Technologies ensures secure
+              communication by encrypting all data to and from the site in an effort to make sure that your sensitive
+              information stays secure, and out of the hands of hackers and criminals. All transmitted data between your
+              browser and the server is protected by a security certificate SSL 256-bit encryption mechanism which
+              prevents unauthorized access to packets transmitted between your computer and «Spec&nbsp;Projector».
+              Starfield Technologies also uses the strongest identity authentication standard available on the market
+              today.</p></ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Full Data Backup" [icon]="ui.icons.lock">
+            <ng-template #timelineItemContentTemplate><p>Our system automatically and securely backs up all your data
+              every few hours. This means that it can be immediately restored if there’s a server problem. In other
+              words, once something is on «Spec&nbsp;Projector», it’s on there until you delete it.</p></ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Secure Authorization">
+            <ng-template #timelineItemContentTemplate><p>User sessions are saved in a special database and are assigned
+              a new session ID periodically. This makes stealing the sessions useless since the session ID won’t work by
+              the time they get it.</p></ng-template>
+          </jnt-timeline-item>
+        </jnt-timeline>
+
+        <jnt-message [icon]="ui.icons.information"
+                     [scheme]="ui.scheme.secondary"><b>«Spec&nbsp;Projector»</b> may update this policy at any time. You
+          may always view the most current version by clicking the following link,
+          https://www.specprojector.com/security to make sure you’re up-to-date and familiar with our most current
+          policy. Your continued use of this site and its services constitutes your agreement and acceptance of said
+          changes, if and when they occur.
+        </jnt-message>
+      </jnt-stack>
     </ng-container>
 
     <ng-container *ngSwitchCase="language.ru">
-      <h4><b>Ваши данные доступны только Вам</b></h4>
-      <p>
-        Доступ к вашим данным имеете только Вы и никто более. Никто из наших сотрудников, за исключением 2-х человек
-        нашей
-        компании, не имеет доступа к административной панели и серверам проекта. Мы не используем ваши данные в личных
-        целях и
-        не раскрываем их третьим лицам. Наш бизнес связан с реализацией удобного сервиса и никак не пересекается с
-        деятельностью вашей компании.
-      </p>
-      <h4><b>Полное резервирование данных</b></h4>
-      <p>
-        Все ваши данные мы бережно охраняем и принимаем все необходимые меры для их сохранности. С периодичностью в
-        несколько
-        часов в автоматическом режиме мы копируем все ваши данные и сохраняем их на защищенном внешнем носителе, что
-        позволяет
-        нам восстановить систему даже после полного выхода из строя серверов проекта.
-      </p>
-      <h4><b>Надежность работы системы</b></h4>
-      <p>
-        Для обеспечения надежности работы системы мы используем географически распределенную сеть серверов,
-        расположенную в
-        Российской Федерации. Данные между ними постоянно синхронизируются в режиме реального времени, что исключает
-        потерю
-        данных в случае нештатной ситуации. В случае какой-либо аварии, в кратчайшие сроки, все запросы будут
-        переведены
-        на
-        доступный сервер.
-      </p>
-      <h4><b>Шифрование канала передачи данных</b></h4>
-      <p>
-        Все передаваемые данные между вашим браузером и серверами проекта защищены сертификатом безопасности SSL.
-        256-битный
-        механизм шифрования предотвращает несанкционированный доступ к передаваемым пакетам между вашим компьютером и
-        проектом
-        amoCRM.
-      </p>
-      <h4><b>Защита авторизации</b></h4>
-      <p>
-        Авторизовываясь на нашем проекте вы можете быть уверены, что ваша сессия не будет похищена и использована для
-        хищения
-        ваших данных. Сессии пользователей хранятся в специальных таблицах БД, имеют ограниченный период жизни,
-        идентификатор
-        сессии меняется раз в несколько минут, что позволяет делать хищение сессий бесполезным для злоумышленников.
-      </p>
+      <jnt-app-page-header title="Безопасность" teaser="наших сервисов"
+                           [icon]="ui.icons.question"></jnt-app-page-header>
+
+      <jnt-stack [align]="ui.align.stretch">
+        <jnt-message [icon]="ui.icons.information" [scheme]="ui.scheme.secondary">
+          Наш сервис гарантирует выский уровень информационной безопасности. Это сделано для того, чтобы наши
+          клиенты могли спокойно использовать и оплачивать сервис и не беспокоиться о краже личных данных.
+        </jnt-message>
+
+        <jnt-timeline>
+          <jnt-timeline-item title="Ваши данные доступны только Вам">
+            <ng-template #timelineItemContentTemplate><p>Доступ к вашим данным имеете только Вы и никто более. Никто из
+              наших сотрудников, за исключением 2-х человек нашей компании, не имеет доступа к административной панели и
+              серверам проекта. Мы не используем ваши данные в личных целях и не раскрываем их третьим лицам. Наш бизнес
+              связан с реализацией удобного сервиса и никак не пересекается с деятельностью вашей компании.</p>
+            </ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Полное резервирование данных">
+            <ng-template #timelineItemContentTemplate><p>Все ваши данные мы бережно охраняем и принимаем все необходимые
+              меры для их сохранности. С периодичностью в несколько часов в автоматическом режиме мы копируем все ваши
+              данные и сохраняем их на защищенном внешнем носителе, что позволяет нам восстановить систему даже после
+              полного выхода из строя серверов проекта.</p></ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Надежность работы системы">
+            <ng-template #timelineItemContentTemplate><p>Для обеспечения надежности работы системы мы используем
+              географически распределенную сеть серверов, расположенную в Российской Федерации. Данные между ними
+              постоянно синхронизируются в режиме реального времени, что исключает потерю данных в случае нештатной
+              ситуации. В случае какой-либо аварии, в кратчайшие сроки, все запросы будут переведены на доступный
+              сервер.</p></ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Шифрование канала передачи данных" [icon]="ui.icons.lock">
+            <ng-template #timelineItemContentTemplate><p>Все передаваемые данные между вашим браузером и серверами
+              проекта
+              защищены сертификатом безопасности SSL. 256-битный механизм шифрования предотвращает несанкционированный
+              доступ к передаваемым пакетам между вашим компьютером и проектом «Spec&nbsp;Projector».</p></ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Защита авторизации">
+            <ng-template #timelineItemContentTemplate><p> Авторизовываясь на нашем проекте вы можете быть уверены, что
+              ваша сессия не будет похищена и использована для хищения ваших данных. Сессии пользователей хранятся в
+              специальных таблицах БД, имеют ограниченный период жизни, идентификатор сессии постоянно меняется, что
+              позволяет делать хищение сессий бесполезным для злоумышленников. </p></ng-template>
+          </jnt-timeline-item>
+        </jnt-timeline>
+      </jnt-stack>
     </ng-container>
   </ng-container>
 </jnt-container>
-

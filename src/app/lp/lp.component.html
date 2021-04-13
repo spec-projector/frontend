@@ -9,10 +9,13 @@
     </ng-template>
     <jnt-menu>
       <jnt-menu-item title="Features"
+                     i18n-title="@@action.features"
                      [link]="{source: [], fragment: 'features'}"></jnt-menu-item>
       <jnt-menu-item title="Pricing plans"
+                     i18n-title="@@action.pricing_plans"
                      [link]="{source: [], fragment: 'tariffs'}"></jnt-menu-item>
       <jnt-menu-item title="Support"
+                     i18n-title="@@action.support"
                      [link]="['support']"></jnt-menu-item>
     </jnt-menu>
     <ng-template #contentTemplate>
@@ -29,15 +32,9 @@
             link="/en/"></jnt-menu-item>
         </jnt-menu>
         <ng-container *ngIf="!!me;else notLoggedTemplate">
-          <jnt-stack [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small"
-                     [align]="ui.align.center">
-            <jnt-avatar [name]="me.firstName"
-                        [size]="ui.size.small"></jnt-avatar>
-            <jnt-link [title]="me.firstName"
-                      [source]="['/projects']"
-                      [icon]="{position: ui.position.right, icon: ui.icons.chevronRight}"></jnt-link>
-          </jnt-stack>
+          <jnt-avatar [name]="me.firstName"
+                      [size]="ui.size.small"
+                      [routerLink]="['/projects']"></jnt-avatar>
         </ng-container>
         <ng-template #notLoggedTemplate>
           <jnt-button [outline]="ui.outline.ghost"
@@ -53,7 +50,7 @@
     <jnt-container>
       <div data-hand [@move-hand]>
         <img src="assets/images/lp/hand.png" width="170" height="154" alt="hand">
-        <h1 [@coloring]>make</h1>
+        <h1 i18n="@@message.lp_make" [@coloring]>make</h1>
       </div>
       <img data-specifications
            src="assets/images/lp/welcome.webp" width="798" height="749">
@@ -71,17 +68,19 @@
            src="assets/images/lp/torus-big.png" width="272" height="273">
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.huge">
         <jnt-stack [align]="ui.align.stretch">
-          <h1 data-header>Where teams <br> specifications</h1>
-          <h3 data-teaser>We help teams write better <br> documentation for IT-products</h3>
+          <h1 data-header i18n="@@message.lp_slogan">Where teams <br> specifications</h1>
+          <h3 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products</h3>
         </jnt-stack>
         <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
           <jnt-button text="Try it for free now"
+                      i18n-text="@@action.try_for_free"
                       [icon]="ui.icons.arrowDown"
                       (click)="jumpTo('tariffs')">
           </jnt-button>
           <jnt-button data-how-works
                       [scheme]="ui.scheme.secondary"
                       text="How it works"
+                      i18n-text="@@action.how_it_works"
                       (click)="jumpTo('features')">
           </jnt-button>
         </jnt-stack>
@@ -90,10 +89,12 @@
   </jnt-lp-slide>
   <jnt-lp-slide>
     <jnt-container data-features>
-      <h1 id="features">Key features</h1>
-      <h3 data-teaser>Please, meet short review of our service</h3>
+      <h1 id="features" i18n="@@label.key_features">Key features</h1>
+      <h3 data-teaser i18n="@@message.key_features_teaser">Please, meet short review of our service</h3>
       <spec-lp-features>
         <jnt-button text="Try it for free now"
+                    i18n-text="@@action.try_for_free"
+                    [icon]="ui.icons.arrowDown"
                     (click)="jumpTo('tariffs')">
         </jnt-button>
       </spec-lp-features>
@@ -106,10 +107,9 @@
 
   <jnt-lp-slide>
     <jnt-container data-tariffs>
-      <h1 id="tariffs">Pricing plans</h1>
-      <h3 data-teaser>Please, choose optimal plan for you</h3>
-      <spec-lp-tariffs [me]="me"
-                       (selected)="buy($event)"></spec-lp-tariffs>
+      <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
+      <h3 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h3>
+      <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
     </jnt-container>
   </jnt-lp-slide>
 
@@ -118,22 +118,26 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center"
                  [justify]="ui.justify.between">
-        <jnt-link data-junte title="Junte Team 2016 – 2021"
-                  [icon]="ui.icons.junteStroke"
-                  [target]="ui.target.blank"
-                  source="//junte.team"></jnt-link>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [gutter]="ui.gutter.small"
+                   [align]="ui.align.end">
+          <jnt-icon [icon]="ui.icons.junteStroke"></jnt-icon>
+          <jnt-link data-junte title="Junte Team 2016 – 2021"
+                    [target]="ui.target.blank"
+                    source="//junte.team"></jnt-link>
+        </jnt-stack>
         <jnt-menu [spacing]="ui.gutter.small">
           <jnt-menu-item title="Agreement"
-                         i18n-title="@@label.agreement"
+                         i18n-title="@@action.agreement"
                          [link]="['agreement']"></jnt-menu-item>
           <jnt-menu-item title="Policy"
-                         i18n-title="@@label.policy"
+                         i18n-title="@@action.policy"
                          [link]="['policy']"></jnt-menu-item>
           <jnt-menu-item title="Security"
-                         i18n-title="@@label.security"
+                         i18n-title="@@action.security"
                          [link]="['security']"></jnt-menu-item>
           <jnt-menu-item title="Contacts"
-                         i18n-title="@@label.contacts"
+                         i18n-title="@@action.contacts"
                          [link]="['contacts']"></jnt-menu-item>
         </jnt-menu>
       </jnt-stack>

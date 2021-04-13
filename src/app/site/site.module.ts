@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  AppLayoutModule,
-  BreadcrumbsModule,
-  GridModule,
-  LinkModule,
-  MenuModule,
-  MessageModule,
-  ModalModule,
-  PopoverModule, StackModule
+    AppLayoutModule,
+    BreadcrumbsModule,
+    GridModule,
+    LinkModule,
+    MenuModule,
+    MessageModule,
+    ModalModule,
+    PopoverModule, StackModule, TimelineModule
 } from '@junte/ui';
 import { AgreementComponent } from './agreement/agreement.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -27,22 +27,23 @@ import { SupportComponent } from './support/support.component';
     ContactsComponent,
     SupportComponent
   ],
-  imports: [
-    CommonModule,
-    CommonModule,
+    imports: [
+        CommonModule,
+        CommonModule,
 
-    SiteRoutingModule,
+        SiteRoutingModule,
 
-    AppLayoutModule,
-    PopoverModule,
-    ModalModule,
-    MenuModule,
-    GridModule,
-    BreadcrumbsModule,
-    LinkModule,
-    MessageModule,
-    StackModule
-  ]
+        AppLayoutModule,
+        PopoverModule,
+        ModalModule,
+        MenuModule,
+        GridModule,
+        BreadcrumbsModule,
+        LinkModule,
+        MessageModule,
+        StackModule,
+        TimelineModule
+    ]
 })
 export class SiteModule {
 

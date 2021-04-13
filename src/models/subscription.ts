@@ -8,6 +8,9 @@ export class Subscription {
   id: number;
 
   @Field()
+  createdAt: Date;
+
+  @Field()
   tariff: Tariff;
 
   @Field({serializer: new DateSerializer()})

@@ -2,13 +2,26 @@
   *ngIf="!!me?.changeSubscriptionRequest && me?.changeSubscriptionRequest?.toSubscription?.id !== me?.subscription?.id; else selectTariffTemplate"
   [icon]="ui.icons.animated.reload"
   [scheme]="ui.scheme.secondary">
-  Вы отправили запрос на смену тарифа на
-  <jnt-label [label]="me.changeSubscriptionRequest.tariff.title"></jnt-label>
-  <br>
-  Обычно это занимает не более 1 мин. Пожалуйста, подождите. В случае проблем обратитесь в службу
-  <jnt-link title="поддержки"
-            [icon]="{icon: ui.icons.link, position: ui.position.right}"
-            [source]="['/support']"></jnt-link>
+  <ng-container [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      You made request changing to tariff
+      <jnt-label [label]="me.changeSubscriptionRequest.tariff.title"></jnt-label>
+      <br>
+      Usually it requires less 1 minute. Please wait a little bit. If you have a problems please write to
+      <jnt-link title="support"
+                [icon]="{icon: ui.icons.link, position: ui.position.right}"
+                [source]="['/support']"></jnt-link>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Вы отправили запрос на смену тарифа на
+      <jnt-label [label]="me.changeSubscriptionRequest.tariff.title"></jnt-label>
+      <br>
+      Обычно это занимает не более 1 мин. Пожалуйста, подождите. В случае проблем обратитесь в
+      <jnt-link title="поддержку"
+                [icon]="{icon: ui.icons.link, position: ui.position.right}"
+                [source]="['/support']"></jnt-link>
+    </ng-container>
+  </ng-container>
 </jnt-message>
 
 <ng-template #selectTariffTemplate>
@@ -16,17 +29,34 @@
     <jnt-message *ngIf="me?.subscription.tariff.price > 0"
                  [scheme]="ui.scheme.secondary"
                  [icon]="ui.icons.information">
-      For canceling or changing your subscription, please write to
-      <jnt-link title="support"
-                [icon]="ui.icons.link"
-                [source]="['/support']"></jnt-link>
+      <ng-container [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          For canceling or changing your subscription, please write to
+          <jnt-link title="support"
+                    [icon]="ui.icons.link"
+                    [source]="['/support']"></jnt-link>
 
-      or you can use special form
-      <jnt-link
-        title="cloud payments"
-        [icon]="ui.icons.link"
-        [target]="ui.target.blank"
-        source="https://my.cloudpayments.ru/en/unsubscribe"></jnt-link>
+          or you can use special form
+          <jnt-link
+            title="cloud payments"
+            [icon]="ui.icons.link"
+            [target]="ui.target.blank"
+            source="https://my.cloudpayments.ru/en/unsubscribe"></jnt-link>
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          Для изменения или отмены подписки, пожалуйста, обратитесь в
+          <jnt-link title="поддержку"
+                    [icon]="ui.icons.link"
+                    [source]="['/support']"></jnt-link>
+
+          или используйте специальную форму
+          <jnt-link
+            title="cloud payments"
+            [icon]="ui.icons.link"
+            [target]="ui.target.blank"
+            source="https://my.cloudpayments.ru/en/unsubscribe"></jnt-link>
+        </ng-container>
+      </ng-container>
     </jnt-message>
     <jnt-row [gutter]="ui.gutter.normal"
              [align]="ui.align.stretch">
@@ -43,7 +73,8 @@
                        [align]="ui.align.center">
               <jnt-icon data-tarrif-icon [icon]="t.icon + ':svg:local:stroked'"></jnt-icon>
               <h3>
-                {{t.price | currency:'USD':'symbol':'1.0-0'}} <span>per month</span><br>
+                {{t.price | currency:'USD':'symbol':'1.0-0'}}
+                <span i18n="@@label.per_month">per month</span><br>
                 {{t.title}}
               </h3>
             </jnt-stack>
@@ -57,7 +88,14 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>{{t.maxProjects < 999 ? t.maxProjects : '∞'}} projects</div>
+                <div>{{t.maxProjects < 999 ? t.maxProjects : '∞'}}
+                  <ng-container *ngIf="t.maxProjects > 1;else singleProjectTemplate">
+                    <ng-container i18n="@@label.many_projects">projects</ng-container>
+                  </ng-container>
+                  <ng-template #singleProjectTemplate>
+                    <ng-container i18n="@@label.single_project">project</ng-container>
+                  </ng-template>
+                </div>
               </jnt-stack>
 
               <jnt-stack data-feature-on
@@ -67,7 +105,9 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>{{t.maxProjectMembers < 999 ? t.maxProjectMembers : '∞'}} members for project</div>
+                <div>{{t.maxProjectMembers < 999 ? t.maxProjectMembers : '∞'}}
+                  <ng-container i18n="@@label.members_for_project">members for project</ng-container>
+                </div>
               </jnt-stack>
 
               <jnt-stack data-feature-on
@@ -78,7 +118,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>Community chat</div>
+                <div i18n="@@label.feature_community_chat">Community chat</div>
               </jnt-stack>
 
               <jnt-stack data-feature-on
@@ -89,7 +129,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>Slack support</div>
+                <div i18n="@@label.feature_slack_support">Slack support</div>
               </jnt-stack>
 
               <jnt-stack data-feature-on
@@ -100,7 +140,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>Exclusive slack support</div>
+                <div i18n="@@label.feature_exclusive_slack_support">Exclusive slack support</div>
               </jnt-stack>
 
               <jnt-stack data-feature-on
@@ -112,7 +152,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>All features</div>
+                <div i18n="@@label.all_features">All features</div>
               </jnt-stack>
             </jnt-stack>
 
@@ -124,7 +164,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
                 </div>
-                <div>Roles for members</div>
+                <div i18n="@@label.feature_roles_for_teams">Roles for members</div>
               </jnt-stack>
 
               <jnt-stack data-feature-off
@@ -134,7 +174,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
                 </div>
-                <div>Print contract</div>
+                <div i18n="@@label.feature_print_contract">Print contract</div>
               </jnt-stack>
 
               <jnt-stack data-feature-off
@@ -144,7 +184,7 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOff"></jnt-icon>
                 </div>
-                <div>Export / import</div>
+                <div i18n="@@label.feature_export_import">Export / import</div>
               </jnt-stack>
             </ng-template>
           </jnt-stack>
@@ -158,7 +198,9 @@
                     <jnt-icon data-selected [icon]="ui.icons.checked"></jnt-icon>
                   </jnt-stack>
                   <jnt-date-period *ngIf="!!me?.subscription.activeUntil"
-                                   [start]="today" [end]="me?.subscription.activeUntil"></jnt-date-period>
+                                   [start]="me?.subscription.createdAt"
+                                   [current]="today"
+                                   [end]="me?.subscription.activeUntil"></jnt-date-period>
                 </jnt-stack>
               </ng-template>
               <ng-container *ngIf="t.id !== me?.subscription?.tariff.id; else currentTemplate">

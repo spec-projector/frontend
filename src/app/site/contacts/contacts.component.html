@@ -1,14 +1,50 @@
-<jnt-app-page-header title="Контакты"
-                     [icon]="ui.icons.compass"></jnt-app-page-header>
+<jnt-container>
+  <ng-container [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      <jnt-app-page-header title="Contacts"
+                           teaser="for finding us"
+                           [icon]="ui.icons.compass"></jnt-app-page-header>
 
-<p><a href="//junte.team">Junte Team</a> - экспетры в области web и мобильной разработки</p>
-<p><b>ИП Бреславский Антон Вадимович</b></p>
-<p>153000, Ивановская обл., г. Иваново, ул. Смирнова, д. 83, оф. 11</p>
-<p>ИНН: 370200463337 | ОГРНИП: 316370200083752</p>
+      <p>
+        <jnt-link title="Junte Team"
+                  [icon]="ui.icons.junteStroke"
+                  source="//www.junte.team"
+                  [target]="ui.target.blank"></jnt-link>
+        – experts of custom WEB & mobile apps development
+      </p>
+      <p><b>Individual Proprietor Anton Breslavskiy</b></p>
+      <p>153000, Russia, Ivanovo, Smirnova str. 83/1011</p>
+      <p>TIN: 370200463337 | OGRNIP: 316370200083752</p>
 
-<p>Вопросы и предложения:
-  <jnt-link title="anton@junte.it"
-            source="mailto:sp@junte.ru"></jnt-link>
-</p>
+      <p>Questions & suggestions:
+        <jnt-link title="sp@junte.ru"
+                  source="mailto:sp@junte.ru"></jnt-link>
+      </p>
 
-<p>Расчетный счет 40802810670010011804 в МОСКОВСКИЙ ФИЛИАЛ АО КБ "МОДУЛЬБАНК" г. Москва, БИК 044525092</p>
+      <p>Bank account 40802978570011000241 (EUR) in MODULBANK, SWIFT: MODBRU22</p>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <jnt-app-page-header title="Контакты"
+                           teaser="по которым нас легко найти"
+                           [icon]="ui.icons.compass"></jnt-app-page-header>
+
+      <p>
+        <jnt-link title="Junte Team"
+                  [icon]="ui.icons.junteStroke"
+                  source="//www.junte.team"
+                  [target]="ui.target.blank"></jnt-link>
+        – экспетры в области WEB и мобильной разработки
+      </p>
+      <p><b>ИП Бреславский Антон Вадимович</b></p>
+      <p>153000, Ивановская обл., г. Иваново, ул. Смирнова, д. 83, оф. 11</p>
+      <p>ИНН: 370200463337 | ОГРНИП: 316370200083752</p>
+
+      <p>Вопросы и предложения:
+        <jnt-link title="anton@junte.it"
+                  source="mailto:sp@junte.ru"></jnt-link>
+      </p>
+
+      <p>Расчетный счет 40802810670010011804 в МОСКОВСКИЙ ФИЛИАЛ АО КБ «МОДУЛЬБАНК» г. Москва, БИК: 044525092</p>
+    </ng-container>
+  </ng-container>
+</jnt-container>

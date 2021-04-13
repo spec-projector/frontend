@@ -16,6 +16,7 @@ query Me {
     isActive
     subscription {
       id
+      createdAt
       tariff {
         id
         title

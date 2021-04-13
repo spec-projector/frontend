@@ -19,10 +19,9 @@
               <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
               <jnt-input #titleInput formControlName="title"
                          placeholder="CRM system for sales"
-                         i18n-placeholder="@@messge.crm_system_for_sales"></jnt-input>
+                         i18n-placeholder="@@message.crm_system_for_sales"></jnt-input>
               <jnt-form-message [validator]="ui.validator.required"
-                                i18n="@@message.title_is_required">
-                Title is required
+                                i18n="@@message.title_is_required">Title is required
               </jnt-form-message>
             </jnt-form-control>
           </jnt-form-item>
@@ -35,8 +34,7 @@
                          [features]="[ui.feature.multiline]"
                          [rows]="3"></jnt-input>
               <jnt-form-message [validator]="ui.validator.required"
-                                i18n="@@message.title_is_required">
-                Title is required
+                                i18n="@@message.title_is_required">Title is required
               </jnt-form-message>
             </jnt-form-control>
           </jnt-form-item>
