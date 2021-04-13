@@ -37,4 +37,5 @@ import { LoginComponent } from 'src/app/login/login.component';
   ]
 })
 export class LoginModule {
+
 }
