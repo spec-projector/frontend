@@ -1,12 +1,14 @@
 import { Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
+import { ComponentFactoryResolver, Injector } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from '@junte/ui';
+import { ModalService, UI } from '@junte/ui';
 import { AppConfig } from 'src/app/app-config';
 import { Language } from 'src/enums/language';
 import { LOCALIZE_REGEX } from '../../consts';
 import { LocalUI } from '../../enums/local-ui';
 import { MeUser } from '../../models/user';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'spec-layout',
@@ -33,7 +35,10 @@ export class LayoutComponent implements OnInit {
               public config: AppConfig,
               private fb: FormBuilder,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private injector: Injector,
+              private cfr: ComponentFactoryResolver,
+              private modal: ModalService) {
   }
 
   ngOnInit() {
@@ -48,5 +53,11 @@ export class LayoutComponent implements OnInit {
   logout() {
     this.config.token = null;
     this.router.navigate(['/']).then(() => null);
+  }
+
+  changePassword() {
+    const component = this.cfr.resolveComponentFactory(ChangePasswordComponent).create(this.injector);
+    component.instance.closed.subscribe(() => this.modal.close());
+    this.modal.open(component, {title: {text: 'Change password', icon: UI.icons.lock}});
   }
 }
