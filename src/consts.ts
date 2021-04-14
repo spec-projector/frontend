@@ -97,6 +97,7 @@ switch (language) {
     fnsConfig.setLocale(dfnsLocale);
     config = {
       i18n: i18nRu,
+      hash: BUILD_HASH,
       weekStartsOn: FIRST_DAY_OF_WEEK,
       locale: {
         ui: jntRu,
