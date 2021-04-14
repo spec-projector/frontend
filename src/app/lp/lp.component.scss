@@ -34,6 +34,13 @@ $jnt-ng-deep: true;
   }
 }
 
+[data-logo] {
+  display: block;
+  img {
+    display: block;
+  }
+}
+
 jnt-lp-header::ng-deep {
   transition: background .5s ease;
 }

@@ -87,7 +87,7 @@ export let APP_PROVIDERS: Provider[] = [
 
 let data;
 let dfnsLocale;
-export let config = {};
+export let config;
 switch (language) {
   case Language.ru:
     data = getLocaleData(localeRu);

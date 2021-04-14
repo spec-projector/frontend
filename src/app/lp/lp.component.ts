@@ -20,7 +20,7 @@ const HAND_ROTATE = '20deg';
     trigger('move', [
       transition('* => void', moveKeyframes, {params: {distance: '0,0,0'}})
     ]),
-    trigger('move-hand', [
+    trigger('moveHand', [
       state('void', style({transform: 'translate3D(0, 0, 0) rotate({{handRotate}})'}),
         {params: {handRotate: HAND_ROTATE}}),
       state('*', style({transform: 'translate3D({{handDistance}}) rotate(0)'}),

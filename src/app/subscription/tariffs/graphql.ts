@@ -13,6 +13,7 @@ export class TariffsGQL extends Query<{ tariffs }> {
     edges {
       node {
         id
+        code
         title
         teaser
         icon

@@ -78,7 +78,26 @@
                 {{t.title}}
               </h3>
             </jnt-stack>
-            <p data-teaser>{{t.teaser}}</p>
+            <p data-teaser>
+              <ng-container [ngSwitch]="locale">
+                <ng-container *ngSwitchDefault>
+                  {{t.teaser}}
+                </ng-container>
+                <ng-container *ngSwitchCase="language.ru">
+                  <ng-container [ngSwitch]="t.code">
+                    <ng-container *ngSwitchCase="'free'">
+                      Попробуйте ключевые возможности без какой-либо оплаты
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'startup'">
+                      Подходит для небольших команд и включает все возможности
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'enterprise'">
+                      Используйте сервис без ограничений и получите персональную поддержку
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </p>
             <hr>
             <jnt-stack>
               <jnt-stack data-feature-on
@@ -90,7 +109,12 @@
                 </div>
                 <div>{{t.maxProjects < 999 ? t.maxProjects : '∞'}}
                   <ng-container *ngIf="t.maxProjects > 1;else singleProjectTemplate">
-                    <ng-container i18n="@@label.many_projects">projects</ng-container>
+                    <ng-template #threeProjectTemplate>
+                      <ng-container i18n="@@label.three_projects">projects</ng-container>
+                    </ng-template>
+                    <ng-container *ngIf="t.maxProjects >= 5;else threeProjectTemplate"
+                                  i18n="@@label.many_projects">projects
+                    </ng-container>
                   </ng-container>
                   <ng-template #singleProjectTemplate>
                     <ng-container i18n="@@label.single_project">project</ng-container>
@@ -204,10 +228,19 @@
                 </jnt-stack>
               </ng-template>
               <ng-container *ngIf="t.id !== me?.subscription?.tariff.id; else currentTemplate">
-                <jnt-button *ngIf="me?.subscription.tariff.price <= 0"
-                            [text]="t.price > 0 ? 'Buy' : 'Try'"
-                            [scheme]="ui.scheme.accent"
-                            (click)="select(t)"></jnt-button>
+                <ng-container *ngIf="me?.subscription.tariff.price <= 0">
+                  <ng-template #freeTariffTemplate>
+                    <jnt-button text="Try"
+                                i18n-text="@@action.try"
+                                [scheme]="ui.scheme.accent"
+                                (click)="select(t)"></jnt-button>
+                  </ng-template>
+                  <jnt-button *ngIf="t.price > 0;else freeTariffTemplate"
+                              text="Buy"
+                              i18n-text="@@action.buy"
+                              [scheme]="ui.scheme.accent"
+                              (click)="select(t)"></jnt-button>
+                </ng-container>
               </ng-container>
             </jnt-stack>
           </ng-template>

@@ -20,6 +20,9 @@ export class Tariff {
   title: string;
 
   @Field()
+  code: string;
+
+  @Field()
   teaser: string;
 
   @Field()
