@@ -21,6 +21,7 @@ export const SCHEME_VERSION = 2;
 export const PLATFORM_DELAY = 100;
 export const DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
+export const BUILD_HASH = 'v15';
 
 enum CurrencyCode {
   usd = 'usd',
@@ -115,7 +116,7 @@ switch (language) {
     fnsConfig.setLocale(dfnsLocale);
     config = {
       i18n: i18nEn,
-      hash: 'v10',
+      hash: BUILD_HASH,
       weekStartsOn: FIRST_DAY_OF_WEEK,
       locale: {
         ui: jntEnUs,

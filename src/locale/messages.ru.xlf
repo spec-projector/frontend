@@ -153,7 +153,7 @@
       </trans-unit>
       <trans-unit id="label.agreement" datatype="html">
         <source>Agreement</source>
-        <target>Лицензия</target>
+        <target>Лицензионное соглашение</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
           <context context-type="linenumber">16</context>
