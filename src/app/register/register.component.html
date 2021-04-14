@@ -79,8 +79,7 @@
                               i18n="@@message.field_required">This field is required
             </jnt-form-message>
             <jnt-form-message [validator]="ui.validator.email"
-                              i18n="@@message.enter_valid_email">
-              Enter valid email
+                              i18n="@@message.enter_valid_email">Enter valid email
             </jnt-form-message>
           </jnt-form-control>
         </jnt-form-item>
@@ -109,7 +108,7 @@
                       [width]="ui.width.fluid"
                       [type]="ui.button.type.submit">
           </jnt-button>
-          <p>Or register by</p>
+          <p i18n="@@message.register_by">Or register by</p>
           <jnt-stack [orientation]="ui.orientation.horizontal"
                      [gutter]="ui.gutter.small">
             <jnt-button text="Google"
@@ -118,7 +117,7 @@
                         [width]="ui.width.fluid"
                         (click)="socialRegister(loginSystem.google)">
             </jnt-button>
-            <jnt-button text="Gitlab"
+            <jnt-button text="GitLab"
                         [scheme]="ui.scheme.secondary"
                         [icon]="ui.icons.gitlab"
                         [width]="ui.width.fluid"

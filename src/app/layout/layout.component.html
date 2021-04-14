@@ -52,8 +52,14 @@
                          (click)="localize(language.en)"></jnt-menu-item>
         </jnt-menu>
 
+        <jnt-link title="Support"
+                  i18n-title="@@label.support"
+                  [icon]="localUi.icons.support"
+                  [outline]="ui.outline.ghost"
+                  [source]="['/support']"></jnt-link>
+
         <jnt-link *ngIf="!!me;else notLoggedTemplate"
-                  title="{{me.subscription.tariff.title}} plan"
+                  [title]="me.subscription.tariff.title"
                   [icon]="me.subscription.tariff.icon + ':svg:local:stroked'"
                   [outline]="ui.outline.ghost"
                   [source]="['/subscription']"></jnt-link>

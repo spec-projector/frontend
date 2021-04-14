@@ -1,6 +1,84 @@
-<jnt-app-page-header [icon]="localUi.icons.terms"
-                     title="Support"
-                     i18n-title="@@label.subscription"
-                     teaser="for our dear clients"
-                     i18n-teaser="@@message.subscription_teaser">
-</jnt-app-page-header>
+<jnt-container>
+  <ng-container [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      <jnt-app-page-header title="Support"
+                           teaser="for our dear clients"
+                           [icon]="localUi.icons.support">
+      </jnt-app-page-header>
+      <jnt-stack [align]="ui.align.stretch">
+        <jnt-message [icon]="ui.icons.junteStroke"
+                     [scheme]="ui.scheme.success">
+          We value our clients and try to provide best service as we can.
+        </jnt-message>
+        <jnt-timeline>
+          <jnt-timeline-item title="Users community">
+            <ng-template #timelineItemContentTemplate>
+              <p>Please use our
+                <jnt-link title="Slack community"
+                          source="https://join.slack.com/t/slack-sfw8660/shared_invite/zt-oue5mwrr-ufE36oqD1VYQFqKfGtjnkA"
+                          [icon]="ui.icons.messages"
+                          [target]="ui.target.blank"></jnt-link>
+                for getting answers on <b>most frequency</b> questions.
+              </p>
+              <p>Please, make <b>suggestions</b> for improving our service, we need your feedback!</p>
+            </ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Paid subscription">
+            <ng-template #timelineItemContentTemplate>
+              <p>Thanks for your trusting, we want to have free service, but we have costs for servers and work of
+                team.</p>
+              <p>After moving to <b>paid tariff</b> your will get invite to special private channel in Slack.
+              </p>
+              <p>Your will be able to write our developers directly and they solve your question in real time.</p>
+            </ng-template>
+          </jnt-timeline-item>
+        </jnt-timeline>
+        <p>For any other questions you always can write us to
+          <jnt-link title="sp@junte.ru"
+                    [icon]="ui.icons.email"
+                    source="mailto:sp@junte.ru"></jnt-link>
+        </p>
+      </jnt-stack>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <jnt-app-page-header title="Поддержка"
+                           teaser="наших дорогих клиентов"
+                           [icon]="localUi.icons.support">
+      </jnt-app-page-header>
+      <jnt-stack [align]="ui.align.stretch">
+        <jnt-message [icon]="ui.icons.junteStroke"
+                     [scheme]="ui.scheme.success">
+          Мы очень ценим наших клиентов и стараемся обеспечить наилучший сервис.
+        </jnt-message>
+        <jnt-timeline>
+          <jnt-timeline-item title="Сообщество пользователей">
+            <ng-template #timelineItemContentTemplate>
+              <p>Используйте наше
+                <jnt-link title="сообщество в Slack"
+                          source="https://join.slack.com/t/slack-sfw8660/shared_invite/zt-oue5mwrr-ufE36oqD1VYQFqKfGtjnkA"
+                          [icon]="ui.icons.messages"
+                          [target]="ui.target.blank"></jnt-link>
+                для ответов на наиболее <b>часто задаваемые</b> вопросы.
+              </p>
+              <p>Смело делайте <b>предложения</b> по развитию сервиса, мы очень ценим Вашу обратную связь!</p>
+            </ng-template>
+          </jnt-timeline-item>
+          <jnt-timeline-item title="Платная подписка">
+            <ng-template #timelineItemContentTemplate>
+              <p>Мы очень ценим Ваше доверие, мы бы очень хотели сделать сервис бесплатным, но у есть затраты на сервера
+                и работу команды.</p>
+              <p>После перехода на <b>платный тариф</b> Вы получите приглашение в специальный закрытый канал в Slack.
+              </p>
+              <p>Вы сможете писать нашим разработчикам напрямую и мы решим Ваш вопрос в реальном времени.</p>
+            </ng-template>
+          </jnt-timeline-item>
+        </jnt-timeline>
+        <p>По любым другим вопросам Вы так же всегда можете написать нам на
+          <jnt-link title="sp@junte.ru"
+                    [icon]="ui.icons.email"
+                    source="mailto:sp@junte.ru"></jnt-link>
+        </p>
+      </jnt-stack>
+    </ng-container>
+  </ng-container>
+</jnt-container>

@@ -23,6 +23,12 @@ export class LocalUI {
     startup: 'startup:svg:local:stroked',
     enterprise: 'enterprise:svg:local:stroked',
     featureOn: 'feature-on:svg:local:stroked',
-    featureOff: 'feature-off:svg:local:stroked'
+    featureOff: 'feature-off:svg:local:stroked',
+    agreement: 'agreement:svg:local:stroked',
+    policy: 'policy:svg:local:stroked',
+    security: 'security:svg:local:stroked',
+    contacts: 'contacts:svg:local:stroked',
+    support: 'support:svg:local:stroked',
+    cp: 'cloud_payments:svg:local'
   };
 }

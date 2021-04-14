@@ -1,8 +1,9 @@
 <jnt-container>
   <ng-container [ngSwitch]="locale">
     <ng-container *ngSwitchDefault>
-      <jnt-app-page-header title="Security Statement" teaser="for our services"
-                           [icon]="ui.icons.question"></jnt-app-page-header>
+      <jnt-app-page-header title="Security Statement"
+                           teaser="for our services"
+                           [icon]="localUi.icons.security"></jnt-app-page-header>
       <jnt-stack [align]="ui.align.stretch">
         <jnt-message [icon]="ui.icons.information" [scheme]="ui.scheme.secondary"><b>«Spec&nbsp;Projector»</b> takes
           advantage of some of the highest rated security software available today. This is so our customers can shop
@@ -44,8 +45,9 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="language.ru">
-      <jnt-app-page-header title="Безопасность" teaser="наших сервисов"
-                           [icon]="ui.icons.question"></jnt-app-page-header>
+      <jnt-app-page-header title="Безопасность"
+                           teaser="наших сервисов"
+                           [icon]="localUi.icons.security"></jnt-app-page-header>
 
       <jnt-stack [align]="ui.align.stretch">
         <jnt-message [icon]="ui.icons.information" [scheme]="ui.scheme.secondary">

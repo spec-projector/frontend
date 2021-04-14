@@ -1,8 +1,9 @@
 <jnt-container>
   <ng-container [ngSwitch]="locale">
     <ng-container *ngSwitchDefault>
-      <jnt-app-page-header title="Privacy Policy" teaser="for using services"
-                           [icon]="ui.icons.question"></jnt-app-page-header>
+      <jnt-app-page-header title="Privacy Policy"
+                           teaser="for using services"
+                           [icon]="localUi.icons.policy"></jnt-app-page-header>
       <p>Welcome, and thank you for your interest in «Spec&nbsp;Projector» («Spec&nbsp;Projector» is the product of
         Junte Software, and is referred to in the following text as «Spec&nbsp;Projector», «SP», «we», or «us»), our web
         site at
@@ -588,8 +589,9 @@
       </ol>
     </ng-container>
     <ng-container *ngSwitchCase="language.ru">
-      <jnt-app-page-header [icon]="ui.icons.question" title="Политика обработки персональных данных"
-                           teaser="на сайте сервиса"></jnt-app-page-header>
+      <jnt-app-page-header title="Политика обработки персональных данных"
+                           teaser="на сайте сервиса"
+                           [icon]="localUi.icons.policy"></jnt-app-page-header>
       <ol>
         <li><h1>ОБЩИЕ ПОЛОЖЕНИЯ</h1>
           <p>Политика обработки персональных данных (далее – Политика) разработана в соответствии с Федеральным законом

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import 'reflect-metadata';
 import { Language } from '../../enums/language';
+import { LocalUI } from '../../enums/local-ui';
 import { Tariff } from '../../models/tariffs';
 import { MeUser } from '../../models/user';
 import { AppConfig } from '../app-config';
@@ -47,6 +48,7 @@ const HAND_ROTATE = '20deg';
 export class LpComponent implements OnInit {
 
   ui = UI;
+  localUi = LocalUI;
   distance = Distance;
   language = Language;
 
