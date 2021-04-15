@@ -54,9 +54,6 @@ export class LpComponent implements OnInit {
 
   me: MeUser;
 
-  @HostBinding('attr.data-scrolled')
-  scrolled = false;
-
   constructor(@Inject(LOCALE_ID) public locale: string,
               private config: AppConfig,
               private route: ActivatedRoute,
@@ -65,14 +62,6 @@ export class LpComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({me}) => this.me = me);
-  }
-
-  @HostListener('window:scroll', ['event'])
-  onPageScroll() {
-    const offset = window.pageYOffset
-      || document.documentElement.scrollTop
-      || document.body.scrollTop || 0;
-    this.scrolled = offset > 0;
   }
 
   jumpTo(fragment: string) {

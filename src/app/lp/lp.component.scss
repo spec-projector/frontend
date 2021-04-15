@@ -21,17 +21,11 @@ $jnt-ng-deep: true;
   }
 }
 
-;
-
 :host {
   display: block;
 
   @include jnt-lp-header((position: fixed, padding: $jnt-gutter-big 0));
   @include jnt-button((text-transform: uppercase, font-weight: $jnt-font-weight-bold));
-
-  &[data-scrolled='true'] {
-    @include jnt-lp-header((background: $jnt-white-color));
-  }
 }
 
 [data-logo] {
@@ -39,14 +33,6 @@ $jnt-ng-deep: true;
   img {
     display: block;
   }
-}
-
-jnt-lp-header::ng-deep {
-  transition: background .5s ease;
-}
-
-[data-lang] {
-  @include jnt-menu((top: (item: (color: $jnt-primary-color, text-transform: uppercase))), '&');
 }
 
 h1 {
@@ -126,14 +112,4 @@ jnt-lp-slide {
     }
   }
 
-}
-
-[data-footer] {
-  padding: $jnt-gutter-normal 0;
-
-  [data-junte] {
-    @include jnt-link((color: $jnt-gray-900-color), '&');
-  }
-
-  @include jnt-menu((top: (item: (font-size: $jnt-font-size-small))));
 }
