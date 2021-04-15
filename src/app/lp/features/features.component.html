@@ -43,10 +43,10 @@
       <div *ngIf="feature !== features.featuresMap"
            [@fadeOut]
            (click)="feature = features.featuresMap">
-        <h4 i18n="@@label.feature_features_map">Your app features map</h4>
+        <h4 i18n="@@label.feature_features_map">Features map</h4>
       </div>
       <jnt-card data-active [@fadeIn] *ngIf="feature === features.featuresMap">
-        <h4 i18n="@@label.feature_features_map">Your app features map</h4>
+        <h4 i18n="@@label.feature_features_map">Features map</h4>
         <p i18n="@@label.feature_features_map_teaser">Structure features of your app by roles and epics</p>
       </jnt-card>
     </div>
