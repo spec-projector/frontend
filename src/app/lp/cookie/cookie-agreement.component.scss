@@ -1,0 +1,40 @@
+@import 'src/variables';
+@import '~@junte/ui/lib/assets/styles/layout/grid';
+@import '~@junte/ui/lib/assets/styles/layout/responsive';
+@import '~@junte/ui/lib/assets/styles/layout/collapsible';
+@import '~@junte/ui/lib/assets/styles/elements/icon';
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba($jnt-white-color, 0.6);
+  backdrop-filter: blur(30px);
+  padding: $jnt-gutter-big 0;
+  box-sizing: border-box;
+
+  @include jnt-grid-container((width: 970px)) {
+    width: 970px;
+    position: relative;
+    text-align: center;
+
+    @include for-mobile() {
+      width: 100%;
+    }
+  }
+
+  @include jnt-icon((color: $jnt-primary-color));
+
+  @include jnt-collapsible((background: transparent, padding: 0, corner: 0, border: none));
+}
+
+h4 {
+  margin: 0;
+  font-weight: $jnt-font-weight-bold;
+}
+
+

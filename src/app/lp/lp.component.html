@@ -152,4 +152,8 @@
       <jnt-icon [icon]="localUi.icons.cp"></jnt-icon>
     </ng-template>
   </jnt-lp-footer>
+  <spec-cookie-agreement *ngIf="!cookie"
+                         (agree)="cookie = 'yes'"
+                         [@move]="{value: '', params: {distance: '0, 100%, 0'}}">
+  </spec-cookie-agreement>
 </jnt-lp-layout>

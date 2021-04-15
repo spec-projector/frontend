@@ -1,0 +1,21 @@
+<jnt-container>
+  <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+    <jnt-stack [align]="ui.align.center"
+               [orientation]="ui.orientation.horizontal"
+               [justify]="ui.justify.between">
+      <jnt-stack [align]="ui.align.center"
+                 [gutter]="ui.gutter.big"
+                 [orientation]="ui.orientation.horizontal">
+        <jnt-icon [icon]="ui.icons.information"></jnt-icon>
+        <h4>We use cookies for effective site work</h4>
+      </jnt-stack>
+      <jnt-button text="Ok" (click)="agree.next()"></jnt-button>
+    </jnt-stack>
+    <jnt-collapsible title="More information">
+        <ng-template #collapsibleContentTemplate>
+          <p>We and our partners are using technologies like Cookies or Targeting and process personal...</p>
+        </ng-template>
+    </jnt-collapsible>
+  </jnt-stack>
+</jnt-container>
+

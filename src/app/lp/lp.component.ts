@@ -1,5 +1,5 @@
 import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, HostListener, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import 'reflect-metadata';
@@ -12,6 +12,7 @@ import { Distance, moveKeyframes } from './animation';
 
 const HAND_DISTANCE = '-77px, 23px, 0';
 const HAND_ROTATE = '20deg';
+const COOKIE_AGREEMENT_KEY = 'cookie_agreement';
 
 @Component({
   selector: 'spec-lp',
@@ -51,6 +52,16 @@ export class LpComponent implements OnInit {
   localUi = LocalUI;
   distance = Distance;
   language = Language;
+  _cookie = localStorage[COOKIE_AGREEMENT_KEY];
+
+  set cookie(cookie: string) {
+    this._cookie = cookie;
+    localStorage.setItem(COOKIE_AGREEMENT_KEY, cookie);
+  }
+
+  get cookie() {
+    return this._cookie;
+  }
 
   me: MeUser;
 
