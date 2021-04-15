@@ -52,11 +52,11 @@ export class LpComponent implements OnInit {
   localUi = LocalUI;
   distance = Distance;
   language = Language;
-  _cookie = localStorage[COOKIE_AGREEMENT_KEY];
+  _cookie = localStorage[COOKIE_AGREEMENT_KEY] || false;
 
-  set cookie(cookie: string) {
+  set cookie(cookie: boolean) {
     this._cookie = cookie;
-    localStorage.setItem(COOKIE_AGREEMENT_KEY, cookie);
+    localStorage.setItem(COOKIE_AGREEMENT_KEY, cookie ? 'yes' : '');
   }
 
   get cookie() {

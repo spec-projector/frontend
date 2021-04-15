@@ -10,18 +10,21 @@
     <jnt-menu>
       <jnt-menu-item title="Features"
                      i18n-title="@@action.features"
-                     [link]="{source: [], fragment: 'features'}"></jnt-menu-item>
+                     [link]="['/']"
+                     [fragment]="'features'"></jnt-menu-item>
       <jnt-menu-item title="Pricing plans"
                      i18n-title="@@action.pricing_plans"
-                     [link]="{source: [], fragment: 'tariffs'}"></jnt-menu-item>
+                     [link]="['/']"
+                     [fragment]="'tariffs'"></jnt-menu-item>
       <jnt-menu-item title="Reviews"
                      i18n-title="@@action.reviews"
-                     [link]="{source: [], fragment: 'reviews'}"></jnt-menu-item>
+                     [link]="['/']"
+                     [fragment]="'reviews'"></jnt-menu-item>
     </jnt-menu>
     <ng-template #contentTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
-        <jnt-menu>
+        <jnt-menu [spacing]="ui.gutter.tiny">
           <jnt-menu-item
             title="ru"
             [active]="locale === language.ru"
@@ -153,7 +156,7 @@
     </ng-template>
   </jnt-lp-footer>
   <spec-cookie-agreement *ngIf="!cookie"
-                         (agree)="cookie = 'yes'"
+                         (agree)="cookie = true"
                          [@move]="{value: '', params: {distance: '0, 100%, 0'}}">
   </spec-cookie-agreement>
 </jnt-lp-layout>
