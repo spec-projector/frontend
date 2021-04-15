@@ -6,6 +6,7 @@ import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ChangePasswordModule } from '../change-password/change-password.module';
+import { ChangePersonalDataModule } from '../change-personal-data/change-personal-data.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChangePasswordModule } from '../change-password/change-password.module'
     ArrayPipesModule,
     StringPipesModule,
 
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    ChangePersonalDataModule
   ]
 })
 export class LayoutModule {
