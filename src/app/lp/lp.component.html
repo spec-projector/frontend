@@ -21,7 +21,7 @@
     <ng-template #contentTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
-        <jnt-menu data-lang>
+        <jnt-menu>
           <jnt-menu-item
             title="ru"
             [active]="locale === language.ru"
@@ -123,36 +123,33 @@
     </jnt-container>
   </jnt-lp-slide>
 
-  <jnt-container>
-    <div data-footer>
+  <jnt-lp-footer>
+    <ng-template #footerCopyrightTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.align.center"
-                 [justify]="ui.justify.between">
-        <jnt-stack [orientation]="ui.orientation.horizontal"
-                   [gutter]="ui.gutter.small"
-                   [align]="ui.align.end">
-          <jnt-icon [icon]="ui.icons.junteStroke"></jnt-icon>
-          <jnt-link data-junte title="Junte Team 2016 – 2021"
-                    [target]="ui.target.blank"
-                    source="//junte.team"></jnt-link>
-        </jnt-stack>
-        <jnt-menu [spacing]="ui.gutter.small">
-          <jnt-menu-item title="Agreement"
-                         i18n-title="@@action.agreement"
-                         [link]="['agreement']"></jnt-menu-item>
-          <jnt-menu-item title="Policy"
-                         i18n-title="@@action.policy"
-                         [link]="['policy']"></jnt-menu-item>
-          <jnt-menu-item title="Security"
-                         i18n-title="@@action.security"
-                         [link]="['security']"></jnt-menu-item>
-          <jnt-menu-item title="Contacts"
-                         i18n-title="@@action.contacts"
-                         [link]="['contacts']"></jnt-menu-item>
-        </jnt-menu>
-        <jnt-icon [icon]="localUi.icons.cp"></jnt-icon>
+                 [gutter]="ui.gutter.small"
+                 [align]="ui.align.end">
+        <jnt-icon [icon]="ui.icons.junteStroke"></jnt-icon>
+        <jnt-link title="Junte Team 2016 – 2021"
+                  [target]="ui.target.blank"
+                  source="//junte.team"></jnt-link>
       </jnt-stack>
-    </div>
-  </jnt-container>
-
+    </ng-template>
+    <jnt-menu #lpFooterMenu [spacing]="ui.gutter.small">
+      <jnt-menu-item title="Agreement"
+                     i18n-title="@@action.agreement"
+                     [link]="['agreement']"></jnt-menu-item>
+      <jnt-menu-item title="Policy"
+                     i18n-title="@@action.policy"
+                     [link]="['policy']"></jnt-menu-item>
+      <jnt-menu-item title="Security"
+                     i18n-title="@@action.security"
+                     [link]="['security']"></jnt-menu-item>
+      <jnt-menu-item title="Contacts"
+                     i18n-title="@@action.contacts"
+                     [link]="['contacts']"></jnt-menu-item>
+    </jnt-menu>
+    <ng-template #contentTemplate>
+      <jnt-icon [icon]="localUi.icons.cp"></jnt-icon>
+    </ng-template>
+  </jnt-lp-footer>
 </jnt-lp-layout>
