@@ -9,6 +9,12 @@ import { LOCALIZE_REGEX } from '../../consts';
 import { LocalUI } from '../../enums/local-ui';
 import { MeUser } from '../../models/user';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { ChangePersonalDataComponent } from '../change-personal-data/change-personal-data.component';
+import { MeUpdated, Signals } from '../../signals/signals';
+import { MeGQL } from '../../resolvers/graphql';
+import { catchGQLErrors } from '../../utils/gql-errors';
+import { map } from 'rxjs/operators';
+import { deserialize } from 'serialize-ts';
 
 @Component({
   selector: 'spec-layout',
@@ -38,11 +44,24 @@ export class LayoutComponent implements OnInit {
               private router: Router,
               private injector: Injector,
               private cfr: ComponentFactoryResolver,
-              private modal: ModalService) {
+              private modal: ModalService,
+              private signals: Signals,
+              private meGQL: MeGQL) {
   }
 
   ngOnInit() {
     this.route.data.subscribe(({me}) => this.me = me);
+    this.signals.events.subscribe(e => {
+      if (e instanceof MeUpdated) {
+        this.load();
+      }
+    });
+  }
+
+  load() {
+    this.meGQL.fetch().pipe(catchGQLErrors(),
+        map(({data: {me}}) => deserialize(me, MeUser)))
+      .subscribe(me => this.me = me);
   }
 
   localize(language: Language) {
@@ -53,6 +72,17 @@ export class LayoutComponent implements OnInit {
   logout() {
     this.config.token = null;
     this.router.navigate(['/']).then(() => null);
+  }
+
+  changePersonalData() {
+    const component = this.cfr.resolveComponentFactory(ChangePersonalDataComponent).create(this.injector);
+    component.instance.closed.subscribe(() => this.modal.close());
+    component.instance.me = this.me;
+    component.instance.changed.subscribe(() => {
+      this.signals.dispatch(new MeUpdated());
+      this.modal.close();
+    });
+    this.modal.open(component, {title: {text: 'Change personal data', icon: UI.icons.settings}});
   }
 
   changePassword() {

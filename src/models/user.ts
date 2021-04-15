@@ -30,3 +30,21 @@ export class MeUser extends User {
   email: string;
 
 }
+
+@Model()
+export class UpdateMeInput {
+
+  @Field()
+  firstName: string;
+
+  @Field()
+  lastName: string;
+
+  @Field()
+  file: string;
+
+  constructor(defs: Partial<UpdateMeInput> = {}) {
+    Object.assign(this, defs);
+  }
+
+}

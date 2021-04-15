@@ -69,20 +69,25 @@
     <ng-template #headerUserbarTemplate *ngIf="!!config.token">
       <jnt-app-header-userbar>
         <ng-template #userbarAvatarTemplate>
-          <jnt-avatar [size]="ui.size.small"></jnt-avatar>
+          <jnt-avatar [image]="me.avatar"
+                      [size]="ui.size.small"></jnt-avatar>
         </ng-template>
 
-        <ng-template #userbarMenuTemplate>
+        <ng-template #userbarMenuTemplate let-hide=hide>
           <jnt-stack [align]="ui.align.stretch">
             <jnt-menu [orientation]="ui.orientation.vertical">
               <jnt-menu-item title="Change password"
                              i18n-title="@@action.changePassword"
                              [icon]="ui.icons.lock"
-                             (click)="changePassword()"></jnt-menu-item>
+                             (click)="changePassword(); hide()"></jnt-menu-item>
+              <jnt-menu-item title="Change personal data"
+                             i18n-title="@@action.changePersonalData"
+                             [icon]="ui.icons.settings"
+                             (click)="changePersonalData(); hide()"></jnt-menu-item>
               <jnt-menu-item title="Logout"
                              i18n-title="@@action.logout"
                              [icon]="ui.icons.logout"
-                             (click)="logout()"></jnt-menu-item>
+                             (click)="logout(); hide()"></jnt-menu-item>
             </jnt-menu>
           </jnt-stack>
         </ng-template>
