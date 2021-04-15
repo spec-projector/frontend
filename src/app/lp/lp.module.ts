@@ -1,43 +1,46 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-    AvatarModule,
-    ButtonModule,
-    CardModule,
-    GridModule, IconModule, LinkModule,
-    LpModule as JntLpModule,
-    MenuModule,
-    PopoverModule,
-    StackModule
+  AvatarModule,
+  ButtonModule,
+  CardModule, CollapsibleModule,
+  GridModule, IconModule, LinkModule,
+  LpModule as JntLpModule,
+  MenuModule,
+  PopoverModule,
+  StackModule
 } from '@junte/ui';
 import { FeaturesComponent } from './features/features.component';
 import { LpRoutingModule } from './lp-routing.module';
 import { LpComponent } from './lp.component';
 import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
+import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
 
 @NgModule({
   declarations: [
     LpComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    CookieAgreementComponent
   ],
-    imports: [
-        CommonModule,
+  imports: [
+    CommonModule,
 
-        LpRoutingModule,
+    LpRoutingModule,
 
-        PopoverModule,
-        StackModule,
-        CardModule,
-        GridModule,
-        JntLpModule,
-        MenuModule,
-        ButtonModule,
+    PopoverModule,
+    StackModule,
+    CardModule,
+    GridModule,
+    JntLpModule,
+    MenuModule,
+    ButtonModule,
 
-        TariffsModule,
-        AvatarModule,
-        LinkModule,
-        IconModule
-    ]
+    TariffsModule,
+    AvatarModule,
+    LinkModule,
+    IconModule,
+    CollapsibleModule
+  ]
 })
 export class LpModule {
 
