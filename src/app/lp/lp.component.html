@@ -36,6 +36,7 @@
         </jnt-menu>
         <ng-container *ngIf="!!me;else notLoggedTemplate">
           <jnt-avatar [name]="me.firstName"
+                      [image]="me.avatar"
                       [size]="ui.size.small"
                       [routerLink]="['/projects']"></jnt-avatar>
         </ng-container>
