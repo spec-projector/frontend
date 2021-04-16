@@ -58,7 +58,15 @@
         </ng-container>
       </ng-container>
     </jnt-message>
-    <jnt-row [gutter]="ui.gutter.normal"
+    <ng-template #noDataTemplate>
+      <jnt-row [gutter]="ui.gutter.normal" [align]="ui.align.stretch">
+        <jnt-col *ngFor="let i of 3 | mockArray" [tablet]="4">
+          <jnt-skeleton [animated]="progress.loading"
+                        [type]="ui.skeleton.type.card"></jnt-skeleton>
+        </jnt-col>
+      </jnt-row>
+    </ng-template>
+    <jnt-row *ngIf="tariffs.length > 0;else noDataTemplate" [gutter]="ui.gutter.normal"
              [align]="ui.align.stretch">
       <jnt-col *ngFor="let t of tariffs" [tablet]="4">
         <jnt-card data-tariff [attr.data-current]="t.id === me?.subscription?.tariff.id"
@@ -233,12 +241,14 @@
                     <jnt-button text="Try"
                                 i18n-text="@@action.try"
                                 [scheme]="ui.scheme.accent"
+                                [size]="ui.size.large"
                                 (click)="select(t)"></jnt-button>
                   </ng-template>
                   <jnt-button *ngIf="t.price > 0;else freeTariffTemplate"
                               text="Buy"
                               i18n-text="@@action.buy"
                               [scheme]="ui.scheme.accent"
+                              [size]="ui.size.large"
                               (click)="select(t)"></jnt-button>
                 </ng-container>
               </ng-container>

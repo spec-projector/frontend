@@ -30,9 +30,14 @@ $jnt-ng-deep: true;
 
 [data-logo] {
   display: block;
+
   img {
     display: block;
   }
+}
+
+[data-me] {
+  display: block;
 }
 
 h1 {
@@ -47,9 +52,10 @@ h1 {
   }
 }
 
-h3 {
-  font-weight: 1.35;
-  margin: 0;
+h2 {
+  font-weight: 1.45;
+  font-size: $jnt-font-size-big;
+  margin: $jnt-gutter-normal 0 $jnt-gutter-huge 0;
 }
 
 jnt-lp-slide {
@@ -82,10 +88,6 @@ jnt-lp-slide {
     left: -82px;
     line-height: 0.8;
   }
-}
-
-[data-how-works] {
-  @include jnt-button((color: $jnt-primary-color), '&');
 }
 
 [data-features], [data-tariffs] {

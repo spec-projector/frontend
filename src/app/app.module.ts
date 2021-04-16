@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
@@ -9,9 +9,22 @@ import { GraphQLModule } from 'src/app/graphql.module';
 import { APP_PROVIDERS } from '../consts';
 import { AppComponent } from './app.component';
 
+// TODO: waiting for angular 10
+@Component({
+  selector: 'app-root',
+  template: `
+    <p i18n="@@label.change_personal_data">Change personal data</p>
+    <p i18n="@@label.change_password">Change password</p>
+  `
+})
+export class I18nComponent {
+
+}
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    I18nComponent
   ],
   imports: [
     BrowserModule,

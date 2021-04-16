@@ -1,8 +1,9 @@
 import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import 'reflect-metadata';
+import { CURRENT_LANGUAGE } from '../../consts';
 import { Language } from '../../enums/language';
 import { LocalUI } from '../../enums/local-ui';
 import { Tariff } from '../../models/tariffs';
@@ -52,6 +53,7 @@ export class LpComponent implements OnInit {
   localUi = LocalUI;
   distance = Distance;
   language = Language;
+  consts = {language: CURRENT_LANGUAGE};
   _cookie = localStorage[COOKIE_AGREEMENT_KEY] || false;
 
   set cookie(cookie: boolean) {
@@ -65,8 +67,7 @@ export class LpComponent implements OnInit {
 
   me: MeUser;
 
-  constructor(@Inject(LOCALE_ID) public locale: string,
-              private config: AppConfig,
+  constructor(private config: AppConfig,
               private route: ActivatedRoute,
               public router: Router) {
   }

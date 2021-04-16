@@ -2,12 +2,28 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template" target-language="en">
     <body>
+      <trans-unit id="label.change_personal_data" datatype="html">
+        <source>Change personal data</source>
+        <target state="new">Смена персональных данных</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.module.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.change_password" datatype="html">
+        <source>Change password</source>
+        <target state="new">Смена пароля</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.module.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="label.per_month" datatype="html">
         <source>per month</source>
         <target>в месяц</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.three_projects" datatype="html">
@@ -15,7 +31,7 @@
         <target>проекта</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.many_projects" datatype="html">
@@ -24,7 +40,7 @@
         <target>проектов</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.single_project" datatype="html">
@@ -32,7 +48,7 @@
         <target>проект</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.members_for_project" datatype="html">
@@ -40,7 +56,7 @@
         <target>участников проекта</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_community_chat" datatype="html">
@@ -48,7 +64,7 @@
         <target>Чат сообщества</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_slack_support" datatype="html">
@@ -56,7 +72,7 @@
         <target>Поддержка в Slack</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">156</context>
+          <context context-type="linenumber">164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_exclusive_slack_support" datatype="html">
@@ -64,7 +80,7 @@
         <target>Перс. поддержка в Slack</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.all_features" datatype="html">
@@ -72,7 +88,7 @@
         <target>Все возможности</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">179</context>
+          <context context-type="linenumber">187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_roles_for_teams" datatype="html">
@@ -80,7 +96,7 @@
         <target>Роли для участников</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">199</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_print_contract" datatype="html">
@@ -88,7 +104,7 @@
         <target>Печать договора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">209</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
@@ -96,11 +112,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">108</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_export_import" datatype="html">
@@ -108,7 +124,7 @@
         <target>Экспорт / импорт</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">211</context>
+          <context context-type="linenumber">219</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.try" datatype="html">
@@ -116,7 +132,7 @@
         <target>Попробовать</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">233</context>
+          <context context-type="linenumber">241</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.buy" datatype="html">
@@ -124,7 +140,7 @@
         <target>Купить</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/subscription/tariffs/tariffs.component.html</context>
-          <context context-type="linenumber">239</context>
+          <context context-type="linenumber">248</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.features" datatype="html">
@@ -205,11 +221,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/add-frame/feature-add-frame.component.html</context>
@@ -255,17 +271,13 @@
           <context context-type="sourcefile">src/app/change-password/change-password.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/change-password/change-password.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="action.login" datatype="html">
         <source>Login</source>
         <target>Войти</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
@@ -295,6 +307,10 @@
           <context context-type="sourcefile">src/app/register/register.component.html</context>
           <context context-type="linenumber">53</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="label.last_name" datatype="html">
         <source>Last name</source>
@@ -302,6 +318,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
           <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.register_by" datatype="html">
@@ -439,12 +459,30 @@
           <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="label.confirm_password" datatype="html">
+        <source>Confirm password</source>
+        <target state="new">Подтвердите пароль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/change-password/change-password.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.passwords_mismatch" datatype="html">
+        <source>Passwords mismatch
+    </source>
+        <target state="new">Passwords mismatch
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/change-password/change-password.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="message.lp_make" datatype="html">
         <source>make</source>
         <target>создают</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.lp_slogan" datatype="html">
@@ -452,7 +490,7 @@
         <target>Где команды <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/> спецификации</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.lp_teaser" datatype="html">
@@ -460,7 +498,7 @@
         <target>С нашим сервисом <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/> Ваши IT-продукты получат документацию</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.try_for_free" datatype="html">
@@ -468,11 +506,11 @@
         <target>Попробовать бесплатно</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.how_it_works" datatype="html">
@@ -480,7 +518,7 @@
         <target>Как это работает</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.key_features" datatype="html">
@@ -488,7 +526,7 @@
         <target>Возможности</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.key_features_teaser" datatype="html">
@@ -496,7 +534,7 @@
         <target>Что бы сделать отличную спецификацию на IT-продукт</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.pricing_plans" datatype="html">
@@ -504,7 +542,7 @@
         <target>Тарифные планы</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.pricing_plans_teaser" datatype="html">
@@ -512,7 +550,7 @@
         <target>Выберите оптимальный план для себя</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.reviews" datatype="html">
@@ -520,7 +558,7 @@
         <target>Клиенты говорят</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.reviews_teaser" datatype="html">
@@ -528,7 +566,7 @@
         <target>Мы сделаем все, что бы Ваш отзыв был следующим</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.agreement" datatype="html">
@@ -536,11 +574,11 @@
         <target>Лицензия</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">146</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.policy" datatype="html">
@@ -548,11 +586,11 @@
         <target>Персональные данные</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">149</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.security" datatype="html">
@@ -560,11 +598,11 @@
         <target>Безопасность</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">152</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.contacts" datatype="html">
@@ -572,11 +610,11 @@
         <target>Контакты</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/lp.component.html</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">155</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/site/site.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_clean_workflow" datatype="html">
@@ -636,11 +674,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_cost_features" datatype="html">
@@ -652,11 +690,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">82</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_tasks_description" datatype="html">
@@ -668,11 +706,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">95</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_clean_workflow_teaser" datatype="html">
@@ -693,8 +731,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_user_stories_teaser" datatype="html">
-        <source>Describe what see and can your user in simple steps then draw UI
-          in Figma</source>
+        <source>Describe what see and can your user in simple steps then</source>
         <target>Опишите что видит и может пользователь в виде простых шагов, что бы нарисовать дизайн в Figma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
@@ -702,11 +739,11 @@
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_attach_design_teaser" datatype="html">
-        <source>Move directly to Figma frames for your features</source>
+        <source>Draw UI &amp; connect story with Figma frames</source>
         <target>Переходите напрямую на соответствующие фреймы в Figma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_cost_features_teaser" datatype="html">
@@ -715,7 +752,7 @@
         <target>Оцените ресурсы которые требуются для разработки фичи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_tasks_description_teaser" datatype="html">
@@ -724,7 +761,7 @@
         <target>Сгенерируйте красивое описание задач для Ваших разработчиков</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.feature_print_contract_teaser" datatype="html">
@@ -733,7 +770,7 @@
         <target>Сформируйте договор с клиентом на разработку приложения автоматически</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/features/features.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.cookie_agreement" datatype="html">
@@ -750,18 +787,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/lp/cookie/cookie-agreement.component.html</context>
           <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="action.cancel" datatype="html">
-        <source>Cancel</source>
-        <target>Отмена</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/change-password/change-password.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
-          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.projects" datatype="html">
@@ -801,7 +826,7 @@
         <target>Поддержка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.change_password" datatype="html">
@@ -809,7 +834,7 @@
         <target state="new">Изменить пароль</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.change_personal_data" datatype="html">
@@ -817,7 +842,7 @@
         <target state="new">Персональные данные</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.subscription" datatype="html">
@@ -833,7 +858,7 @@
         <target>Выйти</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.login" datatype="html">
@@ -920,11 +945,11 @@
         <target>Сохранить</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-password/change-password.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/projects/edit-project/edit-project.component.html</context>
@@ -937,22 +962,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component.html</context>
           <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="label.firstname" datatype="html">
-        <source>First name</source>
-        <target state="new">First name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="label.lastname" datatype="html">
-        <source>Last name</source>
-        <target state="new">Last name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
-          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.add_project" datatype="html">

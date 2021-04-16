@@ -1,0 +1,24 @@
+@import 'src/variables';
+@import '~@junte/ui/lib/assets/styles/elements/icon';
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+[data-text] {
+  @include jnt-icon((color: $jnt-primary-color, size: 32px, stroke: 2px));
+}
+
+[data-person] {
+  div {
+    &:first-child {
+      font-weight: $jnt-font-weight-bold;
+    }
+
+    &:last-child {
+      font-size: .85em;
+    }
+  }
+}

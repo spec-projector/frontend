@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output } from '@angular/core';
 import { UI } from '@junte/ui';
-import { finalize, map } from 'rxjs/operators';
+import { delay, finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
+import { UI_DELAY } from '../../../consts';
 import { Language } from '../../../enums/language';
 import { LocalUI } from '../../../enums/local-ui';
 import { Subscription } from '../../../models/subscription';
@@ -42,7 +43,7 @@ export class TariffsComponent implements OnInit {
   private loadTariffs() {
     this.progress.loading = true;
     return this.tariffsGQL.fetch()
-      .pipe(finalize(() => this.progress.loading = false),
+      .pipe(delay(UI_DELAY), finalize(() => this.progress.loading = false),
         map(({data: {tariffs}}) => deserialize(tariffs, PagingTariffs)))
       .subscribe(tariffs => this.tariffs = tariffs.results);
   }

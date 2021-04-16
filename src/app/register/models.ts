@@ -1,7 +1,7 @@
 import { Field, Model } from 'serialize-ts';
 
 @Model()
-export class UserRegister {
+export class UserRegisterInput {
 
   @Field()
   firstName: string;
@@ -15,7 +15,7 @@ export class UserRegister {
   @Field()
   password: string;
 
-  constructor(defs: Partial<UserRegister> = {}) {
+  constructor(defs: Partial<UserRegisterInput> = {}) {
     Object.assign(this, defs);
   }
 }

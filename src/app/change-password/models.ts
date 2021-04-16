@@ -9,4 +9,5 @@ export class ChangePasswordInput {
   constructor(defs: Partial<ChangePasswordInput> = {}) {
     Object.assign(this, defs);
   }
+
 }

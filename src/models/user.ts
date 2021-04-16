@@ -40,9 +40,6 @@ export class UpdateMeInput {
   @Field()
   lastName: string;
 
-  @Field()
-  file: string;
-
   constructor(defs: Partial<UpdateMeInput> = {}) {
     Object.assign(this, defs);
   }

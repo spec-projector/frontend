@@ -15,11 +15,13 @@ import { LpRoutingModule } from './lp-routing.module';
 import { LpComponent } from './lp.component';
 import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
 import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
   declarations: [
     LpComponent,
     FeaturesComponent,
+    ReviewsComponent,
     CookieAgreementComponent
   ],
   imports: [

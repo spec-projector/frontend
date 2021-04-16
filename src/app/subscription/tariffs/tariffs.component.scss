@@ -1,11 +1,13 @@
 @import '../../../variables';
 @import '~@junte/ui/lib/assets/styles/elements/icon';
 @import '~@junte/ui/lib/assets/styles/layout/card';
+@import '~@junte/ui/lib/assets/styles/layout/skeleton';
 
 $jnt-ng-deep: true;
 
 :host {
   display: block;
+  @include jnt-skeleton((card: (height: 300px)));
 }
 
 [data-tariff] {

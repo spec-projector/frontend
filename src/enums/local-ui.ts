@@ -29,6 +29,7 @@ export class LocalUI {
     security: 'security:svg:local:stroked',
     contacts: 'contacts:svg:local:stroked',
     support: 'support:svg:local:stroked',
-    cp: 'cloud_payments:svg:local'
+    cp: 'cloud_payments:svg:local',
+    quote: 'quote:svg:local:stroked',
   };
 }

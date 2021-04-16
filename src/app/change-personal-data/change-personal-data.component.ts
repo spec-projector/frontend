@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI, UploadImageData } from '@junte/ui';
+import { UI_DELAY } from '../../consts';
+import { MeUpdated, SignalsService } from '../../signals/signals.service';
 import { BackendError } from '../../types/gql-errors';
-import { UploadMeAvatarInput } from '../../models/image';
+import { UploadMeAvatarInput } from './models';
 import { UpdateMeGQL, UploadMeAvatarGQL } from './change-personal-data.graphql';
 import { catchGQLErrors } from '../../utils/gql-errors';
-import { finalize, map } from 'rxjs/operators';
+import { delay, finalize, map } from 'rxjs/operators';
 import { UpdateMeInput, User } from '../../models/user';
 import { deserialize, serialize } from 'serialize-ts';
 import { R } from 'apollo-angular/types';
@@ -15,7 +17,7 @@ import { R } from 'apollo-angular/types';
   templateUrl: './change-personal-data.component.html',
   styleUrls: ['./change-personal-data.component.scss']
 })
-export class ChangePersonalDataComponent implements OnInit {
+export class ChangePersonalDataComponent {
 
   ui = UI;
 
@@ -24,58 +26,56 @@ export class ChangePersonalDataComponent implements OnInit {
   avatar: UploadImageData;
 
   form = this.fb.group({
+    avatar: [null],
     firstName: [null, [Validators.required]],
-    lastName: [null, [Validators.required]],
-    file: [null]
+    lastName: [null, [Validators.required]]
   });
 
   @Input()
-  me: User;
-
-  @Output()
-  closed = new EventEmitter();
+  set me(me: User) {
+    this.form.patchValue({
+      firstName: me.firstName,
+      lastName: me.lastName,
+      avatar: me.avatar
+    });
+  }
 
   @Output()
   changed = new EventEmitter();
 
-  constructor(private fb: FormBuilder,
-              private uploadMeAvatarGQL: UploadMeAvatarGQL,
-              private updateMeGQL: UpdateMeGQL) {
-  }
-
-  ngOnInit() {
-    this.form.patchValue({
-      firstName: this.me.firstName,
-      lastName: this.me.lastName,
-      file: this.me.avatar
-    });
+  constructor(private uploadMeAvatarGQL: UploadMeAvatarGQL,
+              private updateMeGQL: UpdateMeGQL,
+              private fb: FormBuilder,
+              private signals: SignalsService) {
   }
 
   uploadAvatar() {
     return (data: UploadImageData) => {
       const request = new UploadMeAvatarInput(data);
       this.progress.uploading = true;
-      return this.uploadMeAvatarGQL.mutate({input: serialize(request)} as R, {
-        context: {
-          useMultipart: true
-        }
-      }).pipe(
+      return this.uploadMeAvatarGQL.mutate({input: serialize(request)} as R,
+        {
+          context: {
+            useMultipart: true
+          }
+        }).pipe(finalize(() => this.progress.uploading = false),
         catchGQLErrors(),
-        finalize(() => this.progress.uploading = false),
         map(({data: {response: {user: {avatar}}}}) => avatar));
     };
   }
 
   changePersonalData() {
-    const request = new UpdateMeInput({
-      firstName: this.form.get('firstName').value,
-      lastName: this.form.get('lastName').value
-    });
+    const request = new UpdateMeInput(this.form.getRawValue());
     this.progress.changing = true;
-    this.updateMeGQL.mutate({input: serialize(request)} as R).pipe(
-      catchGQLErrors(),
-      finalize(() => this.progress.changing = false),
-      map(({data: {response: {me}}}) => deserialize(me, User))
-    ).subscribe(() => this.changed.emit());
+    this.updateMeGQL.mutate({input: serialize(request)} as R)
+      .pipe(delay(UI_DELAY),
+        finalize(() => this.progress.changing = false),
+        catchGQLErrors(),
+        map(({data: {response: {me}}}) => deserialize(me, User)))
+      .subscribe(() => {
+        this.signals.dispatch(new MeUpdated());
+        this.changed.emit();
+      });
   }
+
 }

@@ -68,25 +68,25 @@
           <jnt-stack [align]="ui.align.stretch">
             <jnt-menu>
               <jnt-menu-item title="Ru"
-                             [active]="locale === language.ru"
-                             (click)="localize(language.ru)"></jnt-menu-item>
+                             [active]="consts.language === language.ru"
+                             (click)="changeLanguage(language.ru)"></jnt-menu-item>
               <jnt-menu-item title="En"
-                             [active]="locale === language.en"
-                             (click)="localize(language.en)"></jnt-menu-item>
+                             [active]="consts.language === language.en"
+                             (click)="changeLanguage(language.en)"></jnt-menu-item>
             </jnt-menu>
             <jnt-menu [orientation]="ui.orientation.vertical">
               <jnt-menu-item title="Change password"
                              i18n-title="@@action.change_password"
                              [icon]="ui.icons.lock"
-                             (click)="changePassword(); hide()"></jnt-menu-item>
+                             (click)="changePassword();hide()"></jnt-menu-item>
               <jnt-menu-item title="Change personal data"
                              i18n-title="@@action.change_personal_data"
                              [icon]="ui.icons.settings"
-                             (click)="changePersonalData(); hide()"></jnt-menu-item>
+                             (click)="changePersonalData();hide()"></jnt-menu-item>
               <jnt-menu-item title="Logout"
                              i18n-title="@@action.logout"
                              [icon]="ui.icons.logout"
-                             (click)="logout(); hide()"></jnt-menu-item>
+                             (click)="logout();hide()"></jnt-menu-item>
             </jnt-menu>
           </jnt-stack>
         </ng-template>

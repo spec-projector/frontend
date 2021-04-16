@@ -1,6 +1,6 @@
 import { Field, Model } from 'serialize-ts';
 import assign from 'assign-deep';
-import { FileSerializer } from '../serializers/file';
+import { FileSerializer } from '../../serializers/file';
 
 @Model()
 export class UploadMeAvatarInput {

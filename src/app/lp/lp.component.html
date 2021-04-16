@@ -27,18 +27,19 @@
         <jnt-menu [spacing]="ui.gutter.tiny">
           <jnt-menu-item
             title="ru"
-            [active]="locale === language.ru"
+            [active]="consts.language === language.ru"
             link="/ru/"></jnt-menu-item>
           <jnt-menu-item
             title="en"
-            [active]="locale === language.en"
+            [active]="consts.language === language.en"
             link="/en/"></jnt-menu-item>
         </jnt-menu>
         <ng-container *ngIf="!!me;else notLoggedTemplate">
-          <jnt-avatar [name]="me.firstName"
-                      [image]="me.avatar"
-                      [size]="ui.size.small"
-                      [routerLink]="['/projects']"></jnt-avatar>
+          <a data-me routerLink="/projects">
+            <jnt-avatar [name]="me.firstName"
+                        [image]="me.avatar"
+                        [size]="ui.size.small"></jnt-avatar>
+          </a>
         </ng-container>
         <ng-template #notLoggedTemplate>
           <jnt-button [outline]="ui.outline.ghost"
@@ -74,19 +75,20 @@
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.huge">
         <jnt-stack [align]="ui.align.stretch">
           <h1 data-header i18n="@@message.lp_slogan">Where teams <br> specifications</h1>
-          <h3 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products</h3>
+          <h2 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products</h2>
         </jnt-stack>
         <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
           <jnt-button text="Try it for free now"
                       i18n-text="@@action.try_for_free"
                       [icon]="ui.icons.arrowDown"
+                      [scheme]="ui.scheme.accent"
+                      [size]="ui.size.large"
                       (click)="jumpTo('tariffs')">
           </jnt-button>
-          <jnt-button data-how-works
-                      [scheme]="ui.scheme.secondary"
-                      text="How it works"
+          <jnt-button text="How it works"
                       i18n-text="@@action.how_it_works"
                       [icon]="ui.icons.question"
+                      [size]="ui.size.large"
                       (click)="jumpTo('features')">
           </jnt-button>
         </jnt-stack>
@@ -96,11 +98,13 @@
   <jnt-lp-slide>
     <jnt-container data-features>
       <h1 id="features" i18n="@@label.key_features">Key features</h1>
-      <h3 data-teaser i18n="@@message.key_features_teaser">To make clear product specification you need</h3>
+      <h2 data-teaser i18n="@@message.key_features_teaser">To make clear product specification you need</h2>
       <spec-lp-features>
         <jnt-button text="Try it for free now"
                     i18n-text="@@action.try_for_free"
                     [icon]="ui.icons.arrowDown"
+                    [scheme]="ui.scheme.accent"
+                    [size]="ui.size.large"
                     (click)="jumpTo('tariffs')">
         </jnt-button>
       </spec-lp-features>
@@ -114,7 +118,7 @@
   <jnt-lp-slide>
     <jnt-container data-tariffs>
       <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
-      <h3 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h3>
+      <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
       <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
     </jnt-container>
   </jnt-lp-slide>
@@ -122,8 +126,8 @@
   <jnt-lp-slide>
     <jnt-container data-reviews>
       <h1 id="reviews" i18n="@@label.reviews">Clients say</h1>
-      <h3 data-teaser i18n="@@label.reviews_teaser">We will try for you be here</h3>
-      <p>Super review here!</p>
+      <h2 data-teaser i18n="@@label.reviews_teaser">We will try for you be here</h2>
+      <spec-lp-reviews></spec-lp-reviews>
     </jnt-container>
   </jnt-lp-slide>
 
@@ -132,7 +136,7 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [gutter]="ui.gutter.small"
                  [align]="ui.align.end">
-        <jnt-icon [icon]="ui.icons.junteStroke"></jnt-icon>
+        <jnt-icon [icon]="ui.icons.junte"></jnt-icon>
         <jnt-link title="Junte Team 2016 – 2021"
                   [target]="ui.target.blank"
                   source="//junte.team"></jnt-link>

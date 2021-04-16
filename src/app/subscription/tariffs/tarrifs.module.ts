@@ -8,7 +8,7 @@ import {
     IconModule,
     LabelModule,
     LinkModule,
-    MessageModule,
+    MessageModule, SkeletonModule,
     StackModule
 } from '@junte/ui';
 import { TariffsComponent } from './tariffs.component';
@@ -32,7 +32,8 @@ import { TariffsComponent } from './tariffs.component';
         LabelModule,
         MessageModule,
         LinkModule,
-        DatePeriodModule
+        DatePeriodModule,
+        SkeletonModule
     ]
 })
 export class TariffsModule {

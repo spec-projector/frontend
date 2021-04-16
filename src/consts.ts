@@ -9,7 +9,7 @@ import { DateFnsConfigurationService } from 'ngx-date-fns';
 import { detectLanguage } from 'src/utils/lang';
 import { Language } from './enums/language';
 
-export const LOCALIZE_REGEX = /^\/(ru|en)\//;
+export const LANGUAGE_CHANGE_REGEX = /^\/(ru|en)\//;
 export const BASE_URI = 'https://www.specprojector.com';
 export const CLOUD_PAYMENT_KEY = 'pk_7cebed1a56517f44b949ad8651ce2';
 export const CLOUD_PAYMENT_SKIN = 'modern';
@@ -22,6 +22,7 @@ export const PLATFORM_DELAY = 100;
 export const DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 export const BUILD_HASH = 'v15';
+export const CURRENT_LANGUAGE = detectLanguage();
 
 enum CurrencyCode {
   usd = 'usd',
@@ -74,11 +75,10 @@ function mergeDfnsLocale(l: Locale): Locale {
   return {...l, ...{options: {weekStartsOn: FIRST_DAY_OF_WEEK}}};
 }
 
-const language = detectLanguage();
 export let APP_PROVIDERS: Provider[] = [
   {
     provide: Language,
-    useValue: language
+    useValue: CURRENT_LANGUAGE
   },
   {
     provide: DateFnsConfigurationService,
@@ -89,7 +89,7 @@ export let APP_PROVIDERS: Provider[] = [
 let data;
 let dfnsLocale;
 export let config;
-switch (language) {
+switch (CURRENT_LANGUAGE) {
   case Language.ru:
     data = getLocaleData(localeRu);
     registerLocaleData(data);

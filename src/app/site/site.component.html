@@ -5,10 +5,14 @@
     </jnt-container>
   </jnt-app-body>
   <jnt-app-footer>
-    <jnt-link title="Junte Team 2016 – 2021"
-              [icon]="ui.icons.junteStroke"
-              [target]="ui.target.blank"
-              source="//junte.team"></jnt-link>
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [gutter]="ui.gutter.small"
+               [align]="ui.align.end">
+      <jnt-icon [icon]="ui.icons.junte"></jnt-icon>
+      <jnt-link title="Junte Team 2016 – 2021"
+                [target]="ui.target.blank"
+                source="//junte.team"></jnt-link>
+    </jnt-stack>
     <jnt-menu [spacing]="ui.gutter.small">
       <jnt-menu-item title="Agreement"
                      i18n-title="@@action.agreement"

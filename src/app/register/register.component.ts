@@ -14,7 +14,7 @@ import { catchGQLErrors } from '../../utils/gql-errors';
 import { AppConfig } from '../app-config';
 import { MakeSocialLogin, TrySocialLogin } from '../login/models';
 import { Distance, moveDownKeyframes, moveKeyframes } from '../lp/animation';
-import { UserRegister } from './models';
+import { UserRegisterInput } from './models';
 import { RegisterGQL, SocialLoginGQL } from './register.graphql';
 
 @Component({
@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
 
   register() {
-    const request = new UserRegister(this.form.getRawValue());
+    const request = new UserRegisterInput(this.form.getRawValue());
     this.progress.registering = true;
     this.registerGQL.mutate({input: serialize(request)})
       .pipe(finalize(() => this.progress.registering = false),

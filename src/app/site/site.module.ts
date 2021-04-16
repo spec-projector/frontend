@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {
     AppLayoutModule,
     BreadcrumbsModule,
-    GridModule,
+    GridModule, IconModule,
     LinkModule,
     MenuModule,
     MessageModule,
@@ -42,7 +42,8 @@ import { SupportComponent } from './support/support.component';
         LinkModule,
         MessageModule,
         StackModule,
-        TimelineModule
+        TimelineModule,
+        IconModule
     ]
 })
 export class SiteModule {

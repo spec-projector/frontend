@@ -28,4 +28,5 @@ import { ChangePasswordComponent } from './change-password.component';
   ]
 })
 export class ChangePasswordModule {
+
 }
