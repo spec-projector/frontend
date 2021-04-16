@@ -8,7 +8,12 @@ $jnt-ng-deep: true;
 }
 
 [data-text] {
-  @include jnt-icon((color: $jnt-primary-color, size: 32px, stroke: 2px));
+  @include jnt-icon((color: $jnt-primary-light-color, size: 32px, stroke: 2px));
+
+  p {
+    font-size: 1.25em;
+    font-style: italic;
+  }
 }
 
 [data-person] {
