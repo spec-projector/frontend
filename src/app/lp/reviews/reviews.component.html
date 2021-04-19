@@ -1,9 +1,11 @@
 <ng-template #reviewTemplate let-name="name" let-avatar="avatar" let-position="position" let-text="text">
 
 </ng-template>
-<jnt-row [gutter]="ui.gutter.big" [spacing]="ui.gutter.huge">
+<jnt-row [align]="ui.align.stretch"
+         [gutter]="ui.gutter.big"
+         [spacing]="ui.gutter.huge">
   <jnt-col *ngFor="let r of reviews" [tablet]="6">
-    <jnt-card [width]="ui.width.fluid" [padding]="ui.gutter.large">
+    <jnt-card data-review [width]="ui.width.fluid" [padding]="ui.gutter.large">
       <jnt-stack data-text [align]="ui.align.center">
         <jnt-icon [icon]="localUi.icons.quote"></jnt-icon>
         <p>{{r.text}}</p>
