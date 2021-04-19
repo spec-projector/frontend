@@ -16,13 +16,15 @@ import { LpComponent } from './lp.component';
 import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
 import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { ViewportComponent } from './viewport/viewport.component';
 
 @NgModule({
   declarations: [
     LpComponent,
     FeaturesComponent,
     ReviewsComponent,
-    CookieAgreementComponent
+    CookieAgreementComponent,
+    ViewportComponent
   ],
   imports: [
     CommonModule,

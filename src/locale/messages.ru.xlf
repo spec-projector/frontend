@@ -181,19 +181,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">63</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">104</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -257,7 +257,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">97</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/set-password/set-password.component.html</context>
@@ -285,7 +285,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">134</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -300,12 +300,20 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="label.you_selected_plan" datatype="html">
+        <source>You selected plan</source>
+        <target state="new">Вы выбрали тариф</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="label.first_name" datatype="html">
         <source>First name</source>
         <target>Имя</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
@@ -317,7 +325,7 @@
         <target>Фамилия</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
@@ -329,7 +337,7 @@
         <target>Или зарегистрироваться используя</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.email" datatype="html">
@@ -341,7 +349,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">82</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -357,7 +365,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.registered_already" datatype="html">
@@ -365,7 +373,7 @@
         <target>Уже зарегистрированы?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">133</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -392,7 +400,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">89</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
