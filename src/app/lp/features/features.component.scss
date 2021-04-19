@@ -12,6 +12,11 @@ $jnt-ng-deep: true;
   background-color: $jnt-white-color;
   width: 570px;
   height: 500px;
+
+  @include for-mobile() {
+    width: 100%;
+    height: 300px;
+  }
 }
 
 [data-list-features] {
@@ -30,14 +35,17 @@ $jnt-ng-deep: true;
         font-weight: $jnt-font-weight-bold;
       }
     }
+  }
 
-    [data-active] {
-      @include jnt-block((shadow: none, padding: (normal: $jnt-gutter-big $jnt-gutter-normal)), '&');
-      margin-left: -$jnt-gutter-normal;
+  [data-active] {
+    margin-left: -$jnt-gutter-normal;
+  }
+}
 
-      h4 {
-        color: $jnt-primary-light-color;
-      }
-    }
+[data-active] {
+  @include jnt-block((shadow: none, padding: (normal: $jnt-gutter-big $jnt-gutter-normal)), '&');
+
+  h4 {
+    color: $jnt-primary-light-color;
   }
 }

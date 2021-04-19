@@ -8,6 +8,7 @@ import {
   LpModule as JntLpModule,
   MenuModule,
   PopoverModule,
+  ResponsiveModule,
   StackModule
 } from '@junte/ui';
 import { FeaturesComponent } from './features/features.component';
@@ -43,7 +44,8 @@ import { ViewportComponent } from './viewport/viewport.component';
     AvatarModule,
     LinkModule,
     IconModule,
-    CollapsibleModule
+    CollapsibleModule,
+    ResponsiveModule
   ]
 })
 export class LpModule {

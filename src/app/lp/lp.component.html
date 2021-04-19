@@ -53,9 +53,10 @@
       </jnt-stack>
     </ng-template>
   </jnt-lp-header>
-  <jnt-lp-slide>
+
+  <jnt-lp-slide data-welcome>
     <jnt-container>
-      <div data-hand [@moveHand]>
+      <div data-hand [@moveHand] [@.disabled]="breakpoint.current === ui.breakpoint.mobile">
         <img src="assets/images/lp/hand.png" width="170" height="154" alt="hand">
         <h1 i18n="@@message.lp_make" [@coloring]>make</h1>
       </div>
@@ -73,30 +74,39 @@
       <img data-torus-big
            [@move]="{value: '', params: {distance: distance.torusBig}}"
            src="assets/images/lp/torus-big.png" width="272" height="273">
-      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.huge">
-        <jnt-stack [align]="ui.align.stretch">
-          <h1 data-header i18n="@@message.lp_slogan">Where teams <br> specifications</h1>
-          <h2 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products</h2>
-        </jnt-stack>
-        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
-          <jnt-button text="Try it for free now"
-                      i18n-text="@@action.try_for_free"
-                      [icon]="ui.icons.arrowDown"
-                      [scheme]="ui.scheme.accent"
-                      [size]="ui.size.large"
-                      (click)="jumpTo('tariffs')">
-          </jnt-button>
-          <jnt-button text="How it works"
-                      i18n-text="@@action.how_it_works"
-                      [icon]="ui.icons.question"
-                      [size]="ui.size.large"
-                      (click)="jumpTo('features')">
-          </jnt-button>
-        </jnt-stack>
+      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.big">
+        <h1 *jntMinFor="ui.breakpoint.tablet" data-header i18n="@@message.lp_slogan">Where teams <br> specifications
+        </h1>
+        <h1 *jntFor="ui.breakpoint.mobile" data-header i18n="@@message.lp_slogan">Where <br> teams <br> specifications
+        </h1>
+        <h2 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products</h2>
+        <jnt-row>
+          <jnt-col [tablet]="4" [mobile]="12">
+            <jnt-button text="Try it for free now"
+                        i18n-text="@@action.try_for_free"
+                        [icon]="ui.icons.arrowDown"
+                        [width]="ui.width.fluid"
+                        [scheme]="ui.scheme.accent"
+                        [size]="ui.size.large"
+                        (click)="jumpTo('tariffs')">
+            </jnt-button>
+          </jnt-col>
+          <jnt-col [tablet]="4" [mobile]="12">
+            <jnt-button text="How it works"
+                        i18n-text="@@action.how_it_works"
+                        [icon]="ui.icons.question"
+                        [width]="ui.width.fluid"
+                        [size]="ui.size.large"
+                        (click)="jumpTo('features')">
+            </jnt-button>
+          </jnt-col>
+
+        </jnt-row>
       </jnt-stack>
     </jnt-container>
   </jnt-lp-slide>
-  <jnt-lp-slide>
+
+  <jnt-lp-slide [height]="ui.height.default">
     <jnt-container data-features>
       <h1 id="features" i18n="@@label.key_features">Key features</h1>
       <h2 data-teaser i18n="@@message.key_features_teaser">To make clear product specification you need</h2>
@@ -116,7 +126,7 @@
     </jnt-container>
   </jnt-lp-slide>
 
-  <jnt-lp-slide>
+  <jnt-lp-slide [height]="ui.height.default">
     <jnt-container data-tariffs>
       <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
       <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
@@ -124,7 +134,7 @@
     </jnt-container>
   </jnt-lp-slide>
 
-  <jnt-lp-slide>
+  <jnt-lp-slide [height]="ui.height.default">
     <jnt-container data-reviews>
       <h1 id="reviews" i18n="@@label.reviews">Clients say</h1>
       <h2 data-teaser i18n="@@label.reviews_teaser">We will try for you be here</h2>
@@ -138,7 +148,7 @@
                  [gutter]="ui.gutter.small"
                  [align]="ui.align.end">
         <jnt-icon [icon]="ui.icons.junte"></jnt-icon>
-        <jnt-link title="Junte Team 2016 – 2021"
+        <jnt-link data-team title="Junte Team 2016 – 2021"
                   [target]="ui.target.blank"
                   source="//junte.team"></jnt-link>
       </jnt-stack>
