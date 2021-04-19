@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   BlockModule,
-  ButtonModule,
+  ButtonModule, CardModule,
   FormModule,
   GridModule, IconModule,
   InformerModule,
-  InputModule,
+  InputModule, LabelModule,
   LinkModule,
   ShortcutsModule,
   StackModule
@@ -34,7 +34,9 @@ import { RegisterComponent } from './register.component';
     InputModule,
     ButtonModule,
     LinkModule,
-    IconModule
+    IconModule,
+    CardModule,
+    LabelModule
   ]
 })
 export class RegisterModule {

@@ -35,9 +35,16 @@
         </a>
         <h1 i18n="@@label.register">Make an account</h1>
         <ng-container *ngIf="!!tariff">
-          <p>You selected plan</p>
-          <jnt-icon [icon]="tariff.icon + ':svg:local:stroked'"></jnt-icon>
-          <p>{{tariff.title}}</p>
+          <jnt-card data-selected-tariff>
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [align]="ui.align.center">
+              <jnt-icon [icon]="tariff.icon + ':svg:local:stroked'"></jnt-icon>
+              <jnt-stack [gutter]="ui.gutter.tiny">
+                <small>You selected plan</small>
+                <div>{{tariff.title}}</div>
+              </jnt-stack>
+            </jnt-stack>
+          </jnt-card>
         </ng-container>
       </jnt-stack>
     </ng-template>

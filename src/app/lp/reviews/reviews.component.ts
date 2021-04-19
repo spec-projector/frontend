@@ -19,14 +19,14 @@ export class ReviewsComponent {
       case Language.ru:
         return [
           {
-            name: 'Владимир Концов',
-            avatar: '',
-            position: 'Менеджер в Involta',
-            text: 'Проджектор стал открытием для нашей команды, который позволил не только выстроить процесс разработки, но и повысить лояльность клиентов.'
+            name: 'Dr. Maik Rosenheinrich',
+            avatar: 'assets/images/reviews/maik.jpeg',
+            position: 'Глава ИТ в Esanum Gmbh, Германия',
+            text: 'Проджектор стал хорошим дополнением к существующим Jira и Confluence. Прямые ссылки позволяют быстро переходить на нужные части описания системы.'
           },
           {
-            name: 'Иван Иванов',
-            avatar: '',
+            name: 'Ильдар Башаров',
+            avatar: 'assets/images/reviews/ildar.jpeg',
             position: 'Менеджер проектов в Garpix',
             text: 'Мы ушли от Google Docs и Microsoft Word и теперь все ТЗ пишем в проджекторе - это удобно и поддерживаемо.'
           },
@@ -37,10 +37,10 @@ export class ReviewsComponent {
             text: 'Время разработки технических заданий для сайтов в нашей студии сократилось в 2 раза, а главное теперь вся информация остается актуальной в процессе разработки.'
           },
           {
-            name: 'Dr. Maik Rosenheinrich',
-            avatar: 'assets/images/reviews/maik.jpeg',
-            position: 'Глава ИТ в Esanum Gmbh, Германия',
-            text: 'Проджектор стал хорошим дополнением к существующим Jira и Confluence. Прямые ссылки позволяют быстро переходить на нужные части описания системы.'
+            name: 'Владимир Концов',
+            avatar: '',
+            position: 'Менеджер в Involta',
+            text: 'Проджектор стал открытием для нашей команды, который позволил не только выстроить процесс разработки, но и повысить лояльность клиентов.'
           }
         ];
         break;
@@ -48,28 +48,28 @@ export class ReviewsComponent {
       default:
         return [
           {
-            name: 'Anton Breslavsky',
-            avatar: '',
-            position: 'Team Leader at Junte',
-            text: 'It is super product!'
-          },
-          {
-            name: 'Anton Breslavsky',
-            avatar: '',
-            position: 'Team Leader as Junte',
-            text: 'It is super product!'
-          },
-          {
-            name: 'Adnrey Morkovkin',
-            avatar: 'assets/images/reviews/andrey.jpeg',
-            position: 'CEO CADesign',
-            text: 'It is super product!'
-          },
-          {
             name: 'Dr. Maik Rosenheinrich',
             avatar: 'assets/images/reviews/maik.jpeg',
-            position: 'Head of esanum IT, Germany',
-            text: 'Projector became a good addition to our Jira & Confluence. Direct links allow us make fast moving to required parts of system\'s description.'
+            position: 'Head of IT in Esanum Gmbh, Germany',
+            text: 'Проджектор стал хорошим дополнением к существующим Jira и Confluence. Прямые ссылки позволяют быстро переходить на нужные части описания системы.'
+          },
+          {
+            name: 'Ildar Basharov',
+            avatar: 'assets/images/reviews/ildar.jpeg',
+            position: 'Project Manager in Garpix',
+            text: 'Мы ушли от Google Docs и Microsoft Word и теперь все ТЗ пишем в проджекторе - это удобно и поддерживаемо.'
+          },
+          {
+            name: 'Andrey Morkovkin',
+            avatar: 'assets/images/reviews/andrey.jpeg',
+            position: 'CEO CADesign',
+            text: 'Время разработки технических заданий для сайтов в нашей студии сократилось в 2 раза, а главное теперь вся информация остается актуальной в процессе разработки.'
+          },
+          {
+            name: 'Владимир Концов',
+            avatar: '',
+            position: 'Менеджер в Involta',
+            text: 'Проджектор стал открытием для нашей команды, который позволил не только выстроить процесс разработки, но и повысить лояльность клиентов.'
           }
         ];
     }
