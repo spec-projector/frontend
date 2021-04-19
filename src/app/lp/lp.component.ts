@@ -1,7 +1,7 @@
 import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from '@junte/ui';
+import { BreakpointService, UI } from '@junte/ui';
 import 'reflect-metadata';
 import { CURRENT_LANGUAGE } from '../../consts';
 import { Language } from '../../enums/language';
@@ -69,7 +69,8 @@ export class LpComponent implements OnInit {
 
   constructor(private config: AppConfig,
               private route: ActivatedRoute,
-              public router: Router) {
+              public router: Router,
+              public breakpoint: BreakpointService) {
   }
 
   ngOnInit() {

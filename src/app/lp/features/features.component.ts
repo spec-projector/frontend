@@ -49,4 +49,12 @@ export class FeaturesComponent {
               public router: Router) {
   }
 
+  setActive(feature: Feature) {
+    if (this.feature === feature) {
+        this.feature = null;
+    } else {
+      this.feature = feature;
+    }
+  }
+
 }

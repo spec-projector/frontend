@@ -49,6 +49,14 @@ h1 {
 
   &[data-header] {
     margin: 155px 0 0 0;
+
+    @include for-mobile() {
+      margin: 30px 0 0 0;
+    }
+  }
+
+  @include for-mobile() {
+    font-size: 40px;
   }
 }
 
@@ -56,12 +64,25 @@ h2 {
   font-weight: 1.45;
   font-size: $jnt-font-size-big;
   margin: $jnt-gutter-normal 0 $jnt-gutter-huge 0;
+
+  @include for-mobile() {
+    font-size: $jnt-font-size-normal;
+    margin: $jnt-gutter-normal 0 0 0;
+  }
 }
 
 jnt-lp-slide {
   display: flex;
   position: static;
   background: url(../../assets/images/lp/bg.svg) fixed;
+  background-size: cover;
+
+  &[data-welcome] {
+    height: 1000px !important;
+    @include for-mobile() {
+      height: 900px !important;
+    }
+  }
 }
 
 [data-teaser] {
@@ -77,9 +98,20 @@ jnt-lp-slide {
   transform: translate3D(-77px, 23px, 0) rotate(0);
   z-index: 1;
 
+  @include for-mobile() {
+    width: 120px;
+    height: 140px;
+    top: -40px;
+    left: 290px;
+  }
+
   img {
     position: relative;
     z-index: 1;
+    @include for-mobile() {
+      width: 120px;
+      height: auto;
+    }
   }
 
   h1 {
@@ -87,13 +119,20 @@ jnt-lp-slide {
     top: 144px;
     left: -82px;
     line-height: 0.8;
+    @include for-mobile() {
+      top: 103px;
+      left: -48px;
+    }
   }
 }
 
-[data-features], [data-tariffs] {
+[data-features], [data-tariffs], [data-reviews] {
 
   h1 {
     margin: 50px 0 $jnt-gutter-normal 0;
+    @include for-mobile() {
+      margin: 0 0 $jnt-gutter-normal 0;
+    }
   }
 
   [data-teaser] {
@@ -102,6 +141,10 @@ jnt-lp-slide {
 
   img {
     position: absolute;
+
+    @include for-mobile() {
+      display: none;
+    }
 
     &[data-torus-small] {
       top: 200px;
@@ -115,3 +158,14 @@ jnt-lp-slide {
   }
 
 }
+
+
+//TODO: junte-ui mixin api
+[data-team]::ng-deep {
+  [data-link] {
+    white-space: nowrap;
+  }
+}
+
+
+

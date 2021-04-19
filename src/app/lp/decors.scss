@@ -5,10 +5,6 @@
   position: absolute;
   height: auto;
   pointer-events: none;
-
-  @include for-mobile() {
-    display: none;
-  }
 }
 
 img {
@@ -16,36 +12,57 @@ img {
     @extend %data-decor;
     left: 200px;
     top: 25px;
+    @include for-mobile() {
+      display: none;
+    }
   }
 
   &[data-torus-small] {
     @extend %data-decor;
     left: 330px;
     top: 720px;
+    @include for-mobile() {
+      left: 20px;
+      top: 450px;
+    }
   }
 
   &[data-figma] {
     @extend %data-decor;
     right: 40px;
     top: 120px;
+    @include for-mobile() {
+      display: none;
+    }
   }
 
   &[data-torus-big] {
     @extend %data-decor;
     left: -150px;
     top: 600px;
+    @include for-mobile() {
+      left: auto;
+      right: 0;
+      top: 485px;
+    }
   }
 
   &[data-hand-up] {
     @extend %data-decor;
     top: 100%;
     left: 385px;
+    @include for-mobile() {
+      display: none;
+    }
   }
 
   &[data-specifications] {
     @extend %data-decor;
     top: 210px;
     right: -340px;
+    @include for-mobile() {
+      display: none;
+    }
   }
 
 }
