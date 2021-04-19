@@ -453,12 +453,10 @@
           stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   </svg>
 
-  <svg id="free" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="42.5109" cy="21.4894" rx="12.005" ry="12.005" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M34.0222 29.9775L14.873 49.1267" stroke-linecap="round" stroke-linejoin="round"/>
-    <path
-      d="M36.2487 57.3618L53.012 28.0263C55.8061 23.1367 54.982 16.982 50.9998 12.9998C47.0177 9.01767 40.863 8.19345 35.9734 10.9875L6.6377 27.7508"
-      stroke-linecap="round" stroke-linejoin="round"/>
+  <svg id="free" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.4434 8.0585C20.4434 10.5448 18.4278 12.5604 15.9415 12.5604C13.4552 12.5604 11.4396 10.5448 11.4396 8.0585C11.4396 5.57218 13.4552 3.55662 15.9415 3.55662C18.4278 3.55662 20.4434 5.57218 20.4434 8.0585Z" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.7582 11.2418L5.57727 18.4227" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.5932 21.511L19.8794 10.5101C20.9272 8.67655 20.6181 6.36852 19.1248 4.87521C17.6316 3.3819 15.3235 3.07282 13.4899 4.1206L2.48904 10.4068" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 
   <svg id="startup" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
