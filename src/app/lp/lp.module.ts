@@ -17,7 +17,7 @@ import { LpComponent } from './lp.component';
 import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
 import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
 import { ReviewsComponent } from './reviews/reviews.component';
-import { ViewportComponent } from './viewport/viewport.component';
+import { ViewportDirective, ViewportRuleDirective } from './viewport/viewport.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { ViewportComponent } from './viewport/viewport.component';
     FeaturesComponent,
     ReviewsComponent,
     CookieAgreementComponent,
-    ViewportComponent
+    ViewportRuleDirective,
+    ViewportDirective
   ],
   imports: [
     CommonModule,
