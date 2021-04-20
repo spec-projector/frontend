@@ -45,6 +45,7 @@ export class TariffGQL extends Query<{ tariff }> {
   document = gql`
 query ($id: ID!) {
   tariff(id: $id) {
+    id
     title
     teaser
     icon
