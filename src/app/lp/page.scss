@@ -5,9 +5,9 @@
 $jnt-ng-deep: true;
 
 @include jnt-grid-container((width: 400px, padding: 0)) {
-  display: grid;
-  flex-direction: column;
+  display: flex;
   align-items: center;
+  padding: $jnt-gutter-large 0;
   @include for-mobile() {
     align-items: start;
     padding: $jnt-gutter-normal 0;
@@ -17,12 +17,10 @@ $jnt-ng-deep: true;
 :host {
   display: flex;
   background: url(../../assets/images/lp/bg.svg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  min-height: 100vh;
+  min-width: 100vw;
   overflow: hidden;
+  position: absolute;
 }
 
 h1 {
