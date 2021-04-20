@@ -1,6 +1,7 @@
 <jnt-popover></jnt-popover>
 <spec-viewport>
-  <spec-viewport-rule [from]="475" [to]="970" [width]="970"></spec-viewport-rule>
+  <spec-viewport-rule [from]="425" [to]="1200" [width]="1200"></spec-viewport-rule>
+  <spec-viewport-rule [from]="300" [to]="425" [width]="425"></spec-viewport-rule>
 </spec-viewport>
 
 <jnt-lp-layout>
@@ -77,11 +78,13 @@
            [@move]="{value: '', params: {distance: distance.torusBig}}"
            src="assets/images/lp/torus-big.png" width="272" height="273">
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.big">
-        <h1 *jntMinFor="ui.breakpoint.tablet" data-header i18n="@@message.lp_slogan">Where teams <br> specifications
+        <h1 *jntMinFor="ui.breakpoint.tablet" data-header>
+          Where teams <br> specifications
         </h1>
-        <h1 *jntFor="ui.breakpoint.mobile" data-header i18n="@@message.lp_slogan">Where <br> teams <br> specifications
+        <h1 *jntFor="ui.breakpoint.mobile" data-header>
+          Where <br> teams <br> specifications
         </h1>
-        <h2 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products</h2>
+        <h2 data-teaser i18n="@@message.lp_teaser">We help teams write better documentation for IT-products</h2>
         <jnt-row>
           <jnt-col [tablet]="4" [mobile]="12">
             <jnt-button text="Try it for free now"
@@ -112,15 +115,7 @@
     <jnt-container data-features>
       <h1 id="features" i18n="@@label.key_features">Key features</h1>
       <h2 data-teaser i18n="@@message.key_features_teaser">To make clear product specification you need</h2>
-      <spec-lp-features>
-        <jnt-button text="Try it for free now"
-                    i18n-text="@@action.try_for_free"
-                    [icon]="ui.icons.arrowDown"
-                    [scheme]="ui.scheme.accent"
-                    [size]="ui.size.large"
-                    (click)="jumpTo('tariffs')">
-        </jnt-button>
-      </spec-lp-features>
+      <spec-lp-features></spec-lp-features>
       <img data-torus-small
            src="assets/images/lp/torus-small.png" width="100" height="100">
       <img data-torus-half

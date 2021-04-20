@@ -17,10 +17,10 @@ $jnt-ng-deep: true;
 :host {
   display: flex;
   background: url(../../assets/images/lp/bg.svg);
+  position: absolute;
   min-height: 100vh;
   min-width: 100vw;
   overflow: hidden;
-  position: absolute;
 }
 
 h1 {

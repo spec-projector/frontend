@@ -11,8 +11,7 @@
 
 $jnt-ng-deep: true;
 
-@include jnt-grid-container((width: 970px)) {
-  width: 970px;
+@include jnt-grid-container((width: 1200px, padding: 0 40px)) {
   position: relative;
   text-align: center;
 
@@ -23,6 +22,9 @@ $jnt-ng-deep: true;
 
 :host {
   display: block;
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
 
   @include jnt-lp-header((position: fixed, padding: $jnt-gutter-big 0));
   @include jnt-button((text-transform: uppercase, font-weight: $jnt-font-weight-bold));
@@ -129,7 +131,6 @@ jnt-lp-slide {
 [data-features], [data-tariffs], [data-reviews] {
 
   h1 {
-    margin: 50px 0 $jnt-gutter-normal 0;
     @include for-mobile() {
       margin: 0 0 $jnt-gutter-normal 0;
     }

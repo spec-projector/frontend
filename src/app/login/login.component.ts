@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('emailRef')
   emailRef: InputComponent;
 
-  @ViewChild('content', {read: ElementRef})
+  @ViewChild('blockRef', {read: ElementRef})
   backdrop: ElementRef<HTMLElement>;
 
   constructor(private loginGQL: LoginGQL,
