@@ -21,26 +21,26 @@ export class ReviewsComponent {
           {
             name: 'Dr. Maik Rosenheinrich',
             avatar: 'assets/images/reviews/maik.jpeg',
-            position: 'Глава ИТ в Esanum Gmbh, Германия',
+            position: 'Глава ИТ в <a target="_blank" href="//www.esanum.de">Esanum Gmbh</a>, Германия',
             text: 'Проджектор стал хорошим дополнением к существующим Jira и Confluence. Прямые ссылки позволяют быстро переходить на нужные части описания системы.'
           },
           {
             name: 'Ильдар Башаров',
             avatar: 'assets/images/reviews/ildar.jpeg',
-            position: 'Менеджер проектов в Garpix',
+            position: 'Менеджер проектов в <a target="_blank" href="//www.garpix.com">Garpix</a>',
             text: 'Мы ушли от Google Docs и Microsoft Word и теперь все ТЗ пишем в проджекторе - это удобно и поддерживаемо.'
           },
           {
             name: 'Андрей Морковкин',
             avatar: 'assets/images/reviews/andrey.jpeg',
-            position: 'Директор CADesign',
+            position: 'Директор <a target="_blank" href="//https://cadesign.ru/">CADesign</a>',
             text: 'Время написания технических заданий для сайтов в нашей студии сократилось в 2 раза, а главное теперь вся информация остается актуальной в процессе разработки.'
           },
           {
-            name: 'Владимир Концов',
+            name: 'Вадим Оглобин',
             avatar: 'assets/images/reviews/vladimir.jpeg',
-            position: 'Основатель Involta Design',
-            text: 'Проджектор стал открытием для нашей команды, который позволил не только выстроить процесс разработки, но и повысить лояльность клиентов.'
+            position: 'Основатель <a target="_blank" href="//www.jobdriver24.ru">JobDriver24</a>',
+            text: 'С точки зрения заказчика, проджектор обеспечил прозрачную оценку стоимость разработки моего приложения. Набор функций, дизайн, стоимость - все в одном месте.'
           }
         ];
         break;
@@ -50,26 +50,26 @@ export class ReviewsComponent {
           {
             name: 'Dr. Maik Rosenheinrich',
             avatar: 'assets/images/reviews/maik.jpeg',
-            position: 'Head of IT in Esanum Gmbh, Germany',
+            position: 'Head of IT in <a target="_blank" href="//www.esanum.de">Esanum Gmbh</a>, Germany',
             text: 'Projector became a good addition for Jira & Confluence. Direct links allow go to required parts of the system fastly.'
           },
           {
             name: 'Ildar Basharov',
             avatar: 'assets/images/reviews/ildar.jpeg',
-            position: 'Project Manager in Garpix',
+            position: 'Project Manager in <a target="_blank" href="//www.garpix.com">Garpix</a>',
             text: 'We gone away from Google Docs & Microsoft Word and we are writing all specifications in Projector - it is comfortable & useful.'
           },
           {
             name: 'Andrey Morkovkin',
             avatar: 'assets/images/reviews/andrey.jpeg',
-            position: 'CEO CADesign',
+            position: 'CEO <a target="_blank" href="//www.cadesign.ru">CADesign</a>',
             text: 'Time for making specifications have been decreased in 2 times and main is all information is staying actual in developing process.'
           },
           {
-            name: 'Vladimir Konzov',
+            name: 'Vadim Oglobin',
             avatar: 'assets/images/reviews/vladimir.jpeg',
-            position: 'Founder Involta Design',
-            text: 'Projector became a revelation for our team which allowed to build development process and increase clients loyalty.'
+            position: 'Founder <a target="_blank" href="//www.jobdriver24.ru">JobDriver24</a>',
+            text: 'From client side, projector provided transparent estimate costs of development my app. Features, design, costs all in one place.'
           }
         ];
     }
