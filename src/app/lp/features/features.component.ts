@@ -43,18 +43,15 @@ export class FeaturesComponent {
 
   ui = UI;
   features = Feature;
-  feature: Feature = Feature.cleanWorkflow;
+
+  active = Feature.cleanWorkflow;
 
   constructor(public route: ActivatedRoute,
               public router: Router) {
   }
 
   setActive(feature: Feature) {
-    if (this.feature === feature) {
-        this.feature = null;
-    } else {
-      this.feature = feature;
-    }
+    this.active = this.active === feature ? null : feature;
   }
 
 }
