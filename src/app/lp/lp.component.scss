@@ -160,6 +160,11 @@ jnt-lp-slide {
 
 }
 
+[data-cp] {
+  display: block;
+  text-decoration: none;
+  @include jnt-icon((size: 48px));
+}
 
 //TODO: junte-ui mixin api
 [data-team]::ng-deep {
