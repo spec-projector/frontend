@@ -1,123 +1,126 @@
-<jnt-stack *jntMinFor="ui.breakpoint.tablet"
-           [orientation]="ui.orientation.horizontal"
-           [gutter]="ui.gutter.huge">
-  <div data-video>
-    <ng-container [ngSwitch]="active">
-      <div *ngSwitchCase="features.cleanWorkflow">
-        <p i18n="@@label.feature_clean_workflow">Clean workflow</p>
-      </div>
-      <div *ngSwitchCase="features.featuresMap">
-        <p i18n="@@label.feature_features_map">Features map</p>
-      </div>
-      <div *ngSwitchCase="features.userStories">
-        <p i18n="@@label.feature_user_stories">User stories</p>
-      </div>
-      <div *ngSwitchCase="features.attachDesign">
-        <p i18n="@@label.feature_attach_design">Attach design</p>
-      </div>
-      <div *ngSwitchCase="features.costFeatures">
-        <p i18n="@@label.feature_cost_features">Cost features</p>
-      </div>
-      <div *ngSwitchCase="features.tasksDescription">
-        <p i18n="@@label.feature_tasks_description">Tasks description</p>
-      </div>
-      <div *ngSwitchCase="features.printContract">
-        <p i18n="@@label.feature_print_contract">Print contract</p>
-      </div>
-    </ng-container>
-  </div>
-
-  <jnt-stack data-list-features [align]="ui.align.stretch" [gutter]="ui.gutter.big">
-    <div data-feature [@changeView]="active === features.cleanWorkflow ? 'extend' : 'short'">
-      <div *ngIf="active !== features.cleanWorkflow"
-           [@fadeOut] (click)="active = features.cleanWorkflow">
-        <h4 i18n="@@label.feature_clean_workflow">Clean workflow</h4>
-      </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.cleanWorkflow">
-        <h4 i18n="@@label.feature_clean_workflow">Clean workflow</h4>
-        <p i18n="@@label.feature_clean_workflow_teaser">Make specification and develop your app following strong
-          process</p>
-      </jnt-card>
+<jnt-row *jntMinFor="ui.breakpoint.tablet"
+           [gutter]="ui.gutter.big">
+  <jnt-col [span]="9">
+    <div data-video>
+      <ng-container [ngSwitch]="active">
+        <div *ngSwitchCase="features.cleanWorkflow">
+          <p i18n="@@label.feature_clean_workflow">Clean workflow</p>
+        </div>
+        <div *ngSwitchCase="features.featuresMap">
+          <p i18n="@@label.feature_features_map">Features map</p>
+        </div>
+        <div *ngSwitchCase="features.userStories">
+          <p i18n="@@label.feature_user_stories">User stories</p>
+        </div>
+        <div *ngSwitchCase="features.attachDesign">
+          <p i18n="@@label.feature_attach_design">Attach design</p>
+        </div>
+        <div *ngSwitchCase="features.costFeatures">
+          <p i18n="@@label.feature_cost_features">Cost features</p>
+        </div>
+        <div *ngSwitchCase="features.tasksDescription">
+          <p i18n="@@label.feature_tasks_description">Tasks description</p>
+        </div>
+        <div *ngSwitchCase="features.printContract">
+          <p i18n="@@label.feature_print_contract">Print contract</p>
+        </div>
+      </ng-container>
     </div>
+  </jnt-col>
 
-    <div data-feature [@changeView]="active === features.featuresMap ? 'extend' : 'short'">
-      <div *ngIf="active !== features.featuresMap"
-           [@fadeOut]
-           (click)="active = features.featuresMap">
-        <h4 i18n="@@label.feature_features_map">Features map</h4>
+  <jnt-col [span]="3">
+    <jnt-stack data-list-features [align]="ui.align.stretch" [gutter]="ui.gutter.big">
+      <div data-feature [@changeView]="active === features.cleanWorkflow ? 'extend' : 'short'">
+        <div *ngIf="active !== features.cleanWorkflow"
+             [@fadeOut] (click)="active = features.cleanWorkflow">
+          <h4 i18n="@@label.feature_clean_workflow">Clean workflow</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.cleanWorkflow">
+          <h4 i18n="@@label.feature_clean_workflow">Clean workflow</h4>
+          <p i18n="@@label.feature_clean_workflow_teaser">Make specification and develop your app following strong
+            process</p>
+        </jnt-card>
       </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.featuresMap">
-        <h4 i18n="@@label.feature_features_map">Features map</h4>
-        <p i18n="@@label.feature_features_map_teaser">Structure features of your app by roles and epics</p>
-      </jnt-card>
-    </div>
 
-    <div data-feature [@changeView]="active === features.userStories ? 'extend' : 'short'">
-      <div *ngIf="active !== features.userStories"
-           [@fadeOut]
-           (click)="active = features.userStories">
-        <h4 i18n="@@label.feature_user_stories">User stories</h4>
+      <div data-feature [@changeView]="active === features.featuresMap ? 'extend' : 'short'">
+        <div *ngIf="active !== features.featuresMap"
+             [@fadeOut]
+             (click)="active = features.featuresMap">
+          <h4 i18n="@@label.feature_features_map">Features map</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.featuresMap">
+          <h4 i18n="@@label.feature_features_map">Features map</h4>
+          <p i18n="@@label.feature_features_map_teaser">Structure features of your app by roles and epics</p>
+        </jnt-card>
       </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.userStories">
-        <h4 i18n="@@label.feature_user_stories">User stories</h4>
-        <p i18n="@@label.feature_user_stories_teaser">Describe what see and can your user in simple steps then</p>
-      </jnt-card>
-    </div>
 
-    <div data-feature [@changeView]="active === features.attachDesign ? 'extend' : 'short'">
-      <div *ngIf="active !== features.attachDesign"
-           [@fadeOut]
-           (click)="active = features.attachDesign">
-        <h4 i18n="@@label.feature_attach_design">Attach design</h4>
+      <div data-feature [@changeView]="active === features.userStories ? 'extend' : 'short'">
+        <div *ngIf="active !== features.userStories"
+             [@fadeOut]
+             (click)="active = features.userStories">
+          <h4 i18n="@@label.feature_user_stories">User stories</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.userStories">
+          <h4 i18n="@@label.feature_user_stories">User stories</h4>
+          <p i18n="@@label.feature_user_stories_teaser">Describe what see and can your user in simple steps then</p>
+        </jnt-card>
       </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.attachDesign">
-        <h4 i18n="@@label.feature_attach_design">Attach design</h4>
-        <p i18n="@@label.feature_attach_design_teaser">Draw UI & connect story with Figma frames</p>
-      </jnt-card>
-    </div>
 
-    <div data-feature [@changeView]="active === features.costFeatures ? 'extend' : 'short'">
-      <div *ngIf="active !== features.costFeatures"
-           [@fadeOut]
-           (click)="active = features.costFeatures">
-        <h4 i18n="@@label.feature_cost_features">Cost features</h4>
+      <div data-feature [@changeView]="active === features.attachDesign ? 'extend' : 'short'">
+        <div *ngIf="active !== features.attachDesign"
+             [@fadeOut]
+             (click)="active = features.attachDesign">
+          <h4 i18n="@@label.feature_attach_design">Attach design</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.attachDesign">
+          <h4 i18n="@@label.feature_attach_design">Attach design</h4>
+          <p i18n="@@label.feature_attach_design_teaser">Draw UI & connect story with Figma frames</p>
+        </jnt-card>
       </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.costFeatures">
-        <h4 i18n="@@label.feature_cost_features">Cost features</h4>
-        <p i18n="@@label.feature_cost_features_teaser">Show to your client required resources and cost for each
-          feature</p>
-      </jnt-card>
-    </div>
 
-    <div data-feature [@changeView]="active === features.tasksDescription ? 'extend' : 'short'">
-      <div *ngIf="active !== features.tasksDescription"
-           [@fadeOut]
-           (click)="active = features.tasksDescription">
-        <h4 i18n="@@label.feature_tasks_description">Tasks description</h4>
+      <div data-feature [@changeView]="active === features.costFeatures ? 'extend' : 'short'">
+        <div *ngIf="active !== features.costFeatures"
+             [@fadeOut]
+             (click)="active = features.costFeatures">
+          <h4 i18n="@@label.feature_cost_features">Cost features</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.costFeatures">
+          <h4 i18n="@@label.feature_cost_features">Cost features</h4>
+          <p i18n="@@label.feature_cost_features_teaser">Show to your client required resources and cost for each
+            feature</p>
+        </jnt-card>
       </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.tasksDescription">
-        <h4 i18n="@@label.feature_tasks_description">Tasks description</h4>
-        <p i18n="@@label.feature_tasks_description_teaser">Generate beautiful tasks descriptions for your
-          developers</p>
-      </jnt-card>
-    </div>
 
-    <div data-feature [@changeView]="active === features.printContract ? 'extend' : 'short'">
-      <div *ngIf="active !== features.printContract"
-           [@fadeOut]
-           (click)="active = features.printContract">
-        <h4 i18n="@@label.feature_print_contract">Print contract</h4>
+      <div data-feature [@changeView]="active === features.tasksDescription ? 'extend' : 'short'">
+        <div *ngIf="active !== features.tasksDescription"
+             [@fadeOut]
+             (click)="active = features.tasksDescription">
+          <h4 i18n="@@label.feature_tasks_description">Tasks description</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.tasksDescription">
+          <h4 i18n="@@label.feature_tasks_description">Tasks description</h4>
+          <p i18n="@@label.feature_tasks_description_teaser">Generate beautiful tasks descriptions for your
+            developers</p>
+        </jnt-card>
       </div>
-      <jnt-card data-active [@fadeIn] *ngIf="active === features.printContract">
-        <h4 i18n="@@label.feature_print_contract">Print contract</h4>
-        <p i18n="@@label.feature_print_contract_teaser">Generate and print contract for your client on app
-          developing</p>
-      </jnt-card>
-    </div>
 
-    <ng-content></ng-content>
-  </jnt-stack>
-</jnt-stack>
+      <div data-feature [@changeView]="active === features.printContract ? 'extend' : 'short'">
+        <div *ngIf="active !== features.printContract"
+             [@fadeOut]
+             (click)="active = features.printContract">
+          <h4 i18n="@@label.feature_print_contract">Print contract</h4>
+        </div>
+        <jnt-card data-active [@fadeIn] *ngIf="active === features.printContract">
+          <h4 i18n="@@label.feature_print_contract">Print contract</h4>
+          <p i18n="@@label.feature_print_contract_teaser">Generate and print contract for your client on app
+            developing</p>
+        </jnt-card>
+      </div>
+
+      <ng-content></ng-content>
+    </jnt-stack>
+  </jnt-col>
+</jnt-row>
 
 <jnt-stack *jntFor="ui.breakpoint.mobile" [align]="ui.align.stretch">
   <jnt-card data-active (click)="setActive(features.cleanWorkflow)">

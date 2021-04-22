@@ -7,7 +7,10 @@ $jnt-ng-deep: true;
 
 :host {
   display: block;
+  position: relative;
+  z-index: 1;
   @include jnt-skeleton((card: (height: 300px)));
+  @include jnt-card((background: rgba($jnt-primary-background, 0.6), corner: 16px));
 }
 
 [data-tariff] {
@@ -15,8 +18,15 @@ $jnt-ng-deep: true;
   height: 100%;
   font-family: $jnt-lp-layout-font-family;
 
+  &[data-current=false] {
+    backdrop-filter: blur(20px);
+  }
+
   &[data-current=true] {
-    border: 2px solid $jnt-success-color;
+    @include jnt-card((
+      background: #ECEFFF,
+      border: 2px solid $jnt-primary-color,
+      shadow: 0px 30px 30px rgba(57, 73, 171, 0.14)), '&');
 
     [data-selected] {
       @include jnt-icon((size: 32px, stroke: 2px, color: $jnt-success-color), '&');
