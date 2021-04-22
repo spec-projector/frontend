@@ -19,7 +19,7 @@ img {
 
   &[data-torus-small] {
     @extend %data-decor;
-    left: 330px;
+    left: 390px;
     top: 720px;
     @include for-mobile() {
       left: 20px;
@@ -29,7 +29,7 @@ img {
 
   &[data-figma] {
     @extend %data-decor;
-    right: 40px;
+    right: 150px;
     top: 120px;
     @include for-mobile() {
       display: none;
@@ -38,8 +38,19 @@ img {
 
   &[data-torus-big] {
     @extend %data-decor;
-    left: -150px;
+    left: -100px;
     top: 600px;
+    @include for-mobile() {
+      left: auto;
+      right: 0;
+      top: 485px;
+    }
+  }
+
+  &[data-torus-half] {
+    @extend %data-decor;
+    left: 1300px;
+    top: 800px;
     @include for-mobile() {
       left: auto;
       right: 0;
@@ -50,7 +61,9 @@ img {
   &[data-hand-up] {
     @extend %data-decor;
     top: 100%;
-    left: 385px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     @include for-mobile() {
       display: none;
     }
@@ -59,7 +72,7 @@ img {
   &[data-specifications] {
     @extend %data-decor;
     top: 210px;
-    right: -340px;
+    right: -190px;
     @include for-mobile() {
       display: none;
     }

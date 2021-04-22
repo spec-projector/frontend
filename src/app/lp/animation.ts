@@ -11,10 +11,9 @@ export const moveDownKeyframes = animate('.5s ease', keyframes([
 ]));
 
 export enum Distance {
-  plus = '-190px, -200px, 0px',
-  torusSmall = '380px, -290px, 0px',
-  figma = '-435px, -100px, 0px',
-  torusBig = '215px, -445px, 0px',
-  handUp = '0, calc(-100vh + 730px), 0',
-  handOk = '0, calc(-100vh + 550px), 0'
+  torusHalf = '-470px, -230px, 0px',
+  torusSmall = '500px, -400px, 0px',
+  figma = '-310px, -230px, 0px',
+  torusBig = '250px, -550px, 0px',
+  handUp = '0, calc(-100vh + 770px), 0'
 }
