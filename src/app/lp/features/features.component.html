@@ -11,6 +11,7 @@
         </div>
         <div *ngSwitchCase="features.userStories">
           <p i18n="@@label.feature_user_stories">User stories</p>
+          <spec-lp-user-stories></spec-lp-user-stories>
         </div>
         <div *ngSwitchCase="features.attachDesign">
           <p i18n="@@label.feature_attach_design">Attach design</p>
@@ -144,6 +145,7 @@
   </jnt-card>
   <div data-video *ngIf="active === features.userStories">
     <p i18n="@@label.feature_user_stories">User stories</p>
+    <spec-lp-user-stories></spec-lp-user-stories>
   </div>
   <jnt-card data-active (click)="setActive(features.attachDesign)">
     <h4 i18n="@@label.feature_attach_design">Attach design</h4>
