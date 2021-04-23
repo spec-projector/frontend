@@ -15,6 +15,17 @@ import { AppComponent } from './app.component';
   template: `
     <p i18n="@@label.change_personal_data">Change personal data</p>
     <p i18n="@@label.change_password">Change password</p>
+    <p i18n="@@label.new_actor_example">Client</p>
+    <p i18n="@@label.new_feature_example">Buy a cookies</p>
+    <p i18n="@@label.new_module_example">Accepting payments</p>
+    <p i18n="@@label.general:General">General</p>
+    <p i18n="@@label.modules">Modules</p>
+    <p i18n="@@label.features">Features</p>
+    <p i18n="@@label.actors">Actors</p>
+    <p i18n="@@label.knowledge">Knowledge</p>
+    <p i18n="@@label.model">Model</p>
+    <p i18n="@@label.print">Print</p>
+    <p i18n="@@label.validate">Validate</p>
   `
 })
 export class I18nComponent {

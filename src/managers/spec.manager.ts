@@ -10,6 +10,7 @@ import { SCHEME_VERSION } from '../consts';
 import { environment } from '../environments/environment';
 import { SchemeInvalidError } from '../types/errors';
 import Database = PouchDB.Database;
+import { generate as shortid } from 'shortid';
 
 const SPEC_OBJECT_ID = 'spec';
 const BUFFER_TIME = 2500;
@@ -37,7 +38,16 @@ export class SpecManager {
   private remote: Database;
   private flushing$ = new Subject<Flush>();
   spec$: BehaviorSubject<Spec>;
-  mode: EditMode = EditMode.edit;
+
+  set mode(mode: EditMode) {
+    this.mode$.next(mode);
+  }
+
+  get mode() {
+    return this.mode$.getValue();
+  }
+
+  mode$ = new BehaviorSubject(EditMode.edit);
 
   constructor(private config: AppConfig) {
     this.flushing();
@@ -75,9 +85,15 @@ export class SpecManager {
           const progress = new Subject();
           spec.load(this.local, progress)
             .subscribe(() => {
-              if (spec.scheme.version !== SCHEME_VERSION) {
-                this.spec$.error(new SchemeInvalidError());
-                return;
+              // if (spec.scheme.version !== SCHEME_VERSION) {
+              //  this.spec$.error(new SchemeInvalidError());
+              //  return;
+              // }
+
+              if (!spec.model.id) {
+                spec.model.id = shortid();
+                this.put(spec.model);
+                this.put(spec);
               }
 
               spec.linking();
@@ -87,6 +103,10 @@ export class SpecManager {
             }, (err: { status }) => {
               if (err.status === 404) {
                 console.log('spec not found');
+                spec.model.id = shortid();
+                this.put(spec.model);
+                this.put(spec);
+
                 this.spec$.next(spec);
               } else {
                 this.spec$.error(err);

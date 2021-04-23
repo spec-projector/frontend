@@ -6,7 +6,7 @@ export class LocalUI {
     market: 'market:svg:local',
     sprints: 'sprints:svg:local:stroked',
     terms: 'terms:svg:local:stroked',
-    epics: 'epics:svg:local:stroked',
+    modules: 'modules:svg:local:stroked',
     model: 'model:svg:local:stroked',
     features: 'features:svg:local:stroked',
     validate: 'validate:svg:local:stroked',

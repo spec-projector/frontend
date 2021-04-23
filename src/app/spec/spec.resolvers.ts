@@ -9,7 +9,6 @@ import { Project } from 'src/models/projects';
 import { Spec } from 'src/models/spec/spec';
 import { Entity } from '../../models/spec/orm/entity';
 import { Enum } from '../../models/spec/orm/enum';
-import { Package } from '../../models/spec/orm/package';
 import { Actor } from '../../models/spec/planning/actor';
 import { Feature } from '../../models/spec/planning/feature';
 import { Graphql } from '../../models/spec/planning/graphql';
@@ -100,26 +99,14 @@ export class FeatureGraphqlResolver implements Resolve<Graphql> {
 }
 
 @Injectable({providedIn: 'root'})
-export class PackageResolver implements Resolve<Package> {
-
-  resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): Package {
-    const {spec} = route.parent.data as { spec: Spec };
-    const {pack} = route.params as { pack: string };
-
-    return spec.packages.find(p => p.id === pack);
-  }
-}
-
-@Injectable({providedIn: 'root'})
 export class EntityResolver implements Resolve<Entity> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Entity {
-    const {pack} = route.parent.data as { pack: Package };
+    const {spec} = route.parent.data as { spec: Spec };
     const {entity} = route.params as { entity: string };
 
-    return pack.entities.find(e => e.id === entity);
+    return spec.model.entities.find(a => a.id === entity);
   }
 }
 
@@ -128,9 +115,9 @@ export class EnumResolver implements Resolve<Enum> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Enum {
-    const {pack} = route.parent.data as { pack: Package };
-    const {enum: _enum} = route.params as { enum: string };
+    const {spec} = route.parent.data as { spec: Spec };
+    const {enum: enum_} = route.params as { enum: string };
 
-    return pack.enums.find(e => e.id === _enum);
+    return spec.model.enums.find(a => a.id === enum_);
   }
 }

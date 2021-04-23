@@ -337,7 +337,7 @@
           stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   </svg>
 
-  <svg id="epics" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg id="modules" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M13.5006 8.06173V6.24761C13.5006 5.55696 12.9407 4.99709 12.2501 4.99709H11.7499C11.0593 4.99709 10.4994 5.55696 10.4994 6.24761V7.99834"
       stroke-linecap="round" stroke-linejoin="round" fill="none"/>

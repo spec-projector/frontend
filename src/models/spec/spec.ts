@@ -1,12 +1,13 @@
+import * as assign from 'assign-deep';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { StoryEntry } from 'src/models/spec/planning/feature';
+import { Feature, StoryEntry } from 'src/models/spec/planning/feature';
 import { ValidationError } from 'src/models/validation/error';
-import { Package } from './orm/package';
+import { Entity } from './orm/entity';
+import { Enum } from './orm/enum';
 import { Actor } from './planning/actor';
-import { Epic } from './planning/epic';
+import { Module } from './planning/module';
 import { Sprint } from './planning/sprint';
 import { Term } from './planning/term';
-import * as assign from 'assign-deep';
 
 @persistence()
 class ErrorValidate {
@@ -55,6 +56,17 @@ export class Scheme {
 }
 
 @persistence()
+export class Model extends Persistence {
+
+  @persist({type: Entity})
+  entities: Entity[] = [];
+
+  @persist({type: Enum})
+  enums: Enum[] = [];
+
+}
+
+@persistence()
 export class Spec extends Persistence {
 
   @persist()
@@ -77,8 +89,8 @@ export class Spec extends Persistence {
   @persist({type: Actor})
   actors: Actor[] = [];
 
-  @persist({type: Epic})
-  epics: Epic[] = [];
+  @persist({name: 'epics', type: Module})
+  modules: Module[] = [];
 
   @persist({type: Sprint})
   sprints: Sprint[] = [];
@@ -86,14 +98,18 @@ export class Spec extends Persistence {
   @persist({type: Term})
   terms: Term[] = [];
 
-  @persist({type: Package})
-  packages: Package[] = [];
+  @persist({type: Model})
+  model: Model = new Model();
 
   version = 0;
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<Spec> = {}) {
     super();
     Object.assign(this, defs);
+  }
+
+  get features(): Feature[] {
+    return this.actors.reduce((res, a) => res.concat(a.features), []);
   }
 
   linking() {
@@ -102,16 +118,21 @@ export class Spec extends Persistence {
       actor.linking(this);
     }
 
-    for (const epic of this.epics) {
+
+    for (const entity of this.model.entities) {
+      entity.linking({spec: this});
+    }
+
+    for (const enum_ of this.model.enums) {
+      enum_.linking({spec: this});
+    }
+
+    for (const epic of this.modules) {
       epic.linking(this);
     }
 
     for (const sprint of this.sprints) {
       sprint.linking(this);
-    }
-
-    for (const pack of this.packages) {
-      pack.linking(this);
     }
 
     for (const term of this.terms) {
@@ -129,7 +150,7 @@ export class Spec extends Persistence {
       }
     }
 
-    for (const epic of this.epics) {
+    for (const epic of this.modules) {
       const terms = epic.validateTerms(this);
       if (!!terms) {
         lost = lost.concat(terms);

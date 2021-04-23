@@ -1,0 +1,18 @@
+@import "../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+
+:host {
+  display: block;
+  position: relative;
+}
+
+[data-art] {
+  width: 50%;
+}
+
+[data-actions] {
+  margin-right: $jnt-gutter-small;
+}
+
+[data-entity] {
+  flex: 1;
+}

@@ -2,8 +2,8 @@
     <h1>{{sprint.title}}</h1>
     <h2 i18n="@@label.features">Features</h2>
     <jnt-stack>
-        <ng-container *ngFor="let group of (sprint.features | groupFeaturesByEpic)">
-            <h3>{{group.epic?.title}}</h3>
+        <ng-container *ngFor="let group of (sprint.features | groupFeaturesByModules)">
+            <h3>{{group.module?.title}}</h3>
             <jnt-block>
 
                 <ol>

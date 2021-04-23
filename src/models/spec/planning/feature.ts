@@ -1,17 +1,16 @@
 import { ArraySerializer } from 'serialize-ts';
-import { Entity } from 'src/models/spec/orm/entity';
+import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Graphql } from 'src/models/spec/planning/graphql';
 import { Sprint } from 'src/models/spec/planning/sprint';
 import { TokenSerializer } from 'src/models/spec/serializers/token';
 import { Spec } from 'src/models/spec/spec';
 import { TermMissedError } from 'src/models/validation/error';
-import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Actor } from './actor';
 import { Algorithm } from './algorithm';
 import { Api } from './api';
-import { Epic } from './epic';
 import { Frame } from './frame';
 import { Issue } from './issue';
+import { Module } from './module';
 import { Term } from './term';
 import { TermToken, Token } from './token';
 
@@ -74,9 +73,6 @@ export class Feature extends Persistence {
   @persist({type: Graphql})
   graphql: Graphql[] = [];
 
-  @persist({type: Entity})
-  entities: Entity[] = [];
-
   @persist({type: Algorithm})
   algorithms: Algorithm[] = [];
 
@@ -85,7 +81,7 @@ export class Feature extends Persistence {
 
   spec: Spec;
   actor: Actor;
-  epic: Epic;
+  module: Module;
   sprint: Sprint;
 
   _version = 0;
@@ -104,30 +100,35 @@ export class Feature extends Persistence {
     Object.assign(this, defs);
   }
 
-  linking({spec, actor, epic, sprint}: { spec?: Spec, actor?: Actor, epic?: Epic, sprint?: Sprint }) {
-    if (spec !== undefined) {
-      this.spec = spec;
-    }
-
+  linking({actor, module, sprint}: { spec?: Spec, actor?: Actor, module?: Module, sprint?: Sprint }) {
     if (actor !== undefined) {
       this.actor = actor;
     }
 
-    if (epic !== undefined) {
-      this.epic = epic;
+    if (module !== undefined) {
+      this.module = module;
     }
 
     if (sprint !== undefined) {
       this.sprint = sprint;
     }
+  }
 
-    if (!!this.actor && !!this.actor.spec) {
-      const entities = this.actor.spec.packages.reduce((res, pack) => res.concat(pack.entities), []);
-      for (let i = 0; i < this.entities.length; i++) {
-        const entity = this.entities[i];
-        this.entities[i] = entities.find(e => e.id === entity.id);
-      }
+  delete(): { changed: Persistence[], deleted: Persistence[] } {
+    const links = {changed: [], deleted: []};
+    if (!!this.actor) {
+      const index = this.actor.features.findIndex(f => f.id === this.id);
+      this.actor.features.splice(index, 1);
+      links.changed.push(this.actor);
     }
+
+    if (!!this.module) {
+      const index = this.module.features.findIndex(f => f.id === this.id);
+      this.module.features.splice(index, 1);
+      links.changed.push(this.module);
+    }
+
+    return links;
   }
 
   validate(spec: Spec) {

@@ -1,5 +1,5 @@
 import { Actor } from 'src/models/spec/planning/actor';
-import { Epic } from 'src/models/spec/planning/epic';
+import { Module } from 'src/models/spec/planning/module';
 import { Feature } from 'src/models/spec/planning/feature';
 import { Sprint } from 'src/models/spec/planning/sprint';
 
@@ -9,7 +9,7 @@ export enum ErrorType {
 
 export class ValidationError {
     actor: Actor;
-    epic: Epic;
+    epic: Module;
     feature: Feature;
     sprint: Sprint;
 }

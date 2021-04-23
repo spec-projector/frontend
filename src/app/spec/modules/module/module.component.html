@@ -1,0 +1,84 @@
+<form [formGroup]="form">
+  <header (mouseenter)="manager.mode === editMode.edit ? mode = editMode.edit : null"
+          (mouseleave)="mode = editMode.view">
+    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+      <input data-title formControlName="title">
+    </ng-container>
+  </header>
+
+  <ng-template #viewHeader>
+    <h3 data-title>{{module.title}}</h3>
+  </ng-template>
+
+  <div data-features cdkDropList [id]="'_' + module.id"
+       (cdkDropListDropped)="onDropFromLibrary($event)">
+    <ul *ngIf="module.features.length;else noFeaturesTemplate">
+      <li data-actor *ngFor="let group of (module.features | groupFeaturesByActor:version)">
+        <h4>
+          <span>{{group.actor?.name}}</span>
+        </h4>
+        <jnt-row>
+          <jnt-col *ngFor="let feature of group.features; trackBy: trackFeature"
+                   [wide]="6">
+            <jnt-card [width]="ui.width.fluid">
+              <jnt-stack [orientation]="ui.orientation.horizontal"
+                         [align]="ui.align.stretch">
+                <jnt-button [icon]="ui.icons.link"
+                            [size]="ui.size.tiny"
+                            [scheme]="ui.scheme.secondary"
+                            [shape]="ui.shape.circle"
+                            (click)="router.navigate(['../actors', group.actor.id, 'features', feature.id], {relativeTo: route})">
+                </jnt-button>
+                <spec-feature data-feature [attr.id]="feature.id"
+                              [feature]="feature"></spec-feature>
+                <jnt-button [icon]="ui.icons.close"
+                            [size]="ui.size.tiny"
+                            [scheme]="ui.scheme.secondary"
+                            [shape]="ui.shape.circle"
+                            (click)="deleteFeature(feature)">
+                </jnt-button>
+              </jnt-stack>
+            </jnt-card>
+          </jnt-col>
+        </jnt-row>
+      </li>
+    </ul>
+
+    <jnt-row *ngIf="module.model.entities.length;else noEntitiesTemplate">
+      <jnt-col *ngFor="let entity of module.model.entities; trackBy: trackEntity"
+               [wide]="6">
+        <jnt-card [width]="ui.width.fluid">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.stretch">
+            <jnt-button [icon]="ui.icons.link"
+                        [size]="ui.size.tiny"
+                        [scheme]="ui.scheme.secondary"
+                        [shape]="ui.shape.circle"
+                        (click)="router.navigate(['../model/entities', entity.id], {relativeTo: route})">
+            </jnt-button>
+            <spec-entity data-entity [attr.id]="entity.id"
+                         [entity]="entity"></spec-entity>
+            <jnt-button [icon]="ui.icons.close"
+                        [size]="ui.size.tiny"
+                        [scheme]="ui.scheme.secondary"
+                        [shape]="ui.shape.circle"
+                        (click)="deleteEntity(entity)">
+            </jnt-button>
+          </jnt-stack>
+        </jnt-card>
+      </jnt-col>
+    </jnt-row>
+  </div>
+
+  <ng-template #noFeaturesTemplate>
+    <jnt-message [icon]="ui.icons.question">
+      <p>Drag features from library</p>
+    </jnt-message>
+  </ng-template>
+
+  <ng-template #noEntitiesTemplate>
+    <jnt-message [icon]="ui.icons.question">
+      <p>Drag entities from library</p>
+    </jnt-message>
+  </ng-template>
+</form>

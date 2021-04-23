@@ -1,4 +1,4 @@
-<ul data-filling>
+<!--<ul data-filling>
   <li [attr.data-step]="feature.story.length > 0">
     <span>Story</span>
   </li>
@@ -25,13 +25,13 @@
   <li [attr.data-step]="feature.graphql.length > 0">
     <span>API</span>
   </li>
-</ul>
+</ul>-->
 
 <form [formGroup]="form">
   <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
           (mouseleave)="mode = editMode.view">
     <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-      <input data-title formControlName="title">
+      <input  #nameRef data-title formControlName="title">
     </ng-container>
   </header>
 

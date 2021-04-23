@@ -40,7 +40,7 @@ export class ReviewsComponent {
             name: 'Вадим Оглобин',
             avatar: 'assets/images/reviews/vladimir.jpeg',
             position: 'Основатель <a target="_blank" href="//www.jobdriver24.ru">JobDriver24</a>',
-            text: 'С точки зрения заказчика, проджектор обеспечил прозрачную оценку стоимость разработки моего приложения. Набор функций, дизайн, стоимость - все в одном месте.'
+            text: 'С точки зрения заказчика, проджектор обеспечил прозрачную оценку стоимость разработки моего проекта. Набор функций, дизайн, стоимость - все в одном месте.'
           }
         ];
         break;
@@ -69,7 +69,7 @@ export class ReviewsComponent {
             name: 'Vadim Oglobin',
             avatar: 'assets/images/reviews/vladimir.jpeg',
             position: 'Founder <a target="_blank" href="//www.jobdriver24.ru">JobDriver24</a>',
-            text: 'From client side, projector provided transparent estimate costs of development my app. Features, design, costs all in one place.'
+            text: 'From client side, projector provided transparent estimate costs of development my project. Features, design, costs all in one place.'
           }
         ];
     }

@@ -9,8 +9,7 @@ export enum FieldType {
   string = 'string',
   date = 'date',
   reference = 'reference',
-  enum = 'enum',
-  array = 'array'
+  enum = 'enum'
 }
 
 @persistence()
@@ -56,15 +55,11 @@ export class EntityField {
     if (!!this.entity) {
       switch (this.type) {
         case FieldType.reference:
-          const entities = this.entity.package.spec.packages
-            .reduce((arr, pack) => arr.concat(pack.entities), []);
-          this.links.reference = entities
+          this.links.reference = this.entity.spec.model.entities
             .find(e => e.id === this.reference);
           break;
         case FieldType.enum:
-          const enums = this.entity.package.spec.packages
-            .reduce((arr, pack) => arr.concat(pack.enums), []);
-          this.links.enum = enums
+          this.links.enum = this.entity.spec.model.enums
             .find(e => e.id === this.enum);
           break;
       }

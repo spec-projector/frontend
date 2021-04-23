@@ -1,8 +1,18 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Inject, Input, LOCALE_ID, OnDestroy } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  LOCALE_ID,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PopoverInstance, PopoverService, UI } from '@junte/ui';
+import { ModalService, PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
 import { generate as shortid } from 'shortid';
 import { EditMode } from 'src/enums/edit-mode';
@@ -10,31 +20,32 @@ import { SpecManager } from 'src/managers/spec.manager';
 import { Actor } from 'src/models/spec/planning/actor';
 import { Feature } from 'src/models/spec/planning/feature';
 import { TextToken } from 'src/models/spec/planning/token';
+import { CURRENT_LANGUAGE } from '../../../../consts';
 import { Language } from '../../../../enums/language';
 
 @Component({
   selector: 'spec-actor',
   templateUrl: './actor.component.html',
-  styleUrls: ['./actor.component.scss']
+  styleUrls: ['./actor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ActorComponent implements OnDestroy {
+export class ActorComponent implements AfterViewInit, OnDestroy {
 
   ui = UI;
   editMode = EditMode;
   language = Language;
+  consts = {language: CURRENT_LANGUAGE};
 
   private _actor: Actor;
-  private subscriptions: Partial<{
-    actor: Subscription,
-    form: Subscription
-  }> = {};
-
-  instance: { popover: PopoverInstance } = {popover: null};
-
-  @Input()
-  selected: string;
+  private subscriptions: {
+    actor?: Subscription,
+    form?: Subscription
+  } = {};
 
   version = 0;
+  added: string;
+
+  @Input()
   mode = EditMode.view;
 
   nameControl = this.fb.control(null);
@@ -56,6 +67,8 @@ export class ActorComponent implements OnDestroy {
         const {name} = this.form.getRawValue();
         this.actor.name = name;
         this.manager.put(this.actor);
+
+        this.cd.detectChanges();
       });
   }
 
@@ -63,39 +76,34 @@ export class ActorComponent implements OnDestroy {
     return this._actor;
   }
 
-  constructor(@Inject(LOCALE_ID) public locale: string,
-              public manager: SpecManager,
-              public popover: PopoverService,
+  @ViewChild('nameRef')
+  nameRef: ElementRef<HTMLInputElement>;
+
+  constructor(public manager: SpecManager,
+              public modal: ModalService,
               private fb: FormBuilder,
+              private cd: ChangeDetectorRef,
               public route: ActivatedRoute,
               public router: Router) {
 
   }
 
+  ngAfterViewInit() {
+    if (!!this.nameRef) {
+      this.nameRef.nativeElement.focus();
+    }
+  }
+
   ngOnDestroy() {
-    this.subscriptions.actor?.unsubscribe();
-    this.subscriptions.form?.unsubscribe();
+    [this.subscriptions.actor, this.subscriptions.form]
+      .forEach(s => s?.unsubscribe());
   }
 
   private updateForm() {
     this.form.patchValue({
       name: this.actor.name
     });
-  }
-
-  onDropEpic(feature: Feature, {item: {data: {id}}}: CdkDragDrop<{ id: string }[]>) {
-    const epic = this.actor.spec.epics.find(e => e.id === id);
-    if (!!feature.epic) {
-      const index = feature.epic.features.indexOf(feature);
-      feature.epic.features.splice(index, 1);
-      this.manager.put(feature.epic);
-    }
-
-    epic.features.push(feature);
-    feature.linking({epic: epic});
-    this.manager.put(epic);
-
-    this.version++;
+    this.cd.detectChanges();
   }
 
   trackFeature(index: number, feature: Feature) {
@@ -105,7 +113,7 @@ export class ActorComponent implements OnDestroy {
   addFeature() {
     const feature = new Feature({
       id: shortid(),
-      title: [new TextToken('Great feature')]
+      title: [new TextToken($localize`:@@label.new_feature_example:Buy a cookies`)]
     });
     this.actor.features.push(feature);
     feature.linking({spec: this.actor.spec, actor: this.actor});
@@ -113,25 +121,21 @@ export class ActorComponent implements OnDestroy {
     this.manager.put(feature);
     this.manager.put(this.actor);
 
+    this.added = feature.id;
     this.version++;
+    this.cd.detectChanges();
   }
 
-  deleteFeature(id: string) {
-    this.instance.popover?.hide();
-    let index = this.actor.features.findIndex(f => f.id === id);
-    const feature = this.actor.features[index];
-    this.actor.features.splice(index, 1);
-    this.manager.put(this.actor);
-
-    if (!!feature.epic) {
-      index = feature.epic.features.findIndex(f => f.id === id);
-      feature.epic.features.splice(index, 1);
-      this.manager.put(feature.epic);
-    }
+  deleteFeature(feature: Feature) {
+    const links = feature.delete();
+    links.deleted.forEach(o => this.manager.remove(o));
+    links.changed.forEach(o => this.manager.put(o));
 
     this.manager.remove(feature);
 
     this.version++;
+    this.cd.detectChanges();
+    this.modal.close();
   }
 
 }

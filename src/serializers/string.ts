@@ -10,5 +10,3 @@ export class SecureString implements Serializer<string> {
     return src;
   }
 }
-
-

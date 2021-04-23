@@ -10,9 +10,9 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { ActorComponent } from 'src/app/spec/actors/actor/actor.component';
 import { ActorsComponent } from 'src/app/spec/actors/actors.component';
 import { DetailsComponent } from 'src/app/spec/details/details.component';
-import { EnumComponent } from 'src/app/spec/enum/enum.component';
-import { EpicComponent } from 'src/app/spec/epics/epic/epic.component';
-import { EpicsComponent } from 'src/app/spec/epics/epics.component';
+import { EnumComponent } from 'src/app/spec/model/enums/enum/enum.component';
+import { ModuleComponent } from 'src/app/spec/modules/module/module.component';
+import { ModulesComponent } from 'src/app/spec/modules/modules.component';
 import { FeatureEditGraphqlComponent } from 'src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component';
 import { FeatureComponent } from 'src/app/spec/features/feature/feature.component';
 import { FeatureAddFrameComponent } from 'src/app/spec/features/feature/frames/add-frame/feature-add-frame.component';
@@ -20,8 +20,6 @@ import { FeatureFramesComponent } from 'src/app/spec/features/feature/frames/fea
 import { FeatureMarkdownComponent } from 'src/app/spec/features/feature/markdown/feature-markdown.component';
 import { StoryEntryComponent } from 'src/app/spec/features/feature/story/entry/story-entry.component';
 import { FeatureStoryComponent } from 'src/app/spec/features/feature/story/feature-story.component';
-import { PackageComponent } from 'src/app/spec/packages/package/package.component';
-import { PackagesComponent } from 'src/app/spec/packages/packages.component';
 import { AttachIssueComponent } from 'src/app/spec/features/feature/issues/attach-issue/attach-issue.component';
 import { FeatureIssuesComponent } from 'src/app/spec/features/feature/issues/feature-issues.component';
 import { TokensComponent } from 'src/app/shared/tokens/tokens.component';
@@ -40,8 +38,7 @@ import { ActorPricePipe } from 'src/pipes/actors/actor-price';
 import { FeaturePricePipe } from 'src/pipes/features/feature-price';
 import { FeatureTermsPipe } from 'src/pipes/features/feature-terms';
 import { FeaturesPipe } from 'src/pipes/features/features';
-import { GroupEntitiesPipe, GroupEnumsPipe } from 'src/pipes/group-entities';
-import { GroupFeaturesByActorPipe, GroupFeaturesByEpicPipe } from 'src/pipes/group-features';
+import { GroupFeaturesByActorPipe, GroupFeaturesByModulesPipe } from 'src/pipes/features/group';
 import { SpecPricePipe } from 'src/pipes/spec/actor-price';
 import { TermDescriptionPipe } from 'src/pipes/terms/description';
 import { SameFirstCharPipe } from 'src/pipes/terms/same-first-char';
@@ -51,20 +48,22 @@ import { JoinTokensPipe } from 'src/pipes/tokens/join';
 import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { ProjectEditModule } from '../projects/edit-project/edit-projects.module';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
-import { EntityEditComponent } from './entity/edit/entity-edit.component';
-import { EntityComponent } from './entity/entity.component';
-import { EntityFieldsComponent } from './entity/fields/entity-fields.component';
-import { EntityFieldComponent } from './entity/fields/field/entity-field.component';
-import { EnumEditComponent } from './enum/edit/enum-edit.component';
-import { EnumOptionComponent } from './enum/option/enum-option.component';
+import { EntityEditComponent } from './model/entities/entity/edit/entity-edit.component';
+import { EntityComponent } from './model/entities/entity/entity.component';
+import { EntityFieldsComponent } from './model/entities/entity/fields/entity-fields.component';
+import { EntityFieldComponent } from './model/entities/entity/fields/field/entity-field.component';
+import { EnumEditComponent } from './model/enums/enum/edit/enum-edit.component';
+import { EnumOptionComponent } from './model/enums/enum/option/enum-option.component';
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
 import { GraphqlPlaygroundPipe } from './features/feature/api/pipes';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
 import { EstimatedTimePipe, SpentTimePipe } from './features/feature/pipes';
 import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
 import { FeaturesComponent } from './features/features.component';
+import { EntitiesComponent } from './model/entities/entities.component';
+import { EnumsComponent } from './model/enums/enums.component';
 import { ModelComponent } from './model/model.component';
-import { PackageEditComponent } from './packages/package/edit/package-edit.component';
+import { ModulesIdsPipe } from './modules/pipes';
 import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
 
@@ -75,12 +74,12 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     SchemeInvalidComponent,
     DetailsComponent,
 
-    FeaturesComponent,
     ActorsComponent,
     ActorComponent,
     ActorEditComponent,
-    FeatureComponent,
 
+    FeaturesComponent,
+    FeatureComponent,
     FeatureEditComponent,
     FeatureStoryComponent,
     FeatureFramesComponent,
@@ -88,14 +87,15 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     FeatureResourcesComponent,
     FeatureApiComponent,
     FeatureEditGraphqlComponent,
-    GraphqlPlaygroundPipe,
     FeatureIssuesComponent,
-    AttachIssueComponent,
+    GraphqlPlaygroundPipe,
     FeatureMarkdownComponent,
+    AttachIssueComponent,
 
     ModelComponent,
-    PackagesComponent,
-    PackageEditComponent,
+    EntitiesComponent,
+    EnumsComponent,
+
     EntityComponent,
     EntityEditComponent,
     EntityFieldsComponent,
@@ -105,9 +105,11 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     EnumEditComponent,
     EnumOptionComponent,
 
+    ModulesComponent,
+    ModuleComponent,
+    ModulesIdsPipe,
+
     SprintsComponent,
-    EpicsComponent,
-    EpicComponent,
 
     SpentTimePipe,
     EstimatedTimePipe,
@@ -123,16 +125,13 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
 
 
     TermComponent,
-    PackageComponent,
     FitWidthDirective,
 
     StoryEntryComponent,
     TokenTypePipe,
-    GroupFeaturesByEpicPipe,
+    GroupFeaturesByModulesPipe,
     GroupFeaturesByActorPipe,
     FeatureTermsPipe,
-    GroupEntitiesPipe,
-    GroupEnumsPipe,
     FeaturesPipe,
     JoinTokensPipe,
     SameFirstCharPipe,

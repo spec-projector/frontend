@@ -1,0 +1,85 @@
+<jnt-app-page-header [icon]="localUi.icons.model"
+                     title="Entities"
+                     i18n-title="@@label.entities"
+                     teaser="in your data model"
+                     i18n-teaser="@@message.entities_teaser">
+</jnt-app-page-header>
+
+<jnt-stack [align]="ui.align.stretch"
+           [gutter]="ui.gutter.large">
+
+  <ng-template #emptyDataTemplate>
+    <jnt-message>
+      <jnt-stack>
+        <ng-container [ngSwitch]="consts.language">
+          <ng-container *ngSwitchDefault>
+            <p>Data model – structure & relationship of data stored into database.</p>
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            <p>Модель данных – структура и взаимосвязь данных, хранящихся в базе данных.</p>
+          </ng-container>
+        </ng-container>
+        <jnt-button *ngIf="manager.mode ==  editMode.edit"
+                    [icon]="ui.icons.add"
+                    text="Add first entity"
+                    i18n-text="@@action.add_first_entity"
+                    (click)="addEntity()"></jnt-button>
+      </jnt-stack>
+    </jnt-message>
+  </ng-template>
+
+  <jnt-stack cdkDropList *ngIf="spec.model.entities.length > 0; else emptyDataTemplate"
+             [align]="ui.align.stretch"
+             (cdkDropListDropped)="moveEntity($event)"
+             [cdkDropListData]="spec?.model.entities">
+    <jnt-card *ngIf="(manager.mode$ | async) === editMode.edit"
+              [padding]="ui.gutter.big">
+      <jnt-button text="Add entity"
+                  i18n-text="@@action.add_entity"
+                  [icon]="ui.icons.add"
+                  [scheme]="ui.scheme.secondary"
+                  [size]="ui.size.large"
+                  [outline]="ui.outline.transparent"
+                  (click)="addEntity()"></jnt-button>
+    </jnt-card>
+    <jnt-card cdkDrag *ngFor="let entity of spec.model.entities; let i = index; trackBy: trackEntity">
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-stack data-actions
+                   [gutter]="ui.gutter.small">
+          <jnt-button [icon]="ui.icons.link"
+                      [size]="ui.size.tiny"
+                      [scheme]="ui.scheme.secondary"
+                      [shape]="ui.shape.circle"
+                      (click)="router.navigate([entity.id], {relativeTo: route})">
+          </jnt-button>
+          <jnt-button cdkDragHandle *ngIf="manager.mode == editMode.edit"
+                      [icon]="ui.icons.expand"
+                      [size]="ui.size.tiny"
+                      [shape]="ui.shape.circle"
+                      [scheme]="ui.scheme.secondary">
+          </jnt-button>
+        </jnt-stack>
+        <spec-entity data-entity [entity]="entity"
+                     [mode]="added === entity.id ? editMode.edit : editMode.view"></spec-entity>
+      </jnt-stack>
+
+      <ng-template #cardActionsTemplate *ngIf="(manager.mode$ | async) === editMode.edit" let-hide="hide">
+        <jnt-menu [orientation]="ui.orientation.vertical">
+          <jnt-menu-item [icon]="ui.icons.delete"
+                         title="Delete"
+                         i18n-title="@@action.delete"
+                         (click)="hide()"
+                         [jntModal]="{content: deleteTemplate}">
+          </jnt-menu-item>
+        </jnt-menu>
+      </ng-template>
+
+      <ng-template #deleteTemplate>
+        <jnt-confirm message="Are you sure to delete?"
+                     i18n-message="@@message.are_you_sure_delete"
+                     (cancel)="modal.close()"
+                     (ok)="deleteEntity(entity)"></jnt-confirm>
+      </ng-template>
+    </jnt-card>
+  </jnt-stack>
+</jnt-stack>

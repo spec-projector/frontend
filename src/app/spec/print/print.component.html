@@ -38,7 +38,7 @@
         <li>
           <h3>
             {{feature.title | joinTokens}}
-            <jnt-label *ngIf="feature.epic" [label]="feature.epic.title"></jnt-label>
+            <jnt-label *ngIf="feature.module" [label]="feature.module.title"></jnt-label>
           </h3>
           <ol data-feature *ngIf="feature.story.length > 0">
             <li *ngFor="let entry of feature.story; let i = index">

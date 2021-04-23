@@ -41,6 +41,7 @@ export class Reference {
 
   @persist({name: '_id'})
   id: string;
+
 }
 
 export function persist(config: FieldConfig = {}) {
@@ -141,16 +142,23 @@ export class Persistence {
 
   load(db: Database, progress: Subject<Object>): Observable<Persistence> {
     return new Observable(loaded => {
-      db.get(this.id).then(doc => {
-        const src = this.deserialize(doc);
-        this.merge(db, progress, src)
-          .pipe(finalize(() => loaded.complete()))
-          .subscribe(() => {
-            this.loaded = true;
-            loaded.next(this);
-            progress.next(this);
-          });
-      }).catch(err => loaded.error(err));
+      // TODO: think about it!
+      if (!!this.id) {
+        db.get(this.id).then(doc => {
+          const src = this.deserialize(doc);
+          this.merge(db, progress, src)
+            .pipe(finalize(() => loaded.complete()))
+            .subscribe(() => {
+              this.loaded = true;
+              loaded.next(this);
+              progress.next(this);
+            });
+        }).catch(err => loaded.error(err));
+      } else {
+        this.loaded = true;
+        loaded.next(this);
+        progress.next(this);
+      }
     });
   }
 

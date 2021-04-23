@@ -3,15 +3,22 @@
   <ng-template #asideContentTemplate let-collapsed="collapsed">
     <form *ngIf="!collapsed" [formGroup]="form">
       <jnt-switch formControlName="mode"
-                  [tags]="{on: 'Edit', off: 'View'}">
+                  [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
       </jnt-switch>
     </form>
     <jnt-stack data-edit [orientation]="ui.orientation.horizontal"
                [justify]="ui.justify.center">
-      <jnt-button [scheme]="ui.scheme.secondary"
-                  [text]="collapsed ? null : 'Project'"
+      <jnt-button *ngIf="!collapsed;else collapsedTemplate"
+                  [scheme]="ui.scheme.secondary"
+                  text="Project"
+                  i18n-text="@@action.project"
                   [icon]="localUi.icons.project"
                   (click)="editProject()"></jnt-button>
+      <ng-template #collapsedTemplate>
+        <jnt-button [scheme]="ui.scheme.secondary"
+                    [icon]="localUi.icons.project"
+                    (click)="editProject()"></jnt-button>
+      </ng-template>
     </jnt-stack>
   </ng-template>
 
@@ -28,22 +35,32 @@
       <jnt-badge *ngIf="spec.actors.length > 0"
                  [value]="spec.actors.length"></jnt-badge>
     </jnt-menu-item>
-    <jnt-menu-item [link]="['epics']"
-                   title="Epics"
-                   i18n-title="@@label.epics"
-                   [icon]="localUi.icons.epics"
-                   [matching]="ui.matching.wildcard">
-      <jnt-badge *ngIf="spec.epics.length > 0"
-                 [value]="spec.epics.length"></jnt-badge>
+
+    <jnt-menu-item title="Model"
+                   i18n-title="@@label.model"
+                   [icon]="localUi.icons.model">
+      <jnt-badge *ngIf="spec?.model.entities.length + spec?.model.enums.length as count"
+                 [value]="count"></jnt-badge>
+
+      <jnt-sub-menu>
+        <jnt-sub-menu-item title="Entities"
+                           i18n-title="@@label.entities"
+                           [link]="['model/entities']"
+                           [matching]="ui.matching.wildcard"></jnt-sub-menu-item>
+        <jnt-sub-menu-item title="Enums"
+                           i18n-title="@@label.enums"
+                           [link]="['model/enums']"
+                           [matching]="ui.matching.wildcard"></jnt-sub-menu-item>
+      </jnt-sub-menu>
     </jnt-menu-item>
 
-    <jnt-menu-item [link]="['packages']"
-                   title="Model"
-                   i18n-title="@@label.model"
-                   [icon]="localUi.icons.model"
+    <jnt-menu-item [link]="['modules']"
+                   title="Modules"
+                   i18n-title="@@label.modules"
+                   [icon]="localUi.icons.modules"
                    [matching]="ui.matching.wildcard">
-      <jnt-badge *ngIf="spec?.packages.length > 0"
-                 [value]="spec?.packages.length"></jnt-badge>
+      <jnt-badge *ngIf="spec.modules.length > 0"
+                 [value]="spec.modules.length"></jnt-badge>
     </jnt-menu-item>
 
     <jnt-menu-item [link]="['print']"

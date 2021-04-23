@@ -26,8 +26,11 @@ export class SpecComponent implements OnInit, OnDestroy {
   project: Project;
   errors: ValidationError[] = [];
 
-  editModeControl = this.fb.control(true);
-  form = this.fb.group({mode: this.editModeControl});
+  lockControl = this.fb.control(false);
+  form = this.fb.group(
+    {
+      mode: this.lockControl
+    });
 
   constructor(@Inject(LOCALE_ID) public locale: string,
               private fb: FormBuilder,
@@ -42,8 +45,8 @@ export class SpecComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(({project, spec}) =>
       [this.project, this.spec] = [project, spec]);
 
-    this.editModeControl.valueChanges.subscribe(mode =>
-      this.manager.mode = mode ? EditMode.edit : EditMode.view);
+    this.lockControl.valueChanges.subscribe(mode =>
+      this.manager.mode = mode ? EditMode.view : EditMode.edit);
   }
 
   ngOnDestroy() {
