@@ -72,8 +72,13 @@ h2 {
           }
         }
 
-        [data-feature] {
-          flex: 1;
+        [data-feature-card] {
+          border-radius: $jnt-corner-normal;
+          background-color: $jnt-secondary-background;
+          padding: $jnt-gutter-small;
+          [data-feature] {
+            flex: 1;
+          }
         }
       }
     }

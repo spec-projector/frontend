@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalService, PopoverInstance, PopoverService, UI } from '@junte/ui';
+import { ModalService, UI } from '@junte/ui';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { generate as shortid } from 'shortid';
@@ -28,8 +28,18 @@ export class ActorsComponent implements OnInit, OnDestroy {
   consts = {language: CURRENT_LANGUAGE};
 
   private destroyed$ = new Subject();
+  private _spec: Spec;
 
-  spec: Spec;
+  set spec(spec: Spec) {
+    this._spec = spec;
+    spec.changes.pipe(takeUntil(this.destroyed$))
+      .subscribe(() => this.cd.detectChanges());
+  }
+
+  get spec() {
+    return this._spec;
+  }
+
   added: string;
 
   constructor(public manager: SpecManager,

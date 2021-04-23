@@ -8,6 +8,8 @@ export class LocalUI {
     terms: 'terms:svg:local:stroked',
     modules: 'modules:svg:local:stroked',
     model: 'model:svg:local:stroked',
+    entities: 'entities:svg:local:stroked',
+    enums: 'enums:svg:local:stroked',
     features: 'features:svg:local:stroked',
     validate: 'validate:svg:local:stroked',
     general: 'general:svg:local:stroked',

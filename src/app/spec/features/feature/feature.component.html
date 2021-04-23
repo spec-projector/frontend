@@ -27,7 +27,7 @@
   </li>
 </ul>-->
 
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
           (mouseleave)="mode = editMode.view">
     <ng-container *ngIf="mode == editMode.edit; else viewHeader">
@@ -39,4 +39,4 @@
     <spec-tokens data-title [spec]="feature.spec"
                  [tokens]="feature.title"></spec-tokens>
   </ng-template>
-</form>
+</ng-container>

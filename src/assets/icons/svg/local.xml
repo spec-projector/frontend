@@ -349,6 +349,22 @@
     <path d="M8.99875 3.66353L11.0286 2.53606C11.633 2.20018 12.368 2.20018 12.9724 2.53606L15.0012 3.66353" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 
+  <svg id="entities" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6C4.34315 3 3 4.34315 3 6Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 21V9.06" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 9.06H11C9.89543 9.06 9 9.95543 9 11.06V21" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 15.06H9" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg id="enums" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11 4H20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.15 9H20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6.5 9H4H5.25V4L4 5.25" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11 15H20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.15 20H20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4 15H6.5V17L4 18.5V20H6.75" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
   <svg id="sprints" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M6.53172 6.53171C5.87556 7.98013 5.82166 9.62988 6.38188 11.118C6.9421 12.6062 8.07054 13.8109 9.51897 14.467"

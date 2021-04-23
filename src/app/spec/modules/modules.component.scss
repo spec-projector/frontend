@@ -1,4 +1,7 @@
 @import "src/variables";
+@import "~@junte/ui/lib/assets/styles/layout/card";
+
+$jnt-ng-deep: true;
 
 :host {
   display: block;
@@ -25,16 +28,7 @@
 }
 
 [data-add] {
-  position: relative;
-  [data-button] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    width: 200px;
-  }
+  @include jnt-card((border: 2px dashed $jnt-control-border-color), '&');
 }
 
 %epic {

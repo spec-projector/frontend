@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize } from 'rxjs/operators';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
-import { Spec } from 'src/models/spec/spec';
+import { Model, Spec } from 'src/models/spec/spec';
 import { AppConfig } from '../app/app-config';
 import { SCHEME_VERSION } from '../consts';
 import { environment } from '../environments/environment';
@@ -103,8 +103,12 @@ export class SpecManager {
             }, (err: { status }) => {
               if (err.status === 404) {
                 console.log('spec not found');
-                spec.model.id = shortid();
-                this.put(spec.model);
+                const model = new Model({
+                  id: shortid()
+                });
+                this.put(model);
+                spec.scheme.version = SCHEME_VERSION;
+                spec.model = model;
                 this.put(spec);
 
                 this.spec$.next(spec);

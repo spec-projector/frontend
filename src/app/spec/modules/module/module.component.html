@@ -12,7 +12,7 @@
 
   <div data-attached cdkDropList [id]="'_' + module.id"
        (cdkDropListDropped)="onDropFromLibrary($event)">
-    <jnt-stack *ngIf="module.features.length > 0 || module.model.entities.length > 0; else noDataTemplate"
+    <jnt-stack *ngIf="module.features.length > 0 || module.model.entities.length > 0 || module.model.enums.length > 0; else noDataTemplate"
                [align]="ui.align.stretch">
       <ng-container *ngIf="module.features.length > 0">
         <h2>Features</h2>
@@ -24,25 +24,26 @@
             <jnt-row>
               <jnt-col *ngFor="let feature of group.features; trackBy: trackElement"
                        [wide]="6">
-                <jnt-card [width]="ui.width.fluid">
+                <div data-feature-card>
                   <jnt-stack [orientation]="ui.orientation.horizontal"
                              [align]="ui.align.stretch">
                     <jnt-button [icon]="ui.icons.link"
                                 [size]="ui.size.tiny"
-                                [scheme]="ui.scheme.secondary"
+                                [scheme]="ui.scheme.success"
+                                [outline]="ui.outline.transparent"
                                 [shape]="ui.shape.circle"
                                 (click)="router.navigate(['../actors', group.actor.id, 'features', feature.id], {relativeTo: route})">
                     </jnt-button>
                     <spec-feature data-feature [attr.id]="feature.id"
                                   [feature]="feature"></spec-feature>
-                    <jnt-button [icon]="ui.icons.close"
+                    <jnt-button [icon]="ui.icons.closeSmall"
                                 [size]="ui.size.tiny"
                                 [scheme]="ui.scheme.secondary"
                                 [shape]="ui.shape.circle"
                                 (click)="deleteFeature(feature)">
                     </jnt-button>
                   </jnt-stack>
-                </jnt-card>
+                </div>
               </jnt-col>
             </jnt-row>
           </li>
@@ -64,7 +65,7 @@
                 </jnt-button>
                 <spec-entity data-entity [attr.id]="entity.id"
                              [entity]="entity"></spec-entity>
-                <jnt-button [icon]="ui.icons.close"
+                <jnt-button [icon]="ui.icons.closeSmall"
                             [size]="ui.size.tiny"
                             [scheme]="ui.scheme.secondary"
                             [shape]="ui.shape.circle"
@@ -90,8 +91,8 @@
                             (click)="router.navigate(['../model/enum', enum.id], {relativeTo: route})">
                 </jnt-button>
                 <spec-enum data-enum [attr.id]="enum.id"
-                             [enum]="enum"></spec-enum>
-                <jnt-button [icon]="ui.icons.close"
+                           [enum]="enum"></spec-enum>
+                <jnt-button [icon]="ui.icons.closeSmall"
                             [size]="ui.size.tiny"
                             [scheme]="ui.scheme.secondary"
                             [shape]="ui.shape.circle"

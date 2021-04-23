@@ -1,6 +1,6 @@
 <jnt-app-aside #aside>
 
-  <ng-template #asideContentTemplate let-collapsed="collapsed">
+  <ng-template #asideContentTemplate1 let-collapsed="collapsed">
     <form *ngIf="!collapsed" [formGroup]="form">
       <jnt-switch formControlName="mode"
                   [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
@@ -27,11 +27,11 @@
                    title="General"
                    i18n-title="@@label.general"
                    [icon]="localUi.icons.general"></jnt-menu-item>
-    <jnt-menu-item [link]="['actors']"
-                   title="Features"
+    <jnt-menu-item title="Features"
                    i18n-title="@@label.features"
-                   [matching]="ui.matching.wildcard"
-                   [icon]="localUi.icons.features">
+                   [icon]="localUi.icons.features"
+                   [link]="['actors']"
+                   [matching]="ui.matching.wildcard">
       <jnt-badge *ngIf="spec.actors.length > 0"
                  [value]="spec.actors.length"></jnt-badge>
     </jnt-menu-item>
@@ -45,10 +45,12 @@
       <jnt-sub-menu>
         <jnt-sub-menu-item title="Entities"
                            i18n-title="@@label.entities"
+                           [icon]="localUi.icons.entities"
                            [link]="['model/entities']"
                            [matching]="ui.matching.wildcard"></jnt-sub-menu-item>
         <jnt-sub-menu-item title="Enums"
                            i18n-title="@@label.enums"
+                           [icon]="localUi.icons.enums"
                            [link]="['model/enums']"
                            [matching]="ui.matching.wildcard"></jnt-sub-menu-item>
       </jnt-sub-menu>

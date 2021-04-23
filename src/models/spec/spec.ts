@@ -64,6 +64,11 @@ export class Model extends Persistence {
   @persist({type: Enum})
   enums: Enum[] = [];
 
+  constructor(defs: Partial<Model> = {}) {
+    super();
+    Object.assign(this, defs);
+  }
+
 }
 
 @persistence()

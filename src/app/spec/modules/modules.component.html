@@ -71,25 +71,14 @@
                        (ok)="deleteModule(module)"></jnt-confirm>
         </ng-template>
       </jnt-card>
-      <jnt-card *ngIf="(manager.mode$ | async) === editMode.edit"
-                [color]="ui.color.green"
+      <jnt-card data-add *ngIf="(manager.mode$ | async) === editMode.edit"
                 [padding]="ui.gutter.large">
-        <div data-add>
-          <jnt-row>
-            <jnt-col [tablet]="6">
-              <jnt-skeleton [type]="ui.skeleton.type.text" [animated]="false"></jnt-skeleton>
-            </jnt-col>
-            <jnt-col [tablet]="6"></jnt-col>
-            <jnt-col *ngFor="let i of (6 | mockArray)" [tablet]="4">
-              <jnt-skeleton [type]="ui.skeleton.type.card" [animated]="false"></jnt-skeleton>
-            </jnt-col>
-          </jnt-row>
-          <jnt-button data-button text="Add module"
-                      i18n-text="@@action.add_module"
-                      [icon]="ui.icons.add"
-                      [size]="ui.size.large"
-                      (click)="addModule()"></jnt-button>
-        </div>
+        <jnt-button data-button text="Add module"
+                    i18n-text="@@action.add_module"
+                    [icon]="ui.icons.add"
+                    [size]="ui.size.large"
+                    [outline]="ui.outline.ghost"
+                    (click)="addModule()"></jnt-button>
       </jnt-card>
     </jnt-stack>
   </jnt-col>
