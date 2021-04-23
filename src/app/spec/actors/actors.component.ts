@@ -54,7 +54,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
       id: shortid(),
       name: $localize`:@@label.new_actor_example:Client`
     });
-    this.spec.actors.unshift(actor);
+    this.spec.actors.push(actor);
     actor.linking(this.spec);
 
     this.manager.put(actor);

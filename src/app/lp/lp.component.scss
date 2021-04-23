@@ -11,7 +11,7 @@
 
 $jnt-ng-deep: true;
 
-@include jnt-grid-container((width: 1200px, padding: 0 40px)) {
+@include jnt-grid-container((width: 1200px, padding: 0 $jnt-gutter-normal $jnt-gutter-large $jnt-gutter-normal)) {
   position: relative;
   text-align: center;
 
@@ -26,7 +26,8 @@ $jnt-ng-deep: true;
   min-height: 100vh;
   min-width: 100vw;
 
-  @include jnt-lp-header((position: fixed, padding: $jnt-gutter-big 0));
+  @include jnt-lp-header((position: fixed, padding: $jnt-gutter-big 0, container-width: 1200px));
+  @include jnt-lp-footer((padding: $jnt-gutter-big));
   @include jnt-button((text-transform: uppercase, font-weight: $jnt-font-weight-bold));
 }
 
@@ -80,7 +81,8 @@ jnt-lp-slide {
   background-size: cover;
 
   &[data-welcome] {
-    height: 1000px !important;
+    padding-bottom: 0;
+    height: 1001px !important;
     @include for-mobile() {
       height: 900px !important;
     }
@@ -93,7 +95,7 @@ jnt-lp-slide {
 
 [data-hand] {
   position: absolute;
-  left: 660px;
+  left: 665px;
   top: 0;
   width: 170px;
   height: 154px;
@@ -148,16 +150,43 @@ jnt-lp-slide {
     }
 
     &[data-torus-small] {
-      top: 200px;
-      left: -120px;
+      top: 35px;
+      left: 60px;
     }
 
     &[data-torus-half] {
-      top: 780px;
-      right: -85px;
+      top: 650px;
+      right: -10px;
+      left: auto;
+    }
+
+    &[data-coin] {
+      top: 670px;
+      left: -80px;
     }
   }
+}
 
+[data-tariffs] {
+
+  img[data-torus-half] {
+    top: 450px;
+    right: -145px;
+    left: auto;
+  }
+}
+
+[data-reviews] {
+  img[data-torus-small] {
+    top: 100px;
+    right: 30px;
+    left: auto;
+  }
+
+  img[data-torus-half] {
+    top: 600px;
+    left: -100px;
+  }
 }
 
 [data-cp] {

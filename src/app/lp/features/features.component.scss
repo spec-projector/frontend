@@ -10,7 +10,7 @@ $jnt-ng-deep: true;
 
 [data-video] {
   background-color: $jnt-white-color;
-  width: 570px;
+  width: 100%;
   height: 500px;
 
   @include for-mobile() {

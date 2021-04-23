@@ -13,10 +13,10 @@
       <jnt-stack>
         <ng-container [ngSwitch]="consts.language">
           <ng-container *ngSwitchDefault>
-
+            <p>Перечисления - это список допустимых значений в полях объектов.</p>
           </ng-container>
           <ng-container *ngSwitchCase="language.ru">
-
+            <p>Перечисления - это список допустимых значений в полях объектов.</p>
           </ng-container>
         </ng-container>
         <jnt-button *ngIf="manager.mode ==  editMode.edit"

@@ -24,6 +24,19 @@
   flex: 1;
 }
 
+[data-add] {
+  position: relative;
+  [data-button] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 200px;
+  }
+}
+
 %epic {
   border: 1px solid $jnt-secondary-color;
   border-radius: $jnt-corner-small;

@@ -5,7 +5,7 @@
 </spec-viewport>
 
 <jnt-lp-layout>
-  <jnt-lp-header>
+  <jnt-lp-header #header>
     <ng-template #headerLogoTemplate>
       <a data-logo routerLink="/">
         <img src="assets/images/lp/logo.svg" height="49">
@@ -57,7 +57,7 @@
     </ng-template>
   </jnt-lp-header>
 
-  <jnt-lp-slide data-welcome>
+  <jnt-lp-slide data-welcome [header]="header">
     <jnt-container>
       <div data-hand [@moveHand] [@.disabled]="breakpoint.current === ui.breakpoint.mobile">
         <img src="assets/images/lp/hand.png" width="170" height="154" alt="hand">
@@ -66,14 +66,16 @@
       <img data-specifications
            src="assets/images/lp/welcome.webp" width="798" height="749">
       <img data-plus
-           [@move]="{value: '', params: {distance: distance.plus}}"
            src="assets/images/lp/plus.png" width="89" height="87">
+      <img data-torus-half
+           [@move]="{value: '', params: {distance: distance.torusHalf}}"
+           src="assets/images/lp/torus-half.png" width="128" height="148">
       <img data-torus-small
            [@move]="{value: '', params: {distance: distance.torusSmall}}"
            src="assets/images/lp/torus-small.png" width="100" height="100">
       <img data-figma
            [@move]="{value: '', params: {distance: distance.figma}}"
-           src="assets/images/lp/figma.png" width="119" height="118">
+           src="assets/images/lp/figma.png" width="144" height="145">
       <img data-torus-big
            [@move]="{value: '', params: {distance: distance.torusBig}}"
            src="assets/images/lp/torus-big.png" width="272" height="273">
@@ -142,6 +144,10 @@
       <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
       <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
       <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
+      <img data-coin
+           src="assets/images/lp/coin.png" width="197" height="225">
+      <img data-torus-half
+           src="assets/images/lp/torus-half.png" width="128" height="148">
     </jnt-container>
   </jnt-lp-slide>
 
@@ -150,11 +156,18 @@
       <h1 id="reviews" i18n="@@label.reviews">Clients say</h1>
       <h2 data-teaser i18n="@@label.reviews_teaser">We will try for you be here</h2>
       <spec-lp-reviews></spec-lp-reviews>
+      <img data-torus-small
+           src="assets/images/lp/torus-small.png" width="100" height="100">
+      <img data-torus-half
+           src="assets/images/lp/torus-half.png" width="128" height="148">
     </jnt-container>
   </jnt-lp-slide>
 
   <jnt-lp-footer>
-    <ng-template #footerCopyrightTemplate>
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [wrap]="ui.wrap.wrap"
+               [justify]="ui.justify.between"
+               [align]="ui.align.center">
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [gutter]="ui.gutter.small"
                  [align]="ui.align.end">
@@ -163,26 +176,24 @@
                   [target]="ui.target.blank"
                   source="//junte.team"></jnt-link>
       </jnt-stack>
-    </ng-template>
-    <jnt-menu #lpFooterMenu [spacing]="ui.gutter.small">
-      <jnt-menu-item title="Agreement"
-                     i18n-title="@@action.agreement"
-                     [link]="['agreement']"></jnt-menu-item>
-      <jnt-menu-item title="Policy"
-                     i18n-title="@@action.policy"
-                     [link]="['policy']"></jnt-menu-item>
-      <jnt-menu-item title="Security"
-                     i18n-title="@@action.security"
-                     [link]="['security']"></jnt-menu-item>
-      <jnt-menu-item title="Contacts"
-                     i18n-title="@@action.contacts"
-                     [link]="['contacts']"></jnt-menu-item>
-    </jnt-menu>
-    <ng-template #contentTemplate>
+      <jnt-menu [spacing]="ui.gutter.small" [wrap]="ui.wrap.noWrap">
+        <jnt-menu-item title="Agreement"
+                       i18n-title="@@action.agreement"
+                       [link]="['agreement']"></jnt-menu-item>
+        <jnt-menu-item title="Policy"
+                       i18n-title="@@action.policy"
+                       [link]="['policy']"></jnt-menu-item>
+        <jnt-menu-item title="Security"
+                       i18n-title="@@action.security"
+                       [link]="['security']"></jnt-menu-item>
+        <jnt-menu-item title="Contacts"
+                       i18n-title="@@action.contacts"
+                       [link]="['contacts']"></jnt-menu-item>
+      </jnt-menu>
       <a data-cp href="//cloudpayments.ru/" target="_blank">
         <jnt-icon [icon]="localUi.icons.cp"></jnt-icon>
       </a>
-    </ng-template>
+    </jnt-stack>
   </jnt-lp-footer>
   <spec-cookie-agreement *ngIf="!cookie"
                          (agree)="cookie = true"

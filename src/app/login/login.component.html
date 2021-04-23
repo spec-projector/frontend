@@ -7,15 +7,15 @@
 </jnt-informer>
 
 <jnt-container>
-  <img data-plus
-       [@move]="{value: '', params: {distance: distance.plus}}"
-       src="assets/images/lp/plus.png" width="89" height="87">
+  <img data-torus-half
+       [@move]="{value: '', params: {distance: distance.torusHalf}}"
+       src="assets/images/lp/torus-half.png" width="128" height="148">
   <img data-torus-small
        [@move]="{value: '', params: {distance: distance.torusSmall}}"
        src="assets/images/lp/torus-small.png" width="100" height="100">
   <img data-figma
        [@move]="{value: '', params: {distance: distance.figma}}"
-       src="assets/images/lp/figma.png" width="119" height="118">
+       src="assets/images/lp/figma.png" width="144" height="145">
   <img data-torus-big
        [@move]="{value: '', params: {distance: distance.torusBig}}"
        src="assets/images/lp/torus-big.png" width="272" height="273">
@@ -26,7 +26,6 @@
   <jnt-block #blockRef
              [padding]="ui.gutter.large"
              [spacing]="ui.gutter.large"
-             [width]="ui.width.fluid"
              [features]="[ui.feature.adapted]">
     <ng-template #blockHeaderTemplate>
       <jnt-stack [align]="ui.justify.center">

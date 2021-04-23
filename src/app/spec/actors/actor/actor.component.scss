@@ -67,6 +67,9 @@ h3 {
           white-space: nowrap;
           font-size: $jnt-font-size-tiny;
           padding: $jnt-gutter-small;
+          max-width: 100px;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
 

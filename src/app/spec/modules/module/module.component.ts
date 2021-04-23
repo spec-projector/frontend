@@ -1,13 +1,24 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component, ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output, ViewChild
+} from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, UI } from '@junte/ui';
+import { Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
 import { Module } from 'src/models/spec/planning/module';
 import { Entity } from '../../../../models/spec/orm/entity';
+import { Enum, EnumOption } from '../../../../models/spec/orm/enum';
 import { Feature } from '../../../../models/spec/planning/feature';
 
 @Component({
@@ -16,16 +27,18 @@ import { Feature } from '../../../../models/spec/planning/feature';
   styleUrls: ['./module.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ModuleComponent {
+export class ModuleComponent implements AfterViewInit, OnDestroy {
 
   ui = UI;
   editMode = EditMode;
 
   private _module: Module;
+  private subscriptions: {
+    actor?: Subscription,
+    form?: Subscription
+  } = {};
 
-  instance: { popover: PopoverInstance } = {popover: null};
   version = 0;
-  added: string;
 
   @Input()
   mode = EditMode.view;
@@ -43,22 +56,44 @@ export class ModuleComponent {
     this._module = module;
     this.updateForm();
 
-    module.changes.subscribe(() => this.updateForm());
+    this.subscriptions.actor?.unsubscribe();
+    this.subscriptions.actor = module.changes.subscribe(() => this.updateForm());
+
+    this.subscriptions.form?.unsubscribe();
+    this.subscriptions.form = this.form.valueChanges
+      .subscribe(() => {
+        const {title} = this.form.getRawValue();
+        this.module.title = title;
+        this.manager.put(this.module);
+
+        this.cd.detectChanges();
+      });
   }
 
   get module() {
     return this._module;
   }
 
+  @ViewChild('titleRef')
+  titleRef: ElementRef<HTMLInputElement>;
+
   constructor(public manager: SpecManager,
               private fb: FormBuilder,
               private cd: ChangeDetectorRef,
               public route: ActivatedRoute,
               public router: Router) {
-    this.form.valueChanges
-      .pipe(filter(() => !!this.module),
-        tap(() => Object.assign(this.module, this.form.getRawValue())))
-      .subscribe(() => this.manager.put(this.module));
+
+  }
+
+  ngAfterViewInit() {
+    if (!!this.titleRef) {
+      this.titleRef.nativeElement.focus();
+    }
+  }
+
+  ngOnDestroy() {
+    [this.subscriptions.actor, this.subscriptions.form]
+      .forEach(s => s?.unsubscribe());
   }
 
   private updateForm() {
@@ -67,44 +102,58 @@ export class ModuleComponent {
     });
   }
 
-  trackFeature(index: number, feature: Feature) {
-    return !!feature ? feature.id : null;
-  }
-
-  trackEntity(index: number, entity: Entity) {
-    return !!entity ? entity.id : null;
+  trackElement(index: number, {id}) {
+    return id || null;
   }
 
   onDropFromLibrary({item: {data}}: CdkDragDrop<{ id: string }[]>) {
     if (data instanceof Feature) {
-      const features = this.module.spec.actors.reduce((res, actor) => res.concat(actor.features), []);
-      const feature: Feature = features.find(e => e.id === data.id);
-      if (!!feature.module) {
-        const index = feature.module.features.indexOf(feature);
-        feature.module.features.splice(index, 1);
-        this.manager.put(feature.module);
-      }
-      this.module.features.push(data);
-      data.linking({module: this.module});
-      this.manager.put(this.module);
-
+      this.attachFeature(data);
     } else if (data instanceof Entity) {
-      const entity: Entity = this.module.spec.model.entities.find(e => e.id === data.id);
-      if (!!entity.module) {
-        const index = entity.module.model.entities.indexOf(entity);
-        entity.module.model.entities.splice(index, 1);
-        this.manager.put(entity.module.model);
-      }
-
-      this.module.model.entities.push(entity);
-      entity.linking({module: this.module});
-      this.manager.put(this.module.model);
+      this.attachEntity(data);
+    } else if (data instanceof Enum) {
+      this.attachEnum(data);
     }
 
     this.version++;
     this.cd.detectChanges();
 
     this.updated.emit(this.module);
+  }
+
+  attachFeature(feature: Feature) {
+    if (!!feature.module) {
+      const index = feature.module.features.indexOf(feature);
+      feature.module.features.splice(index, 1);
+      this.manager.put(feature.module);
+    }
+    this.module.features.push(feature);
+    feature.linking({module: this.module});
+    this.manager.put(this.module);
+  }
+
+  attachEntity(entity: Entity) {
+    if (!!entity.module) {
+      const index = entity.module.model.entities.indexOf(entity);
+      entity.module.model.entities.splice(index, 1);
+      this.manager.put(entity.module.model);
+    }
+
+    this.module.model.entities.push(entity);
+    entity.linking({module: this.module});
+    this.manager.put(this.module.model);
+  }
+
+  attachEnum(enum_: Enum) {
+    if (!!enum_.module) {
+      const index = enum_.module.model.enums.indexOf(enum_);
+      enum_.module.model.entities.splice(index, 1);
+      this.manager.put(enum_.module.model);
+    }
+
+    this.module.model.enums.push(enum_);
+    enum_.linking({module: this.module});
+    this.manager.put(this.module.model);
   }
 
   deleteFeature(feature: Feature) {
@@ -124,6 +173,17 @@ export class ModuleComponent {
     this.manager.put(this.module.model);
 
     entity.module = null;
+
+    this.version++;
+    this.cd.detectChanges();
+  }
+
+  deleteEnum(enum_: Enum) {
+    const index = this.module.model.enums.indexOf(enum_);
+    this.module.model.enums.splice(index, 1);
+    this.manager.put(this.module.model);
+
+    enum_.module = null;
 
     this.version++;
     this.cd.detectChanges();

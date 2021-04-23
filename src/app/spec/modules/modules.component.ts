@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PopoverInstance, UI } from '@junte/ui';
+import { ModalService, PopoverInstance, UI } from '@junte/ui';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/managers/spec.manager';
@@ -26,9 +26,10 @@ export class ModulesComponent implements OnInit {
   consts = {language: CURRENT_LANGUAGE};
 
   spec: Spec;
-  instance: { popover: PopoverInstance } = {popover: null};
+  added: string;
 
   constructor(public manager: SpecManager,
+              public modal: ModalService,
               public cd: ChangeDetectorRef,
               private route: ActivatedRoute) {
   }
@@ -48,12 +49,13 @@ export class ModulesComponent implements OnInit {
       title: $localize`:@@label.new_module_example:Accepting payments`,
       model: model
     });
-    this.spec.modules.unshift(module);
+    this.spec.modules.push(module);
     module.linking(this.spec);
 
     this.manager.put(module);
     this.manager.put(this.spec);
 
+    this.added = module.id;
     this.cd.detectChanges();
   }
 
@@ -64,6 +66,7 @@ export class ModulesComponent implements OnInit {
     this.manager.remove(module);
 
     this.cd.detectChanges();
+    this.modal.close();
   }
 
   moveModule(event: CdkDragDrop<Module[]>) {
