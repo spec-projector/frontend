@@ -1,5 +1,7 @@
 @import "src/variables";
 @import "~@junte/ui/lib/assets/styles/layout/card";
+@import "~@junte/ui/lib/assets/styles/forms/button";
+@import "../common";
 
 $jnt-ng-deep: true;
 
@@ -23,55 +25,12 @@ $jnt-ng-deep: true;
   }
 }
 
-[data-module] {
-  flex: 1;
-}
-
-[data-add] {
-  @include jnt-card((border: 2px dashed $jnt-control-border-color), '&');
-}
-
-%epic {
-  border: 1px solid $jnt-secondary-color;
-  border-radius: $jnt-corner-small;
-  padding: $jnt-gutter-small;
-  background-color: $jnt-secondary-color;
-}
-
 [data-library] {
-
   p {
     margin: $jnt-gutter-small;
+    font-weight: $jnt-font-weight-bold;
   }
 
-  div {
-    @extend %epic;
-    cursor: move;
-    user-select: none;
-
-    &:not(:last-child) {
-      margin-right: $jnt-gutter-small;
-    }
-  }
+  @include jnt-card((background: $jnt-secondary-background));
 }
 
-.cdk-drag {
-  &-preview {
-    box-sizing: border-box;
-    box-shadow: $jnt-shadow-normal;
-    @extend %epic;
-  }
-
-  &-dragging .cdk-drag {
-    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
-  }
-
-  &-animating {
-    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
-  }
-
-  &-placeholder {
-    opacity: 0.5;
-    transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
-  }
-}

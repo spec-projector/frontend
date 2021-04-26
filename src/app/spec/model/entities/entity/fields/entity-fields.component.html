@@ -9,35 +9,32 @@
            [gutter]="ui.gutter.small"
            (cdkDropListDropped)="moveField($event)"
            [cdkDropListData]="entity.fields">
-  <jnt-card *ngIf="(manager.mode$ | async) === editMode.edit"
-            [padding]="ui.gutter.big">
-    <jnt-button text="Add field"
-                i18n-text="@@action.add_entity_field"
-                [icon]="ui.icons.add"
-                [scheme]="ui.scheme.secondary"
-                [size]="ui.size.large"
-                [outline]="ui.outline.transparent"
-                (click)="addField()"></jnt-button>
-  </jnt-card>
   <jnt-card cdkDrag *ngFor="let field of entity.fields; let i = index; trackBy: trackField">
     <jnt-stack [orientation]="ui.orientation.horizontal">
-      <jnt-button cdkDragHandle
-                  *ngIf="manager.mode == editMode.edit"
-                  [icon]="ui.icons.expand"
-                  [size]="ui.size.tiny"
-                  [scheme]="ui.scheme.secondary"
-                  [shape]="ui.shape.circle">
-      </jnt-button>
+      <ng-template *ngIf="(manager.mode$ | async) == editMode.edit" #cardDragTemplate let-icon="icon">
+        <button cdkDragHandle>
+          <jnt-icon [icon]="icon"></jnt-icon>
+        </button>
+      </ng-template>
       <spec-entity-field data-field [field]="field"
                          (changed)="manager.put(entity)">
       </spec-entity-field>
       <jnt-button *ngIf="manager.mode == editMode.edit"
                   [icon]="ui.icons.delete"
                   [size]="ui.size.tiny"
-                  [scheme]="ui.scheme.secondary"
+                  [outline]="ui.outline.transparent"
                   [shape]="ui.shape.circle"
                   (click)="deleteField(i)">
       </jnt-button>
     </jnt-stack>
+  </jnt-card>
+  <jnt-card data-add-one *ngIf="(manager.mode$ | async) === editMode.edit"
+        [padding]="ui.gutter.large">
+      <jnt-button data-button text="Add field"
+          i18n-text="@@action.add_entity_field"
+          [icon]="ui.icons.add"
+          [size]="ui.size.large"
+          [outline]="ui.outline.transparent"
+          (click)="addField()"></jnt-button>
   </jnt-card>
 </jnt-stack>

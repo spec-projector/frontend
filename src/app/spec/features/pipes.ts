@@ -1,7 +1,42 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Actor } from 'src/models/spec/planning/actor';
-import { Module } from 'src/models/spec/planning/module';
-import { Feature } from 'src/models/spec/planning/feature';
+import { Spec } from 'src/models/spec/spec';
+import {Feature} from '../../../models/spec/planning/feature';
+import {Observable} from 'rxjs';
+import {Term} from '../../../models/spec/planning/term';
+import {Module} from '../../../models/spec/planning/module';
+import {Actor} from '../../../models/spec/planning/actor';
+
+@Pipe({name: 'features'})
+export class FeaturesPipe implements PipeTransform {
+
+    transform(spec: Spec): string[] {
+        let features = [];
+        spec.actors.forEach(actor => features = [...features, ...actor.features]);
+        return features.map(feature => `feature-${feature.id}`);
+    }
+
+}
+
+@Pipe({name: 'featurePrice', pure: false})
+export class FeaturePricePipe implements PipeTransform {
+  transform(feature: Feature): Observable<number> {
+    return new Observable<number>(o => {
+      const cost = feature.resources.reduce((price, r) => {
+        const resource = feature.spec.resourceTypes.find(res => res.title === r.resource);
+        return price + (!!resource ? resource.hourRate * r.hours : 0);
+      }, 0);
+      o.next(cost);
+      o.complete();
+    });
+  }
+}
+
+@Pipe({name: 'featureTerms'})
+export class FeatureTermsPipe implements PipeTransform {
+  transform(feature: Feature): Term[] {
+    return feature.getTerms();
+  }
+}
 
 export class ModuleGroup {
   constructor(public module: Module,
@@ -33,6 +68,9 @@ export class GroupFeaturesByModulesPipe implements PipeTransform {
 
     const modules = Array.from(groups.keys()).map(epic => groups.get(epic));
     modules.sort((a, b) => !!a.module > !!b.module ? -1 : (!!a.module < !!b.module ? 1 : 0));
+    for (const g of modules) {
+      g.features.sort((a, b) => a.sort < b.sort ? -1 : (a.sort > b.sort ? 1 : 0));
+    }
     return modules;
   }
 }

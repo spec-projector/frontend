@@ -1,6 +1,10 @@
-@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
 
 :host {
   display: block;
   position: relative;
+}
+
+div {
+  font-size: .75em;
 }

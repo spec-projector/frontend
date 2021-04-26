@@ -94,7 +94,7 @@ export class Spec extends Persistence {
   @persist({type: Actor})
   actors: Actor[] = [];
 
-  @persist({name: 'epics', type: Module})
+  @persist({type: Module})
   modules: Module[] = [];
 
   @persist({type: Sprint})

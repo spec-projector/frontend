@@ -90,12 +90,6 @@ export class SpecManager {
               //  return;
               // }
 
-              if (!spec.model.id) {
-                spec.model.id = shortid();
-                this.put(spec.model);
-                this.put(spec);
-              }
-
               spec.linking();
               this.spec$.next(spec);
               this.pull();

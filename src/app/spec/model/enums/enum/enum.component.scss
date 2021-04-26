@@ -1,11 +1,7 @@
-@import "../../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
 
 :host {
   display: block;
-}
-
-form {
-  position: relative;
 }
 
 header {
@@ -64,23 +60,5 @@ header {
       font-size: .85em;
       line-height: 2em;
     }
-  }
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 10px;
-
-  li {
-    border: 1px solid $jnt-muted-color;
-    border-radius: 5px;
-    margin-top: $jnt-gutter-small;
-    margin-right: $jnt-gutter-small;
-    padding: 0 5px;
-    background-color: $jnt-secondary-color;
   }
 }

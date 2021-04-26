@@ -49,9 +49,9 @@
           </ng-container>
         </ng-container>
         <jnt-button *ngIf="manager.mode === editMode.edit"
-                    [icon]="ui.icons.add"
                     text="Add first actor"
                     i18n-text="@@action.add_first_actor"
+                    [icon]="ui.icons.add"
                     (click)="addActor()"></jnt-button>
       </jnt-stack>
     </jnt-message>
@@ -61,23 +61,17 @@
 
   <jnt-stack cdkDropList *ngIf="spec.actors.length > 0; else emptyDataTemplate"
              [align]="ui.align.stretch"
-             (cdkDropListDropped)="moveActor($event)"
-             [cdkDropListData]="spec?.actors">
+             [cdkDropListData]="spec?.actors"
+             (cdkDropListDropped)="moveActor($event)">
     <jnt-card cdkDrag *ngFor="let actor of spec.actors; let i = index; trackBy: trackActor"
-              [color]="ui.color.purpleLight">
-      <jnt-stack [orientation]="ui.orientation.horizontal">
-        <jnt-stack data-actions *ngIf="manager.mode ==  editMode.edit"
-                   [gutter]="ui.gutter.small">
-          <jnt-button cdkDragHandle
-                      [icon]="ui.icons.expand"
-                      [size]="ui.size.tiny"
-                      [scheme]="ui.scheme.secondary"
-                      [shape]="ui.shape.circle">
-          </jnt-button>
-        </jnt-stack>
-        <spec-actor data-actor [actor]="actor"
-                    [mode]="added === actor.id ? editMode.edit : editMode.view"></spec-actor>
-      </jnt-stack>
+              [cdkDragData]="actor">
+      <ng-template *ngIf="(manager.mode$ | async) === editMode.edit" #cardDragTemplate let-icon="icon">
+        <button cdkDragHandle>
+          <jnt-icon [icon]="icon"></jnt-icon>
+        </button>
+      </ng-template>
+      <spec-actor [actor]="actor"
+                  [mode]="added === actor.id ? editMode.edit : editMode.view"></spec-actor>
 
       <ng-template #cardActionsTemplate *ngIf="(manager.mode$ | async) === editMode.edit" let-hide="hide">
         <jnt-menu [orientation]="ui.orientation.vertical">
@@ -98,25 +92,14 @@
       </ng-template>
     </jnt-card>
 
-    <jnt-card *ngIf="(manager.mode$ | async) === editMode.edit"
-              [color]="ui.color.green"
-              [padding]="ui.gutter.big">
-      <div data-add>
-        <jnt-row>
-          <jnt-col [tablet]="6">
-            <jnt-skeleton [type]="ui.skeleton.type.text" [animated]="false"></jnt-skeleton>
-          </jnt-col>
-          <jnt-col [tablet]="6"></jnt-col>
-          <jnt-col *ngFor="let i of (6 | mockArray)" [tablet]="4">
-            <jnt-skeleton [type]="ui.skeleton.type.card" [animated]="false"></jnt-skeleton>
-          </jnt-col>
-        </jnt-row>
+    <jnt-card data-add-one *ngIf="(manager.mode$ | async) === editMode.edit"
+              [padding]="ui.gutter.large">
         <jnt-button data-button text="Add actor"
-                    i18n-text="@@action.add_actor"
-                    [icon]="ui.icons.add"
-                    [size]="ui.size.large"
-                    (click)="addActor()"></jnt-button>
-      </div>
-    </jnt-card>
-  </jnt-stack>
+                i18n-text="@@action.add_actor"
+                [icon]="ui.icons.add"
+                [size]="ui.size.large"
+                [outline]="ui.outline.transparent"
+                (click)="addActor()"></jnt-button>
+        </jnt-card>
+    </jnt-stack>
 </jnt-stack>

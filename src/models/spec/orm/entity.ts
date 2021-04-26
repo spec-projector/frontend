@@ -21,6 +21,9 @@ export class Entity extends Persistence {
   @persist({type: EntityField})
   fields: EntityField[] = [];
 
+  @persist()
+  sort: number;
+
   spec: Spec;
   module: Module;
 

@@ -1,0 +1,28 @@
+@import "~@junte/ui/lib/assets/styles/layout/card";
+@import "~@junte/ui/lib/assets/styles/forms/button";
+
+$jnt-ng-deep: true;
+
+.cdk-drag {
+    &-preview {
+      box-shadow: $jnt-shadow-normal;
+    }
+  
+    &-dragging .cdk-drag {
+      transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+    }
+  
+    &-animating {
+      transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+    }
+  
+    &-placeholder {
+      opacity: 0.5;
+      transition: transform .2s cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+
+[data-add-one] {
+    @include jnt-card((border: 2px dashed $jnt-control-border-color), '&');
+    @include jnt-button((sizes: (large: (font-size: $jnt-font-size-big, icon: (stroke: 2px, size: 32px)))));
+  }

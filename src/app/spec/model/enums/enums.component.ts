@@ -54,7 +54,7 @@ export class EnumsComponent implements OnInit, OnDestroy {
       title: $localize`:@@label.new_enum_title_example:Enum`,
       name: $localize`:@@label.new_enum_name_example:Enum`,
     });
-    this.spec.model.enums.unshift(enum_);
+    this.spec.model.enums.push(enum_);
     enum_.linking({spec: this.spec});
 
     this.manager.put(enum_);

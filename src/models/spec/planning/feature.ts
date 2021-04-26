@@ -19,9 +19,35 @@ function normalize(input: string) {
     .toLowerCase();
 }
 
+export enum WorkflowStepState {
+  progress = 'progress',
+  done = 'done',
+  exclude = 'exclude'
+}
+
 export enum StoryEntryType {
   see = 'see',
   can = 'can'
+}
+
+@persistence()
+export class Workflow {
+
+  @persist()
+  story: WorkflowStepState = WorkflowStepState.progress;
+
+  @persist()
+  design: WorkflowStepState = WorkflowStepState.progress;
+
+  @persist()
+  resources: WorkflowStepState = WorkflowStepState.progress;
+
+  @persist()
+  api: WorkflowStepState = WorkflowStepState.progress;
+
+  constructor(defs: any = {}) {
+    Object.assign(this, defs);
+  }
 }
 
 @persistence()
@@ -78,6 +104,12 @@ export class Feature extends Persistence {
 
   @persist({type: Resource})
   resources: Resource[] = [];
+
+  @persist()
+  workflow: Workflow = new Workflow();
+
+  @persist()
+  sort: number;
 
   spec: Spec;
   actor: Actor;

@@ -10,18 +10,21 @@ import {
   OnDestroy,
   ViewChild
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ModalService, PopoverInstance, PopoverService, UI } from '@junte/ui';
-import { Subscription } from 'rxjs';
-import { generate as shortid } from 'shortid';
-import { EditMode } from 'src/enums/edit-mode';
-import { SpecManager } from 'src/managers/spec.manager';
-import { Actor } from 'src/models/spec/planning/actor';
-import { Feature } from 'src/models/spec/planning/feature';
-import { TextToken } from 'src/models/spec/planning/token';
-import { CURRENT_LANGUAGE } from '../../../../consts';
-import { Language } from '../../../../enums/language';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ModalService, PopoverInstance, PopoverService, UI} from '@junte/ui';
+import {Subscription} from 'rxjs';
+import {generate as shortid} from 'shortid';
+import {EditMode} from 'src/enums/edit-mode';
+import {SpecManager} from 'src/managers/spec.manager';
+import {Actor} from 'src/models/spec/planning/actor';
+import {Feature} from 'src/models/spec/planning/feature';
+import {TextToken} from 'src/models/spec/planning/token';
+import {CURRENT_LANGUAGE} from '../../../../consts';
+import {Language} from '../../../../enums/language';
+import {trackElement} from 'src/utils/templates';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {Entity} from '../../../../models/spec/orm/entity';
 
 @Component({
   selector: 'spec-actor',
@@ -34,6 +37,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   ui = UI;
   editMode = EditMode;
   language = Language;
+  trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
 
   private _actor: Actor;
@@ -106,14 +110,14 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
     this.cd.detectChanges();
   }
 
-  trackFeature(index: number, feature: Feature) {
-    return !!feature ? feature.id : null;
-  }
-
   addFeature() {
+    let sort = this.actor.features.length > 0
+      ? Math.max.apply(null, this.actor.features.map(e => e.sort))
+      : 0;
     const feature = new Feature({
       id: shortid(),
-      title: [new TextToken($localize`:@@label.new_feature_example:Buy a cookies`)]
+      title: [new TextToken($localize`:@@label.new_feature_example:Buy a cookies`)],
+      sort: ++sort
     });
     this.actor.features.push(feature);
     feature.linking({spec: this.actor.spec, actor: this.actor});
@@ -122,6 +126,21 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
     this.manager.put(this.actor);
 
     this.added = feature.id;
+    this.version++;
+    this.cd.detectChanges();
+  }
+
+  moveFeature(event: CdkDragDrop<Feature[]>) {
+    const features = event.container.data;
+    const prev = features[event.previousIndex];
+    const next = features[event.currentIndex];
+    const sort = next.sort;
+    next.sort = prev.sort;
+    prev.sort = sort;
+
+    this.manager.put(prev);
+    this.manager.put(next);
+
     this.version++;
     this.cd.detectChanges();
   }

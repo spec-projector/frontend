@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
-import { ProjectGQL } from 'src/app/spec/spec.graphql';
+import { ProjectGQL } from 'src/app/spec/graphql';
 import { SpecManager } from 'src/managers/spec.manager';
 import { Project } from 'src/models/projects';
 import { Spec } from 'src/models/spec/spec';

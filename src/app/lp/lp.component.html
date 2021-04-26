@@ -166,6 +166,7 @@
   <jnt-lp-footer>
     <jnt-stack [orientation]="ui.orientation.horizontal"
                [wrap]="ui.wrap.wrap"
+               [spacing]="ui.gutter.small"
                [justify]="ui.justify.between"
                [align]="ui.align.center">
       <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -176,7 +177,8 @@
                   [target]="ui.target.blank"
                   source="//junte.team"></jnt-link>
       </jnt-stack>
-      <jnt-menu [spacing]="ui.gutter.small" [wrap]="ui.wrap.noWrap">
+      <jnt-menu [spacing]="ui.gutter.large" 
+                [wrap]="ui.wrap.noWrap">
         <jnt-menu-item title="Agreement"
                        i18n-title="@@action.agreement"
                        [link]="['agreement']"></jnt-menu-item>

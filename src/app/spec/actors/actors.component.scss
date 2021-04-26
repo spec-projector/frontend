@@ -1,4 +1,5 @@
 @import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "../common";
 
 :host {
   display: block;
@@ -8,20 +9,6 @@
 [data-art] {
   width: 50%;
 }
-
-[data-add] {
-  position: relative;
-  [data-button] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    width: 200px;
-  }
-}
-
 [data-actions] {
   opacity: .1;
   margin-right: $jnt-gutter-small;
@@ -31,8 +18,4 @@
     opacity: 1;
     transition: .25s opacity;
   }
-}
-
-[data-actor] {
-  flex: 1;
 }

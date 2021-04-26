@@ -1,29 +1,36 @@
-<form [formGroup]="form">
-  <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
-          (mouseleave)="mode = editMode.view">
-    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
-      <input #titleRef data-title formControlName="title">
+<ng-container [formGroup]="form">
+  <jnt-stack [align]="ui.align.stretch">
+    <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+      (mouseleave)="mode = editMode.view">
+      <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+        <input #titleRef data-title formControlName="title">
+        <div data-auto-name>
+          <label [attr.checked]="autoNameControl.value">
+            <input type="checkbox" formControlName="autoName">
+          </label>
+          <input data-name formControlName="name">
+        </div>
+      </ng-container>
+    </header>
+
+    <ng-template #viewHeader>
+      <h1 data-title>{{enum.title}}</h1>
       <div data-auto-name>
         <label [attr.checked]="autoNameControl.value">
-          <input type="checkbox" formControlName="autoName">
         </label>
-        <input data-name formControlName="name">
+        <h2 data-name>{{enum.name}}</h2>
       </div>
-    </ng-container>
-  </header>
+    </ng-template>
 
-  <ng-template #viewHeader>
-    <h1 data-title>{{enum.title}}</h1>
-    <div data-auto-name>
-      <label [attr.checked]="autoNameControl.value">
-      </label>
-      <h2 data-name>{{enum.name}}</h2>
-    </div>
-  </ng-template>
-
-  <ul *ngIf="enum.options.length > 0">
-    <li *ngFor="let f of enum.options">
-      {{f.title}}
-    </li>
-  </ul>
-</form>
+    <jnt-stack *ngIf="enum.options.length > 0" 
+          [orientation]="ui.orientation.horizontal" 
+          [gutter]="ui.gutter.small"
+          [spacing]="ui.gutter.small" 
+          [wrap]="ui.wrap.wrap">
+      <jnt-label *ngFor="let o of enum.options" 
+          [label]="o.title" 
+          [size]="ui.size.small"
+          [color]="ui.color.paleNavy"></jnt-label>
+    </jnt-stack>
+  </jnt-stack>
+</ng-container>

@@ -33,13 +33,15 @@
                    [link]="['actors']"
                    [matching]="ui.matching.wildcard">
       <jnt-badge *ngIf="spec.actors.length > 0"
-                 [value]="spec.actors.length"></jnt-badge>
+                 [value]="spec.actors.length"
+                 [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 
     <jnt-menu-item title="Model"
                    i18n-title="@@label.model"
                    [icon]="localUi.icons.model">
       <jnt-badge *ngIf="spec?.model.entities.length + spec?.model.enums.length as count"
+                 [color]="ui.color.paleNavy"
                  [value]="count"></jnt-badge>
 
       <jnt-sub-menu>
@@ -62,7 +64,8 @@
                    [icon]="localUi.icons.modules"
                    [matching]="ui.matching.wildcard">
       <jnt-badge *ngIf="spec.modules.length > 0"
-                 [value]="spec.modules.length"></jnt-badge>
+                 [value]="spec.modules.length"
+                 [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 
     <jnt-menu-item [link]="['print']"
