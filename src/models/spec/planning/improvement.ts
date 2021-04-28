@@ -1,6 +1,6 @@
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { persist, persistence } from 'src/decorators/persistence';
-import { TokenSerializer } from 'src/models/spec/serializers/token';
+import { TokenSerializer } from 'src/serializers/token';
 import { Feature } from './feature';
 import { Issue } from './issue';
 import { Token } from './token';
@@ -17,7 +17,7 @@ export class Improvement {
     @persist({serializer: new ArraySerializer(new ModelSerializer(Issue))})
     issues: Issue[] = [];
 
-    constructor(defs: any = {}) {
+    constructor(defs: Partial<Improvement> = {}) {
         Object.assign(this, defs);
     }
 }

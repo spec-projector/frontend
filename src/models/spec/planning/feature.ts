@@ -2,7 +2,7 @@ import { ArraySerializer } from 'serialize-ts';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Graphql } from 'src/models/spec/planning/graphql';
 import { Sprint } from 'src/models/spec/planning/sprint';
-import { TokenSerializer } from 'src/models/spec/serializers/token';
+import { TokenSerializer } from 'src/serializers/token';
 import { Spec } from 'src/models/spec/spec';
 import { ModelType } from '../../enums';
 import { Actor } from './actor';

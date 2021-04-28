@@ -4,7 +4,9 @@ import { UI } from '@junte/ui';
 import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/app/spec/managers';
 import { Spec } from 'src/models/spec/spec';
+import { LocalUI } from '../../../enums/local-ui';
 import { Actor } from '../../../models/spec/planning/actor';
+import { trackElement } from '../../../utils/templates';
 
 @Component({
   selector: 'spec-print',
@@ -15,8 +17,12 @@ import { Actor } from '../../../models/spec/planning/actor';
 export class PrintComponent implements OnInit {
 
   ui = UI;
+  localUi = LocalUI;
   language = Language;
+  trackElement = trackElement;
+
   spec: Spec;
+  version = 0;
 
   constructor(public manager: SpecManager,
               private route: ActivatedRoute,
@@ -25,10 +31,6 @@ export class PrintComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({spec}) => this.spec = spec);
-  }
-
-  trackActor(index: number, actor: Actor) {
-    return !!actor ? actor.id : null;
   }
 
 }

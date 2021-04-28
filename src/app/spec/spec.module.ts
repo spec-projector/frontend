@@ -4,9 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JunteUiModule } from '@junte/ui';
 import { ClickOutsideModule } from 'ng4-click-outside';
-import { DndModule } from 'ngx-drag-drop';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { TokensComponent } from 'src/app/spec/tokens/tokens.component';
 import { ActorComponent } from 'src/app/spec/actors/actor/actor.component';
 import { ActorsComponent } from 'src/app/spec/actors/actors.component';
 import { DetailsComponent } from 'src/app/spec/details/details.component';
@@ -26,11 +24,11 @@ import { SpecRoutingModule } from 'src/app/spec/spec-routing.module';
 import { SpecComponent } from 'src/app/spec/spec.component';
 import { SprintComponent } from 'src/app/spec/sprints/sprint/sprint.component';
 import { SprintsComponent } from 'src/app/spec/sprints/sprints.component';
+import { TermDescriptionPipe } from 'src/app/spec/terms/pipes';
 import { TermComponent } from 'src/app/spec/terms/term/term.component';
 import { TermsComponent } from 'src/app/spec/terms/terms.component';
-import { TermDescriptionPipe } from 'src/app/spec/terms/pipes';
-import { TokenTypePipe } from 'src/app/spec/tokens/pipes';
-import { JoinTokensPipe } from 'src/app/spec/tokens/pipes';
+import { JoinTokensPipe, TokenTypePipe } from 'src/app/spec/tokens/pipes';
+import { TokensComponent } from 'src/app/spec/tokens/tokens.component';
 import { FitHeightDirective } from '../../directives/fit-height.directive';
 import { ArrayPipesModule } from '../../pipes/array/array-pipes.module';
 import { StringPipesModule } from '../../pipes/string/string-pipes.module';
@@ -47,7 +45,8 @@ import { WorkflowStepComponent } from './features/feature/workflow/step/step.com
 import { FeaturesComponent } from './features/features.component';
 import {
   FeaturePricePipe,
-  FeaturesWithoutModulePipe, FeaturesWithoutSprintPipe,
+  FeaturesWithoutModulePipe,
+  FeaturesWithoutSprintPipe,
   FeatureTermsPipe,
   GroupFeaturesByActorPipe,
   GroupFeaturesByModulesPipe
@@ -149,17 +148,17 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     CommonModule,
     ReactiveFormsModule,
 
-    SpecRoutingModule,
-
+    MonacoEditorModule.forRoot(),
     JunteUiModule,
     ClickOutsideModule,
-    DndModule,
     DragDropModule,
-    MonacoEditorModule,
+
     StringPipesModule,
     ArrayPipesModule,
 
-    ProjectEditModule
+    ProjectEditModule,
+
+    SpecRoutingModule
   ]
 })
 export class SpecModule {

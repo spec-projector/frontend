@@ -1,5 +1,5 @@
 import { Serializer } from 'serialize-ts';
-import { AccentToken, QuoteToken, TermToken, TextToken, Token, TokenType, UrlToken } from '../planning/token';
+import { AccentToken, QuoteToken, TermToken, TextToken, Token, TokenType, UrlToken } from '../models/spec/planning/token';
 
 export class TokenSerializer implements Serializer<Object> {
 

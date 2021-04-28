@@ -1,53 +1,70 @@
-<h1 i18n="@@label.content">Content</h1>
-<div data-content>
-  <ol>
-    <li *ngFor="let actor of spec.actors; trackBy: trackActor">
-      <b>{{actor.name}}</b>
-      <ol>
-        <li data-price *ngFor="let feature of actor.features">
-          <div [attr.data-has-story]="feature.story.length > 0">{{feature.title | joinTokens}}</div>
-          <div *ngIf="(feature | featurePrice | async) as price">
-            {{price | currency}}
+<jnt-app-page-header [icon]="localUi.icons.print"
+                     title="Contract"
+                     i18n-title="@@label.contract"
+                     teaser="your specification for printing"
+                     i18n-teaser="@@message.contract_teaser">
+</jnt-app-page-header>
+
+<jnt-container>
+  <jnt-stack [gutter]="ui.gutter.huge"
+             [align]="ui.align.stretch">
+    <jnt-block title="Contents"
+               i18n-title="@@label.contents">
+      <div data-content>
+        <ol>
+          <li *ngFor="let actor of spec.actors; trackBy:trackElement">
+            <b>{{actor.name}}</b>
+            <ol>
+              <li data-price *ngFor="let feature of actor.features">
+                <div [attr.data-has-story]="feature.story.length > 0">{{feature.title | joinTokens}}</div>
+                <div *ngIf="(feature | featurePrice | async) as price">
+                  {{price | currency}}
+                </div>
+              </li>
+            </ol>
+          </li>
+        </ol>
+
+        <div data-price data-total>
+          <div i18n="@@label.total">Total</div>
+          <div>
+            {{spec | specPrice:version | currency}}
           </div>
-        </li>
-      </ol>
-    </li>
-  </ol>
+        </div>
+      </div>
+    </jnt-block>
 
-  <div data-price data-total>
-    <div i18n="@@label.total">Total</div>
-    <div>
-      {{spec | specPrice:spec.version:spec.rev | currency}}
-    </div>
-  </div>
-</div>
-
-<h1 i18n="@@label.features">Features</h1>
-<ng-container *ngFor="let actor of spec.actors; trackBy: trackActor">
-  <ng-container *ngIf="actor.features.length > 0">
-    <h2 [ngSwitch]="locale">
-      <ng-container *ngSwitchDefault>
-        As <b>{{actor.name}}</b> I want
-      </ng-container>
-      <ng-container *ngSwitchCase="language.ru">
-        Как <b>{{actor.name}}</b> я хочу
-      </ng-container>
-    </h2>
-    <ol data-actor>
-      <ng-container *ngFor="let feature of actor.features">
-        <li>
-          <h3>
-            {{feature.title | joinTokens}}
-            <jnt-label *ngIf="feature.module" [label]="feature.module.title"></jnt-label>
-          </h3>
-          <ol data-feature *ngIf="feature.story.length > 0">
-            <li *ngFor="let entry of feature.story; let i = index">
-              <div [attr.type]="entry.type">I {{entry.type === 'can' ? 'can' : 'see'}}</div>
-              <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
-            </li>
+    <jnt-block title="Features"
+               i18n-title="@@label.features">
+      <ng-container *ngFor="let actor of spec.actors; trackBy:trackElement">
+        <ng-container *ngIf="actor.features.length > 0">
+          <h2 [ngSwitch]="locale">
+            <ng-container *ngSwitchDefault>
+              As <b>{{actor.name}}</b> I want
+            </ng-container>
+            <ng-container *ngSwitchCase="language.ru">
+              Как <b>{{actor.name}}</b> я хочу
+            </ng-container>
+          </h2>
+          <ol data-actor>
+            <ng-container *ngFor="let feature of actor.features">
+              <li>
+                <h3>
+                  {{feature.title | joinTokens}}
+                  <jnt-label *ngIf="feature.module" [label]="feature.module.title"></jnt-label>
+                </h3>
+                <ol data-feature *ngIf="feature.story.length > 0">
+                  <li *ngFor="let entry of feature.story; let i = index">
+                    <div [attr.type]="entry.type">I {{entry.type === 'can' ? 'can' : 'see'}}</div>
+                    <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>
+                  </li>
+                </ol>
+              </li>
+            </ng-container>
           </ol>
-        </li>
+        </ng-container>
       </ng-container>
-    </ol>
-  </ng-container>
-</ng-container>
+    </jnt-block>
+  </jnt-stack>
+</jnt-container>
+

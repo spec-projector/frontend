@@ -43,7 +43,6 @@
     "ng4-click-outside": "^1.0.1",
     "ngx-clipboard": "^12.3.0",
     "ngx-date-fns": "6.3.0",
-    "ngx-drag-drop": "^2.0.0",
     "ngx-logger": "^4.0.7",
     "ngx-monaco-editor": "^8.1.1",
     "npm": "^6.13.4",

@@ -12,7 +12,7 @@ export class Graphql {
   @persist()
   text: string;
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<Graphql> = {}) {
     Object.assign(this, defs);
   }
 

@@ -38,7 +38,7 @@ export class Issue {
     @persist()
     state: IssueState;
 
-    constructor(defs: any = {}) {
+    constructor(defs: Partial<Issue> = {}) {
         Object.assign(this, defs);
     }
 }
