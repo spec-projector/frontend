@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AppLayoutModule, AvatarModule, LinkModule, MenuModule, ModalModule, PopoverModule, StackModule } from '@junte/ui';
+import { AppLayoutModule, AvatarModule, ButtonModule, LinkModule, MenuModule, ModalModule, PopoverModule, StackModule } from '@junte/ui';
 import { ArrayPipesModule } from 'src/pipes/array/array-pipes.module';
 import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { ChangePasswordModule } from '../change-password/change-password.module';
@@ -12,24 +12,25 @@ import { LayoutComponent } from './layout.component';
   declarations: [
     LayoutComponent
   ],
-  imports: [
-    CommonModule,
+    imports: [
+        CommonModule,
 
-    MenuModule,
-    AppLayoutModule,
-    LinkModule,
-    StackModule,
-    AvatarModule,
-    PopoverModule,
-    ModalModule,
+        MenuModule,
+        AppLayoutModule,
+        LinkModule,
+        StackModule,
+        AvatarModule,
+        PopoverModule,
+        ModalModule,
 
-    ArrayPipesModule,
-    StringPipesModule,
-    ChangePersonalDataModule,
-    ChangePasswordModule,
+        ArrayPipesModule,
+        StringPipesModule,
+        ChangePersonalDataModule,
+        ChangePasswordModule,
 
-    LayoutRoutingModule,
-  ]
+        LayoutRoutingModule,
+        ButtonModule,
+    ]
 })
 export class LayoutModule {
 

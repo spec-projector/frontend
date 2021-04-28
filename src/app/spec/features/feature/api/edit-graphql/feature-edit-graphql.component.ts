@@ -5,7 +5,7 @@ import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { Feature } from 'src/models/spec/planning/feature';
 import { Graphql } from 'src/models/spec/planning/graphql';
-import { SpecManager } from '../../../../../../managers/spec.manager';
+import { SpecManager } from '../../../../managers';
 import { generate as shortid } from 'shortid';
 
 @Component({

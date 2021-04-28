@@ -7,7 +7,7 @@ import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
 import { Issue } from 'src/models/spec/planning/issue';
-import { SpecManager } from '../../../../../managers/spec.manager';
+import { SpecManager } from '../../../managers';
 import { IssueState, IssueSystem } from '../../../../../enums/issue';
 import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
 import { IssueDataRequest } from '../../../../../models/issue-data';

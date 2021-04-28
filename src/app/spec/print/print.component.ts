@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/managers/spec.manager';
+import { SpecManager } from 'src/app/spec/managers';
 import { Spec } from 'src/models/spec/spec';
 import { Actor } from '../../../models/spec/planning/actor';
 

@@ -4,7 +4,7 @@ import {UI} from '@junte/ui';
 import {LocalUI} from 'src/enums/local-ui';
 import {Feature, WorkflowStepState} from 'src/models/spec/planning/feature';
 import {FormBuilder} from '@angular/forms';
-import {SpecManager} from '../../../../../managers/spec.manager';
+import {SpecManager} from '../../../managers';
 
 @Component({
   selector: 'spec-feature-edit',
@@ -15,15 +15,27 @@ export class FeatureEditComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  workflowStepState = WorkflowStepState;
 
   _feature: Feature;
 
+  storyControl = this.fb.control(WorkflowStepState.doing);
+  designControl = this.fb.control(WorkflowStepState.doing);
+  resourcesControl = this.fb.control(WorkflowStepState.doing);
+  apiControl = this.fb.control(WorkflowStepState.doing);
+  developingControl = this.fb.control(WorkflowStepState.doing);
+  testingControl = this.fb.control(WorkflowStepState.doing);
+  acceptingControl = this.fb.control(WorkflowStepState.doing);
+
   form = this.fb.group({
     workflow: this.fb.group({
-      story: [WorkflowStepState.progress],
-      design: [WorkflowStepState.progress],
-      resources: [WorkflowStepState.progress],
-      api: [WorkflowStepState.progress]
+      story: this.storyControl,
+      design: this.designControl,
+      resources: this.resourcesControl,
+      api: this.apiControl,
+      developing: this.developingControl,
+      testing: this.testingControl,
+      accepting: this.acceptingControl
     })
   });
 
@@ -36,6 +48,9 @@ export class FeatureEditComponent implements OnInit {
         design: workflow.design,
         resources: workflow.resources,
         api: workflow.api,
+        developing: workflow.developing,
+        testing: workflow.testing,
+        accepting: workflow.accepting
       }
     }, {emitEvent: false});
   }

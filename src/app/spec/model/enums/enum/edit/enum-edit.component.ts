@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
-import { SpecManager } from 'src/managers/spec.manager';
+import { SpecManager } from 'src/app/spec/managers';
 import { Enum, EnumOption } from '../../../../../../models/spec/orm/enum';
 import { generate as shortid } from 'shortid';
 

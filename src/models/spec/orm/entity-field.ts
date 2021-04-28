@@ -43,7 +43,7 @@ export class EntityField {
   entity: Entity;
   links: { reference?: Entity, enum?: Enum } = {};
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<EntityField> = {}) {
     Object.assign(this, defs);
   }
 

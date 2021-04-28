@@ -1,6 +1,7 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {Entity} from 'src/models/spec/orm/entity';
-import {Module} from 'src/models/spec/planning/module';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Entity } from 'src/models/spec/orm/entity';
+import { Module } from 'src/models/spec/planning/module';
+import { Enum } from '../../../../models/spec/orm/enum';
 
 export class ModuleGroup {
   module: Module;
@@ -31,5 +32,13 @@ export class GroupEntitiesByModulesPipe implements PipeTransform {
       g.entities.sort((a, b) => a.sort < b.sort ? -1 : (a.sort > b.sort ? 1 : 0));
     }
     return modules;
+  }
+}
+
+@Pipe({name: 'entitiesWithoutModule'})
+export class EntitiesWithoutModulePipe implements PipeTransform {
+  transform(entities: Entity[], version: number): Entity[] {
+    const filtered = entities.filter(f => !f.module);
+    return filtered.length > 0 ? filtered : null;
   }
 }

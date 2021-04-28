@@ -1,0 +1,52 @@
+@import "src/variables";
+@import "~@junte/ui/lib/assets/styles/elements/icon";
+
+$jnt-ng-deep: true;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-color: $jnt-gray-400-color;
+
+  thead tr {
+    height: 100px;
+  }
+
+  th:not(:first-child) {
+    position: relative;
+    span {
+      position: absolute;
+      left: $jnt-gutter-tiny;
+      bottom: $jnt-gutter-tiny;
+      transform-origin: left top;
+      transform: translateY(100%) rotate(-90deg);
+    }
+  }
+
+  th:not(:first-child), td:not(:first-child) {
+    width: 30px;
+    text-align: center;
+  }
+
+  th, td {
+    padding: $jnt-gutter-tiny;
+  }
+
+  [data-actor] {
+    text-align: left;
+    font-weight: $jnt-font-weight-bold;
+  }
+
+  [data-state='doing'] {
+    @include jnt-icon((color: $jnt-gray-800-color), '&');
+  }
+
+  [data-state='done'] {
+    @include jnt-icon((color: $jnt-success-color), '&');
+  }
+
+  [data-state='missed'] {
+    @include jnt-icon((color: $jnt-gray-600-color), '&');
+  }
+
+}

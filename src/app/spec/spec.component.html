@@ -23,10 +23,14 @@
   </ng-template>
 
   <jnt-menu [orientation]="ui.orientation.vertical">
-    <jnt-menu-item [link]="['details']"
-                   title="General"
+    <jnt-menu-item title="General"
                    i18n-title="@@label.general"
-                   [icon]="localUi.icons.general"></jnt-menu-item>
+                   [icon]="localUi.icons.general"
+                   [link]="['details']"></jnt-menu-item>
+    <jnt-menu-item title="Dashboard"
+                   i18n-title="@@label.dashboard"
+                   [icon]="localUi.icons.dashboard"
+                   [link]="['dashboard']"></jnt-menu-item>
     <jnt-menu-item title="Features"
                    i18n-title="@@label.features"
                    [icon]="localUi.icons.features"
@@ -37,10 +41,19 @@
                  [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 
+    <jnt-menu-item title="Terms"
+                   i18n-title="@@label.terms"
+                   [icon]="localUi.icons.terms"
+                   [link]="['terms']">
+      <jnt-badge *ngIf="spec.terms.length > 0"
+                 [value]="spec.terms.length"
+                 [color]="ui.color.paleNavy"></jnt-badge>
+    </jnt-menu-item>
+
     <jnt-menu-item title="Model"
                    i18n-title="@@label.model"
                    [icon]="localUi.icons.model">
-      <jnt-badge *ngIf="spec?.model.entities.length + spec?.model.enums.length as count"
+      <jnt-badge *ngIf="spec.model.entities.length + spec.model.enums.length as count"
                  [color]="ui.color.paleNavy"
                  [value]="count"></jnt-badge>
 
@@ -49,12 +62,20 @@
                            i18n-title="@@label.entities"
                            [icon]="localUi.icons.entities"
                            [link]="['model/entities']"
-                           [matching]="ui.matching.wildcard"></jnt-sub-menu-item>
+                           [matching]="ui.matching.wildcard">
+          <jnt-badge *ngIf="spec.model.entities.length as count"
+                     [color]="ui.color.paleNavy"
+                     [value]="count"></jnt-badge>
+        </jnt-sub-menu-item>
         <jnt-sub-menu-item title="Enums"
                            i18n-title="@@label.enums"
                            [icon]="localUi.icons.enums"
                            [link]="['model/enums']"
-                           [matching]="ui.matching.wildcard"></jnt-sub-menu-item>
+                           [matching]="ui.matching.wildcard">
+          <jnt-badge *ngIf="spec.model.enums.length as count"
+                     [color]="ui.color.paleNavy"
+                     [value]="count"></jnt-badge>
+        </jnt-sub-menu-item>
       </jnt-sub-menu>
     </jnt-menu-item>
 
@@ -68,20 +89,22 @@
                  [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 
+    <jnt-menu-item title="Sprints"
+                   i18n-title="@@label.sprints"
+                   [icon]="localUi.icons.sprints"
+                   [link]="['sprints']">
+      <jnt-badge *ngIf="spec.sprints.length > 0"
+                 [value]="spec.sprints.length"
+                 [color]="ui.color.paleNavy"></jnt-badge>
+    </jnt-menu-item>
+
+
     <jnt-menu-item [link]="['print']"
                    title="Contract"
                    i18n-title="@@label.contract"
                    [icon]="localUi.icons.print"></jnt-menu-item>
-
     <!--
-    <jnt-menu-item [link]="['terms']" title="Knowledge"
-                   [icon]="localUi.icons.terms">
-      <jnt-badge [value]="spec?.terms.length.toString()"></jnt-badge>
-    </jnt-menu-item>
-    <jnt-menu-item [link]="['sprints']" title="Sprints"
-                   [icon]="localUi.icons.sprints">
-      <jnt-badge [value]="spec?.sprints.length.toString()"></jnt-badge>
-    </jnt-menu-item>
+
     <jnt-menu-item [link]="['validate']" title="Validate"
                    [icon]="localUi.icons.validate">
       <jnt-badge [value]="errors.length.toString()"></jnt-badge>
@@ -109,5 +132,10 @@
         Junte 2016 - 2021<br> Никакие права не защищены, используйте это так, как хотите ;-)
       </ng-container>
     </small>
+    <jnt-link title="Support"
+              i18n-title="@@label.support"
+              [icon]="localUi.icons.support"
+              [outline]="ui.outline.ghost"
+              [source]="['/support']"></jnt-link>
   </jnt-app-footer>
 </jnt-app-content>

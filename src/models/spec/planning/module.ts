@@ -1,12 +1,11 @@
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { Spec } from 'src/models/spec/spec';
-import { ValidationError } from 'src/models/validation/error';
 import { Entity } from '../orm/entity';
 import { Enum } from '../orm/enum';
 import { Feature } from './feature';
 
 @persistence()
-export class Model extends Persistence {
+export class ModuleModel extends Persistence {
 
   @persist({type: Entity})
   entities: Entity[] = [];
@@ -14,7 +13,15 @@ export class Model extends Persistence {
   @persist({type: Enum})
   enums: Enum[] = [];
 
-  constructor(defs: Partial<Model> = {}) {
+  addEntity(entity: Entity) {
+    this.entities.push(entity);
+  }
+
+  addEnum(enum_: Enum) {
+    this.enums.push(enum_);
+  }
+
+  constructor(defs: Partial<ModuleModel> = {}) {
     super();
     Object.assign(this, defs);
   }
@@ -30,7 +37,7 @@ export class Module extends Persistence {
   features: Feature[] = [];
 
   @persist()
-  model: Model = new Model();
+  model: ModuleModel = new ModuleModel();
 
   spec: Spec;
 
@@ -41,16 +48,6 @@ export class Module extends Persistence {
 
   linking(spec: Spec) {
     this.spec = spec;
-    const features = spec.actors.reduce((res, actor) => res.concat(actor.features), []);
-    for (let i = 0; i < this.features.length; i++) {
-      const feature = this.features[i];
-      const found = features.find(e => e.id === feature.id);
-      if (!!found) {
-        found.linking({epic: this});
-        this.features[i] = found;
-      }
-    }
-
     for (let i = 0; i < this.features.length; i++) {
       const feature = this.features[i];
       const found = spec.features.find(e => e.id === feature.id);
@@ -93,17 +90,8 @@ export class Module extends Persistence {
     return links;
   }
 
-  validateTerms(spec: Spec) {
-    let errors: ValidationError[] = [];
-    for (const feature of this.features) {
-      const errs = feature.validate(spec);
-      if (!!errs) {
-        errs.forEach(e => e.epic = this);
-
-        errors = errors.concat(errs);
-      }
-    }
-
-    return errors;
+  addFeature(feature: Feature) {
+    this.features.push(feature);
   }
+
 }

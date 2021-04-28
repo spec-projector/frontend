@@ -10,7 +10,7 @@
     <h1 data-title>{{module.title}}</h1>
   </ng-template>
 
-  <div data-attached cdkDropList [id]="'_' + module.id"
+  <div data-attached cdkDropList [id]="module.id"
        (cdkDropListDropped)="onDropFromLibrary($event)">
     <jnt-stack
       *ngIf="module.features.length > 0 || module.model.entities.length > 0 || module.model.enums.length > 0; else noDataTemplate"
@@ -29,14 +29,11 @@
                           [padding]="ui.gutter.small">
                   <jnt-stack [orientation]="ui.orientation.horizontal"
                              [align]="ui.align.center">
-                    <jnt-button [icon]="ui.icons.link"
-                                [size]="ui.size.tiny"
-                                [outline]="ui.outline.transparent"
-                                [shape]="ui.shape.circle"
-                                (click)="router.navigate(['../actors', group.actor.id, 'features', feature.id], {relativeTo: route})">
-                    </jnt-button>
-                    <spec-feature data-feature [attr.id]="feature.id"
-                                  [feature]="feature"></spec-feature>
+                    <div data-feature>
+                      <jnt-link [title]="feature.title | joinTokens"
+                                [icon]="localUi.icons.features"
+                                [source]="['../actors', group.actor.id, 'features', feature.id]"></jnt-link>
+                    </div>
                     <jnt-button [icon]="ui.icons.closeSmall"
                                 [size]="ui.size.tiny"
                                 [outline]="ui.outline.transparent"
@@ -56,16 +53,14 @@
         <jnt-row>
           <jnt-col *ngFor="let entity of module.model.entities; trackBy: trackElement"
                    [wide]="6">
-            <jnt-card [width]="ui.width.fluid">
+            <jnt-card [width]="ui.width.fluid"
+                      [padding]="ui.gutter.small">
               <jnt-stack [orientation]="ui.orientation.horizontal">
-                <jnt-button [icon]="ui.icons.link"
-                            [size]="ui.size.tiny"
-                            [outline]="ui.outline.transparent"
-                            [shape]="ui.shape.circle"
-                            (click)="router.navigate(['../model/entities', entity.id], {relativeTo: route})">
-                </jnt-button>
-                <spec-entity data-entity [attr.id]="entity.id"
-                             [entity]="entity"></spec-entity>
+                <div data-entity>
+                  <jnt-link [title]="entity.title"
+                            [icon]="localUi.icons.entities"
+                            [source]="['../model/entities', entity.id]"></jnt-link>
+                </div>
                 <jnt-button [icon]="ui.icons.closeSmall"
                             [size]="ui.size.tiny"
                             [outline]="ui.outline.transparent"
@@ -83,16 +78,14 @@
         <jnt-row>
           <jnt-col *ngFor="let enum of module.model.enums; trackBy: trackElement"
                    [wide]="6">
-            <jnt-card [width]="ui.width.fluid">
+            <jnt-card [width]="ui.width.fluid"
+                      [padding]="ui.gutter.small">
               <jnt-stack [orientation]="ui.orientation.horizontal">
-                <jnt-button [icon]="ui.icons.link"
-                            [size]="ui.size.tiny"
-                            [outline]="ui.outline.transparent"
-                            [shape]="ui.shape.circle"
-                            (click)="router.navigate(['../model/enums', enum.id], {relativeTo: route})">
-                </jnt-button>
-                <spec-enum data-enum [attr.id]="enum.id"
-                           [enum]="enum"></spec-enum>
+                <div data-enum>
+                  <jnt-link [title]="enum.title"
+                            [icon]="localUi.icons.enums"
+                            [source]="['../model/enums', enum.id]"></jnt-link>
+                </div>
                 <jnt-button [icon]="ui.icons.closeSmall"
                             [size]="ui.size.tiny"
                             [outline]="ui.outline.transparent"
@@ -109,7 +102,7 @@
 
   <ng-template #noDataTemplate>
     <jnt-message [icon]="ui.icons.question">
-      <p>Drag features, entities, enums from library</p>
+      <p>Drag here features, entities, enums from library</p>
     </jnt-message>
   </ng-template>
 

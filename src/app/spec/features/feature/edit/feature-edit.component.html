@@ -1,52 +1,76 @@
 <jnt-app-page-header [icon]="localUi.icons.features"
                      [title]="feature.title"
                      teaser="for {{feature.actor.name}}"></jnt-app-page-header>
-
-<jnt-stack [align]="ui.align.stretch">
-  <ng-container [formGroup]="form">
-    <ng-container formGroupName="workflow">
-      <jnt-row [align]="ui.align.center">
-        <jnt-col [tablet]="2">
-          <div>Story</div>
-          <spec-workflow-step formControlName="story"></spec-workflow-step>
-        </jnt-col>
-        <jnt-col [tablet]="1">
-          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-        </jnt-col>
-        <jnt-col [tablet]="2">
-          <div>Design</div>
-          <spec-workflow-step formControlName="design"></spec-workflow-step>
-        </jnt-col>
-        <jnt-col [tablet]="1">
-          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-        </jnt-col>
-        <jnt-col [tablet]="2">
-          <div>Resources</div>
-          <spec-workflow-step formControlName="resources"></spec-workflow-step>
-        </jnt-col>
-        <jnt-col [tablet]="1">
-          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-        </jnt-col>
-        <jnt-col [tablet]="2">
-          <div>API</div>
-          <spec-workflow-step formControlName="api"></spec-workflow-step>
-        </jnt-col>
-      </jnt-row>
+<jnt-stack [gutter]="ui.gutter.big" [align]="ui.align.stretch">
+  <jnt-block title="Workflow">
+    <ng-container [formGroup]="form">
+      <ng-container formGroupName="workflow">
+        <jnt-row [align]="ui.align.center">
+          <jnt-col [tablet]="1">
+            <div>Story</div>
+            <spec-workflow-step formControlName="story"></spec-workflow-step>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <div>Design</div>
+            <spec-workflow-step formControlName="design"></spec-workflow-step>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <div>Resources</div>
+            <spec-workflow-step formControlName="resources"></spec-workflow-step>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <div>API</div>
+            <spec-workflow-step formControlName="api"></spec-workflow-step>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <div>Developing</div>
+            <spec-workflow-step formControlName="developing"></spec-workflow-step>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <div>Testing</div>
+            <spec-workflow-step formControlName="testing"></spec-workflow-step>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          </jnt-col>
+          <jnt-col [tablet]="1">
+            <div>Accepting</div>
+            <spec-workflow-step formControlName="accepting"></spec-workflow-step>
+          </jnt-col>
+        </jnt-row>
+      </ng-container>
     </ng-container>
-  </ng-container>
+  </jnt-block>
 
   <jnt-block [width]="ui.width.fluid">
     <jnt-stack [align]="ui.align.stretch">
       <jnt-menu [style]="ui.menu.style.tabs"
                 [spacing]="ui.gutter.normal">
-        <jnt-menu-item title="User story"
+        <jnt-menu-item *ngIf="storyControl.value !== workflowStepState.missed"
+                       title="User story"
                        i18n-title="@@label.user_story"
                        [link]="['story']">
           <jnt-badge *ngIf="feature.story.length > 0"
                      [value]="feature.story.length"
                      [color]="ui.color.purpleLighten"></jnt-badge>
         </jnt-menu-item>
-        <jnt-menu-item title="Design"
+        <jnt-menu-item *ngIf="designControl.value !== workflowStepState.missed"
+                       title="Design"
                        i18n-title="@@label.design"
                        [link]="['frames']"
                        [icon]="ui.icons.figma">
@@ -54,14 +78,16 @@
                      [value]="feature.frames.length"
                      [color]="ui.color.purpleLighten"></jnt-badge>
         </jnt-menu-item>
-        <jnt-menu-item title="Resources"
+        <jnt-menu-item *ngIf="resourcesControl.value !== workflowStepState.missed"
+                       title="Resources"
                        i18n-title="@@label.resource_type"
                        [link]="['resources']">
           <jnt-badge *ngIf="feature.resources.length > 0"
                      [value]="(feature.resources | estimatedTime) + 'h'"
                      [color]="ui.color.purpleLighten"></jnt-badge>
         </jnt-menu-item>
-        <jnt-menu-item title="API"
+        <jnt-menu-item *ngIf="apiControl.value !== workflowStepState.missed"
+                       title="API"
                        [link]="['api']"
                        [icon]="localUi.icons.graphQl"
                        [matching]="ui.matching.wildcard">
@@ -69,7 +95,8 @@
                      [value]="feature.graphql.length"
                      [color]="ui.color.purpleLighten"></jnt-badge>
         </jnt-menu-item>
-        <jnt-menu-item title="Issues"
+        <jnt-menu-item *ngIf="developingControl.value !== workflowStepState.missed"
+                       title="Issues"
                        i18n-title="@@label.issues"
                        [link]="['issues']"
                        [icon]="ui.icons.gitlab">

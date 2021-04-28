@@ -1,7 +1,7 @@
 import { SearchFilter } from '@junte/ui';
+import * as assign from 'assign-deep';
 import { ArraySerializer, Field, Model } from 'serialize-ts';
 import { EdgesToPaging } from 'src/serializers/graphql';
-import * as assign from 'assign-deep';
 import { SecureString } from '../serializers/string';
 
 @Model()

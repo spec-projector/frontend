@@ -81,8 +81,8 @@
                        [align]="ui.align.center">
               <jnt-icon data-tarrif-icon [icon]="t.icon + ':svg:local:stroked'"></jnt-icon>
               <h3>
-                {{t.price | currency:'USD':'symbol':'1.0-0'}}
-                <span i18n="@@label.per_month">per month</span><br>
+                {{t.price | number:'1.0-0'}} ₽
+                <span i18n="@@label.month">/ month</span><br>
                 {{t.title}}
               </h3>
             </jnt-stack>

@@ -1,67 +1,41 @@
-@import "../../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
 
 :host {
   display: block;
-  width: 100%;
 }
 
-form {
+input, textarea {
   display: flex;
   align-items: center;
-
-  [term] {
-    min-width: 200px;
-
-    span {
-      border-bottom: 1px solid $jnt-primary-color;
-    }
-
-  }
-
-  [term] {
-    input {
-      width: 100%;
-      border: 1px dotted silver;
-      padding: $jnt-gutter-small;
-      border-radius: 5px;
-    }
-  }
-
-  [descripton] {
-    flex: 1;
-  }
-}
-
-[name], [description] {
-  input, textarea {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    font-weight: normal;
-    border: none;
-    box-sizing: border-box;
-    outline: none;
-    height: fit-content;
-    line-height: 1.5em;
-    overflow: hidden;
-    background-color: transparent;
-    white-space: nowrap;
-    width: 100%;
-    font-size: 1em;
-
-    &:focus {
-      color: black;
-    }
-  }
-
-  textarea {
-    white-space: normal;
-    resize: none;
-    overflow: hidden;
-  }
-}
-
-[description] {
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  border: none;
+  box-sizing: border-box;
+  outline: none;
+  height: fit-content;
+  line-height: 1.5em;
+  overflow: hidden;
+  background-color: transparent;
+  white-space: nowrap;
   width: 100%;
+  font-size: 1em;
+
+  &:focus {
+    color: black;
+  }
+}
+
+[data-name] {
+  font-weight: $jnt-font-weight-bold;
+
+  input {
+    font-weight: $jnt-font-weight-bold;
+  }
+}
+
+textarea {
+  white-space: normal;
+  resize: none;
+  overflow: hidden;
 }

@@ -6,7 +6,7 @@ import { characters, generate } from 'shortid';
 import Document = PouchDB.Core.Document;
 import Database = PouchDB.Database;
 
-characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
+characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$');
 
 export const persistence = Model;
 export const PERSIST_METADATA_KEY = Symbol('persist_field_meta');
@@ -97,6 +97,10 @@ export class Persistence {
   @persist({name: '_rev'})
   rev: string;
 
+  new() {
+    this.id = generate();
+  }
+
   merge(db: Database, progress: Subject<Object>, src: Persistence): Observable<Persistence> {
     return new Observable<Persistence>(merged => {
       const loaders = [of(null)];
@@ -152,6 +156,13 @@ export class Persistence {
               this.loaded = true;
               loaded.next(this);
               progress.next(this);
+            }, (err: { status }) => {
+              if (err.status === 404) {
+                this.loaded = true;
+                loaded.next(this);
+                progress.next(this);
+              }
+              loaded.error(err);
             });
         }).catch(err => loaded.error(err));
       } else {

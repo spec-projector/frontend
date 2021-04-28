@@ -38,7 +38,7 @@ export class LayoutComponent implements OnInit {
               private modal: ModalService,
               private signals: SignalsService,
               private route: ActivatedRoute,
-              private router: Router) {
+              public router: Router) {
   }
 
   ngOnInit() {

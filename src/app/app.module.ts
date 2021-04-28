@@ -22,10 +22,9 @@ import { AppComponent } from './app.component';
     <p i18n="@@label.modules">Modules</p>
     <p i18n="@@label.features">Features</p>
     <p i18n="@@label.actors">Actors</p>
-    <p i18n="@@label.knowledge">Knowledge</p>
+    <p i18n="@@label.terms">Terms</p>
     <p i18n="@@label.model">Model</p>
     <p i18n="@@label.print">Print</p>
-    <p i18n="@@label.validate">Validate</p>
   `
 })
 export class I18nComponent {

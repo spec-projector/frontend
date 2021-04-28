@@ -1,0 +1,24 @@
+@import "src/variables";
+@import "../common";
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+[data-index] {
+  width: 30px;
+  height: 30px;
+  margin-top: $jnt-gutter-small;
+  background: $jnt-pale-navy-color;
+  border-radius: 50%;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: $jnt-font-weight-bold;
+  text-align: center;
+}
+
+[data-sprint] {
+  flex: 1;
+}

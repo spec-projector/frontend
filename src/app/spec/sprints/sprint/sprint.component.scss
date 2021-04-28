@@ -1,0 +1,50 @@
+@import "src/variables";
+@import "~@junte/ui/lib/assets/styles/layout/card";
+
+:host {
+  display: block;
+  position: relative;
+}
+
+header {
+  [data-title] {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    height: 1.4em;
+    line-height: 1.1em;
+    overflow: hidden;
+    background-color: transparent;
+    white-space: nowrap;
+    width: 100%;
+    font-size: 2em;
+
+    &:focus {
+      color: black;
+    }
+  }
+}
+
+h2 {
+  font-size: $jnt-font-size-normal;
+  font-weight: $jnt-font-weight-bold;
+}
+
+[data-attached] {
+  margin-top: $jnt-gutter-normal;
+
+  @include jnt-card((background: $jnt-secondary-background, border: none));
+  jnt-card ::ng-deep [data-card] {
+    background: $jnt-secondary-background !important;
+    border: none;
+  }
+
+  [data-feature] {
+    flex: 1;
+  }
+}

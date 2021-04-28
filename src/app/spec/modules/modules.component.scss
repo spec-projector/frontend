@@ -1,36 +1,5 @@
-@import "src/variables";
-@import "~@junte/ui/lib/assets/styles/layout/card";
-@import "~@junte/ui/lib/assets/styles/forms/button";
 @import "../common";
-
-$jnt-ng-deep: true;
 
 :host {
   display: block;
-  position: relative;
 }
-
-[data-art] {
-  width: 50%;
-}
-
-[data-actions] {
-  opacity: .1;
-  margin-right: $jnt-gutter-small;
-  padding-top: $jnt-gutter-small;
-
-  &:hover {
-    opacity: 1;
-    transition: .25s opacity;
-  }
-}
-
-[data-library] {
-  p {
-    margin: $jnt-gutter-small;
-    font-weight: $jnt-font-weight-bold;
-  }
-
-  @include jnt-card((background: $jnt-secondary-background));
-}
-

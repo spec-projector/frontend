@@ -1,7 +1,7 @@
-import { Spec } from 'src/models/spec/spec';
+import { ArraySerializer } from 'serialize-ts';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { TokenSerializer } from 'src/models/spec/serializers/token';
-import { ArraySerializer } from 'serialize-ts';
+import { Spec } from 'src/models/spec/spec';
 import { Token } from './token';
 
 @persistence()
@@ -15,13 +15,23 @@ export class Term extends Persistence {
 
     spec: Spec;
 
-    constructor(defs: any = {}) {
+    constructor(defs: Partial<Term> = {}) {
         super();
         Object.assign(this, defs);
     }
 
     linking(spec: Spec) {
-        // console.log('term linking', this.name);
         this.spec = spec;
     }
+
+  delete(): { changed: Persistence[], deleted: Persistence[] } {
+    const links = {changed: [], deleted: []};
+
+    const index = this.spec.terms.findIndex(f => f.id === this.id);
+    this.spec.terms.splice(index, 1);
+    links.changed.push(this.spec);
+
+    return links;
+  }
+
 }

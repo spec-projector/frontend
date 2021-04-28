@@ -1,65 +1,7 @@
-@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
 
 :host {
   display: block;
-  position: relative;
-}
-
-[data-filling] {
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: calc(100% - #{$jnt-gutter-normal});
-  bottom: -16px;
-  line-height: 1;
-
-  li {
-    font-size: 9px;
-
-    &[data-chevron] {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: $jnt-muted-color;
-
-      div {
-        font-size: 15px;
-        width: 10px;
-        max-width: 10px;
-        height: 15px;
-        line-height: .85;
-        background: $jnt-white-color;
-        text-align: center;
-      }
-    }
-
-    &[data-step] {
-      flex: 1;
-      text-align: center;
-
-      span {
-        border: 1px solid $jnt-muted-color;
-        background: $jnt-white-color;
-        border-radius: 5px;
-        padding: 2px 5px;
-      }
-
-      &[data-step=true] {
-        span {
-          border-color: $jnt-green-color;
-        }
-      }
-
-      &[data-step=false] {
-        color: $jnt-muted-color;
-      }
-    }
-  }
 }
 
 header {
@@ -85,4 +27,3 @@ header {
     }
   }
 }
-

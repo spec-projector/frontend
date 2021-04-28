@@ -1,15 +1,16 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalService, PopoverInstance, UI } from '@junte/ui';
+import { ModalService, UI } from '@junte/ui';
+import { generate as shortid } from 'shortid';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/managers/spec.manager';
-import { Model, Module } from 'src/models/spec/planning/module';
+import { SpecManager } from 'src/app/spec/managers';
+import { ModuleModel, Module } from 'src/models/spec/planning/module';
 import { Spec } from 'src/models/spec/spec';
-import * as uuid from 'uuid/v1';
 import { CURRENT_LANGUAGE } from '../../../consts';
 import { LocalUI } from '../../../enums/local-ui';
+import { trackElement } from '../../../utils/templates';
 
 @Component({
   selector: 'spec-modules',
@@ -23,9 +24,11 @@ export class ModulesComponent implements OnInit {
   language = Language;
   localUi = LocalUI;
   editMode = EditMode;
+  trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
 
   spec: Spec;
+  version = 0;
   added: string;
 
   constructor(public manager: SpecManager,
@@ -39,13 +42,13 @@ export class ModulesComponent implements OnInit {
   }
 
   addModule() {
-    const model = new Model({
-      id: uuid()
+    const model = new ModuleModel({
+      id: shortid()
     });
     this.manager.put(model);
 
     const module = new Module({
-      id: uuid(),
+      id: shortid(),
       title: $localize`:@@label.new_module_example:Accepting payments`,
       model: model
     });
@@ -56,6 +59,7 @@ export class ModulesComponent implements OnInit {
     this.manager.put(this.spec);
 
     this.added = module.id;
+    this.version++;
     this.cd.detectChanges();
   }
 
@@ -65,6 +69,7 @@ export class ModulesComponent implements OnInit {
     links.changed.forEach(o => this.manager.put(o));
     this.manager.remove(module);
 
+    this.version++;
     this.cd.detectChanges();
     this.modal.close();
   }
@@ -73,11 +78,8 @@ export class ModulesComponent implements OnInit {
     moveItemInArray(this.spec.modules, event.previousIndex, event.currentIndex);
     this.manager.put(this.spec);
 
+    this.version++;
     this.cd.detectChanges();
-  }
-
-  trackModule(index: number, module: Module) {
-    return !!module ? module.id : null;
   }
 
 }

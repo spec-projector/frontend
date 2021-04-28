@@ -13,7 +13,7 @@ export const LANGUAGE_CHANGE_REGEX = /^\/(ru|en)\//;
 export const BASE_URI = 'https://www.specprojector.com';
 export const CLOUD_PAYMENT_KEY = 'pk_7cebed1a56517f44b949ad8651ce2';
 export const CLOUD_PAYMENT_SKIN = 'modern';
-export const PAYMENT_CURRENCY = 'USD';
+export const PAYMENT_CURRENCY = 'RUB';
 export const CLOUD_PAYMENT_RECURRENT_INTERVAL = 'Month';
 export const CLOUD_PAYMENT_RECURRENT_PERIOD = 1;
 export const UI_DELAY = 250;
@@ -21,7 +21,7 @@ export const SCHEME_VERSION = 2;
 export const PLATFORM_DELAY = 100;
 export const DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
-export const BUILD_HASH = 'v16';
+export const BUILD_HASH = 'v18';
 export const CURRENT_LANGUAGE = detectLanguage();
 
 enum CurrencyCode {

@@ -1,21 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Spec } from 'src/models/spec/spec';
-import {Feature} from '../../../models/spec/planning/feature';
-import {Observable} from 'rxjs';
-import {Term} from '../../../models/spec/planning/term';
-import {Module} from '../../../models/spec/planning/module';
-import {Actor} from '../../../models/spec/planning/actor';
-
-@Pipe({name: 'features'})
-export class FeaturesPipe implements PipeTransform {
-
-    transform(spec: Spec): string[] {
-        let features = [];
-        spec.actors.forEach(actor => features = [...features, ...actor.features]);
-        return features.map(feature => `feature-${feature.id}`);
-    }
-
-}
+import { Feature } from '../../../models/spec/planning/feature';
+import { Observable } from 'rxjs';
+import { Sprint } from '../../../models/spec/planning/sprint';
+import { Term } from '../../../models/spec/planning/term';
+import { Module } from '../../../models/spec/planning/module';
+import { Actor } from '../../../models/spec/planning/actor';
 
 @Pipe({name: 'featurePrice', pure: false})
 export class FeaturePricePipe implements PipeTransform {
@@ -45,13 +35,6 @@ export class ModuleGroup {
   }
 }
 
-export class ActorGroup {
-  constructor(public actor: Actor,
-              public features: Feature[] = []) {
-
-  }
-}
-
 @Pipe({name: 'groupFeaturesByModules'})
 export class GroupFeaturesByModulesPipe implements PipeTransform {
   transform(features: Feature[], version?: number): ModuleGroup[] {
@@ -75,6 +58,13 @@ export class GroupFeaturesByModulesPipe implements PipeTransform {
   }
 }
 
+export class ActorGroup {
+  constructor(public actor: Actor,
+              public features: Feature[] = []) {
+
+  }
+}
+
 @Pipe({name: 'groupFeaturesByActor'})
 export class GroupFeaturesByActorPipe implements PipeTransform {
   transform(features: Feature[], version?: number): ActorGroup[] {
@@ -92,5 +82,28 @@ export class GroupFeaturesByActorPipe implements PipeTransform {
     const actors = Array.from(groups.keys()).map(actor => groups.get(actor));
     actors.sort((a, b) => !!a.actor > !!b.actor ? -1 : (!!a.actor < !!b.actor ? 1 : 0));
     return actors;
+  }
+}
+
+export class SprintGroup {
+  constructor(public sprint: Sprint,
+              public features: Feature[] = []) {
+
+  }
+}
+
+@Pipe({name: 'featuresWithoutModule'})
+export class FeaturesWithoutModulePipe implements PipeTransform {
+  transform(features: Feature[], version: number): Feature[] {
+    const filtered = features.filter(f => !f.module);
+    return filtered.length > 0 ? filtered : null;
+  }
+}
+
+@Pipe({name: 'featuresWithoutSprint'})
+export class FeaturesWithoutSprintPipe implements PipeTransform {
+  transform(features: Feature[], version: number): Feature[] {
+    const filtered = features.filter(f => !f.sprint);
+    return filtered.length > 0 ? filtered : null;
   }
 }

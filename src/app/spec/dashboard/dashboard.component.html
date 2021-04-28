@@ -1,0 +1,82 @@
+<jnt-app-page-header [icon]="localUi.icons.dashboard"
+                     title="Dashboard"
+                     i18n-title="@@label.dashboard"
+                     teaser="summary of your specification"
+                     i18n-teaser="@@message.dashboard_teaser">
+</jnt-app-page-header>
+
+<ng-template #stepTemplate let-state="state">
+  <jnt-icon [attr.data-state]="state" [icon]="state === workflowStepState.doing
+                      ? localUi.icons.workflow.doing : (state === workflowStepState.done
+                      ? localUi.icons.workflow.done : localUi.icons.workflow.missed)"></jnt-icon>
+</ng-template>
+
+
+<jnt-block [width]="ui.width.fluid">
+  <table border="1">
+    <thead>
+    <tr>
+      <th i18n="@@label.feature">Feature</th>
+      <th>
+        <span i18n="@@label.story">Story</span>
+      </th>
+      <th>
+        <span i18n="@@label.design">Design</span>
+      </th>
+      <th>
+        <span i18n="@@label.resources">Resources</span>
+      </th>
+      <th>
+        <span i18n="@@label.api">API</span>
+      </th>
+      <th>
+        <span i18n="@@label.developing">Developing</span>
+      </th>
+      <th>
+        <span i18n="@@label.testing">Testing</span>
+      </th>
+      <th>
+        <span i18n="@@label.accepting">Accepting</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let sprint of spec.sprints;let i = index">
+      <tr>
+        <td data-actor colspan="8">
+          {{i + 1}}. {{sprint.title}}
+        </td>
+      </tr>
+      <tr *ngFor="let feature of sprint.features">
+        <td>
+          <jnt-link title="{{feature.actor.name}} · {{feature.title | joinTokens}}"
+                    [icon]="localUi.icons.features"
+                    [source]="['../actors', feature.actor.id, 'features', feature.id]"></jnt-link>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.story}"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.design}"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.resources}"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.api}"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.developing}"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.testing}"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="stepTemplate;context: {state: feature.workflow.accepting}"></ng-container>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</jnt-block>
+

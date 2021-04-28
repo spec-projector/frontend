@@ -3,17 +3,26 @@
 
 :host {
   display: block;
+}
+
+[data-module] {
   position: relative;
+  border-right: 2px solid $jnt-green-color;
+  padding-left: $jnt-gutter-normal;
+
+  span {
+    position: absolute;
+    transform-origin: left top;
+    transform: rotate(-90deg) translateX(-100%) translateY(-100%);
+    white-space: nowrap;
+    font-size: $jnt-font-size-tiny;
+    padding: $jnt-gutter-small;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
-[data-art] {
-  width: 50%;
-}
-
-[data-actions] {
-  margin-right: $jnt-gutter-small;
-}
-
-[data-enum] {
+[data-enums], [data-enum] {
   flex: 1;
 }

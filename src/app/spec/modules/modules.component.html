@@ -33,21 +33,20 @@
   <img data-art src="assets/images/modules.svg">
 </ng-template>
 
-<jnt-row>
+<jnt-row *ngIf="spec.modules.length > 0; else emptyDataTemplate">
   <jnt-col [desktop]="8">
-    <jnt-stack cdkDropList *ngIf="spec.modules.length > 0; else emptyDataTemplate"
-               [align]="ui.align.stretch"
+    <jnt-stack cdkDropList [align]="ui.align.stretch"
                (cdkDropListDropped)="moveModule($event)"
                [cdkDropListData]="spec.modules">
-      <jnt-card cdkDrag *ngFor="let module of spec.modules; let i = index; trackBy: trackModule">
+      <jnt-card cdkDrag *ngFor="let module of spec.modules; let i = index; trackBy:trackElement">
         <ng-template #cardDragTemplate let-icon="icon">
           <button cdkDragHandle>
             <jnt-icon [icon]="icon"></jnt-icon>
           </button>
         </ng-template>
         <spec-module [module]="module"
-                      [mode]="added === module.id ? editMode.edit : editMode.view"
-                      (updated)="cd.detectChanges()"></spec-module>
+                     [mode]="added === module.id ? editMode.edit : editMode.view"
+                     (updated)="version = version + 1;cd.detectChanges()"></spec-module>
 
         <ng-template #cardActionsTemplate *ngIf="(manager.mode$ | async) === editMode.edit" let-hide="hide">
           <jnt-menu [orientation]="ui.orientation.vertical">
@@ -69,9 +68,9 @@
       </jnt-card>
       <jnt-card data-add-one *ngIf="(manager.mode$ | async) === editMode.edit"
                 [padding]="ui.gutter.large">
-        <jnt-button data-button text="Add module"
+        <jnt-button text="Add module"
                     i18n-text="@@action.add_module"
-                    [icon]="ui.icons.add"
+                    [icon]="localUi.icons.add"
                     [size]="ui.size.large"
                     [outline]="ui.outline.transparent"
                     (click)="addModule()"></jnt-button>
@@ -80,23 +79,31 @@
   </jnt-col>
   <jnt-col [tablet]="4">
     <jnt-accordion data-library>
-      <jnt-accordion-section title="Features">
+      <jnt-accordion-section title="Features"
+                             i18n-title="@@label.features"
+                             [icon]="localUi.icons.features">
         <ng-template #accordionContentTemplate>
           <ng-container *ngFor="let actor of spec.actors">
             <p>{{actor.name}}</p>
-            <jnt-stack cdkDropList [cdkDropListConnectedTo]="spec | modulesIds"
+            <ng-template #noFeaturesTemplate>
+              <small i18n="@@message.all_features_in_modules">All features in modules</small>
+            </ng-template>
+            <jnt-stack cdkDropList
+                       *ngIf="(actor.features | featuresWithoutModule:version) as features;else noFeaturesTemplate"
+                       [cdkDropListConnectedTo]="spec.modules | map:'id':version"
                        [orientation]="ui.orientation.horizontal"
                        [wrap]="ui.wrap.wrap"
                        [spacing]="ui.gutter.normal">
-              <ng-container *ngFor="let feature of actor.features">
-                <jnt-card cdkDrag [cdkDragData]="feature" *ngIf="!feature.module"
+              <ng-container *ngFor="let feature of features">
+                <jnt-card data-item-from-library cdkDrag [cdkDragData]="feature"
                           [padding]="ui.gutter.small">
                   <ng-template #cardDragTemplate let-icon="icon">
                     <button cdkDragHandle>
                       <jnt-icon [icon]="icon"></jnt-icon>
                     </button>
                   </ng-template>
-                  {{feature.title}}
+                  <spec-tokens [spec]="feature.spec"
+                               [tokens]="feature.title"></spec-tokens>
                 </jnt-card>
               </ng-container>
             </jnt-stack>
@@ -104,15 +111,22 @@
         </ng-template>
       </jnt-accordion-section>
 
-      <jnt-accordion-section title="Model">
+      <jnt-accordion-section title="Model"
+                             i18n-title="@@label.model"
+                             [icon]="localUi.icons.model">
         <ng-template #accordionContentTemplate>
-          <p>Entities</p>
-          <jnt-stack cdkDropList [cdkDropListConnectedTo]="spec | modulesIds"
+          <p i18n="@@label.entities">Entities</p>
+          <ng-template #noEntitiesTemplate>
+            <small i18n="@@message.all_entities_in_modules">All entities in modules</small>
+          </ng-template>
+          <jnt-stack cdkDropList
+                     *ngIf="(spec.model.entities | entitiesWithoutModule:version) as entities;else noEntitiesTemplate"
+                     [cdkDropListConnectedTo]="spec.modules | map:'id':version"
                      [orientation]="ui.orientation.horizontal"
                      [wrap]="ui.wrap.wrap"
                      [spacing]="ui.gutter.normal">
-            <ng-container *ngFor="let entity of spec.model.entities">
-              <jnt-card cdkDrag [cdkDragData]="entity" *ngIf="!entity.module"
+            <ng-container *ngFor="let entity of entities">
+              <jnt-card data-item-from-library cdkDrag [cdkDragData]="entity"
                         [padding]="ui.gutter.small">
                 <ng-template #cardDragTemplate let-icon="icon">
                   <button cdkDragHandle>
@@ -123,13 +137,18 @@
               </jnt-card>
             </ng-container>
           </jnt-stack>
-          <p>Enums</p>
-          <jnt-stack cdkDropList [cdkDropListConnectedTo]="spec | modulesIds"
+          <p i18n="@@label.enums">Enums</p>
+          <ng-template #noEnumsTemplate>
+            <small i18n="@@message.all_enums_in_modules">All enums in modules</small>
+          </ng-template>
+          <jnt-stack cdkDropList
+                     *ngIf="(spec.model.enums | enumsWithoutModule:version) as enums;else noEnumsTemplate"
+                     [cdkDropListConnectedTo]="spec.modules | map:'id':version"
                      [orientation]="ui.orientation.horizontal"
                      [wrap]="ui.wrap.wrap"
                      [spacing]="ui.gutter.normal">
-            <ng-container *ngFor="let enum of spec.model.enums">
-              <jnt-card cdkDrag [cdkDragData]="enum" *ngIf="!enum.module"
+            <ng-container *ngFor="let enum of enums">
+              <jnt-card data-item-from-library cdkDrag [cdkDragData]="enum"
                         [padding]="ui.gutter.small">
                 <ng-template #cardDragTemplate let-icon="icon">
                   <button cdkDragHandle>

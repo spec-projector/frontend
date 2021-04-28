@@ -1,52 +1,80 @@
-import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from '@junte/ui';
-import { SpecManager } from 'src/managers/spec.manager';
+import { ModalService, UI } from '@junte/ui';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
-import { Term } from 'src/models/spec/planning/term';
-import { TextToken } from 'src/models/spec/planning/token';
+import { Language } from 'src/enums/language';
 import { Spec } from 'src/models/spec/spec';
-import * as uuid from 'uuid/v1';
-
-class AlphabeticalTerms {
-    char: string;
-    terms: Term[] = [];
-
-    constructor(term: Term) {
-        this.char = term.name[0];
-        this.terms.push(term);
-    }
-}
+import { CURRENT_LANGUAGE } from '../../../consts';
+import { LocalUI } from '../../../enums/local-ui';
+import { Term } from '../../../models/spec/planning/term';
+import { TextToken } from '../../../models/spec/planning/token';
+import { trackElement } from '../../../utils/templates';
 
 @Component({
-    selector: 'spec-terms',
-    templateUrl: './terms.component.html',
-    styleUrls: ['./terms.component.scss']
+  selector: 'spec-terms',
+  templateUrl: './terms.component.html',
+  styleUrls: ['./terms.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TermsComponent implements OnInit {
 
-    ui = UI;
-    editMode = EditMode;
-    mode = EditMode.view;
-    spec: Spec;
+  ui = UI;
+  language = Language;
+  localUi = LocalUI;
+  editMode = EditMode;
+  trackElement = trackElement;
+  consts = {language: CURRENT_LANGUAGE};
 
-    constructor(public manager: SpecManager,
-                private route: ActivatedRoute) {
-    }
+  spec: Spec;
+  version = 0;
+  added: string;
 
-    ngOnInit() {
-        this.route.data.subscribe(({spec}) => this.spec = spec);
-    }
+  constructor(public manager: SpecManager,
+              public modal: ModalService,
+              public cd: ChangeDetectorRef,
+              private route: ActivatedRoute) {
+  }
 
-    addTerm() {
-        const term = new Term({
-            id: uuid(),
-            name: 'Some term',
-            description: [new TextToken('description...')]
-        });
-        this.spec.terms.unshift(term);
-        this.manager.put(term);
-        this.manager.put(this.spec);
-    }
+  ngOnInit() {
+    this.route.data.subscribe(({spec}) => this.spec = spec);
+  }
+
+  addTerm() {
+    const term = new Term({
+      name: $localize`:@@label.new_term_example:Some term`,
+      description: [new TextToken('Some description')]
+    });
+    term.linking(this.spec);
+    term.new();
+    this.manager.put(term);
+
+    this.spec.addTerm(term);
+    this.manager.put(this.spec);
+
+    this.added = term.id;
+    this.version++;
+    this.cd.detectChanges();
+  }
+
+  deleteTerm(term: Term) {
+    const links = term.delete();
+    links.deleted.forEach(o => this.manager.remove(o));
+    links.changed.forEach(o => this.manager.put(o));
+    this.manager.remove(term);
+
+    this.version++;
+    this.cd.detectChanges();
+    this.modal.close();
+  }
+
+  moveTerm(event: CdkDragDrop<Term[]>) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    this.manager.put(this.spec);
+
+    this.version++;
+    this.cd.detectChanges();
+  }
 
 }

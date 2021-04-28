@@ -1,8 +1,8 @@
-<jnt-button [icon]="state === workflowStepState.progress
-                      ? ui.icons.play : (state === workflowStepState.done
-                      ? ui.icons.checked : ui.icons.stop)"
+<jnt-button [icon]="state === workflowStepState.doing
+                      ? localUi.icons.workflow.doing : (state === workflowStepState.done
+                      ? localUi.icons.workflow.done : localUi.icons.workflow.missed)"
             [shape]="ui.shape.circle"
-            [scheme]="state === workflowStepState.progress
+            [scheme]="state === workflowStepState.doing
                       ? ui.scheme.secondary : (state === workflowStepState.done
                       ? ui.scheme.success : ui.scheme.fail)"
             (click)="next()"></jnt-button>

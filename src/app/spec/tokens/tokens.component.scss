@@ -1,10 +1,15 @@
-@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
 
 :host {
   display: inline-block;
 }
 
-[accent] {
+[data-term] {
+  cursor: help;
+  text-decoration: underline;
+}
+
+[data-accent] {
   background: $jnt-primary-color;
   color: $jnt-white-color;
   border-radius: 5px;
@@ -12,10 +17,10 @@
   font-size: .85em;
 }
 
-[default] {
+[data-default] {
   word-break: break-word;
 }
 
-[quote] {
+[data-quote] {
   color: forestgreen;
 }

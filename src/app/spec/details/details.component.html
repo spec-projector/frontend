@@ -5,31 +5,12 @@
            [padding]="ui.gutter.none">
   <jnt-form [formGroup]="form"
             (submitted)="save()">
-    <jnt-tabs [active]="route.snapshot.params['page'] === 'resource_types' ? 1 : 0">
-      <jnt-tab title="Common"
-               i18n-title="@@label.common">
-        <ng-template #tabContentTemplate>
-          <jnt-stack [align]="ui.align.stretch">
-            <jnt-form-item>
-              <jnt-form-label i18n="@@label.description">Description</jnt-form-label>
-              <jnt-form-control name="description">
-                <jnt-input formControlName="description"
-                           [features]="[ui.feature.multiline]"
-                           [rows]="4"
-                           placeholder="Great specification for CRM project"
-                           i18n-placeholder="@@message.specifiation_for_crm"></jnt-input>
-              </jnt-form-control>
-            </jnt-form-item>
+    <jnt-tabs>
 
-            <jnt-form-item>
-              <jnt-form-label i18n="@@label.author">Author</jnt-form-label>
-              <jnt-form-control name="author">
-                <jnt-input formControlName="author"
-                           placeholder="Elon Musk"
-                           i18n-placeholder="@@label.elon_musk"></jnt-input>
-              </jnt-form-control>
-            </jnt-form-item>
-          </jnt-stack>
+      <jnt-tab *ngIf="me.isStaff" title="For staff"
+               i18n-title="@@label.for_staff">
+        <ng-template #tabContentTemplate>
+          <jnt-button text="Demo" (click)="fillDemo()"></jnt-button>
         </ng-template>
       </jnt-tab>
 
@@ -92,21 +73,6 @@
               </jnt-row>
             </jnt-stack>
           </ng-container>
-        </ng-template>
-      </jnt-tab>
-
-      <jnt-tab title="Integration"
-               i18n-title="@@label.integration">
-        <ng-template #tabContentTemplate>
-          <jnt-stack [align]="ui.align.stretch">
-            <jnt-form-item>
-              <jnt-form-label>Graphql playground URL</jnt-form-label>
-              <jnt-form-control name="graphqlPlaygroundUrl">
-                <jnt-input formControlName="graphqlPlaygroundUrl"
-                           placeholder="https://www.yousite.com/graphql/"></jnt-input>
-              </jnt-form-control>
-            </jnt-form-item>
-          </jnt-stack>
         </ng-template>
       </jnt-tab>
 

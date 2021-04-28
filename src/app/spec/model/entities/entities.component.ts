@@ -7,11 +7,12 @@ import {takeUntil} from 'rxjs/operators';
 import {generate as shortid} from 'shortid';
 import {EditMode} from 'src/enums/edit-mode';
 import {Language} from 'src/enums/language';
-import {SpecManager} from 'src/managers/spec.manager';
+import {SpecManager} from 'src/app/spec/managers';
 import {Spec} from 'src/models/spec/spec';
 import {CURRENT_LANGUAGE} from '../../../../consts';
 import {LocalUI} from '../../../../enums/local-ui';
 import {Entity} from '../../../../models/spec/orm/entity';
+import { trackElement } from '../../../../utils/templates';
 
 @Component({
   selector: 'spec-entities',
@@ -24,6 +25,7 @@ export class EntitiesComponent implements OnInit, OnDestroy {
   localUi = LocalUI;
   language = Language;
   editMode = EditMode;
+  trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
 
   private destroyed$ = new Subject();
@@ -50,7 +52,9 @@ export class EntitiesComponent implements OnInit, OnDestroy {
   }
 
   addEntity() {
-    let sort = Math.max.call(null, this.spec.model.entities.map(e => e.sort)) || 0;
+    let sort = this.spec.model.entities.length > 0
+      ? Math.max.apply(null, this.spec.model.entities.map(e => e.sort))
+      : 0;
     const entity = new Entity({
       id: shortid(),
       title: $localize`:@@label.new_entity_title_example:Entity`,
@@ -81,7 +85,7 @@ export class EntitiesComponent implements OnInit, OnDestroy {
   }
 
   moveEntity(event: CdkDragDrop<Entity[]>) {
-    const {entities} = this.spec.model;
+    const entities = event.container.data;
     const prev = entities[event.previousIndex];
     const next = entities[event.currentIndex];
     const sort = next.sort;
@@ -93,10 +97,6 @@ export class EntitiesComponent implements OnInit, OnDestroy {
 
     this.version++;
     this.cd.detectChanges();
-  }
-
-  trackEntity(index: number, entity: Entity) {
-    return entity?.id || null;
   }
 
 }

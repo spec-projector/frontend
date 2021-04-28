@@ -1,78 +1,99 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { SpecManager } from 'src/managers/spec.manager';
+import { Subscription } from 'rxjs';
 import { EditMode } from 'src/enums/edit-mode';
+import { SpecManager } from 'src/app/spec/managers';
 import { Term } from 'src/models/spec/planning/term';
 import { Token } from 'src/models/spec/planning/token';
-import { Spec } from 'src/models/spec/spec';
 
-class TermMode {
-    name: EditMode;
-    description: EditMode;
+class TermEditMode {
+  name: EditMode;
+  description: EditMode;
 }
 
 @Component({
-    selector: 'spec-term',
-    templateUrl: './term.component.html',
-    styleUrls: ['./term.component.scss']
+  selector: 'spec-term',
+  templateUrl: './term.component.html',
+  styleUrls: ['./term.component.scss']
 })
-export class TermComponent implements OnInit {
+export class TermComponent implements AfterViewInit, OnDestroy {
 
-    private _term: Term;
+  ui = UI;
+  editMode = EditMode;
 
-    ui = UI;
-    editMode = EditMode;
+  private _term: Term;
+  private subscriptions: {
+    term?: Subscription,
+    form?: Subscription
+  } = {};
+  private _mode: TermEditMode = {
+    name: EditMode.view,
+    description: EditMode.view
+  };
 
-    mode: TermMode = {
-        name: EditMode.view,
-        description: EditMode.view
-    };
+  @Input()
+  set mode(mode: Partial<TermEditMode>) {
+    Object.assign(this._mode, mode);
+  }
 
-    form = this.formBuilder.group({
-        name: null,
-        description: null
+  get mode() {
+    return this._mode;
+  }
+
+  form = this.fb.group({
+    name: [null],
+    description: [null]
+  });
+
+  @Input()
+  set term(term: Term) {
+    this._term = term;
+    this.updateForm();
+
+    this.subscriptions.term?.unsubscribe();
+    this.subscriptions.term = term.changes.subscribe(() => this.updateForm());
+
+    this.subscriptions.form?.unsubscribe();
+    this.subscriptions.form = this.form.valueChanges
+      .subscribe(() => {
+        const {name, description} = this.form.getRawValue();
+        [this.term.name, this.term.description] = [name, Token.parse(description.trim())];
+        this.manager.put(this.term);
+
+        this.cd.detectChanges();
+      });
+  }
+
+  get term() {
+    return this._term;
+  }
+
+  @ViewChild('nameRef')
+  nameRef: ElementRef<HTMLInputElement>;
+
+  constructor(private fb: FormBuilder,
+              private cd: ChangeDetectorRef,
+              public manager: SpecManager) {
+  }
+
+  ngAfterViewInit() {
+    if (!!this.nameRef) {
+      this.nameRef.nativeElement.focus();
+    }
+  }
+
+  ngOnDestroy() {
+    [this.subscriptions.term, this.subscriptions.form]
+      .forEach(s => s?.unsubscribe());
+  }
+
+  private updateForm() {
+    const {name, description} = this.term;
+    this.form.patchValue({
+      name,
+      description: description.map(t => t.toString()).join(' ')
     });
+  }
 
-    @Input() spec: Spec;
-
-    @Input() set term(term: Term) {
-        this._term = term;
-        this.form.patchValue({
-            name: term.name,
-            description: term.description.map(t => t.toString()).join(' ')
-        });
-    }
-
-    get term() {
-        return this._term;
-    }
-
-    @ViewChild('description', {static: false})
-    set description(description: ElementRef<HTMLTextAreaElement>) {
-        if (!!description) {
-            this.adaptation(description.nativeElement);
-        }
-    }
-
-    constructor(private formBuilder: FormBuilder,
-                public manager: SpecManager) {
-    }
-
-    ngOnInit() {
-        this.form.valueChanges.subscribe(value => {
-            [this.term.name, this.term.description] = [value.name, Token.parse(value.description)];
-            this.manager.put(this.term);
-        });
-    }
-
-    delete() {
-        const index = this.spec.terms.findIndex(term => term.id === this.term.id);
-        this.spec.terms.splice(index, 1);
-        this.manager.put(this.spec);
-    }
-
-    adaptation(element) {
-        element.style.height = `${element.scrollHeight}px`;
-    }
 }

@@ -4,10 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { generate as shortid } from 'shortid';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/managers/spec.manager';
 import { Actor } from 'src/models/spec/planning/actor';
 import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../consts';
@@ -61,9 +60,9 @@ export class ActorsComponent implements OnInit, OnDestroy {
 
   addActor() {
     const actor = new Actor({
-      id: shortid(),
       name: $localize`:@@label.new_actor_example:Client`
     });
+    actor.new();
     this.spec.actors.push(actor);
     actor.linking(this.spec);
 

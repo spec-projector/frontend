@@ -2,8 +2,11 @@ export class LocalUI {
   static icons = {
     // color
     projects: 'projects:svg:local',
+    projectManager: 'project-manager:svg:local',
+    teams: 'teams:svg:local',
     // other
     market: 'market:svg:local',
+    video: 'video:svg:local:stroked',
     sprints: 'sprints:svg:local:stroked',
     terms: 'terms:svg:local:stroked',
     modules: 'modules:svg:local:stroked',
@@ -33,5 +36,12 @@ export class LocalUI {
     support: 'support:svg:local:stroked',
     cp: 'cloud_payments:svg:local',
     quote: 'quote:svg:local:stroked',
+    add: 'add:svg:local:stroked',
+    dashboard: 'dashboard:svg:local:stroked',
+    workflow: {
+      doing: 'doing:svg:local:stroked',
+      done: 'done:svg:local:stroked',
+      missed: 'missed:svg:local:stroked'
+    }
   };
 }

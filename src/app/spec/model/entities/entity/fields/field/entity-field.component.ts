@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { SpecManager } from 'src/managers/spec.manager';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { PopoverInstance, UI } from '@junte/ui';
 import { Entity } from 'src/models/spec/orm/entity';

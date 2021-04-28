@@ -1,32 +1,53 @@
-<ng-container *ngIf="sprint">
-    <h1>{{sprint.title}}</h1>
-    <h2 i18n="@@label.features">Features</h2>
-    <jnt-stack>
-        <ng-container *ngFor="let group of (sprint.features | groupFeaturesByModules)">
-            <h3>{{group.module?.title}}</h3>
-            <jnt-block>
-
-                <ol>
-                    <li *ngFor="let feature of group.features">
-                        <small>{{feature.actor?.name}}</small>
-                        <spec-feature [feature]="feature"></spec-feature>
-                    </li>
-                </ol>
-            </jnt-block>
-        </ng-container>
-    </jnt-stack>
-
-    <ng-container *ngIf="sprint.improvements.length">
-        <h2 i18n="@@label.improvements">Improvements</h2>
-        <ol improvements>
-            <li *ngFor="let improvement of sprint.improvements">
-                <jnt-stack [orientation]="ui.orientation.horizontal">
-                    <spec-tokens [tokens]="improvement.title"></spec-tokens>
-
-                </jnt-stack>
-                <small>{{improvement.feature.actor?.name}}</small>
-                <spec-feature [feature]="improvement.feature"></spec-feature>
-            </li>
-        </ol>
+<ng-container [formGroup]="form">
+  <header (mouseenter)="manager.mode === editMode.edit ? mode = editMode.edit : null"
+          (mouseleave)="mode = editMode.view">
+    <ng-container *ngIf="mode == editMode.edit; else viewHeader">
+      <input #titleRef data-title formControlName="title">
     </ng-container>
+  </header>
+
+  <ng-template #viewHeader>
+    <h1 data-title>{{sprint.title}}</h1>
+  </ng-template>
+
+  <div data-attached cdkDropList [id]="sprint.id"
+       (cdkDropListDropped)="onDropFromLibrary($event)">
+    <jnt-row cdkDropList *ngIf="sprint.features.length > 0; else noDataTemplate"
+             [align]="ui.align.stretch"
+             (cdkDropListDropped)="moveFeature($event)"
+             [cdkDropListData]="sprint.features">
+      <jnt-col cdkDrag [cdkDragData]="feature" *ngFor="let feature of sprint.features; trackBy:trackElement"
+               [wide]="6">
+        <jnt-card [width]="ui.width.fluid"
+                  [padding]="ui.gutter.small">
+          <ng-template #cardDragTemplate let-icon="icon">
+            <button cdkDragHandle>
+              <jnt-icon [icon]="icon"></jnt-icon>
+            </button>
+          </ng-template>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center">
+            <div data-feature>
+              <jnt-link title="{{feature.actor.name}} · {{feature.title | joinTokens}}"
+                        [icon]="localUi.icons.features"
+                        [source]="['../actors', feature.actor.id, 'features', feature.id]"></jnt-link>
+            </div>
+            <jnt-button [icon]="ui.icons.closeSmall"
+                        [size]="ui.size.tiny"
+                        [outline]="ui.outline.transparent"
+                        [shape]="ui.shape.circle"
+                        (click)="deleteFeature(feature)">
+            </jnt-button>
+          </jnt-stack>
+        </jnt-card>
+      </jnt-col>
+    </jnt-row>
+  </div>
+
+  <ng-template #noDataTemplate>
+    <jnt-message [icon]="ui.icons.question">
+      <p>Drag here features from library</p>
+    </jnt-message>
+  </ng-template>
+
 </ng-container>

@@ -105,7 +105,7 @@
           <jnt-col [tablet]="4" [mobile]="12">
             <jnt-button text="How it works"
                         i18n-text="@@action.how_it_works"
-                        [icon]="ui.icons.question"
+                        [icon]="localUi.icons.video"
                         [width]="ui.width.fluid"
                         [size]="ui.size.large"
                         (click)="jumpTo('features')">
@@ -177,7 +177,7 @@
                   [target]="ui.target.blank"
                   source="//junte.team"></jnt-link>
       </jnt-stack>
-      <jnt-menu [spacing]="ui.gutter.large" 
+      <jnt-menu [spacing]="ui.gutter.large"
                 [wrap]="ui.wrap.noWrap">
         <jnt-menu-item title="Agreement"
                        i18n-title="@@action.agreement"
@@ -191,6 +191,9 @@
         <jnt-menu-item title="Contacts"
                        i18n-title="@@action.contacts"
                        [link]="['contacts']"></jnt-menu-item>
+        <jnt-menu-item title="Support"
+                       i18n-title="@@action.support"
+                       [link]="['/support']"></jnt-menu-item>
       </jnt-menu>
       <a data-cp href="//cloudpayments.ru/" target="_blank">
         <jnt-icon [icon]="localUi.icons.cp"></jnt-icon>

@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb-browser';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize } from 'rxjs/operators';
+import { generate as shortid } from 'shortid';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
-import { Model, Spec } from 'src/models/spec/spec';
-import { AppConfig } from '../app/app-config';
-import { SCHEME_VERSION } from '../consts';
-import { environment } from '../environments/environment';
-import { SchemeInvalidError } from '../types/errors';
+import { SpecModel, Spec } from 'src/models/spec/spec';
+import { SCHEME_VERSION } from '../../consts';
+import { environment } from '../../environments/environment';
+import { AppConfig } from '../app-config';
 import Database = PouchDB.Database;
-import { generate as shortid } from 'shortid';
 
 const SPEC_OBJECT_ID = 'spec';
 const BUFFER_TIME = 2500;
@@ -31,7 +30,7 @@ class Remove implements Flush {
   }
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class SpecManager {
 
   private local: Database;
@@ -97,7 +96,7 @@ export class SpecManager {
             }, (err: { status }) => {
               if (err.status === 404) {
                 console.log('spec not found');
-                const model = new Model({
+                const model = new SpecModel({
                   id: shortid()
                 });
                 this.put(model);

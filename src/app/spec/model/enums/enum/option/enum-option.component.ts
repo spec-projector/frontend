@@ -4,7 +4,7 @@ import { UI } from '@junte/ui';
 import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { EditMode } from 'src/enums/edit-mode';
-import { SpecManager } from 'src/managers/spec.manager';
+import { SpecManager } from 'src/app/spec/managers';
 import { FieldType } from 'src/models/spec/orm/entity-field';
 import { EnumOption } from '../../../../../../models/spec/orm/enum';
 

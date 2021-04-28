@@ -1,5 +1,6 @@
 @import '~@junte/ui/lib/assets/styles/jnt-variables';
 @import '~@junte/ui/lib/assets/styles/navigation/link';
+@import '~@junte/ui/lib/assets/styles/forms/button';
 
 $jnt-ng-deep: true;
 
@@ -11,4 +12,8 @@ $jnt-ng-deep: true;
 
 a, img {
   display: block;
+}
+
+[data-subscription] {
+  @include jnt-button((background: linear-gradient(to right, #f857a6 0%, #ff5858  51%, #f857a6  100%)), '&');
 }

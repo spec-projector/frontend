@@ -1,13 +1,12 @@
 import { Component, ComponentFactoryResolver, Inject, Injector, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
+import { SpecManager } from 'src/app/spec/managers';
+import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
-import { SpecManager } from 'src/managers/spec.manager';
-import { EditMode } from 'src/enums/edit-mode';
 import { Spec } from 'src/models/spec/spec';
-import { ValidationError } from 'src/models/validation/error';
 import { Project } from '../../models/projects';
 import { EditProjectComponent } from '../projects/edit-project/edit-project.component';
 
@@ -24,13 +23,9 @@ export class SpecComponent implements OnInit, OnDestroy {
 
   spec: Spec;
   project: Project;
-  errors: ValidationError[] = [];
 
   lockControl = this.fb.control(false);
-  form = this.fb.group(
-    {
-      mode: this.lockControl
-    });
+  form = this.fb.group({mode: this.lockControl});
 
   constructor(@Inject(LOCALE_ID) public locale: string,
               private fb: FormBuilder,

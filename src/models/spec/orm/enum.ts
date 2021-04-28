@@ -1,4 +1,5 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
+import { Depends } from '../../../types/depends';
 import { Module } from '../planning/module';
 import { Spec } from '../spec';
 
@@ -56,6 +57,9 @@ export class Enum extends Persistence {
   @persist({type: EnumOption})
   options: EnumOption[] = [];
 
+  @persist()
+  sort: number;
+
   spec: Spec;
   module: Module;
 
@@ -78,7 +82,7 @@ export class Enum extends Persistence {
     }
   }
 
-  delete(): { changed: Persistence[], deleted: Persistence[] } {
+  delete(): Depends {
     const links = {changed: [], deleted: []};
 
     if (!!this.module) {

@@ -38,6 +38,12 @@ h2 {
 [data-attached] {
   margin-top: $jnt-gutter-normal;
 
+  @include jnt-card((background: $jnt-secondary-background, border: none));
+  jnt-card ::ng-deep [data-card] {
+    background: $jnt-secondary-background !important;
+    border: none;
+  }
+
   [data-features] {
     list-style: none;
     margin: 0;
@@ -71,11 +77,6 @@ h2 {
             overflow: hidden;
             text-overflow: ellipsis;
           }
-        }
-
-        @include jnt-card((background: $jnt-secondary-background));
-        jnt-card ::ng-deep [data-card] {
-          background: $jnt-secondary-background !important;
         }
 
         [data-feature] {

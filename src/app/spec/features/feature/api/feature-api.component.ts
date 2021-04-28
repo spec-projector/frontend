@@ -6,7 +6,7 @@ import { generate as shortid } from 'shortid';
 import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 import { Graphql } from 'src/models/spec/planning/graphql';
-import { SpecManager } from '../../../../../managers/spec.manager';
+import { SpecManager } from '../../../managers';
 import { Feature } from '../../../../../models/spec/planning/feature';
 
 const GRAPHQL_TEXT = `

@@ -1,4 +1,5 @@
-@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
+@import "~@junte/ui/lib/assets/styles/layout/card";
 
 :host {
   display: block;
@@ -39,6 +40,10 @@ h3 {
   border-right: 2px solid $jnt-green-color;
   padding-left: $jnt-gutter-normal;
 
+  &[data-orphan=true] {
+    border-color: $jnt-gray-600-color;
+  }
+
   span {
     position: absolute;
     transform-origin: left top;
@@ -52,6 +57,15 @@ h3 {
   }
 }
 
-[data-features], [data-feature] {
+[data-features] {
+  flex: 1;
+  @include jnt-card((background: $jnt-secondary-background, border: none));
+  // TODO: fix in junte UI
+  jnt-card ::ng-deep [data-card] {
+    background: $jnt-secondary-background !important;
+  }
+}
+
+[data-feature] {
   flex: 1;
 }

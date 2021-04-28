@@ -13,7 +13,7 @@ export class MockArrayPipe implements PipeTransform {
 
 @Pipe({name: 'map'})
 export class MapPipe implements PipeTransform {
-  transform(arr: any[], field: string): any[] {
+  transform(arr: any[], field: string, version: number): any[] {
     return arr.map(e => e[field]);
   }
 }

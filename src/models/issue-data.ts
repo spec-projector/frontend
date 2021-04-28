@@ -1,5 +1,5 @@
-import { Field, Model } from 'serialize-ts';
 import * as assign from 'assign-deep';
+import { Field, Model } from 'serialize-ts';
 import { IssueSystem } from '../enums/issue';
 
 @Model()

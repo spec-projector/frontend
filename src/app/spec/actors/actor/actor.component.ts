@@ -1,30 +1,27 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Inject,
   Input,
-  LOCALE_ID,
   OnDestroy,
   ViewChild
 } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ModalService, PopoverInstance, PopoverService, UI} from '@junte/ui';
-import {Subscription} from 'rxjs';
-import {generate as shortid} from 'shortid';
-import {EditMode} from 'src/enums/edit-mode';
-import {SpecManager} from 'src/managers/spec.manager';
-import {Actor} from 'src/models/spec/planning/actor';
-import {Feature} from 'src/models/spec/planning/feature';
-import {TextToken} from 'src/models/spec/planning/token';
-import {CURRENT_LANGUAGE} from '../../../../consts';
-import {Language} from '../../../../enums/language';
-import {trackElement} from 'src/utils/templates';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
-import {Entity} from '../../../../models/spec/orm/entity';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalService, UI } from '@junte/ui';
+import { Subscription } from 'rxjs';
+import { SpecManager } from 'src/app/spec/managers';
+import { EditMode } from 'src/enums/edit-mode';
+import { Actor } from 'src/models/spec/planning/actor';
+import { Feature } from 'src/models/spec/planning/feature';
+import { TextToken } from 'src/models/spec/planning/token';
+import { trackElement } from 'src/utils/templates';
+import { CURRENT_LANGUAGE } from '../../../../consts';
+import { Language } from '../../../../enums/language';
+import { LocalUI } from '../../../../enums/local-ui';
 
 @Component({
   selector: 'spec-actor',
@@ -35,6 +32,7 @@ import {Entity} from '../../../../models/spec/orm/entity';
 export class ActorComponent implements AfterViewInit, OnDestroy {
 
   ui = UI;
+  localUi = LocalUI;
   editMode = EditMode;
   language = Language;
   trackElement = trackElement;
@@ -111,18 +109,14 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   }
 
   addFeature() {
-    let sort = this.actor.features.length > 0
-      ? Math.max.apply(null, this.actor.features.map(e => e.sort))
-      : 0;
     const feature = new Feature({
-      id: shortid(),
-      title: [new TextToken($localize`:@@label.new_feature_example:Buy a cookies`)],
-      sort: ++sort
+      title: [new TextToken($localize`:@@label.new_feature_example:Buy a cookies`)]
     });
-    this.actor.features.push(feature);
     feature.linking({spec: this.actor.spec, actor: this.actor});
-
+    feature.new();
     this.manager.put(feature);
+
+    this.actor.addFeature(feature);
     this.manager.put(this.actor);
 
     this.added = feature.id;

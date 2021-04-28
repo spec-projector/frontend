@@ -1,5 +1,5 @@
-import { IssueState, IssueSystem } from 'src/enums/issue';
 import { persist, persistence } from 'src/decorators/persistence';
+import { IssueState, IssueSystem } from 'src/enums/issue';
 
 @persistence()
 export class Developer {

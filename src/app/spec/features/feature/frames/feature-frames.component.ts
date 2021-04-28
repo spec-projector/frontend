@@ -8,7 +8,7 @@ import { serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
 import { Frame } from 'src/models/spec/planning/frame';
 import { environment } from '../../../../../environments/environment';
-import { SpecManager } from '../../../../../managers/spec.manager';
+import { SpecManager } from '../../../managers';
 import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
 import { Project } from '../../../../../models/projects';
 import { Feature } from '../../../../../models/spec/planning/feature';

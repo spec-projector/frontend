@@ -4,7 +4,7 @@ import { Graphql } from 'src/models/spec/planning/graphql';
 import { Sprint } from 'src/models/spec/planning/sprint';
 import { TokenSerializer } from 'src/models/spec/serializers/token';
 import { Spec } from 'src/models/spec/spec';
-import { TermMissedError } from 'src/models/validation/error';
+import { ModelType } from '../../enums';
 import { Actor } from './actor';
 import { Algorithm } from './algorithm';
 import { Api } from './api';
@@ -20,9 +20,9 @@ function normalize(input: string) {
 }
 
 export enum WorkflowStepState {
-  progress = 'progress',
+  doing = 'doing',
   done = 'done',
-  exclude = 'exclude'
+  missed = 'missed'
 }
 
 export enum StoryEntryType {
@@ -34,16 +34,25 @@ export enum StoryEntryType {
 export class Workflow {
 
   @persist()
-  story: WorkflowStepState = WorkflowStepState.progress;
+  story: WorkflowStepState = WorkflowStepState.doing;
 
   @persist()
-  design: WorkflowStepState = WorkflowStepState.progress;
+  design: WorkflowStepState = WorkflowStepState.doing;
 
   @persist()
-  resources: WorkflowStepState = WorkflowStepState.progress;
+  resources: WorkflowStepState = WorkflowStepState.doing;
 
   @persist()
-  api: WorkflowStepState = WorkflowStepState.progress;
+  api: WorkflowStepState = WorkflowStepState.doing;
+
+  @persist()
+  developing: WorkflowStepState = WorkflowStepState.doing;
+
+  @persist()
+  testing: WorkflowStepState = WorkflowStepState.doing;
+
+  @persist()
+  accepting: WorkflowStepState = WorkflowStepState.doing;
 
   constructor(defs: any = {}) {
     Object.assign(this, defs);
@@ -73,13 +82,16 @@ export class StoryEntry {
   @persist({serializer: new ArraySerializer(new TokenSerializer())})
   description: Token[];
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<StoryEntry> = {}) {
     Object.assign(this, defs);
   }
 }
 
 @persistence()
 export class Feature extends Persistence {
+
+  @persist({name: 'model_type'})
+  type: string = ModelType.feature;
 
   @persist({serializer: new ArraySerializer(new TokenSerializer())})
   title: Token[] = [];
@@ -132,7 +144,10 @@ export class Feature extends Persistence {
     Object.assign(this, defs);
   }
 
-  linking({actor, module, sprint}: { spec?: Spec, actor?: Actor, module?: Module, sprint?: Sprint }) {
+  linking({spec, actor, module, sprint}: { spec?: Spec, actor?: Actor, module?: Module, sprint?: Sprint }) {
+    if (spec !== undefined) {
+      this.spec = spec;
+    }
     if (actor !== undefined) {
       this.actor = actor;
     }
@@ -160,28 +175,13 @@ export class Feature extends Persistence {
       links.changed.push(this.module);
     }
 
+    if (!!this.sprint) {
+      const index = this.sprint.features.findIndex(f => f.id === this.id);
+      this.sprint.features.splice(index, 1);
+      links.changed.push(this.sprint);
+    }
+
     return links;
-  }
-
-  validate(spec: Spec) {
-    if (!this.spec) {
-      throw new Error('Object is not linked');
-    }
-    const errors: TermMissedError[] = [];
-    for (const token of this.title) {
-      if (token instanceof TermToken) {
-        const missed = token.validate(this.spec.terms.map(t => t.name));
-        if (!!missed) {
-          const error = new TermMissedError();
-          error.feature = this;
-          error.term = missed;
-
-          errors.push(error);
-        }
-      }
-    }
-
-    return errors.length ? errors : null;
   }
 
   private findTerms(tokens: Token[]) {
@@ -211,6 +211,14 @@ export class Feature extends Persistence {
     }
 
     return terms.concat(nested.filter(x => terms.indexOf(x) === -1));
+  }
+
+  new() {
+    super.new();
+    let sort = this.actor.features.length > 0
+      ? Math.max.apply(null, this.actor.features.map(e => e.sort))
+      : 0;
+    this.sort = ++sort;
   }
 
 }

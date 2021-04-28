@@ -1,28 +1,5 @@
-@import "../../../../node_modules/@junte/ui/lib/assets/styles/jnt-variables";
+@import "../common";
 
 :host {
   display: block;
-  padding-top: $jnt-gutter-small;
-}
-
-[alphabet] {
-  position: fixed;
-  top: 100px;
-  height: 30px;
-  width: 100%;
-  background-color: $jnt-page-background;
-  z-index: 2;
-  padding: $jnt-gutter-tiny;
-}
-
-[terms] {
-  position: relative;
-
-  [list] {
-    width: 100%;
-
-    [char] {
-      border-bottom: 1px $jnt-control-border-color solid;
-    }
-  }
 }

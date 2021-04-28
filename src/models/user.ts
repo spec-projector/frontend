@@ -29,6 +29,9 @@ export class MeUser extends User {
   @Field()
   email: string;
 
+  @Field()
+  isStaff: boolean;
+
 }
 
 @Model()

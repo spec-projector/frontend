@@ -1,10 +1,13 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { ValidationError } from 'src/models/validation/error';
+import { ModelType } from '../../enums';
 import { Spec } from '../spec';
 import { Feature } from './feature';
 
 @persistence()
 export class Actor extends Persistence {
+
+  @persist({name: 'model_type'})
+  type: string = ModelType.actor;
 
   @persist()
   name: string;
@@ -25,7 +28,7 @@ export class Actor extends Persistence {
     return this._version;
   }
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<Actor> = {}) {
     super();
     Object.assign(this, defs);
   }
@@ -51,17 +54,8 @@ export class Actor extends Persistence {
     return links;
   }
 
-  validate(spec: Spec) {
-    let errors: ValidationError[] = [];
-    for (const feature of this.features) {
-      const errs = feature.validate(spec);
-      if (!!errs) {
-        errs.forEach(e => e.actor = this);
-
-        errors = errors.concat(errs);
-      }
-    }
-
-    return errors;
+  addFeature(feature: Feature) {
+    this.features.push(feature);
   }
+
 }

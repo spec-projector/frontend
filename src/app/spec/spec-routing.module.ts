@@ -12,17 +12,15 @@ import {
   FeatureGraphqlResolver,
   ProjectResolver,
   SpecResolver
-} from 'src/app/spec/spec.resolvers';
-import { SprintComponent } from 'src/app/spec/sprints/sprint/sprint.component';
-import { SprintsComponent } from 'src/app/spec/sprints/sprints.component';
-import { SprintResolver } from 'src/app/spec/sprints/sprints.resolver';
+} from 'src/app/spec/resolvers';
 import { TermsComponent } from 'src/app/spec/terms/terms.component';
-import { ValidateComponent } from 'src/app/spec/validate/validate.component';
 import { Project } from '../../models/projects';
 import { Entity } from '../../models/spec/orm/entity';
 import { Enum } from '../../models/spec/orm/enum';
 import { Actor } from '../../models/spec/planning/actor';
+import { MeUserResolver } from '../../resolvers/me';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeatureEditGraphqlComponent } from './features/feature/api/edit-graphql/feature-edit-graphql.component';
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
@@ -40,6 +38,7 @@ import { EnumsComponent } from './model/enums/enums.component';
 import { ModelComponent } from './model/model.component';
 import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
+import { SprintsComponent } from './sprints/sprints.component';
 
 export function getProject({project}: { project: Project }) {
   return project.title;
@@ -57,20 +56,17 @@ export function getEnum({enum: _enum}: { enum: Enum }) {
   return _enum.title;
 }
 
-export function getSprint({sprint}) {
-  return sprint.title;
-}
-
 export function getFeature({feature}) {
   return feature.title;
 }
 
 export const GENERAL_BREADCRUMB = $localize`:@@label.general:General`;
+export const DASHBOARD_BREADCRUMB = $localize`:@@label.dashboard:Dashboard`;
 export const SPRINTS_BREADCRUMB = $localize`:@@label.sprints:Sprints`;
 export const MODULES_BREADCRUMB = $localize`:@@label.modules:Modules`;
 export const FEATURES_BREADCRUMB = $localize`:@@label.features:Feature`;
 export const ACTORS_BREADCRUMB = $localize`:@@label.actors:Actors`;
-export const KNOWLEDGE_BREADCRUMB = $localize`:@@label.knowledge:Knowledge`;
+export const TERMS_BREADCRUMB = $localize`:@@label.terms:Terms`;
 export const MODEL_BREADCRUMB = $localize`:@@label.model:Model`;
 export const ENTITIES_BREADCRUMB = $localize`:@@label.entities:Entities`;
 export const ENUMS_BREADCRUMB = $localize`:@@label.enums:Enums`;
@@ -99,37 +95,20 @@ export const routes: Routes = [
       {
         path: 'details',
         component: DetailsComponent,
+        resolve: {
+          me: MeUserResolver
+        },
         data: {breadcrumb: GENERAL_BREADCRUMB}
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: {breadcrumb: DASHBOARD_BREADCRUMB}
       },
       {
         path: 'print',
         component: PrintComponent,
         data: {breadcrumb: PRINT_BREADCRUMB}
-      },
-      {
-        path: 'sprints',
-        data: {breadcrumb: SPRINTS_BREADCRUMB},
-        children: [
-          {
-            path: '',
-            component: SprintsComponent,
-            resolve: {spec: SpecResolver},
-            children: [{
-              path: ':sprint',
-              component: SprintComponent,
-              data: {breadcrumb: getSprint},
-              resolve: {sprint: SprintResolver}
-            }],
-            runGuardsAndResolvers: 'always'
-          }
-        ]
-      },
-      {
-        path: 'modules',
-        component: ModulesComponent,
-        data: {breadcrumb: MODULES_BREADCRUMB},
-        resolve: {spec: SpecResolver}
-
       },
       {
         path: 'actors',
@@ -215,7 +194,7 @@ export const routes: Routes = [
       {
         path: 'terms',
         component: TermsComponent,
-        data: {breadcrumb: KNOWLEDGE_BREADCRUMB},
+        data: {breadcrumb: TERMS_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
       },
@@ -279,11 +258,16 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'validate',
-        component: ValidateComponent,
-        data: {breadcrumb: VALIDATE_BREADCRUMB},
+        path: 'modules',
+        component: ModulesComponent,
+        data: {breadcrumb: MODULES_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
+      },
+      {
+        path: 'sprints',
+        component: SprintsComponent,
+        data: {breadcrumb: SPRINTS_BREADCRUMB}
       }
     ]
 

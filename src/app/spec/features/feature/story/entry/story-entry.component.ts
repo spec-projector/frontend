@@ -9,14 +9,14 @@ import { Token } from 'src/models/spec/planning/token';
 import { Spec } from 'src/models/spec/spec';
 import { Language } from '../../../../../../enums/language';
 import { environment } from '../../../../../../environments/environment';
-import { SpecManager } from '../../../../../../managers/spec.manager';
+import { SpecManager } from '../../../../managers';
 
 @Component({
   selector: 'spec-story-entry',
   templateUrl: './story-entry.component.html',
   styleUrls: ['./story-entry.component.scss']
 })
-export class StoryEntryComponent {
+export class FeatureStoryEntryComponent {
 
   ui = UI;
   editMode = EditMode;

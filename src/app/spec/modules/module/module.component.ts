@@ -3,22 +3,24 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
-  Output, ViewChild
+  Output,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PopoverInstance, UI } from '@junte/ui';
+import { UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
-import { SpecManager } from 'src/managers/spec.manager';
 import { EditMode } from 'src/enums/edit-mode';
+import { SpecManager } from 'src/app/spec/managers';
 import { Module } from 'src/models/spec/planning/module';
+import { LocalUI } from '../../../../enums/local-ui';
 import { Entity } from '../../../../models/spec/orm/entity';
-import { Enum, EnumOption } from '../../../../models/spec/orm/enum';
+import { Enum } from '../../../../models/spec/orm/enum';
 import { Feature } from '../../../../models/spec/planning/feature';
 
 @Component({
@@ -30,11 +32,12 @@ import { Feature } from '../../../../models/spec/planning/feature';
 export class ModuleComponent implements AfterViewInit, OnDestroy {
 
   ui = UI;
+  localUi = LocalUI;
   editMode = EditMode;
 
   private _module: Module;
   private subscriptions: {
-    actor?: Subscription,
+    module?: Subscription,
     form?: Subscription
   } = {};
 
@@ -56,8 +59,8 @@ export class ModuleComponent implements AfterViewInit, OnDestroy {
     this._module = module;
     this.updateForm();
 
-    this.subscriptions.actor?.unsubscribe();
-    this.subscriptions.actor = module.changes.subscribe(() => this.updateForm());
+    this.subscriptions.module?.unsubscribe();
+    this.subscriptions.module = module.changes.subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
@@ -92,7 +95,7 @@ export class ModuleComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    [this.subscriptions.actor, this.subscriptions.form]
+    [this.subscriptions.module, this.subscriptions.form]
       .forEach(s => s?.unsubscribe());
   }
 
@@ -165,6 +168,8 @@ export class ModuleComponent implements AfterViewInit, OnDestroy {
 
     this.version++;
     this.cd.detectChanges();
+
+    this.updated.emit(this.module);
   }
 
   deleteEntity(entity: Entity) {
@@ -176,6 +181,8 @@ export class ModuleComponent implements AfterViewInit, OnDestroy {
 
     this.version++;
     this.cd.detectChanges();
+
+    this.updated.emit(this.module);
   }
 
   deleteEnum(enum_: Enum) {
@@ -187,6 +194,8 @@ export class ModuleComponent implements AfterViewInit, OnDestroy {
 
     this.version++;
     this.cd.detectChanges();
+
+    this.updated.emit(this.module);
   }
 
 }

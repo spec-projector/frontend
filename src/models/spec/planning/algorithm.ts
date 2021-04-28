@@ -1,6 +1,6 @@
+import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { persist, persistence } from 'src/decorators/persistence';
 import { TokenSerializer } from 'src/models/spec/serializers/token';
-import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { Spec } from '../spec';
 import { Token } from './token';
 
@@ -35,10 +35,6 @@ export class Algorithm {
     }
 
     linking(spec: Spec) {
-
-    }
-
-    validate(spec: Spec) {
 
     }
 }

@@ -12,23 +12,26 @@
     </ng-template>
 
     <jnt-menu #headerTopMenu>
-      <jnt-menu-item *ngIf="!!config.token" [link]="['/projects']"
-                     [icon]="localUi.icons.projects"
-                     [matching]="ui.matching.wildcard"
+      <jnt-menu-item *ngIf="!!config.token"
                      title="Projects"
-                     i18n-title="@@label.projects"></jnt-menu-item>
-      <jnt-menu-item [link]="['/marketplace']"
-                     [icon]="localUi.icons.market"
-                     title="Find specification"
+                     i18n-title="@@label.projects"
+                     [icon]="localUi.icons.projects"
+                     [link]="['/projects']"
+                     [matching]="ui.matching.wildcard"></jnt-menu-item>
+      <jnt-menu-item title="Find specification"
                      i18n-title="@@label.marketplace"
+                     [icon]="localUi.icons.market"
+                     [link]="['/marketplace']"
                      [disabled]="true"></jnt-menu-item>
-      <jnt-menu-item [link]="['/project-managers']"
-                     title="Hire project manager"
+      <jnt-menu-item title="Hire project manager"
                      i18n-title="@@label.project_manager"
+                     [icon]="localUi.icons.projectManager"
+                     [link]="['/managers']"
                      [disabled]="true"></jnt-menu-item>
-      <jnt-menu-item [link]="['/teams']"
-                     title="Hire team"
+      <jnt-menu-item title="Hire team"
                      i18n-title="@@label.teams"
+                     [icon]="localUi.icons.teams"
+                     [link]="['/teams']"
                      [disabled]="true"></jnt-menu-item>
     </jnt-menu>
 
@@ -43,17 +46,10 @@
     <ng-template #headerContentTemplate
                  let-hide="hide">
       <jnt-stack [orientation]="ui.orientation.horizontal">
-        <jnt-link title="Support"
-                  i18n-title="@@label.support"
-                  [icon]="localUi.icons.support"
-                  [outline]="ui.outline.ghost"
-                  [source]="['/support']"></jnt-link>
-
-        <jnt-link *ngIf="!!me;else notLoggedTemplate"
-                  [title]="me.subscription.tariff.title"
-                  [icon]="me.subscription.tariff.icon + ':svg:local:stroked'"
-                  [outline]="ui.outline.ghost"
-                  [source]="['/subscription']"></jnt-link>
+        <jnt-button data-subscription *ngIf="!!me;else notLoggedTemplate"
+                    [text]="me.subscription.tariff.title"
+                    [icon]="me.subscription.tariff.icon + ':svg:local:stroked'"
+                    (click)="router.navigate(['/subscription'])"></jnt-button>
       </jnt-stack>
     </ng-template>
 

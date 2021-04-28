@@ -5,9 +5,11 @@ import { UI } from '@junte/ui';
 import { delay, finalize } from 'rxjs/operators';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/managers/spec.manager';
+import { SpecManager } from 'src/app/spec/managers';
 import { ResourceType, Spec } from 'src/models/spec/spec';
 import { LocalUI } from '../../../enums/local-ui';
+import { MeUser } from '../../../models/user';
+import { StaffManager } from './managers';
 
 @Component({
   selector: 'spec-details',
@@ -16,22 +18,18 @@ import { LocalUI } from '../../../enums/local-ui';
 })
 export class DetailsComponent implements OnInit {
 
-  _spec: Spec;
-
   ui = UI;
   language = Language;
   localUi = LocalUI;
   editMode = EditMode;
+
+  private _spec: Spec;
+
   progress = {restore: false};
+  me: MeUser;
 
   set spec(spec: Spec) {
     this._spec = spec;
-
-    this.form.patchValue({
-      description: spec.description,
-      author: spec.author,
-      graphqlPlaygroundUrl: spec.integration.graphqlPlaygroundUrl
-    }, {emitEvent: false});
 
     spec.resourceTypes.forEach(({title, hourRate}) => {
       const g = this.resourceTypesGroup();
@@ -45,24 +43,17 @@ export class DetailsComponent implements OnInit {
   }
 
   resourceTypesArray = this.fb.array([]);
-
-  form = this.fb.group({
-    description: [null],
-    author: [null],
-    figmaKey: [],
-    graphqlPlaygroundUrl: [],
-    resourceTypes: this.resourceTypesArray
-  });
+  form = this.fb.group({resourceTypes: this.resourceTypesArray});
 
   constructor(@Inject(LOCALE_ID) public locale: string,
+              private staff: StaffManager,
               private fb: FormBuilder,
               public manager: SpecManager,
               public route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({spec}) => this.spec = spec);
-
+    this.route.data.subscribe(({spec, me}) => [this.spec, this.me] = [spec, me]);
     this.form.valueChanges.pipe(delay(2000)).subscribe(() => this.save());
   }
 
@@ -100,26 +91,16 @@ export class DetailsComponent implements OnInit {
   }
 
   save() {
-    const {
-      description,
-      author,
-      figmaKey,
-      graphqlPlaygroundUrl,
-      resourceTypes
-    } = this.form.getRawValue();
-
-    [this.spec.description,
-      this.spec.author,
-      this.spec.integration.graphqlPlaygroundUrl,
-      this.spec.resourceTypes]
-      = [description,
-      author,
-      graphqlPlaygroundUrl,
-      resourceTypes.map(({title, hourRate}) =>
-        new ResourceType({title, hourRate: +hourRate}))];
+    const {resourceTypes} = this.form.getRawValue();
+    this.spec.resourceTypes = resourceTypes.map(({title, hourRate}) =>
+      new ResourceType({title, hourRate: +hourRate}));
 
     this.manager.put(this.spec);
 
+  }
+
+  fillDemo() {
+    this.staff.fillDemo(this.spec);
   }
 
   dump(element: HTMLAnchorElement) {

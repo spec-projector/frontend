@@ -117,10 +117,6 @@ export class TermToken extends Token {
     this.term = term;
   }
 
-  validate(terms: string[]) {
-    return !terms.includes(this.term) ? this.term : null;
-  }
-
   toString() {
     return `{{${this.term}}}`;
   }
