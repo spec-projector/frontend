@@ -2,11 +2,10 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
-import { generate as shortid } from 'shortid';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/app/spec/managers';
-import { ModuleModel, Module } from 'src/models/spec/planning/module';
+import { Module } from 'src/models/spec/planning/module';
 import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../consts';
 import { LocalUI } from '../../../enums/local-ui';
@@ -42,20 +41,14 @@ export class ModulesComponent implements OnInit {
   }
 
   addModule() {
-    const model = new ModuleModel({
-      id: shortid()
-    });
-    this.manager.put(model);
-
     const module = new Module({
-      id: shortid(),
-      title: $localize`:@@label.new_module_example:Accepting payments`,
-      model: model
+      title: $localize`:@@label.new_module_example:Accepting payments`
     });
-    this.spec.modules.push(module);
     module.linking(this.spec);
-
+    module.new().forEach(o => this.manager.put(o));
     this.manager.put(module);
+
+    this.spec.addModule(module);
     this.manager.put(this.spec);
 
     this.added = module.id;

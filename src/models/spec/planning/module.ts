@@ -1,11 +1,16 @@
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { Spec } from 'src/models/spec/spec';
+import { Depends } from '../../../types/depends';
+import { ModelType } from '../../enums';
 import { Entity } from '../orm/entity';
 import { Enum } from '../orm/enum';
-import { Feature } from './feature';
+import { Feature } from './feature/feature';
 
 @persistence()
 export class ModuleModel extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.module;
 
   @persist({type: Entity})
   entities: Entity[] = [];
@@ -19,6 +24,16 @@ export class ModuleModel extends Persistence {
 
   addEnum(enum_: Enum) {
     this.enums.push(enum_);
+  }
+
+  removeEntity(entity: Entity) {
+    const index = this.entities.indexOf(entity);
+    this.entities.splice(index, 1);
+  }
+
+  removeEnum(enum_: Enum) {
+    const index = this.enums.indexOf(enum_);
+    this.enums.splice(index, 1);
   }
 
   constructor(defs: Partial<ModuleModel> = {}) {
@@ -76,7 +91,16 @@ export class Module extends Persistence {
     }
   }
 
-  delete(): { changed: Persistence[], deleted: Persistence[] } {
+  new(): Persistence[] {
+    super.new();
+    const model = new ModuleModel();
+    model.new();
+    this.model = model;
+
+    return [model];
+  }
+
+  delete(): Depends {
     const links = {changed: [], deleted: []};
 
     this.features.forEach(f => f.module = null);
@@ -92,6 +116,11 @@ export class Module extends Persistence {
 
   addFeature(feature: Feature) {
     this.features.push(feature);
+  }
+
+  removeFeature(feature: Feature) {
+    const index = feature.module.features.indexOf(feature);
+    this.features.splice(index, 1);
   }
 
 }

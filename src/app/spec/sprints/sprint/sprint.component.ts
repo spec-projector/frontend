@@ -19,7 +19,7 @@ import { EditMode } from 'src/enums/edit-mode';
 import { SpecManager } from 'src/app/spec/managers';
 import { Sprint } from 'src/models/spec/planning/sprint';
 import { LocalUI } from '../../../../enums/local-ui';
-import { Feature } from '../../../../models/spec/planning/feature';
+import { Feature } from '../../../../models/spec/planning/feature/feature';
 import { trackElement } from '../../../../utils/templates';
 
 @Component({

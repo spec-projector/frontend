@@ -5,7 +5,7 @@ import { SpecManager } from 'src/app/spec/managers';
 import { Spec } from 'src/models/spec/spec';
 import { Language } from '../../../enums/language';
 import { LocalUI } from '../../../enums/local-ui';
-import { WorkflowStepState } from '../../../models/spec/planning/feature';
+import { WorkflowStepState } from '../../../models/spec/planning/feature/workflow';
 
 @Component({
   selector: 'spec-dashboard',

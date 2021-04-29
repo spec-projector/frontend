@@ -1,24 +1,23 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalService, PopoverInstance, PopoverService, UI } from '@junte/ui';
+import { ModalService, UI } from '@junte/ui';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { generate as shortid } from 'shortid';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/app/spec/managers';
 import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../../consts';
 import { LocalUI } from '../../../../enums/local-ui';
-import { Entity } from '../../../../models/spec/orm/entity';
 import { Enum } from '../../../../models/spec/orm/enum';
 import { trackElement } from '../../../../utils/templates';
 
 @Component({
   selector: 'spec-enums',
   templateUrl: './enums.component.html',
-  styleUrls: ['./enums.component.scss']
+  styleUrls: ['./enums.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EnumsComponent implements OnInit, OnDestroy {
 
@@ -53,21 +52,16 @@ export class EnumsComponent implements OnInit, OnDestroy {
   }
 
   addEnum() {
-    let sort = this.spec.model.enums.length > 0
-      ? Math.max.apply(null, this.spec.model.enums.map(e => e.sort))
-      : 0;
     const enum_ = new Enum({
-      id: shortid(),
       title: $localize`:@@label.new_enum_title_example:Enum`,
-      name: $localize`:@@label.new_enum_name_example:Enum`,
-      sort: ++sort
+      name: $localize`:@@label.new_enum_name_example:Enum`
     });
-    this.spec.model.enums.push(enum_);
     enum_.linking({spec: this.spec});
-
+    enum_.new();
     this.manager.put(enum_);
+
+    this.spec.model.addEnum(enum_);
     this.manager.put(this.spec.model);
-    this.manager.put(this.spec);
 
     this.added = enum_.id;
     this.version++;

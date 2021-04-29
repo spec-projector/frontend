@@ -11,6 +11,7 @@ import { Actor } from 'src/models/spec/planning/actor';
 import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../consts';
 import { LocalUI } from '../../../enums/local-ui';
+import { trackElement } from '../../../utils/templates';
 
 @Component({
   selector: 'spec-actors',
@@ -24,6 +25,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
   localUi = LocalUI;
   language = Language;
   editMode = EditMode;
+  trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
 
   private destroyed$ = new Subject();
@@ -88,9 +90,5 @@ export class ActorsComponent implements OnInit, OnDestroy {
     this.manager.put(this.spec);
 
     this.cd.detectChanges();
-  }
-
-  trackActor(index: number, actor: Actor) {
-    return !!actor ? actor.id : null;
   }
 }

@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { AccentToken, QuoteToken, TermToken, TextToken, Token, TokenType, UrlToken } from 'src/models/spec/planning/token';
+import { joinTokens } from './utils';
 
 @Pipe({name: 'joinTokens'})
 export class JoinTokensPipe implements PipeTransform {
-    transform(tokens: Token[]): string {
-        return tokens.map(t => t.toText()).join(' ');
-    }
+  transform(tokens: Token[]): string {
+    return joinTokens(tokens);
+  }
 }
 
 @Pipe({name: 'getTokenType'})

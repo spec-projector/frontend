@@ -34,12 +34,13 @@
 </ng-template>
 
 <jnt-row *ngIf="spec.modules.length > 0; else emptyDataTemplate">
-  <jnt-col [desktop]="8">
+  <jnt-col [desktop]="(manager.mode$ | async) === editMode.edit ? 8 : 12">
     <jnt-stack cdkDropList [align]="ui.align.stretch"
                (cdkDropListDropped)="moveModule($event)"
                [cdkDropListData]="spec.modules">
-      <jnt-card cdkDrag *ngFor="let module of spec.modules; let i = index; trackBy:trackElement">
-        <ng-template #cardDragTemplate let-icon="icon">
+      <jnt-card *ngFor="let module of spec.modules; let i = index; trackBy:trackElement"
+                cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view">
+        <ng-template *ngIf="(manager.mode$ | async) === editMode.edit" #cardDragTemplate let-icon="icon">
           <button cdkDragHandle>
             <jnt-icon [icon]="icon"></jnt-icon>
           </button>
@@ -77,7 +78,8 @@
       </jnt-card>
     </jnt-stack>
   </jnt-col>
-  <jnt-col [tablet]="4">
+  <jnt-col *ngIf="(manager.mode$ | async) === editMode.edit"
+           [tablet]="4">
     <jnt-accordion data-library>
       <jnt-accordion-section title="Features"
                              i18n-title="@@label.features"

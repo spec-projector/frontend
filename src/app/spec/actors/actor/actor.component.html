@@ -33,8 +33,8 @@
              [spacing]="ui.gutter.normal"
              [cdkDropListData]="g.features"
              (cdkDropListDropped)="moveFeature($event)">
-      <jnt-col cdkDrag *ngFor="let feature of g.features; let i = index; trackBy:trackElement"
-               [cdkDragData]="feature"
+      <jnt-col *ngFor="let feature of g.features; let i = index; trackBy:trackElement"
+               cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view"
                [tablet]="6"
                [desktop]="6"
                [wide]="4">
@@ -77,7 +77,8 @@
       </jnt-col>
     </jnt-row>
   </jnt-stack>
-  <jnt-stack [orientation]="ui.orientation.horizontal">
+  <jnt-stack *ngIf="(manager.mode$ | async) === editMode.edit"
+             [orientation]="ui.orientation.horizontal">
     <jnt-button text="Add feature"
                 i18n-text="@@action.add_feature"
                 [icon]="ui.icons.add"

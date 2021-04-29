@@ -5,7 +5,7 @@ import { Subject, Subscription } from 'rxjs';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
 import { SpecManager } from 'src/app/spec/managers';
-import { Feature } from 'src/models/spec/planning/feature';
+import { Feature } from 'src/models/spec/planning/feature/feature';
 import { Token } from 'src/models/spec/planning/token';
 
 @Component({

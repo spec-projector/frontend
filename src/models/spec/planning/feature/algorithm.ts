@@ -1,8 +1,8 @@
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { persist, persistence } from 'src/decorators/persistence';
 import { TokenSerializer } from 'src/serializers/token';
-import { Spec } from '../spec';
-import { Token } from './token';
+import { Spec } from '../../spec';
+import { Token } from '../token';
 
 @persistence()
 export class AlgorithmStep {

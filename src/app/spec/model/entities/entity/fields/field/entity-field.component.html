@@ -3,19 +3,19 @@
            (mouseleave)="mode = editMode.view">
     <header>
       <ng-container *ngIf="mode == editMode.edit;else viewHeaderTemplate">
-        <input title formControlName="title">
-        <div naming>
+        <input data-title formControlName="title">
+        <div data-naming>
           <label [attr.checked]="autoNameControl.value">
             <input type="checkbox" formControlName="autoName">
           </label>
-          <input name formControlName="name">
+          <input data-name formControlName="name">
         </div>
       </ng-container>
       <ng-template #viewHeaderTemplate>
-        <h1 title>{{field.title}}</h1>
-        <div naming>
+        <h1 data-title>{{field.title}}</h1>
+        <div data-naming>
           <label [attr.checked]="autoNameControl.value"> </label>
-          <h2 name>{{field.name}}</h2>
+          <h2 data-name>{{field.name}}</h2>
         </div>
       </ng-template>
     </header>
@@ -39,16 +39,22 @@
       <jnt-select formControlName="type"
                   [size]="ui.size.small">
         <jnt-select-option label="boolean"
+                           i18n-label="@@label.boolean"
                            [key]="fieldType.boolean"></jnt-select-option>
         <jnt-select-option label="string"
+                           i18n-label="@@label.string"
                            [key]="fieldType.string"></jnt-select-option>
         <jnt-select-option label="number"
+                           i18n-label="@@label.number"
                            [key]="fieldType.number"></jnt-select-option>
         <jnt-select-option label="date"
+                           i18n-label="@@label.date"
                            [key]="fieldType.date"></jnt-select-option>
         <jnt-select-option label="reference"
+                           i18n-label="@@label.reference"
                            [key]="fieldType.reference"></jnt-select-option>
         <jnt-select-option label="enum"
+                           i18n-label="@@label.enum"
                            [key]="fieldType.enum"></jnt-select-option>
       </jnt-select>
       <ng-container [ngSwitch]="field.type">
@@ -67,10 +73,11 @@
         <jnt-select *ngSwitchCase="fieldType.reference"
                     formControlName="reference"
                     placeholder="Select entity"
+                    i18n-placeholder="@@label.select_entity"
                     [optionTemplate]="entityOptionTemplate"
                     [size]="ui.size.small">
           <jnt-select-option
-            *ngFor="let entity of field.entity.spec.model.entities;trackBy: trackEntity"
+            *ngFor="let entity of field.entity.spec.model.entities;trackBy:trackElement"
             [value]="entity"
             [key]="entity.id">
           </jnt-select-option>
@@ -92,10 +99,11 @@
         <jnt-select *ngSwitchCase="fieldType.enum"
                     formControlName="enum"
                     placeholder="Select enum"
+                    i18n-placeholder="@@label.select_enum"
                     [optionTemplate]="enumOptionTemplate"
                     [size]="ui.size.small">
           <jnt-select-option
-            *ngFor="let enum of field.entity.spec.model.enums;trackBy: trackEnum"
+            *ngFor="let enum of field.entity.spec.model.enums;trackBy:trackElement"
             [value]="enum"
             [key]="enum.id">
           </jnt-select-option>
@@ -103,17 +111,21 @@
       </ng-container>
       <jnt-checkbox formControlName="isArray"
                     label="array"
-                    label-i18n="@@label.array"></jnt-checkbox>
+                    i18n-label="@@label.array"></jnt-checkbox>
     </jnt-stack>
 
     <ng-template #viewTypeTemplate>
       <ng-template #singleTemplate>
         <ng-container [ngSwitch]="field.type">
           <ng-container *ngSwitchCase="fieldType.reference">
-            <jnt-link [title]="field.links.reference?.title"></jnt-link>
+            <jnt-link [title]="field.links.reference?.title"
+                      [icon]="localUi.icons.entities"
+                      [source]="['../..', field.links.reference.id]"></jnt-link>
           </ng-container>
           <ng-container *ngSwitchCase="fieldType.enum">
-            <jnt-link [title]="field.links.enum?.title"></jnt-link>
+            <jnt-link [title]="field.links.enum?.title"
+                      [icon]="localUi.icons.enums"
+                      [source]="['../../../enums/', field.links.enum.id]"></jnt-link>
           </ng-container>
           <ng-container *ngSwitchDefault>
             <small>{{field.type}}</small>

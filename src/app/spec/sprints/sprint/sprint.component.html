@@ -16,11 +16,12 @@
              [align]="ui.align.stretch"
              (cdkDropListDropped)="moveFeature($event)"
              [cdkDropListData]="sprint.features">
-      <jnt-col cdkDrag [cdkDragData]="feature" *ngFor="let feature of sprint.features; trackBy:trackElement"
+      <jnt-col [cdkDragData]="feature" *ngFor="let feature of sprint.features; trackBy:trackElement"
+               cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view"
                [wide]="6">
         <jnt-card [width]="ui.width.fluid"
                   [padding]="ui.gutter.small">
-          <ng-template #cardDragTemplate let-icon="icon">
+          <ng-template *ngIf="(manager.mode$ | async) === editMode.edit" #cardDragTemplate let-icon="icon">
             <button cdkDragHandle>
               <jnt-icon [icon]="icon"></jnt-icon>
             </button>

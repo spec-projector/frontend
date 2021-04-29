@@ -1,17 +1,17 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { merge } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
-import { EditMode } from 'src/enums/edit-mode';
 import { SpecManager } from 'src/app/spec/managers';
+import { EditMode } from 'src/enums/edit-mode';
 import { FieldType } from 'src/models/spec/orm/entity-field';
-import { EnumOption } from '../../../../../../models/spec/orm/enum';
+import { EnumOption } from '../../../../../../models/spec/orm/enum-option';
 
 @Component({
   selector: 'spec-enum-option',
   templateUrl: './enum-option.component.html',
-  styleUrls: ['./enum-option.component.scss']
+  styleUrls: ['./enum-option.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EnumOptionComponent {
 
@@ -39,7 +39,7 @@ export class EnumOptionComponent {
       name: option.name,
       title: option.title,
       autoName: option.autoName
-    });
+    }, {emitEvent: false});
   }
 
   get option() {
@@ -55,13 +55,10 @@ export class EnumOptionComponent {
     merge(this.titleControl.valueChanges, this.autoNameControl.valueChanges)
       .subscribe(() => this.updateName());
 
-    this.form.valueChanges
-      .subscribe(() => {
-        Object.assign(this.option, this.form.getRawValue());
-        this.manager.put(this.option);
-
-        this.cd.detectChanges();
-      });
+    this.form.valueChanges.subscribe(() => {
+      Object.assign(this.option, this.form.getRawValue());
+      this.manager.put(this.option);
+    });
   }
 
   private updateName() {

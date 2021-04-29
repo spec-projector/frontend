@@ -30,8 +30,9 @@
 <jnt-stack cdkDropList [align]="ui.align.stretch"
            (cdkDropListDropped)="moveTerm($event)"
            [cdkDropListData]="spec.terms">
-  <jnt-card cdkDrag *ngFor="let term of spec.terms; let i = index; trackBy:trackElement">
-    <ng-template #cardDragTemplate let-icon="icon">
+  <jnt-card *ngFor="let term of spec.terms; let i = index; trackBy:trackElement"
+            cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view">
+    <ng-template *ngIf="(manager.mode$ | async) === editMode.edit" #cardDragTemplate let-icon="icon">
       <button cdkDragHandle>
         <jnt-icon [icon]="icon"></jnt-icon>
       </button>

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { ClipboardService } from 'ngx-clipboard';
 import { Language } from 'src/enums/language';
-import { Feature } from 'src/models/spec/planning/feature';
+import { Feature } from 'src/models/spec/planning/feature/feature';
 import { TokenType } from 'src/models/spec/planning/token';
 import { BASE_URI } from '../../../../../consts';
 import { Project } from '../../../../../models/projects';

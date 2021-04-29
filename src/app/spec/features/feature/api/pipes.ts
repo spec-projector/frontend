@@ -5,7 +5,7 @@ import { Spec } from '../../../../../models/spec/spec';
 export class GraphqlPlaygroundPipe implements PipeTransform {
 
     transform(query: string, spec: Spec): string {
-        return spec.integration.graphqlPlaygroundUrl + '#query=' + encodeURI(query);
+        return spec.tools.graphqlPlaygroundUrl + '#query=' + encodeURI(query);
     }
 
 }

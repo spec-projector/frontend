@@ -1,1 +1,31 @@
 @import "src/variables";
+@import "~@junte/ui/lib/assets/styles/forms/button";
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+  padding: $jnt-gutter-small $jnt-gutter-normal;
+  border-radius: $jnt-corner-normal;
+  background: $jnt-pale-navy-color;
+  width: 70px;
+  min-width: 70px;
+
+  &[data-disabled=true] {
+    pointer-events: none;
+  }
+
+  &[data-state=missed] {
+    @include jnt-button((background: $jnt-gray-700-color));
+  }
+}
+
+div {
+  font-weight: $jnt-font-weight-bold;
+  font-size: $jnt-font-size-small;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 0 $jnt-gutter-small;
+}

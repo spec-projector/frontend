@@ -1,13 +1,14 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
+import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
 import { Spec } from '../spec';
-import { Feature } from './feature';
+import { Feature } from './feature/feature';
 
 @persistence()
 export class Actor extends Persistence {
 
   @persist({name: 'model_type'})
-  type: string = ModelType.actor;
+  modelType: string = ModelType.actor;
 
   @persist()
   name: string;
@@ -40,7 +41,7 @@ export class Actor extends Persistence {
     }
   }
 
-  delete(): { changed: Persistence[], deleted: Persistence[] } {
+  delete(): Depends {
     const links = {changed: [], deleted: []};
 
     this.features.reduce((r, f) => r.concat(f.delete()), [])

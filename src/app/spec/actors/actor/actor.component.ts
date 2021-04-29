@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { Actor } from 'src/models/spec/planning/actor';
-import { Feature } from 'src/models/spec/planning/feature';
+import { Feature } from 'src/models/spec/planning/feature/feature';
 import { TextToken } from 'src/models/spec/planning/token';
 import { trackElement } from 'src/utils/templates';
 import { CURRENT_LANGUAGE } from '../../../../consts';
@@ -113,7 +113,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
       title: [new TextToken($localize`:@@label.new_feature_example:Buy a cookies`)]
     });
     feature.linking({spec: this.actor.spec, actor: this.actor});
-    feature.new();
+    feature.new().forEach(o => this.manager.put(o));
     this.manager.put(feature);
 
     this.actor.addFeature(feature);

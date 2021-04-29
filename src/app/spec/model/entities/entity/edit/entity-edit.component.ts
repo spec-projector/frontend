@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UI } from '@junte/ui';
-import { LocalUI } from 'src/enums/local-ui';
-import { SpecManager } from 'src/app/spec/managers';
-import { EditMode } from 'src/enums/edit-mode';
 import { Entity } from '../../../../../../models/spec/orm/entity';
 
 @Component({
@@ -15,8 +11,7 @@ export class EntityEditComponent implements OnInit {
 
   entity: Entity;
 
-  constructor(public manager: SpecManager,
-              private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {

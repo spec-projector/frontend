@@ -9,7 +9,8 @@
            [gutter]="ui.gutter.small"
            (cdkDropListDropped)="moveOption($event)"
            [cdkDropListData]="enum.options">
-  <jnt-card cdkDrag *ngFor="let option of enum.options; let i = index; trackBy: trackOption">
+  <jnt-card *ngFor="let option of enum.options; let i = index; trackBy:trackElement"
+            cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template *ngIf="(manager.mode$ | async) == editMode.edit" #cardDragTemplate let-icon="icon">
         <button cdkDragHandle>

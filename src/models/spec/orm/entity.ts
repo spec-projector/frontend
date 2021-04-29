@@ -1,10 +1,16 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
+import { Depends } from '../../../types/depends';
+import { ModelType } from '../../enums';
+import { Feature } from '../planning/feature/feature';
 import { Module } from '../planning/module';
 import { Spec } from '../spec';
 import { EntityField } from './entity-field';
 
 @persistence()
 export class Entity extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.entity;
 
   @persist()
   id: string;
@@ -42,24 +48,39 @@ export class Entity extends Persistence {
     }
 
     for (const f of this.fields) {
-      f.linking(this);
+      f.linking({spec: this.spec, entity: this});
     }
   }
 
-  delete(): { changed: Persistence[], deleted: Persistence[] } {
+  new() {
+    super.new();
+    let sort = this.spec.model.entities.length > 0
+      ? Math.max.apply(null, this.spec.model.entities.map(e => e.sort))
+      : 0;
+    this.sort = ++sort;
+  }
+
+  delete(): Depends {
     const links = {changed: [], deleted: []};
 
     if (!!this.module) {
-      const index = this.module.model.entities.findIndex(f => f.id === this.id);
-      this.module.model.entities.splice(index, 1);
+      this.module.model.removeEntity(this);
       links.changed.push(this.module.model);
     }
 
-    const index = this.spec.model.entities.findIndex(f => f.id === this.id);
-    this.spec.model.entities.splice(index, 1);
+    this.spec.model.removeEntity(this);
     links.changed.push(this.spec.model);
 
     return links;
+  }
+
+  addField(field: EntityField) {
+    this.fields.push(field);
+  }
+
+  removeField(field: EntityField) {
+    const index = this.fields.indexOf(field);
+    this.fields.splice(index, 1);
   }
 
 }

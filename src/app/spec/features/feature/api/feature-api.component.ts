@@ -2,12 +2,11 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PopoverInstance, UI } from '@junte/ui';
 import { filter } from 'rxjs/operators';
-import { generate as shortid } from 'shortid';
 import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
-import { Graphql } from 'src/models/spec/planning/graphql';
+import { Graphql } from 'src/models/spec/planning/feature/graphql';
+import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { SpecManager } from '../../../managers';
-import { Feature } from '../../../../../models/spec/planning/feature';
 
 const GRAPHQL_TEXT = `
 query ($id: ID) {
@@ -55,18 +54,19 @@ export class FeatureApiComponent implements OnInit {
   addGraphQL() {
     this.instance.popover?.hide();
 
-    const id = shortid();
-    this.feature.graphql.push(new Graphql(
+    const {api} = this.feature;
+    const graphql = new Graphql(
       {
-        id: id,
         title: 'Some query',
         text: GRAPHQL_TEXT
-      }));
-    this.manager.put(this.feature);
+      });
+    graphql.new();
+    api.addGraphql(graphql);
+    this.manager.put(api);
 
     this.feature.version++;
 
-    this.router.navigate(['graphql', id], {relativeTo: this.route})
+    this.router.navigate(['graphql', graphql.id], {relativeTo: this.route})
       .then(() => null);
   }
 

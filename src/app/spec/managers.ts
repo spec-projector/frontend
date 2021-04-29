@@ -96,12 +96,7 @@ export class SpecManager {
             }, (err: { status }) => {
               if (err.status === 404) {
                 console.log('spec not found');
-                const model = new SpecModel({
-                  id: shortid()
-                });
-                this.put(model);
-                spec.scheme.version = SCHEME_VERSION;
-                spec.model = model;
+                spec.new().forEach(o => this.put(o));
                 this.put(spec);
 
                 this.spec$.next(spec);

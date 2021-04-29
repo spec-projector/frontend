@@ -39,6 +39,7 @@ import { ModelComponent } from './model/model.component';
 import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
 import { SprintsComponent } from './sprints/sprints.component';
+import { joinTokens } from './tokens/utils';
 
 export function getProject({project}: { project: Project }) {
   return project.title;
@@ -57,7 +58,7 @@ export function getEnum({enum: _enum}: { enum: Enum }) {
 }
 
 export function getFeature({feature}) {
-  return feature.title;
+  return joinTokens(feature.title);
 }
 
 export const GENERAL_BREADCRUMB = $localize`:@@label.general:General`;

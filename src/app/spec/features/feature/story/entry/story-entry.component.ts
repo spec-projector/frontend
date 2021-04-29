@@ -4,11 +4,11 @@ import { UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { EditMode } from 'src/enums/edit-mode';
-import { StoryEntry, StoryEntryType } from 'src/models/spec/planning/feature';
 import { Token } from 'src/models/spec/planning/token';
 import { Spec } from 'src/models/spec/spec';
 import { Language } from '../../../../../../enums/language';
 import { environment } from '../../../../../../environments/environment';
+import { StoryEntry, StoryEntryType } from '../../../../../../models/spec/planning/feature/story';
 import { SpecManager } from '../../../../managers';
 
 @Component({

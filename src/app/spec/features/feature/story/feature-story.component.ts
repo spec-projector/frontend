@@ -1,12 +1,13 @@
 import { Component, Inject, LOCALE_ID, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
-import { Language } from 'src/enums/language';
 import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
-import { Feature, StoryEntry, StoryEntryType } from 'src/models/spec/planning/feature';
+import { Language } from 'src/enums/language';
+import { Feature } from 'src/models/spec/planning/feature/feature';
 import { AccentToken, TextToken } from 'src/models/spec/planning/token';
+import { StoryEntry, StoryEntryType } from '../../../../../models/spec/planning/feature/story';
 import { FeatureStoryEntryComponent } from './entry/story-entry.component';
 
 @Component({

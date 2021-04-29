@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UI} from '@junte/ui';
 import {filter} from 'rxjs/operators';
-import {Issue} from 'src/models/spec/planning/issue';
+import {Issue} from 'src/models/spec/planning/feature/issue';
 import {Spec} from 'src/models/spec/spec';
 import {IssueSystem} from '../../../../../../enums/issue';
 

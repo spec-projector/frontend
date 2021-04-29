@@ -37,7 +37,8 @@
                [align]="ui.align.stretch"
                [cdkDropListData]="g.entities"
                (cdkDropListDropped)="moveEntity($event)">
-      <jnt-card cdkDrag *ngFor="let entity of g.entities; let i = index; trackBy:trackElement">
+      <jnt-card *ngFor="let entity of g.entities; let i = index; trackBy:trackElement"
+                cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view">
         <ng-template *ngIf="(manager.mode$ | async) === editMode.edit" #cardDragTemplate let-icon="icon">
           <button cdkDragHandle>
             <jnt-icon [icon]="icon"></jnt-icon>

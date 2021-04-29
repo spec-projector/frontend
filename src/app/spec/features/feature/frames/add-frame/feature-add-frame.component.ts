@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { generate as shortid } from 'shortid';
-import { Frame } from 'src/models/spec/planning/frame';
+import { Frame } from 'src/models/spec/planning/feature/frame';
 
 @Component({
   selector: 'spec-feature-add-frame',

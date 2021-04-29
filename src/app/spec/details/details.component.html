@@ -7,13 +7,6 @@
             (submitted)="save()">
     <jnt-tabs>
 
-      <jnt-tab *ngIf="me.isStaff" title="For staff"
-               i18n-title="@@label.for_staff">
-        <ng-template #tabContentTemplate>
-          <jnt-button text="Demo" (click)="fillDemo()"></jnt-button>
-        </ng-template>
-      </jnt-tab>
-
       <jnt-tab title="Resource types"
                i18n-title="@@label.resource_types">
         <jnt-badge *ngIf="resourceTypesArray.length > 0"
@@ -86,6 +79,7 @@
                           i18n-text="@@action.dump"
                           (click)="dump(dumpFile)"></jnt-button>
             </div>
+            <!--
             <div>
               <jnt-button [loading]="progress.restore"
                           text="Restore"
@@ -94,7 +88,15 @@
               <input #restoreInput fileInput type="file"
                      (change)="restore($event)">
             </div>
+            -->
           </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab *ngIf="me.isStaff" title="For staff"
+               i18n-title="@@label.for_staff">
+        <ng-template #tabContentTemplate>
+          <jnt-button text="Demo" (click)="fillDemo()"></jnt-button>
         </ng-template>
       </jnt-tab>
 

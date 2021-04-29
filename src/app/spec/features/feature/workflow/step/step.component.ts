@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostListener} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
-import {NGXLogger} from 'ngx-logger';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { LocalUI } from '../../../../../../enums/local-ui';
-import {WorkflowStepState} from '../../../../../../models/spec/planning/feature';
-import {UI} from '@junte/ui';
+import { UI } from '@junte/ui';
+import { WorkflowStepState } from '../../../../../../models/spec/planning/feature/workflow';
 
 @Component({
   selector: 'spec-workflow-step',
@@ -25,8 +25,14 @@ export class WorkflowStepComponent {
   localUi = LocalUI;
   workflowStepState = WorkflowStepState;
 
+  @HostBinding('attr.data-disabled')
   disabled = false;
+
+  @HostBinding('attr.data-state')
   state = WorkflowStepState.doing;
+
+  @Input()
+  title: string;
 
   onChange: (value: WorkflowStepState) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

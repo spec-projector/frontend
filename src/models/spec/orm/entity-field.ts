@@ -1,4 +1,9 @@
-import { persist, persistence } from 'src/decorators/persistence';
+import { persist, Persistence, persistence } from 'src/decorators/persistence';
+import { Depends } from '../../../types/depends';
+import { ModelType } from '../../enums';
+import { Actor } from '../planning/actor';
+import { Module } from '../planning/module';
+import { Sprint } from '../planning/sprint';
 import { Spec } from '../spec';
 import { Entity } from './entity';
 import { Enum } from './enum';
@@ -13,7 +18,10 @@ export enum FieldType {
 }
 
 @persistence()
-export class EntityField {
+export class EntityField extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.entityField;
 
   @persist()
   name: string;
@@ -44,26 +52,39 @@ export class EntityField {
   links: { reference?: Entity, enum?: Enum } = {};
 
   constructor(defs: Partial<EntityField> = {}) {
+    super();
     Object.assign(this, defs);
   }
 
-  linking(entity: Entity = null) {
-    if (!!entity) {
+  linking({spec, entity}: { spec?: Spec, entity?: Entity }) {
+    if (spec !== undefined) {
+      this.spec = spec;
+    }
+    if (entity !== undefined) {
       this.entity = entity;
     }
 
-    if (!!this.entity) {
+    if (!!this.spec) {
       switch (this.type) {
         case FieldType.reference:
-          this.links.reference = this.entity.spec.model.entities
+          this.links.reference = this.spec.model.entities
             .find(e => e.id === this.reference);
           break;
         case FieldType.enum:
-          this.links.enum = this.entity.spec.model.enums
+          this.links.enum = this.spec.model.enums
             .find(e => e.id === this.enum);
           break;
       }
     }
+  }
+
+  delete(): Depends {
+    const links = {changed: [], deleted: []};
+
+    this.entity.removeField(this);
+    links.changed.push(this.entity);
+
+    return links;
   }
 
 }

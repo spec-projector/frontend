@@ -1,18 +1,19 @@
 import { persist, persistence } from 'src/decorators/persistence';
 
 @persistence()
-export class Api {
+export class Frame {
 
   @persist()
   id: string;
 
   @persist()
-  title: string;
-
-  @persist()
   url: string;
 
-  constructor(defs: any = {}) {
+  @persist()
+  thumbnail: string;
+
+  constructor(defs: Partial<Frame> = {}) {
     Object.assign(this, defs);
   }
+
 }

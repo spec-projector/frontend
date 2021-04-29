@@ -3,7 +3,7 @@ import { persist, persistence } from 'src/decorators/persistence';
 import { TokenSerializer } from 'src/serializers/token';
 import { Feature } from './feature';
 import { Issue } from './issue';
-import { Token } from './token';
+import { Token } from '../token';
 
 @persistence()
 export class Improvement {

@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Spec } from 'src/models/spec/spec';
-import { Feature } from '../../../models/spec/planning/feature';
 import { Observable } from 'rxjs';
+import { Actor } from '../../../models/spec/planning/actor';
+import { Feature } from '../../../models/spec/planning/feature/feature';
+import { Module } from '../../../models/spec/planning/module';
 import { Sprint } from '../../../models/spec/planning/sprint';
 import { Term } from '../../../models/spec/planning/term';
-import { Module } from '../../../models/spec/planning/module';
-import { Actor } from '../../../models/spec/planning/actor';
 
 @Pipe({name: 'featurePrice', pure: false})
 export class FeaturePricePipe implements PipeTransform {

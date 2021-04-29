@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {UI} from '@junte/ui';
-import {LocalUI} from 'src/enums/local-ui';
-import {Feature, WorkflowStepState} from 'src/models/spec/planning/feature';
-import {FormBuilder} from '@angular/forms';
-import {SpecManager} from '../../../managers';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { UI } from '@junte/ui';
+import { LocalUI } from 'src/enums/local-ui';
+import { Feature } from 'src/models/spec/planning/feature/feature';
+import { EditMode } from '../../../../../enums/edit-mode';
+import { WorkflowStepState } from '../../../../../models/spec/planning/feature/workflow';
+import { SpecManager } from '../../../managers';
 
 @Component({
   selector: 'spec-feature-edit',
@@ -66,6 +68,7 @@ export class FeatureEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({feature}) => this.feature = feature);
+    this.manager.mode$.subscribe(mode => mode === EditMode.edit ? this.form.enable() : this.form.disable());
 
     this.form.valueChanges.subscribe(({workflow}) => {
       Object.assign(this.feature.workflow, workflow);

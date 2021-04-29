@@ -1,20 +1,21 @@
 import * as assign from 'assign-deep';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { Feature, StoryEntry } from 'src/models/spec/planning/feature';
+import { SCHEME_VERSION } from '../../consts';
 import { Entity } from './orm/entity';
 import { Enum } from './orm/enum';
 import { Actor } from './planning/actor';
+import { Feature } from './planning/feature/feature';
 import { Module } from './planning/module';
 import { Sprint } from './planning/sprint';
 import { Term } from './planning/term';
 
 @persistence()
-export class Integration {
+export class SpecTools {
 
   @persist()
   graphqlPlaygroundUrl: string;
 
-  constructor(defs: Partial<Integration> = {}) {
+  constructor(defs: Partial<SpecTools> = {}) {
     assign(this, defs);
   }
 
@@ -69,6 +70,16 @@ export class SpecModel extends Persistence {
     this.enums.push(enum_);
   }
 
+  removeEntity(entity: Entity) {
+    const index = this.entities.indexOf(entity);
+    this.entities.splice(index, 1);
+  }
+
+  removeEnum(enum_: Enum) {
+    const index = this.enums.indexOf(enum_);
+    this.enums.splice(index, 1);
+  }
+
 }
 
 @persistence()
@@ -79,14 +90,8 @@ export class Spec extends Persistence {
     version: 1
   });
 
-  @persist()
-  author: string;
-
-  @persist()
-  description: string;
-
-  @persist({type: StoryEntry})
-  integration: Integration = new Integration();
+  @persist({type: SpecTools})
+  tools: SpecTools = new SpecTools();
 
   @persist({type: ResourceType})
   resourceTypes: ResourceType[] = [];
@@ -143,8 +148,31 @@ export class Spec extends Persistence {
     }
   }
 
+  new(): Persistence[] {
+    super.new();
+    this.version = SCHEME_VERSION;
+
+    const model = new SpecModel();
+    model.new();
+    this.model = model;
+
+    return [model];
+  }
+
+  addActor(actor: Actor) {
+    this.actors.push(actor);
+  }
+
   addTerm(term: Term) {
     this.terms.push(term);
+  }
+
+  addModule(module: Module) {
+    this.modules.push(module);
+  }
+
+  addSprint(sprint: Sprint) {
+    this.sprints.push(sprint);
   }
 
 }

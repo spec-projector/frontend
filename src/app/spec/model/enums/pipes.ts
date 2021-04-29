@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Entity} from 'src/models/spec/orm/entity';
 import {Module} from 'src/models/spec/planning/module';
 import { Enum } from '../../../../models/spec/orm/enum';
-import { Feature } from '../../../../models/spec/planning/feature';
+import { Feature } from '../../../../models/spec/planning/feature/feature';
 
 export class ModuleGroup {
   module: Module;

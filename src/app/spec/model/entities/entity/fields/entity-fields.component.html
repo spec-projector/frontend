@@ -9,22 +9,21 @@
            [gutter]="ui.gutter.small"
            (cdkDropListDropped)="moveField($event)"
            [cdkDropListData]="entity.fields">
-  <jnt-card cdkDrag *ngFor="let field of entity.fields; let i = index; trackBy: trackField">
+  <jnt-card *ngFor="let field of entity.fields; let i = index; trackBy:trackElement"
+            cdkDrag [cdkDragDisabled]="(manager.mode$ | async) === editMode.view">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template *ngIf="(manager.mode$ | async) == editMode.edit" #cardDragTemplate let-icon="icon">
         <button cdkDragHandle>
           <jnt-icon [icon]="icon"></jnt-icon>
         </button>
       </ng-template>
-      <spec-entity-field data-field [field]="field"
-                         (changed)="manager.put(entity)">
-      </spec-entity-field>
+      <spec-entity-field data-field [field]="field"></spec-entity-field>
       <jnt-button *ngIf="manager.mode == editMode.edit"
                   [icon]="ui.icons.delete"
                   [size]="ui.size.tiny"
                   [outline]="ui.outline.transparent"
                   [shape]="ui.shape.circle"
-                  (click)="deleteField(i)">
+                  (click)="deleteField(field)">
       </jnt-button>
     </jnt-stack>
   </jnt-card>

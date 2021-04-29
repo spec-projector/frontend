@@ -1,7 +1,7 @@
-import { persist, persistence } from 'src/decorators/persistence';
+import { persist, Persistence, persistence } from 'src/decorators/persistence';
 
 @persistence()
-export class Graphql {
+export class Graphql extends Persistence {
 
   @persist()
   id: string;
@@ -13,6 +13,7 @@ export class Graphql {
   text: string;
 
   constructor(defs: Partial<Graphql> = {}) {
+    super();
     Object.assign(this, defs);
   }
 

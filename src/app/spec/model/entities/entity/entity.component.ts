@@ -92,7 +92,8 @@ export class EntityComponent implements AfterViewInit, OnDestroy {
       name: this.entity.name,
       title: this.entity.title,
       autoName: this.entity.autoName
-    });
+    }, {emitEvent: false});
+    this.autoNameControl.updateValueAndValidity();
   }
 
   private updateName() {

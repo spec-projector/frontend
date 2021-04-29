@@ -1,46 +1,16 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Depends } from '../../../types/depends';
+import { ModelType } from '../../enums';
 import { Module } from '../planning/module';
 import { Spec } from '../spec';
-
-@persistence()
-export class EnumOption extends Persistence {
-
-  @persist()
-  title: string;
-
-  @persist()
-  name: string;
-
-  @persist()
-  autoName: boolean = true;
-
-  enum: Enum;
-
-  linking(enum_: Enum) {
-    if (!!enum_) {
-      this.enum = enum_;
-    }
-  }
-
-  delete(): { changed: Persistence[], deleted: Persistence[] } {
-    const links = {changed: [], deleted: []};
-
-    const index = this.enum.options.findIndex(f => f.id === this.id);
-    this.enum.options.splice(index, 1);
-    links.changed.push(this.enum);
-
-    return links;
-  }
-
-  constructor(defs: Partial<EnumOption> = {}) {
-    super();
-    Object.assign(this, defs);
-  }
-}
+import { EntityField } from './entity-field';
+import { EnumOption } from './enum-option';
 
 @persistence()
 export class Enum extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.enum;
 
   @persist()
   id: string;
@@ -82,20 +52,35 @@ export class Enum extends Persistence {
     }
   }
 
+  new() {
+    super.new();
+    let sort = this.spec.model.enums.length > 0
+      ? Math.max.apply(null, this.spec.model.enums.map(e => e.sort))
+      : 0;
+    this.sort = ++sort;
+  }
+
   delete(): Depends {
     const links = {changed: [], deleted: []};
 
     if (!!this.module) {
-      const index = this.module.model.enums.findIndex(f => f.id === this.id);
-      this.module.model.enums.splice(index, 1);
+      this.module.model.removeEnum(this);
       links.changed.push(this.module.model);
     }
 
-    const index = this.spec.model.enums.findIndex(f => f.id === this.id);
-    this.spec.model.enums.splice(index, 1);
+    this.spec.model.removeEnum(this);
     links.changed.push(this.spec.model);
 
     return links;
+  }
+
+  addOption(option: EnumOption) {
+    this.options.push(option);
+  }
+
+  removeOption(option: EnumOption) {
+    const index = this.options.indexOf(option);
+    this.options.splice(index, 1);
   }
 
 }

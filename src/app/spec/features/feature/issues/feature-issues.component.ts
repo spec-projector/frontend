@@ -6,13 +6,13 @@ import { combineLatest, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
-import { Issue } from 'src/models/spec/planning/issue';
+import { Issue } from 'src/models/spec/planning/feature/issue';
 import { SpecManager } from '../../../managers';
 import { IssueState, IssueSystem } from '../../../../../enums/issue';
 import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
 import { IssueDataRequest } from '../../../../../models/issue-data';
 import { Project } from '../../../../../models/projects';
-import { Feature } from '../../../../../models/spec/planning/feature';
+import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { IssueGQL } from './issues.graphql';
 
 @Component({

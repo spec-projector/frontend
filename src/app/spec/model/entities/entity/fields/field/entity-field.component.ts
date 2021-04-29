@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { SpecManager } from 'src/app/spec/managers';
-import { EditMode } from 'src/enums/edit-mode';
-import { PopoverInstance, UI } from '@junte/ui';
-import { Entity } from 'src/models/spec/orm/entity';
-import { EntityField, FieldType } from 'src/models/spec/orm/entity-field';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from '@junte/ui';
 import { merge } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-import { Enum } from '../../../../../../../models/spec/orm/enum';
+import { SpecManager } from 'src/app/spec/managers';
+import { EditMode } from 'src/enums/edit-mode';
+import { EntityField, FieldType } from 'src/models/spec/orm/entity-field';
+import { LocalUI } from '../../../../../../../enums/local-ui';
+import { trackElement } from '../../../../../../../utils/templates';
 
 @Component({
   selector: 'spec-entity-field',
@@ -17,8 +17,10 @@ import { Enum } from '../../../../../../../models/spec/orm/enum';
 export class EntityFieldComponent {
 
   ui = UI;
+  localUi = LocalUI;
   fieldType = FieldType;
   editMode = EditMode;
+  trackElement = trackElement;
 
   private _field: EntityField;
 
@@ -51,17 +53,15 @@ export class EntityFieldComponent {
       isArray: field.isArray,
       reference: field.reference,
       enum: field.enum
-    });
+    }, {emitEvent: false});
   }
 
   get field() {
     return this._field;
   }
 
-  @Output()
-  changed = new EventEmitter<EntityField>();
-
   constructor(public manager: SpecManager,
+              private cd: ChangeDetectorRef,
               private fb: FormBuilder) {
     this.autoNameControl.valueChanges.subscribe(() =>
       this.autoNameControl.value ? this.nameControl.disable() : this.nameControl.enable());
@@ -69,13 +69,10 @@ export class EntityFieldComponent {
     merge(this.titleControl.valueChanges, this.autoNameControl.valueChanges)
       .subscribe(() => this.updateName());
 
-    this.form.valueChanges
-      .pipe(filter(() => !!this.field),
-        tap(() => Object.assign(this.field, this.form.getRawValue())))
-      .subscribe(() => {
-        this.field.linking();
-        this.changed.emit(this.field);
-      });
+    this.form.valueChanges.subscribe(() => {
+      Object.assign(this.field, this.form.getRawValue());
+      this.manager.put(this.field);
+    });
   }
 
   private updateName() {
@@ -84,14 +81,6 @@ export class EntityFieldComponent {
       title = title.replace(/\s+/g, '_');
       this.nameControl.patchValue(title);
     }
-  }
-
-  trackEntity(index: number, entity: Entity) {
-    return !!entity ? entity.id : null;
-  }
-
-  trackEnum(index: number, _enum: Enum) {
-    return !!_enum ? _enum.id : null;
   }
 
 }

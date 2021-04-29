@@ -1,11 +1,16 @@
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
+import { Depends } from '../../../types/depends';
+import { ModelType } from '../../enums';
 import { Spec } from '../spec';
-import { Feature } from './feature';
-import { Improvement } from './improvement';
+import { Feature } from './feature/feature';
+import { Improvement } from './feature/improvement';
 
 @persistence()
 export class Sprint extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.sprint;
 
   @persist()
   id: string;
@@ -39,7 +44,7 @@ export class Sprint extends Persistence {
     }
   }
 
-  delete(): { changed: Persistence[], deleted: Persistence[] } {
+  delete(): Depends {
     const links = {changed: [], deleted: []};
 
     this.features.forEach(f => f.sprint = null);

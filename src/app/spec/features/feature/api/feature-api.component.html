@@ -12,7 +12,7 @@
 <jnt-stack [align]="ui.align.stretch">
 
   <jnt-stack [align]="ui.align.stretch">
-    <jnt-message *ngIf="feature.graphql.length <= 0"
+    <jnt-message *ngIf="feature.api.graphql.length <= 0"
                  [icon]="ui.icons.question"
                  [scheme]="ui.scheme.secondary">
       <ng-container [ngSwitch]="locale">
@@ -33,8 +33,8 @@
     </jnt-stack>
   </jnt-stack>
 
-  <jnt-row *ngIf="feature.graphql.length > 0">
-    <jnt-col *ngFor="let query of feature.graphql;let i = index;"
+  <jnt-row *ngIf="feature.api.graphql.length > 0">
+    <jnt-col *ngFor="let query of feature.api.graphql;let i = index;"
              [tablet]="3">
       <jnt-card [color]="query.id === selected.query?.id ? ui.color.green : ui.color.paleNavy"
                 [width]="ui.width.fluid"

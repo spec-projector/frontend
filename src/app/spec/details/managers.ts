@@ -3,21 +3,28 @@ import { CURRENT_LANGUAGE } from '../../../consts';
 import { Language } from '../../../enums/language';
 import { Entity } from '../../../models/spec/orm/entity';
 import { EntityField, FieldType } from '../../../models/spec/orm/entity-field';
-import { Enum, EnumOption } from '../../../models/spec/orm/enum';
+import { Enum } from '../../../models/spec/orm/enum';
 import { Actor } from '../../../models/spec/planning/actor';
-import { Feature, StoryEntry, StoryEntryType } from '../../../models/spec/planning/feature';
+import { Feature } from '../../../models/spec/planning/feature/feature';
+import { StoryEntry, StoryEntryType } from '../../../models/spec/planning/feature/story';
 import { Module, ModuleModel } from '../../../models/spec/planning/module';
 import { Sprint } from '../../../models/spec/planning/sprint';
 import { Term } from '../../../models/spec/planning/term';
 import { AccentToken, TermToken, TextToken, Token } from '../../../models/spec/planning/token';
-import { Spec } from '../../../models/spec/spec';
+import { ResourceType, Spec } from '../../../models/spec/spec';
 import { Depends } from '../../../types/depends';
 import { SpecManager } from '../managers';
+import { EnumOption } from 'src/models/spec/orm/enum-option';
 
 const I18N = (() => {
   switch (CURRENT_LANGUAGE) {
     case Language.ru:
       return {
+        resourceTypes: {
+          ui: 'UI/UX',
+          backend: 'Бэкенд',
+          frontend: 'Фротенд'
+        },
         actors: {
           client: {
             title: 'Клиент',
@@ -47,6 +54,17 @@ const I18N = (() => {
                   process: 'Обработать ',
                   order: 'заказ'
                 }
+              }
+            }
+          },
+          carrier: {
+            title: 'Курьер',
+            features: {
+              deliveriesList: {
+                title: 'Список доставок'
+              },
+              deliveryOrder: {
+                title: 'Доставить заказ'
               }
             }
           }
@@ -87,6 +105,11 @@ const I18N = (() => {
     case Language.en:
     default:
       return {
+        resourceTypes: {
+          ui: 'UI/UX',
+          backend: 'Backend',
+          frontend: 'Frontend'
+        },
         actors: {
           client: {
             title: 'Client',
@@ -116,6 +139,17 @@ const I18N = (() => {
                   process: 'Process an ',
                   order: 'order'
                 }
+              }
+            }
+          },
+          carrier: {
+            title: 'Carrier',
+            features: {
+              deliveriesList: {
+                title: 'Deliveries list'
+              },
+              deliveryOrder: {
+                title: 'Delivery order'
               }
             }
           }
@@ -188,11 +222,21 @@ export class StaffManager {
   }
 
   private create() {
+    this.createResources();
     this.createTerms();
     const features = this.createFeatures();
     this.createSprints(features);
     const model = this.createModel();
     this.createModules(features, model);
+  }
+
+  private createResources() {
+    this.spec.resourceTypes = [
+      new ResourceType({title: I18N.resourceTypes.ui, hourRate: 15}),
+      new ResourceType({title: I18N.resourceTypes.backend, hourRate: 30}),
+      new ResourceType({title: I18N.resourceTypes.frontend, hourRate: 30})
+    ];
+    this.manager.put(this.spec);
   }
 
   private createTerms() {
@@ -236,12 +280,12 @@ export class StaffManager {
           new TermToken(I18N.actors.operator.features.processOrder.title.order)]
       }
     ]);
-    const [deliveriesList, deliveryOrder] = this.createActor('Carrier', [
+    const [deliveriesList, deliveryOrder] = this.createActor(I18N.actors.carrier.title, [
       {
-        title: [new TextToken('Deliveries list')]
+        title: [new TextToken(I18N.actors.carrier.features.deliveriesList.title)]
       },
       {
-        title: [new TextToken('Delivery order')]
+        title: [new TextToken(I18N.actors.carrier.features.deliveryOrder.title)]
       }
     ]);
     const [sales] = this.createActor('Manager', [
@@ -268,20 +312,27 @@ export class StaffManager {
       },
       [
         {
-          title: 'slug',
+          title: 'Slug',
           required: true
         },
         {
-          title: 'title',
+          title: 'Title',
           required: true
         }
       ]);
-    productCategory.fields.push(new EntityField({
+
+    const field = new EntityField({
       name: 'parent',
       title: 'parent',
+      autoName: false,
       type: FieldType.reference,
       reference: productCategory.id
-    }));
+    });
+    field.linking({spec: this.spec, entity: productCategory});
+    field.new();
+    this.manager.put(field);
+
+    productCategory.addField(field);
     this.manager.put(productCategory);
 
     const product = this.createEntity(
@@ -291,20 +342,20 @@ export class StaffManager {
       },
       [
         {
-          title: 'sku',
+          title: 'Sku',
           required: true
         },
         {
-          title: 'title',
+          title: 'Title',
           required: true
         },
         {
-          title: 'price',
+          title: 'Price',
           type: FieldType.number,
           required: true
         },
         {
-          title: 'category',
+          title: 'Category',
           required: true,
           type: FieldType.reference,
           reference: productCategory.id
@@ -317,32 +368,37 @@ export class StaffManager {
       },
       [
         {
-          title: 'number',
+          title: 'Number',
           required: true,
           type: FieldType.number
         },
         {
-          title: 'created',
+          title: 'Created',
           required: true,
           type: FieldType.date
         },
         {
-          title: 'client',
+          title: 'Delivery date',
+          required: true,
+          type: FieldType.date
+        },
+        {
+          title: 'Client',
           required: true,
           type: FieldType.string
         },
         {
-          title: 'phone',
+          title: 'Phone',
           type: FieldType.string,
           required: true
         },
         {
-          title: 'sum',
+          title: 'Sum',
           required: true,
           type: FieldType.number
         },
         {
-          title: 'state',
+          title: 'State',
           required: true,
           type: FieldType.enum,
           enum: orderState.id
@@ -388,15 +444,10 @@ export class StaffManager {
     this.manager.put(this.spec);
 
     return features.map(f => {
-      const feature = new Feature({
+      const feature = this.createFeature(actor, {
         title: f.title,
         story: f.story || []
       });
-      feature.linking({spec: actor.spec, actor});
-      feature.new();
-
-      this.manager.put(feature);
-
       actor.addFeature(feature);
       this.manager.put(actor);
 
@@ -404,12 +455,24 @@ export class StaffManager {
     });
   }
 
+  private createFeature(actor: Actor, {title, story}): Feature {
+    const feature = new Feature({
+      title: title,
+      story: story || []
+    });
+    feature.linking({spec: actor.spec, actor});
+    feature.new().forEach(o => this.manager.put(o));
+    this.manager.put(feature);
+
+    return feature;
+  }
+
   private createModule(title: string, features: Feature[] = [], entities: Entity[] = [], enums: Enum[] = []) {
     const module = new Module({
       title: title
     });
     module.linking(this.spec);
-    module.new();
+    module.new().forEach(o => this.manager.put(o));
 
     this.spec.modules.push(module);
     this.manager.put(this.spec);
@@ -419,9 +482,7 @@ export class StaffManager {
       module.addFeature(f);
     });
 
-    const model = new ModuleModel();
-    model.new();
-
+    const {model} = module;
     entities.forEach(e => {
       e.linking({module});
       model.addEntity(e);
@@ -437,12 +498,17 @@ export class StaffManager {
     this.manager.put(module);
   }
 
-  private createEntity({name, title}, fields: ({ title, required?, type?, reference?, enum? })[] = []): Entity {
+  private createEntity({title, name}, fields: ({ title, required?, type?, reference?, enum? })[] = []): Entity {
     const entity = new Entity({
       title,
       name,
-      autoName: false,
-      fields: fields.map(f => new EntityField({
+      autoName: false
+    });
+    entity.linking({spec: this.spec});
+    entity.new();
+
+    entity.fields = fields.map(f => {
+      const field = new EntityField({
         name: f.title,
         title: f.title,
         autoName: false,
@@ -450,10 +516,13 @@ export class StaffManager {
         type: f.type || FieldType.string,
         reference: f.reference || null,
         enum: f.enum || null
-      }))
+      });
+      field.linking({spec: this.spec, entity});
+      field.new();
+      this.manager.put(field);
+      return field;
     });
-    entity.linking({spec: this.spec});
-    entity.new();
+
     this.manager.put(entity);
 
     this.spec.model.addEntity(entity);
@@ -466,15 +535,23 @@ export class StaffManager {
     const enum_ = new Enum({
       title: name,
       name,
-      autoName: false,
-      options: options.map(o => new EnumOption({
-        title: o.title,
-        name: o.title,
-        autoName: false
-      }))
+      autoName: false
     });
     enum_.linking({spec: this.spec});
     enum_.new();
+
+    enum_.options = options.map(o => {
+      const option = new EnumOption({
+        title: o.title,
+        name: o.title,
+        autoName: false
+      });
+      option.linking(enum_);
+      option.new();
+      this.manager.put(option);
+      return option;
+    });
+
     this.manager.put(enum_);
 
     this.spec.model.addEnum(enum_);

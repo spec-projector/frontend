@@ -1,27 +1,31 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
-import { SpecManager } from 'src/app/spec/managers';
-import { Enum, EnumOption } from '../../../../../../models/spec/orm/enum';
-import { generate as shortid } from 'shortid';
+import { Enum } from '../../../../../../models/spec/orm/enum';
+import { EnumOption } from '../../../../../../models/spec/orm/enum-option';
+import { trackElement } from '../../../../../../utils/templates';
 
 @Component({
   selector: 'spec-enum-edit',
   templateUrl: './enum-edit.component.html',
-  styleUrls: ['./enum-edit.component.scss']
+  styleUrls: ['./enum-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EnumEditComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
   editMode = EditMode;
+  trackElement = trackElement;
 
-  enum: Enum;
+  @Input()
   mode = EditMode.view;
 
+  enum: Enum;
   added: string;
 
   constructor(public manager: SpecManager,
@@ -35,13 +39,14 @@ export class EnumEditComponent implements OnInit {
 
   addOption() {
     const option = new EnumOption({
-      id: shortid(),
       title: 'Option',
       name: 'option'
     });
     option.linking(this.enum);
-    this.enum.options.push(option);
+    option.new();
     this.manager.put(option);
+
+    this.enum.addOption(option);
     this.manager.put(this.enum);
 
     this.added = option.id;
@@ -60,10 +65,6 @@ export class EnumEditComponent implements OnInit {
   moveOption(event: CdkDragDrop<EnumOption[]>) {
     moveItemInArray(this.enum.options, event.previousIndex, event.currentIndex);
     this.manager.put(this.enum);
-  }
-
-  trackOption(index: number) {
-    return index;
   }
 
 }

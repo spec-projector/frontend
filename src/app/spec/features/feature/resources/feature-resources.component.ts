@@ -7,9 +7,9 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Language } from 'src/enums/language';
 import { environment } from '../../../../../environments/environment';
+import { Feature } from '../../../../../models/spec/planning/feature/feature';
+import { Resource } from '../../../../../models/spec/planning/feature/resource';
 import { SpecManager } from '../../../managers';
-import { Feature, Resource } from '../../../../../models/spec/planning/feature';
-import { ResourceType } from '../../../../../models/spec/spec';
 
 @Component({
   selector: 'spec-feature-resources',
