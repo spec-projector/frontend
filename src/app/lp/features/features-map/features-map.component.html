@@ -1,0 +1,3 @@
+<ng-container [ngSwitch]="animation">
+  <spec-lp-client *ngSwitchCase="animations.client" (done)="animation = animations.manager"></spec-lp-client>
+</ng-container>

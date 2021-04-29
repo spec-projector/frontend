@@ -18,7 +18,8 @@ import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
 import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ViewportDirective, ViewportRuleDirective } from './viewport/viewport.directive';
-import { UserStoriesComponent } from './features/user-stories/user-stories.component';
+import { UserStoriesModule } from './features/user-stories/user-stories.module';
+import { FeaturesMapModule } from './features/features-map/features-map.module';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,7 @@ import { UserStoriesComponent } from './features/user-stories/user-stories.compo
     ReviewsComponent,
     CookieAgreementComponent,
     ViewportRuleDirective,
-    ViewportDirective,
-    UserStoriesComponent
+    ViewportDirective
   ],
   imports: [
     CommonModule,
@@ -48,7 +48,9 @@ import { UserStoriesComponent } from './features/user-stories/user-stories.compo
     LinkModule,
     IconModule,
     CollapsibleModule,
-    ResponsiveModule
+    ResponsiveModule,
+    UserStoriesModule,
+    FeaturesMapModule
   ]
 })
 export class LpModule {

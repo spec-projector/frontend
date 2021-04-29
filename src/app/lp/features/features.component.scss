@@ -9,9 +9,11 @@ $jnt-ng-deep: true;
 }
 
 [data-video] {
+  display: flex;
   background-color: $jnt-white-color;
   width: 100%;
   height: 500px;
+  border-radius: $jnt-corner-normal;
 
   @include for-mobile() {
     width: 100%;

@@ -3,10 +3,16 @@ import { UI } from '@junte/ui';
 import { animateChild, transition, trigger } from '@angular/animations';
 import { fadeInKeyframes } from '../../animation';
 
+enum Animation {
+  manager = 'manager',
+  client = 'client',
+  carrier = 'carrier'
+}
+
 @Component({
-  selector: 'spec-lp-user-stories',
-  templateUrl: './user-stories.component.html',
-  styleUrls: ['./user-stories.component.scss'],
+  selector: 'spec-lp-features-map',
+  templateUrl: './features-map.component.html',
+  styleUrls: ['./features-map.component.scss'],
   animations: [
     trigger('slide', [
       transition(':enter', [
@@ -19,9 +25,11 @@ import { fadeInKeyframes } from '../../animation';
     ])
   ]
 })
-export class UserStoriesComponent implements OnInit {
+export class FeaturesMapComponent implements OnInit {
 
   ui = UI;
+  animations = Animation;
+  animation: Animation = Animation.client;
 
   constructor() {
   }
