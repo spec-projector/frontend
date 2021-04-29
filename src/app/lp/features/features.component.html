@@ -1,18 +1,13 @@
 <jnt-row *jntMinFor="ui.breakpoint.tablet"
-           [gutter]="ui.gutter.big">
+         [gutter]="ui.gutter.big">
   <jnt-col [span]="9">
     <div data-video>
       <ng-container [ngSwitch]="active">
         <div *ngSwitchCase="features.cleanWorkflow">
           <p i18n="@@label.feature_clean_workflow">Clean workflow</p>
         </div>
-        <div *ngSwitchCase="features.featuresMap">
-          <p i18n="@@label.feature_features_map">Features map</p>
-        </div>
-        <div *ngSwitchCase="features.userStories">
-          <p i18n="@@label.feature_user_stories">User stories</p>
-          <spec-lp-user-stories></spec-lp-user-stories>
-        </div>
+        <spec-lp-features-map *ngSwitchCase="features.featuresMap"></spec-lp-features-map>
+        <spec-lp-user-stories *ngSwitchCase="features.userStories"></spec-lp-user-stories>
         <div *ngSwitchCase="features.attachDesign">
           <p i18n="@@label.feature_attach_design">Attach design</p>
         </div>
@@ -137,14 +132,13 @@
     <p i18n="@@label.feature_features_map_teaser">Structure features of your app by roles and epics</p>
   </jnt-card>
   <div data-video *ngIf="active === features.featuresMap">
-    <p i18n="@@label.feature_features_map">Features map</p>
+    <spec-lp-features-map></spec-lp-features-map>
   </div>
   <jnt-card data-active (click)="setActive(features.userStories)">
     <h4 i18n="@@label.feature_user_stories">User stories</h4>
     <p i18n="@@label.feature_user_stories_teaser">Describe what see and can your user in simple steps then</p>
   </jnt-card>
   <div data-video *ngIf="active === features.userStories">
-    <p i18n="@@label.feature_user_stories">User stories</p>
     <spec-lp-user-stories></spec-lp-user-stories>
   </div>
   <jnt-card data-active (click)="setActive(features.attachDesign)">

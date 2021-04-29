@@ -1,0 +1,59 @@
+@import '../../../../../variables';
+@import "../../common";
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+
+[data-frame] {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  bottom: 35px;
+  left: 210px;
+  overflow: hidden;
+}
+
+img {
+  position: absolute;
+
+  &[data-rock] {
+    bottom: 0;
+    left: 0;
+  }
+
+  &[data-client] {
+    bottom: 0;
+    left: -100%;
+  }
+
+  &[data-flowers] {
+    bottom: 20px;
+    right: 15px;
+    transform-origin: bottom;
+  }
+
+  &[data-think] {
+    top: 80px;
+    right: 70px;
+    transform-origin: bottom;
+  }
+
+  &[data-bulb] {
+    top: 10px;
+    left: 20px;
+  }
+}
+
+%data-feature {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 $jnt-gutter-normal;
+  color: $jnt-white-color;
+  font-weight: $jnt-font-weight-semi-bold;
+  position: absolute;
+}
+
+[data-feature-1] {
+  @extend %data-feature;
+
+}
