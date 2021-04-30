@@ -2,7 +2,8 @@
                      [title]="feature.title | joinTokens"
                      [teaser]="feature.actor.name"></jnt-app-page-header>
 <jnt-stack [gutter]="ui.gutter.big" [align]="ui.align.stretch">
-  <jnt-block data-workflow title="Workflow">
+  <jnt-block data-workflow title="Workflow"
+             i18n-title="@@label.workflow">
     <ng-container [formGroup]="form">
       <ng-container formGroupName="workflow">
         <jnt-stack [orientation]="ui.orientation.horizontal"
