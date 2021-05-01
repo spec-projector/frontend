@@ -1,0 +1,28 @@
+@import 'src/variables';
+
+[data-frame] {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  bottom: 35px;
+  left: 210px;
+  overflow: hidden;
+}
+
+%data-feature {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 $jnt-gutter-normal;
+  background-color: $jnt-primary-light-color;
+  color: $jnt-white-color;
+  font-weight: $jnt-font-weight-semi-bold;
+  border-radius: 16px;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+[data-feature-1], [data-feature-2], [data-feature-3], [data-feature-4] {
+  @extend %data-feature;
+}

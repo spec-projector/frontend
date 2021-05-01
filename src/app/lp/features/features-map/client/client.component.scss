@@ -1,15 +1,6 @@
-@import '../../../../../variables';
+@import 'src/variables';
 @import "../../common";
-@import '~@junte/ui/lib/assets/styles/jnt-variables';
-
-[data-frame] {
-  position: absolute;
-  width: 310px;
-  height: 310px;
-  bottom: 35px;
-  left: 210px;
-  overflow: hidden;
-}
+@import "../animation";
 
 img {
   position: absolute;
@@ -42,18 +33,22 @@ img {
   }
 }
 
-%data-feature {
-  width: 200px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding: 0 $jnt-gutter-normal;
-  color: $jnt-white-color;
-  font-weight: $jnt-font-weight-semi-bold;
-  position: absolute;
+[data-feature-1] {
+  top: 130px;
+  right: -200px;
 }
 
-[data-feature-1] {
-  @extend %data-feature;
+[data-feature-2] {
+  top: 185px;
+  right: -240px;
+}
 
+[data-feature-3] {
+  top: 240px;
+  right: -280px;
+}
+
+[data-feature-4] {
+  top: 295px;
+  right: -320px;
 }
