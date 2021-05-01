@@ -10,6 +10,7 @@ import { fadeInKeyframes, fadeMoveKeyframes, fadeOutKeyframes } from '../../../a
   animations: [
     trigger('animate', [
       transition(':enter', [
+        fadeInKeyframes,
         group([
           query('@fade-move', animateChild()),
           sequence([
@@ -20,7 +21,7 @@ import { fadeInKeyframes, fadeMoveKeyframes, fadeOutKeyframes } from '../../../a
             ])
           ])
         ])
-      ]),
+      ], {params: {duration: '1s'}}),
       transition(':leave', [
         fadeOutKeyframes
       ], {params: {duration: '.5s'}})

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UI } from '@junte/ui';
 import { animateChild, transition, trigger } from '@angular/animations';
-import { fadeInKeyframes } from '../../animation';
 
 enum Animation {
   manager = 'manager',
@@ -15,13 +14,7 @@ enum Animation {
   styleUrls: ['./features-map.component.scss'],
   animations: [
     trigger('slide', [
-      transition(':enter', [
-        fadeInKeyframes,
-        animateChild()
-      ], {params: {duration: '1s'}}),
-      transition(':leave', [
-        animateChild()
-      ])
+      transition(':enter, :leave', [animateChild()])
     ])
   ]
 })

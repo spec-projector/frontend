@@ -1,3 +1,5 @@
 <ng-container [ngSwitch]="animation">
-  <spec-lp-client *ngSwitchCase="animations.client" (done)="animation = animations.manager"></spec-lp-client>
+  <spec-lp-client [@slide] *ngSwitchCase="animations.client" (done)="animation = animations.manager"></spec-lp-client>
+  <spec-lp-manager [@slide] *ngSwitchCase="animations.manager" (done)="animation = animations.carrier"></spec-lp-manager>
+  <spec-lp-currier [@slide] *ngSwitchCase="animations.carrier"></spec-lp-currier>
 </ng-container>

@@ -1,4 +1,4 @@
-@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import 'src/variables';
 @import '~@junte/ui/lib/assets/styles/layout/responsive';
 
 :host {
@@ -9,22 +9,6 @@
   bottom: 0;
   right: 0;
   overflow: hidden;
-
-  @media screen and (min-width: 1170px) {
-    zoom: 1;
-  }
-
-  @media screen and (min-width: $jnt-desktop-breakpoint) and (max-width: 1170px) {
-    zoom: .8;
-  }
-
-  @include max-for-tablet() {
-    zoom: .6;
-  }
-
-  @include for-mobile() {
-    zoom: .5;
-  }
 }
 
 h3 {
@@ -34,6 +18,7 @@ h3 {
   white-space: nowrap;
   transform: translate(-50%, -50%);
   color: $jnt-primary-color;
+
   span {
     font-weight: $jnt-font-weight-bold;
   }
