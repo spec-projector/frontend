@@ -32,12 +32,11 @@ export class EnumComponent implements AfterViewInit, OnDestroy {
     form?: Subscription
   } = {};
 
-  nameControl = this.fb.control(null);
-  autoNameControl = this.fb.control(false);
-
   @Input()
   mode = EditMode.view;
 
+  nameControl = this.fb.control({value: null, disabled: true});
+  autoNameControl = this.fb.control(false);
   form = this.fb.group({
     title: [null],
     name: this.nameControl,

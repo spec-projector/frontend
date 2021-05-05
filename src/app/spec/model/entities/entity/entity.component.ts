@@ -35,7 +35,7 @@ export class EntityComponent implements AfterViewInit, OnDestroy {
   @Input()
   mode = EditMode.view;
 
-  nameControl = this.fb.control(null);
+  nameControl = this.fb.control({value: null, disabled: true});
   autoNameControl = this.fb.control(false);
   form = this.fb.group({
     title: [null],

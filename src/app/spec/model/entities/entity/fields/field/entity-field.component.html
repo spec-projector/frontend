@@ -120,12 +120,14 @@
       <ng-template #singleTemplate>
         <ng-container [ngSwitch]="field.type">
           <ng-container *ngSwitchCase="fieldType.reference">
-            <jnt-link [title]="field.links.reference?.title"
+            <jnt-link *ngIf="!!field.links.reference"
+                      [title]="field.links.reference.title"
                       [icon]="localUi.icons.entities"
                       [source]="['../..', field.links.reference.id]"></jnt-link>
           </ng-container>
           <ng-container *ngSwitchCase="fieldType.enum">
-            <jnt-link [title]="field.links.enum?.title"
+            <jnt-link *ngIf="!!field.links.enum"
+                      [title]="field.links.enum.title"
                       [icon]="localUi.icons.enums"
                       [source]="['../../../enums/', field.links.enum.id]"></jnt-link>
           </ng-container>

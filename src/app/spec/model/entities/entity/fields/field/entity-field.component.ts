@@ -1,13 +1,13 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { UI } from '@junte/ui';
-import { merge } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
-import { SpecManager } from 'src/app/spec/managers';
-import { EditMode } from 'src/enums/edit-mode';
-import { EntityField, FieldType } from 'src/models/spec/orm/entity-field';
-import { LocalUI } from '../../../../../../../enums/local-ui';
-import { trackElement } from '../../../../../../../utils/templates';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {UI} from '@junte/ui';
+import {merge} from 'rxjs';
+import {filter, tap} from 'rxjs/operators';
+import {SpecManager} from 'src/app/spec/managers';
+import {EditMode} from 'src/enums/edit-mode';
+import {EntityField, FieldType} from 'src/models/spec/orm/entity-field';
+import {LocalUI} from '../../../../../../../enums/local-ui';
+import {trackElement} from '../../../../../../../utils/templates';
 
 @Component({
   selector: 'spec-entity-field',
@@ -28,7 +28,7 @@ export class EntityFieldComponent {
   mode = EditMode.view;
 
   titleControl = this.fb.control(null);
-  nameControl = this.fb.control(null);
+  nameControl = this.fb.control({value: null, disabled: true});
   autoNameControl = this.fb.control(false);
   typeControlControl = this.fb.control(null);
   form = this.fb.group({
@@ -72,6 +72,7 @@ export class EntityFieldComponent {
 
     this.form.valueChanges.subscribe(() => {
       Object.assign(this.field, this.form.getRawValue());
+      this.field.linking();
       this.manager.put(this.field);
     });
   }

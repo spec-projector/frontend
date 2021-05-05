@@ -22,11 +22,11 @@ export class EnumOptionComponent {
   private _option: EnumOption;
 
   titleControl = this.fb.control(null);
-  nameControl = this.fb.control(null);
+  nameControl = this.fb.control({value: null, disabled: true});
   autoNameControl = this.fb.control(false);
   form = this.fb.group({
-    name: this.nameControl,
     title: this.titleControl,
+    name: this.nameControl,
     autoName: this.autoNameControl
   });
 
