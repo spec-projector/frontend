@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from '@junte/ui';
+import { ActivatedRoute } from '@angular/router';
+import { FormComponent, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { Feature } from 'src/models/spec/planning/feature/feature';
 import { Graphql } from 'src/models/spec/planning/feature/graphql';
@@ -20,60 +20,44 @@ export class FeatureEditGraphqlComponent implements OnInit {
 
   feature: Feature;
 
-  textControl = this.fb.control(null, [Validators.required]);
   form = this.fb.group({
     title: [null, [Validators.required]],
-    text: this.textControl
+    text: [null, [Validators.required]]
   });
 
   set query(query: Graphql) {
     this._query = query;
-    this.form.patchValue({
+    this.form.setValue({
       title: query.title,
       text: query.text
-    });
+    }, {emitEvent: false});
   }
 
   get query() {
     return this._query;
   }
 
+  @ViewChild('formRef')
+  formRef: FormComponent;
+
   constructor(public manager: SpecManager,
               private fb: FormBuilder,
               private logger: NGXLogger,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({feature, query}) => [this.feature,
-      this.query] = [feature, query]);
+    this.route.data.subscribe(({feature, query}) =>
+      [this.feature, this.query] = [feature, query]);
+
+    this.form.valueChanges.subscribe(() => this.formRef.submit());
   }
 
   save() {
-    this.logger.log('save graphql for feature [', this.feature.title.toString(), ']');
     const {title, text} = this.form.getRawValue();
     Object.assign(this.query, {title, text});
     this.manager.put(this.query);
     this.feature.version++;
-
-    this.router.navigate(['../..'], {relativeTo: this.route})
-      .then(() => null);
-  }
-
-  delete() {
-    const {graphql} = this.feature.api;
-    const index = graphql.findIndex(g => g.id === this.query.id);
-    if (index === -1) {
-      alert('Query not found');
-      return;
-    }
-    graphql.splice(index, 1);
-    this.manager.put(this.feature.api);
-    this.feature.version++;
-
-    this.router.navigate(['../..'], {relativeTo: this.route})
-      .then(() => null);
   }
 
 }

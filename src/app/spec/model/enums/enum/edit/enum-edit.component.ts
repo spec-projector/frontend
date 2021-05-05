@@ -39,8 +39,8 @@ export class EnumEditComponent implements OnInit {
 
   addOption() {
     const option = new EnumOption({
-      title: 'Option',
-      name: 'option'
+      title: $localize`:@@label.new_enum_option_title:Male`,
+      name: $localize`:@@label.new_enum_option_name:male`
     });
     option.linking(this.enum);
     option.new();

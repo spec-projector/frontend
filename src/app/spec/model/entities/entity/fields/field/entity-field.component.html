@@ -52,9 +52,11 @@
                            [key]="fieldType.date"></jnt-select-option>
         <jnt-select-option label="reference"
                            i18n-label="@@label.reference"
+                           [icon]="localUi.icons.entities"
                            [key]="fieldType.reference"></jnt-select-option>
         <jnt-select-option label="enum"
                            i18n-label="@@label.enum"
+                           [icon]="localUi.icons.enums"
                            [key]="fieldType.enum"></jnt-select-option>
       </jnt-select>
       <ng-container [ngSwitch]="field.type">

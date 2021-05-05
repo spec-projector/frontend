@@ -8,7 +8,7 @@ import 'reflect-metadata';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { AppConfig } from 'src/app/app-config';
-import { LoginGQL, SocialLoginCompleteGQL, SocialLoginGQL } from 'src/app/login/login.graphql';
+import { LoginGQL, SocialLoginCompleteGQL, SocialLoginGQL } from './graphql';
 import { AuthToken } from 'src/models/auth-token';
 import { SocialLoginSystem } from '../../enums/signin';
 import { BackendError } from '../../types/gql-errors';

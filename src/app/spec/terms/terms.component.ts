@@ -43,8 +43,8 @@ export class TermsComponent implements OnInit {
 
   addTerm() {
     const term = new Term({
-      name: $localize`:@@label.new_term_example:Some term`,
-      description: [new TextToken('Some description')]
+      title: $localize`:@@label.new_term_title:Products cart`,
+      description: [new TextToken($localize`:@@message.new_term_description:Place in user interface where displayed products for client purchasing.`)]
     });
     term.linking(this.spec);
     term.new();

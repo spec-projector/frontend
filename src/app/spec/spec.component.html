@@ -1,17 +1,18 @@
 <jnt-app-aside #aside>
 
-  <ng-template #asideContentTemplate let-collapsed="collapsed">
+  <ng-template #asideFooterTemplate let-collapsed="collapsed">
     <jnt-stack data-edit [orientation]="ui.orientation.horizontal"
-               [justify]="ui.justify.center">
+               [align]="ui.align.center"
+               [justify]="ui.justify.between">
       <jnt-button [scheme]="ui.scheme.secondary"
                   [icon]="ui.icons.settings"
                   [shape]="ui.shape.circle"
                   (click)="editProject()"></jnt-button>
-      <form *ngIf="!collapsed" [formGroup]="form">
+      <ng-container *ngIf="!collapsed" [formGroup]="form">
         <jnt-switch formControlName="mode"
                     [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
         </jnt-switch>
-      </form>
+      </ng-container>
     </jnt-stack>
   </ng-template>
 

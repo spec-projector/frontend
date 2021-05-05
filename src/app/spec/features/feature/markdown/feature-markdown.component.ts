@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { ClipboardService } from 'ngx-clipboard';
 import { Language } from 'src/enums/language';

@@ -67,7 +67,15 @@ export class FeatureEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({feature}) => this.feature = feature);
+    this.route.data.subscribe(({feature}) => {
+      this.feature = feature;
+      // TODO: remove for soon
+      if (!feature.api.id) {
+        feature.api.new();
+        this.manager.put(feature.api);
+        this.manager.put(feature);
+      }
+    });
     this.manager.mode$.subscribe(mode => mode === EditMode.edit ? this.form.enable() : this.form.disable());
 
     this.form.valueChanges.subscribe(({workflow}) => {

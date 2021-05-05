@@ -39,6 +39,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
 import { GraphqlPlaygroundPipe } from './features/feature/api/pipes';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
+import { AddFigmaKeyComponent } from './features/feature/frames/add-figma-key/add-figma-key.component';
 import { EstimatedTimePipe, SpentTimePipe } from './features/feature/pipes';
 import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
 import { WorkflowStepComponent } from './features/feature/workflow/step/step.component';
@@ -85,6 +86,7 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     FeatureStoryEntryComponent,
     FeatureFramesComponent,
     FeatureAddFrameComponent,
+    AddFigmaKeyComponent,
     FeatureResourcesComponent,
     FeatureApiComponent,
     FeatureEditGraphqlComponent,

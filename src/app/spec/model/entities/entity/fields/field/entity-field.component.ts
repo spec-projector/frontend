@@ -24,6 +24,7 @@ export class EntityFieldComponent {
 
   private _field: EntityField;
 
+  @Input()
   mode = EditMode.view;
 
   titleControl = this.fb.control(null);

@@ -580,7 +580,7 @@ export class StaffManager {
 
   private createTerm(name: string, description: Token[]) {
     const term = new Term({
-      name,
+      title: name,
       description
     });
     term.new();

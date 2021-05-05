@@ -13,7 +13,7 @@ export class Term extends Persistence {
   modelType: string = ModelType.term;
 
   @persist()
-  name: string;
+  title: string;
 
   @persist({serializer: new ArraySerializer(new TokenSerializer())})
   description: Token[];

@@ -1,14 +1,13 @@
-@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
 
 :host {
   display: block;
 }
 
 form {
-  padding: $jnt-gutter-normal;
-  border-bottom: 1px solid $jnt-secondary-color;
 }
 
 [data-edit] {
+  padding: $jnt-gutter-normal;
   margin-top: $jnt-gutter-normal;
 }

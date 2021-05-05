@@ -30,6 +30,7 @@ export class EnumOptionComponent {
     autoName: this.autoNameControl
   });
 
+  @Input()
   mode = EditMode.view;
 
   @Input()

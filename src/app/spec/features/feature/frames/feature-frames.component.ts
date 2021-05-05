@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
@@ -7,12 +7,13 @@ import { finalize } from 'rxjs/operators';
 import { serialize } from 'serialize-ts';
 import { Language } from 'src/enums/language';
 import { Frame } from 'src/models/spec/planning/feature/frame';
+import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { environment } from '../../../../../environments/environment';
-import { SpecManager } from '../../../managers';
 import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
 import { Project } from '../../../../../models/projects';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { catchGQLErrors } from '../../../../../utils/gql-errors';
+import { SpecManager } from '../../../managers';
 import { UploadFigmaAssetGQL } from './frames.graphql';
 
 @Component({
@@ -25,6 +26,7 @@ export class FeatureFramesComponent implements OnInit {
   ui = UI;
   language = Language;
   env = environment;
+  consts = {language: CURRENT_LANGUAGE};
 
   private _feature: Feature;
 
@@ -41,8 +43,7 @@ export class FeatureFramesComponent implements OnInit {
     return this._feature;
   }
 
-  constructor(@Inject(LOCALE_ID) public locale: string,
-              private uploadFigmaAssetGQL: UploadFigmaAssetGQL,
+  constructor(private uploadFigmaAssetGQL: UploadFigmaAssetGQL,
               public manager: SpecManager,
               private popover: PopoverService,
               private route: ActivatedRoute,

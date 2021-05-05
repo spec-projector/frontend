@@ -1,10 +1,12 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PopoverInstance, UI } from '@junte/ui';
 import { filter } from 'rxjs/operators';
 import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 import { Graphql } from 'src/models/spec/planning/feature/graphql';
+import { CURRENT_LANGUAGE } from '../../../../../consts';
+import { EditMode } from '../../../../../enums/edit-mode';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { SpecManager } from '../../../managers';
 
@@ -26,6 +28,8 @@ export class FeatureApiComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  editMode = EditMode;
+  consts = {language: CURRENT_LANGUAGE};
 
   feature: Feature;
   selected: { query: Graphql } = {query: null};
@@ -33,8 +37,7 @@ export class FeatureApiComponent implements OnInit {
 
   constructor(public manager: SpecManager,
               public route: ActivatedRoute,
-              public router: Router,
-              @Inject(LOCALE_ID) public locale: string) {
+              public router: Router) {
   }
 
   ngOnInit() {
@@ -61,13 +64,27 @@ export class FeatureApiComponent implements OnInit {
         text: GRAPHQL_TEXT
       });
     graphql.new();
+    this.manager.put(graphql);
+
     api.addGraphql(graphql);
     this.manager.put(api);
 
     this.feature.version++;
 
-    this.router.navigate(['graphql', graphql.id], {relativeTo: this.route})
-      .then(() => null);
+    this.router.navigate(['graphql', graphql.id],
+      {relativeTo: this.route}).then(() => null);
+  }
+
+  deleteGraphQL(query: Graphql) {
+    const {api} = this.feature;
+    api.removeGraphql(query);
+    this.feature.version++;
+    this.manager.put(api);
+
+    if (this.selected.query === query) {
+      this.router.navigate(['./'], {relativeTo: this.route})
+        .then(() => null);
+    }
   }
 
 }

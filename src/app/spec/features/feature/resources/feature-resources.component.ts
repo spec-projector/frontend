@@ -1,4 +1,4 @@
-import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverService, UI } from '@junte/ui';
@@ -6,6 +6,7 @@ import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Language } from 'src/enums/language';
+import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { environment } from '../../../../../environments/environment';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { Resource } from '../../../../../models/spec/planning/feature/resource';
@@ -14,34 +15,33 @@ import { SpecManager } from '../../../managers';
 @Component({
   selector: 'spec-feature-resources',
   templateUrl: './feature-resources.component.html',
-  styleUrls: ['./feature-resources.component.scss']
+  styleUrls: ['./feature-resources.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureResourcesComponent implements OnInit {
 
   ui = UI;
   language = Language;
+  consts = {language: CURRENT_LANGUAGE};
 
   private _feature: Feature;
   private subscriptions: { form: Subscription } = {form: null};
 
-  resources = this.fb.array([]);
+  resourcesArray = this.fb.array([]);
   form = this.fb.group({
-    resources: this.resources
+    resources: this.resourcesArray
   });
 
   @Input()
   set feature(feature: Feature) {
-    if (!!this.subscriptions.form) {
-      this.subscriptions.form.unsubscribe();
-    }
-
     this._feature = feature;
     feature.resources.forEach(({resource, hours}) => {
       const g = this.resourcesGroup();
       g.patchValue({resource, hours});
-      this.resources.push(g);
+      this.resourcesArray.push(g);
     });
 
+    this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
       .pipe(debounceTime(environment.uiDebounceTime))
       .subscribe(({resources}) => {
@@ -58,9 +58,9 @@ export class FeatureResourcesComponent implements OnInit {
   constructor(public manager: SpecManager,
               private fb: FormBuilder,
               private popover: PopoverService,
+              private cd: ChangeDetectorRef,
               private route: ActivatedRoute,
-              private logger: NGXLogger,
-              @Inject(LOCALE_ID) public locale: string) {
+              private logger: NGXLogger) {
 
   }
 
@@ -79,16 +79,20 @@ export class FeatureResourcesComponent implements OnInit {
     for (const r of this.feature.spec.resourceTypes) {
       const group = this.resourcesGroup();
       group.patchValue({resource: r.title});
-      this.resources.push(group);
+      this.resourcesArray.push(group);
     }
+
+    this.cd.detectChanges();
   }
 
   add() {
-    this.resources.push(this.resourcesGroup());
+    this.resourcesArray.push(this.resourcesGroup());
+    this.cd.detectChanges();
   }
 
   delete(index: number) {
-    this.resources.removeAt(index);
+    this.resourcesArray.removeAt(index);
+    this.cd.detectChanges();
   }
 
   save() {

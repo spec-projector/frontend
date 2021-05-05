@@ -6,7 +6,7 @@ import { Spec } from 'src/models/spec/spec';
 export class TermDescriptionPipe implements PipeTransform {
 
     transform(name: string, spec: Spec): Token[] {
-        const term = spec.terms.find(t => t.name === name);
+        const term = spec.terms.find(t => t.title === name);
         return !!term ? term.description : null;
     }
 }

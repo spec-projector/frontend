@@ -11,6 +11,11 @@ export class FeatureApi extends Persistence {
     this.graphql.push(graphql);
   }
 
+  removeGraphql(graphql: Graphql) {
+    const index = this.graphql.indexOf(graphql);
+    this.graphql.splice(index, 1);
+  }
+
   constructor(defs: Partial<FeatureApi> = {}) {
     super();
     Object.assign(this, defs);

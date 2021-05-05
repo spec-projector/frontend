@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { LocalUI } from '../../../../../../enums/local-ui';
-import { UI } from '@junte/ui';
 import { WorkflowStepState } from '../../../../../../models/spec/planning/feature/workflow';
 
 @Component({

@@ -2,7 +2,7 @@
   <jnt-stack [align]="ui.align.stretch">
     <jnt-message [icon]="ui.icons.question"
                  [scheme]="ui.scheme.secondary">
-      <jnt-stack [ngSwitch]="locale">
+      <jnt-stack [ngSwitch]="consts.language">
         <ng-container *ngSwitchDefault>
           <p>Feature is a <b>function</b> of your application which is described by <b>User Story</b>.</p>
           <p>Story is what an <b>actor</b> expects to see and how interact.

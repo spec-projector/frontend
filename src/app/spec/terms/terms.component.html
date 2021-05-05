@@ -38,7 +38,7 @@
       </button>
     </ng-template>
     <spec-term [term]="term"
-               [mode]="added === term.id ? {name: editMode.edit} : {name: editMode.view}"></spec-term>
+               [mode]="added === term.id ? {title: editMode.edit} : {title: editMode.view}"></spec-term>
 
     <ng-template #cardActionsTemplate *ngIf="(manager.mode$ | async) === editMode.edit" let-hide="hide">
       <jnt-menu [orientation]="ui.orientation.vertical">

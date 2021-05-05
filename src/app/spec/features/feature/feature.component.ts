@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
-import { SpecManager } from 'src/app/spec/managers';
 import { Feature } from 'src/models/spec/planning/feature/feature';
 import { Token } from 'src/models/spec/planning/token';
 
@@ -28,9 +28,8 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
   @Input()
   mode = EditMode.view;
 
-  title = new FormControl();
   form = this.fb.group({
-    title: this.title
+    title: [null]
   });
 
   @Input()

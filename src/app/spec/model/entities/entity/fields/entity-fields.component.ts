@@ -36,8 +36,8 @@ export class EntityFieldsComponent implements OnInit {
 
   addField() {
     const field = new EntityField({
-      title: 'Field',
-      name: 'field'
+      title: $localize`:@@label.new_entity_field_title:First Name`,
+      name: $localize`:@@label.new_entity_field_name:first_name`
     });
     field.linking({spec: this.entity.spec, entity: this.entity});
     field.new();

@@ -5,7 +5,7 @@ import { UI_DELAY } from '../../consts';
 import { MeUpdated, SignalsService } from '../../signals/signals.service';
 import { BackendError } from '../../types/gql-errors';
 import { UploadMeAvatarInput } from './models';
-import { UpdateMeGQL, UploadMeAvatarGQL } from './change-personal-data.graphql';
+import { UpdateMeGQL, UploadMeAvatarGQL } from './graphql';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { delay, finalize, map } from 'rxjs/operators';
 import { UpdateMeInput, User } from '../../models/user';

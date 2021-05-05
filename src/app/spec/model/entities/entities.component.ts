@@ -1,17 +1,16 @@
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ModalService, UI} from '@junte/ui';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {generate as shortid} from 'shortid';
-import {EditMode} from 'src/enums/edit-mode';
-import {Language} from 'src/enums/language';
-import {SpecManager} from 'src/app/spec/managers';
-import {Spec} from 'src/models/spec/spec';
-import {CURRENT_LANGUAGE} from '../../../../consts';
-import {LocalUI} from '../../../../enums/local-ui';
-import {Entity} from '../../../../models/spec/orm/entity';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalService, UI } from '@junte/ui';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { SpecManager } from 'src/app/spec/managers';
+import { EditMode } from 'src/enums/edit-mode';
+import { Language } from 'src/enums/language';
+import { Spec } from 'src/models/spec/spec';
+import { CURRENT_LANGUAGE } from '../../../../consts';
+import { LocalUI } from '../../../../enums/local-ui';
+import { Entity } from '../../../../models/spec/orm/entity';
 import { trackElement } from '../../../../utils/templates';
 
 @Component({
@@ -52,21 +51,16 @@ export class EntitiesComponent implements OnInit, OnDestroy {
   }
 
   addEntity() {
-    let sort = this.spec.model.entities.length > 0
-      ? Math.max.apply(null, this.spec.model.entities.map(e => e.sort))
-      : 0;
     const entity = new Entity({
-      id: shortid(),
-      title: $localize`:@@label.new_entity_title_example:Entity`,
-      name: $localize`:@@label.new_entity_name_example:entity`,
-      sort: ++sort
+      title: $localize`:@@label.new_entity_title:Client`,
+      name: $localize`:@@label.new_entity_name:client`
     });
-    this.spec.model.entities.push(entity);
     entity.linking({spec: this.spec});
-
+    entity.new();
     this.manager.put(entity);
+
+    this.spec.model.addEntity(entity);
     this.manager.put(this.spec.model);
-    this.manager.put(this.spec);
 
     this.added = entity.id;
     this.version++;

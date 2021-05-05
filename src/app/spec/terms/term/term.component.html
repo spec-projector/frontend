@@ -1,12 +1,12 @@
 <jnt-row [formGroup]="form">
   <jnt-col [tablet]="4">
-    <div data-name (mouseenter)="manager.mode === editMode.edit ? mode.name = editMode.edit : null"
-         (mouseleave)="mode.name = editMode.view">
+    <div data-name (mouseenter)="manager.mode === editMode.edit ? mode.title = editMode.edit : null"
+         (mouseleave)="mode.title = editMode.view">
       <ng-template #viewNameTemplate>
-        <span>{{term.name}}</span>
+        <span>{{term.title}}</span>
       </ng-template>
-      <ng-container *ngIf="mode.name == editMode.edit; else viewNameTemplate">
-        <input #nameRef formControlName="name">
+      <ng-container *ngIf="mode.title == editMode.edit; else viewNameTemplate">
+        <input #titleRef formControlName="title">
       </ng-container>
     </div>
   </jnt-col>

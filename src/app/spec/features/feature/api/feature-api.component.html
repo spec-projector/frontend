@@ -11,29 +11,20 @@
 
 <jnt-stack [align]="ui.align.stretch">
 
-  <jnt-stack [align]="ui.align.stretch">
-    <jnt-message *ngIf="feature.api.graphql.length <= 0"
-                 [icon]="ui.icons.question"
-                 [scheme]="ui.scheme.secondary">
-      <ng-container [ngSwitch]="locale">
-        <ng-container *ngSwitchDefault>
-          API is a contracts between front-end & back-end side.
-        </ng-container>
-        <ng-container *ngSwitchCase="language.ru">
-          API это договоренности между front-end и back-end разработчиками.
-        </ng-container>
+  <jnt-message *ngIf="feature.api.graphql.length <= 0"
+               [icon]="ui.icons.question"
+               [scheme]="ui.scheme.secondary">
+    <ng-container [ngSwitch]="consts.language">
+      <ng-container *ngSwitchDefault>
+        API is a contracts between front-end & back-end side.
       </ng-container>
-    </jnt-message>
+      <ng-container *ngSwitchCase="language.ru">
+        API это договоренности между front-end и back-end разработчиками.
+      </ng-container>
+    </ng-container>
+  </jnt-message>
 
-    <jnt-stack [orientation]="ui.orientation.horizontal">
-      <jnt-button [icon]="ui.icons.add"
-                  [shape]="ui.shape.circle"
-                  [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
-                  (attached)="instance.popover = $event"></jnt-button>
-    </jnt-stack>
-  </jnt-stack>
-
-  <jnt-row *ngIf="feature.api.graphql.length > 0">
+  <jnt-row>
     <jnt-col *ngFor="let query of feature.api.graphql;let i = index;"
              [tablet]="3">
       <jnt-card [color]="query.id === selected.query?.id ? ui.color.green : ui.color.paleNavy"
@@ -45,6 +36,26 @@
           <jnt-icon [icon]="localUi.icons.graphQl"></jnt-icon>
           <div>{{query.title}}</div>
         </jnt-stack>
+
+        <ng-template #cardActionsTemplate *ngIf="(manager.mode$ | async) === editMode.edit" let-hide="hide">
+          <jnt-menu [orientation]="ui.orientation.vertical">
+            <jnt-menu-item [icon]="ui.icons.delete"
+                           title="Delete"
+                           i18n-title="@@action.delete"
+                           (click)="hide();deleteGraphQL(query)">
+            </jnt-menu-item>
+          </jnt-menu>
+        </ng-template>
+      </jnt-card>
+    </jnt-col>
+    <jnt-col [tablet]="3">
+      <jnt-card [width]="ui.width.fluid">
+        <jnt-button text="Add API"
+                    i18n-text="@@action.add_api"
+                    [icon]="ui.icons.add"
+                    [outline]="ui.outline.transparent"
+                    [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
+                    (attached)="instance.popover = $event"></jnt-button>
       </jnt-card>
     </jnt-col>
   </jnt-row>

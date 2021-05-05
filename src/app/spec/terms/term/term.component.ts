@@ -8,7 +8,7 @@ import { Term } from 'src/models/spec/planning/term';
 import { Token } from 'src/models/spec/planning/token';
 
 class TermEditMode {
-  name: EditMode;
+  title: EditMode;
   description: EditMode;
 }
 
@@ -28,7 +28,7 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     form?: Subscription
   } = {};
   private _mode: TermEditMode = {
-    name: EditMode.view,
+    title: EditMode.view,
     description: EditMode.view
   };
 
@@ -42,7 +42,7 @@ export class TermComponent implements AfterViewInit, OnDestroy {
   }
 
   form = this.fb.group({
-    name: [null],
+    title: [null],
     description: [null]
   });
 
@@ -57,8 +57,8 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
       .subscribe(() => {
-        const {name, description} = this.form.getRawValue();
-        [this.term.name, this.term.description] = [name, Token.parse(description.trim())];
+        const {title, description} = this.form.getRawValue();
+        [this.term.title, this.term.description] = [name, Token.parse(description.trim())];
         this.manager.put(this.term);
 
         this.cd.detectChanges();
@@ -69,8 +69,8 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     return this._term;
   }
 
-  @ViewChild('nameRef')
-  nameRef: ElementRef<HTMLInputElement>;
+  @ViewChild('titleRef')
+  titleRef: ElementRef<HTMLInputElement>;
 
   constructor(private fb: FormBuilder,
               private cd: ChangeDetectorRef,
@@ -78,8 +78,8 @@ export class TermComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    if (!!this.nameRef) {
-      this.nameRef.nativeElement.focus();
+    if (!!this.titleRef) {
+      this.titleRef.nativeElement.focus();
     }
   }
 
@@ -89,9 +89,9 @@ export class TermComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateForm() {
-    const {name, description} = this.term;
+    const {title, description} = this.term;
     this.form.patchValue({
-      name,
+      title: title,
       description: description.map(t => t.toString()).join(' ')
     });
   }

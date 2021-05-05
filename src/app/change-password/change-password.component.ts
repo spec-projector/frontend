@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { UI_DELAY } from '../../consts';
 import { BackendError } from '../../types/gql-errors';
-import { ChangePasswordGQL } from './change-password.graphql';
+import { ChangePasswordGQL } from './graphql';
 import { ChangePasswordInput } from './models';
 import { serialize } from 'serialize-ts';
 import { delay, finalize } from 'rxjs/operators';

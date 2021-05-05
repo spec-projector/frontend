@@ -31,7 +31,7 @@ As a 👦 **{{feature.actor?.name}}** I want: [<ng-container *ngTemplateOutlet="
 <ng-container *ngFor="let issue of feature.issues">* **{{issue.resource}}**: [{{issue.title}}]({{issue.url}})
 </ng-container></ng-container>
 <ng-container *ngIf="(feature | featureTerms)?.length">**❓Terms**
-<ng-container *ngFor="let term of (feature | featureTerms)">* **{{term.name}}** &mdash; <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}"></ng-container>
+<ng-container *ngFor="let term of (feature | featureTerms)">* **{{term.title}}** &mdash; <ng-container *ngTemplateOutlet="tokensTemplate; context: {tokens: term.description}"></ng-container>
 </ng-container></ng-container></pre>
 
 <pre #markdown></pre>

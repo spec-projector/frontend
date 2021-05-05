@@ -24,6 +24,18 @@ import { AppComponent } from './app.component';
     <p i18n="@@label.terms">Terms</p>
     <p i18n="@@label.model">Model</p>
     <p i18n="@@label.print">Print</p>
+    <p i18n="@@label.new_term_title">Some term</p>
+    <p i18n="@@message.new_term_description">Some description</p>
+    <p i18n="@@label.new_module_title">Accepting payments</p>
+    <p i18n="@@label.new_sprint_title">Key features</p>
+    <p i18n="@@label.new_entity_title">Client</p>
+    <p i18n="@@label.new_entity_name">client</p>
+    <p i18n="@@label.new_enum_title">Gender</p>
+    <p i18n="@@label.new_enum_name">gender</p>
+    <p i18n="@@label.new_entity_field_title">First Name</p>
+    <p i18n="@@label.new_entity_field_name">first_name</p>
+    <p i18n="@@label.new_enum_option_title">Male</p>
+    <p i18n="@@label.new_enum_option_name">male</p>
   `
 })
 export class I18nComponent {

@@ -1,57 +1,50 @@
-<jnt-stack [align]="ui.align.stretch">
+<ng-template #noFigmaKeyTemplate>
+  <spec-add-figma-key [project]="project"
+                      (updated)="project = $event"></spec-add-figma-key>
+</ng-template>
 
-  <ng-template #noFigmaKeyTemplate>
-    <jnt-message [icon]="ui.icons.sad"
-                 [scheme]="ui.scheme.fail">
-      <span [ngSwitch]="locale">
+<jnt-stack [align]="ui.align.stretch">
+  <ng-container *ngIf="!!project.figmaIntegration?.token;else noFigmaKeyTemplate">
+
+    <jnt-message *ngIf="feature.frames.length <= 0"
+                 [scheme]="ui.scheme.secondary">
+      <jnt-stack [ngSwitch]="consts.language">
         <ng-container *ngSwitchDefault>
-           You have no <b>Figma</b> key in integration
+          <p>Designer using <b>User Story</b> should draw design & prototype then <b>attach</b> it here.</p>
+          <p>Then, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
         </ng-container>
         <ng-container *ngSwitchCase="language.ru">
-           У вас нет ключа <b>Figma</b> в интеграции
+          <p>Дизайнер, используя <b>историю пользователя</b> должен нарисовать дизайн и прототип и затем
+            <b>прикрепить</b> их здесь.</p>
+          <p>Затем, <b>Менеджер проекта</b> должен согласовать дизайн с <b>Заказчиком</b>.</p>
         </ng-container>
-      </span>
-    </jnt-message>
-  </ng-template>
-
-  <ng-container *ngIf="!!project.figmaIntegration?.token;else noFigmaKeyTemplate">
-    <jnt-stack [align]="ui.align.stretch">
-      <jnt-message *ngIf="feature.frames.length <= 0"
-                   [icon]="ui.icons.question"
-                   [scheme]="ui.scheme.secondary">
-        <jnt-stack [ngSwitch]="locale">
-          <ng-container *ngSwitchDefault>
-            <p>Designer using <b>User Story</b> should draw design & prototype then <b>attach</b> it here.</p>
-            <p>Then, <b>Project Manager</b> should agree design with a <b>Customer</b>.</p>
-          </ng-container>
-          <ng-container *ngSwitchCase="language.ru">
-            <p>Дизайнер, используя <b>юзер стори</b> должен нарисовать дизайн и прототип и затем <b>прикрепить</b> их
-              здесь.</p>
-            <p>Затем, <b>Менеджер проекта</b> должен согласовать дизайн с <b>Заказчиком</b>.</p>
-          </ng-container>
-        </jnt-stack>
-      </jnt-message>
-
-      <jnt-stack [orientation]="ui.orientation.horizontal">
-        <ng-template #addFrameTemplate>
-          <spec-feature-add-frame (added)="add($event)"></spec-feature-add-frame>
-        </ng-template>
-
-        <jnt-button [icon]="ui.icons.add"
-                    [shape]="ui.shape.circle"
-                    [jntPopover]="{title: 'Add frame', contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
-                    (attached)="reference.popover = $event"></jnt-button>
-        <jnt-button [icon]="ui.icons.reload"
-                    [shape]="ui.shape.circle"
-                    [loading]="progress.refreshing"
-                    [disabled]="feature.frames.length <= 0"
-                    (click)="refresh(true)"></jnt-button>
       </jnt-stack>
+    </jnt-message>
+
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <ng-template #addFrameTemplate>
+        <spec-feature-add-frame (added)="add($event)"></spec-feature-add-frame>
+      </ng-template>
+
+      <jnt-button text="Add frame"
+                  i18n-text="@@action.add_frame"
+                  [icon]="ui.icons.add"
+                  [shape]="ui.shape.circle"
+                  [jntPopover]="{title: 'Add frame', contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
+                  (attached)="reference.popover = $event"></jnt-button>
+      <jnt-button text="Refresh all"
+                  i18n-text="@@action.refresh_all"
+                  [icon]="ui.icons.reload"
+                  [shape]="ui.shape.circle"
+                  [loading]="progress.refreshing"
+                  [disabled]="feature.frames.length <= 0"
+                  (click)="refresh(true)"></jnt-button>
     </jnt-stack>
+
   </ng-container>
 
   <jnt-row *ngIf="feature.frames.length > 0">
-    <jnt-col *ngFor="let frame of feature.frames; let i = index" [tablet]="4">
+    <jnt-col *ngFor="let frame of feature.frames; let i = index" [wide]="3" [tablet]="4">
       <jnt-card [width]="ui.width.fluid">
         <ng-template #cardHeaderTemplate>
           <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -61,10 +54,10 @@
                       [icon]="ui.icons.figma"
                       [source]="frame.url"></jnt-link>
 
-            <jnt-button [icon]="ui.icons.cancel"
+            <jnt-button [icon]="ui.icons.delete"
                         [shape]="ui.shape.circle"
                         [size]="ui.size.tiny"
-                        [scheme]="ui.scheme.secondary"
+                        [outline]="ui.outline.transparent"
                         (click)="remove(i)"></jnt-button>
           </jnt-stack>
         </ng-template>
@@ -74,5 +67,4 @@
       </jnt-card>
     </jnt-col>
   </jnt-row>
-
 </jnt-stack>

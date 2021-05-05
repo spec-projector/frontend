@@ -1,4 +1,6 @@
-<jnt-form [formGroup]="form" jntValidation (submitted)="save()">
+<jnt-form #formRef
+          [formGroup]="form"
+          (submitted)="save()">
   <jnt-form-item>
     <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
     <jnt-form-control name="title">
@@ -12,33 +14,7 @@
     </jnt-form-control>
   </jnt-form-item>
 
-  <ngx-monaco-editor editor
-                     [options]="{language: 'graphql', scrollBeyondLastLine: false, automaticLayout: true, minimap: {enabled: false}}"
-                     formControlName="text"></ngx-monaco-editor>
-
-  <ng-template #formFooterTemplate>
-    <jnt-stack [orientation]="ui.orientation.horizontal"
-               [align]="ui.align.center"
-               [justify]="ui.justify.between">
-      <jnt-button [icon]="ui.icons.delete"
-                  [scheme]="ui.scheme.fail"
-                  [shape]="ui.shape.circle"
-                  [type]="ui.button.type.button"
-                  (click)="delete()"></jnt-button>
-      <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.align.center">
-        <jnt-link title="Play"
-                  i18n-title="@@label.play"
-                  [icon]="ui.icons.link"
-                  [outline]="ui.outline.ghost"
-                  [source]="textControl.value | graphqlPlayground:feature.spec"
-                  target="_blank"></jnt-link>
-        <jnt-button text="Save"
-                    i18n-text="@@action.save"
-                    [icon]="ui.icons.checked"
-                    [type]="ui.button.type.submit"></jnt-button>
-      </jnt-stack>
-
-    </jnt-stack>
-  </ng-template>
+  <ngx-monaco-editor data-editor formControlName="text"
+                     [options]="{language: 'graphql', scrollBeyondLastLine: false, automaticLayout: true, minimap: {enabled: false}}">
+  </ngx-monaco-editor>
 </jnt-form>

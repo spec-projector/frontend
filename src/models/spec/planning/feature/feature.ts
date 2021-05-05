@@ -119,7 +119,7 @@ export class Feature extends Persistence {
   private findTerms(tokens: Token[]) {
     return tokens.filter(t => t instanceof TermToken)
       .map((t1: TermToken) => this.spec.terms
-        .find(t2 => normalize(t2.name) === normalize(t1.term)))
+        .find(t2 => normalize(t2.title) === normalize(t1.term)))
       .filter(t => !!t);
   }
 

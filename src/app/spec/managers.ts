@@ -5,8 +5,9 @@ import { bufferTime, filter, finalize } from 'rxjs/operators';
 import { generate as shortid } from 'shortid';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
-import { SpecModel, Spec } from 'src/models/spec/spec';
-import { SCHEME_VERSION } from '../../consts';
+import { SpecModel, Spec, ResourceType } from 'src/models/spec/spec';
+import { CURRENT_LANGUAGE, SCHEME_VERSION } from '../../consts';
+import { Language } from '../../enums/language';
 import { environment } from '../../environments/environment';
 import { AppConfig } from '../app-config';
 import Database = PouchDB.Database;
@@ -97,6 +98,24 @@ export class SpecManager {
               if (err.status === 404) {
                 console.log('spec not found');
                 spec.new().forEach(o => this.put(o));
+
+                switch (CURRENT_LANGUAGE) {
+                  case Language.ru:
+                    spec.resourceTypes = [
+                      new ResourceType({title: 'UI/UX', hourRate: 1000}),
+                      new ResourceType({title: 'Фронтенд', hourRate: 2000}),
+                      new ResourceType({title: 'Бекенд', hourRate: 2000})
+                    ];
+                    break;
+                  case Language.en:
+                  default:
+                    spec.resourceTypes = [
+                      new ResourceType({title: 'UI/UX', hourRate: 15}),
+                      new ResourceType({title: 'Frontend', hourRate: 30}),
+                      new ResourceType({title: 'Backend', hourRate: 30})
+                    ];
+                }
+
                 this.put(spec);
 
                 this.spec$.next(spec);

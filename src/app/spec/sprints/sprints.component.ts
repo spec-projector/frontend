@@ -44,7 +44,7 @@ export class SprintsComponent implements OnInit {
   addSprint() {
     const sprint = new Sprint({
       id: shortid(),
-      title: $localize`:@@label.new_sprint_example:Key features`
+      title: $localize`:@@label.new_sprint_title:Key features`
     });
     this.spec.sprints.push(sprint);
     sprint.linking(this.spec);

@@ -42,7 +42,7 @@ export class ModulesComponent implements OnInit {
 
   addModule() {
     const module = new Module({
-      title: $localize`:@@label.new_module_example:Accepting payments`
+      title: $localize`:@@label.new_module_title:Accepting payments`
     });
     module.linking(this.spec);
     module.new().forEach(o => this.manager.put(o));

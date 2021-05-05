@@ -53,8 +53,8 @@ export class EnumsComponent implements OnInit, OnDestroy {
 
   addEnum() {
     const enum_ = new Enum({
-      title: $localize`:@@label.new_enum_title_example:Enum`,
-      name: $localize`:@@label.new_enum_name_example:Enum`
+      title: $localize`:@@label.new_enum_title:Gender`,
+      name: $localize`:@@label.new_enum_name:gender`
     });
     enum_.linking({spec: this.spec});
     enum_.new();
