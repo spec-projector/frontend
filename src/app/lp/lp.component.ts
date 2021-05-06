@@ -1,7 +1,7 @@
 import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BreakpointService, UI } from '@junte/ui';
+import { BreakpointService, DeviceService, UI } from '@junte/ui';
 import 'reflect-metadata';
 import { CURRENT_LANGUAGE } from '../../consts';
 import { Language } from '../../enums/language';
@@ -56,6 +56,9 @@ export class LpComponent implements OnInit {
   consts = {language: CURRENT_LANGUAGE};
   _cookie = localStorage[COOKIE_AGREEMENT_KEY] || false;
 
+  @HostBinding('attr.data-device-tags')
+  deviceTags = this.device.tags;
+
   set cookie(cookie: boolean) {
     this._cookie = cookie;
     localStorage.setItem(COOKIE_AGREEMENT_KEY, cookie ? 'yes' : '');
@@ -70,7 +73,8 @@ export class LpComponent implements OnInit {
   constructor(private config: AppConfig,
               private route: ActivatedRoute,
               public router: Router,
-              public breakpoint: BreakpointService) {
+              public breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   ngOnInit() {
