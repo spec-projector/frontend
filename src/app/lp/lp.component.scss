@@ -11,6 +11,8 @@
 
 $jnt-ng-deep: true;
 
+$windows-scrollbar-width: 17px;
+
 @include jnt-grid-container((width: 1200px, padding: 0 $jnt-gutter-normal $jnt-gutter-large $jnt-gutter-normal)) {
   position: relative;
   text-align: center;
@@ -25,6 +27,10 @@ $jnt-ng-deep: true;
   position: absolute;
   min-height: 100vh;
   min-width: 100vw;
+
+  &[data-device-tags*='windows'] {
+    min-width: calc(100vw - #{$windows-scrollbar-width});
+  }
 
   @include jnt-lp-header((position: fixed, padding: $jnt-gutter-big 0, container-width: 1200px));
   @include jnt-lp-footer((padding: $jnt-gutter-big));
