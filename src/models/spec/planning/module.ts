@@ -119,7 +119,7 @@ export class Module extends Persistence {
   }
 
   removeFeature(feature: Feature) {
-    const index = feature.module.features.indexOf(feature);
+    const index = this.features.indexOf(feature);
     this.features.splice(index, 1);
   }
 
