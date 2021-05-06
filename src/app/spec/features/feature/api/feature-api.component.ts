@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { PopoverInstance, UI } from '@junte/ui';
-import { filter } from 'rxjs/operators';
-import { Language } from 'src/enums/language';
-import { LocalUI } from 'src/enums/local-ui';
-import { Graphql } from 'src/models/spec/planning/feature/graphql';
-import { CURRENT_LANGUAGE } from '../../../../../consts';
-import { EditMode } from '../../../../../enums/edit-mode';
-import { Feature } from '../../../../../models/spec/planning/feature/feature';
-import { SpecManager } from '../../../managers';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {PopoverInstance, UI} from '@junte/ui';
+import {filter} from 'rxjs/operators';
+import {Language} from 'src/enums/language';
+import {LocalUI} from 'src/enums/local-ui';
+import {Graphql} from 'src/models/spec/planning/feature/graphql';
+import {CURRENT_LANGUAGE} from '../../../../../consts';
+import {EditMode} from '../../../../../enums/edit-mode';
+import {Feature} from '../../../../../models/spec/planning/feature/feature';
+import {SpecManager} from '../../../managers';
 
 const GRAPHQL_TEXT = `
 query ($id: ID) {
@@ -72,7 +72,10 @@ export class FeatureApiComponent implements OnInit {
     this.feature.version++;
 
     this.router.navigate(['graphql', graphql.id],
-      {relativeTo: this.route}).then(() => null);
+      {
+        relativeTo: this.route,
+        fragment: 'api'
+      }).then(() => null);
   }
 
   deleteGraphQL(query: Graphql) {
@@ -82,7 +85,10 @@ export class FeatureApiComponent implements OnInit {
     this.manager.put(api);
 
     if (this.selected.query === query) {
-      this.router.navigate(['./'], {relativeTo: this.route})
+      this.router.navigate(['./'], {
+        relativeTo: this.route,
+        fragment: 'api'
+      })
         .then(() => null);
     }
   }

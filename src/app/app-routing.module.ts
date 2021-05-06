@@ -68,9 +68,9 @@ const routes: Routes = [
       preloadingStrategy: DelayedModulePreloading,
       paramsInheritanceStrategy: 'always',
       relativeLinkResolution: 'corrected',
-      scrollPositionRestoration: 'top',
+      scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
-      scrollOffset: [0, 150],
+      scrollOffset: [0, 70],
       initialNavigation: 'enabled'
     })],
   providers: [
