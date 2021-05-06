@@ -1,5 +1,6 @@
 <ng-template #noResourceTypesTemplate>
-  <jnt-message [scheme]="ui.scheme.secondary">
+  <jnt-message [icon]="ui.icons.question"
+               [scheme]="ui.scheme.secondary">
     <ng-container [ngSwitch]="consts.language">
       <ng-container *ngSwitchDefault>
         <span>You have no <b>resource types</b> in the </span>
@@ -20,16 +21,17 @@
 <ng-template #fillResourcesTemplate>
   <jnt-stack *ngIf="feature.spec.resourceTypes.length > 0;else noResourceTypesTemplate"
              [align]="ui.align.stretch">
-    <jnt-message [scheme]="ui.scheme.secondary">
+    <jnt-message [icon]="ui.icons.question"
+                 [scheme]="ui.scheme.secondary">
       <jnt-stack [ngSwitch]="consts.language">
         <ng-container *ngSwitchDefault>
           <p>How much <b>hours</b> team needs to implement the feature?</p>
-          <p>Make <b>time estimates</b> with your <b>expert developers</b> and provide it to the <b>Customer</b>.
+          <p>Make <b>time estimates</b> in hours with your <b>expert developers</b> and provide it to the <b>Customer</b>.
           </p>
         </ng-container>
         <ng-container *ngSwitchCase="language.ru">
           <p>Сколько времени потребуется команде для реализации функции?</p>
-          <p>Оцените преполагаемое время работы с Вашими опытными разработчиками.</p>
+          <p>Оцените преполагаемое время работы в часах с Вашими опытными разработчиками.</p>
         </ng-container>
       </jnt-stack>
     </jnt-message>

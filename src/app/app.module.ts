@@ -36,6 +36,7 @@ import { AppComponent } from './app.component';
     <p i18n="@@label.new_entity_field_name">first_name</p>
     <p i18n="@@label.new_enum_option_title">Male</p>
     <p i18n="@@label.new_enum_option_name">male</p>
+    <p i18n="@@label.add_frame">Add frame</p>
   `
 })
 export class I18nComponent {

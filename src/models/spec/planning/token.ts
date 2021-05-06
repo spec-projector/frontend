@@ -16,11 +16,11 @@ export class Token {
   }
 
   static parse(source: string): Token[] {
-    return source.split(/(\"[^\"]+\"|{{[^\{\}]+}}|\[[^\[\]]+\]|[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_+.~#?&//=]*)/i)
+    return source.split(/(\"[^\"]+\"|\[\[[^\{\}]+\]\]|\[[^\[\]]+\]|[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_+.~#?&//=]*)/i)
       .map(t => t.trim())
       .filter(t => !!t)
       .map(t => {
-        let match = t.match(/{{([^\{\}]+)}}/i);
+        let match = t.match(/\[\[([^\{\}]+)\]\]/i);
         if (!!match) {
           return new TermToken(match[1]);
         }

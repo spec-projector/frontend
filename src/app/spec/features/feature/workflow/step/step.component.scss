@@ -1,5 +1,5 @@
 @import "src/variables";
-@import "~@junte/ui/lib/assets/styles/forms/button";
+@import "~@junte/ui/lib/assets/styles/elements/icon";
 
 $jnt-ng-deep: true;
 
@@ -15,12 +15,21 @@ $jnt-ng-deep: true;
     pointer-events: none;
   }
 
+  &[data-state=done] {
+    button {
+      background: $jnt-success-color;
+    }
+  }
+
   &[data-state=missed] {
-    @include jnt-button((background: $jnt-gray-700-color));
+    opacity: .5;
+    button {
+      background: $jnt-gray-700-color;
+    }
   }
 }
 
-div {
+[data-title] {
   font-weight: $jnt-font-weight-bold;
   font-size: $jnt-font-size-small;
   text-align: center;
@@ -28,4 +37,21 @@ div {
   text-overflow: ellipsis;
   width: 100%;
   padding: 0 $jnt-gutter-small;
+}
+
+@include jnt-icon((size: 32px), '[data-identity]');
+
+button {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $jnt-secondary-color;
+
+  @include jnt-icon((size: 16px, color: $jnt-white-color));
 }

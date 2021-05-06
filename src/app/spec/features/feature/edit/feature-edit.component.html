@@ -14,31 +14,38 @@
                    [spacing]="ui.gutter.normal">
           <spec-workflow-step title="Story"
                               i18n-title="@@label.user_story"
-                              formControlName="story"></spec-workflow-step>
+                              formControlName="story"
+                              [icon]="localUi.icons.story"></spec-workflow-step>
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
           <spec-workflow-step title="Design"
                               i18n-title="@@label.design"
-                              formControlName="design"></spec-workflow-step>
+                              formControlName="design"
+                              [icon]="ui.icons.figma"></spec-workflow-step>
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
           <spec-workflow-step title="Resources"
                               i18n-title="@@label.resources"
-                              formControlName="resources"></spec-workflow-step>
+                              formControlName="resources"
+                              [icon]="localUi.icons.resources"></spec-workflow-step>
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
           <spec-workflow-step title="API"
                               i18n-title="@@label.api"
-                              formControlName="api"></spec-workflow-step>
+                              formControlName="api"
+                              [icon]="localUi.icons.graphQl"></spec-workflow-step>
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
           <spec-workflow-step title="Developing"
                               i18n-title="@@label.developing"
-                              formControlName="developing"></spec-workflow-step>
+                              formControlName="developing"
+                              [icon]="localUi.icons.developing"></spec-workflow-step>
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
           <spec-workflow-step title="Testing"
                               i18n-title="@@label.testing"
-                              formControlName="testing"></spec-workflow-step>
+                              formControlName="testing"
+                              [icon]="localUi.icons.testing"></spec-workflow-step>
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
           <spec-workflow-step title="Accepting"
                               i18n-title="@@label.accepting"
-                              formControlName="accepting"></spec-workflow-step>
+                              formControlName="accepting"
+                              [icon]="localUi.icons.accepting"></spec-workflow-step>
         </jnt-stack>
       </ng-container>
     </ng-container>
@@ -51,6 +58,7 @@
         <jnt-menu-item *ngIf="storyControl.value !== workflowStepState.missed"
                        title="User story"
                        i18n-title="@@label.user_story"
+                       [icon]="localUi.icons.story"
                        [link]="['story']">
           <jnt-badge *ngIf="feature.story.length as count"
                      [value]="count"
@@ -68,6 +76,7 @@
         <jnt-menu-item *ngIf="resourcesControl.value !== workflowStepState.missed"
                        title="Resources"
                        i18n-title="@@label.resources"
+                       [icon]="localUi.icons.resources"
                        [link]="['resources']">
           <jnt-badge *ngIf="feature.resources.length > 0"
                      [value]="(feature.resources | estimatedTime) + 'h'"
@@ -93,6 +102,7 @@
         </jnt-menu-item>
         <jnt-menu-item title="Markdown"
                        i18n-title="@@label.markdown"
+                       [icon]="localUi.icons.markdown"
                        [link]="['markdown']"></jnt-menu-item>
       </jnt-menu>
 

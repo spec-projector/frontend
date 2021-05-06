@@ -10,7 +10,6 @@
 </ng-template>
 
 <jnt-stack [align]="ui.align.stretch">
-
   <jnt-message *ngIf="feature.api.graphql.length <= 0"
                [icon]="ui.icons.question"
                [scheme]="ui.scheme.secondary">
@@ -19,7 +18,7 @@
         API is a contracts between front-end & back-end side.
       </ng-container>
       <ng-container *ngSwitchCase="language.ru">
-        API это договоренности между front-end и back-end разработчиками.
+        API – это договоренности между front-end и back-end разработчиками.
       </ng-container>
     </ng-container>
   </jnt-message>
@@ -52,7 +51,7 @@
       <jnt-card [width]="ui.width.fluid">
         <jnt-button text="Add API"
                     i18n-text="@@action.add_api"
-                    [icon]="ui.icons.add"
+                    [icon]="localUi.icons.add"
                     [outline]="ui.outline.transparent"
                     [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
                     (attached)="instance.popover = $event"></jnt-button>

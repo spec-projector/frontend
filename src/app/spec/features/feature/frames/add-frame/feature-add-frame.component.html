@@ -1,6 +1,6 @@
-<jnt-form [formGroup]="form" jntValidation (submitted)="add()">
+<jnt-form [formGroup]="form" (submitted)="add()">
   <jnt-form-item>
-    <jnt-form-label>URL</jnt-form-label>
+    <jnt-form-label i18n-placeholder="@@label.url">URL</jnt-form-label>
     <jnt-form-control name="url">
       <jnt-input placeholder="Url of figma frame"
                  i18n-placeholder="@@label.url_of_figma_frame"

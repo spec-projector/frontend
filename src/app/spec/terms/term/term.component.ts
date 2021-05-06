@@ -58,7 +58,7 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     this.subscriptions.form = this.form.valueChanges
       .subscribe(() => {
         const {title, description} = this.form.getRawValue();
-        [this.term.title, this.term.description] = [name, Token.parse(description.trim())];
+        Object.assign(this.term, {title, description: Token.parse(description.trim())});
         this.manager.put(this.term);
 
         this.cd.detectChanges();

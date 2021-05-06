@@ -34,6 +34,9 @@ export class WorkflowStepComponent {
   @Input()
   title: string;
 
+  @Input()
+  icon = UI.icons.question;
+
   onChange: (value: WorkflowStepState) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;

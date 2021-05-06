@@ -27,6 +27,7 @@ export class FeatureFramesComponent implements OnInit {
   language = Language;
   env = environment;
   consts = {language: CURRENT_LANGUAGE};
+  i18n = {addFrame: $localize`:@@label.add_frame:Add frame`};
 
   private _feature: Feature;
 

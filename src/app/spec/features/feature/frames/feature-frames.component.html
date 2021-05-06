@@ -7,6 +7,7 @@
   <ng-container *ngIf="!!project.figmaIntegration?.token;else noFigmaKeyTemplate">
 
     <jnt-message *ngIf="feature.frames.length <= 0"
+                 [icon]="ui.icons.question"
                  [scheme]="ui.scheme.secondary">
       <jnt-stack [ngSwitch]="consts.language">
         <ng-container *ngSwitchDefault>
@@ -30,7 +31,7 @@
                   i18n-text="@@action.add_frame"
                   [icon]="ui.icons.add"
                   [shape]="ui.shape.circle"
-                  [jntPopover]="{title: 'Add frame', contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
+                  [jntPopover]="{title: i18n.addFrame, contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
                   (attached)="reference.popover = $event"></jnt-button>
       <jnt-button text="Refresh all"
                   i18n-text="@@action.refresh_all"

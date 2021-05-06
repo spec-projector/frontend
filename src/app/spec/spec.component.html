@@ -17,10 +17,6 @@
   </ng-template>
 
   <jnt-menu [orientation]="ui.orientation.vertical">
-    <jnt-menu-item title="General"
-                   i18n-title="@@label.general"
-                   [icon]="localUi.icons.general"
-                   [link]="['details']"></jnt-menu-item>
     <jnt-menu-item title="Dashboard"
                    i18n-title="@@label.dashboard"
                    [icon]="localUi.icons.dashboard"
@@ -92,19 +88,15 @@
                  [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 
-
     <jnt-menu-item [link]="['print']"
                    title="Contract"
                    i18n-title="@@label.contract"
                    [icon]="localUi.icons.print"></jnt-menu-item>
-    <!--
 
-    <jnt-menu-item [link]="['validate']" title="Validate"
-                   [icon]="localUi.icons.validate">
-      <jnt-badge [value]="errors.length.toString()"></jnt-badge>
-    </jnt-menu-item>
-    -->
-
+    <jnt-menu-item title="General"
+                   i18n-title="@@label.general"
+                   [icon]="localUi.icons.general"
+                   [link]="['details']"></jnt-menu-item>
   </jnt-menu>
 </jnt-app-aside>
 

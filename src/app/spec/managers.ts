@@ -160,7 +160,7 @@ export class SpecManager {
       const progress = new Subject();
       progress.subscribe(ref => {
         console.log('updated');
-        console.log(ref);
+        // console.log(ref);
       });
 
       const spec = this.spec$.getValue();

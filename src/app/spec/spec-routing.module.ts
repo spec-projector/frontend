@@ -91,15 +91,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'actors'
-      },
-      {
-        path: 'details',
-        component: DetailsComponent,
-        resolve: {
-          me: MeUserResolver
-        },
-        data: {breadcrumb: GENERAL_BREADCRUMB}
+        redirectTo: 'dashboard'
       },
       {
         path: 'dashboard',
@@ -269,6 +261,14 @@ export const routes: Routes = [
         path: 'sprints',
         component: SprintsComponent,
         data: {breadcrumb: SPRINTS_BREADCRUMB}
+      },
+      {
+        path: 'details',
+        component: DetailsComponent,
+        resolve: {
+          me: MeUserResolver
+        },
+        data: {breadcrumb: GENERAL_BREADCRUMB}
       }
     ]
 
