@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
@@ -19,7 +19,8 @@ import { UploadFigmaAssetGQL } from './frames.graphql';
 @Component({
   selector: 'spec-feature-frames',
   templateUrl: './feature-frames.component.html',
-  styleUrls: ['./feature-frames.component.scss']
+  styleUrls: ['./feature-frames.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureFramesComponent implements OnInit {
 
@@ -47,8 +48,8 @@ export class FeatureFramesComponent implements OnInit {
   constructor(private uploadFigmaAssetGQL: UploadFigmaAssetGQL,
               public manager: SpecManager,
               private popover: PopoverService,
-              private route: ActivatedRoute,
-              private logger: NGXLogger) {
+              public cd: ChangeDetectorRef,
+              private route: ActivatedRoute) {
 
   }
 
@@ -59,15 +60,24 @@ export class FeatureFramesComponent implements OnInit {
 
   add(frame: Frame) {
     this.reference.popover?.hide();
-    this.feature.frames.push(frame);
-    this.save();
+
+    this.feature.addFrame(frame);
+    this.manager.put(this.feature);
+
+    this.feature.kick();
+    this.cd.markForCheck();
 
     this.refresh(true);
   }
 
-  remove(index: number) {
-    this.feature.frames.splice(index, 1);
-    this.save();
+  remove(frame: Frame) {
+    const links = frame.delete();
+    links.deleted.forEach(o => this.manager.remove(o));
+    links.changed.forEach(o => this.manager.put(o));
+    this.manager.remove(frame);
+
+    this.feature.kick();
+    this.cd.markForCheck();
   }
 
   refresh(force = false) {
@@ -83,6 +93,8 @@ export class FeatureFramesComponent implements OnInit {
             .pipe(catchGQLErrors())
             .subscribe(({data: {response: {frame: {file}}}}) => {
               frame.thumbnail = file;
+              this.manager.put(frame);
+              this.cd.markForCheck();
               o.next();
               o.complete();
             }, err => o.error(err));
@@ -94,15 +106,8 @@ export class FeatureFramesComponent implements OnInit {
       this.progress.refreshing = true;
       combineLatest(queue)
         .pipe(finalize(() => this.progress.refreshing = false))
-        .subscribe(() => this.save());
+        .subscribe(() => null);
     }
-  }
-
-  save() {
-    this.logger.log('save frames for feature [', this.feature.title.toString(), ']');
-    this.manager.put(this.feature);
-
-    this.feature.version++;
   }
 
 }

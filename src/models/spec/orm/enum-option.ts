@@ -2,6 +2,7 @@ import { persist, Persistence, persistence } from '../../../decorators/persisten
 import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
 import { Enum } from './enum';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class EnumOption extends Persistence {
@@ -37,7 +38,7 @@ export class EnumOption extends Persistence {
 
   constructor(defs: Partial<EnumOption> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
 }

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { generate as shortid } from 'shortid';
 import { Frame } from 'src/models/spec/planning/feature/frame';
+import { SpecManager } from '../../../../managers';
 
 @Component({
   selector: 'spec-feature-add-frame',
@@ -20,12 +21,17 @@ export class FeatureAddFrameComponent {
   @Output()
   added = new EventEmitter<Frame>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private manager: SpecManager,
+              private fb: FormBuilder) {
   }
 
   add() {
     const {url} = this.form.getRawValue();
-    this.added.emit(new Frame({id: shortid(), url}));
+    const frame = new Frame({url});
+    frame.new();
+    this.manager.put(frame);
+
+    this.added.emit(frame);
   }
 
 }

@@ -56,8 +56,9 @@ export class FeatureEditGraphqlComponent implements OnInit {
   save() {
     const {title, text} = this.form.getRawValue();
     Object.assign(this.query, {title, text});
+
     this.manager.put(this.query);
-    this.feature.version++;
+    this.feature.kick();
   }
 
 }

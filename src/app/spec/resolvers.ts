@@ -72,7 +72,7 @@ export class ActorResolver implements Resolve<Actor> {
 }
 
 @Injectable({providedIn: 'root'})
-export class ActorFeatureResolver implements Resolve<Feature> {
+export class FeatureResolver implements Resolve<Feature> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Feature {

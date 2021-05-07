@@ -45,7 +45,9 @@
   </ng-container>
 
   <jnt-row *ngIf="feature.frames.length > 0">
-    <jnt-col *ngFor="let frame of feature.frames; let i = index" [wide]="3" [tablet]="4">
+    <jnt-col *ngFor="let frame of feature.frames"
+             [wide]="3"
+             [tablet]="4">
       <jnt-card [width]="ui.width.fluid">
         <ng-template #cardHeaderTemplate>
           <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -59,7 +61,7 @@
                         [shape]="ui.shape.circle"
                         [size]="ui.size.tiny"
                         [outline]="ui.outline.transparent"
-                        (click)="remove(i)"></jnt-button>
+                        (click)="remove(frame)"></jnt-button>
           </jnt-stack>
         </ng-template>
         <jnt-picture width="100%"

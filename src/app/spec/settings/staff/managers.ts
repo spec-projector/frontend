@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CURRENT_LANGUAGE } from '../../../consts';
-import { Language } from '../../../enums/language';
-import { Entity } from '../../../models/spec/orm/entity';
-import { EntityField, FieldType } from '../../../models/spec/orm/entity-field';
-import { Enum } from '../../../models/spec/orm/enum';
-import { Actor } from '../../../models/spec/planning/actor';
-import { Feature } from '../../../models/spec/planning/feature/feature';
-import { StoryEntry, StoryEntryType } from '../../../models/spec/planning/feature/story';
-import { Module, ModuleModel } from '../../../models/spec/planning/module';
-import { Sprint } from '../../../models/spec/planning/sprint';
-import { Term } from '../../../models/spec/planning/term';
-import { AccentToken, TermToken, TextToken, Token } from '../../../models/spec/planning/token';
-import { ResourceType, Spec } from '../../../models/spec/spec';
-import { Depends } from '../../../types/depends';
-import { SpecManager } from '../managers';
 import { EnumOption } from 'src/models/spec/orm/enum-option';
+import { CURRENT_LANGUAGE } from '../../../../consts';
+import { Language } from '../../../../enums/language';
+import { Entity } from '../../../../models/spec/orm/entity';
+import { EntityField, FieldType } from '../../../../models/spec/orm/entity-field';
+import { Enum } from '../../../../models/spec/orm/enum';
+import { Actor } from '../../../../models/spec/planning/actor';
+import { Feature } from '../../../../models/spec/planning/feature/feature';
+import { StoryEntry, StoryEntryType } from '../../../../models/spec/planning/feature/story';
+import { Module } from '../../../../models/spec/planning/module';
+import { Sprint } from '../../../../models/spec/planning/sprint';
+import { Term } from '../../../../models/spec/planning/term';
+import { AccentToken, TermToken, TextToken, Token } from '../../../../models/spec/planning/token';
+import { ResourceType, Spec } from '../../../../models/spec/spec';
+import { Depends } from '../../../../types/depends';
+import { SpecManager } from '../../managers';
 
 const I18N = (() => {
   switch (CURRENT_LANGUAGE) {
@@ -191,7 +191,7 @@ const I18N = (() => {
 
 type Features = { catalog, productDetails, addToCart, shoppingList, payOrder, processOrder, deliveriesList, deliveryOrder, sales };
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class StaffManager {
 
   private spec: Spec;

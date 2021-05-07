@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {PopoverInstance, UI} from '@junte/ui';
 import {filter} from 'rxjs/operators';
@@ -21,7 +21,8 @@ query ($id: ID) {
 @Component({
   selector: 'spec-api',
   templateUrl: './feature-api.component.html',
-  styleUrls: ['./feature-api.component.scss']
+  styleUrls: ['./feature-api.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureApiComponent implements OnInit {
 
@@ -36,6 +37,7 @@ export class FeatureApiComponent implements OnInit {
   instance: { popover: PopoverInstance } = {popover: null};
 
   constructor(public manager: SpecManager,
+              private cd: ChangeDetectorRef,
               public route: ActivatedRoute,
               public router: Router) {
   }
@@ -69,7 +71,8 @@ export class FeatureApiComponent implements OnInit {
     api.addGraphql(graphql);
     this.manager.put(api);
 
-    this.feature.version++;
+    this.feature.kick();
+    this.cd.markForCheck();
 
     this.router.navigate(['graphql', graphql.id],
       {
@@ -81,8 +84,10 @@ export class FeatureApiComponent implements OnInit {
   deleteGraphQL(query: Graphql) {
     const {api} = this.feature;
     api.removeGraphql(query);
-    this.feature.version++;
     this.manager.put(api);
+
+    this.feature.kick();
+    this.cd.markForCheck();
 
     if (this.selected.query === query) {
       this.router.navigate(['./'], {

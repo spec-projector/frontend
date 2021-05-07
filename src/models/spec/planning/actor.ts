@@ -1,8 +1,10 @@
+import { EventEmitter } from '@angular/core';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
 import { Spec } from '../spec';
 import { Feature } from './feature/feature';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class Actor extends Persistence {
@@ -19,6 +21,7 @@ export class Actor extends Persistence {
   spec: Spec;
 
   _version = 0;
+  kicked = new EventEmitter();
 
   set version(version: number) {
     this._version = version;
@@ -31,7 +34,7 @@ export class Actor extends Persistence {
 
   constructor(defs: Partial<Actor> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking(spec: Spec) {
@@ -57,6 +60,15 @@ export class Actor extends Persistence {
 
   addFeature(feature: Feature) {
     this.features.push(feature);
+  }
+
+  removeFeature(feature: Feature) {
+    const index = this.features.indexOf(feature);
+    this.features.splice(index, 1);
+  }
+
+  kick() {
+    this.kicked.next();
   }
 
 }

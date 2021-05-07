@@ -1,4 +1,6 @@
-import { persist, persistence } from '../../../../decorators/persistence';
+import { persist, Persistence, persistence } from '../../../../decorators/persistence';
+import { ModelType } from '../../../enums';
+import * as assign from 'assign-deep';
 
 export enum WorkflowStepState {
   doing = 'doing',
@@ -7,7 +9,10 @@ export enum WorkflowStepState {
 }
 
 @persistence()
-export class Workflow {
+export class FeatureWorkflow extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.featureWorkflow;
 
   @persist()
   story: WorkflowStepState = WorkflowStepState.doing;
@@ -30,7 +35,9 @@ export class Workflow {
   @persist()
   accepting: WorkflowStepState = WorkflowStepState.doing;
 
-  constructor(defs: any = {}) {
-    Object.assign(this, defs);
+  constructor(defs: Partial<FeatureWorkflow> = {}) {
+    super();
+    assign(this, defs);
   }
+
 }

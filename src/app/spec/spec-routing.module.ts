@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActorsComponent } from 'src/app/spec/actors/actors.component';
-import { DetailsComponent } from 'src/app/spec/details/details.component';
+import { SettingsComponent } from 'src/app/spec/settings/settings.component';
 import { ModulesComponent } from 'src/app/spec/modules/modules.component';
 import { SpecComponent } from 'src/app/spec/spec.component';
 import {
-  ActorFeatureResolver,
+  FeatureResolver,
   ActorResolver,
   EntityResolver,
   EnumResolver,
@@ -29,6 +29,7 @@ import { FeatureIssuesComponent } from './features/feature/issues/feature-issues
 import { FeatureMarkdownComponent } from './features/feature/markdown/feature-markdown.component';
 import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
 import { FeatureStoryComponent } from './features/feature/story/feature-story.component';
+import { FeatureWorkflowComponent } from './features/feature/workflow/workflow.component';
 import { FeaturesComponent } from './features/features.component';
 import { EntitiesComponent } from './model/entities/entities.component';
 import { EntityEditComponent } from './model/entities/entity/edit/entity-edit.component';
@@ -38,6 +39,9 @@ import { EnumsComponent } from './model/enums/enums.component';
 import { ModelComponent } from './model/model.component';
 import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
+import { MaintenanceComponent } from './settings/maintenance/maintenance.component';
+import { ResourceTypesComponent } from './settings/resources/resource-types.component';
+import { StaffComponent } from './settings/staff/staff.component';
 import { SprintsComponent } from './sprints/sprints.component';
 import { joinTokens } from './tokens/utils';
 
@@ -61,19 +65,6 @@ export function getFeature({feature}) {
   return joinTokens(feature.title);
 }
 
-export const GENERAL_BREADCRUMB = $localize`:@@label.general:General`;
-export const DASHBOARD_BREADCRUMB = $localize`:@@label.dashboard:Dashboard`;
-export const SPRINTS_BREADCRUMB = $localize`:@@label.sprints:Sprints`;
-export const MODULES_BREADCRUMB = $localize`:@@label.modules:Modules`;
-export const FEATURES_BREADCRUMB = $localize`:@@label.features:Feature`;
-export const ACTORS_BREADCRUMB = $localize`:@@label.actors:Actors`;
-export const TERMS_BREADCRUMB = $localize`:@@label.terms:Terms`;
-export const MODEL_BREADCRUMB = $localize`:@@label.model:Model`;
-export const ENTITIES_BREADCRUMB = $localize`:@@label.entities:Entities`;
-export const ENUMS_BREADCRUMB = $localize`:@@label.enums:Enums`;
-export const PRINT_BREADCRUMB = $localize`:@@label.print:Print`;
-export const VALIDATE_BREADCRUMB = $localize`:@@label.validate:Validate`;
-
 export const routes: Routes = [
   {
     path: 'updating',
@@ -96,22 +87,22 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: {breadcrumb: DASHBOARD_BREADCRUMB}
+        data: {breadcrumb: $localize`:@@label.dashboard:Dashboard`}
       },
       {
         path: 'print',
         component: PrintComponent,
-        data: {breadcrumb: PRINT_BREADCRUMB}
+        data: {breadcrumb: $localize`:@@label.print:Print`}
       },
       {
         path: 'actors',
         component: FeaturesComponent,
-        data: {breadcrumb: FEATURES_BREADCRUMB},
+        data: {breadcrumb: $localize`:@@label.features:Feature`},
         children: [
           {
             path: '',
             component: ActorsComponent,
-            data: {breadcrumb: ACTORS_BREADCRUMB},
+            data: {breadcrumb: $localize`:@@label.actors:Actors`},
             resolve: {spec: SpecResolver},
             pathMatch: 'full'
           },
@@ -125,35 +116,40 @@ export const routes: Routes = [
                 path: 'features/:feature',
                 component: FeatureEditComponent,
                 data: {breadcrumb: getFeature},
-                resolve: {feature: ActorFeatureResolver},
+                resolve: {feature: FeatureResolver},
                 children: [
                   {
                     path: '',
                     pathMatch: 'full',
-                    redirectTo: 'story'
+                    redirectTo: 'workflow'
+                  },
+                  {
+                    path: 'workflow',
+                    component: FeatureWorkflowComponent,
+                    resolve: {feature: FeatureResolver}
                   },
                   {
                     path: 'story',
                     component: FeatureStoryComponent,
-                    resolve: {feature: ActorFeatureResolver}
+                    resolve: {feature: FeatureResolver}
                   },
                   {
                     path: 'frames',
                     component: FeatureFramesComponent,
                     resolve: {
-                      feature: ActorFeatureResolver,
+                      feature: FeatureResolver,
                       project: ProjectResolver
                     }
                   },
                   {
                     path: 'resources',
                     component: FeatureResourcesComponent,
-                    resolve: {feature: ActorFeatureResolver}
+                    resolve: {feature: FeatureResolver}
                   },
                   {
                     path: 'api',
                     component: FeatureApiComponent,
-                    resolve: {feature: ActorFeatureResolver},
+                    resolve: {feature: FeatureResolver},
                     children: [
                       {
                         path: 'graphql/:id',
@@ -166,7 +162,7 @@ export const routes: Routes = [
                     path: 'issues',
                     component: FeatureIssuesComponent,
                     resolve: {
-                      feature: ActorFeatureResolver,
+                      feature: FeatureResolver,
                       project: ProjectResolver
                     }
                   },
@@ -175,7 +171,7 @@ export const routes: Routes = [
                     component: FeatureMarkdownComponent,
                     resolve: {
                       project: ProjectResolver,
-                      feature: ActorFeatureResolver
+                      feature: FeatureResolver
                     }
                   }
                 ]
@@ -187,14 +183,14 @@ export const routes: Routes = [
       {
         path: 'terms',
         component: TermsComponent,
-        data: {breadcrumb: TERMS_BREADCRUMB},
+        data: {breadcrumb: $localize`:@@label.terms:Terms`},
         resolve: {spec: SpecResolver}
 
       },
       {
         path: 'model',
         component: ModelComponent,
-        data: {breadcrumb: MODEL_BREADCRUMB},
+        data: {breadcrumb: $localize`:@@label.model:Model`},
         children: [
           {
             path: '',
@@ -203,7 +199,7 @@ export const routes: Routes = [
           },
           {
             path: 'entities',
-            data: {breadcrumb: ENTITIES_BREADCRUMB},
+            data: {breadcrumb: $localize`:@@label.entities:Entities`},
             children: [
               {
                 path: '',
@@ -232,7 +228,7 @@ export const routes: Routes = [
           },
           {
             path: 'enums',
-            data: {breadcrumb: ENUMS_BREADCRUMB},
+            data: {breadcrumb: $localize`:@@label.enums:Enums`},
             children: [
               {
                 path: '',
@@ -253,25 +249,43 @@ export const routes: Routes = [
       {
         path: 'modules',
         component: ModulesComponent,
-        data: {breadcrumb: MODULES_BREADCRUMB},
+        data: {breadcrumb: $localize`:@@label.modules:Modules`},
         resolve: {spec: SpecResolver}
 
       },
       {
         path: 'sprints',
         component: SprintsComponent,
-        data: {breadcrumb: SPRINTS_BREADCRUMB}
+        data: {breadcrumb: $localize`:@@label.sprints:Sprints`}
       },
       {
-        path: 'details',
-        component: DetailsComponent,
-        resolve: {
-          me: MeUserResolver
-        },
-        data: {breadcrumb: GENERAL_BREADCRUMB}
+        path: 'settings',
+        component: SettingsComponent,
+        data: {breadcrumb: $localize`:@@label.general:General`},
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'resources'
+          },
+          {
+            path: 'resources',
+            component: ResourceTypesComponent,
+            resolve: {spec: SpecResolver}
+          },
+          {
+            path: 'maintenance',
+            component: MaintenanceComponent,
+            resolve: {spec: SpecResolver}
+          },
+          {
+            path: 'staff',
+            component: StaffComponent,
+            resolve: {spec: SpecResolver}
+          }
+        ]
       }
     ]
-
   }
 ];
 

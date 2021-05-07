@@ -15,7 +15,6 @@ export class LocalUI {
     enums: 'enums:svg:local:stroked',
     features: 'features:svg:local:stroked',
     validate: 'validate:svg:local:stroked',
-    general: 'general:svg:local:stroked',
     graphQl: 'graphql:svg:local',
     rest: 'rest:svg:local',
     story: 'story:svg:local:stroked',

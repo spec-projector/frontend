@@ -1743,8 +1743,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="label.settings" datatype="html">
-        <source>settings</source>
-        <target>настройки</target>
+        <source>Settings</source>
+        <target>Настройки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
           <context context-type="linenumber">14</context>

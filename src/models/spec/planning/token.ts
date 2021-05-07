@@ -1,4 +1,13 @@
 import { persist, persistence } from 'src/decorators/persistence';
+import * as assign from 'assign-deep';
+
+const TOKENS_REGEX = {
+  quote: '\\"([^\\"]+)\\"',
+  term: '\\[\\[([^\\[\\]]+)\\]\\]',
+  accent: '\\[([^\\[\\]]+)\\]',
+  url: '([-a-zA-Z0-9@:%._+~#=]{2,256}\\.[a-z]{2,6}\\b[-a-zA-Z0-9@:%_+.~#?&//=]*)'
+};
+
 
 export enum TokenType {
   text = 'text',
@@ -11,31 +20,33 @@ export enum TokenType {
 @persistence()
 export class Token {
 
-  constructor(defs: any = {}) {
-    Object.assign(this, defs);
+  constructor(defs: Partial<Token> = {}) {
+    assign(this, defs);
   }
 
   static parse(source: string): Token[] {
-    return source.split(/(\"[^\"]+\"|\[\[[^\{\}]+\]\]|\[[^\[\]]+\]|[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_+.~#?&//=]*)/i)
+    const regex = [TOKENS_REGEX.term, TOKENS_REGEX.accent, TOKENS_REGEX.url, TOKENS_REGEX.quote]
+      .map(r => r.replace('(', '').replace(')', ''));
+    return source.split(new RegExp('(' + regex.join('|') + ')', 'ig'))
       .map(t => t.trim())
       .filter(t => !!t)
       .map(t => {
-        let match = t.match(/\[\[([^\{\}]+)\]\]/i);
+        let match = t.match(new RegExp(TOKENS_REGEX.term));
         if (!!match) {
           return new TermToken(match[1]);
         }
 
-        match = t.match(/\[([^\[\]]+)\]/i);
+        match = t.match(new RegExp(TOKENS_REGEX.accent));
         if (!!match) {
           return new AccentToken(match[1]);
         }
 
-        match = t.match(/([-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_+.~#?&//=]*)/i);
+        match = t.match(new RegExp(TOKENS_REGEX.url));
         if (!!match) {
           return new UrlToken(match[1]);
         }
 
-        match = t.match(/\"([^\"]+)\"/i);
+        match = t.match(new RegExp(TOKENS_REGEX.quote));
         if (!!match) {
           return new QuoteToken(match[1]);
         }
@@ -46,7 +57,7 @@ export class Token {
   }
 
   toText() {
-    throw new Error('Must be rewritten');
+    throw new Error('Must be over written');
   }
 }
 
@@ -118,7 +129,7 @@ export class TermToken extends Token {
   }
 
   toString() {
-    return `{{${this.term}}}`;
+    return `[[${this.term}]]`;
   }
 
   toText() {
@@ -143,4 +154,5 @@ export class UrlToken extends Token {
   toText() {
     return this.url;
   }
+
 }

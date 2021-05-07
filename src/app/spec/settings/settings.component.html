@@ -1,0 +1,76 @@
+<jnt-app-page-header title="Settings"
+                     i18n-title="@@label.settings"
+                     [icon]="ui.icons.settings"></jnt-app-page-header>
+
+<jnt-block [width]="ui.width.fluid">
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-menu [style]="ui.menu.style.tabs"
+              [spacing]="ui.gutter.normal">
+      <jnt-menu-item title="Resource types"
+                     i18n-title="@@label.resource_types"
+                     [icon]="localUi.icons.resources"
+                     [link]="['resources']">
+        <jnt-badge *ngIf="spec.resourceTypes.length as count"
+                   [value]="count"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item title="Maintenance"
+                     i18n-title="@@label.maintenance"
+                     [link]="['maintenance']">
+      </jnt-menu-item>
+      <jnt-menu-item *ngIf="me.isStaff"
+                     title="Staff"
+                     i18n-title="@@label.staff"
+                     [link]="['staff']">
+      </jnt-menu-item>
+
+    </jnt-menu>
+
+    <router-outlet></router-outlet>
+  </jnt-stack>
+</jnt-block>
+
+<!--
+<jnt-app-page-header title="Specification"
+                     i18n-title="@@label.specification"
+                     [icon]="localUi.icons.general"></jnt-app-page-header>
+<jnt-block [width]="ui.width.fluid"
+           [padding]="ui.gutter.none">
+  <jnt-form [formGroup]="form"
+            (submitted)="save()">
+    <jnt-tabs>
+
+      <jnt-tab title="Resource types"
+               i18n-title="@@label.resource_types">
+        <jnt-badge *ngIf="resourceTypesArray.length > 0"
+                   [value]="resourceTypesArray.length"></jnt-badge>
+        <ng-template #tabContentTemplate>
+
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="Maintenance"
+               i18n-title="@@label.maintenance">
+        <ng-template #tabContentTemplate>
+          <jnt-stack actions [orientation]="ui.orientation.horizontal">
+            <div>
+              <a href="javascript:;" #dumpFile></a>
+              <jnt-button text="Dump"
+                          i18n-text="@@action.dump"
+                          (click)="dump(dumpFile)"></jnt-button>
+            </div>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab *ngIf="me.isStaff" title="For staff"
+               i18n-title="@@label.for_staff">
+        <ng-template #tabContentTemplate>
+          <jnt-button text="Demo" (click)="fillDemo()"></jnt-button>
+        </ng-template>
+      </jnt-tab>
+
+    </jnt-tabs>
+  </jnt-form>
+</jnt-block>
+-->

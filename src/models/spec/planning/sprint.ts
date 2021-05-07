@@ -4,7 +4,7 @@ import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
 import { Spec } from '../spec';
 import { Feature } from './feature/feature';
-import { Improvement } from './feature/improvement';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class Sprint extends Persistence {
@@ -21,14 +21,11 @@ export class Sprint extends Persistence {
   @persist({serializer: new ArraySerializer(new ModelSerializer(Feature))})
   features: Feature[] = [];
 
-  @persist({serializer: new ArraySerializer(new ModelSerializer(Improvement))})
-  improvements: Improvement[] = [];
-
   spec: Spec;
 
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<Sprint> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking(spec: Spec) {
@@ -58,6 +55,11 @@ export class Sprint extends Persistence {
 
   addFeature(feature: Feature) {
     this.features.push(feature);
+  }
+
+  removeFeature(feature: Feature) {
+    const index = this.features.indexOf(feature);
+    this.features.splice(index, 1);
   }
 
 }

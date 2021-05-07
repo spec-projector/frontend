@@ -3,8 +3,8 @@ import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
 import { Module } from '../planning/module';
 import { Spec } from '../spec';
-import { EntityField } from './entity-field';
 import { EnumOption } from './enum-option';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class Enum extends Persistence {
@@ -35,7 +35,7 @@ export class Enum extends Persistence {
 
   constructor(defs: Partial<Enum> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking({spec, module}: { spec?: Spec, module?: Module }) {

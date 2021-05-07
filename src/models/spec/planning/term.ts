@@ -1,10 +1,11 @@
 import { ArraySerializer } from 'serialize-ts';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { TokenSerializer } from 'src/serializers/token';
 import { Spec } from 'src/models/spec/spec';
+import { TokenSerializer } from 'src/serializers/token';
 import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
 import { Token } from './token';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class Term extends Persistence {
@@ -22,7 +23,7 @@ export class Term extends Persistence {
 
   constructor(defs: Partial<Term> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking(spec: Spec) {

@@ -93,10 +93,11 @@
                    i18n-title="@@label.contract"
                    [icon]="localUi.icons.print"></jnt-menu-item>
 
-    <jnt-menu-item title="General"
-                   i18n-title="@@label.general"
-                   [icon]="localUi.icons.general"
-                   [link]="['details']"></jnt-menu-item>
+    <jnt-menu-item title="Settings"
+                   i18n-title="@@label.settings"
+                   [icon]="ui.icons.settings"
+                   [link]="['settings']"
+                   [matching]="ui.matching.wildcard"></jnt-menu-item>
   </jnt-menu>
 </jnt-app-aside>
 

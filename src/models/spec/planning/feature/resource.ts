@@ -1,4 +1,5 @@
 import { persist, persistence } from '../../../../decorators/persistence';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class Resource {
@@ -9,7 +10,8 @@ export class Resource {
   @persist()
   hours: number;
 
-  constructor(defs: any = {}) {
-    Object.assign(this, defs);
+  constructor(defs: Partial<Resource> = {}) {
+    assign(this, defs);
   }
+
 }

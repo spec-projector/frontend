@@ -29,7 +29,7 @@
       <jnt-card [color]="query.id === selected.query?.id ? ui.color.green : ui.color.paleNavy"
                 [width]="ui.width.fluid"
                 [features]="[ui.feature.clickable]"
-                (click)="router.navigate(['graphql', query.id || i], {relativeTo: route, fragment: 'api'})">
+                (selected)="router.navigate(['graphql', query.id || i], {relativeTo: route, fragment: 'api'})">
         <jnt-stack [gutter]="ui.gutter.small"
                    [align]="ui.align.center">
           <jnt-icon [icon]="localUi.icons.graphQl"></jnt-icon>

@@ -5,6 +5,7 @@ import { ModelType } from '../../enums';
 import { Entity } from '../orm/entity';
 import { Enum } from '../orm/enum';
 import { Feature } from './feature/feature';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class ModuleModel extends Persistence {
@@ -38,7 +39,7 @@ export class ModuleModel extends Persistence {
 
   constructor(defs: Partial<ModuleModel> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 }
 
@@ -58,7 +59,7 @@ export class Module extends Persistence {
 
   constructor(defs: Partial<Module> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking(spec: Spec) {
@@ -107,8 +108,7 @@ export class Module extends Persistence {
     this.model.entities.forEach(e => e.module = null);
     this.model.enums.forEach(e => e.module = null);
 
-    const index = this.spec.modules.findIndex(f => f.id === this.id);
-    this.spec.modules.splice(index, 1);
+    this.spec.removeModule(this);
     links.changed.push(this.spec);
 
     return links;

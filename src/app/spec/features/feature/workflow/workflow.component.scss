@@ -1,0 +1,17 @@
+@import "src/variables";
+@import "~@junte/ui/lib/assets/styles/elements/icon";
+
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+[data-workflow] {
+  @include jnt-icon((size: 16px, color: $jnt-gray-800-color, stroke: 2px));
+}
+
+td {
+  text-align: center;
+  vertical-align: center;
+}

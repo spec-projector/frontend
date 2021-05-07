@@ -1,10 +1,10 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Depends } from '../../../types/depends';
 import { ModelType } from '../../enums';
-import { Feature } from '../planning/feature/feature';
 import { Module } from '../planning/module';
 import { Spec } from '../spec';
 import { EntityField } from './entity-field';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class Entity extends Persistence {
@@ -35,7 +35,7 @@ export class Entity extends Persistence {
 
   constructor(defs: Partial<Entity> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking({spec, module}: { spec?: Spec, module?: Module }) {

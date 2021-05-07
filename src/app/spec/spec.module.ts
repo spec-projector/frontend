@@ -7,7 +7,7 @@ import { ClickOutsideModule } from 'ng4-click-outside';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { ActorComponent } from 'src/app/spec/actors/actor/actor.component';
 import { ActorsComponent } from 'src/app/spec/actors/actors.component';
-import { DetailsComponent } from 'src/app/spec/details/details.component';
+import { SettingsComponent } from 'src/app/spec/settings/settings.component';
 import { FeatureEditGraphqlComponent } from 'src/app/spec/features/feature/api/edit-graphql/feature-edit-graphql.component';
 import { FeatureComponent } from 'src/app/spec/features/feature/feature.component';
 import { FeatureAddFrameComponent } from 'src/app/spec/features/feature/frames/add-frame/feature-add-frame.component';
@@ -43,6 +43,7 @@ import { AddFigmaKeyComponent } from './features/feature/frames/add-figma-key/ad
 import { EstimatedTimePipe, SpentTimePipe } from './features/feature/pipes';
 import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
 import { WorkflowStepComponent } from './features/feature/workflow/step/step.component';
+import { FeatureWorkflowComponent } from './features/feature/workflow/workflow.component';
 import { FeaturesComponent } from './features/features.component';
 import {
   FeaturePricePipe,
@@ -66,12 +67,13 @@ import { ModelComponent } from './model/model.component';
 import { SpecPricePipe } from './pipes';
 import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
+import { MaintenanceComponent } from './settings/maintenance/maintenance.component';
+import { ResourceTypesComponent } from './settings/resources/resource-types.component';
+import { StaffComponent } from './settings/staff/staff.component';
 
 @NgModule({
   declarations: [
     SpecComponent,
-
-    DetailsComponent,
 
     DashboardComponent,
 
@@ -82,6 +84,7 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     FeaturesComponent,
     FeatureComponent,
     FeatureEditComponent,
+    FeatureWorkflowComponent,
     FeatureStoryComponent,
     FeatureStoryEntryComponent,
     FeatureFramesComponent,
@@ -132,6 +135,11 @@ import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
     EstimatedTimePipe,
 
     PrintComponent,
+
+    SettingsComponent,
+    ResourceTypesComponent,
+    MaintenanceComponent,
+    StaffComponent,
 
     TokensComponent,
 

@@ -5,7 +5,7 @@ $jnt-ng-deep: true;
 
 .cdk-drag {
   &-preview {
-    box-shadow: $jnt-shadow-normal;
+    @include jnt-card((shadow: $jnt-shadow-normal), '&');
   }
 
   &-dragging .cdk-drag {
@@ -40,5 +40,4 @@ $jnt-ng-deep: true;
 
 ::ng-deep [data-item-from-library] {
   @include jnt-card((background: $jnt-secondary-background, border: none), '&');
-  display: flex !important;
 }

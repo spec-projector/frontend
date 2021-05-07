@@ -1,8 +1,13 @@
 import { persist, Persistence, persistence } from '../../../../decorators/persistence';
+import { ModelType } from '../../../enums';
 import { Graphql } from './graphql';
+import * as assign from 'assign-deep';
 
 @persistence()
 export class FeatureApi extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.featureApi;
 
   @persist({type: Graphql})
   graphql: Graphql[] = [];
@@ -18,7 +23,7 @@ export class FeatureApi extends Persistence {
 
   constructor(defs: Partial<FeatureApi> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
 }

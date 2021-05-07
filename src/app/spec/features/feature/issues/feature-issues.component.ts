@@ -91,6 +91,6 @@ export class FeatureIssuesComponent implements OnInit {
     this.logger.log('save issues for feature [', this.feature.title.toString(), ']');
     this.manager.put(this.feature);
 
-    this.feature.version++;
+    this.feature.kick();
   }
 }

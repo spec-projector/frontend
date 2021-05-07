@@ -1,12 +1,10 @@
-import {persist, Persistence, persistence} from 'src/decorators/persistence';
-import {Depends} from '../../../types/depends';
-import {ModelType} from '../../enums';
-import {Actor} from '../planning/actor';
-import {Module} from '../planning/module';
-import {Sprint} from '../planning/sprint';
-import {Spec} from '../spec';
-import {Entity} from './entity';
-import {Enum} from './enum';
+import { persist, Persistence, persistence } from 'src/decorators/persistence';
+import { Depends } from '../../../types/depends';
+import { ModelType } from '../../enums';
+import { Spec } from '../spec';
+import { Entity } from './entity';
+import { Enum } from './enum';
+import * as assign from 'assign-deep';
 
 export enum FieldType {
   boolean = 'boolean',
@@ -53,7 +51,7 @@ export class EntityField extends Persistence {
 
   constructor(defs: Partial<EntityField> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking({spec, entity}: { spec?: Spec, entity?: Entity } = {}) {

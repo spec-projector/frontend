@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { ArraySerializer } from 'serialize-ts';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Sprint } from 'src/models/spec/planning/sprint';
@@ -6,16 +7,16 @@ import { TokenSerializer } from 'src/serializers/token';
 import { Depends } from '../../../../types/depends';
 import { ModelType } from '../../../enums';
 import { Actor } from '../actor';
-import { Algorithm } from './algorithm';
+import { Module } from '../module';
+import { Term } from '../term';
+import { TermToken, Token } from '../token';
 import { FeatureApi } from './api';
 import { Frame } from './frame';
 import { Issue } from './issue';
 import { Resource } from './resource';
 import { StoryEntry } from './story';
-import { Workflow } from './workflow';
-import { Module } from '../module';
-import { Term } from '../term';
-import { TermToken, Token } from '../token';
+import { FeatureWorkflow } from './workflow';
+import * as assign from 'assign-deep';
 
 function normalize(input: string) {
   return input.replace(/[аеиоуэыюя]/gi, '')
@@ -43,14 +44,11 @@ export class Feature extends Persistence {
   @persist({type: FeatureApi})
   api: FeatureApi = new FeatureApi();
 
-  @persist({type: Algorithm})
-  algorithms: Algorithm[] = [];
-
   @persist({type: Resource})
   resources: Resource[] = [];
 
   @persist()
-  workflow: Workflow = new Workflow();
+  workflow: FeatureWorkflow = new FeatureWorkflow();
 
   @persist()
   sort: number;
@@ -60,20 +58,11 @@ export class Feature extends Persistence {
   module: Module;
   sprint: Sprint;
 
-  _version = 0;
+  kicked = new EventEmitter();
 
-  set version(version: number) {
-    this._version = version;
-    this.actor.version++;
-  }
-
-  get version() {
-    return this._version;
-  }
-
-  constructor(defs: any = {}) {
+  constructor(defs: Partial<Feature> = {}) {
     super();
-    Object.assign(this, defs);
+    assign(this, defs);
   }
 
   linking({spec, actor, module, sprint}: { spec?: Spec, actor?: Actor, module?: Module, sprint?: Sprint }) {
@@ -91,25 +80,24 @@ export class Feature extends Persistence {
     if (sprint !== undefined) {
       this.sprint = sprint;
     }
+
+    this.frames.forEach(f => f.linking(this));
   }
 
   delete(): Depends {
     const links = {changed: [], deleted: []};
     if (!!this.actor) {
-      const index = this.actor.features.findIndex(f => f.id === this.id);
-      this.actor.features.splice(index, 1);
+      this.actor.removeFeature(this);
       links.changed.push(this.actor);
     }
 
     if (!!this.module) {
-      const index = this.module.features.findIndex(f => f.id === this.id);
-      this.module.features.splice(index, 1);
+      this.module.removeFeature(this);
       links.changed.push(this.module);
     }
 
     if (!!this.sprint) {
-      const index = this.sprint.features.findIndex(f => f.id === this.id);
-      this.sprint.features.splice(index, 1);
+      this.sprint.removeFeature(this);
       links.changed.push(this.sprint);
     }
 
@@ -156,7 +144,25 @@ export class Feature extends Persistence {
     api.new();
     this.api = api;
 
+    const workflow = new FeatureWorkflow();
+    workflow.new();
+    this.workflow = workflow;
+
     return [api];
+  }
+
+  addFrame(frame: Frame) {
+    this.frames.push(frame);
+  }
+
+  removeFrame(frame: Frame) {
+    const index = this.frames.indexOf(frame);
+    this.frames.splice(index, 1);
+  }
+
+  kick() {
+    this.actor.kick();
+    this.kicked.next();
   }
 
 }

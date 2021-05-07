@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
+import { Subscription } from 'rxjs';
 import { LocalUI } from 'src/enums/local-ui';
 import { Feature } from 'src/models/spec/planning/feature/feature';
 import { EditMode } from '../../../../../enums/edit-mode';
@@ -11,7 +12,8 @@ import { SpecManager } from '../../../managers';
 @Component({
   selector: 'spec-feature-edit',
   templateUrl: './feature-edit.component.html',
-  styleUrls: ['./feature-edit.component.scss']
+  styleUrls: ['./feature-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureEditComponent implements OnInit {
 
@@ -19,51 +21,12 @@ export class FeatureEditComponent implements OnInit {
   localUi = LocalUI;
   workflowStepState = WorkflowStepState;
 
-  _feature: Feature;
-
-  storyControl = this.fb.control(WorkflowStepState.doing);
-  designControl = this.fb.control(WorkflowStepState.doing);
-  resourcesControl = this.fb.control(WorkflowStepState.doing);
-  apiControl = this.fb.control(WorkflowStepState.doing);
-  developingControl = this.fb.control(WorkflowStepState.doing);
-  testingControl = this.fb.control(WorkflowStepState.doing);
-  acceptingControl = this.fb.control(WorkflowStepState.doing);
-
-  form = this.fb.group({
-    workflow: this.fb.group({
-      story: this.storyControl,
-      design: this.designControl,
-      resources: this.resourcesControl,
-      api: this.apiControl,
-      developing: this.developingControl,
-      testing: this.testingControl,
-      accepting: this.acceptingControl
-    })
-  });
-
-  set feature(feature: Feature) {
-    this._feature = feature;
-    const {workflow} = feature;
-    this.form.patchValue({
-      workflow: {
-        story: workflow.story,
-        design: workflow.design,
-        resources: workflow.resources,
-        api: workflow.api,
-        developing: workflow.developing,
-        testing: workflow.testing,
-        accepting: workflow.accepting
-      }
-    }, {emitEvent: false});
-  }
-
-  get feature() {
-    return this._feature;
-  }
+  feature: Feature;
+  version = 0;
 
   constructor(private manager: SpecManager,
-              private route: ActivatedRoute,
-              private fb: FormBuilder) {
+              private cd: ChangeDetectorRef,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -75,13 +38,14 @@ export class FeatureEditComponent implements OnInit {
         this.manager.put(feature.api);
         this.manager.put(feature);
       }
-    });
-    this.manager.mode$.subscribe(mode => mode === EditMode.edit ? this.form.enable() : this.form.disable());
 
-    this.form.valueChanges.subscribe(({workflow}) => {
-      Object.assign(this.feature.workflow, workflow);
-      this.manager.put(this.feature);
+      if (!feature.workflow.id) {
+        feature.workflow.new();
+        this.manager.put(feature.workflow);
+        this.manager.put(feature);
+      }
     });
+
   }
 
 }

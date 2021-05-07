@@ -1,13 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverService, UI } from '@junte/ui';
-import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { Language } from 'src/enums/language';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
-import { environment } from '../../../../../environments/environment';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { Resource } from '../../../../../models/spec/planning/feature/resource';
 import { SpecManager } from '../../../managers';
@@ -43,11 +40,12 @@ export class FeatureResourcesComponent implements OnInit {
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
-      .pipe(debounceTime(environment.uiDebounceTime))
       .subscribe(({resources}) => {
         this.feature.resources = resources.map(({resource, hours}) =>
           new Resource({resource, hours: hours}));
-        this.save();
+        this.manager.put(this.feature);
+
+        this.feature.kick();
       });
   }
 
@@ -59,8 +57,7 @@ export class FeatureResourcesComponent implements OnInit {
               private fb: FormBuilder,
               private popover: PopoverService,
               private cd: ChangeDetectorRef,
-              private route: ActivatedRoute,
-              private logger: NGXLogger) {
+              private route: ActivatedRoute) {
 
   }
 
@@ -70,8 +67,8 @@ export class FeatureResourcesComponent implements OnInit {
 
   resourcesGroup() {
     return this.fb.group({
-      resource: [null, [Validators.required]],
-      hours: [null, [Validators.required]]
+      resource: [null],
+      hours: [null]
     });
   }
 
@@ -93,13 +90,6 @@ export class FeatureResourcesComponent implements OnInit {
   delete(index: number) {
     this.resourcesArray.removeAt(index);
     this.cd.detectChanges();
-  }
-
-  save() {
-    this.logger.log('save resources for feature [', this.feature.title.toString(), ']');
-    this.manager.put(this.feature);
-
-    this.feature.version++;
   }
 
 }

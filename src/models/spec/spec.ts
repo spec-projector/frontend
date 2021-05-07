@@ -1,6 +1,7 @@
 import * as assign from 'assign-deep';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { SCHEME_VERSION } from '../../consts';
+import { ModelType } from '../enums';
 import { Entity } from './orm/entity';
 import { Enum } from './orm/enum';
 import { Actor } from './planning/actor';
@@ -10,12 +11,13 @@ import { Sprint } from './planning/sprint';
 import { Term } from './planning/term';
 
 @persistence()
-export class SpecTools {
+export class SpecTools extends Persistence {
 
   @persist()
   graphqlPlaygroundUrl: string;
 
   constructor(defs: Partial<SpecTools> = {}) {
+    super();
     assign(this, defs);
   }
 
@@ -84,6 +86,9 @@ export class SpecModel extends Persistence {
 
 @persistence()
 export class Spec extends Persistence {
+
+  @persist({name: 'model_type'})
+  modelType: string = ModelType.spec;
 
   @persist()
   scheme: Scheme = new Scheme({
@@ -163,16 +168,36 @@ export class Spec extends Persistence {
     this.actors.push(actor);
   }
 
+  removeActor(actor: Actor) {
+    const index = this.actors.findIndex(f => f.id === actor.id);
+    this.actors.splice(index, 1);
+  }
+
   addTerm(term: Term) {
     this.terms.push(term);
+  }
+
+  removeTerm(term: Term) {
+    const index = this.terms.findIndex(f => f.id === term.id);
+    this.terms.splice(index, 1);
   }
 
   addModule(module: Module) {
     this.modules.push(module);
   }
 
+  removeModule(module: Module) {
+    const index = this.modules.findIndex(f => f.id === module.id);
+    this.modules.splice(index, 1);
+  }
+
   addSprint(sprint: Sprint) {
     this.sprints.push(sprint);
+  }
+
+  removeSprint(sprint: Sprint) {
+    const index = this.sprints.findIndex(f => f.id === sprint.id);
+    this.sprints.splice(index, 1);
   }
 
 }
