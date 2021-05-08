@@ -7,11 +7,18 @@ $jnt-ng-deep: true;
   display: block;
 }
 
-[data-workflow] {
+table {
   @include jnt-icon((size: 16px, color: $jnt-gray-800-color, stroke: 2px));
 }
 
 td {
   text-align: center;
   vertical-align: center;
+  padding: $jnt-gutter-small;
+  > span {
+    font-size: 2em;
+    background-color: $jnt-pale-navy-color;
+    padding: $jnt-gutter-normal $jnt-gutter-huge;
+    border-radius: $jnt-gutter-normal;
+  }
 }

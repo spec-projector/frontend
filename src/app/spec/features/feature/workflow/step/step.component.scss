@@ -8,8 +8,8 @@ $jnt-ng-deep: true;
   padding: $jnt-gutter-small $jnt-gutter-normal;
   border-radius: $jnt-corner-normal;
   background: $jnt-pale-navy-color;
-  width: 70px;
-  min-width: 70px;
+  width: 100px;
+  min-width: 100px;
 
   &[data-disabled=true] {
     pointer-events: none;

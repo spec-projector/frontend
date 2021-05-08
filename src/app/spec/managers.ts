@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb-browser';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { bufferTime, filter, finalize } from 'rxjs/operators';
-import { generate as shortid } from 'shortid';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
-import { SpecModel, Spec, ResourceType } from 'src/models/spec/spec';
-import { CURRENT_LANGUAGE, SCHEME_VERSION } from '../../consts';
+import { ResourceType, Spec, SPEC_DOC_ID } from 'src/models/spec/spec';
+import { CURRENT_LANGUAGE } from '../../consts';
 import { Language } from '../../enums/language';
 import { environment } from '../../environments/environment';
 import { AppConfig } from '../app-config';
 import Database = PouchDB.Database;
 
-const SPEC_OBJECT_ID = 'spec';
 const BUFFER_TIME = 2500;
 
 interface Flush {
@@ -81,7 +79,7 @@ export class SpecManager {
           console.log('synced');
           console.log(spec);
           console.groupEnd();
-          spec.id = SPEC_OBJECT_ID;
+          spec.id = SPEC_DOC_ID;
           const progress = new Subject();
           spec.load(this.local, progress)
             .subscribe(() => {
@@ -94,29 +92,31 @@ export class SpecManager {
               this.spec$.next(spec);
               this.pull();
               this.push();
-            }, (err: { status }) => {
+            }, (err: { status, docId }) => {
+              console.log(err);
               if (err.status === 404) {
-                console.log('spec not found');
-                spec.new().forEach(o => this.put(o));
+                if (err.docId === SPEC_DOC_ID) {
+                  spec.new().forEach(o => this.put(o));
 
-                switch (CURRENT_LANGUAGE) {
-                  case Language.ru:
-                    spec.resourceTypes = [
-                      new ResourceType({title: 'UI/UX', hourRate: 1000}),
-                      new ResourceType({title: 'Фронтенд', hourRate: 2000}),
-                      new ResourceType({title: 'Бекенд', hourRate: 2000})
-                    ];
-                    break;
-                  case Language.en:
-                  default:
-                    spec.resourceTypes = [
-                      new ResourceType({title: 'UI/UX', hourRate: 15}),
-                      new ResourceType({title: 'Frontend', hourRate: 30}),
-                      new ResourceType({title: 'Backend', hourRate: 30})
-                    ];
+                  switch (CURRENT_LANGUAGE) {
+                    case Language.ru:
+                      spec.resourceTypes = [
+                        new ResourceType({title: 'UI/UX', hourRate: 1000}),
+                        new ResourceType({title: 'Фронтенд', hourRate: 2000}),
+                        new ResourceType({title: 'Бекенд', hourRate: 2000})
+                      ];
+                      break;
+                    case Language.en:
+                    default:
+                      spec.resourceTypes = [
+                        new ResourceType({title: 'UI/UX', hourRate: 15}),
+                        new ResourceType({title: 'Frontend', hourRate: 30}),
+                        new ResourceType({title: 'Backend', hourRate: 30})
+                      ];
+                  }
+
+                  this.put(spec);
                 }
-
-                this.put(spec);
 
                 this.spec$.next(spec);
               } else {

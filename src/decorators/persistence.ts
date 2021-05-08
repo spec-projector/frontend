@@ -164,7 +164,10 @@ export class Persistence {
               }
               loaded.error(err);
             });
-        }).catch(err => loaded.error(err));
+        }).catch(err => {
+          console.log(this);
+          loaded.error(err);
+        });
       } else {
         this.loaded = true;
         loaded.next(this);

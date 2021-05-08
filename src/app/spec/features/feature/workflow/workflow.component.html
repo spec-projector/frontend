@@ -27,19 +27,44 @@
       </td>
     </tr>
     <tr>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td>
         <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
       </td>
     </tr>
     <tr>
+      <td colspan="4">
+        <span i18n="@@label.workflow">Workflow</span>
+      </td>
+      <td>
+        <spec-workflow-step title="API"
+                            i18n-title="@@label.api"
+                            formControlName="api"
+                            [icon]="localUi.icons.graphQl"></spec-workflow-step>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <spec-workflow-step title="Accepting"
+                            i18n-title="@@label.accepting"
+                            formControlName="accepting"
+                            [icon]="localUi.icons.accepting"></spec-workflow-step>
+      </td>
+      <td>
+        <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
+      </td>
       <td>
         <spec-workflow-step title="Testing"
                             i18n-title="@@label.testing"
@@ -54,36 +79,6 @@
                             i18n-title="@@label.developing"
                             formControlName="developing"
                             [icon]="localUi.icons.developing"></spec-workflow-step>
-      </td>
-      <td>
-        <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
-      </td>
-      <td>
-        <spec-workflow-step title="API"
-                            i18n-title="@@label.api"
-                            formControlName="api"
-                            [icon]="localUi.icons.graphQl"></spec-workflow-step>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <spec-workflow-step title="Accepting"
-                            i18n-title="@@label.accepting"
-                            formControlName="accepting"
-                            [icon]="localUi.icons.accepting"></spec-workflow-step>
       </td>
     </tr>
   </table>

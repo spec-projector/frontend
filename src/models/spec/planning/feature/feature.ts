@@ -148,7 +148,7 @@ export class Feature extends Persistence {
     workflow.new();
     this.workflow = workflow;
 
-    return [api];
+    return [api, workflow];
   }
 
   addFrame(frame: Frame) {

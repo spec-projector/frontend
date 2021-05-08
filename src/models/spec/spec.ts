@@ -10,6 +10,8 @@ import { Module } from './planning/module';
 import { Sprint } from './planning/sprint';
 import { Term } from './planning/term';
 
+export const SPEC_DOC_ID = 'spec';
+
 @persistence()
 export class SpecTools extends Persistence {
 
@@ -154,7 +156,7 @@ export class Spec extends Persistence {
   }
 
   new(): Persistence[] {
-    super.new();
+    this.id = SPEC_DOC_ID;
     this.version = SCHEME_VERSION;
 
     const model = new SpecModel();

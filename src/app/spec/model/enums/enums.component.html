@@ -26,7 +26,7 @@
   </jnt-message>
 </ng-template>
 
-<jnt-stack *ngIf="spec.model.entities.length > 0; else emptyDataTemplate"
+<jnt-stack *ngIf="spec.model.enums.length > 0; else emptyDataTemplate"
            [align]="ui.align.stretch">
   <jnt-stack *ngFor="let g of (spec.model.enums | groupEnumsByModules:version)"
              [orientation]="ui.orientation.horizontal"

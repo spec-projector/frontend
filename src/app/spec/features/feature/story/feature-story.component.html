@@ -84,17 +84,22 @@
           <jnt-label [size]="ui.size.small"
                      [color]="ui.color.paleNavy"
                      label="↵"></jnt-label>
-          добавления линии.
+          добавления линии
+          <jnt-label label="?"
+                     [color]="ui.color.paleNavy"
+                     [jntPopover]="{contentTemplate: syntaxHelpRuTemplate}"></jnt-label>
         </p>
-        <p>Используйте специальный синтаксис:</p>
-        <ul>
-          <li>
-            <code>[[термин]]</code> для ссылок на термины;
-          </li>
-          <li>
-            <code>[@объект]]</code> для ссылок на объекты модели данных.
-          </li>
-        </ul>
+        <ng-template #syntaxHelpRuTemplate>
+          <p>Используйте специальный синтаксис:</p>
+          <ul>
+            <li>
+              <code>[[термин]]</code> для ссылок на термины;
+            </li>
+            <li>
+              <code>[@объект]]</code> для ссылок на объекты модели данных.
+            </li>
+          </ul>
+        </ng-template>
       </ng-container>
     </div>
     <p [ngSwitch]="consts.language">

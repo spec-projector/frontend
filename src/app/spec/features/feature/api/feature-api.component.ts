@@ -76,8 +76,7 @@ export class FeatureApiComponent implements OnInit {
 
     this.router.navigate(['graphql', graphql.id],
       {
-        relativeTo: this.route,
-        fragment: 'api'
+        relativeTo: this.route
       }).then(() => null);
   }
 
@@ -91,8 +90,7 @@ export class FeatureApiComponent implements OnInit {
 
     if (this.selected.query === query) {
       this.router.navigate(['./'], {
-        relativeTo: this.route,
-        fragment: 'api'
+        relativeTo: this.route
       })
         .then(() => null);
     }
