@@ -1,19 +1,45 @@
 <jnt-app-aside #aside>
 
   <ng-template #asideFooterTemplate let-collapsed="collapsed">
-    <jnt-stack data-edit [orientation]="ui.orientation.horizontal"
-               [align]="ui.align.center"
-               [justify]="ui.justify.between">
-      <jnt-button [scheme]="ui.scheme.secondary"
-                  [icon]="ui.icons.settings"
-                  [shape]="ui.shape.circle"
-                  (click)="editProject()"></jnt-button>
-      <ng-container *ngIf="!collapsed" [formGroup]="form">
-        <jnt-switch formControlName="mode"
-                    [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
-        </jnt-switch>
-      </ng-container>
+
+    <jnt-stack data-tools [align]="ui.align.stretch">
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [align]="ui.align.center"
+                 [justify]="ui.justify.between">
+        <jnt-button [scheme]="ui.scheme.secondary"
+                    [icon]="ui.icons.settings"
+                    [shape]="ui.shape.circle"
+                    (click)="editProject()"></jnt-button>
+        <ng-container *ngIf="!collapsed" [formGroup]="form">
+          <jnt-switch formControlName="mode"
+                      [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
+          </jnt-switch>
+        </ng-container>
+      </jnt-stack>
+
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [justify]="ui.align.center">
+        <div data-cloud>
+          <ng-template #cloudDoneTemplate>
+            <jnt-icon [icon]="localUi.icons.cloud.done"></jnt-icon>
+          </ng-template>
+
+          <ng-container [ngSwitch]="manager.state.remote$ | async">
+            <jnt-icon *ngSwitchCase="replicationState.active"
+                      [icon]="localUi.icons.cloud.active"></jnt-icon>
+            <jnt-icon *ngSwitchCase="replicationState.done"
+                      [icon]="localUi.icons.cloud.done"></jnt-icon>
+            <ng-container *ngSwitchCase="replicationState.paused">
+              <jnt-icon *ngIf="(manager.state.dirty$ | async) > 0;else cloudDoneTemplate"
+                        [icon]="localUi.icons.localDbDirty"></jnt-icon>
+            </ng-container>
+            <jnt-icon *ngSwitchCase="replicationState.error"
+                      [icon]="localUi.icons.cloud.error"></jnt-icon>
+          </ng-container>
+        </div>
+      </jnt-stack>
     </jnt-stack>
+
   </ng-template>
 
   <jnt-menu [orientation]="ui.orientation.vertical">

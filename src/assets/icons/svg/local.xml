@@ -538,5 +538,29 @@
     <path d="M13.7507 9.40527L11.5635 11.5937L10.2493 10.2806" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 
+  <svg id="cloud_done" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.324 9.068C3.885 9.401 2 11.47 2 14C2 16.761 4.239 19 7 19H18C20.209 19 22 17.209 22 15C22 12.791 20.209 11 18 11C18 7.686 15.314 5 12 5C9.363 5 7.129 6.703 6.324 9.068Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.667 11.667L11.333 15L9.333 13" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg id="cloud_error" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.324 9.068C3.885 9.401 2 11.47 2 14C2 16.761 4.239 19 7 19H18C20.209 19 22 17.209 22 15C22 12.791 20.209 11 18 11C18 7.686 15.314 5 12 5C9.363 5 7.129 6.703 6.324 9.068Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 13.33V10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.999 15.667C11.907 15.667 11.832 15.742 11.833 15.834C11.833 15.925 11.908 16 12 16C12.092 16 12.167 15.925 12.167 15.833C12.167 15.741 12.092 15.667 11.999 15.667" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg id="cloud_active" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.324 9.068C3.885 9.401 2 11.47 2 14C2 16.761 4.239 19 7 19H18C20.209 19 22 17.209 22 15C22 12.791 20.209 11 18 11C18 7.686 15.314 5 12 5C9.363 5 7.129 6.703 6.324 9.068Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.795 15.083L11.101 15.778L11.795 16.472" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.315 13.685C9.258 13.466 9.222 13.238 9.222 13C9.222 11.466 10.466 10.222 12 10.222C12.273 10.222 12.536 10.263 12.785 10.336" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.684 12.316C14.741 12.535 14.777 12.763 14.777 13C14.777 14.534 13.533 15.778 11.999 15.778C11.726 15.778 11.463 15.737 11.214 15.664" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.205 10.917L12.899 10.222L12.205 9.528" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg id="local_db_dirty" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.324 9.068C3.885 9.401 2 11.47 2 14C2 16.761 4.239 19 7 19H18C20.209 19 22 17.209 22 15C22 12.791 20.209 11 18 11C18 7.686 15.314 5 12 5C9.363 5 7.129 6.703 6.324 9.068Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.83301 12.667L12 10.5L14.167 12.667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 15.5V10.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
 
 </icons>

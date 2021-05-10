@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import PouchDB from 'pouchdb-browser';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { bufferTime, filter, finalize } from 'rxjs/operators';
-import { Persistence, SerializeType } from 'src/decorators/persistence';
-import { EditMode } from 'src/enums/edit-mode';
-import { ResourceType, Spec, SPEC_DOC_ID } from 'src/models/spec/spec';
-import { CURRENT_LANGUAGE } from '../../consts';
-import { Language } from '../../enums/language';
-import { environment } from '../../environments/environment';
-import { AppConfig } from '../app-config';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {bufferTime, filter, finalize, tap} from 'rxjs/operators';
+import {Persistence, SerializeType} from 'src/decorators/persistence';
+import {EditMode} from 'src/enums/edit-mode';
+import {ResourceType, Spec, SPEC_DOC_ID} from 'src/models/spec/spec';
+import {CURRENT_LANGUAGE} from '../../consts';
+import {Language} from '../../enums/language';
+import {environment} from '../../environments/environment';
+import {AppConfig} from '../app-config';
+import {ReplicationState} from './enums';
 import Database = PouchDB.Database;
+import {NGXLogger} from 'ngx-logger';
 
 const BUFFER_TIME = 2500;
 
@@ -37,6 +39,12 @@ export class SpecManager {
   private flushing$ = new Subject<Flush>();
   spec$: BehaviorSubject<Spec>;
 
+  state = {
+    remote$: new BehaviorSubject(ReplicationState.done),
+    dirty: 0,
+    dirty$: new BehaviorSubject(0),
+  };
+
   set mode(mode: EditMode) {
     this.mode$.next(mode);
   }
@@ -47,8 +55,9 @@ export class SpecManager {
 
   mode$ = new BehaviorSubject(EditMode.edit);
 
-  constructor(private config: AppConfig) {
-    this.flushing();
+  constructor(private config: AppConfig,
+              private logger: NGXLogger) {
+    this.committing();
   }
 
   get(project: string): Observable<Spec> {
@@ -93,7 +102,7 @@ export class SpecManager {
               this.pull();
               this.push();
             }, (err: { status, docId }) => {
-              console.log(err);
+              this.logger.error(err);
               if (err.status === 404) {
                 if (err.docId === SPEC_DOC_ID) {
                   spec.new().forEach(o => this.put(o));
@@ -150,16 +159,15 @@ export class SpecManager {
   }
 
   private pull() {
-    console.log('start pull');
+    this.logger.info('start pull from server');
     this.local.replicate.from(this.remote, {
       live: true,
       retry: true
     }).on('change', (changes) => {
-      console.log('changes from server');
-      console.log(changes.docs);
+      this.logger.info('changes from server', changes.docs);
       const progress = new Subject();
       progress.subscribe(ref => {
-        console.log('updated');
+        this.logger.info('updated');
         // console.log(ref);
       });
 
@@ -175,14 +183,35 @@ export class SpecManager {
     console.log('start push');
     this.local.replicate.to(this.remote, {
       live: true,
-      retry: true
+      retry: true,
+    }).on('active', () => {
+      this.logger.info('replication active');
+      this.state.remote$.next(ReplicationState.active);
+    }).on('change', info => {
+      this.logger.info('replication change', info);
+      this.state.remote$.next(ReplicationState.done);
+    }).on('error', error => {
+      this.logger.error('replication error', error);
+      this.state.remote$.next(ReplicationState.error);
+    }).on('denied', denied => {
+      this.logger.error('replication denied', denied);
+      this.state.remote$.next(ReplicationState.error);
+    }).on('paused', info => {
+      this.logger.info('replication paused', info);
+      this.state.remote$.next(ReplicationState.paused);
+    }).on('complete', info => {
+      this.logger.info('replication complete', info);
+      this.state.remote$.next(ReplicationState.paused);
     });
   }
 
-  flushing() {
-    this.flushing$.pipe(bufferTime(BUFFER_TIME), filter(buffer => buffer.length > 0))
+  committing() {
+    this.flushing$.pipe(tap(() => this.state.dirty$.next(++this.state.dirty)),
+      bufferTime(BUFFER_TIME),
+      tap(buffer => this.state.dirty$.next(this.state.dirty -= buffer.length)),
+      filter(buffer => buffer.length > 0))
       .subscribe(buffer => {
-        console.log('flushing');
+        this.logger.info('committing', buffer);
         const puts = new Map<string, Put>(),
           removed = new Map<string, Remove>();
 
@@ -204,7 +233,7 @@ export class SpecManager {
           if (object.dirty()) {
             docs.push(object.serialize(SerializeType.reference));
           } else {
-            console.log('object it not dirty');
+            this.logger.info('object it not dirty');
           }
         }
 
@@ -215,8 +244,7 @@ export class SpecManager {
         }
 
         if (docs.length) {
-          console.log('send to server');
-          console.log(docs);
+          this.logger.info('committing', docs);
           this.local.bulkDocs(docs)
             .then((updates => {
               for (const update of updates) {
@@ -226,7 +254,7 @@ export class SpecManager {
                   action.object.flush();
                 }
               }
-            })).catch(err => console.log(err));
+            })).catch(err => this.logger.error(err));
         }
       });
   }
@@ -246,7 +274,7 @@ export class SpecManager {
     });
   }
 
-  restore(docs: any[]): Observable<number> {
+  restore(docs: { _id: string }[]): Observable<number> {
     return new Observable(o => {
       this.local.allDocs()
         .then(({rows}: { rows: { id: string, value: { rev: string } }[] }) => {

@@ -4,10 +4,13 @@
   display: block;
 }
 
-form {
+[data-cloud] {
+  padding: $jnt-gutter-small;
+  background: $jnt-pale-navy-color;
+  border-radius: 50%;
 }
 
-[data-edit] {
+[data-tools] {
   padding: $jnt-gutter-normal;
   margin-top: $jnt-gutter-normal;
 }

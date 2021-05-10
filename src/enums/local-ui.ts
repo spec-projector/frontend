@@ -45,6 +45,12 @@ export class LocalUI {
       doing: 'doing:svg:local:stroked',
       done: 'done:svg:local:stroked',
       missed: 'missed:svg:local:stroked'
-    }
+    },
+    cloud: {
+      done: 'cloud_done:svg:local:stroked',
+      error: 'cloud_error:svg:local:stroked',
+      active: 'cloud_active:svg:local:stroked'
+    },
+    localDbDirty: 'local_db_dirty:svg:local:stroked'
   };
 }

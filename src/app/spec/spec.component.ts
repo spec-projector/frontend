@@ -9,6 +9,7 @@ import { LocalUI } from 'src/enums/local-ui';
 import { Spec } from 'src/models/spec/spec';
 import { Project } from '../../models/projects';
 import { EditProjectComponent } from '../projects/edit-project/edit-project.component';
+import {ReplicationState} from './enums';
 
 @Component({
   selector: 'app-spec',
@@ -20,6 +21,7 @@ export class SpecComponent implements OnInit, OnDestroy {
   ui = UI;
   language = Language;
   localUi = LocalUI;
+  replicationState = ReplicationState;
 
   spec: Spec;
   project: Project;

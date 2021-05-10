@@ -1,12 +1,12 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { GraphQLModule } from 'src/app/graphql.module';
-import { APP_PROVIDERS } from '../consts';
-import { AppComponent } from './app.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {Component, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
+import {AppRoutingModule} from 'src/app/app-routing.module';
+import {GraphQLModule} from 'src/app/graphql.module';
+import {APP_PROVIDERS} from '../consts';
+import {AppComponent} from './app.component';
 
 // TODO: waiting for angular 10
 @Component({
@@ -54,9 +54,7 @@ export class I18nComponent {
     BrowserAnimationsModule,
     GraphQLModule,
     LoggerModule.forRoot({
-      serverLoggingUrl: '/api/logs',
-      level: NgxLoggerLevel.LOG,
-      serverLogLevel: NgxLoggerLevel.OFF
+      level: NgxLoggerLevel.DEBUG,
     }),
 
     AppRoutingModule

@@ -45,6 +45,18 @@ import { StaffComponent } from './settings/staff/staff.component';
 import { SprintsComponent } from './sprints/sprints.component';
 import { joinTokens } from './tokens/utils';
 
+export const DASHBOARD_BREADCRUMB = $localize`:@@label.dashboard:Dashboard`;
+export const SPRINTS_BREADCRUMB = $localize`:@@label.sprints:Sprints`;
+export const MODULES_BREADCRUMB = $localize`:@@label.modules:Modules`;
+export const FEATURES_BREADCRUMB = $localize`:@@label.features:Feature`;
+export const ACTORS_BREADCRUMB = $localize`:@@label.actors:Actors`;
+export const TERMS_BREADCRUMB = $localize`:@@label.terms:Terms`;
+export const MODEL_BREADCRUMB = $localize`:@@label.model:Model`;
+export const ENTITIES_BREADCRUMB = $localize`:@@label.entities:Entities`;
+export const ENUMS_BREADCRUMB = $localize`:@@label.enums:Enums`;
+export const PRINT_BREADCRUMB = $localize`:@@label.print:Print`;
+export const SETTINGS_BREADCRUMB = $localize`:@@label.settings:Settings`;
+
 export function getProject({project}: { project: Project }) {
   return project.title;
 }
@@ -87,22 +99,17 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        data: {breadcrumb: $localize`:@@label.dashboard:Dashboard`}
-      },
-      {
-        path: 'print',
-        component: PrintComponent,
-        data: {breadcrumb: $localize`:@@label.print:Print`}
+        data: {breadcrumb: DASHBOARD_BREADCRUMB}
       },
       {
         path: 'actors',
         component: FeaturesComponent,
-        data: {breadcrumb: $localize`:@@label.features:Feature`},
+        data: {breadcrumb: FEATURES_BREADCRUMB},
         children: [
           {
             path: '',
             component: ActorsComponent,
-            data: {breadcrumb: $localize`:@@label.actors:Actors`},
+            data: {breadcrumb: ACTORS_BREADCRUMB},
             resolve: {spec: SpecResolver},
             pathMatch: 'full'
           },
@@ -183,14 +190,14 @@ export const routes: Routes = [
       {
         path: 'terms',
         component: TermsComponent,
-        data: {breadcrumb: $localize`:@@label.terms:Terms`},
+        data: {breadcrumb: TERMS_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
       },
       {
         path: 'model',
         component: ModelComponent,
-        data: {breadcrumb: $localize`:@@label.model:Model`},
+        data: {breadcrumb: MODEL_BREADCRUMB},
         children: [
           {
             path: '',
@@ -199,7 +206,7 @@ export const routes: Routes = [
           },
           {
             path: 'entities',
-            data: {breadcrumb: $localize`:@@label.entities:Entities`},
+            data: {breadcrumb: ENTITIES_BREADCRUMB},
             children: [
               {
                 path: '',
@@ -228,7 +235,7 @@ export const routes: Routes = [
           },
           {
             path: 'enums',
-            data: {breadcrumb: $localize`:@@label.enums:Enums`},
+            data: {breadcrumb: ENUMS_BREADCRUMB},
             children: [
               {
                 path: '',
@@ -249,19 +256,24 @@ export const routes: Routes = [
       {
         path: 'modules',
         component: ModulesComponent,
-        data: {breadcrumb: $localize`:@@label.modules:Modules`},
+        data: {breadcrumb: MODULES_BREADCRUMB},
         resolve: {spec: SpecResolver}
 
       },
       {
         path: 'sprints',
         component: SprintsComponent,
-        data: {breadcrumb: $localize`:@@label.sprints:Sprints`}
+        data: {breadcrumb: SPRINTS_BREADCRUMB}
+      },
+      {
+        path: 'print',
+        component: PrintComponent,
+        data: {breadcrumb: PRINT_BREADCRUMB}
       },
       {
         path: 'settings',
         component: SettingsComponent,
-        data: {breadcrumb: $localize`:@@label.general:General`},
+        data: {breadcrumb: SETTINGS_BREADCRUMB},
         children: [
           {
             path: '',
