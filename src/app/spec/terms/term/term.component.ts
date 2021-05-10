@@ -1,7 +1,16 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { Subscription } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { EditMode } from 'src/enums/edit-mode';
 import { SpecManager } from 'src/app/spec/managers';
 import { Term } from 'src/models/spec/planning/term';
@@ -15,7 +24,8 @@ class TermEditMode {
 @Component({
   selector: 'spec-term',
   templateUrl: './term.component.html',
-  styleUrls: ['./term.component.scss']
+  styleUrls: ['./term.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TermComponent implements AfterViewInit, OnDestroy {
 
@@ -52,7 +62,8 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.term?.unsubscribe();
-    this.subscriptions.term = term.changes.subscribe(() => this.updateForm());
+    this.subscriptions.term = merge(term.replicated$, term.updated$)
+      .subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
@@ -93,7 +104,8 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     this.form.patchValue({
       title: title,
       description: description.map(t => t.toString()).join(' ')
-    });
+    }, {emitEvent: false});
+    this.cd.markForCheck();
   }
 
 }

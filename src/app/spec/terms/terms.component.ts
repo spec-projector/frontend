@@ -1,7 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
+import { merge, Subscription } from 'rxjs';
 import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
@@ -18,7 +19,7 @@ import { trackElement } from '../../../utils/templates';
   styleUrls: ['./terms.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TermsComponent implements OnInit {
+export class TermsComponent implements OnInit, OnDestroy {
 
   ui = UI;
   language = Language;
@@ -27,7 +28,27 @@ export class TermsComponent implements OnInit {
   trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
 
-  spec: Spec;
+  private _spec: Spec;
+
+  private subscriptions: {
+    spec?: Subscription
+  } = {};
+
+  set spec(spec: Spec) {
+    this._spec = spec;
+
+    this.subscriptions.spec?.unsubscribe();
+    this.subscriptions.spec = merge(spec.replicated$, spec.updated$)
+      .subscribe(() => {
+        this.version++;
+        this.cd.markForCheck();
+      });
+  }
+
+  get spec() {
+    return this._spec;
+  }
+
   version = 0;
   added: string;
 
@@ -39,6 +60,11 @@ export class TermsComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({spec}) => this.spec = spec);
+  }
+
+  ngOnDestroy() {
+    [this.subscriptions.spec]
+      .forEach(s => s?.unsubscribe());
   }
 
   addTerm() {

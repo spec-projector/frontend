@@ -61,7 +61,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.actor?.unsubscribe();
-    this.subscriptions.actor = actor.changes.subscribe(() => this.updateForm());
+    this.subscriptions.actor = actor.replicated$.subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges

@@ -19,7 +19,17 @@
 
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [justify]="ui.align.center">
-        <div data-cloud>
+        <ng-template #cloudHelpTemplate>
+          <ng-container [ngSwitch]="consts.language">
+            <ng-container *ngSwitchDefault>
+              All your data will be saved<br> automatically in the cloud 😎
+            </ng-container>
+            <ng-container *ngSwitchCase="language.ru">
+              Все Ваши данные сохраняются<br> автоматически в облаке 😎
+            </ng-container>
+          </ng-container>
+        </ng-template>
+        <div data-cloud [jntPopover]="{contentTemplate: cloudHelpTemplate}">
           <ng-template #cloudDoneTemplate>
             <jnt-icon [icon]="localUi.icons.cloud.done"></jnt-icon>
           </ng-template>
@@ -31,7 +41,7 @@
                       [icon]="localUi.icons.cloud.done"></jnt-icon>
             <ng-container *ngSwitchCase="replicationState.paused">
               <jnt-icon *ngIf="(manager.state.dirty$ | async) > 0;else cloudDoneTemplate"
-                        [icon]="localUi.icons.localDbDirty"></jnt-icon>
+                        [icon]="localUi.icons.localDirty"></jnt-icon>
             </ng-container>
             <jnt-icon *ngSwitchCase="replicationState.error"
                       [icon]="localUi.icons.cloud.error"></jnt-icon>
@@ -137,12 +147,12 @@
   </jnt-app-body>
 
   <jnt-app-footer #footer>
-    <small [ngSwitch]="locale">
+    <small [ngSwitch]="consts.language">
       <ng-container *ngSwitchDefault>
-        Junte 2016 - 2021<br> Any rights are NOT reserved, use this as you want ;-)
+        Junte 2016 - 2021<br> Where teams make specifications.
       </ng-container>
       <ng-container *ngSwitchCase="language.ru">
-        Junte 2016 - 2021<br> Никакие права не защищены, используйте это так, как хотите ;-)
+        Junte 2016 - 2021<br> Где команды создают спецификации.
       </ng-container>
     </small>
     <jnt-link title="Support"

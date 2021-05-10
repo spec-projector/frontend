@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import * as assign from 'assign-deep';
 import { ArraySerializer } from 'serialize-ts';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Sprint } from 'src/models/spec/planning/sprint';
@@ -16,7 +16,6 @@ import { Issue } from './issue';
 import { Resource } from './resource';
 import { StoryEntry } from './story';
 import { FeatureWorkflow } from './workflow';
-import * as assign from 'assign-deep';
 
 function normalize(input: string) {
   return input.replace(/[аеиоуэыюя]/gi, '')
@@ -58,8 +57,6 @@ export class Feature extends Persistence {
   module: Module;
   sprint: Sprint;
 
-  kicked = new EventEmitter();
-
   constructor(defs: Partial<Feature> = {}) {
     super();
     assign(this, defs);
@@ -82,6 +79,7 @@ export class Feature extends Persistence {
     }
 
     this.frames.forEach(f => f.linking(this));
+    this.api.linking(this);
   }
 
   delete(): Depends {
@@ -158,11 +156,6 @@ export class Feature extends Persistence {
   removeFrame(frame: Frame) {
     const index = this.frames.indexOf(frame);
     this.frames.splice(index, 1);
-  }
-
-  kick() {
-    this.actor.kick();
-    this.kicked.next();
   }
 
 }

@@ -58,7 +58,7 @@ export class SprintComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.actor?.unsubscribe();
-    this.subscriptions.actor = sprint.changes.subscribe(() => this.updateForm());
+    this.subscriptions.actor = sprint.replicated$.subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges

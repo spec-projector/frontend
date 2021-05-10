@@ -6,8 +6,8 @@ import { debounceTime } from 'rxjs/operators';
 import { EditMode } from 'src/enums/edit-mode';
 import { Token } from 'src/models/spec/planning/token';
 import { Spec } from 'src/models/spec/spec';
+import { UI_DELAY } from '../../../../../../consts';
 import { Language } from '../../../../../../enums/language';
-import { environment } from '../../../../../../environments/environment';
 import { StoryEntry, StoryEntryType } from '../../../../../../models/spec/planning/feature/story';
 import { SpecManager } from '../../../../managers';
 
@@ -45,7 +45,7 @@ export class FeatureStoryEntryComponent {
     });
 
     this.subscriptions.form = this.form.valueChanges
-      .pipe(debounceTime(environment.uiDebounceTime))
+      .pipe(debounceTime(UI_DELAY))
       .subscribe(() => {
         const {type, description} = this.form.getRawValue();
         console.log(Token.parse(description));
@@ -120,7 +120,7 @@ export class FeatureStoryEntryComponent {
       el.focus();
       el.selectionStart = 0;
       el.selectionEnd = el.value.length;
-    }, 0);
+    }, 100);
   }
 
 }

@@ -21,7 +21,6 @@ export class AddFigmaKeyComponent {
   language = Language;
   consts = {language: CURRENT_LANGUAGE};
 
-
   progress = {saving: false};
   errors: BackendError[] = [];
 

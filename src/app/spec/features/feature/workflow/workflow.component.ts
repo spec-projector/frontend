@@ -50,7 +50,7 @@ export class FeatureWorkflowComponent implements OnInit, OnDestroy {
     this._feature = feature;
 
     this.subscriptions.feature?.unsubscribe();
-    this.subscriptions.feature = feature.kicked.subscribe(() => {
+    this.subscriptions.feature = feature.updated$.subscribe(() => {
       this.version++;
       this.cd.markForCheck();
     });

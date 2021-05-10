@@ -11,7 +11,7 @@ import { Entity } from '../../models/spec/orm/entity';
 import { Enum } from '../../models/spec/orm/enum';
 import { Actor } from '../../models/spec/planning/actor';
 import { Feature } from '../../models/spec/planning/feature/feature';
-import { Graphql } from '../../models/spec/planning/feature/graphql';
+import { GraphQL } from '../../models/spec/planning/feature/graphql';
 import { SchemeInvalidError } from '../../types/errors';
 
 @Injectable({providedIn: 'root'})
@@ -84,10 +84,10 @@ export class FeatureResolver implements Resolve<Feature> {
 }
 
 @Injectable({providedIn: 'root'})
-export class FeatureGraphqlResolver implements Resolve<Graphql> {
+export class FeatureGraphqlResolver implements Resolve<GraphQL> {
 
   resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): Graphql {
+          state: RouterStateSnapshot): GraphQL {
     const {feature} = route.parent.data as { feature?: Feature };
     const {id} = route.params as { id: string };
     return feature.api.graphql.find(g => g.id === id);

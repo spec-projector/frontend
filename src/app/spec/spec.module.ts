@@ -36,8 +36,8 @@ import { ProjectEditModule } from '../projects/edit-project/edit-projects.module
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { ActorPricePipe } from './actors/pipes';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddGraphqlPlaygroundComponent } from './features/feature/api/add-graphql-playground/add-graphql-playground.component';
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
-import { GraphqlPlaygroundPipe } from './features/feature/api/pipes';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
 import { AddFigmaKeyComponent } from './features/feature/frames/add-figma-key/add-figma-key.component';
 import { EstimatedTimePipe, SpentTimePipe } from './features/feature/pipes';
@@ -53,6 +53,7 @@ import {
   GroupFeaturesByActorPipe,
   GroupFeaturesByModulesPipe
 } from './features/pipes';
+import { SpecManager } from './managers';
 import { EntitiesComponent } from './model/entities/entities.component';
 import { EntityEditComponent } from './model/entities/entity/edit/entity-edit.component';
 import { EntityComponent } from './model/entities/entity/entity.component';
@@ -93,8 +94,8 @@ import { StaffComponent } from './settings/staff/staff.component';
     FeatureResourcesComponent,
     FeatureApiComponent,
     FeatureEditGraphqlComponent,
+    AddGraphqlPlaygroundComponent,
     FeatureIssuesComponent,
-    GraphqlPlaygroundPipe,
     FeatureMarkdownComponent,
     AttachIssueComponent,
     WorkflowStepComponent,

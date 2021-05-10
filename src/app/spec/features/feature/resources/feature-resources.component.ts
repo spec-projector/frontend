@@ -44,8 +44,6 @@ export class FeatureResourcesComponent implements OnInit {
         this.feature.resources = resources.map(({resource, hours}) =>
           new Resource({resource, hours: hours}));
         this.manager.put(this.feature);
-
-        this.feature.kick();
       });
   }
 

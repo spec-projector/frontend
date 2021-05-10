@@ -163,7 +163,11 @@ export class Spec extends Persistence {
     model.new();
     this.model = model;
 
-    return [model];
+    const tools = new SpecTools();
+    tools.new();
+    this.tools = tools;
+
+    return [model, tools];
   }
 
   addActor(actor: Actor) {

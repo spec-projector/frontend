@@ -132,7 +132,7 @@ export class KanbanManager {
             });
 
             for (const doc of changes.docs) {
-                kanban.update(this.local, progress, doc)
+                kanban.replicate(this.local, progress, doc)
                     .subscribe(() => null);
             }
         });

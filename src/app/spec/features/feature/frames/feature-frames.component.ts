@@ -64,7 +64,6 @@ export class FeatureFramesComponent implements OnInit {
     this.feature.addFrame(frame);
     this.manager.put(this.feature);
 
-    this.feature.kick();
     this.cd.markForCheck();
 
     this.refresh(true);
@@ -76,7 +75,6 @@ export class FeatureFramesComponent implements OnInit {
     links.changed.forEach(o => this.manager.put(o));
     this.manager.remove(frame);
 
-    this.feature.kick();
     this.cd.markForCheck();
   }
 

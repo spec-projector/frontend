@@ -1,49 +1,96 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 import PouchDB from 'pouchdb-browser';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {bufferTime, filter, finalize, tap} from 'rxjs/operators';
-import {Persistence, SerializeType} from 'src/decorators/persistence';
-import {EditMode} from 'src/enums/edit-mode';
-import {ResourceType, Spec, SPEC_DOC_ID} from 'src/models/spec/spec';
-import {CURRENT_LANGUAGE} from '../../consts';
-import {Language} from '../../enums/language';
-import {environment} from '../../environments/environment';
-import {AppConfig} from '../app-config';
-import {ReplicationState} from './enums';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
+import { Persistence, SerializeType } from 'src/decorators/persistence';
+import { EditMode } from 'src/enums/edit-mode';
+import { ResourceType, Spec, SPEC_DOC_ID } from 'src/models/spec/spec';
+import { CURRENT_LANGUAGE } from '../../consts';
+import { Language } from '../../enums/language';
+import { environment } from '../../environments/environment';
+import { AppConfig } from '../app-config';
+import { ReplicationState } from './enums';
 import Database = PouchDB.Database;
-import {NGXLogger} from 'ngx-logger';
 
 const BUFFER_TIME = 2500;
 
-interface Flush {
-  object: Persistence;
+interface Commit {
+  obj: Persistence;
 }
 
-class Put implements Flush {
-  constructor(public object: Persistence) {
+class Put implements Commit {
+  constructor(public obj: Persistence) {
 
   }
 }
 
-class Remove implements Flush {
-  constructor(public object: Persistence) {
+class Remove implements Commit {
+  constructor(public obj: Persistence) {
 
   }
+}
+
+export function createSpec(spec: Spec): Persistence[] {
+  const links = spec.new();
+
+  switch (CURRENT_LANGUAGE) {
+    case Language.ru:
+      spec.resourceTypes = [
+        new ResourceType({title: 'UI/UX', hourRate: 1000}),
+        new ResourceType({title: 'Фронтенд', hourRate: 2000}),
+        new ResourceType({title: 'Бекенд', hourRate: 2000})
+      ];
+      break;
+    case Language.en:
+    default:
+      spec.resourceTypes = [
+        new ResourceType({title: 'UI/UX', hourRate: 15}),
+        new ResourceType({title: 'Frontend', hourRate: 30}),
+        new ResourceType({title: 'Backend', hourRate: 30})
+      ];
+  }
+
+  links.push(spec);
+  return links;
+}
+
+interface Replication {
+  cancel: () => void;
 }
 
 @Injectable({providedIn: 'root'})
 export class SpecManager {
 
-  private local: Database;
-  private remote: Database;
-  private flushing$ = new Subject<Flush>();
+  private db: { local?: Database, remote?: Database } = {};
+  private replicate: { pull?: Replication, push?: Replication } = {};
+  private committing$ = new Subject<Commit>();
+
   spec$: BehaviorSubject<Spec>;
 
-  state = {
-    remote$: new BehaviorSubject(ReplicationState.done),
-    dirty: 0,
-    dirty$: new BehaviorSubject(0),
-  };
+  state = new (class {
+    remote$ = new BehaviorSubject(ReplicationState.done);
+
+    set remote(state: ReplicationState) {
+      this.remote$.next(state);
+    }
+
+    get remote() {
+      return this.remote$.getValue();
+    }
+
+    dirty$ = new BehaviorSubject(0);
+
+    set dirty(dirty: number) {
+      this.dirty$.next(dirty);
+    }
+
+    get dirty() {
+      return this.dirty$.getValue();
+    }
+  });
+
+  mode$ = new BehaviorSubject(EditMode.edit);
 
   set mode(mode: EditMode) {
     this.mode$.next(mode);
@@ -53,21 +100,24 @@ export class SpecManager {
     return this.mode$.getValue();
   }
 
-  mode$ = new BehaviorSubject(EditMode.edit);
-
   constructor(private config: AppConfig,
               private logger: NGXLogger) {
-    this.committing();
+    this.logger.info('create instance');
+    this.committing$.pipe(tap(() => this.state.dirty++),
+      bufferTime(BUFFER_TIME),
+      tap(buffer => this.state.dirty -= buffer.length),
+      filter(buffer => buffer.length > 0))
+      .subscribe(buffer => this.commit(buffer));
   }
 
   get(project: string): Observable<Spec> {
     if (!this.spec$) {
       this.spec$ = new BehaviorSubject<Spec>(null);
-      this.local = new PouchDB(project,
+      this.db.local = new PouchDB(project,
         {
           auto_compaction: true
         });
-      this.remote = new PouchDB(`${environment.storage}/${project}`,
+      this.db.remote = new PouchDB([environment.storage, project].join('/'),
         {
           skip_setup: false,
           fetch: (url, opts) => {
@@ -80,17 +130,14 @@ export class SpecManager {
           }
         });
 
-      this.local.sync(this.remote)
+      this.db.local.sync(this.db.remote)
         .on('complete', () => {
           const spec = new Spec();
-          console.group('get');
-          console.log(project);
-          console.log('synced');
-          console.log(spec);
-          console.groupEnd();
+          this.logger.log(project);
+          this.logger.log('synced');
           spec.id = SPEC_DOC_ID;
           const progress = new Subject();
-          spec.load(this.local, progress)
+          spec.load(this.db.local, progress)
             .subscribe(() => {
               // if (spec.scheme.version !== SCHEME_VERSION) {
               //  this.spec$.error(new SchemeInvalidError());
@@ -98,33 +145,28 @@ export class SpecManager {
               // }
 
               spec.linking();
+              console.log(spec);
+              this.startPull();
+              this.startPush();
+
+              if (!spec.model.id) {
+                spec.model.new();
+                this.put(spec.model);
+                this.put(spec);
+              }
+
+              if (!spec.tools.id) {
+                spec.tools.new();
+                this.put(spec.tools);
+                this.put(spec);
+              }
+
               this.spec$.next(spec);
-              this.pull();
-              this.push();
             }, (err: { status, docId }) => {
               this.logger.error(err);
               if (err.status === 404) {
                 if (err.docId === SPEC_DOC_ID) {
-                  spec.new().forEach(o => this.put(o));
-
-                  switch (CURRENT_LANGUAGE) {
-                    case Language.ru:
-                      spec.resourceTypes = [
-                        new ResourceType({title: 'UI/UX', hourRate: 1000}),
-                        new ResourceType({title: 'Фронтенд', hourRate: 2000}),
-                        new ResourceType({title: 'Бекенд', hourRate: 2000})
-                      ];
-                      break;
-                    case Language.en:
-                    default:
-                      spec.resourceTypes = [
-                        new ResourceType({title: 'UI/UX', hourRate: 15}),
-                        new ResourceType({title: 'Frontend', hourRate: 30}),
-                        new ResourceType({title: 'Backend', hourRate: 30})
-                      ];
-                  }
-
-                  this.put(spec);
+                  createSpec(spec).forEach(o => this.put(o));
                 }
 
                 this.spec$.next(spec);
@@ -139,7 +181,7 @@ export class SpecManager {
       this.spec$.pipe(finalize(() => observer.complete()),
         filter(spec => !!spec))
         .subscribe(spec => {
-          console.log('return');
+          this.logger.log('return');
           observer.next(spec);
           observer.complete();
         }, err => {
@@ -150,17 +192,21 @@ export class SpecManager {
   }
 
   put(object: Persistence) {
-    this.flushing$.next(new Put(object));
+    object.updated();
+    this.logger.info('put');
+    this.committing$.next(new Put(object));
   }
 
   remove(object: Persistence) {
-    console.log('deleting');
-    this.flushing$.next(new Remove(object));
+    object.updated();
+    this.logger.info('remove');
+    this.committing$.next(new Remove(object));
   }
 
-  private pull() {
+  private startPull() {
     this.logger.info('start pull from server');
-    this.local.replicate.from(this.remote, {
+    this.replicate.pull?.cancel();
+    this.replicate.pull = this.db.local.replicate.from(this.db.remote, {
       live: true,
       retry: true
     }).on('change', (changes) => {
@@ -173,99 +219,96 @@ export class SpecManager {
 
       const spec = this.spec$.getValue();
       for (const doc of changes.docs) {
-        spec.update(this.local, progress, doc)
+        spec.replicate(this.db.local, progress, doc)
           .subscribe(() => null);
       }
     });
   }
 
-  private push() {
-    console.log('start push');
-    this.local.replicate.to(this.remote, {
+  private startPush() {
+    this.logger.info('start push');
+    this.replicate.push?.cancel();
+    this.replicate.push = this.db.local.replicate.to(this.db.remote, {
       live: true,
       retry: true,
     }).on('active', () => {
       this.logger.info('replication active');
-      this.state.remote$.next(ReplicationState.active);
+      this.state.remote = ReplicationState.active;
     }).on('change', info => {
       this.logger.info('replication change', info);
-      this.state.remote$.next(ReplicationState.done);
+      this.state.remote = ReplicationState.done;
     }).on('error', error => {
       this.logger.error('replication error', error);
-      this.state.remote$.next(ReplicationState.error);
+      this.state.remote = ReplicationState.error;
     }).on('denied', denied => {
       this.logger.error('replication denied', denied);
-      this.state.remote$.next(ReplicationState.error);
+      this.state.remote = ReplicationState.error;
     }).on('paused', info => {
       this.logger.info('replication paused', info);
-      this.state.remote$.next(ReplicationState.paused);
+      this.state.remote = ReplicationState.paused;
     }).on('complete', info => {
       this.logger.info('replication complete', info);
-      this.state.remote$.next(ReplicationState.paused);
+      this.state.remote = ReplicationState.paused;
     });
   }
 
-  committing() {
-    this.flushing$.pipe(tap(() => this.state.dirty$.next(++this.state.dirty)),
-      bufferTime(BUFFER_TIME),
-      tap(buffer => this.state.dirty$.next(this.state.dirty -= buffer.length)),
-      filter(buffer => buffer.length > 0))
-      .subscribe(buffer => {
-        this.logger.info('committing', buffer);
-        const puts = new Map<string, Put>(),
-          removed = new Map<string, Remove>();
+  commit(buffer: Commit[]) {
+    this.logger.info('committing', buffer);
+    const puts = new Map<string, Put>(),
+      removed = new Map<string, Remove>();
 
-        for (const action of buffer) {
-          if (action instanceof Put) {
-            if (!puts.has(action.object.id)) {
-              puts.set(action.object.id, action);
-            }
-          } else if (action instanceof Remove) {
-            if (!removed.has(action.object.id)) {
-              removed.set(action.object.id, action);
+    for (const action of buffer) {
+      if (action instanceof Put) {
+        if (!puts.has(action.obj.id)) {
+          puts.set(action.obj.id, action);
+        }
+      } else if (action instanceof Remove) {
+        if (!removed.has(action.obj.id)) {
+          removed.set(action.obj.id, action);
+        }
+      }
+    }
+
+    const docs = [];
+    for (const action of Array.from(puts.values())) {
+      const object = action.obj;
+      if (object.dirty()) {
+        docs.push(object.serialize(SerializeType.reference));
+      } else {
+        this.logger.info('object it not dirty');
+      }
+    }
+
+    for (const action of Array.from(removed.values())) {
+      const obj = action.obj.serialize(SerializeType.reference);
+      obj['deleted'] = true;
+      docs.push(obj);
+    }
+
+    if (docs.length) {
+      this.logger.info('committing', docs);
+      this.db.local.bulkDocs(docs)
+        .then((updates => {
+          for (const update of updates) {
+            if (puts.has(update.id)) {
+              const action = puts.get(update.id);
+              action.obj.rev = update.rev;
+              action.obj.flush();
             }
           }
-        }
-
-        const docs = [];
-        for (const action of Array.from(puts.values())) {
-          const object = action.object;
-          if (object.dirty()) {
-            docs.push(object.serialize(SerializeType.reference));
-          } else {
-            this.logger.info('object it not dirty');
-          }
-        }
-
-        for (const action of Array.from(removed.values())) {
-          const obj = action.object.serialize(SerializeType.reference);
-          obj['deleted'] = true;
-          docs.push(obj);
-        }
-
-        if (docs.length) {
-          this.logger.info('committing', docs);
-          this.local.bulkDocs(docs)
-            .then((updates => {
-              for (const update of updates) {
-                if (puts.has(update.id)) {
-                  const action = puts.get(update.id);
-                  action.object.rev = update.rev;
-                  action.object.flush();
-                }
-              }
-            })).catch(err => this.logger.error(err));
-        }
-      });
+        })).catch(err => this.logger.error(err));
+    }
   }
 
   clear() {
+    this.replicate.pull?.cancel();
+    this.replicate.push?.cancel();
     this.spec$ = null;
   }
 
   dump(): Observable<any[]> {
     return new Observable(o => {
-      this.local.allDocs({include_docs: true})
+      this.db.local.allDocs({include_docs: true})
         .then(({rows}: { rows: any[] }) => {
           o.next(rows.filter(({doc: {deleted}}) => !deleted)
             .map(({doc}) => doc));
@@ -276,20 +319,20 @@ export class SpecManager {
 
   restore(docs: { _id: string }[]): Observable<number> {
     return new Observable(o => {
-      this.local.allDocs()
+      this.db.local.allDocs()
         .then(({rows}: { rows: { id: string, value: { rev: string } }[] }) => {
           const revs = new Map();
           for (const doc of rows) {
-            console.log(doc);
+            this.logger.log(doc);
             revs.set(doc.id, doc.value.rev);
           }
 
           for (const doc of docs) {
             doc['_rev'] = revs.get(doc._id);
           }
-          this.local.bulkDocs(docs)
+          this.db.local.bulkDocs(docs)
             .then(res => {
-              console.log(res);
+              this.logger.log(res);
               o.next(docs.length);
               o.complete();
             });

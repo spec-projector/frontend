@@ -61,7 +61,7 @@ export class ModuleComponent implements AfterViewInit, OnDestroy {
         this.updateForm();
 
         this.subscriptions.module?.unsubscribe();
-        this.subscriptions.module = module.changes.subscribe(() => this.updateForm());
+        this.subscriptions.module = module.replicated$.subscribe(() => this.updateForm());
 
         this.subscriptions.form?.unsubscribe();
         this.subscriptions.form = this.form.valueChanges

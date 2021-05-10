@@ -33,7 +33,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
 
   set spec(spec: Spec) {
     this._spec = spec;
-    spec.changes.pipe(takeUntil(this.destroyed$))
+    spec.replicated$.pipe(takeUntil(this.destroyed$))
       .subscribe(() => this.cd.detectChanges());
   }
 

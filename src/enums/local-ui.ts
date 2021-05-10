@@ -51,6 +51,6 @@ export class LocalUI {
       error: 'cloud_error:svg:local:stroked',
       active: 'cloud_active:svg:local:stroked'
     },
-    localDbDirty: 'local_db_dirty:svg:local:stroked'
+    localDirty: 'local_dirty:svg:local:stroked'
   };
 }

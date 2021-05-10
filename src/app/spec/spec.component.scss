@@ -1,4 +1,7 @@
 @import "src/variables";
+@import "~@junte/ui/lib/assets/styles/elements/icon";
+
+$jnt-ng-deep: true;
 
 :host {
   display: block;
@@ -8,6 +11,7 @@
   padding: $jnt-gutter-small;
   background: $jnt-pale-navy-color;
   border-radius: 50%;
+  @include jnt-icon((color: $jnt-primary-color));
 }
 
 [data-tools] {

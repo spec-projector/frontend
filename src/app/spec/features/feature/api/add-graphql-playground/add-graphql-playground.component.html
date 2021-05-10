@@ -1,0 +1,43 @@
+<jnt-message [scheme]="ui.scheme.secondary">
+  <img data-graphql src="assets/images/graphql.png">
+  <ng-container [ngSwitch]="consts.language">
+    <ng-container *ngSwitchDefault>
+      <p>Please check an example of using GraphQL on
+        <jnt-link title="strapi.com"
+                  source="https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/integrations/graphql.html"
+                  [target]="ui.target.blank"></jnt-link>
+      </p>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <p>Посмотрите пример использования GraphQL в
+        <jnt-link title="strapi.com"
+                  source="https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/integrations/graphql.html"
+                  [target]="ui.target.blank"></jnt-link>
+      </p>
+    </ng-container>
+    <jnt-form [formGroup]="form"
+              (submitted)="save()">
+      <jnt-row [align]="ui.align.end">
+        <jnt-col [tablet]="8">
+          <jnt-form-item>
+            <jnt-form-label i18n="@@label.graphql_playground">GraphQL playground</jnt-form-label>
+            <jnt-form-control name="graphqlPlaygroundUrl">
+              <jnt-input formControlName="graphqlPlaygroundUrl"
+                         placeholder="https://project.com/graphql"></jnt-input>
+              <jnt-form-message [validator]="ui.validator.required"
+                                i18n="@@message.field_is_required">Field is required
+              </jnt-form-message>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
+        <jnt-col [tablet]="4">
+          <jnt-button [type]="ui.button.type.submit"
+                      text="Save"
+                      i18n-text="@@action.save"
+                      [width]="ui.width.fluid"
+                      [icon]="ui.icons.save"></jnt-button>
+        </jnt-col>
+      </jnt-row>
+    </jnt-form>
+  </ng-container>
+</jnt-message>

@@ -1,15 +1,17 @@
-import { Component, ComponentFactoryResolver, Inject, Injector, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, Inject, Injector, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
+import { merge, Subscription } from 'rxjs';
 import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 import { Spec } from 'src/models/spec/spec';
+import { CURRENT_LANGUAGE } from '../../consts';
 import { Project } from '../../models/projects';
 import { EditProjectComponent } from '../projects/edit-project/edit-project.component';
-import {ReplicationState} from './enums';
+import { ReplicationState } from './enums';
 
 @Component({
   selector: 'app-spec',
@@ -22,18 +24,35 @@ export class SpecComponent implements OnInit, OnDestroy {
   language = Language;
   localUi = LocalUI;
   replicationState = ReplicationState;
+  consts = {language: CURRENT_LANGUAGE};
 
-  spec: Spec;
+  private subscriptions: {
+    spec?: Subscription
+  } = {};
+
+  private _spec: Spec;
+
+  set spec(spec: Spec) {
+    this._spec = spec;
+    this.subscriptions.spec?.unsubscribe();
+    this.subscriptions.spec = merge(spec.replicated$, spec.updated$)
+      .subscribe(() => this.cd.markForCheck());
+  }
+
+  get spec() {
+    return this._spec;
+  }
+
   project: Project;
 
   lockControl = this.fb.control(false);
   form = this.fb.group({mode: this.lockControl});
 
-  constructor(@Inject(LOCALE_ID) public locale: string,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private manager: SpecManager,
               private modal: ModalService,
+              private cd: ChangeDetectorRef,
               private injector: Injector,
               private cfr: ComponentFactoryResolver) {
   }
@@ -49,6 +68,9 @@ export class SpecComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log('destroy');
     this.manager.clear();
+
+    [this.subscriptions.spec]
+      .forEach(s => s?.unsubscribe());
   }
 
   editProject() {

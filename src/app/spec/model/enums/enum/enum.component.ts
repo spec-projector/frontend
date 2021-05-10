@@ -49,7 +49,7 @@ export class EnumComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.actor?.unsubscribe();
-    this.subscriptions.actor = enum_.changes.subscribe(() => this.updateForm());
+    this.subscriptions.actor = enum_.replicated$.subscribe(() => this.updateForm());
 
     this.form.valueChanges
       .subscribe(() => {

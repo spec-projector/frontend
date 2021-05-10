@@ -88,8 +88,6 @@ export class FeatureStoryComponent implements OnInit {
   save() {
     this.logger.log('save story for feature [', this.feature.title.toString(), ']');
     this.manager.put(this.feature);
-
-    this.feature.kick();
   }
 
 }

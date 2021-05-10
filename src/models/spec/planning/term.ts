@@ -36,6 +36,7 @@ export class Term extends Persistence {
     const index = this.spec.terms.findIndex(f => f.id === this.id);
     this.spec.terms.splice(index, 1);
     links.changed.push(this.spec);
+    this.spec.updated();
 
     return links;
   }

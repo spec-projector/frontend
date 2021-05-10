@@ -161,7 +161,10 @@ export const routes: Routes = [
                       {
                         path: 'graphql/:id',
                         component: FeatureEditGraphqlComponent,
-                        resolve: {query: FeatureGraphqlResolver},
+                        resolve: {
+                          query: FeatureGraphqlResolver,
+                          spec: SpecResolver
+                        },
                       }
                     ]
                   },

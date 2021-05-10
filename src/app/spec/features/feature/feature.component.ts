@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { Subscription } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
@@ -38,7 +38,8 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.feature?.unsubscribe();
-    this.subscriptions.feature = feature.changes.subscribe(() => this.updateForm());
+    this.subscriptions.feature = merge(feature.replicated$, feature.updated$)
+      .subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges

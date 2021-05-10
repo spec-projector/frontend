@@ -86,7 +86,8 @@ export function persist(config: FieldConfig = {}) {
 @persistence()
 export class Persistence {
 
-  changes: Subject<Persistence> = new Subject<Persistence>();
+  replicated$ = new Subject();
+  updated$ = new Subject();
   loaded = false;
   imported = false;
   snapshot: Object;
@@ -99,6 +100,10 @@ export class Persistence {
 
   new() {
     this.id = generate();
+  }
+
+  updated() {
+    this.updated$.next();
   }
 
   merge(db: Database, progress: Subject<Object>, src: Persistence): Observable<Persistence> {
@@ -139,7 +144,7 @@ export class Persistence {
         .subscribe(() => {
           this.flush();
           merged.next(this);
-          this.changes.next(this);
+          this.replicated$.next(this);
         }, err => merged.error(err));
     });
   }
@@ -176,7 +181,7 @@ export class Persistence {
     });
   }
 
-  update(db: Database, progress: Subject<Object>, doc: Document<Object>): Observable<Persistence> {
+  replicate(db: Database, progress: Subject<Object>, doc: Document<Object>): Observable<Persistence> {
     return new Observable(updated => {
       if (doc._id === this.id) {
         const src = this.deserialize(doc);
@@ -193,11 +198,11 @@ export class Persistence {
             if (type === Array) {
               const list: Persistence[] = this[property];
               for (const element of list) {
-                queue.push(element.update(db, progress, doc));
+                queue.push(element.replicate(db, progress, doc));
               }
             } else {
               const obj: Persistence = this[property];
-              queue.push(obj.update(db, progress, doc));
+              queue.push(obj.replicate(db, progress, doc));
             }
           }
         }

@@ -2,6 +2,10 @@
   display: block;
 }
 
+[data-query] {
+  flex: 1;
+}
+
 [data-editor] {
   height: 600px;
 }

@@ -1,20 +1,40 @@
-<jnt-form #formRef
-          [formGroup]="form"
-          (submitted)="save()">
-  <jnt-form-item>
-    <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
-    <jnt-form-control name="title">
-      <jnt-input placeholder="Title"
-                 i18n-placeholder="@@label.title"
-                 formControlName="title"></jnt-input>
-      <jnt-form-message [validator]="ui.validator.required"
-                        i18n="@@message.field_required">
-        This field is required
-      </jnt-form-message>
-    </jnt-form-control>
-  </jnt-form-item>
+<ng-template #setPlaygroundModalTemplate>
+  <spec-add-graphql-playground [spec]="spec"
+                               (updated)="modal.close();cd.markForCheck()">
+  </spec-add-graphql-playground>
+</ng-template>
 
-  <ngx-monaco-editor data-editor formControlName="text"
-                     [options]="{language: 'graphql', scrollBeyondLastLine: false, automaticLayout: true, minimap: {enabled: false}}">
-  </ngx-monaco-editor>
+<jnt-form [formGroup]="form">
+  <jnt-stack [align]="ui.align.stretch">
+
+    <jnt-form-item>
+      <jnt-form-label i18n="@@label.title">Title</jnt-form-label>
+      <jnt-form-control name="title">
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [align]="ui.align.center">
+          <jnt-input placeholder="Title"
+                     i18n-placeholder="@@label.title"
+                     formControlName="title"
+                     [width]="ui.width.fluid"></jnt-input>
+          <ng-template #setPlaygroundTemplate>
+            <jnt-button text="Run"
+                        [icon]="{position: ui.position.right, icon: ui.icons.chevronRight}"
+                        [jntModal]="{content: setPlaygroundModalTemplate}"></jnt-button>
+          </ng-template>
+          <jnt-button *ngIf="!!spec.tools.graphqlPlaygroundUrl;else setPlaygroundTemplate" text="Run"
+                      [icon]="{position: ui.position.right, icon: ui.icons.chevronRight}"
+                      [scheme]="ui.scheme.success"
+                      (click)="run()"></jnt-button>
+        </jnt-stack>
+        <jnt-form-message [validator]="ui.validator.required"
+                          i18n="@@message.field_required">
+          This field is required
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
+
+    <ngx-monaco-editor data-editor formControlName="text"
+                       [options]="{language: 'graphql', readOnly: ((manager.mode$ | async) === editMode.view), scrollBeyondLastLine: false, automaticLayout: true, minimap: {enabled: false}}">
+    </ngx-monaco-editor>
+  </jnt-stack>
 </jnt-form>

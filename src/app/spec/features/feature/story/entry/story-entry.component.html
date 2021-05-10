@@ -1,6 +1,6 @@
 <form [formGroup]="form"
       [attr.data-mode]="mode"
-      (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
+      (mouseenter)="manager.mode === editMode.edit ? mode = editMode.edit : null"
       (mouseleave)="mode = editMode.view">
   <select formControlName="type"
           tabindex="-1">

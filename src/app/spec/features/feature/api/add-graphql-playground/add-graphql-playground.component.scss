@@ -1,0 +1,25 @@
+@import "src/variables";
+@import "~@junte/ui/lib/assets/styles/layout/responsive";
+
+:host {
+  display: block;
+
+  @include min-for-tablet() {
+    min-width: 630px;
+  }
+}
+
+p {
+  margin: $jnt-gutter-normal 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: $jnt-corner-normal;
+}
+
+[data-graphql] {
+  max-width: 610px;
+  max-height: 225px;
+}

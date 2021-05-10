@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {PopoverInstance, UI} from '@junte/ui';
-import {filter} from 'rxjs/operators';
-import {Language} from 'src/enums/language';
-import {LocalUI} from 'src/enums/local-ui';
-import {Graphql} from 'src/models/spec/planning/feature/graphql';
-import {CURRENT_LANGUAGE} from '../../../../../consts';
-import {EditMode} from '../../../../../enums/edit-mode';
-import {Feature} from '../../../../../models/spec/planning/feature/feature';
-import {SpecManager} from '../../../managers';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { PopoverInstance, UI } from '@junte/ui';
+import { filter } from 'rxjs/operators';
+import { Language } from 'src/enums/language';
+import { LocalUI } from 'src/enums/local-ui';
+import { GraphQL } from 'src/models/spec/planning/feature/graphql';
+import { CURRENT_LANGUAGE } from '../../../../../consts';
+import { EditMode } from '../../../../../enums/edit-mode';
+import { Feature } from '../../../../../models/spec/planning/feature/feature';
+import { SpecManager } from '../../../managers';
 
 const GRAPHQL_TEXT = `
 query ($id: ID) {
@@ -33,7 +33,7 @@ export class FeatureApiComponent implements OnInit {
   consts = {language: CURRENT_LANGUAGE};
 
   feature: Feature;
-  selected: { query: Graphql } = {query: null};
+  selected: { query: GraphQL } = {query: null};
   instance: { popover: PopoverInstance } = {popover: null};
 
   constructor(public manager: SpecManager,
@@ -52,7 +52,7 @@ export class FeatureApiComponent implements OnInit {
 
   readState() {
     const data = this.route.firstChild?.snapshot.data || {query: null};
-    const {query} = data as { query: Graphql };
+    const {query} = data as { query: GraphQL };
     this.selected.query = query;
   }
 
@@ -60,7 +60,7 @@ export class FeatureApiComponent implements OnInit {
     this.instance.popover?.hide();
 
     const {api} = this.feature;
-    const graphql = new Graphql(
+    const graphql = new GraphQL(
       {
         title: 'Some query',
         text: GRAPHQL_TEXT
@@ -71,7 +71,6 @@ export class FeatureApiComponent implements OnInit {
     api.addGraphql(graphql);
     this.manager.put(api);
 
-    this.feature.kick();
     this.cd.markForCheck();
 
     this.router.navigate(['graphql', graphql.id],
@@ -80,19 +79,17 @@ export class FeatureApiComponent implements OnInit {
       }).then(() => null);
   }
 
-  deleteGraphQL(query: Graphql) {
+  deleteGraphQL(query: GraphQL) {
     const {api} = this.feature;
     api.removeGraphql(query);
     this.manager.put(api);
 
-    this.feature.kick();
     this.cd.markForCheck();
 
     if (this.selected.query === query) {
       this.router.navigate(['./'], {
         relativeTo: this.route
-      })
-        .then(() => null);
+      }).then(() => null);
     }
   }
 

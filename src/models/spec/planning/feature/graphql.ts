@@ -3,7 +3,7 @@ import { ModelType } from '../../../enums';
 import * as assign from 'assign-deep';
 
 @persistence()
-export class Graphql extends Persistence {
+export class GraphQL extends Persistence {
 
   @persist({name: 'model_type'})
   modelType: string = ModelType.featureGraphql;
@@ -17,7 +17,7 @@ export class Graphql extends Persistence {
   @persist()
   text: string;
 
-  constructor(defs: Partial<Graphql> = {}) {
+  constructor(defs: Partial<GraphQL> = {}) {
     super();
     assign(this, defs);
   }
