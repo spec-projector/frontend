@@ -14,8 +14,6 @@ $jnt-ng-deep: true;
 }
 
 [data-tariff] {
-  // TODO: @junte/ui
-  height: 100%;
   font-family: $jnt-lp-layout-font-family;
 
   &[data-current=false] {
