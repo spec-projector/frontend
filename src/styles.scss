@@ -17,3 +17,7 @@ p {
 code {
   font-family: Consolas;
 }
+
+[host=jnt-app-body-host] {
+  transform-style: initial !important;
+}

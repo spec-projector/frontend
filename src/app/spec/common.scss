@@ -31,12 +31,32 @@ $jnt-ng-deep: true;
   width: 50%;
 }
 
-[data-library] {
-  p {
-    margin: $jnt-gutter-small 0;
-    font-weight: $jnt-font-weight-bold;
+[data-modules], [data-sprints] {
+  flex: 1;
+}
+
+[data-library-wrapper] {
+  width: 300px;
+  min-width: 300px;
+
+  [data-library] {
+    width: 300px;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+
+    &[data-sticky] {
+      position: fixed;
+      top: 80px - 2px;
+      right: $jnt-gutter-normal;
+    }
+
+    p {
+      margin: $jnt-gutter-small 0;
+      font-weight: $jnt-font-weight-bold;
+    }
   }
 }
+
 
 ::ng-deep [data-item-from-library] {
   @include jnt-card((background: $jnt-secondary-background, border: none), '&');

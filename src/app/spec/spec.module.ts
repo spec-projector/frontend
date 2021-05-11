@@ -30,6 +30,7 @@ import { TermsComponent } from 'src/app/spec/terms/terms.component';
 import { JoinTokensPipe, TokenTypePipe } from 'src/app/spec/tokens/pipes';
 import { TokensComponent } from 'src/app/spec/tokens/tokens.component';
 import { FitHeightDirective } from '../../directives/fit-height.directive';
+import { StickyDirective } from '../../directives/sticky.directive';
 import { ArrayPipesModule } from '../../pipes/array/array-pipes.module';
 import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { ProjectEditModule } from '../projects/edit-project/edit-projects.module';
@@ -153,7 +154,8 @@ import { StaffComponent } from './settings/staff/staff.component';
     ActorPricePipe,
     SpecPricePipe,
 
-    FitHeightDirective
+    FitHeightDirective,
+    StickyDirective
   ],
   imports: [
     CommonModule,
