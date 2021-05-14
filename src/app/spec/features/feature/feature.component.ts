@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { merge, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SpecManager } from 'src/app/spec/managers';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
@@ -38,8 +38,7 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.feature?.unsubscribe();
-    this.subscriptions.feature = merge(feature.replicated$, feature.updated$)
-      .subscribe(() => this.updateForm());
+    this.subscriptions.feature = feature.replicated$.subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
     this.subscriptions.form = this.form.valueChanges
@@ -58,6 +57,7 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
   nameRef: ElementRef<HTMLInputElement>;
 
   constructor(public manager: SpecManager,
+              private cd: ChangeDetectorRef,
               private fb: FormBuilder) {
   }
 
@@ -75,7 +75,8 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
   private updateForm() {
     this.form.patchValue({
       title: this.feature.title.map(t => t.toString()).join(' ')
-    });
+    }, {emitEvent: false});
+    this.cd.detectChanges();
   }
 
 }

@@ -104,7 +104,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   private updateForm() {
     this.form.patchValue({
       name: this.actor.name
-    });
+    }, {emitEvent: false});
     this.cd.detectChanges();
   }
 
