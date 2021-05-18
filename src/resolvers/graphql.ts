@@ -11,7 +11,10 @@ query Me {
     lastLogin
     firstName
     lastName
-    avatar
+    avatar {
+      id
+      url
+    }
     email
     isStaff
     isActive

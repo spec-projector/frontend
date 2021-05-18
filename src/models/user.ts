@@ -1,4 +1,5 @@
 import { Field, Model } from 'serialize-ts';
+import { Image } from './image';
 import { ChangeSubscriptionRequest, Subscription } from './subscription';
 
 @Model()
@@ -14,7 +15,7 @@ export class User {
   lastName: string;
 
   @Field()
-  avatar: string;
+  avatar: Image;
 }
 
 @Model()
