@@ -1,0 +1,13 @@
+@import 'src/variables';
+@import '~@junte/ui/lib/assets/styles/jnt-variables';
+@import '~@junte/ui/lib/assets/styles/layout/block';
+
+:host {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+svg {
+  flex: 1;
+}

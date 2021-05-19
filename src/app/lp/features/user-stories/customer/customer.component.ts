@@ -21,7 +21,7 @@ import { fadeInKeyframes, fadeMoveKeyframes, fadeOutKeyframes } from '../../../a
             ])
           ])
         ])
-      ], {params: {duration: '1s'}}),
+      ], {params: {duration: '1s', delay: '0s'}}),
       transition(':leave', [
         fadeOutKeyframes
       ], {params: {duration: '.5s'}})
@@ -29,12 +29,12 @@ import { fadeInKeyframes, fadeMoveKeyframes, fadeOutKeyframes } from '../../../a
     trigger('fade-move', [
       state('void', style({transform: 'translate(-50%, -50%)'})),
       state('*', style({transform: 'translate(-50%, -200px)'})),
-      transition('void => *', fadeMoveKeyframes, {params: {duration: '.5s'}})
+      transition('void => *', fadeMoveKeyframes, {params: {duration: '.5s', delay: '0s'}})
     ]),
     trigger('fadeIn', [
       state('void', style({opacity: '0'})),
       state('*', style({opacity: '1'})),
-      transition('void => *', fadeInKeyframes, {params: {duration: '.2s'}})
+      transition('void => *', fadeInKeyframes, {params: {duration: '.2s', delay: '0s'}})
     ]),
     trigger('move', [
       state('void', style({transform: 'translate3D(0, 0, 0)', opacity: '0'})),
