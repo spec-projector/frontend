@@ -20,6 +20,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { ViewportDirective, ViewportRuleDirective } from './viewport/viewport.directive';
 import { UserStoriesModule } from './features/user-stories/user-stories.module';
 import { FeaturesMapModule } from './features/features-map/features-map.module';
+import { WorkflowModule } from './features/workflow/workflow.module';
 
 @NgModule({
   declarations: [
@@ -30,28 +31,29 @@ import { FeaturesMapModule } from './features/features-map/features-map.module';
     ViewportRuleDirective,
     ViewportDirective
   ],
-  imports: [
-    CommonModule,
+    imports: [
+        CommonModule,
 
-    LpRoutingModule,
+        LpRoutingModule,
 
-    PopoverModule,
-    StackModule,
-    CardModule,
-    GridModule,
-    JntLpModule,
-    MenuModule,
-    ButtonModule,
+        PopoverModule,
+        StackModule,
+        CardModule,
+        GridModule,
+        JntLpModule,
+        MenuModule,
+        ButtonModule,
 
-    TariffsModule,
-    AvatarModule,
-    LinkModule,
-    IconModule,
-    CollapsibleModule,
-    ResponsiveModule,
-    UserStoriesModule,
-    FeaturesMapModule
-  ]
+        TariffsModule,
+        AvatarModule,
+        LinkModule,
+        IconModule,
+        CollapsibleModule,
+        ResponsiveModule,
+        UserStoriesModule,
+        FeaturesMapModule,
+        WorkflowModule
+    ]
 })
 export class LpModule {
 

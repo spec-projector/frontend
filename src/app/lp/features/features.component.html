@@ -3,9 +3,7 @@
   <jnt-col [span]="9">
     <div data-video>
       <ng-container [ngSwitch]="active">
-        <div *ngSwitchCase="features.cleanWorkflow">
-          <p i18n="@@label.feature_clean_workflow">Clean workflow</p>
-        </div>
+        <spec-lp-workflow *ngSwitchCase="features.cleanWorkflow"></spec-lp-workflow>
         <spec-lp-features-map *ngSwitchCase="features.featuresMap"></spec-lp-features-map>
         <spec-lp-user-stories *ngSwitchCase="features.userStories"></spec-lp-user-stories>
         <div *ngSwitchCase="features.attachDesign">
@@ -119,11 +117,9 @@
 </jnt-row>
 
 <jnt-stack *jntFor="ui.breakpoint.mobile" [align]="ui.align.stretch">
-  <jnt-card data-active (click)="setActive(features.cleanWorkflow)">
-    <h4 i18n="@@label.feature_clean_workflow">Clean workflow</h4>
-    <p i18n="@@label.feature_clean_workflow_teaser">Make specification and develop your app following strong
-      process</p>
-  </jnt-card>
+  <div data-video *ngIf="active === features.cleanWorkflow">
+    <spec-lp-workflow></spec-lp-workflow>
+  </div>
   <div data-video *ngIf="active === features.cleanWorkflow">
     <p i18n="@@label.feature_clean_workflow">Clean workflow</p>
   </div>

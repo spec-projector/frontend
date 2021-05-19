@@ -17,7 +17,7 @@ import { fadeInKeyframes, fadeMoveKeyframes, fadeOutKeyframes, moveKeyframes, sc
           query('[data-manager]', animateChild(), {delay: '.2s'}),
           query('@moveList', stagger('.8s', animateChild()), {delay: '.2s'}),
         ])
-      ], {params: {duration: '1s'}}),
+      ], {params: {duration: '1s', delay: '0s'}}),
       transition(':leave', [
         fadeOutKeyframes
       ], {params: {duration: '.5s'}})
@@ -25,12 +25,12 @@ import { fadeInKeyframes, fadeMoveKeyframes, fadeOutKeyframes, moveKeyframes, sc
     trigger('fade-move', [
       state('void', style({transform: 'translate(-50%, -50%)'})),
       state('*', style({transform: 'translate(-50%, -200px)'})),
-      transition('void => *', fadeMoveKeyframes, {params: {duration: '.5s'}})
+      transition('void => *', fadeMoveKeyframes, {params: {duration: '.5s', delay: '0s'}})
     ]),
     trigger('scale', [
       state('void', style({transform: 'scale(0)'})),
       state('*', style({transform: 'scale(1)'})),
-      transition('void => *', scaleKeyframes, {params: {duration: '.3s'}})
+      transition('void => *', scaleKeyframes, {params: {duration: '.3s', delay: '0s'}})
     ]),
     trigger('moveList', [
       state('void', style({transform: 'translate(0, 0)'})),

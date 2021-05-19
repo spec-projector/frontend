@@ -10,7 +10,7 @@ export const moveDownKeyframes = animate('.5s ease', keyframes([
   style({transform: 'translate3D(0, 0, 0)'})
 ]));
 
-export const fadeInKeyframes = animate('{{duration}} ease', keyframes([
+export const fadeInKeyframes = animate('{{duration}} {{delay}} ease', keyframes([
   style({opacity: '0'}),
   style({opacity: '1'})
 ]));
@@ -29,7 +29,7 @@ export const fadeMoveKeyframes = sequence([
   ]
 );
 
-export const scaleKeyframes = animate('{{duration}} ease', keyframes([
+export const scaleKeyframes = animate('{{duration}} {{delay}} ease', keyframes([
     style({transform: 'scale(0)'}),
     style({transform: 'scale(1)'})
   ]),
