@@ -57,7 +57,7 @@ export class LpComponent implements OnInit {
   _cookie = localStorage[COOKIE_AGREEMENT_KEY] || false;
 
   @HostBinding('attr.data-device-tags')
-  deviceTags = this.device.tags;
+  deviceTags = this.device;
 
   set cookie(cookie: boolean) {
     this._cookie = cookie;
