@@ -46,11 +46,12 @@ export class LocalUI {
       done: 'done:svg:local:stroked',
       missed: 'missed:svg:local:stroked'
     },
+    // animated
     cloud: {
-      done: 'cloud_done:svg:local:stroked',
-      error: 'cloud_error:svg:local:stroked',
-      active: 'cloud_active:svg:local:stroked'
+      done: 'cloud-done:animated:stroked',
+      error: 'cloud-error:animated:stroked',
+      active: 'cloud-active:animated:stroked'
     },
-    localDirty: 'local_dirty:svg:local:stroked'
+    localDirty: 'local-dirty:animated:stroked'
   };
 }
