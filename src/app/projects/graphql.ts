@@ -14,6 +14,9 @@ export class AllProjectsGQL extends Query<{ projects }> {
       node {
         id
         title
+        emblem {
+          url
+        }
         description
         isPublic
         figmaIntegration {
@@ -42,6 +45,9 @@ mutation ($input: CreateProjectInput!) {
       id
       title
       description
+      emblem {
+        url
+      }
       isPublic
       figmaIntegration {
         token
@@ -68,6 +74,9 @@ mutation ($id: ID!, $input: UpdateProjectInput!) {
       id
       title
       description
+      emblem {
+        url
+      }
       isPublic
       figmaIntegration {
         token
@@ -93,4 +102,22 @@ mutation($id: ID!) {
         status
     }
 }`;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FindUserGQL extends Query<{ user }> {
+  document = gql`
+query ($email: String!) {
+  user: findUser(email: $email) {
+    id
+    firstName
+    lastName
+    avatar {
+      url
+    }
+  }
+}
+`;
 }

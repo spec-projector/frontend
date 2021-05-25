@@ -6,12 +6,31 @@
 
 [data-syntax] {
   font-size: .85em;
+
   p {
     margin: $jnt-gutter-small 0;
   }
 }
 
 ol {
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    div {
+      background: $jnt-pale-navy-color;
+      padding: $jnt-gutter-tiny;
+      line-height: 1;
+      border-radius: $jnt-corner-small;
+      margin-right: $jnt-gutter-small;
+      min-width: 20px;
+      font-size: .75em;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+
   li:not(:last-child) {
     margin-bottom: $jnt-gutter-tiny;
   }

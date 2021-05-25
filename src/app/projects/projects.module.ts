@@ -7,9 +7,9 @@ import {
   ButtonModule,
   CardModule,
   EmptyModule,
-  GridModule,
+  GridModule, ImageUploaderModule,
   LinkModule,
-  MenuModule,
+  MenuModule, PictureModule,
   SkeletonModule,
   StackModule
 } from '@junte/ui';
@@ -21,23 +21,23 @@ import { ProjectsComponent } from './projects.component';
   declarations: [
     ProjectsComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        ArrayPipesModule,
-        AppLayoutModule,
-        GridModule,
-        ButtonModule,
-        StackModule,
-        CardModule,
-        MenuModule,
-        LinkModule,
-        SkeletonModule,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ArrayPipesModule,
+    AppLayoutModule,
+    GridModule,
+    ButtonModule,
+    StackModule,
+    CardModule,
+    MenuModule,
+    LinkModule,
+    SkeletonModule,
 
-        ProjectEditModule,
-        ProjectsRoutingModule,
-        EmptyModule
-    ]
+    ProjectEditModule,
+    ProjectsRoutingModule,
+    EmptyModule
+  ]
 })
 export class ProjectsModule {
 

@@ -11,6 +11,7 @@ import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../consts';
 import { Project } from '../../models/projects';
 import { EditProjectComponent } from '../projects/edit-project/edit-project.component';
+import { ShareProjectComponent } from '../projects/share-project/share-project.component';
 import { ReplicationState } from './enums';
 
 @Component({
@@ -73,14 +74,14 @@ export class SpecComponent implements OnInit, OnDestroy {
       .forEach(s => s?.unsubscribe());
   }
 
-  editProject() {
-    const factory = this.cfr.resolveComponentFactory(EditProjectComponent);
+  shareProject() {
+    const factory = this.cfr.resolveComponentFactory(ShareProjectComponent);
     const component = factory.create(this.injector);
     component.instance.project = this.project;
     component.instance.saved.subscribe(p => {
       this.project = p;
       this.modal.close();
     });
-    this.modal.open(component, {title: {icon: LocalUI.icons.project, text: 'Edit project'}});
+    this.modal.open(component, {title: {icon: LocalUI.icons.share, text: 'Share project'}});
   }
 }

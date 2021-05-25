@@ -6,7 +6,8 @@ import * as assign from 'assign-deep';
 
 export enum StoryEntryType {
   see = 'see',
-  can = 'can'
+  can = 'can',
+  section = 'section'
 }
 
 @persistence()

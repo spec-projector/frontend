@@ -21,6 +21,7 @@ export class FeatureStoryComponent implements OnInit {
   ui = UI;
   editMode = EditMode;
   language = Language;
+  storyEntryType = StoryEntryType;
   consts = {language: CURRENT_LANGUAGE};
 
   feature: Feature;

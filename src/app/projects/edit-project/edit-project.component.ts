@@ -1,9 +1,12 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { InputComponent, UI } from '@junte/ui';
+import { InputComponent, UI, UploadImageData } from '@junte/ui';
+import { R } from 'apollo-angular/types';
 import { delay, finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../../consts';
+import { UploadImageGQL } from '../../../graphql/image';
+import { Image, UploadImageInput } from '../../../models/image';
 import { Project, ProjectUpdate } from '../../../models/projects';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
@@ -20,11 +23,12 @@ export class EditProjectComponent implements AfterViewInit {
 
   private _project: Project;
 
-  progress = {saving: false};
+  progress = {saving: false, uploading: false};
   errors: BackendError[] = [];
 
   form = this.fb.group(
     {
+      emblem: [null],
       title: [null, Validators.required],
       description: [null, Validators.required],
       isPublic: [false],
@@ -46,6 +50,7 @@ export class EditProjectComponent implements AfterViewInit {
     this.form.patchValue({
       title: project.title,
       description: project.description,
+      emblem: project.emblem?.id || null,
       isPublic: project.isPublic,
       figmaIntegration: {
         token: project.figmaIntegration?.token || null
@@ -74,11 +79,27 @@ export class EditProjectComponent implements AfterViewInit {
 
   constructor(private createProjectGQL: CreateProjectGQL,
               private updateProjectGQL: UpdateProjectGQL,
+              private uploadImageGQL: UploadImageGQL,
               private fb: FormBuilder) {
   }
 
   ngAfterViewInit() {
     setTimeout(() => this.titleInput.focus(), 100);
+  }
+
+  uploadEmblem() {
+    return (data: UploadImageData) => {
+      const request = new UploadImageInput(data);
+      this.progress.uploading = true;
+      return this.uploadImageGQL.mutate({input: serialize(request)} as R,
+        {
+          context: {
+            useMultipart: true
+          }
+        }).pipe(finalize(() => this.progress.uploading = false),
+        catchGQLErrors(),
+        map(({data: {response: {image}}}) => deserialize(image, Image)));
+    };
   }
 
   save() {

@@ -2,12 +2,26 @@
 
 :host {
   display: block;
+  flex: 1;
 }
 
-form {
+div {
   display: flex;
   align-items: flex-start;
   position: relative;
+
+  &[entry-type='section'][data-mode='view'] {
+    background: url('~src/assets/images/section.svg');
+    background-repeat: repeat-x;
+    background-position: center;
+    margin-left: -30px;
+
+    [data-tokens] {
+      margin-left: 50px;
+      padding: 0 $jnt-gutter-small;
+      background: $jnt-white-color;
+    }
+  }
 
   > * {
     display: none;
@@ -17,6 +31,7 @@ form {
     b, [data-tokens] {
       display: block;
     }
+
     select, input {
       display: none;
     }
@@ -26,6 +41,7 @@ form {
     b, [data-tokens] {
       display: none;
     }
+
     select, input {
       display: block;
     }

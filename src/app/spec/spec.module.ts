@@ -34,6 +34,7 @@ import { StickyDirective } from '../../directives/sticky.directive';
 import { ArrayPipesModule } from '../../pipes/array/array-pipes.module';
 import { StringPipesModule } from '../../pipes/string/string-pipes.module';
 import { ProjectEditModule } from '../projects/edit-project/edit-projects.module';
+import { ProjectShareModule } from '../projects/share-project/share-projects.module';
 import { ActorEditComponent } from './actors/actor/edit/actor-edit.component';
 import { ActorPricePipe } from './actors/pipes';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -170,6 +171,7 @@ import { StaffComponent } from './settings/staff/staff.component';
     ArrayPipesModule,
 
     ProjectEditModule,
+    ProjectShareModule,
 
     SpecRoutingModule
   ]

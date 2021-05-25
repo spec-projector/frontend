@@ -39,6 +39,9 @@ export class MeUser extends User {
 export class UpdateMeInput {
 
   @Field()
+  avatar: string;
+
+  @Field()
   firstName: string;
 
   @Field()

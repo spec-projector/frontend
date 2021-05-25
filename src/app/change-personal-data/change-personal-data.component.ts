@@ -2,13 +2,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI, UploadImageData } from '@junte/ui';
 import { UI_DELAY } from '../../consts';
+import { UploadImageGQL } from '../../graphql/image';
+import { Image, UploadImageInput } from '../../models/image';
 import { MeUpdated, SignalsService } from '../../signals/signals.service';
 import { BackendError } from '../../types/gql-errors';
-import { UploadMeAvatarInput } from './models';
-import { UpdateMeGQL, UploadMeAvatarGQL } from './graphql';
+import { UpdateMeGQL } from './graphql';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { delay, finalize, map } from 'rxjs/operators';
-import { UpdateMeInput, User } from '../../models/user';
+import { MeUser, UpdateMeInput, User } from '../../models/user';
 import { deserialize, serialize } from 'serialize-ts';
 import { R } from 'apollo-angular/types';
 
@@ -24,26 +25,32 @@ export class ChangePersonalDataComponent {
   errors: BackendError[] = [];
   progress = {changing: false, uploading: false};
   avatar: UploadImageData;
+  _me: MeUser;
 
   form = this.fb.group({
-    avatar: [null],
     firstName: [null, [Validators.required]],
-    lastName: [null, [Validators.required]]
+    lastName: [null, [Validators.required]],
+    avatar: [null]
   });
 
   @Input()
-  set me(me: User) {
+  set me(me: MeUser) {
+    this._me = me;
     this.form.patchValue({
       firstName: me.firstName,
       lastName: me.lastName,
-      avatar: me.avatar
+      avatar: me.avatar?.id || null
     });
+  }
+
+  get me() {
+    return this._me;
   }
 
   @Output()
   changed = new EventEmitter();
 
-  constructor(private uploadMeAvatarGQL: UploadMeAvatarGQL,
+  constructor(private uploadImageGQL: UploadImageGQL,
               private updateMeGQL: UpdateMeGQL,
               private fb: FormBuilder,
               private signals: SignalsService) {
@@ -51,16 +58,16 @@ export class ChangePersonalDataComponent {
 
   uploadAvatar() {
     return (data: UploadImageData) => {
-      const request = new UploadMeAvatarInput(data);
+      const request = new UploadImageInput(data);
       this.progress.uploading = true;
-      return this.uploadMeAvatarGQL.mutate({input: serialize(request)} as R,
+      return this.uploadImageGQL.mutate({input: serialize(request)} as R,
         {
           context: {
             useMultipart: true
           }
         }).pipe(finalize(() => this.progress.uploading = false),
         catchGQLErrors(),
-        map(({data: {response: {user: {avatar}}}}) => avatar));
+        map(({data: {response: {image}}}) => deserialize(image, Image)));
     };
   }
 

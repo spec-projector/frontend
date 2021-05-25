@@ -41,7 +41,7 @@
         <ng-container *ngIf="!!me;else notLoggedTemplate">
           <a data-me routerLink="/projects">
             <jnt-avatar [name]="me.firstName"
-                        [image]="me.avatar"
+                        [image]="me.avatar?.url"
                         [size]="ui.size.small"></jnt-avatar>
           </a>
         </ng-container>

@@ -2,36 +2,42 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  ButtonModule,
+  AccordionModule, AvatarModule,
+  ButtonModule, CheckboxModule,
   FormModule,
-  ImageUploaderModule,
   InformerModule,
-  InputModule, PictureModule,
+  InputModule, SelectModule,
   StackModule,
+  SwitcherModule,
   SwitchModule,
   TabsModule
 } from '@junte/ui';
-import { EditProjectComponent } from './edit-project.component';
+import { AddMemberComponent } from './add-member/add-member.component';
+import { ShareProjectComponent } from './share-project.component';
 
 @NgModule({
   declarations: [
-    EditProjectComponent
+    AddMemberComponent,
+    ShareProjectComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
 
     InformerModule,
+    AccordionModule,
     FormModule,
     StackModule,
     TabsModule,
     InputModule,
     ButtonModule,
     SwitchModule,
-    ImageUploaderModule,
-    PictureModule,
+    SwitcherModule,
+    CheckboxModule,
+    AvatarModule,
+    SelectModule
   ]
 })
-export class ProjectEditModule {
+export class ProjectShareModule {
 
 }

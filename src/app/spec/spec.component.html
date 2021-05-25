@@ -6,11 +6,13 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center"
                  [justify]="ui.justify.between">
-        <jnt-button [scheme]="ui.scheme.secondary"
-                    [icon]="ui.icons.settings"
-                    [shape]="ui.shape.circle"
-                    (click)="editProject()"></jnt-button>
         <ng-container *ngIf="!collapsed" [formGroup]="form">
+          <jnt-button text="Share"
+                      i18n-text="@@action.share"
+                      [scheme]="ui.scheme.secondary"
+                      [icon]="localUi.icons.share"
+                      [shape]="ui.shape.circle"
+                      (click)="shareProject()"></jnt-button>
           <jnt-switch formControlName="mode"
                       [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
           </jnt-switch>

@@ -1,7 +1,8 @@
-<form [formGroup]="form"
-      [attr.data-mode]="mode"
-      (mouseenter)="manager.mode === editMode.edit ? mode = editMode.edit : null"
-      (mouseleave)="mode = editMode.view">
+<div [formGroup]="form"
+     [attr.data-mode]="mode"
+     [attr.entry-type]="entry.type"
+     (mouseenter)="manager.mode === editMode.edit ? mode = editMode.edit : null"
+     (mouseleave)="mode = editMode.view">
   <select formControlName="type"
           tabindex="-1">
     <option [value]="storyEntryType.can"
@@ -10,12 +11,14 @@
     <option [value]="storyEntryType.see"
             i18n="@@label.i_see">I see
     </option>
+    <option [value]="storyEntryType.section">—
+    </option>
   </select>
-  <input #input formControlName="description"
+  <input #inputRef formControlName="description"
          (keydown)="keydown($event)"
          (keyup)="keyup($event)">
 
-  <ng-container [ngSwitch]="locale">
+  <ng-container [ngSwitch]="consts.language">
     <ng-container *ngSwitchDefault>
       <ng-container [ngSwitch]="entry.type">
         <b *ngSwitchCase="storyEntryType.see">I see</b>
@@ -32,4 +35,4 @@
   <spec-tokens data-tokens
                [tokens]="entry.description"
                [spec]="spec"></spec-tokens>
-</form>
+</div>

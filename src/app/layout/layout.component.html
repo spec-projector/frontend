@@ -56,7 +56,7 @@
     <ng-template #headerUserbarTemplate *ngIf="!!config.token" let-hide1="hide">
       <jnt-app-header-userbar>
         <ng-template #userbarAvatarTemplate>
-          <jnt-avatar [image]="me.avatar"
+          <jnt-avatar [image]="me.avatar?.url"
                       [size]="ui.size.small"></jnt-avatar>
         </ng-template>
 

@@ -24,6 +24,20 @@ query Project($id: ID!) {
     githubIntegration {
       token
     }
+    isPublic
+    publicRole
+    publicPermissions
+    members {
+      user {
+        firstName
+        lastName
+        avatar {
+          url
+        }
+      }
+      role
+      permissions
+    }
     owner {
       id
       firstName

@@ -14,7 +14,10 @@
       <jnt-form-control name="avatar">
         <jnt-image-uploader formControlName="avatar"
                             [shape]="ui.shape.circle"
-                            [uploader]="uploadAvatar()">
+                            [uploader]="uploadAvatar()"
+                            [image]="me.avatar?.url"
+                            valueField="id"
+                            urlField="url">
           <ng-template #imageTemplate let-image="image">
             <jnt-avatar [size]="ui.size.large"
                         [image]="image"></jnt-avatar>
