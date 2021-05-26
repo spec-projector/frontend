@@ -1,27 +1,27 @@
 <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
     [check] {
-      stroke-dasharray: 45;
-      stroke-dashoffset: 90;
-      animation: dash .5s linear normal;
+      stroke-dasharray: 20;
+      stroke-dashoffset: 40;
+      animation: dash 2.5s linear normal forwards;
     }
 
     @keyframes dash {
       0% {
         opacity: 1;
-        stroke-dashoffset: 45;
+        stroke-dashoffset: 20;
       }
       50% {
         opacity: 1;
-        stroke-dashoffset: 90;
+        stroke-dashoffset: 40;
       }
       75% {
         opacity: 1;
-        stroke-dashoffset: 90;
+        stroke-dashoffset: 40;
       }
       100% {
-        opacity: 0;
-        stroke-dashoffset: 90;
+        opacity: 1;
+        stroke-dashoffset: 40;
       }
     }
   </style>
