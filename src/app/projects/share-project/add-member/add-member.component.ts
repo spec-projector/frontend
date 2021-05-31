@@ -22,7 +22,7 @@ export class AddMemberComponent {
 
   form = this.fb.group(
     {
-      email: [null, [Validators.required, Validators.email]]
+      email: ['breslavsky.anton@gmail.com', [Validators.required, Validators.email]]
     }
   );
 

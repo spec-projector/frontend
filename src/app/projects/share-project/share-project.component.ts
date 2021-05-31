@@ -26,13 +26,15 @@ export class ShareProjectComponent {
 
   progress = {saving: false};
   errors: BackendError[] = [];
+  added = {members: []};
 
+  membersArray = this.fb.array([]);
   form = this.fb.group(
     {
       isPublic: [false],
       publicRole: [ProjectMemberRole.viewer],
-      publicPermissions: [null],
-      members: this.fb.array([])
+      publicPermissions: [[]],
+      members: this.membersArray
     }
   );
 
@@ -61,11 +63,13 @@ export class ShareProjectComponent {
   }
 
   add(user: User) {
-
+    this.membersArray.push(this.createMemberGroup(user.id));
+    this.added.members.push(user);
   }
 
   save() {
     const request = new ProjectUpdate(this.form.getRawValue());
+    console.log(request);
     this.progress.saving = true;
     this.updateProjectGQL.mutate({id: this.project?.id, input: serialize(request)})
       .pipe(delay(UI_DELAY), finalize(() => this.progress.saving = false),
@@ -73,6 +77,14 @@ export class ShareProjectComponent {
         map(({data: {response: {project}}}) => deserialize(project, Project)))
       .subscribe(project => this.saved.emit(project),
         errors => this.errors = errors);
+  }
+
+  private createMemberGroup(user: string) {
+    return this.fb.group({
+      user: [user],
+      role: [ProjectMemberRole.viewer],
+      permissions: [[]]
+    });
   }
 
 }

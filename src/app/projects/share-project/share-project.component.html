@@ -6,24 +6,105 @@
                         [message]="e.toString()"></jnt-informer-message>
 </jnt-informer>
 
+<ng-template #permissionsTemplate let-controlName="controlName">
+  <jnt-checkbox-group [formControlName]="controlName" [cols]="2">
+    <jnt-checkbox label="Edit features"
+                  [value]="projectPermissions.editFeatures"></jnt-checkbox>
+    <jnt-checkbox label="Edit feature workflow"
+                  [value]="projectPermissions.editFeatureWorkflow"></jnt-checkbox>
+    <jnt-checkbox label="Edit feature story"
+                  [value]="projectPermissions.editFeatureStory"></jnt-checkbox>
+    <jnt-checkbox label="Edit feature design"
+                  [value]="projectPermissions.editFeatureFrames"></jnt-checkbox>
+    <jnt-checkbox label="Edit feature resources"
+                  [value]="projectPermissions.editFeatureResources"></jnt-checkbox>
+    <jnt-checkbox label="Edit feature API"
+                  [value]="projectPermissions.editFeatureApi"></jnt-checkbox>
+    <jnt-checkbox label="Edit feature issues"
+                  [value]="projectPermissions.editFeatureIssues"></jnt-checkbox>
+    <jnt-checkbox label="Edit terms"
+                  [value]="projectPermissions.editTerms"></jnt-checkbox>
+    <jnt-checkbox label="Edit model"
+                  [value]="projectPermissions.editModel"></jnt-checkbox>
+    <jnt-checkbox label="Edit modules"
+                  [value]="projectPermissions.editModules"></jnt-checkbox>
+    <jnt-checkbox label="Edit sprints"
+                  [value]="projectPermissions.editSprints"></jnt-checkbox>
+    <jnt-checkbox label="View contract"
+                  [value]="projectPermissions.viewContract"></jnt-checkbox>
+  </jnt-checkbox-group>
+</ng-template>
+
 <jnt-form #content [formGroup]="form"
           [state]="progress.saving ? ui.state.loading : null"
           (submitted)="save()">
-  <spec-add-member (found)="add($event)"></spec-add-member>
 
   <jnt-accordion>
-    <jnt-accordion-section>
-      <ng-template #accordionTitleTemplate>
-        <jnt-stack [orientation]="ui.orientation.horizontal"
-                   [align]="ui.align.center">
-          <jnt-avatar [size]="ui.size.tiny"></jnt-avatar>
-          <p>Anton Breslavsky</p>
-        </jnt-stack>
-      </ng-template>
+    <jnt-accordion-section [icon]="ui.icons.add"
+                           title="Add member">
       <ng-template #accordionContentTemplate>
-        <jnt-button text="Revoke"></jnt-button>
+        <spec-add-member (found)="add($event)"></spec-add-member>
+        <!-- breslavsky.anton@gmail.com -->
       </ng-template>
     </jnt-accordion-section>
+    <ng-container formArrayName="members">
+      <jnt-accordion-section *ngFor="let m of added.members;let i = index">
+        <ng-template #accordionTitleTemplate>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center">
+            <jnt-avatar [size]="ui.size.tiny" [image]="m.avatar.url"></jnt-avatar>
+            <p>{{m.firstName}} {{m.lastName}}</p>
+          </jnt-stack>
+        </ng-template>
+        <ng-template #accordionContentTemplate>
+          <jnt-stack [formGroupName]="i" [align]="ui.align.stretch">
+            <jnt-form-item>
+              <jnt-form-control name="User role">
+                <jnt-form-label i18n="@@label.user_role">User role</jnt-form-label>
+                <jnt-select formControlName="role">
+                  <jnt-select-option label="Viewer"
+                                     [key]="projectMemberRole.viewer"></jnt-select-option>
+                  <jnt-select-option label="Editor"
+                                     [key]="projectMemberRole.editor"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+            <jnt-form-item>
+              <jnt-form-control name="User permissions">
+                <jnt-form-label i18n="@@label.user_permissions">User permissions</jnt-form-label>
+                <jnt-checkbox-group formControlName="permissions" [cols]="2">
+                  <jnt-checkbox label="Edit features"
+                                [value]="projectPermissions.editFeatures"></jnt-checkbox>
+                  <jnt-checkbox label="Edit feature workflow"
+                                [value]="projectPermissions.editFeatureWorkflow"></jnt-checkbox>
+                  <jnt-checkbox label="Edit feature story"
+                                [value]="projectPermissions.editFeatureStory"></jnt-checkbox>
+                  <jnt-checkbox label="Edit feature design"
+                                [value]="projectPermissions.editFeatureFrames"></jnt-checkbox>
+                  <jnt-checkbox label="Edit feature resources"
+                                [value]="projectPermissions.editFeatureResources"></jnt-checkbox>
+                  <jnt-checkbox label="Edit feature API"
+                                [value]="projectPermissions.editFeatureApi"></jnt-checkbox>
+                  <jnt-checkbox label="Edit feature issues"
+                                [value]="projectPermissions.editFeatureIssues"></jnt-checkbox>
+                  <jnt-checkbox label="Edit terms"
+                                [value]="projectPermissions.editTerms"></jnt-checkbox>
+                  <jnt-checkbox label="Edit model"
+                                [value]="projectPermissions.editModel"></jnt-checkbox>
+                  <jnt-checkbox label="Edit modules"
+                                [value]="projectPermissions.editModules"></jnt-checkbox>
+                  <jnt-checkbox label="Edit sprints"
+                                [value]="projectPermissions.editSprints"></jnt-checkbox>
+                  <jnt-checkbox label="View contract"
+                                [value]="projectPermissions.viewContract"></jnt-checkbox>
+                </jnt-checkbox-group>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-stack>
+          <jnt-button text="Revoke"></jnt-button>
+        </ng-template>
+      </jnt-accordion-section>
+    </ng-container>
     <jnt-accordion-section title="Access by link"
                            [icon]="ui.icons.link">
       <ng-template #accordionContentTemplate>
@@ -52,32 +133,7 @@
           <jnt-form-item>
             <jnt-form-control name="Public permissions">
               <jnt-form-label i18n="@@label.public_permissions">Public permissions</jnt-form-label>
-              <jnt-checkbox-group formControlName="publicRole" [cols]="2">
-                <jnt-checkbox label="Edit features"
-                              [value]="projectPermissions.editFeatures"></jnt-checkbox>
-                <jnt-checkbox label="Edit feature workflow"
-                              [value]="projectPermissions.editFeatureWorkflow"></jnt-checkbox>
-                <jnt-checkbox label="Edit feature story"
-                              [value]="projectPermissions.editFeatureStory"></jnt-checkbox>
-                <jnt-checkbox label="Edit feature design"
-                              [value]="projectPermissions.editFeatureFrames"></jnt-checkbox>
-                <jnt-checkbox label="Edit feature resources"
-                              [value]="projectPermissions.editFeatureResources"></jnt-checkbox>
-                <jnt-checkbox label="Edit feature API"
-                              [value]="projectPermissions.editFeatureApi"></jnt-checkbox>
-                <jnt-checkbox label="Edit feature issues"
-                              [value]="projectPermissions.editFeatureIssues"></jnt-checkbox>
-                <jnt-checkbox label="Edit terms"
-                              [value]="projectPermissions.editTerms"></jnt-checkbox>
-                <jnt-checkbox label="Edit model"
-                              [value]="projectPermissions.editModel"></jnt-checkbox>
-                <jnt-checkbox label="Edit modules"
-                              [value]="projectPermissions.editModules"></jnt-checkbox>
-                <jnt-checkbox label="Edit sprints"
-                              [value]="projectPermissions.editSprints"></jnt-checkbox>
-                <jnt-checkbox label="View contract"
-                              [value]="projectPermissions.viewContract"></jnt-checkbox>
-              </jnt-checkbox-group>
+              <ng-container *ngTemplateOutlet="permissionsTemplate;context: {controlName: 'publicPermissions'}"></ng-container>
             </jnt-form-control>
           </jnt-form-item>
         </jnt-stack>
