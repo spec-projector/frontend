@@ -10,7 +10,9 @@ export class UploadFigmaAssetGQL extends Mutation<{ response }> {
 mutation ($input: CreateProjectAssetInput!) {
   response: uploadFigmaAsset(input: $input) {
     frame: projectAsset {
-      file
+      file {
+        url
+      }
     }
   }
 }`;

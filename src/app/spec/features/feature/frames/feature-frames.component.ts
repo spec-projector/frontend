@@ -89,8 +89,8 @@ export class FeatureFramesComponent implements OnInit {
           });
           this.uploadFigmaAssetGQL.mutate({input: serialize(request)})
             .pipe(catchGQLErrors())
-            .subscribe(({data: {response: {frame: {file}}}}) => {
-              frame.thumbnail = file;
+            .subscribe(({data: {response: {frame: {file: {url}}}}}) => {
+              frame.thumbnail = url;
               this.manager.put(frame);
               this.cd.markForCheck();
               o.next();
