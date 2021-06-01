@@ -44,7 +44,7 @@ export class FeaturesComponent {
   ui = UI;
   features = Feature;
 
-  active = Feature.featuresMap; // temporary
+  active = Feature.cleanWorkflow;
 
   constructor(public route: ActivatedRoute,
               public router: Router) {
