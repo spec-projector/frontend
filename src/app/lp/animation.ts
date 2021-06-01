@@ -15,7 +15,7 @@ export const fadeInKeyframes = animate('{{duration}} {{delay}} ease', keyframes(
   style({opacity: '1'})
 ]));
 
-export const fadeOutKeyframes = animate('{{duration}} ease', keyframes([
+export const fadeOutKeyframes = animate('{{duration}} {{delay}} ease', keyframes([
   style({opacity: '1'}),
   style({opacity: '0'})
 ]));
