@@ -1,11 +1,11 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { delay, finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../../consts';
-import { ProjectMemberRole, ProjectPermissions } from '../../../enums/project';
-import { Project, ProjectUpdate } from '../../../models/projects';
+import { ALL_PROJECT_PERMISSIONS, ProjectMemberRole, ProjectPermission } from '../../../enums/project';
+import { Project, ProjectMember, ProjectUpdate } from '../../../models/projects';
 import { User } from '../../../models/user';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
@@ -14,19 +14,19 @@ import { UpdateProjectGQL } from '../graphql';
 @Component({
   selector: 'spec-share-project',
   templateUrl: './share-project.component.html',
-  styleUrls: ['./share-project.component.scss']
+  styleUrls: ['./share-project.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShareProjectComponent {
 
   ui = UI;
   projectMemberRole = ProjectMemberRole;
-  projectPermissions = ProjectPermissions;
+  projectPermissions = ProjectPermission;
 
   private _project: Project;
 
   progress = {saving: false};
   errors: BackendError[] = [];
-  added = {members: []};
 
   membersArray = this.fb.array([]);
   form = this.fb.group(
@@ -46,6 +46,10 @@ export class ShareProjectComponent {
       publicRole: project.publicRole,
       publicPermissions: project.publicPermissions
     });
+    project.members.forEach(m => {
+      const g = this.createMemberGroup(m.user.id, m.role, m.permissions);
+      this.membersArray.push(g);
+    });
   }
 
   get project() {
@@ -59,12 +63,24 @@ export class ShareProjectComponent {
   backdrop: ElementRef<HTMLElement>;
 
   constructor(private updateProjectGQL: UpdateProjectGQL,
+              private cd: ChangeDetectorRef,
               private fb: FormBuilder) {
   }
 
   add(user: User) {
-    this.membersArray.push(this.createMemberGroup(user.id));
-    this.added.members.push(user);
+    const g = this.createMemberGroup(user.id, ProjectMemberRole.editor, ALL_PROJECT_PERMISSIONS);
+    this.membersArray.push(g);
+    this.project.members.push(new ProjectMember({
+      user,
+      role: ProjectMemberRole.editor,
+      permissions: ALL_PROJECT_PERMISSIONS
+    }));
+  }
+
+  revoke(index: number) {
+    this.membersArray.removeAt(index);
+    this.project.members.splice(index, 1);
+    // this.cd.markForCheck();
   }
 
   save() {
@@ -79,11 +95,11 @@ export class ShareProjectComponent {
         errors => this.errors = errors);
   }
 
-  private createMemberGroup(user: string) {
+  private createMemberGroup(user: string, role: ProjectMemberRole, permissions: ProjectPermission[]) {
     return this.fb.group({
-      user: [user],
-      role: [ProjectMemberRole.viewer],
-      permissions: [[]]
+      id: [user],
+      role: [role],
+      permissions: [permissions]
     });
   }
 

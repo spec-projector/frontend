@@ -77,7 +77,6 @@ mutation ($id: ID!, $input: UpdateProjectInput!) {
       emblem {
         url
       }
-      isPublic
       figmaIntegration {
         token
       }
@@ -86,6 +85,26 @@ mutation ($id: ID!, $input: UpdateProjectInput!) {
       }
       githubIntegration {
         token
+      }
+      isPublic
+      publicRole
+      publicPermissions
+      members {
+        user {
+          id
+          firstName
+          lastName
+          avatar {
+            url
+          }
+        }
+        role
+        permissions
+      }
+      owner {
+        id
+        firstName
+        lastName
       }
     }
   }

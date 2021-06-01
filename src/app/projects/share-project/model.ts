@@ -1,5 +1,5 @@
 import { ArraySerializer, Field, Model, model, PrimitiveSerializer } from 'serialize-ts';
-import { ProjectMemberRole, ProjectPermissions } from '../../../enums/project';
+import { ProjectMemberRole, ProjectPermission } from '../../../enums/project';
 
 @Model()
 export class ProjectMemberUpdate {
@@ -11,5 +11,5 @@ export class ProjectMemberUpdate {
   role: ProjectMemberRole;
 
   @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
-  permissions: ProjectPermissions[];
+  permissions: ProjectPermission[];
 }

@@ -4,7 +4,7 @@ import { ArraySerializer, Field, Model, PrimitiveSerializer } from 'serialize-ts
 import { ModelMetadataSerializer } from 'serialize-ts/dist/serializers/model-metadata.serializer';
 import { EdgesToPaging } from 'src/serializers/graphql';
 import { ProjectMemberUpdate } from '../app/projects/share-project/model';
-import { ProjectMemberRole, ProjectPermissions } from '../enums/project';
+import { ProjectMemberRole, ProjectPermission } from '../enums/project';
 import { SecureString } from '../serializers/string';
 import { Image } from './image';
 import { User } from './user';
@@ -43,7 +43,11 @@ export class ProjectMember {
   role: ProjectMemberRole;
 
   @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
-  permissions: ProjectPermissions[];
+  permissions: ProjectPermission[];
+
+  constructor(defs: Partial<ProjectMember> = {}) {
+    assign(this, defs);
+  }
 }
 
 @Model()
@@ -77,7 +81,7 @@ export class Project {
   isPublic: boolean;
 
   @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
-  publicPermissions: ProjectPermissions[];
+  publicPermissions: ProjectPermission[];
 
   @Field()
   publicRole: ProjectMemberRole;
@@ -150,7 +154,7 @@ export class ProjectUpdate {
   isPublic: boolean;
 
   @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
-  publicPermissions: ProjectPermissions[];
+  publicPermissions: ProjectPermission[];
 
   @Field()
   publicRole: ProjectMemberRole;
@@ -158,8 +162,8 @@ export class ProjectUpdate {
   @Field({serializer: new ArraySerializer(new ModelMetadataSerializer(ProjectMemberUpdate))})
   members: ProjectMemberUpdate[];
 
-  constructor(update: Partial<ProjectUpdate> = null) {
-    assign(this, update);
+  constructor(defs: Partial<ProjectUpdate> = {}) {
+    assign(this, defs);
   }
 
 }
@@ -176,10 +180,8 @@ export class ProjectsFilter implements SearchFilter {
   @Field()
   q?: string;
 
-  constructor(defs: Partial<ProjectsFilter> = null) {
-    if (!!defs) {
-      assign(this, defs);
-    }
+  constructor(defs: Partial<ProjectsFilter> = {}) {
+    assign(this, defs);
   }
 
 }

@@ -1,4 +1,4 @@
-export enum ProjectPermissions {
+export enum ProjectPermission {
   editFeatures = 'EDIT_FEATURES',
   editFeatureWorkflow = 'EDIT_FEATURE_WORKFLOW',
   editFeatureStory = 'EDIT_FEATURE_STORY',
@@ -12,6 +12,20 @@ export enum ProjectPermissions {
   editSprints = 'EDIT_SPRINTS',
   viewContract = 'VIEW_CONTRACT'
 }
+
+export const ALL_PROJECT_PERMISSIONS = [ProjectPermission.editFeatures,
+  ProjectPermission.editFeatureWorkflow,
+  ProjectPermission.editFeatureStory,
+  ProjectPermission.editFeatureFrames,
+  ProjectPermission.editFeatureResources,
+  ProjectPermission.editFeatureApi,
+  ProjectPermission.editFeatureIssues,
+  ProjectPermission.editTerms,
+  ProjectPermission.editModel,
+  ProjectPermission.editModules,
+  ProjectPermission.editSprints,
+  ProjectPermission.viewContract,
+];
 
 export enum ProjectMemberRole {
   viewer = 'VIEWER',

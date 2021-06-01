@@ -29,6 +29,7 @@ query Project($id: ID!) {
     publicPermissions
     members {
       user {
+        id
         firstName
         lastName
         avatar {
