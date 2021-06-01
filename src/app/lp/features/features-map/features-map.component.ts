@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { UI } from '@junte/ui';
-import { animateChild, group, query, sequence, stagger, state, style, transition, trigger } from '@angular/animations';
+import { animateChild, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { fadeInKeyframes, fadeOutKeyframes } from '../../animation';
 
 enum Animation {
@@ -17,20 +17,26 @@ enum Animation {
   animations: [
     trigger('animate', [
       transition(':enter', [
-        fadeInKeyframes,
-        query(':enter', fadeInKeyframes, {params: {duration: '.5s', delay: '0s'}}),
-        query(':leave', fadeOutKeyframes, {params: {duration: '.5s', delay: '0s'}, optional: true}),
-        query('@slide', fadeOutKeyframes, {params: {duration: '.5s', delay: '0s'}, optional: true}),
-        query('@done', stagger('.8s', animateChild()), {delay: '.6s'}),
-      ], {params: {duration: '.5s', delay: '0s'}})
+        query('@slide', animateChild(), {delay: '1s', optional: true})
+      ])
     ]),
     trigger('slide', [
-      transition(':enter, :leave', [animateChild()])
+      transition(':enter', [
+        state('void', style({opacity: '0'})),
+        state('*', style({opacity: '1'})),
+        fadeInKeyframes,
+        query('@done', stagger('.8s', animateChild()), {delay: '.6s', optional: true})
+      ], {params: {duration: '1s', delay: '0s'}}),
+      transition(':leave', [
+        state('void', style({opacity: '1'})),
+        state('*', style({opacity: '0'})),
+        fadeOutKeyframes
+      ], {params: {duration: '1s', delay: '0s'}}),
     ]),
     trigger('done', [
       state('void', style({opacity: '1'})),
       state('*', style({opacity: '0'})),
-      transition('void => *', fadeOutKeyframes, {params: {duration: '.5s', delay: '0s'}})
+      transition('void => *', fadeOutKeyframes, {params: {duration: '.5s', delay: '.5s'}})
     ]),
   ]
 })
