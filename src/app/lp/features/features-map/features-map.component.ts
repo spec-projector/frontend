@@ -22,16 +22,12 @@ enum Animation {
     ]),
     trigger('slide', [
       transition(':enter', [
-        state('void', style({opacity: '0'})),
-        state('*', style({opacity: '1'})),
         fadeInKeyframes,
         query('@done', stagger('.8s', animateChild()), {delay: '.6s', optional: true})
-      ], {params: {duration: '1s', delay: '0s'}}),
+      ], {params: {duration: '2s', delay: '0s'}}),
       transition(':leave', [
-        state('void', style({opacity: '1'})),
-        state('*', style({opacity: '0'})),
         fadeOutKeyframes
-      ], {params: {duration: '1s', delay: '0s'}}),
+      ], {params: {duration: '2s', delay: '0s'}}),
     ]),
     trigger('done', [
       state('void', style({opacity: '1'})),
