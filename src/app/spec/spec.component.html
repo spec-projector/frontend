@@ -3,24 +3,19 @@
   <ng-template #asideFooterTemplate let-collapsed="collapsed">
 
     <jnt-stack data-tools [align]="ui.align.stretch">
-      <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.align.center"
-                 [justify]="ui.justify.between">
-        <ng-container *ngIf="!collapsed" [formGroup]="form">
-          <jnt-button text="Share"
-                      i18n-text="@@action.share"
-                      [scheme]="ui.scheme.secondary"
-                      [icon]="localUi.icons.share"
-                      [shape]="ui.shape.circle"
-                      (click)="shareProject()"></jnt-button>
-          <jnt-switch formControlName="mode"
-                      [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
-          </jnt-switch>
-        </ng-container>
+      <jnt-stack *ngIf="!collapsed" [align]="ui.align.center">
+        <jnt-button text="Share"
+                    i18n-text="@@action.share"
+                    [scheme]="ui.scheme.secondary"
+                    [icon]="localUi.icons.share"
+                    [shape]="ui.shape.circle"
+                    (click)="shareProject()"></jnt-button>
       </jnt-stack>
 
       <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [justify]="ui.align.center">
+                 [align]="ui.align.center"
+                 [justify]="ui.align.center"
+                 [formGroup]="form">
         <ng-template #cloudHelpTemplate>
           <ng-container [ngSwitch]="consts.language">
             <ng-container *ngSwitchDefault>
@@ -49,6 +44,9 @@
                       [icon]="localUi.icons.cloud.error"></jnt-icon>
           </ng-container>
         </div>
+        <jnt-switch formControlName="mode"
+                    [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
+        </jnt-switch>
       </jnt-stack>
     </jnt-stack>
 

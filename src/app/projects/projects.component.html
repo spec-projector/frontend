@@ -42,6 +42,7 @@
             <jnt-col [mobile]="6" [tablet]="3"
                      *ngFor="let project of projects; trackBy: trackProject;let i = index">
               <jnt-card [width]="ui.width.fluid"
+                        [orientation]="ui.orientation.vertical"
                         [picture]="project.emblem?.url || 'assets/images/project-emblem.svg'">
                 <jnt-stack [gutter]="ui.gutter.tiny">
                   <jnt-link [source]="[project.id]"
