@@ -8,7 +8,7 @@ import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
 import { Distance } from '../../lp/animation';
 import { SecurityCodeRequest } from '../models';
-import { SendCodeGQL } from '../reset-password.graphql';
+import { SendCodeGQL } from '../graphql';
 
 @Component({
   selector: 'spec-send-code',

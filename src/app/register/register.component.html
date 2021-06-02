@@ -119,12 +119,12 @@
                      [gutter]="ui.gutter.small">
             <jnt-button text="Google"
                         [icon]="ui.icons.google"
-                        [scheme]="ui.scheme.secondary"
+                        [outline]="ui.outline.ghost"
                         [width]="ui.width.fluid"
                         (click)="socialRegister(loginSystem.google)">
             </jnt-button>
             <jnt-button text="GitLab"
-                        [scheme]="ui.scheme.secondary"
+                        [outline]="ui.outline.ghost"
                         [icon]="ui.icons.gitlab"
                         [width]="ui.width.fluid"
                         (click)="socialRegister(loginSystem.gitLab)"></jnt-button>
@@ -132,7 +132,7 @@
           <p i18n="@@message.registered_already">Did you register already?</p>
           <jnt-button text="Login"
                       i18n-text="@@action.login"
-                      [scheme]="ui.scheme.secondary"
+                      [outline]="ui.outline.ghost"
                       (click)="router.navigate(['/login'])">
           </jnt-button>
         </jnt-stack>

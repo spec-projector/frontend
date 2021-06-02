@@ -111,7 +111,7 @@
       </ng-container>
     </p>
   </jnt-stack>
-  <ol>
+  <ol data-story>
     <li *ngFor="let entry of feature.story; let i = index">
       <div *ngIf="entry.type !== storyEntryType.section">{{i + 1}}</div>
       <spec-story-entry #storyEntry [entry]="entry"

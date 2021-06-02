@@ -1,21 +1,15 @@
 <jnt-form #content [formGroup]="form"
           [state]="progress.finding ? ui.state.loading : null"
           (submitted)="find()">
-  <jnt-form-item>
-    <jnt-form-control name="email">
-      <jnt-input formControlName="email"
-                 placeholder="Enter valid user email"
-                 [scheme]="form.dirty && form.invalid ? ui.input.scheme.failed : ui.input.scheme.normal"></jnt-input>
-    </jnt-form-control>
-  </jnt-form-item>
-
-  <ng-template #formFooterTemplate>
-    <jnt-stack [orientation]="ui.orientation.horizontal"
-               [justify]="ui.justify.end">
-      <jnt-button [type]="ui.button.type.submit"
-                  text="Add"
-                  i18n-text="@@action.add"
-                  [icon]="ui.icons.save"></jnt-button>
-    </jnt-stack>
-  </ng-template>
+  <jnt-stack [orientation]="ui.orientation.horizontal"
+             [align]="ui.align.stretch">
+    <jnt-input formControlName="email"
+               placeholder="Enter valid user email"
+               [width]="ui.width.fluid"
+               [scheme]="(form.dirty && form.invalid) || state.missed ? ui.input.scheme.failed : ui.input.scheme.normal"></jnt-input>
+    <jnt-button [type]="ui.button.type.submit"
+                text="Add"
+                i18n-text="@@action.add"
+                [icon]="ui.icons.add"></jnt-button>
+  </jnt-stack>
 </jnt-form>

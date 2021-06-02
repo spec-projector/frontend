@@ -15,7 +15,7 @@ import { AppConfig } from '../app-config';
 import { MakeSocialLogin, TrySocialLogin } from '../login/models';
 import { Distance, moveDownKeyframes, moveKeyframes } from '../lp/animation';
 import { UserRegisterInput } from './models';
-import { RegisterGQL, SocialLoginGQL } from './register.graphql';
+import { RegisterGQL, SocialLoginGQL } from './graphql';
 
 @Component({
   selector: 'spec-register',

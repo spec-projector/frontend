@@ -10,7 +10,7 @@ import { catchGQLErrors } from '../../../utils/gql-errors';
 import { AppConfig } from '../../app-config';
 import { Distance } from '../../lp/animation';
 import { ResetPasswordInput } from '../models';
-import { RestorePasswordGQL, SendCodeGQL } from '../reset-password.graphql';
+import { RestorePasswordGQL, SendCodeGQL } from '../graphql';
 
 export function passwordMatchedValidator(form: FormGroup) {
   return form.get('password').value !== form.get('confirmation').value

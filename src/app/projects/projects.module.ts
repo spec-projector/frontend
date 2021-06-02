@@ -21,23 +21,24 @@ import { ProjectsComponent } from './projects.component';
   declarations: [
     ProjectsComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ArrayPipesModule,
-    AppLayoutModule,
-    GridModule,
-    ButtonModule,
-    StackModule,
-    CardModule,
-    MenuModule,
-    LinkModule,
-    SkeletonModule,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        ArrayPipesModule,
+        AppLayoutModule,
+        GridModule,
+        ButtonModule,
+        StackModule,
+        CardModule,
+        MenuModule,
+        LinkModule,
+        SkeletonModule,
 
-    ProjectEditModule,
-    ProjectsRoutingModule,
-    EmptyModule
-  ]
+        ProjectEditModule,
+        ProjectsRoutingModule,
+        EmptyModule,
+        PictureModule
+    ]
 })
 export class ProjectsModule {
 

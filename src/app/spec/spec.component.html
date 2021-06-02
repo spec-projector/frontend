@@ -44,7 +44,7 @@
                       [icon]="localUi.icons.cloud.error"></jnt-icon>
           </ng-container>
         </div>
-        <jnt-switch formControlName="mode"
+        <jnt-switch *ngIf="!collapsed" formControlName="mode"
                     [icons]="{off: ui.icons.unlock, on: ui.icons.lock}">
         </jnt-switch>
       </jnt-stack>

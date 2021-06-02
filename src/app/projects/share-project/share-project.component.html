@@ -11,7 +11,14 @@
           (submitted)="save()">
 
   <jnt-accordion>
-    <jnt-accordion-section title="Add member">
+    <jnt-accordion-section>
+      <ng-template #accordionTitleTemplate>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [align]="ui.align.center">
+          <jnt-avatar [size]="ui.size.tiny"></jnt-avatar>
+          <p><b>Add member</b></p>
+        </jnt-stack>
+      </ng-template>
       <ng-template #accordionContentTemplate>
         <spec-add-member (found)="add($event)"></spec-add-member>
         <!-- breslavsky.anton@gmail.com -->
@@ -28,17 +35,25 @@
         </ng-template>
         <ng-template #accordionContentTemplate>
           <jnt-stack [formGroupName]="i" [align]="ui.align.stretch">
-            <jnt-form-item>
-              <jnt-form-control name="User role">
-                <jnt-form-label i18n="@@label.user_role">User role</jnt-form-label>
-                <jnt-select formControlName="role">
-                  <jnt-select-option label="Viewer"
-                                     [key]="projectMemberRole.viewer"></jnt-select-option>
-                  <jnt-select-option label="Editor"
-                                     [key]="projectMemberRole.editor"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [align]="ui.align.end"
+                       [justify]="ui.justify.between">
+              <jnt-form-item>
+                <jnt-form-control name="User role">
+                  <jnt-form-label i18n="@@label.user_role">User role</jnt-form-label>
+                  <jnt-switcher formControlName="role">
+                    <jnt-switcher-option label="Viewer"
+                                         [value]="projectMemberRole.viewer"></jnt-switcher-option>
+                    <jnt-switcher-option label="Editor"
+                                         [value]="projectMemberRole.editor"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-control>
+              </jnt-form-item>
+              <jnt-button text="Revoke"
+                          [icon]="ui.icons.delete"
+                          [scheme]="ui.scheme.accent"
+                          (click)="revoke(i)"></jnt-button>
+            </jnt-stack>
             <jnt-form-item>
               <jnt-form-control name="User permissions">
                 <jnt-form-label i18n="@@label.user_permissions">User permissions</jnt-form-label>
@@ -70,42 +85,44 @@
                 </jnt-checkbox-group>
               </jnt-form-control>
             </jnt-form-item>
-            <jnt-stack [orientation]="ui.orientation.horizontal"
-                       [justify]="ui.justify.end">
-              <jnt-button text="Revoke"
-                          [icon]="ui.icons.delete"
-                          [scheme]="ui.scheme.accent"
-                          (click)="revoke(i)"></jnt-button>
-            </jnt-stack>
           </jnt-stack>
         </ng-template>
       </jnt-accordion-section>
     </ng-container>
-    <jnt-accordion-section title="Access by link"
-                           [icon]="ui.icons.link">
+    <jnt-accordion-section>
+      <ng-template #accordionTitleTemplate>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [align]="ui.align.center">
+          <jnt-avatar [size]="ui.size.tiny"
+                      [icon]="ui.icons.link"></jnt-avatar>
+          <p>Access by link</p>
+        </jnt-stack>
+      </ng-template>
       <ng-template #accordionContentTemplate>
         <jnt-stack [align]="ui.align.stretch">
-          <jnt-switch formControlName="isPublic">
-            <ng-template #switchLabelTemplate>
-              <jnt-stack [gutter]="ui.gutter.tiny">
-                <small>Provide access by link</small>
-                <jnt-input [readonly]="true"
-                           [size]="ui.size.small"
-                           [features]="[ui.feature.copy]"></jnt-input>
-              </jnt-stack>
-            </ng-template>
-          </jnt-switch>
-          <jnt-form-item>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.end">
+            <jnt-switch formControlName="isPublic"></jnt-switch>
+            <jnt-stack data-public-link [gutter]="ui.gutter.tiny"
+                       [align]="ui.align.stretch">
+              <small>Provide access by link</small>
+              <jnt-input formControlName="publicLink"
+                         [readonly]="true"
+                         [size]="ui.size.small"
+                         [features]="[ui.feature.copy]"></jnt-input>
+            </jnt-stack>
+          </jnt-stack>
+          <jnt-stack>
             <jnt-form-control name="Public role">
               <jnt-form-label i18n="@@label.public_role">Public role</jnt-form-label>
-              <jnt-select formControlName="publicRole">
-                <jnt-select-option label="Viewer"
-                                   [key]="projectMemberRole.viewer"></jnt-select-option>
-                <jnt-select-option label="Editor"
-                                   [key]="projectMemberRole.editor"></jnt-select-option>
-              </jnt-select>
+              <jnt-switcher formControlName="publicRole">
+                <jnt-switcher-option label="Viewer"
+                                     [value]="projectMemberRole.viewer"></jnt-switcher-option>
+                <jnt-switcher-option label="Editor"
+                                     [value]="projectMemberRole.editor"></jnt-switcher-option>
+              </jnt-switcher>
             </jnt-form-control>
-          </jnt-form-item>
+          </jnt-stack>
           <jnt-form-item>
             <jnt-form-control name="Public permissions">
               <jnt-form-label i18n="@@label.public_permissions">Public permissions</jnt-form-label>

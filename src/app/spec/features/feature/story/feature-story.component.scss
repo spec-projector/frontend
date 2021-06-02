@@ -12,12 +12,13 @@
   }
 }
 
-ol {
+ol[data-story] {
   list-style: none;
 
   li {
     display: flex;
     align-items: center;
+
     div {
       background: $jnt-pale-navy-color;
       padding: $jnt-gutter-tiny;
