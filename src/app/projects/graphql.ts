@@ -109,6 +109,10 @@ mutation ($id: ID!, $input: UpdateProjectInput!) {
         role
         permissions
       }
+      me {
+        role
+        permissions
+      }
       owner {
         id
         firstName
