@@ -77,7 +77,7 @@ export class EntityField extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this]};
 
     this.entity.removeField(this);
     links.changed.push(this.entity);

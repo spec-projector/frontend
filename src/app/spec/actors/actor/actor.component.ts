@@ -144,8 +144,6 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
     links.deleted.forEach(o => this.manager.remove(o));
     links.changed.forEach(o => this.manager.put(o));
 
-    this.manager.remove(feature);
-
     this.version++;
     this.cd.detectChanges();
     this.modal.close();

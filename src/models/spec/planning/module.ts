@@ -102,7 +102,7 @@ export class Module extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this, this.model]};
 
     this.features.forEach(f => f.module = null);
     this.model.entities.forEach(e => e.module = null);

@@ -83,7 +83,7 @@ export class Feature extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this, this.workflow, this.api]};
     if (!!this.actor) {
       this.actor.removeFeature(this);
       links.changed.push(this.actor);

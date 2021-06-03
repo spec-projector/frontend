@@ -42,7 +42,7 @@ export class Sprint extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this]};
 
     this.features.forEach(f => f.sprint = null);
 

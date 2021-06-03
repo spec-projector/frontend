@@ -42,9 +42,9 @@ export class Actor extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this]};
 
-    this.features.reduce((r, f) => r.concat(f.delete()), [])
+    Array.from(this.features).reduce((r, f) => r.concat(f.delete()), [])
       .forEach(l => [links.changed, links.deleted] =
         [links.changed.concat(l.changed), links.deleted.concat(l.deleted)]);
 

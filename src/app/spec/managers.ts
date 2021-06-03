@@ -11,6 +11,10 @@ import { Language } from '../../enums/language';
 import { environment } from '../../environments/environment';
 import { AppConfig } from '../app-config';
 import { ReplicationState } from './enums';
+import inMemoryPlugin from 'pouchdb-adapter-memory';
+import { generate } from 'shortid';
+
+PouchDB.plugin(inMemoryPlugin);
 import Database = PouchDB.Database;
 
 const BUFFER_TIME = 2500;
@@ -113,13 +117,15 @@ export class SpecManager {
   get(project: string): Observable<Spec> {
     if (!this.spec$) {
       this.spec$ = new BehaviorSubject<Spec>(null);
-      this.db.local = new PouchDB(project,
+      this.db.local = new PouchDB(generate(),
         {
+          adapter: 'memory',
           auto_compaction: true
         });
       this.db.remote = new PouchDB([environment.storage, project].join('/'),
         {
           skip_setup: false,
+          auto_compaction: true,
           fetch: (url, opts) => {
             const headers = opts.headers as Headers;
             if (!!this.config.token) {
@@ -135,6 +141,8 @@ export class SpecManager {
           const spec = new Spec();
           this.logger.log(project);
           this.logger.log('synced');
+          this.startPull();
+          this.startPush();
           spec.id = SPEC_DOC_ID;
           const progress = new Subject();
           spec.load(this.db.local, progress)
@@ -146,8 +154,6 @@ export class SpecManager {
 
               spec.linking();
               console.log(spec);
-              this.startPull();
-              this.startPush();
 
               if (!spec.model.id) {
                 spec.model.new();
@@ -272,7 +278,7 @@ export class SpecManager {
     const docs = [];
     for (const action of Array.from(puts.values())) {
       const object = action.obj;
-      if (object.dirty()) {
+      if (object.dirty() && !removed.has(action.obj.id)) {
         docs.push(object.serialize(SerializeType.reference));
       } else {
         this.logger.info('object it not dirty');
@@ -281,11 +287,12 @@ export class SpecManager {
 
     for (const action of Array.from(removed.values())) {
       const obj = action.obj.serialize(SerializeType.reference);
-      obj['deleted'] = true;
+      obj['_deleted'] = true;
       docs.push(obj);
+      console.log('deleting!');
     }
 
-    if (docs.length) {
+    if (docs.length > 0) {
       this.logger.info('committing', docs);
       this.db.local.bulkDocs(docs)
         .then((updates => {

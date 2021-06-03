@@ -31,7 +31,7 @@ export class Term extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this]};
 
     const index = this.spec.terms.findIndex(f => f.id === this.id);
     this.spec.terms.splice(index, 1);
