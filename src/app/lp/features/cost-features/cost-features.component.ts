@@ -1,27 +1,27 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { UI } from '@junte/ui';
-import { animateChild, query, state, style, transition, trigger } from '@angular/animations';
+import { animateChild, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { fadeInKeyframes, moveKeyframes } from '../../animation';
 
 @Component({
-  selector: 'spec-lp-user-stories',
-  templateUrl: './user-stories.component.html',
-  styleUrls: ['./user-stories.component.scss'],
+  selector: 'spec-lp-cost-features',
+  templateUrl: './cost-features.component.html',
+  styleUrls: ['./cost-features.component.scss'],
   animations: [
     trigger('animate', [
       transition(':enter', [
         fadeInKeyframes,
-        query('@show', animateChild(), {delay: '1s'})
+        query('@show', animateChild())
       ], {params: {duration: '1s', delay: '0s'}})
     ]),
     trigger('show', [
       state('void', style({transform: 'translate3D(0, 0, 0)'})),
-      state('*', style({transform: 'translate3D(0, 352px, 0)'})),
-      transition('void => *', [moveKeyframes], {params: {distance: '0,352px,0', duration: '10s'}})
+      state('*', style({transform: 'translate3D(0, 400px, 0)'})),
+      transition('void => *', [moveKeyframes], {params: {distance: '0,400px,0', duration: '5s'}})
     ])
   ]
 })
-export class UserStoriesComponent implements OnInit {
+export class CostFeaturesComponent implements OnInit {
 
   ui = UI;
 
