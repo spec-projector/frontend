@@ -5,7 +5,7 @@ import {delay, finalize, map} from 'rxjs/operators';
 import {deserialize, serialize} from 'serialize-ts';
 import {UI_DELAY} from '../../../consts';
 import {ALL_PROJECT_PERMISSIONS, ProjectMemberRole, ProjectPermission} from '../../../enums/project';
-import {Project, ProjectMember, ProjectUpdate} from '../../../models/projects';
+import {Project, ProjectMember, ProjectUpdate} from '../../../models/project';
 import {User} from '../../../models/user';
 import {BackendError} from '../../../types/gql-errors';
 import {catchGQLErrors} from '../../../utils/gql-errors';

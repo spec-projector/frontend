@@ -54,7 +54,7 @@
                             [title]="project.title"></jnt-link>
                   <span *ngIf="!!project.description">{{project.description}}</span>
                 </jnt-stack>
-                <ng-template #cardActionsTemplate let-hide="hide">
+                <ng-template *ngIf="me.id === project.owner.id" #cardActionsTemplate let-hide="hide">
                   <jnt-menu [orientation]="ui.orientation.vertical">
                     <jnt-menu-item [icon]="ui.icons.edit"
                                    title="Edit"

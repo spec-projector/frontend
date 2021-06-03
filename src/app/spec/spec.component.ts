@@ -1,18 +1,20 @@
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, Inject, Injector, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ModalService, UI } from '@junte/ui';
-import { merge, Subscription } from 'rxjs';
-import { SpecManager } from 'src/app/spec/managers';
-import { EditMode } from 'src/enums/edit-mode';
-import { Language } from 'src/enums/language';
-import { LocalUI } from 'src/enums/local-ui';
-import { Spec } from 'src/models/spec/spec';
-import { CURRENT_LANGUAGE } from '../../consts';
-import { Project } from '../../models/projects';
-import { EditProjectComponent } from '../projects/edit-project/edit-project.component';
-import { ShareProjectComponent } from '../projects/share-project/share-project.component';
-import { ReplicationState } from './enums';
+import {ChangeDetectorRef, Component, ComponentFactoryResolver, Inject, Injector, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {ModalService, UI} from '@junte/ui';
+import {merge, Subscription} from 'rxjs';
+import {SpecManager} from 'src/app/spec/managers';
+import {EditMode} from 'src/enums/edit-mode';
+import {Language} from 'src/enums/language';
+import {LocalUI} from 'src/enums/local-ui';
+import {Spec} from 'src/models/spec/spec';
+import {CURRENT_LANGUAGE} from '../../consts';
+import {Project} from '../../models/project';
+import {EditProjectComponent} from '../projects/edit-project/edit-project.component';
+import {ShareProjectComponent} from '../projects/share-project/share-project.component';
+import {ReplicationState} from './enums';
+import {MeUser} from '../../models/user';
+import {ProjectMemberRole, ProjectPermission} from '../../enums/project';
 
 @Component({
   selector: 'app-spec',
@@ -25,6 +27,7 @@ export class SpecComponent implements OnInit, OnDestroy {
   language = Language;
   localUi = LocalUI;
   replicationState = ReplicationState;
+  projectPermission = ProjectPermission;
   consts = {language: CURRENT_LANGUAGE};
 
   private subscriptions: {
@@ -44,6 +47,7 @@ export class SpecComponent implements OnInit, OnDestroy {
     return this._spec;
   }
 
+  me: MeUser;
   project: Project;
 
   lockControl = this.fb.control(false);
@@ -59,8 +63,14 @@ export class SpecComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({project, spec}) =>
-      [this.project, this.spec] = [project, spec]);
+    this.route.data.subscribe(({me, project, spec}) => {
+      [this.me, this.project, this.spec] = [me, project, spec];
+      if (project.me.role === ProjectMemberRole.viewer) {
+        this.manager.mode = EditMode.view;
+        this.lockControl.setValue(true);
+        this.lockControl.disable();
+      }
+    });
 
     this.lockControl.valueChanges.subscribe(mode =>
       this.manager.mode = mode ? EditMode.view : EditMode.edit);

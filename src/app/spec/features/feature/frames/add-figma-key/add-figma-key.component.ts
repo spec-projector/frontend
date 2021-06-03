@@ -5,7 +5,7 @@ import { delay, finalize, map } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
 import { CURRENT_LANGUAGE, UI_DELAY } from '../../../../../../consts';
 import { Language } from '../../../../../../enums/language';
-import { Project, ProjectUpdate } from '../../../../../../models/projects';
+import { Project, ProjectUpdate } from '../../../../../../models/project';
 import { BackendError } from '../../../../../../types/gql-errors';
 import { catchGQLErrors } from '../../../../../../utils/gql-errors';
 import { SetFigmaTokenGQL } from './graphql';

@@ -14,7 +14,7 @@ import {
   SpecResolver
 } from 'src/app/spec/resolvers';
 import { TermsComponent } from 'src/app/spec/terms/terms.component';
-import { Project } from '../../models/projects';
+import { Project } from '../../models/project';
 import { Entity } from '../../models/spec/orm/entity';
 import { Enum } from '../../models/spec/orm/enum';
 import { Actor } from '../../models/spec/planning/actor';
@@ -87,6 +87,7 @@ export const routes: Routes = [
     component: SpecComponent,
     resolve: {
       spec: SpecResolver,
+      me: MeUserResolver,
       project: ProjectResolver
     },
     data: {breadcrumb: getProject},
@@ -194,7 +195,7 @@ export const routes: Routes = [
         path: 'terms',
         component: TermsComponent,
         data: {breadcrumb: TERMS_BREADCRUMB},
-        resolve: {spec: SpecResolver}
+        resolve: {project: ProjectResolver, spec: SpecResolver}
 
       },
       {

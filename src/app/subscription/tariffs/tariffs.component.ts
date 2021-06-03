@@ -6,7 +6,7 @@ import { UI_DELAY } from '../../../consts';
 import { Language } from '../../../enums/language';
 import { LocalUI } from '../../../enums/local-ui';
 import { Subscription } from '../../../models/subscription';
-import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariffs';
+import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariff';
 import { MeUser } from '../../../models/user';
 import { TariffsGQL } from './graphql';
 

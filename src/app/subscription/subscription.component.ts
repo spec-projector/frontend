@@ -16,7 +16,7 @@ import {
 import { Language } from '../../enums/language';
 import { LocalUI } from '../../enums/local-ui';
 import { ChangeSubscriptionRequest } from '../../models/subscription';
-import { Tariff, TariffFeatures } from '../../models/tariffs';
+import { Tariff, TariffFeatures } from '../../models/tariff';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { ChangeSubscriptionGQL, CheckSubscriptionGQL } from './graphql';

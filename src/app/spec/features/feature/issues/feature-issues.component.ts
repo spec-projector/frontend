@@ -9,7 +9,7 @@ import { Language } from 'src/enums/language';
 import { Issue } from 'src/models/spec/planning/feature/issue';
 import { IssueState, IssueSystem } from '../../../../../enums/issue';
 import { IssueDataRequest } from '../../../../../models/issue-data';
-import { Project } from '../../../../../models/projects';
+import { Project } from '../../../../../models/project';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { SpecManager } from '../../../managers';
 import { IssueGQL } from './issues.graphql';

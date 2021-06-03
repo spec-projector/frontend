@@ -1,4 +1,9 @@
-@import "~@junte/ui/lib/assets/styles/jnt-variables";
+@import "src/variables";
+@import "~@junte/ui/lib/assets/styles/layout/skeleton";
+
+$jnt-ng-deep: true;
+
+@include jnt-skeleton((card: (height: 150px)));
 
 span {
   font-size: .9em;

@@ -6,7 +6,7 @@ import 'reflect-metadata';
 import { CURRENT_LANGUAGE } from '../../consts';
 import { Language } from '../../enums/language';
 import { LocalUI } from '../../enums/local-ui';
-import { Tariff } from '../../models/tariffs';
+import { Tariff } from '../../models/tariff';
 import { MeUser } from '../../models/user';
 import { AppConfig } from '../app-config';
 import { Distance, moveKeyframes } from './animation';

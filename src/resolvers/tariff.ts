@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
-import { Tariff } from '../models/tariffs';
+import { Tariff } from '../models/tariff';
 import { TariffGQL } from './graphql';
 
 @Injectable({providedIn: 'root'})

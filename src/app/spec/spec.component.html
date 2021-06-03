@@ -3,7 +3,8 @@
   <ng-template #asideFooterTemplate let-collapsed="collapsed">
 
     <jnt-stack data-tools [align]="ui.align.stretch">
-      <jnt-stack *ngIf="!collapsed" [align]="ui.align.center">
+      <jnt-stack *ngIf="!collapsed && me.id === project.owner.id"
+                 [align]="ui.align.center">
         <jnt-button text="Share"
                     i18n-text="@@action.share"
                     [scheme]="ui.scheme.secondary"
@@ -124,7 +125,8 @@
                  [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 
-    <jnt-menu-item [link]="['print']"
+    <jnt-menu-item *ngIf="project.me.permissions | includes: projectPermission.viewContract"
+                   [link]="['print']"
                    title="Contract"
                    i18n-title="@@label.contract"
                    [icon]="localUi.icons.print"></jnt-menu-item>

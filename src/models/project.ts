@@ -1,13 +1,13 @@
-import { SearchFilter } from '@junte/ui';
+import {SearchFilter} from '@junte/ui';
 import * as assign from 'assign-deep';
-import { ArraySerializer, Field, Model, PrimitiveSerializer } from 'serialize-ts';
-import { ModelMetadataSerializer } from 'serialize-ts/dist/serializers/model-metadata.serializer';
-import { EdgesToPaging } from 'src/serializers/graphql';
-import { ProjectMemberUpdate } from '../app/projects/share-project/model';
-import { ProjectMemberRole, ProjectPermission } from '../enums/project';
-import { SecureString } from '../serializers/string';
-import { Image } from './image';
-import { User } from './user';
+import {ArraySerializer, Field, Model, PrimitiveSerializer} from 'serialize-ts';
+import {ModelMetadataSerializer} from 'serialize-ts/dist/serializers/model-metadata.serializer';
+import {EdgesToPaging} from 'src/serializers/graphql';
+import {ProjectMemberUpdate} from '../app/projects/share-project/model';
+import {ProjectMemberRole, ProjectPermission} from '../enums/project';
+import {SecureString} from '../serializers/string';
+import {Image} from './image';
+import {User} from './user';
 
 @Model()
 export class FigmaIntegration {
@@ -51,6 +51,17 @@ export class ProjectMember {
 }
 
 @Model()
+export class ForMeInProject {
+
+  @Field()
+  role: ProjectMemberRole;
+
+  @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
+  permissions: ProjectPermission[];
+
+}
+
+@Model()
 export class Project {
 
   @Field()
@@ -80,14 +91,20 @@ export class Project {
   @Field()
   isPublic: boolean;
 
-  @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
-  publicPermissions: ProjectPermission[];
-
   @Field()
   publicRole: ProjectMemberRole;
 
+  @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
+  publicPermissions: ProjectPermission[];
+
   @Field({serializer: new ArraySerializer(new ModelMetadataSerializer(ProjectMember))})
   members: ProjectMember[];
+
+  @Field()
+  me: ForMeInProject;
+
+  @Field()
+  owner: User;
 
 }
 
@@ -153,11 +170,11 @@ export class ProjectUpdate {
   @Field()
   isPublic: boolean;
 
-  @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
-  publicPermissions: ProjectPermission[];
-
   @Field()
   publicRole: ProjectMemberRole;
+
+  @Field({serializer: new ArraySerializer(new PrimitiveSerializer())})
+  publicPermissions: ProjectPermission[];
 
   @Field({serializer: new ArraySerializer(new ModelMetadataSerializer(ProjectMemberUpdate))})
   members: ProjectMemberUpdate[];

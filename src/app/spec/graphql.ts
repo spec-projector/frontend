@@ -39,6 +39,10 @@ query Project($id: ID!) {
       role
       permissions
     }
+    me {
+      role
+      permissions
+    }
     owner {
       id
       firstName

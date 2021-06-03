@@ -1,5 +1,5 @@
 import { DateSerializer, Field, Model } from 'serialize-ts';
-import { Tariff } from './tariffs';
+import { Tariff } from './tariff';
 
 @Model()
 export class Subscription {

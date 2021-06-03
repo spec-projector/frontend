@@ -8,7 +8,7 @@ import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../consts';
 import { SocialLoginSystem } from '../../enums/signin';
 import { AuthToken } from '../../models/auth-token';
-import { Tariff } from '../../models/tariffs';
+import { Tariff } from '../../models/tariff';
 import { BackendError } from '../../types/gql-errors';
 import { catchGQLErrors } from '../../utils/gql-errors';
 import { AppConfig } from '../app-config';

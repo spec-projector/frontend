@@ -7,7 +7,7 @@ import { deserialize, serialize } from 'serialize-ts';
 import { UI_DELAY } from '../../../consts';
 import { UploadImageGQL } from '../../../graphql/image';
 import { Image, UploadImageInput } from '../../../models/image';
-import { Project, ProjectUpdate } from '../../../models/projects';
+import { Project, ProjectUpdate } from '../../../models/project';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
 import { CreateProjectGQL, UpdateProjectGQL } from '../graphql';

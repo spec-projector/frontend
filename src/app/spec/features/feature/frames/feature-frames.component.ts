@@ -10,7 +10,7 @@ import { Frame } from 'src/models/spec/planning/feature/frame';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { environment } from '../../../../../environments/environment';
 import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
-import { Project } from '../../../../../models/projects';
+import { Project } from '../../../../../models/project';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { catchGQLErrors } from '../../../../../utils/gql-errors';
 import { SpecManager } from '../../../managers';

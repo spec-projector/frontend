@@ -1,14 +1,15 @@
-import { Component, ComponentFactoryResolver, Injector, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { deserialize } from 'serialize-ts';
-import { ModalService, PopoverInstance, UI } from '@junte/ui';
-import { R } from 'apollo-angular/types';
-import { delay, finalize, map, tap } from 'rxjs/operators';
-import { AllProjectsGQL, DeleteProjectGQL } from './graphql';
-import { PagingProjects, Project, ProjectsFilter } from 'src/models/projects';
-import { UI_DELAY } from '../../consts';
-import { LocalUI } from '../../enums/local-ui';
-import { EditProjectComponent } from './edit-project/edit-project.component';
+import {Component, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {deserialize} from 'serialize-ts';
+import {ModalService, PopoverInstance, UI} from '@junte/ui';
+import {R} from 'apollo-angular/types';
+import {delay, finalize, map, tap} from 'rxjs/operators';
+import {AllProjectsGQL, DeleteProjectGQL} from './graphql';
+import {PagingProjects, Project, ProjectsFilter} from 'src/models/project';
+import {UI_DELAY} from '../../consts';
+import {LocalUI} from '../../enums/local-ui';
+import {EditProjectComponent} from './edit-project/edit-project.component';
+import {MeUser} from '../../models/user';
 
 @Component({
   selector: 'spec-projects',
@@ -25,6 +26,7 @@ export class ProjectsComponent implements OnInit {
   progress = {loading: false, deleting: false};
   reference: { popover: PopoverInstance } = {popover: null};
 
+  me: MeUser;
   projects: Project[] = [];
 
   constructor(private deleteProjectGQL: DeleteProjectGQL,
@@ -37,6 +39,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.data.subscribe(({me}) => this.me = me);
     this.load();
   }
 

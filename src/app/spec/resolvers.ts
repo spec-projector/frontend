@@ -5,7 +5,7 @@ import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { ProjectGQL } from 'src/app/spec/graphql';
 import { SpecManager } from 'src/app/spec/managers';
-import { Project } from 'src/models/projects';
+import { Project } from 'src/models/project';
 import { Spec } from 'src/models/spec/spec';
 import { Entity } from '../../models/spec/orm/entity';
 import { Enum } from '../../models/spec/orm/enum';

@@ -1,17 +1,18 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ModalService, UI } from '@junte/ui';
-import { merge, Subscription } from 'rxjs';
-import { SpecManager } from 'src/app/spec/managers';
-import { EditMode } from 'src/enums/edit-mode';
-import { Language } from 'src/enums/language';
-import { Spec } from 'src/models/spec/spec';
-import { CURRENT_LANGUAGE } from '../../../consts';
-import { LocalUI } from '../../../enums/local-ui';
-import { Term } from '../../../models/spec/planning/term';
-import { TextToken } from '../../../models/spec/planning/token';
-import { trackElement } from '../../../utils/templates';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ModalService, UI} from '@junte/ui';
+import {merge, Subscription} from 'rxjs';
+import {SpecManager} from 'src/app/spec/managers';
+import {EditMode} from 'src/enums/edit-mode';
+import {Language} from 'src/enums/language';
+import {Spec} from 'src/models/spec/spec';
+import {CURRENT_LANGUAGE} from '../../../consts';
+import {LocalUI} from '../../../enums/local-ui';
+import {Term} from '../../../models/spec/planning/term';
+import {TextToken} from '../../../models/spec/planning/token';
+import {trackElement} from '../../../utils/templates';
+import {Project} from '../../../models/project';
 
 @Component({
   selector: 'spec-terms',
@@ -33,6 +34,8 @@ export class TermsComponent implements OnInit, OnDestroy {
   private subscriptions: {
     spec?: Subscription
   } = {};
+
+  project: Project;
 
   set spec(spec: Spec) {
     this._spec = spec;
@@ -59,7 +62,8 @@ export class TermsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(({spec}) => this.spec = spec);
+    this.route.data.subscribe(({project, spec}) =>
+      [this.project, this.spec] = [project, spec]);
   }
 
   ngOnDestroy() {

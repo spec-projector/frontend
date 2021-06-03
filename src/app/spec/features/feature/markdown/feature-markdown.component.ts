@@ -6,7 +6,7 @@ import { Language } from 'src/enums/language';
 import { Feature } from 'src/models/spec/planning/feature/feature';
 import { TokenType } from 'src/models/spec/planning/token';
 import { BASE_URI } from '../../../../../consts';
-import { Project } from '../../../../../models/projects';
+import { Project } from '../../../../../models/project';
 
 @Component({
   selector: 'spec-feature-markdown',
