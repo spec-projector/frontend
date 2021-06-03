@@ -6,12 +6,8 @@
         <spec-lp-workflow *ngSwitchCase="features.cleanWorkflow"></spec-lp-workflow>
         <spec-lp-features-map *ngSwitchCase="features.featuresMap"></spec-lp-features-map>
         <spec-lp-user-stories *ngSwitchCase="features.userStories"></spec-lp-user-stories>
-        <div *ngSwitchCase="features.attachDesign">
-          <p i18n="@@label.feature_attach_design">Attach design</p>
-        </div>
-        <div *ngSwitchCase="features.costFeatures">
-          <p i18n="@@label.feature_cost_features">Cost features</p>
-        </div>
+        <spec-lp-design *ngSwitchCase="features.attachDesign"></spec-lp-design>
+        <spec-lp-cost-features *ngSwitchCase="features.costFeatures"></spec-lp-cost-features>
         <div *ngSwitchCase="features.tasksDescription">
           <p i18n="@@label.feature_tasks_description">Tasks description</p>
         </div>
@@ -145,7 +141,7 @@
     <p i18n="@@label.feature_attach_design_teaser">Draw UI & connect story with Figma frames</p>
   </jnt-card>
   <div data-video *ngIf="active === features.attachDesign">
-    <p i18n="@@label.feature_attach_design">Attach design</p>
+    <spec-lp-design></spec-lp-design>
   </div>
   <jnt-card data-active (click)="setActive(features.costFeatures)">
     <h4 i18n="@@label.feature_cost_features">Cost features</h4>
@@ -153,7 +149,7 @@
       feature</p>
   </jnt-card>
   <div data-video *ngIf="active === features.costFeatures">
-    <p i18n="@@label.feature_cost_features">Cost features</p>
+    <spec-lp-cost-features></spec-lp-cost-features>
   </div>
   <jnt-card data-active (click)="setActive(features.tasksDescription)">
     <h4 i18n="@@label.feature_tasks_description">Tasks description</h4>
