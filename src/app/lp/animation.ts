@@ -1,6 +1,6 @@
 import { animate, keyframes, sequence, style } from '@angular/animations';
 
-export const moveKeyframes = animate('.5s ease', keyframes([
+export const moveKeyframes = animate('{{duration}} ease', keyframes([
   style({transform: 'translate3D(0, 0, 0)'}),
   style({transform: 'translate3D({{distance}})'})
 ]));

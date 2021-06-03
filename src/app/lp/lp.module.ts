@@ -21,6 +21,8 @@ import { ViewportDirective, ViewportRuleDirective } from './viewport/viewport.di
 import { UserStoriesModule } from './features/user-stories/user-stories.module';
 import { FeaturesMapModule } from './features/features-map/features-map.module';
 import { WorkflowModule } from './features/workflow/workflow.module';
+import { DesignModule } from './features/design/design.module';
+import { CostFeaturesModule } from './features/cost-features/cost-features.module';
 
 @NgModule({
   declarations: [
@@ -31,29 +33,31 @@ import { WorkflowModule } from './features/workflow/workflow.module';
     ViewportRuleDirective,
     ViewportDirective
   ],
-    imports: [
-        CommonModule,
+  imports: [
+    CommonModule,
 
-        LpRoutingModule,
+    LpRoutingModule,
 
-        PopoverModule,
-        StackModule,
-        CardModule,
-        GridModule,
-        JntLpModule,
-        MenuModule,
-        ButtonModule,
+    PopoverModule,
+    StackModule,
+    CardModule,
+    GridModule,
+    JntLpModule,
+    MenuModule,
+    ButtonModule,
 
-        TariffsModule,
-        AvatarModule,
-        LinkModule,
-        IconModule,
-        CollapsibleModule,
-        ResponsiveModule,
-        UserStoriesModule,
-        FeaturesMapModule,
-        WorkflowModule
-    ]
+    TariffsModule,
+    AvatarModule,
+    LinkModule,
+    IconModule,
+    CollapsibleModule,
+    ResponsiveModule,
+    UserStoriesModule,
+    FeaturesMapModule,
+    WorkflowModule,
+    DesignModule,
+    CostFeaturesModule
+  ]
 })
 export class LpModule {
 

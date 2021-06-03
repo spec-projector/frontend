@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { UserStoriesComponent } from './user-stories.component';
+import { DesignComponent } from './design.component';
 import { LabelModule, StackModule } from '@junte/ui';
 
 @NgModule({
   declarations: [
-    UserStoriesComponent
+    DesignComponent
   ],
   exports: [
-    UserStoriesComponent
+    DesignComponent
   ],
   imports: [
     CommonModule,
@@ -16,6 +16,6 @@ import { LabelModule, StackModule } from '@junte/ui';
     LabelModule
   ]
 })
-export class UserStoriesModule {
+export class DesignModule {
 
 }
