@@ -41,28 +41,23 @@
         </jnt-stack>
       </ng-template>
     </jnt-tab>
-    <jnt-tab title="Publish">
+    <jnt-tab title="Emblem">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.align.stretch">
-          <jnt-form-item>
-            <jnt-form-control name="emblem">
-              <jnt-image-uploader formControlName="emblem"
-                                  [width]="200"
-                                  [height]="100"
-                                  [uploader]="uploadEmblem()"
-                                  [image]="project.emblem?.url"
-                                  valueField="id"
-                                  urlField="url">
-                <ng-template #imageTemplate let-image="image">
-                  <jnt-picture [src]="image"></jnt-picture>
-                </ng-template>
-              </jnt-image-uploader>
-            </jnt-form-control>
-          </jnt-form-item>
-          <jnt-switch formControlName="isPublic"
-                      label="Public project"
-                      i18n-label="@@label.public_project"></jnt-switch>
-        </jnt-stack>
+        <jnt-form-item>
+          <jnt-form-control name="emblem">
+            <jnt-image-uploader formControlName="emblem"
+                                [width]="200"
+                                [height]="100"
+                                [uploader]="uploadEmblem()"
+                                [image]="project?.emblem?.url"
+                                valueField="id"
+                                urlField="url">
+              <ng-template #imageTemplate let-image="image">
+                <jnt-picture [src]="image"></jnt-picture>
+              </ng-template>
+            </jnt-image-uploader>
+          </jnt-form-control>
+        </jnt-form-item>
       </ng-template>
     </jnt-tab>
     <jnt-tab title="Integration">

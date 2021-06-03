@@ -115,17 +115,20 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>{{t.maxProjects < 999 ? t.maxProjects : '∞'}}
+                <div>
+                  <ng-template #projectsTemplate>{{t.maxProjects}}</ng-template>
+                  <jnt-icon data-indefinite *ngIf="t.maxProjects >= 999;else projectsTemplate"
+                            [icon]="localUi.icons.indefinite"></jnt-icon>
                   <ng-container *ngIf="t.maxProjects > 1;else singleProjectTemplate">
                     <ng-template #threeProjectTemplate>
-                      <ng-container i18n="@@label.three_projects">projects</ng-container>
+                      <ng-container i18n="@@label.three_projects"> projects</ng-container>
                     </ng-template>
                     <ng-container *ngIf="t.maxProjects >= 5;else threeProjectTemplate"
-                                  i18n="@@label.many_projects">projects
+                                  i18n="@@label.many_projects"> projects
                     </ng-container>
                   </ng-container>
                   <ng-template #singleProjectTemplate>
-                    <ng-container i18n="@@label.single_project">project</ng-container>
+                    <ng-container i18n="@@label.single_project"> project</ng-container>
                   </ng-template>
                 </div>
               </jnt-stack>
@@ -137,8 +140,11 @@
                 <div>
                   <jnt-icon [icon]="localUi.icons.featureOn"></jnt-icon>
                 </div>
-                <div>{{t.maxProjectMembers < 999 ? t.maxProjectMembers : '∞'}}
-                  <ng-container i18n="@@label.members_for_project">members for project</ng-container>
+                <div>
+                  <ng-template #projectMembersTemplate>{{t.maxProjectMembers}}</ng-template>
+                  <jnt-icon data-indefinite *ngIf="t.maxProjectMembers >= 999;else projectMembersTemplate"
+                            [icon]="localUi.icons.indefinite"></jnt-icon>
+                  <ng-container i18n="@@label.members_for_project"> members for project</ng-container>
                 </div>
               </jnt-stack>
 

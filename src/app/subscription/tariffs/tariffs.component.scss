@@ -68,6 +68,10 @@ $jnt-ng-deep: true;
     }
   }
 
+  [data-indefinite] {
+    @include jnt-icon((size: 16px), '&');
+  }
+
   [data-feature-on] {
     @extend %feature;
   }

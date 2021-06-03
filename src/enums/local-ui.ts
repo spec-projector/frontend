@@ -5,6 +5,7 @@ export class LocalUI {
     projectManager: 'project-manager:svg:local',
     teams: 'teams:svg:local',
     // other
+    indefinite: 'indefinite:svg:local:stroked',
     market: 'market:svg:local',
     video: 'video:svg:local:stroked',
     sprints: 'sprints:svg:local:stroked',
