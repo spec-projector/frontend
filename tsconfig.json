@@ -24,7 +24,15 @@
     "types": [
       "node",
       "pouchdb"
-    ]
+    ],
+    "paths": {
+      "stream": [
+        "node_modules/stream-browserify"
+      ],
+      "process": [
+        "node_modules/process"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": true

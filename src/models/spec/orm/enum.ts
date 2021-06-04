@@ -61,7 +61,11 @@ export class Enum extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this]};
+
+    Array.from(this.options).reduce((r, f) => r.concat(f.delete()), [])
+      .forEach(l => [links.changed, links.deleted] =
+        [links.changed.concat(l.changed), links.deleted.concat(l.deleted)]);
 
     if (!!this.module) {
       this.module.model.removeEnum(this);

@@ -1,5 +1,4 @@
-import * as animations from '@angular/animations';
-import { style, transition, trigger } from '@angular/animations';
+import { state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,8 +21,8 @@ import { CompleteSocialLogin, MakeSocialLogin, TrySocialLogin, UserCredentials }
   styleUrls: ['./login.component.scss'],
   animations: [
     trigger('move', [
-      animations.state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
-      transition('void => *', moveKeyframes, {params: {distance: '0,0,0'}})
+      state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
+      transition('void => *', moveKeyframes, {params: {distance: '0,0,0', duration: '.5s'}})
     ])
   ]
 })

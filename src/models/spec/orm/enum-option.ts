@@ -28,7 +28,7 @@ export class EnumOption extends Persistence {
   }
 
   delete(): Depends {
-    const links = {changed: [], deleted: []};
+    const links = {changed: [], deleted: [this]};
 
     this.enum.removeOption(this);
     links.changed.push(this.enum);
