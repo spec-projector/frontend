@@ -20,7 +20,7 @@ enum Feature {
   animations: [
     trigger('changeView', [
       state('short', style({height: '25px'})),
-      state('extend', style({height: '135px'})),
+      state('extend', style({height: '*'})),
       transition('short <=> extend', group([
         animate('.5s ease'),
         query('@fadeOut', animateChild(), {optional: true}),

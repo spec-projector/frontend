@@ -21,7 +21,7 @@
   <jnt-col [span]="3">
     <jnt-stack data-list-features [align]="ui.align.stretch" [gutter]="ui.gutter.big">
       <div data-feature [@changeView]="active === features.cleanWorkflow ? 'extend' : 'short'">
-        <div *ngIf="active !== features.cleanWorkflow"
+        <div data-title *ngIf="active !== features.cleanWorkflow"
              [@fadeOut] (click)="active = features.cleanWorkflow">
           <h4 i18n="@@label.feature_clean_workflow">Clean workflow</h4>
         </div>
@@ -33,7 +33,7 @@
       </div>
 
       <div data-feature [@changeView]="active === features.featuresMap ? 'extend' : 'short'">
-        <div *ngIf="active !== features.featuresMap"
+        <div data-title *ngIf="active !== features.featuresMap"
              [@fadeOut]
              (click)="active = features.featuresMap">
           <h4 i18n="@@label.feature_features_map">Features map</h4>
@@ -45,7 +45,7 @@
       </div>
 
       <div data-feature [@changeView]="active === features.userStories ? 'extend' : 'short'">
-        <div *ngIf="active !== features.userStories"
+        <div data-title *ngIf="active !== features.userStories"
              [@fadeOut]
              (click)="active = features.userStories">
           <h4 i18n="@@label.feature_user_stories">User stories</h4>
@@ -57,7 +57,7 @@
       </div>
 
       <div data-feature [@changeView]="active === features.attachDesign ? 'extend' : 'short'">
-        <div *ngIf="active !== features.attachDesign"
+        <div data-title *ngIf="active !== features.attachDesign"
              [@fadeOut]
              (click)="active = features.attachDesign">
           <h4 i18n="@@label.feature_attach_design">Attach design</h4>
@@ -69,7 +69,7 @@
       </div>
 
       <div data-feature [@changeView]="active === features.costFeatures ? 'extend' : 'short'">
-        <div *ngIf="active !== features.costFeatures"
+        <div data-title *ngIf="active !== features.costFeatures"
              [@fadeOut]
              (click)="active = features.costFeatures">
           <h4 i18n="@@label.feature_cost_features">Cost features</h4>
@@ -82,7 +82,7 @@
       </div>
 
       <div data-feature [@changeView]="active === features.tasksDescription ? 'extend' : 'short'">
-        <div *ngIf="active !== features.tasksDescription"
+        <div data-title *ngIf="active !== features.tasksDescription"
              [@fadeOut]
              (click)="active = features.tasksDescription">
           <h4 i18n="@@label.feature_tasks_description">Tasks description</h4>
@@ -95,7 +95,7 @@
       </div>
 
       <div data-feature [@changeView]="active === features.printContract ? 'extend' : 'short'">
-        <div *ngIf="active !== features.printContract"
+        <div data-title *ngIf="active !== features.printContract"
              [@fadeOut]
              (click)="active = features.printContract">
           <h4 i18n="@@label.feature_print_contract">Print contract</h4>
