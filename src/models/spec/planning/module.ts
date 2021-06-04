@@ -123,4 +123,9 @@ export class Module extends Persistence {
     this.features.splice(index, 1);
   }
 
+  updated() {
+    this.spec.updated();
+    super.updated();
+  }
+
 }

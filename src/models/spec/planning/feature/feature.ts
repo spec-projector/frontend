@@ -1,21 +1,21 @@
 import * as assign from 'assign-deep';
-import { ArraySerializer } from 'serialize-ts';
-import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { Sprint } from 'src/models/spec/planning/sprint';
-import { Spec } from 'src/models/spec/spec';
-import { TokenSerializer } from 'src/serializers/token';
-import { Depends } from '../../../../types/depends';
-import { ModelType } from '../../../enums';
-import { Actor } from '../actor';
-import { Module } from '../module';
-import { Term } from '../term';
-import { TermToken, Token } from '../token';
-import { FeatureApi } from './api';
-import { Frame } from './frame';
-import { Issue } from './issue';
-import { Resource } from './resource';
-import { StoryEntry } from './story';
-import { FeatureWorkflow } from './workflow';
+import {ArraySerializer} from 'serialize-ts';
+import {persist, persistence, Persistence} from 'src/decorators/persistence';
+import {Sprint} from 'src/models/spec/planning/sprint';
+import {Spec} from 'src/models/spec/spec';
+import {TokenSerializer} from 'src/serializers/token';
+import {Depends} from '../../../../types/depends';
+import {ModelType} from '../../../enums';
+import {Actor} from '../actor';
+import {Module} from '../module';
+import {Term} from '../term';
+import {TermToken, Token} from '../token';
+import {FeatureApi} from './api';
+import {Frame} from './frame';
+import {Issue} from './issue';
+import {Resource} from './resource';
+import {StoryEntry} from './story';
+import {FeatureWorkflow} from './workflow';
 
 function normalize(input: string) {
   return input.replace(/[аеиоуэыюя]/gi, '')
@@ -156,6 +156,17 @@ export class Feature extends Persistence {
   removeFrame(frame: Frame) {
     const index = this.frames.indexOf(frame);
     this.frames.splice(index, 1);
+  }
+
+  updated() {
+    this.actor.updated();
+    if (!!this.module) {
+      this.module.updated();
+    }
+    if (!!this.sprint) {
+      this.sprint.updated();
+    }
+    super.updated();
   }
 
 }

@@ -57,11 +57,20 @@ export class Actor extends Persistence {
 
   addFeature(feature: Feature) {
     this.features.push(feature);
+
+    this.updated();
   }
 
   removeFeature(feature: Feature) {
     const index = this.features.indexOf(feature);
     this.features.splice(index, 1);
+
+    this.updated();
+  }
+
+  updated() {
+    this.spec.updated();
+    super.updated();
   }
 
 }
