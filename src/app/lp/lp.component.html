@@ -59,12 +59,8 @@
 
   <jnt-lp-slide data-welcome [header]="header">
     <jnt-container>
-      <div data-hand [@moveHand] [@.disabled]="breakpoint.current === ui.breakpoint.mobile">
-        <img src="assets/images/lp/hand.png" width="170" height="154" alt="hand">
-        <h1 i18n="@@message.lp_make" [@coloring]>make</h1>
-      </div>
       <img data-specifications
-           src="assets/images/lp/welcome.webp" width="798" height="749">
+           src="assets/images/lp/app.png" width="981" height="764">
       <img data-plus
            src="assets/images/lp/plus.png" width="89" height="87">
       <img data-torus-half
@@ -73,9 +69,6 @@
       <img data-torus-small
            [@move]="{value: '', params: {distance: distance.torusSmall}}"
            src="assets/images/lp/torus-small.png" width="100" height="100">
-      <img data-figma
-           [@move]="{value: '', params: {distance: distance.figma}}"
-           src="assets/images/lp/figma.png" width="144" height="145">
       <img data-torus-big
            [@move]="{value: '', params: {distance: distance.torusBig}}"
            src="assets/images/lp/torus-big.png" width="272" height="273">
@@ -83,26 +76,28 @@
         <h1 *jntMinFor="ui.breakpoint.tablet" data-header>
           <ng-container [ngSwitch]="consts.language">
             <ng-container *ngSwitchDefault>
-              Where teams <br> specifications
+              Where teams make <br> specifications
             </ng-container>
             <ng-container *ngSwitchCase="language.ru">
-              Где команды <br> спецификации
+              Где команды делают <br> спецификации
             </ng-container>
           </ng-container>
         </h1>
         <h1 *jntFor="ui.breakpoint.mobile" data-header>
           <ng-container [ngSwitch]="consts.language">
             <ng-container *ngSwitchDefault>
-              Where <br> teams <br> specifications
+              Where <br> teams make <br> specifications
             </ng-container>
             <ng-container *ngSwitchCase="language.ru">
-              Где <br> команды <br> спецификации
+              Где <br> команды делают <br> спецификации
             </ng-container>
           </ng-container>
         </h1>
-        <h2 data-teaser i18n="@@message.lp_teaser">We help teams write better documentation for IT-products</h2>
+        <h3 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products, <br>
+          start SpecProjector and get a functional <br> data model faster than ever
+        </h3>
         <jnt-row>
-          <jnt-col [tablet]="4" [mobile]="12">
+          <jnt-col [tablet]="3" [mobile]="12">
             <jnt-button text="How it works"
                         i18n-text="@@action.how_it_works"
                         [icon]="localUi.icons.video"
@@ -111,7 +106,7 @@
                         (click)="jumpTo('features')">
             </jnt-button>
           </jnt-col>
-          <jnt-col [tablet]="4" [mobile]="12">
+          <jnt-col [tablet]="3" [mobile]="12">
             <jnt-button text="Try it for free now"
                         i18n-text="@@action.try_for_free"
                         [icon]="ui.icons.arrowDown"

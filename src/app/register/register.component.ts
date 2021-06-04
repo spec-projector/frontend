@@ -24,7 +24,7 @@ import { RegisterGQL, SocialLoginGQL } from './graphql';
   animations: [
     trigger('move', [
       state('*', style({transform: 'translate3D({{distance}})'}), {params: {distance: '0,0,0'}}),
-      transition('void => *', moveKeyframes, {params: {distance: '0,0,0'}}),
+      transition('void => *', moveKeyframes, {params: {distance: '0,0,0', duration: '.5s'}}),
       transition('* => void', moveDownKeyframes, {params: {distance: '0,0,0'}})
     ])
   ]

@@ -19,20 +19,11 @@ img {
 
   &[data-torus-small] {
     @extend %data-decor;
-    left: 390px;
-    top: 720px;
+    left: 825px;
+    top: 235px;
     @include for-mobile() {
       left: 20px;
       top: 450px;
-    }
-  }
-
-  &[data-figma] {
-    @extend %data-decor;
-    right: 150px;
-    top: 120px;
-    @include for-mobile() {
-      display: none;
     }
   }
 
@@ -52,9 +43,7 @@ img {
     left: 1300px;
     top: 800px;
     @include for-mobile() {
-      left: auto;
-      right: 0;
-      top: 485px;
+      display: none;
     }
   }
 
@@ -71,8 +60,9 @@ img {
 
   &[data-specifications] {
     @extend %data-decor;
-    top: 210px;
-    right: -190px;
+    top: 170px;
+    right: -325px;
+    z-index: 1;
     @include for-mobile() {
       display: none;
     }
