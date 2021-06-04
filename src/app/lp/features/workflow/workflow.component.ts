@@ -12,7 +12,7 @@ import { fadeInKeyframes } from '../../animation';
       transition(':enter', [
         fadeInKeyframes,
         group([
-          query('@done', stagger('.8s', animateChild()), {delay: '.6s'}),
+          query('@done', stagger('1s', animateChild()), {delay: '.6s'}),
           sequence([
             query('@move', animateChild()),
             query('@fade-rotate', animateChild()),
@@ -22,10 +22,20 @@ import { fadeInKeyframes } from '../../animation';
     ]),
     trigger('move', [
       state('*', style({x: '165', y: '365'})),
-      transition('void => *', animate('4.5s .5s linear', keyframes([
+      transition('void => *', animate('7s linear', keyframes([
         style({x: '165', y: '5'}),
+        style({x: '165', y: '5'}),
+        style({x: '365', y: '5'}),
+        style({x: '365', y: '5'}),
         style({x: '560', y: '5'}),
+        style({x: '560', y: '5'}),
+        style({x: '560', y: '185'}),
+        style({x: '560', y: '185'}),
         style({x: '560', y: '365'}),
+        style({x: '560', y: '365'}),
+        style({x: '365', y: '365'}),
+        style({x: '365', y: '365'}),
+        style({x: '165', y: '365'}),
         style({x: '165', y: '365'}),
       ])))
     ]),
