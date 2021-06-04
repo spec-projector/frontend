@@ -92,6 +92,9 @@ jnt-lp-slide {
     @include for-mobile() {
       height: 900px !important;
     }
+    [data-teaser] {
+      max-width: 500px;
+    }
   }
 }
 
