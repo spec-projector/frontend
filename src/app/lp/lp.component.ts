@@ -21,7 +21,7 @@ const COOKIE_AGREEMENT_KEY = 'cookie_agreement';
   styleUrls: ['./lp.component.scss'],
   animations: [
     trigger('move', [
-      transition('* => void', moveKeyframes, {params: {distance: '0,0,0'}})
+      transition('* => void', moveKeyframes, {params: {distance: '0,0,0', duration: '.5s'}})
     ]),
     trigger('moveHand', [
       state('void', style({transform: 'translate3D(0, 0, 0) rotate({{handRotate}})'}),

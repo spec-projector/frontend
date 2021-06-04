@@ -37,8 +37,7 @@ export const scaleKeyframes = animate('{{duration}} {{delay}} ease', keyframes([
 
 export enum Distance {
   torusHalf = '-470px, -230px, 0px',
-  torusSmall = '500px, -400px, 0px',
-  figma = '-310px, -230px, 0px',
+  torusSmall = '-65px, -285px, 0px',
   torusBig = '250px, -550px, 0px',
   handUp = '0, calc(-100vh + 770px), 0'
 }
