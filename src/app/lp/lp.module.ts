@@ -18,11 +18,13 @@ import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
 import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ViewportDirective, ViewportRuleDirective } from './viewport/viewport.directive';
-import { UserStoriesModule } from './features/user-stories/user-stories.module';
-import { FeaturesMapModule } from './features/features-map/features-map.module';
-import { WorkflowModule } from './features/workflow/workflow.module';
-import { DesignModule } from './features/design/design.module';
-import { CostFeaturesModule } from './features/cost-features/cost-features.module';
+import { ContractComponent } from './features/contract/contract.component';
+import { CostFeaturesComponent } from './features/cost-features/cost-features.component';
+import { DesignComponent } from './features/design/design.component';
+import { FeaturesMapComponent } from './features/features-map/features-map.component';
+import { TasksDescriptionComponent } from './features/tasks-description/tasks-description.component';
+import { UserStoriesComponent } from './features/user-stories/user-stories.component';
+import { WorkflowComponent } from './features/workflow/workflow.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,14 @@ import { CostFeaturesModule } from './features/cost-features/cost-features.modul
     ReviewsComponent,
     CookieAgreementComponent,
     ViewportRuleDirective,
-    ViewportDirective
+    ViewportDirective,
+    ContractComponent,
+    CostFeaturesComponent,
+    DesignComponent,
+    FeaturesMapComponent,
+    TasksDescriptionComponent,
+    UserStoriesComponent,
+    WorkflowComponent
   ],
   imports: [
     CommonModule,
@@ -52,11 +61,6 @@ import { CostFeaturesModule } from './features/cost-features/cost-features.modul
     IconModule,
     CollapsibleModule,
     ResponsiveModule,
-    UserStoriesModule,
-    FeaturesMapModule,
-    WorkflowModule,
-    DesignModule,
-    CostFeaturesModule
   ]
 })
 export class LpModule {

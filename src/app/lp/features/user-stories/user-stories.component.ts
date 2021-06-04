@@ -11,13 +11,13 @@ import { fadeInKeyframes, moveKeyframes } from '../../animation';
     trigger('animate', [
       transition(':enter', [
         fadeInKeyframes,
-        query('@show', animateChild(), {delay: '1s'})
+        query('@show', animateChild(), {delay: '.5s'})
       ], {params: {duration: '1s', delay: '0s'}})
     ]),
     trigger('show', [
       state('void', style({transform: 'translate3D(0, 0, 0)'})),
       state('*', style({transform: 'translate3D(0, 352px, 0)'})),
-      transition('void => *', [moveKeyframes], {params: {distance: '0,352px,0', duration: '10s'}})
+      transition('void => *', [moveKeyframes], {params: {distance: '0,352px,0', duration: '8s'}})
     ])
   ]
 })
