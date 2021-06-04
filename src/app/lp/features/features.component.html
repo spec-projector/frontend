@@ -8,12 +8,8 @@
         <spec-lp-user-stories *ngSwitchCase="features.userStories"></spec-lp-user-stories>
         <spec-lp-design *ngSwitchCase="features.attachDesign"></spec-lp-design>
         <spec-lp-cost-features *ngSwitchCase="features.costFeatures"></spec-lp-cost-features>
-        <div *ngSwitchCase="features.tasksDescription">
-          <p i18n="@@label.feature_tasks_description">Tasks description</p>
-        </div>
-        <div *ngSwitchCase="features.printContract">
-          <p i18n="@@label.feature_print_contract">Print contract</p>
-        </div>
+        <spec-lp-tasks-description *ngSwitchCase="features.tasksDescription"></spec-lp-tasks-description>
+        <spec-lp-contract *ngSwitchCase="features.printContract"></spec-lp-contract>
       </ng-container>
     </div>
   </jnt-col>
@@ -157,7 +153,7 @@
       developers</p>
   </jnt-card>
   <div data-video *ngIf="active === features.tasksDescription">
-    <p i18n="@@label.feature_tasks_description">Tasks description</p>
+    <spec-lp-tasks-description></spec-lp-tasks-description>
   </div>
   <jnt-card data-active (click)="setActive(features.printContract)">
     <h4 i18n="@@label.feature_print_contract">Print contract</h4>
@@ -165,6 +161,6 @@
       developing</p>
   </jnt-card>
   <div data-video *ngIf="active === features.printContract">
-    <p i18n="@@label.feature_print_contract">Print contract</p>
+    <spec-lp-contract></spec-lp-contract>
   </div>
 </jnt-stack>
