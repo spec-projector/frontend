@@ -29,11 +29,12 @@ $jnt-ng-deep: true;
   [data-feature] {
     position: relative;
     cursor: pointer;
-    height: 135px;
 
-    div, [data-active] {
+    [data-title] {
       position: absolute;
+    }
 
+    [data-title], [data-active] {
       h4 {
         font-weight: $jnt-font-weight-bold;
       }
