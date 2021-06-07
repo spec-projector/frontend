@@ -155,6 +155,9 @@ export class Persistence {
       if (!!this.id) {
         db.get(this.id).then(doc => {
           const src = this.deserialize(doc);
+          if (src.id === '1564dda0-2263-11ea-8f42-eddd817dccfa') {
+            console.log(doc);
+          }
           this.merge(db, progress, src)
             .pipe(finalize(() => loaded.complete()))
             .subscribe(() => {

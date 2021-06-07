@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
@@ -17,7 +17,8 @@ import { IssueGQL } from './issues.graphql';
 @Component({
   selector: 'spec-issues',
   templateUrl: './feature-issues.component.html',
-  styleUrls: ['./feature-issues.component.scss']
+  styleUrls: ['./feature-issues.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureIssuesComponent implements OnInit {
 
@@ -35,6 +36,7 @@ export class FeatureIssuesComponent implements OnInit {
               public manager: SpecManager,
               private popover: PopoverService,
               private issueGQL: IssueGQL,
+              private cd: ChangeDetectorRef,
               private route: ActivatedRoute,
               public router: Router,
               public logger: NGXLogger) {
@@ -47,14 +49,22 @@ export class FeatureIssuesComponent implements OnInit {
 
   add(issue: Issue) {
     this.reference.popover?.hide();
-    this.feature.issues.push(issue);
-    this.save();
+    issue.new();
+    this.manager.put(issue);
+
+    this.feature.addIssue(issue);
+    this.manager.put(this.feature);
+
     this.refresh();
+
+    this.cd.markForCheck();
   }
 
-  delete(index: number) {
-    this.feature.issues.splice(index, 1);
-    this.save();
+  delete(issue: Issue) {
+    this.feature.removeIssue(issue);
+    this.manager.put(this.feature);
+
+    this.cd.markForCheck();
   }
 
   refresh(force = false) {
@@ -68,27 +78,31 @@ export class FeatureIssuesComponent implements OnInit {
             system: issue.system || IssueSystem.gitlab
           });
           this.issueGQL.fetch({input: serialize(request)})
-            .pipe(map(({data: {issue: i}}) => deserialize(i, Issue)))
+            .pipe(map(({data: {issue: i}}) => deserialize(i, Issue)),
+              finalize(() => {
+                this.manager.put(issue);
+                this.cd.markForCheck();
+
+                o.next(issue);
+                o.complete();
+              }))
             .subscribe(i => {
-              Object.assign(issue, i);
-              o.next(issue);
-              o.complete();
-            }, err => {
-              o.error(err);
-              o.complete();
-            });
+                Object.assign(issue, i);
+                issue.error = null;
+              },
+              err => issue.error = err.toString());
         }));
       }
     }
 
     this.progress.refreshing = true;
+    this.cd.markForCheck();
     combineLatest(queue)
-      .pipe(finalize(() => this.progress.refreshing = false))
-      .subscribe(() => this.save());
+      .pipe(finalize(() => {
+        this.progress.refreshing = false;
+        this.cd.markForCheck();
+      }))
+      .subscribe(() => null);
   }
 
-  save() {
-    this.logger.log('save issues for feature [', this.feature.title.toString(), ']');
-    this.manager.put(this.feature);
-  }
 }

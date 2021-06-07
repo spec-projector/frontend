@@ -34,7 +34,8 @@
     </jnt-message>
   </ng-template>
 
-  <ng-container *ngIf="!!project.gitlabIntegration?.token || feature.spec.resourceTypes.length <= 0;else notConfiguredTemplate">
+  <ng-container
+    *ngIf="!!project.gitlabIntegration?.token || feature.spec.resourceTypes.length <= 0;else notConfiguredTemplate">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template #attachTemplate>
         <spec-attach-issue [spec]="feature.spec"
@@ -42,53 +43,66 @@
                            (attached)="add($event)"></spec-attach-issue>
       </ng-template>
 
-      <jnt-button [icon]="ui.icons.add"
-                  [shape]="ui.shape.circle"
+      <jnt-button text="Attach issue"
+                  i18n-text="@@action.attach_issue"
+                  [icon]="ui.icons.add"
                   [jntPopover]="{title: 'Attach issue', contentTemplate: attachTemplate, position: ui.position.right, trigger: ui.trigger.click}"
                   (attached)="reference.popover = $event"></jnt-button>
-      <jnt-button [icon]="ui.icons.reload"
-                  [shape]="ui.shape.circle"
+      <jnt-button text="Refresh all"
+                  i18n-text="@@action.refresh_all"
+                  [icon]="ui.icons.reload"
                   [loading]="progress.refreshing"
                   [disabled]="!feature.issues.length"
                   (click)="refresh(true)"></jnt-button>
     </jnt-stack>
 
-    <jnt-row *ngFor="let issue of feature.issues;let i = index">
-      <jnt-col [span]="8">
-        <jnt-stack [gutter]="ui.gutter.small">
-          <jnt-stack [orientation]="ui.orientation.horizontal"
-                     [gutter]="ui.gutter.small">
-            <jnt-avatar *ngIf="issue.assignee?.avatar as avatar"
-                        [size]="ui.size.tiny"
-                        [image]="avatar"></jnt-avatar>
-            <jnt-stack [orientation]="ui.orientation.horizontal">
-              <div *ngIf="issue.title">
-                <jnt-link [attr.closed]="issue.state === issueState.closed"
-                          [target]="ui.target.blank"
-                          [source]="issue.url"
-                          [title]="issue.title"></jnt-link>
-                <br>
-                <small *ngIf="issue.assignee?.name as name">{{name}}</small>
-              </div>
-              <jnt-icon *ngIf="issue.state === issueState.closed"
-                        [icon]="ui.icons.checked"></jnt-icon>
-              <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
-                         [size]="ui.size.small"
-                         [label]="issue.resource"></jnt-label>
+    <ng-container *ngIf="feature.issues.length > 0">
+      <jnt-row>
+        <jnt-col [span]="8">
+          <b i18n="@@label.issue">Issue</b>
+        </jnt-col>
+        <jnt-col [span]="1">
+          <b i18n="@@label.spent">Spent</b>
+        </jnt-col>
+      </jnt-row>
+      <jnt-row *ngFor="let issue of feature.issues;let i = index">
+        <jnt-col [span]="8">
+          <jnt-stack [gutter]="ui.gutter.small">
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small">
+              <jnt-avatar *ngIf="issue.assignee?.avatar as avatar"
+                          [size]="ui.size.tiny"
+                          [image]="avatar"></jnt-avatar>
+              <jnt-stack [orientation]="ui.orientation.horizontal">
+                <div *ngIf="issue.title">
+                  <jnt-link [attr.closed]="issue.state === issueState.closed"
+                            [target]="ui.target.blank"
+                            [source]="issue.url"
+                            [title]="issue.title"></jnt-link>
+                  <br>
+                  <small *ngIf="issue.assignee?.name as name">{{name}}</small>
+                </div>
+                <jnt-icon *ngIf="issue.state === issueState.closed"
+                          [icon]="ui.icons.checked"></jnt-icon>
+                <jnt-label [icon]="!!issue.error ? ui.icons.warning : null"
+                           [size]="ui.size.small"
+                           [label]="issue.resource"></jnt-label>
+              </jnt-stack>
             </jnt-stack>
           </jnt-stack>
-        </jnt-stack>
-      </jnt-col>
-      <jnt-col [span]="1">
-        {{!!issue.spent ? issue.spent + 'h' : '&mdash;'}}
-      </jnt-col>
-      <jnt-col [span]="1">
-        <jnt-button [icon]="ui.icons.cancel"
-                    [scheme]="ui.scheme.secondary"
-                    [shape]="ui.shape.circle"
-                    (click)="delete(i)"></jnt-button>
-      </jnt-col>
-    </jnt-row>
+        </jnt-col>
+        <jnt-col [span]="1">
+          {{!!issue.spent ? issue.spent + 'h' : '&mdash;'}}
+        </jnt-col>
+        <jnt-col [span]="1">
+          <jnt-button [icon]="ui.icons.cancel"
+                      [scheme]="ui.scheme.secondary"
+                      [shape]="ui.shape.circle"
+                      (click)="delete(issue)"></jnt-button>
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
   </ng-container>
 
 </jnt-stack>

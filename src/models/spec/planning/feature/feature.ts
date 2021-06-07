@@ -158,6 +158,15 @@ export class Feature extends Persistence {
     this.frames.splice(index, 1);
   }
 
+  addIssue(issue: Issue) {
+    this.issues.push(issue);
+  }
+
+  removeIssue(issue: Issue) {
+    const index = this.issues.indexOf(issue);
+    this.issues.splice(index, 1);
+  }
+
   updated() {
     this.actor.updated();
     if (!!this.module) {

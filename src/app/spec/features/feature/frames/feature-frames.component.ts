@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverInstance, PopoverService, UI } from '@junte/ui';
-import { NGXLogger } from 'ngx-logger';
 import { combineLatest, Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { serialize } from 'serialize-ts';
@@ -88,14 +87,18 @@ export class FeatureFramesComponent implements OnInit {
             url: frame.url
           });
           this.uploadFigmaAssetGQL.mutate({input: serialize(request)})
-            .pipe(catchGQLErrors())
-            .subscribe(({data: {response: {frame: {file: {url}}}}}) => {
-              frame.thumbnail = url;
+            .pipe(catchGQLErrors(), finalize(() => {
               this.manager.put(frame);
               this.cd.markForCheck();
+
               o.next();
               o.complete();
-            }, err => o.error(err));
+            }))
+            .subscribe(({data: {response: {frame: {file: {url}}}}}) => {
+                Object.assign(frame, {thumbnail: url});
+                frame.error = null;
+              },
+              err => frame.error = err.toString());
         }));
       }
     }

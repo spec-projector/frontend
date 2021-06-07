@@ -21,6 +21,9 @@ export class Frame extends Persistence {
   @persist()
   thumbnail: string;
 
+  @persist()
+  error: string;
+
   feature: Feature;
 
   constructor(defs: Partial<Frame> = {}) {
