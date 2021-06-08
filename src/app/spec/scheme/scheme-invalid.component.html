@@ -272,8 +272,17 @@
           </defs>
         </svg>
       </jnt-stack>
-        <h4 i18n="@@massage.database_updating_now">
-          Sorry, your project's database is updating now. Please wait a little bit.
+        <h4>
+          <ng-container [ngSwitch]="consts.language">
+            <ng-container *ngSwitchDefault>
+              Sorry, your project's database is updating now.<br>
+              Please wait a little bit.
+            </ng-container>
+            <ng-container *ngSwitchCase="language.ru">
+              К сожалению, база данных вашего проекта сейчас обновляется.<br>
+              Пожалуйста, подождите немного.
+            </ng-container>
+          </ng-container>
         </h4>
     </jnt-container>
   </jnt-app-body>

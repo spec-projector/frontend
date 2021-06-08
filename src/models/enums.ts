@@ -5,7 +5,7 @@ export enum ModelType {
   featureApi = 'feature_api',
   featureFrame = 'feature_frame',
   featureGraphql = 'feature_graphql',
-  featureIssue = 'feature_issues',
+  featureIssue = 'feature_issue',
   featureWorkflow = 'feature_workflow',
   term = 'term',
   entity = 'entity',

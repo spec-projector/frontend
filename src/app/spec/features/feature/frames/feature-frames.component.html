@@ -30,13 +30,11 @@
       <jnt-button text="Add frame"
                   i18n-text="@@action.add_frame"
                   [icon]="ui.icons.add"
-                  [shape]="ui.shape.circle"
                   [jntPopover]="{title: i18n.addFrame, contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
                   (attached)="reference.popover = $event"></jnt-button>
       <jnt-button text="Refresh all"
                   i18n-text="@@action.refresh_all"
                   [icon]="ui.icons.reload"
-                  [shape]="ui.shape.circle"
                   [loading]="progress.refreshing"
                   [disabled]="feature.frames.length <= 0"
                   (click)="refresh(true)"></jnt-button>
@@ -50,6 +48,11 @@
              [tablet]="4">
       <jnt-card [width]="ui.width.fluid">
         <ng-template #cardHeaderTemplate>
+          <jnt-message *ngIf="!!frame.error"
+                       [scheme]="ui.scheme.fail"
+                       [icon]="ui.icons.warning">
+            {{frame.error}}
+          </jnt-message>
           <jnt-stack [orientation]="ui.orientation.horizontal"
                      [justify]="ui.justify.between">
             <jnt-link title="Figma"

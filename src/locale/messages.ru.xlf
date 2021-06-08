@@ -1143,7 +1143,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/add-figma-key/add-figma-key.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/api/add-graphql-playground/add-graphql-playground.component.html</context>
@@ -1474,18 +1474,6 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="massage.database_updating_now" datatype="html">
-        <source>
-          Sorry, your project's database is updating now. Please wait a little bit.
-        </source>
-        <target>
-          К сожалению, база данных вашего проекта сейчас обновляется. Пожалуйста, подождите немного.
-        </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/spec/scheme/scheme-invalid.component.html</context>
-          <context context-type="linenumber">275</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="action.add" datatype="html">
         <source>Add</source>
         <target>Добавить</target>
@@ -1500,6 +1488,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
           <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.attach_issue" datatype="html">
+        <source>Attach issue</source>
+        <target state="new">Attach issue</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.issue" datatype="html">
+        <source>Issue</source>
+        <target state="new">Issue</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="label.spent" datatype="html">
+        <source>Spent</source>
+        <target state="new">Spent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.dashboard" datatype="html">
@@ -1643,7 +1655,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/add-figma-key/add-figma-key.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="action.dump" datatype="html">
@@ -1957,7 +1969,11 @@
         <target>Обновить все</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/feature-frames.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/features/feature/issues/feature-issues.component.html</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.settings" datatype="html">
@@ -1986,12 +2002,12 @@
       </trans-unit>
       <trans-unit id="message.field_is_required" datatype="html">
         <source>Field is required
-                      </source>
+            </source>
         <target>Поле обязательно
                       </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/frames/add-figma-key/add-figma-key.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/features/feature/api/add-graphql-playground/add-graphql-playground.component.html</context>
