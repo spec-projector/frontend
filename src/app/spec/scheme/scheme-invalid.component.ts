@@ -1,6 +1,7 @@
-import {Component, Inject, LOCALE_ID} from '@angular/core';
-import {UI} from '@junte/ui';
-import {Language} from '../../../enums/language';
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
+import { CURRENT_LANGUAGE } from '../../../consts';
+import { Language } from '../../../enums/language';
 
 @Component({
   selector: 'app-spec-scheme-invalid',
@@ -11,8 +12,6 @@ export class SchemeInvalidComponent {
 
   ui = UI;
   language = Language;
-
-  constructor(@Inject(LOCALE_ID) public locale: string) {
-  }
+  consts = {language: CURRENT_LANGUAGE};
 
 }

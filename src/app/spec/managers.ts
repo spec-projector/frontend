@@ -6,9 +6,10 @@ import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
 import { ResourceType, Spec, SPEC_DOC_ID } from 'src/models/spec/spec';
-import { CURRENT_LANGUAGE } from '../../consts';
+import { CURRENT_LANGUAGE, SCHEME_VERSION } from '../../consts';
 import { Language } from '../../enums/language';
 import { environment } from '../../environments/environment';
+import { SchemeInvalidError } from '../../types/errors';
 import { AppConfig } from '../app-config';
 import { ReplicationState } from './enums';
 import inMemoryPlugin from 'pouchdb-adapter-memory';
@@ -147,10 +148,11 @@ export class SpecManager {
           const progress = new Subject();
           spec.load(this.db.local, progress)
             .subscribe(() => {
-              // if (spec.scheme.version !== SCHEME_VERSION) {
-              //  this.spec$.error(new SchemeInvalidError());
-              //  return;
-              // }
+              console.log(spec.scheme);
+              if (spec.scheme.version !== SCHEME_VERSION) {
+                this.spec$.error(new SchemeInvalidError());
+                return;
+              }
 
               spec.linking();
               console.log(spec);

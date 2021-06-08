@@ -1272,18 +1272,6 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="massage.database_updating_now" datatype="html">
-        <source>
-          Sorry, your project's database is updating now. Please wait a little bit.
-        </source>
-        <target>
-          К сожалению, база данных вашего проекта сейчас обновляется. Пожалуйста, подождите немного.
-        </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/spec/scheme/scheme-invalid.component.html</context>
-          <context context-type="linenumber">275</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="label.general" datatype="html">
         <source>General</source>
         <target>Главная</target>

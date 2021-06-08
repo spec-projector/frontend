@@ -18,10 +18,10 @@ if (environment.production) {
   })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
 
   ym(71356360, 'init', {
-    clickmap: true,
-    trackLinks: true,
-    accurateTrackBounce: true,
-    webvisor: true
+    clickmap: false,
+    trackLinks: false,
+    accurateTrackBounce: false,
+    webvisor: false
   });
 }
 
