@@ -3,7 +3,7 @@
   <ng-template #asideFooterTemplate let-collapsed="collapsed">
 
     <jnt-stack data-tools [align]="ui.align.stretch">
-      <jnt-stack *ngIf="!collapsed && me.id === project.owner.id"
+      <jnt-stack *ngIf="!collapsed && me?.id === project.owner.id"
                  [align]="ui.align.center">
         <jnt-button text="Share"
                     i18n-text="@@action.share"

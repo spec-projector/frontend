@@ -127,9 +127,9 @@ export class SpecManager {
           skip_setup: false,
           auto_compaction: true,
           fetch: (url, opts) => {
+            opts.credentials = 'omit';
             const headers = opts.headers as Headers;
             if (!!this.config.token) {
-              opts.credentials = 'omit';
               headers.append('Authorization', `Bearer ${this.config.token.key}`);
             }
             return PouchDB.fetch(url, opts);
