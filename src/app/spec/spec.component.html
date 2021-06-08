@@ -1,16 +1,22 @@
 <jnt-app-aside #aside>
 
   <ng-template #asideFooterTemplate let-collapsed="collapsed">
-
     <jnt-stack data-tools [align]="ui.align.stretch">
-      <jnt-stack *ngIf="!collapsed && me.id === project.owner.id"
+      <jnt-stack *ngIf="me.id === project.owner.id"
                  [align]="ui.align.center">
-        <jnt-button text="Share"
-                    i18n-text="@@action.share"
+        <jnt-button *ngIf="collapsed;else defaultShareTemplate"
                     [scheme]="ui.scheme.secondary"
                     [icon]="localUi.icons.share"
                     [shape]="ui.shape.circle"
                     (click)="shareProject()"></jnt-button>
+
+        <ng-template #defaultShareTemplate>
+          <jnt-button text="Share"
+                      i18n-text="@@action.share"
+                      [scheme]="ui.scheme.secondary"
+                      [icon]="localUi.icons.share"
+                      (click)="shareProject()"></jnt-button>
+        </ng-template>
       </jnt-stack>
 
       <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -50,7 +56,6 @@
         </jnt-switch>
       </jnt-stack>
     </jnt-stack>
-
   </ng-template>
 
   <jnt-menu [orientation]="ui.orientation.vertical">

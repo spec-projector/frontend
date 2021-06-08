@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
-import { EnumOption } from 'src/models/spec/orm/enum-option';
-import { CURRENT_LANGUAGE } from '../../../../consts';
-import { Language } from '../../../../enums/language';
-import { Entity } from '../../../../models/spec/orm/entity';
-import { EntityField, FieldType } from '../../../../models/spec/orm/entity-field';
-import { Enum } from '../../../../models/spec/orm/enum';
-import { Actor } from '../../../../models/spec/planning/actor';
-import { Feature } from '../../../../models/spec/planning/feature/feature';
-import { StoryEntry, StoryEntryType } from '../../../../models/spec/planning/feature/story';
-import { Module } from '../../../../models/spec/planning/module';
-import { Sprint } from '../../../../models/spec/planning/sprint';
-import { Term } from '../../../../models/spec/planning/term';
-import { AccentToken, TermToken, TextToken, Token } from '../../../../models/spec/planning/token';
-import { ResourceType, Spec } from '../../../../models/spec/spec';
-import { Depends } from '../../../../types/depends';
-import { SpecManager } from '../../managers';
+import {Injectable} from '@angular/core';
+import {EnumOption} from 'src/models/spec/orm/enum-option';
+import {CURRENT_LANGUAGE} from '../../../../consts';
+import {Language} from '../../../../enums/language';
+import {Entity} from '../../../../models/spec/orm/entity';
+import {EntityField, FieldType} from '../../../../models/spec/orm/entity-field';
+import {Enum} from '../../../../models/spec/orm/enum';
+import {Actor} from '../../../../models/spec/planning/actor';
+import {Feature} from '../../../../models/spec/planning/feature/feature';
+import {StoryEntry, StoryEntryType} from '../../../../models/spec/planning/feature/story';
+import {Module} from '../../../../models/spec/planning/module';
+import {Sprint} from '../../../../models/spec/planning/sprint';
+import {Term} from '../../../../models/spec/planning/term';
+import {AccentToken, TermToken, TextToken, Token} from '../../../../models/spec/planning/token';
+import {ResourceType, Spec} from '../../../../models/spec/spec';
+import {Depends} from '../../../../types/depends';
+import {SpecManager} from '../../managers';
 
 const I18N = (() => {
   switch (CURRENT_LANGUAGE) {
@@ -67,6 +67,14 @@ const I18N = (() => {
                 title: 'Доставить заказ'
               }
             }
+          },
+          manager: {
+            title: 'Менеджер',
+            features: {
+              salesReport: {
+                title: 'Отчет по продажам'
+              }
+            }
           }
         },
         modules: {
@@ -98,6 +106,30 @@ const I18N = (() => {
           order: {
             title: 'Заказ',
             name: 'order'
+          }
+        },
+        enums: {
+          orderState: {
+            title: 'Статус заказа',
+            name: 'order_state',
+            options: {
+              processing: {
+                title: 'Обработка',
+                name: 'processing'
+              },
+              canceled: {
+                title: 'Отменен',
+                name: 'canceled'
+              },
+              delivering: {
+                title: 'Доставляется',
+                name: 'delivering'
+              },
+              delivered: {
+                title: 'Доставлен',
+                name: 'delivered'
+              }
+            }
           }
         }
       };
@@ -152,6 +184,14 @@ const I18N = (() => {
                 title: 'Delivery order'
               }
             }
+          },
+          manager: {
+            title: 'Manager',
+            features: {
+              salesReport: {
+                title: 'Sales report'
+              }
+            }
           }
         },
         modules: {
@@ -183,6 +223,30 @@ const I18N = (() => {
           order: {
             title: 'Order',
             name: 'order'
+          }
+        },
+        enums: {
+          orderState: {
+            title: 'Order state',
+            name: 'order_state',
+            options: {
+              processing: {
+                title: 'Processing',
+                name: 'processing'
+              },
+              canceled: {
+                title: 'Canceled',
+                name: 'canceled'
+              },
+              delivering: {
+                title: 'Delivering',
+                name: 'delivering'
+              },
+              delivered: {
+                title: 'Delivered',
+                name: 'delivered'
+              }
+            }
           }
         }
       };
@@ -240,7 +304,7 @@ export class StaffManager {
   }
 
   private createTerms() {
-    this.createTerm('Order', [new TextToken('Hello order')]);
+    this.createTerm('Order', [new TextToken('Client\' request to deliver products from catalog')]);
   }
 
   private createFeatures(): Features {
@@ -288,9 +352,9 @@ export class StaffManager {
         title: [new TextToken(I18N.actors.carrier.features.deliveryOrder.title)]
       }
     ]);
-    const [sales] = this.createActor('Manager', [
+    const [sales] = this.createActor(I18N.actors.manager.title, [
       {
-        title: [new TextToken('Sales report')]
+        title: [new TextToken(I18N.actors.manager.features.salesReport.title)]
       }
     ]);
 
@@ -298,11 +362,26 @@ export class StaffManager {
   }
 
   private createModel(): { productCategory, product, order, orderState } {
-    const orderState = this.createEnum('Order state', [
-      {title: 'Processing'},
-      {title: 'Canceled'},
-      {title: 'Delivering'},
-      {title: 'Delivered'}
+    const orderState = this.createEnum({
+      title: I18N.enums.orderState.title,
+      name: I18N.enums.orderState.name
+    }, [
+      {
+        title: I18N.enums.orderState.options.processing.title,
+        name: I18N.enums.orderState.options.processing.name
+      },
+      {
+        title: I18N.enums.orderState.options.canceled.title,
+        name: I18N.enums.orderState.options.canceled.name
+      },
+      {
+        title: I18N.enums.orderState.options.delivering.title,
+        name: I18N.enums.orderState.options.delivering.name
+      },
+      {
+        title: I18N.enums.orderState.options.delivered.title,
+        name: I18N.enums.orderState.options.delivered.name
+      }
     ]);
 
     const productCategory = this.createEntity(
@@ -531,9 +610,9 @@ export class StaffManager {
     return entity;
   }
 
-  private createEnum(name: string, options: ({ title })[] = []): Enum {
+  private createEnum({title, name}, options: ({ title, name })[] = []): Enum {
     const enum_ = new Enum({
-      title: name,
+      title,
       name,
       autoName: false
     });
@@ -543,7 +622,7 @@ export class StaffManager {
     enum_.options = options.map(o => {
       const option = new EnumOption({
         title: o.title,
-        name: o.title,
+        name: o.name,
         autoName: false
       });
       option.linking(enum_);

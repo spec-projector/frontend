@@ -16,12 +16,11 @@
         <jnt-stack [orientation]="ui.orientation.horizontal"
                    [align]="ui.align.center">
           <jnt-avatar [size]="ui.size.tiny"></jnt-avatar>
-          <p><b>Add member</b></p>
+          <p><b i18n="@@action.add_project_member">Add member</b></p>
         </jnt-stack>
       </ng-template>
       <ng-template #accordionContentTemplate>
         <spec-add-member (found)="add($event)"></spec-add-member>
-        <!-- breslavsky.anton@gmail.com -->
       </ng-template>
     </jnt-accordion-section>
     <ng-container formArrayName="members">
@@ -39,17 +38,21 @@
                        [align]="ui.align.end"
                        [justify]="ui.justify.between">
               <jnt-form-item>
-                <jnt-form-control name="User role">
+                <jnt-form-control name="role">
                   <jnt-form-label i18n="@@label.user_role">User role</jnt-form-label>
                   <jnt-switcher formControlName="role">
                     <jnt-switcher-option label="Viewer"
+                                         i18n-label="@@label.role_viewer"
                                          [value]="projectMemberRole.viewer"></jnt-switcher-option>
                     <jnt-switcher-option label="Editor"
+                                         i18n-label="Редактор"
+                                         i18n-label="@@label.role_editor"
                                          [value]="projectMemberRole.editor"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-control>
               </jnt-form-item>
               <jnt-button text="Revoke"
+                          i18n-text="@@action.revoke"
                           [icon]="ui.icons.delete"
                           [scheme]="ui.scheme.accent"
                           (click)="revoke(i)"></jnt-button>
@@ -59,28 +62,40 @@
                 <jnt-form-label i18n="@@label.user_permissions">User permissions</jnt-form-label>
                 <jnt-checkbox-group formControlName="permissions" [cols]="2">
                   <jnt-checkbox label="Edit features"
+                                i18n-label="@@label.permission_edit_features"
                                 [value]="projectPermissions.editFeatures"></jnt-checkbox>
                   <jnt-checkbox label="Edit feature workflow"
+                                i18n-label="@@label.permission_edit_feature_workflow"
                                 [value]="projectPermissions.editFeatureWorkflow"></jnt-checkbox>
                   <jnt-checkbox label="Edit feature story"
+                                i18n-label="@@label.permission_edit_feature_story"
                                 [value]="projectPermissions.editFeatureStory"></jnt-checkbox>
                   <jnt-checkbox label="Edit feature design"
+                                i18n-label="@@label.permission_edit_feature_frames"
                                 [value]="projectPermissions.editFeatureFrames"></jnt-checkbox>
                   <jnt-checkbox label="Edit feature resources"
+                                i18n-label="@@label.permission_edit_feature_resources"
                                 [value]="projectPermissions.editFeatureResources"></jnt-checkbox>
                   <jnt-checkbox label="Edit feature API"
+                                i18n-label="@@label.permission_edit_feature_api"
                                 [value]="projectPermissions.editFeatureApi"></jnt-checkbox>
                   <jnt-checkbox label="Edit feature issues"
+                                i18n-label="@@label.permission_edit_feature_issues"
                                 [value]="projectPermissions.editFeatureIssues"></jnt-checkbox>
                   <jnt-checkbox label="Edit terms"
+                                i18n-label="@@label.permission_edit_terms"
                                 [value]="projectPermissions.editTerms"></jnt-checkbox>
                   <jnt-checkbox label="Edit model"
+                                i18n-label="@@label.permission_edit_model"
                                 [value]="projectPermissions.editModel"></jnt-checkbox>
                   <jnt-checkbox label="Edit modules"
+                                i18n-label="@@label.permission_edit_modules"
                                 [value]="projectPermissions.editModules"></jnt-checkbox>
                   <jnt-checkbox label="Edit sprints"
+                                i18n-label="@@label.permission_edit_sprint"
                                 [value]="projectPermissions.editSprints"></jnt-checkbox>
                   <jnt-checkbox label="View contract"
+                                i18n-label="@@label.permission_view_contract"
                                 [value]="projectPermissions.viewContract"></jnt-checkbox>
                 </jnt-checkbox-group>
               </jnt-form-control>
@@ -95,7 +110,7 @@
                    [align]="ui.align.center">
           <jnt-avatar [size]="ui.size.tiny"
                       [icon]="ui.icons.link"></jnt-avatar>
-          <p>Access by link</p>
+          <p i18n="@@action.access_by_link">Access by link</p>
         </jnt-stack>
       </ng-template>
       <ng-template #accordionContentTemplate>
@@ -105,7 +120,7 @@
             <jnt-switch formControlName="isPublic"></jnt-switch>
             <jnt-stack data-public-link [gutter]="ui.gutter.tiny"
                        [align]="ui.align.stretch">
-              <small>Provide access by link</small>
+              <small i18n="@@label.access_by_link">Provide access by link</small>
               <jnt-input formControlName="publicLink"
                          [readonly]="true"
                          [size]="ui.size.small"
@@ -113,43 +128,57 @@
             </jnt-stack>
           </jnt-stack>
           <jnt-stack>
-            <jnt-form-control name="Public role">
+            <jnt-form-control name="publicRole">
               <jnt-form-label i18n="@@label.public_role">Public role</jnt-form-label>
               <jnt-switcher formControlName="publicRole">
                 <jnt-switcher-option label="Viewer"
+                                     i18n-label="@@label.role_viewer"
                                      [value]="projectMemberRole.viewer"></jnt-switcher-option>
                 <jnt-switcher-option label="Editor"
+                                     i18n-label="@@label.role_editor"
                                      [value]="projectMemberRole.editor"></jnt-switcher-option>
               </jnt-switcher>
             </jnt-form-control>
           </jnt-stack>
           <jnt-form-item>
-            <jnt-form-control name="Public permissions">
+            <jnt-form-control name="publicPermissions">
               <jnt-form-label i18n="@@label.public_permissions">Public permissions</jnt-form-label>
               <jnt-checkbox-group formControlName="publicPermissions" [cols]="2">
                 <jnt-checkbox label="Edit features"
+                              i18n-label="@@label.permission_edit_features"
                               [value]="projectPermissions.editFeatures"></jnt-checkbox>
                 <jnt-checkbox label="Edit feature workflow"
+                              i18n-label="@@label.permission_edit_feature_workflow"
                               [value]="projectPermissions.editFeatureWorkflow"></jnt-checkbox>
                 <jnt-checkbox label="Edit feature story"
+                              i18n-label="@@label.permission_edit_feature_story"
                               [value]="projectPermissions.editFeatureStory"></jnt-checkbox>
                 <jnt-checkbox label="Edit feature design"
+                              i18n-label="@@label.permission_edit_feature_frames"
                               [value]="projectPermissions.editFeatureFrames"></jnt-checkbox>
                 <jnt-checkbox label="Edit feature resources"
+                              i18n-label="@@label.permission_edit_feature_resources"
                               [value]="projectPermissions.editFeatureResources"></jnt-checkbox>
                 <jnt-checkbox label="Edit feature API"
+                              i18n-label="@@label.permission_edit_feature_api"
                               [value]="projectPermissions.editFeatureApi"></jnt-checkbox>
                 <jnt-checkbox label="Edit feature issues"
+                              i18n-label="@@label.permission_edit_feature_issues"
                               [value]="projectPermissions.editFeatureIssues"></jnt-checkbox>
                 <jnt-checkbox label="Edit terms"
+                              i18n-label="@@label.permission_edit_terms"
                               [value]="projectPermissions.editTerms"></jnt-checkbox>
                 <jnt-checkbox label="Edit model"
+                              i18n-label="@@label.permission_edit_model"
                               [value]="projectPermissions.editModel"></jnt-checkbox>
                 <jnt-checkbox label="Edit modules"
+                              i18n-label="@@label.permission_edit_modules"
                               [value]="projectPermissions.editModules"></jnt-checkbox>
                 <jnt-checkbox label="Edit sprints"
+                              i18n-label="@@label.permission_edit_sprint"
                               [value]="projectPermissions.editSprints"></jnt-checkbox>
                 <jnt-checkbox label="View contract"
+                              i18n-label="@@label.permission_view_contract"
                               [value]="projectPermissions.viewContract"></jnt-checkbox>
               </jnt-checkbox-group>
             </jnt-form-control>

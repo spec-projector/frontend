@@ -17,81 +17,87 @@ import {MeUser} from '../../models/user';
 import {ProjectMemberRole, ProjectPermission} from '../../enums/project';
 
 @Component({
-  selector: 'app-spec',
-  templateUrl: './spec.component.html',
-  styleUrls: ['./spec.component.scss']
+    selector: 'app-spec',
+    templateUrl: './spec.component.html',
+    styleUrls: ['./spec.component.scss']
 })
 export class SpecComponent implements OnInit, OnDestroy {
 
-  ui = UI;
-  language = Language;
-  localUi = LocalUI;
-  replicationState = ReplicationState;
-  projectPermission = ProjectPermission;
-  consts = {language: CURRENT_LANGUAGE};
+    ui = UI;
+    language = Language;
+    localUi = LocalUI;
+    replicationState = ReplicationState;
+    projectPermission = ProjectPermission;
+    consts = {language: CURRENT_LANGUAGE};
 
-  private subscriptions: {
-    spec?: Subscription
-  } = {};
+    private subscriptions: {
+        spec?: Subscription
+    } = {};
 
-  private _spec: Spec;
+    private _spec: Spec;
 
-  set spec(spec: Spec) {
-    this._spec = spec;
-    this.subscriptions.spec?.unsubscribe();
-    this.subscriptions.spec = merge(spec.replicated$, spec.updated$)
-      .subscribe(() => this.cd.markForCheck());
-  }
+    set spec(spec: Spec) {
+        this._spec = spec;
+        this.subscriptions.spec?.unsubscribe();
+        this.subscriptions.spec = merge(spec.replicated$, spec.updated$)
+            .subscribe(() => this.cd.markForCheck());
+    }
 
-  get spec() {
-    return this._spec;
-  }
+    get spec() {
+        return this._spec;
+    }
 
-  me: MeUser;
-  project: Project;
+    me: MeUser;
+    project: Project;
 
-  lockControl = this.fb.control(false);
-  form = this.fb.group({mode: this.lockControl});
+    lockControl = this.fb.control(false);
+    form = this.fb.group({mode: this.lockControl});
 
-  constructor(private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private manager: SpecManager,
-              private modal: ModalService,
-              private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private cfr: ComponentFactoryResolver) {
-  }
+    constructor(private fb: FormBuilder,
+                private route: ActivatedRoute,
+                private manager: SpecManager,
+                private modal: ModalService,
+                private cd: ChangeDetectorRef,
+                private injector: Injector,
+                private cfr: ComponentFactoryResolver) {
+    }
 
-  ngOnInit() {
-    this.route.data.subscribe(({me, project, spec}) => {
-      [this.me, this.project, this.spec] = [me, project, spec];
-      if (project.me.role === ProjectMemberRole.viewer) {
-        this.manager.mode = EditMode.view;
-        this.lockControl.setValue(true);
-        this.lockControl.disable();
-      }
-    });
+    ngOnInit() {
+        this.route.data.subscribe(({me, project, spec}) => {
+            [this.me, this.project, this.spec] = [me, project, spec];
+            if (project.me.role === ProjectMemberRole.viewer) {
+                this.manager.mode = EditMode.view;
+                this.lockControl.setValue(true);
+                this.lockControl.disable();
+            }
+        });
 
-    this.lockControl.valueChanges.subscribe(mode =>
-      this.manager.mode = mode ? EditMode.view : EditMode.edit);
-  }
+        this.lockControl.valueChanges.subscribe(mode =>
+            this.manager.mode = mode ? EditMode.view : EditMode.edit);
+    }
 
-  ngOnDestroy() {
-    console.log('destroy');
-    this.manager.clear();
+    ngOnDestroy() {
+        console.log('destroy');
+        this.manager.clear();
 
-    [this.subscriptions.spec]
-      .forEach(s => s?.unsubscribe());
-  }
+        [this.subscriptions.spec]
+            .forEach(s => s?.unsubscribe());
+    }
 
-  shareProject() {
-    const factory = this.cfr.resolveComponentFactory(ShareProjectComponent);
-    const component = factory.create(this.injector);
-    component.instance.project = this.project;
-    component.instance.saved.subscribe(p => {
-      this.project = p;
-      this.modal.close();
-    });
-    this.modal.open(component, {title: {icon: LocalUI.icons.share, text: 'Share project'}});
-  }
+    shareProject() {
+        const factory = this.cfr.resolveComponentFactory(ShareProjectComponent);
+        const component = factory.create(this.injector);
+        component.instance.project = this.project;
+        component.instance.saved.subscribe(p => {
+            this.project = p;
+            this.modal.close();
+        });
+        this.modal.open(component, {
+            title:
+                {
+                    icon: LocalUI.icons.share,
+                    text: $localize`:@@label.share_project:Share project`
+                }
+        });
+    }
 }
