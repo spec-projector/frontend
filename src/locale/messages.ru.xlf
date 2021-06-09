@@ -333,27 +333,27 @@
         <target>Это поле обязательно</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">84</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">102</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -413,11 +413,11 @@
         <target>Пароль</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">95</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/set-password/set-password.component.html</context>
@@ -441,11 +441,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">154</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -457,7 +457,7 @@
         <target>Зарегистрироваться</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.you_selected_plan" datatype="html">
@@ -465,7 +465,15 @@
         <target>Вы выбрали тариф</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="message.bank_card_not_mandatory" datatype="html">
+        <source>Bank card details are not required</source>
+        <target>Банковская карта не потребуется</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.first_name" datatype="html">
@@ -473,7 +481,7 @@
         <target>Имя</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
@@ -485,11 +493,43 @@
         <target>Фамилия</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/change-personal-data/change-personal-data.component.html</context>
           <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.accept_documents" datatype="html">
+        <source>While registering I agree and accept:</source>
+        <target state="new">Регистрируясь соглашаюсь и принимаю:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.accept_agreement" datatype="html">
+        <source>terms agreement of using</source>
+        <target>лицензионый договор</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.accept_recurrent" datatype="html">
+        <source>recurrent payments agreement</source>
+        <target>договор обработки рекурентных платежей</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.accept_policy" datatype="html">
+        <source>privacy policy</source>
+        <target>политику обработки персональных данных</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.register_by" datatype="html">
@@ -497,7 +537,7 @@
         <target>Или зарегистрироваться используя</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.email" datatype="html">
@@ -505,11 +545,11 @@
         <target>Email</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">80</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -521,11 +561,11 @@
         <target>Регистрация</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">101</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.registered_already" datatype="html">
@@ -533,7 +573,7 @@
         <target>Уже зарегистрированы?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">153</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -545,7 +585,7 @@
         <target>Восстановить пароль</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/reset-password.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.enter_valid_email" datatype="html">
@@ -556,11 +596,11 @@
         </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/register/register.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">87</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/send-code/send-code.component.html</context>
@@ -588,7 +628,7 @@
         <target>Забыли пароль?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reset-password/set-password/set-password.component.html</context>
@@ -600,7 +640,7 @@
         <target>Или войти используя</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.have_no_account" datatype="html">
@@ -608,7 +648,7 @@
         <target>Еще не зарегистрированы?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="message.code_problems" datatype="html">
@@ -1052,7 +1092,7 @@
         <target>Вход</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/layout/layout.component.html</context>
@@ -1664,6 +1704,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/spec/settings/maintenance/maintenance.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action.try_again" datatype="html">
+        <source>Try again</source>
+        <target state="new">Try again</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/spec/scheme-invalid/scheme-invalid.component.html</context>
+          <context context-type="linenumber">623</context>
         </context-group>
       </trans-unit>
       <trans-unit id="label.maintenance" datatype="html">

@@ -1,0 +1,22 @@
+<jnt-container>
+  <ng-container [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      <jnt-app-page-header title="Recurrent payments agreement"
+                           teaser="for service subscription"
+                           [icon]="localUi.icons.agreement"></jnt-app-page-header>
+
+
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <jnt-app-page-header title="Договор обработки рекурентных платежей"
+                           teaser="подписки на сервис"
+                           [icon]="localUi.icons.agreement"></jnt-app-page-header>
+
+
+      <p>Обращения по вопросам условий настоящего Соглашения и Технической поддержки принимаются по адресу электронной
+        почты
+        <jnt-link title="sp@junte.ru" source="mailto:sp@junte.ru"></jnt-link>
+      </p>
+    </ng-container>
+  </ng-container>
+</jnt-container>

@@ -38,7 +38,7 @@ import { EnumEditComponent } from './model/enums/enum/edit/enum-edit.component';
 import { EnumsComponent } from './model/enums/enums.component';
 import { ModelComponent } from './model/model.component';
 import { PrintComponent } from './print/print.component';
-import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
+import { SchemeInvalidComponent } from './scheme-invalid/scheme-invalid.component';
 import { MaintenanceComponent } from './settings/maintenance/maintenance.component';
 import { ResourceTypesComponent } from './settings/resources/resource-types.component';
 import { StaffComponent } from './settings/staff/staff.component';

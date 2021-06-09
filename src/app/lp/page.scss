@@ -5,7 +5,7 @@
 
 $jnt-ng-deep: true;
 
-@include jnt-grid-container((width: 1200px, padding: 0)) {
+@include jnt-grid-container((width: 450px, padding: 0)) {
   display: flex;
   align-items: flex-start;
   justify-content: center;

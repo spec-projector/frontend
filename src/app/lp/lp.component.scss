@@ -147,6 +147,13 @@ jnt-lp-slide {
     }
   }
 
+  p {
+    text-align: center;
+    line-height: 1.75em;
+    position: relative;
+    z-index: 100;
+  }
+
   [data-teaser] {
     margin-bottom: 50px;
   }

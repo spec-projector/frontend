@@ -69,7 +69,7 @@ import { EnumsWithoutModulePipe, GroupEnumsByModulesPipe } from './model/enums/p
 import { ModelComponent } from './model/model.component';
 import { SpecPricePipe } from './pipes';
 import { PrintComponent } from './print/print.component';
-import { SchemeInvalidComponent } from './scheme/scheme-invalid.component';
+import { SchemeInvalidComponent } from './scheme-invalid/scheme-invalid.component';
 import { MaintenanceComponent } from './settings/maintenance/maintenance.component';
 import { ResourceTypesComponent } from './settings/resources/resource-types.component';
 import { StaffComponent } from './settings/staff/staff.component';

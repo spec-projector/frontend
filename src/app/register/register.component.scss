@@ -1,21 +1,34 @@
 @import 'src/variables';
 @import '~@junte/ui/lib/assets/styles/elements/icon';
 @import '~@junte/ui/lib/assets/styles/layout/card';
+@import '~@junte/ui/lib/assets/styles/navigation/link';
+@import '~@junte/ui/lib/assets/styles/layout/responsive';
 @import "../lp/page";
 @import "../lp/decors";
 
-
 [data-selected-tariff] {
-  @include jnt-card((border: 2px solid $jnt-primary-light-color, background: $jnt-secondary-color), '&');
+  @include jnt-card((border: 2px solid $jnt-primary-light-color, background: $jnt-highlight-background), '&');
   @include jnt-icon((size: 40px, stroke: 2px, color: $jnt-primary-light-color));
+
   small {
     display: block;
     color: $jnt-primary-light-color;
   }
+
   div {
     font-size: $jnt-font-size-big;
     color: $jnt-primary-light-color;
     font-weight: $jnt-font-weight-bold;
     line-height: 1em;
   }
+}
+
+[data-agree] {
+  cursor: pointer;
+  margin-top: -$jnt-gutter-tiny;
+}
+
+[data-documents] {
+  padding-left: $jnt-gutter-normal;
+  @include jnt-link((font-size: $jnt-font-size-small, icon: (size: 16px)));
 }

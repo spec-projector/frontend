@@ -45,61 +45,68 @@
 <ng-container *ngIf="feature.story.length;else addStoryTemplate">
   <jnt-stack>
     <div data-syntax *ngIf="(manager.mode$ | async) === editMode.edit" [ngSwitch]="consts.language">
-      <ng-container *ngSwitchDefault>
-        <p>Use keys
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↑↓"></jnt-label>
-          for moving
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↦"></jnt-label>
-          for switching and
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↵"></jnt-label>
-          to add a line.
-        </p>
-        <p>Use special syntax:</p>
-        <ul>
-          <li>
-            <code>[[team]]</code> for links to terms;
-          </li>
-          <li>
-            <code>[@object]]</code> for links to model objects.
-          </li>
-        </ul>
-      </ng-container>
+      <ng-container [ngSwitch]="consts.language">
+        <ng-container *ngSwitchDefault>
+          <p>Use keys
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↑↓"></jnt-label>
+            for moving
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↦"></jnt-label>
+            for switching and
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↵"></jnt-label>
+            to add a line
+            <jnt-label label="?"
+                       [color]="ui.color.paleNavy"
+                       [jntPopover]="{contentTemplate: syntaxHelpEnTemplate}"></jnt-label>
+          </p>
+          <ng-template #syntaxHelpEnTemplate>
+            <p>Use special syntax:</p>
+            <ul>
+              <li>
+                <code>[[team]]</code> for links to terms;
+              </li>
+              <li>
+                <code>[@object]]</code> for links to model objects.
+              </li>
+            </ul>
+          </ng-template>
+        </ng-container>
 
-      <ng-container *ngSwitchCase="language.ru">
-        <p>Используйте клавиши
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↑↓"></jnt-label>
-          для перемещения
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↦"></jnt-label>
-          переключения и
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↵"></jnt-label>
-          добавления линии
-          <jnt-label label="?"
-                     [color]="ui.color.paleNavy"
-                     [jntPopover]="{contentTemplate: syntaxHelpRuTemplate}"></jnt-label>
-        </p>
-        <ng-template #syntaxHelpRuTemplate>
-          <p>Используйте специальный синтаксис:</p>
-          <ul>
-            <li>
-              <code>[[термин]]</code> для ссылок на термины;
-            </li>
-            <li>
-              <code>[@объект]]</code> для ссылок на объекты модели данных.
-            </li>
-          </ul>
-        </ng-template>
+        <ng-container *ngSwitchCase="language.ru">
+          <p>Используйте клавиши
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↑↓"></jnt-label>
+            для перемещения
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↦"></jnt-label>
+            переключения и
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↵"></jnt-label>
+            добавления линии
+            <jnt-label label="?"
+                       [color]="ui.color.paleNavy"
+                       [jntPopover]="{contentTemplate: syntaxHelpRuTemplate}"></jnt-label>
+          </p>
+          <ng-template #syntaxHelpRuTemplate>
+            <p>Используйте специальный синтаксис:</p>
+            <ul>
+              <li>
+                <code>[[термин]]</code> для ссылок на термины;
+              </li>
+              <li>
+                <code>[@объект]]</code> для ссылок на объекты модели данных.
+              </li>
+            </ul>
+          </ng-template>
+        </ng-container>
       </ng-container>
     </div>
     <p [ngSwitch]="consts.language">

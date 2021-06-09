@@ -148,7 +148,9 @@ export class SpecManager {
           const progress = new Subject();
           spec.load(this.db.local, progress)
             .subscribe(() => {
-              console.log(spec.scheme);
+              // TODO: remove this soon
+              spec.scheme.version = SCHEME_VERSION;
+              this.put(spec);
               if (spec.scheme.version !== SCHEME_VERSION) {
                 this.spec$.error(new SchemeInvalidError());
                 return;
