@@ -1,14 +1,19 @@
 import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output } from '@angular/core';
-import { UI } from '@junte/ui';
+import { FormBuilder } from '@angular/forms';
+import { PopoverInstance, UI } from '@junte/ui';
 import { delay, finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { UI_DELAY } from '../../../consts';
 import { Language } from '../../../enums/language';
 import { LocalUI } from '../../../enums/local-ui';
-import { Subscription } from '../../../models/subscription';
 import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariff';
 import { MeUser } from '../../../models/user';
 import { TariffsGQL } from './graphql';
+
+export enum Pages {
+  buy = 1,
+  confirm = 2
+}
 
 @Component({
   selector: 'spec-lp-tariffs',
@@ -24,15 +29,21 @@ export class TariffsComponent implements OnInit {
   today = new Date();
 
   progress = {loading: false};
+  reference: { popover?: PopoverInstance } = {};
   tariffs: Tariff[] = [];
 
   @Input()
   me: MeUser;
 
+  form = this.fb.group({
+    agreement: [false]
+  });
+
   @Output()
   selected = new EventEmitter<Tariff>();
 
   constructor(@Inject(LOCALE_ID) public locale: string,
+              private fb: FormBuilder,
               private tariffsGQL: TariffsGQL) {
   }
 
@@ -49,6 +60,7 @@ export class TariffsComponent implements OnInit {
   }
 
   select(tariff: Tariff) {
+    this.reference.popover?.hide();
     this.selected.emit(tariff);
   }
 

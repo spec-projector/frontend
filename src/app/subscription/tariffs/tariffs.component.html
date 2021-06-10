@@ -250,12 +250,33 @@
                                 [size]="ui.size.large"
                                 (click)="select(t)"></jnt-button>
                   </ng-template>
-                  <jnt-button *ngIf="t.price > 0;else freeTariffTemplate"
-                              text="Buy"
-                              i18n-text="@@action.buy"
-                              [scheme]="ui.scheme.accent"
-                              [size]="ui.size.large"
-                              (click)="select(t)"></jnt-button>
+                  <ng-container *ngIf="t.price > 0;else freeTariffTemplate">
+                    <ng-template #agreementTemplate>
+                      <jnt-stack [formGroup]="form"
+                                 [align]="ui.align.stretch">
+                        <jnt-checkbox label="While continue confirm and agree with:"
+                                      i18n-label="@@action.confirm_and_agree"
+                                      formControlName="agreement">
+                        </jnt-checkbox>
+                        <jnt-stack data-documents [gutter]="ui.gutter.tiny">
+                          <jnt-link title="recurrent payments agreement"
+                                    i18n-title="@@action.accept_recurrent"
+                                    [icon]="ui.icons.link"
+                                    source="/ru/recurrent"
+                                    [target]="ui.target.blank"></jnt-link>
+                        </jnt-stack>
+                        <jnt-button text="Continue"
+                                    i18n-text="@@action.continue"
+                                    (click)="select(t)"></jnt-button>
+                      </jnt-stack>
+                    </ng-template>
+                    <jnt-button text="Buy"
+                                i18n-text="@@action.buy"
+                                [jntPopover]="{contentTemplate: agreementTemplate, trigger: ui.trigger.click}"
+                                (attached)="reference.popover = $event"
+                                [scheme]="ui.scheme.accent"
+                                [size]="ui.size.large"></jnt-button>
+                  </ng-container>
                 </ng-container>
               </ng-container>
             </jnt-stack>

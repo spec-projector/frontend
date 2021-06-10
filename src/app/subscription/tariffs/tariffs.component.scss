@@ -2,6 +2,7 @@
 @import '~@junte/ui/lib/assets/styles/elements/icon';
 @import '~@junte/ui/lib/assets/styles/layout/card';
 @import '~@junte/ui/lib/assets/styles/layout/skeleton';
+@import '~@junte/ui/lib/assets/styles/navigation/link';
 
 $jnt-ng-deep: true;
 
@@ -88,4 +89,9 @@ $jnt-ng-deep: true;
     padding-top: $jnt-gutter-normal;
   }
 
+}
+
+[data-documents] {
+  padding-left: $jnt-gutter-normal;
+  @include jnt-link((font-size: $jnt-font-size-small, icon: (size: 16px)));
 }
