@@ -60,6 +60,7 @@ export class FeatureFramesComponent implements OnInit {
   add(frame: Frame) {
     this.reference.popover?.hide();
 
+    frame.linking(this.feature);
     this.feature.addFrame(frame);
     this.manager.put(this.feature);
 
