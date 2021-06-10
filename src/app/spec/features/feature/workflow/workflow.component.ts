@@ -97,8 +97,11 @@ export class FeatureWorkflowComponent implements OnInit, OnDestroy {
         this.manager.put(feature);
       }
     });
-    this.manager.mode$.subscribe(mode => mode === EditMode.edit
-      ? this.form.enable() : this.form.disable());
+    this.manager.mode$.subscribe(mode => {
+      mode === EditMode.edit
+        ? this.form.enable() : this.form.disable();
+      this.cd.markForCheck();
+    });
 
     this.form.valueChanges.subscribe(({workflow}) => {
       Object.assign(this.feature.workflow, workflow);
