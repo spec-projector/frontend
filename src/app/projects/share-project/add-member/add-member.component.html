@@ -4,7 +4,8 @@
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [align]="ui.align.stretch">
     <jnt-input formControlName="email"
-               placeholder="Enter valid user email"
+               placeholder="Enter registered user email"
+               i18n-placeholder="@@label.enter_registered_email"
                [width]="ui.width.fluid"
                [scheme]="(form.dirty && form.invalid) || state.missed ? ui.input.scheme.failed : ui.input.scheme.normal"></jnt-input>
     <jnt-button [type]="ui.button.type.submit"
