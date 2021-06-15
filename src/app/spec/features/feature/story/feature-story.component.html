@@ -44,7 +44,8 @@
 
 <ng-container *ngIf="feature.story.length;else addStoryTemplate">
   <jnt-stack>
-    <div data-syntax *ngIf="(manager.mode$ | async) === editMode.edit" [ngSwitch]="consts.language">
+    <div data-syntax *ngIf="(manager.mode$ | async) === editMode.edit"
+         [ngSwitch]="consts.language">
       <ng-container [ngSwitch]="consts.language">
         <ng-container *ngSwitchDefault>
           <p>Use keys
