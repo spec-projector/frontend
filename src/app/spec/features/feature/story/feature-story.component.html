@@ -1,5 +1,15 @@
-<ng-template #addStoryTemplate>
-  <jnt-stack [align]="ui.align.stretch">
+<jnt-stack [align]="ui.align.stretch">
+  <p [ngSwitch]="consts.language">
+    <ng-container *ngSwitchDefault>
+      As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title | joinTokens}}</b>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Как <b>{{feature.actor.name}}</b> я хочу <b>{{feature.title | joinTokens}}</b>
+    </ng-container>
+  </p>
+
+  <ng-template #addStoryTemplate>
+
     <jnt-message [icon]="ui.icons.question"
                  [scheme]="ui.scheme.secondary">
       <jnt-stack [ngSwitch]="consts.language">
@@ -39,11 +49,9 @@
                   [icon]="ui.icons.add"
                   (click)="fill()"></jnt-button>
     </jnt-stack>
-  </jnt-stack>
-</ng-template>
+  </ng-template>
 
-<ng-container *ngIf="feature.story.length;else addStoryTemplate">
-  <jnt-stack>
+  <ng-container *ngIf="feature.story.length;else addStoryTemplate">
     <div data-syntax *ngIf="(manager.mode$ | async) === editMode.edit"
          [ngSwitch]="consts.language">
       <ng-container [ngSwitch]="consts.language">
@@ -110,26 +118,18 @@
         </ng-container>
       </ng-container>
     </div>
-    <p [ngSwitch]="consts.language">
-      <ng-container *ngSwitchDefault>
-        As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title | joinTokens}}</b>
-      </ng-container>
-      <ng-container *ngSwitchCase="language.ru">
-        Как <b>{{feature.actor.name}}</b> я хочу <b>{{feature.title | joinTokens}}</b>
-      </ng-container>
-    </p>
-  </jnt-stack>
-  <ol data-story>
-    <li *ngFor="let entry of feature.story; let i = index">
-      <div *ngIf="entry.type !== storyEntryType.section">{{i + 1}}</div>
-      <spec-story-entry #storyEntry [entry]="entry"
-                        [spec]="feature.spec"
-                        (changed)="edit(i, $event)"
-                        (up)="focus(i, i - 1)"
-                        (down)="focus(i, i + 1)"
-                        (finished)="add(i)"
-                        (deleted)="delete(i)">
-      </spec-story-entry>
-    </li>
-  </ol>
-</ng-container>
+    <ol data-story>
+      <li *ngFor="let entry of feature.story; let i = index">
+        <div *ngIf="entry.type !== storyEntryType.section">{{i + 1}}</div>
+        <spec-story-entry #storyEntry [entry]="entry"
+                          [spec]="feature.spec"
+                          (changed)="edit(i, $event)"
+                          (up)="focus(i, i - 1)"
+                          (down)="focus(i, i + 1)"
+                          (finished)="add(i)"
+                          (deleted)="delete(i)">
+        </spec-story-entry>
+      </li>
+    </ol>
+  </ng-container>
+</jnt-stack>

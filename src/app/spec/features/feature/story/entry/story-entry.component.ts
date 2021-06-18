@@ -9,7 +9,7 @@ import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE, UI_DELAY } from '../../../../../../consts';
 import { Language } from '../../../../../../enums/language';
 import { StoryEntry, StoryEntryType } from '../../../../../../models/spec/planning/feature/story';
-import { SpecManager } from '../../../../managers';
+import { SpecManager } from '../../../../managers/spec';
 
 @Component({
     selector: 'spec-story-entry',

@@ -1,29 +1,19 @@
 <jnt-stack [align]="ui.align.stretch">
 
   <ng-template #notConfiguredTemplate>
-    <jnt-message *ngIf="!project.gitlabIntegration?.token" [scheme]="ui.scheme.secondary">
-      <span [ngSwitch]="locale">
-        <ng-container *ngSwitchDefault>
-          You have no <b>Gitlab</b> key in integration
-        </ng-container>
-        <ng-container *ngSwitchCase="language.ru">
-          У Вас нет <b>Gitlab</b> ключа в интеграции
-        </ng-container>
-      </span>
+    <ng-container *ngIf="!project.gitlabIntegration?.token || !project.githubIntegration?.token">
+      <spec-add-gitlab-key *ngIf="!project.gitlabIntegration?.token"
+                           [project]="project"
+                           (updated)="project = $event"></spec-add-gitlab-key>
+    </ng-container>
 
-      <jnt-link title="settings"
-                i18n-title="@@label.settings"
-                [source]="['../../../../..', 'details']"
-                [icon]="{icon: ui.icons.link, position: ui.position.right}"></jnt-link>
-    </jnt-message>
-
-    <jnt-message *ngIf="feature.spec.resourceTypes.length <= 0" [scheme]="ui.scheme.secondary">
+    <jnt-message *ngIf="feature.spec.resourceTypes.length <= 0">
       <span [ngSwitch]="locale">
         <ng-container *ngSwitchDefault>
           You have no <b>Resource Types</b> in the project
         </ng-container>
         <ng-container *ngSwitchCase="language.ru">
-          У Вас нет <b>Gitlab</b> ключа в интеграции
+          <b>Типы ресурсов</b> не настроены
         </ng-container>
       </span>
 
@@ -35,7 +25,7 @@
   </ng-template>
 
   <ng-container
-    *ngIf="!!project.gitlabIntegration?.token || feature.spec.resourceTypes.length <= 0;else notConfiguredTemplate">
+    *ngIf="(!!project.gitlabIntegration?.token || !!project.githubIntegration?.token) && feature.spec.resourceTypes.length >= 0;else notConfiguredTemplate">
     <jnt-stack [orientation]="ui.orientation.horizontal">
       <ng-template #attachTemplate>
         <spec-attach-issue [spec]="feature.spec"
@@ -46,7 +36,7 @@
       <jnt-button text="Attach issue"
                   i18n-text="@@action.attach_issue"
                   [icon]="ui.icons.add"
-                  [jntPopover]="{title: 'Attach issue', contentTemplate: attachTemplate, position: ui.position.right, trigger: ui.trigger.click}"
+                  [jntPopover]="{title: i18n.attachIssue, contentTemplate: attachTemplate, position: ui.position.right, trigger: ui.trigger.click}"
                   (attached)="reference.popover = $event"></jnt-button>
       <jnt-button text="Refresh all"
                   i18n-text="@@action.refresh_all"

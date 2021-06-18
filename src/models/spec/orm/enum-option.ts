@@ -1,5 +1,5 @@
 import { persist, Persistence, persistence } from '../../../decorators/persistence';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Enum } from './enum';
 import * as assign from 'assign-deep';
@@ -27,7 +27,7 @@ export class EnumOption extends Persistence {
     }
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this]};
 
     this.enum.removeOption(this);

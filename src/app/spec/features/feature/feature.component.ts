@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnDestr
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
 import { Feature } from 'src/models/spec/planning/feature/feature';

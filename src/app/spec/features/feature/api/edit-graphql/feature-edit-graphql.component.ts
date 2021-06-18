@@ -7,8 +7,9 @@ import { Subscription } from 'rxjs';
 import { Feature } from 'src/models/spec/planning/feature/feature';
 import { GraphQL } from 'src/models/spec/planning/feature/graphql';
 import { EditMode } from '../../../../../../enums/edit-mode';
+import { LocalUI } from '../../../../../../enums/local-ui';
 import { Spec } from '../../../../../../models/spec/spec';
-import { SpecManager } from '../../../../managers';
+import { SpecManager } from '../../../../managers/spec';
 
 @Component({
   selector: 'spec-feature-edit-graphql',
@@ -19,6 +20,7 @@ import { SpecManager } from '../../../../managers';
 export class FeatureEditGraphqlComponent implements OnInit, OnDestroy {
 
   ui = UI;
+  localUi = LocalUI;
   editMode = EditMode;
 
   private _query: GraphQL;

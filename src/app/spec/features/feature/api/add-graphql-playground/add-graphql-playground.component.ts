@@ -4,8 +4,7 @@ import { UI } from '@junte/ui';
 import { CURRENT_LANGUAGE } from '../../../../../../consts';
 import { Language } from '../../../../../../enums/language';
 import { Spec } from '../../../../../../models/spec/spec';
-import { SpecManager } from '../../../../managers';
-import { SetFigmaTokenGQL } from '../../frames/add-figma-key/graphql';
+import { SpecManager } from '../../../../managers/spec';
 import * as assign from 'assign-deep';
 
 @Component({

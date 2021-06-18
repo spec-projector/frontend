@@ -12,7 +12,7 @@ import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { merge, Subscription } from 'rxjs';
 import { EditMode } from 'src/enums/edit-mode';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { Term } from 'src/models/spec/planning/term';
 import { Token } from 'src/models/spec/planning/token';
 

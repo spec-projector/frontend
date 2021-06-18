@@ -8,7 +8,7 @@ import { GraphQL } from 'src/models/spec/planning/feature/graphql';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { EditMode } from '../../../../../enums/edit-mode';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 
 const GRAPHQL_TEXT = `
 query ($id: ID) {

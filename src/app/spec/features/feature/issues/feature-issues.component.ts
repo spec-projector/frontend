@@ -11,7 +11,7 @@ import { IssueState, IssueSystem } from '../../../../../enums/issue';
 import { IssueDataRequest } from '../../../../../models/issue-data';
 import { Project } from '../../../../../models/project';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 import { IssueGQL } from './issues.graphql';
 
 @Component({
@@ -25,6 +25,7 @@ export class FeatureIssuesComponent implements OnInit {
   ui = UI;
   issueState = IssueState;
   language = Language;
+  i18n = {attachIssue: $localize`:@@label.attach_issue:Attach issue`};
 
   feature: Feature;
 

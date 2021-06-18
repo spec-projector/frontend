@@ -12,7 +12,7 @@ import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
 import { Project } from '../../../../../models/project';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { catchGQLErrors } from '../../../../../utils/gql-errors';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 import { UploadFigmaAssetGQL } from './frames.graphql';
 
 @Component({

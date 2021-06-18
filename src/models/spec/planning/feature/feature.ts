@@ -4,7 +4,7 @@ import {persist, persistence, Persistence} from 'src/decorators/persistence';
 import {Sprint} from 'src/models/spec/planning/sprint';
 import {Spec} from 'src/models/spec/spec';
 import {TokenSerializer} from 'src/serializers/token';
-import {Depends} from '../../../../types/depends';
+import {Patch} from '../../../../types/patch';
 import {ModelType} from '../../../enums';
 import {Actor} from '../actor';
 import {Module} from '../module';
@@ -82,7 +82,7 @@ export class Feature extends Persistence {
     this.api.linking(this);
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this, this.workflow, this.api]};
     if (!!this.actor) {
       this.actor.removeFeature(this);

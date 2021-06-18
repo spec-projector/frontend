@@ -6,14 +6,15 @@ import { bufferTime, filter, finalize, tap } from 'rxjs/operators';
 import { Persistence, SerializeType } from 'src/decorators/persistence';
 import { EditMode } from 'src/enums/edit-mode';
 import { ResourceType, Spec, SPEC_DOC_ID } from 'src/models/spec/spec';
-import { CURRENT_LANGUAGE, SCHEME_VERSION } from '../../consts';
-import { Language } from '../../enums/language';
-import { environment } from '../../environments/environment';
-import { SchemeInvalidError } from '../../types/errors';
-import { AppConfig } from '../app-config';
-import { ReplicationState } from './enums';
+import { CURRENT_LANGUAGE, SCHEME_VERSION } from '../../../consts';
+import { Language } from '../../../enums/language';
+import { environment } from '../../../environments/environment';
+import { SchemeInvalidError } from '../../../types/errors';
+import { AppConfig } from '../../app-config';
+import { ReplicationState } from '../enums';
 import inMemoryPlugin from 'pouchdb-adapter-memory';
 import { generate } from 'shortid';
+import { DemoManager } from './demo';
 
 PouchDB.plugin(inMemoryPlugin);
 import Database = PouchDB.Database;
@@ -105,7 +106,8 @@ export class SpecManager {
     return this.mode$.getValue();
   }
 
-  constructor(private config: AppConfig,
+  constructor(private demo: DemoManager,
+              private config: AppConfig,
               private logger: NGXLogger) {
     this.logger.info('create instance');
     this.committing$.pipe(tap(() => this.state.dirty++),
@@ -115,7 +117,7 @@ export class SpecManager {
       .subscribe(buffer => this.commit(buffer));
   }
 
-  get(project: string): Observable<Spec> {
+  get(project: string, demo: boolean): Observable<Spec> {
     if (!this.spec$) {
       this.spec$ = new BehaviorSubject<Spec>(null);
       this.db.local = new PouchDB(generate(),
@@ -126,7 +128,6 @@ export class SpecManager {
       this.db.remote = new PouchDB([environment.storage, project].join('/'),
         {
           skip_setup: false,
-          auto_compaction: true,
           fetch: (url, opts) => {
             opts.credentials = 'omit';
             const headers = opts.headers as Headers;
@@ -137,11 +138,14 @@ export class SpecManager {
           }
         });
 
+      this.db.remote.compact({interval: 5000})
+        .then(info => console.log(info));
+
       this.db.local.sync(this.db.remote)
-        .on('complete', () => {
+        .on('complete', info => {
           const spec = new Spec();
           this.logger.log(project);
-          this.logger.log('synced');
+          this.logger.log('synced', info);
           this.startPull();
           this.startPush();
           spec.id = SPEC_DOC_ID;
@@ -177,6 +181,10 @@ export class SpecManager {
               if (err.status === 404) {
                 if (err.docId === SPEC_DOC_ID) {
                   createSpec(spec).forEach(o => this.put(o));
+                  if (demo) {
+                    const {changed} = this.demo.fill(spec);
+                    changed.forEach(o => this.put(o));
+                  }
                 }
 
                 this.spec$.next(spec);

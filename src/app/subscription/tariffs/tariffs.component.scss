@@ -10,7 +10,7 @@ $jnt-ng-deep: true;
   display: block;
   position: relative;
   z-index: 1;
-  @include jnt-skeleton((card: (height: 300px)));
+  @include jnt-skeleton((card: (height: 580px)));
   @include jnt-card((background: rgba($jnt-primary-background, 0.6), corner: 16px));
 }
 

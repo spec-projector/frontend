@@ -5,7 +5,7 @@ import { ClipboardService } from 'ngx-clipboard';
 import { Language } from 'src/enums/language';
 import { Feature } from 'src/models/spec/planning/feature/feature';
 import { TokenType } from 'src/models/spec/planning/token';
-import { BASE_URI } from '../../../../../consts';
+import { BASE_URI, CURRENT_LANGUAGE } from '../../../../../consts';
 import { Project } from '../../../../../models/project';
 
 @Component({
@@ -18,7 +18,7 @@ export class FeatureMarkdownComponent implements OnInit, AfterViewChecked {
   tokenType = TokenType;
   language = Language;
   ui = UI;
-  consts = {baseUri: BASE_URI};
+  consts = {baseUri: BASE_URI, language: CURRENT_LANGUAGE};
 
   @ViewChild('raw', {static: false, read: ElementRef})
   raw: ElementRef<HTMLElement>;
@@ -44,7 +44,8 @@ export class FeatureMarkdownComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (!this.formatted) {
       this.formatted = this.raw.nativeElement
-        .innerHTML.replace(/\<\!\-\-\-\-\>\n*/, '');
+        .innerHTML.replace(/<!--[^>]*-->/gi, '');
+      console.log(this.formatted);
       this.markdown.nativeElement.innerHTML = this.formatted;
       this.clipboard.copy(this.formatted);
     }

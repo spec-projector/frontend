@@ -1,6 +1,6 @@
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
 import { Spec } from 'src/models/spec/spec';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Entity } from '../orm/entity';
 import { Enum } from '../orm/enum';
@@ -101,7 +101,7 @@ export class Module extends Persistence {
     return [model];
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this, this.model]};
 
     this.features.forEach(f => f.module = null);

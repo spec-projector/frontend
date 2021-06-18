@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { Actor } from 'src/models/spec/planning/actor';

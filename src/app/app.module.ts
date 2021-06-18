@@ -38,6 +38,9 @@ import {AppComponent} from './app.component';
     <p i18n="@@label.new_enum_option_name">male</p>
     <p i18n="@@label.add_frame">Add frame</p>
     <p i18n="@@label.share_project">Share project</p>
+    <p i18n="@@label.add_project">Add project</p>
+    <p i18n="@@label.edit_project">Edit project</p>
+    <p i18n="@@label.attach_issue">Attach issue</p>
   `
 })
 export class I18nComponent {

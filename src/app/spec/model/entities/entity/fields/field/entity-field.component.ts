@@ -3,7 +3,7 @@ import {FormBuilder} from '@angular/forms';
 import {UI} from '@junte/ui';
 import {merge} from 'rxjs';
 import {filter, tap} from 'rxjs/operators';
-import {SpecManager} from 'src/app/spec/managers';
+import {SpecManager} from 'src/app/spec/managers/spec';
 import {EditMode} from 'src/enums/edit-mode';
 import {EntityField, FieldType} from 'src/models/spec/orm/entity-field';
 import {LocalUI} from '../../../../../../../enums/local-ui';

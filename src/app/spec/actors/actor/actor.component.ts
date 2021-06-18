@@ -13,7 +13,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { Actor } from 'src/models/spec/planning/actor';
 import { Feature } from 'src/models/spec/planning/feature/feature';

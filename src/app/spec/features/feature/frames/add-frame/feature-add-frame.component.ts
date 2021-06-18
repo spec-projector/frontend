@@ -4,7 +4,7 @@ import { UI } from '@junte/ui';
 import { Frame } from 'src/models/spec/planning/feature/frame';
 import { CURRENT_LANGUAGE } from '../../../../../../consts';
 import { Language } from '../../../../../../enums/language';
-import { SpecManager } from '../../../../managers';
+import { SpecManager } from '../../../../managers/spec';
 
 @Component({
   selector: 'spec-feature-add-frame',

@@ -135,65 +135,25 @@
   </jnt-lp-slide>
 
   <jnt-lp-slide [height]="ui.height.default">
-    <jnt-container data-tariffs>
-      <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
-      <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
-      <jnt-stack [align]="ui.align.stretch">
-        <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
-        <p [ngSwitch]="consts.language">
-          <ng-container *ngSwitchDefault>
-            Please, check our
-            <jnt-link title="recurrent payment agreement"
-                      [icon]="ui.icons.link"
-                      [source]="['/recurrent']"></jnt-link>
-            <br>
-            For canceling or changing your subscription, please write to
-            <jnt-link title="support"
-                      [icon]="ui.icons.link"
-                      [source]="['/support']"></jnt-link>
-
-            or you can use special form
-            <jnt-link
-              title="cloud payments"
-              [icon]="ui.icons.link"
-              [target]="ui.target.blank"
-              source="https://my.cloudpayments.ru/en/unsubscribe"></jnt-link>
-          </ng-container>
-          <ng-container *ngSwitchCase="language.ru">
-            Пожалуйста, ознакомьтесь с
-            <jnt-link title="договором обработки рекурентных платежей"
-                      [icon]="ui.icons.link"
-                      [source]="['/recurrent']"></jnt-link>
-            <br>
-            Для изменения или отмены подписки, пожалуйста, обратитесь в
-            <jnt-link title="поддержку"
-                      [icon]="ui.icons.link"
-                      [source]="['/support']"></jnt-link>
-
-            или используйте специальную форму
-            <jnt-link
-              title="cloud payments"
-              [icon]="ui.icons.link"
-              [target]="ui.target.blank"
-              source="https://my.cloudpayments.ru/ru/unsubscribe"></jnt-link>
-          </ng-container>
-        </p>
-      </jnt-stack>
-
-      <img data-coin
-           src="assets/images/lp/coin.png" width="197" height="225">
-      <img data-torus-half
-           src="assets/images/lp/torus-half.png" width="128" height="148">
-    </jnt-container>
-  </jnt-lp-slide>
-
-  <jnt-lp-slide [height]="ui.height.default">
     <jnt-container data-reviews>
       <h1 id="reviews" i18n="@@label.reviews">Clients say</h1>
       <h2 data-teaser i18n="@@label.reviews_teaser">We will try for you be here</h2>
       <spec-lp-reviews></spec-lp-reviews>
       <img data-torus-small
            src="assets/images/lp/torus-small.png" width="100" height="100">
+      <img data-torus-half
+           src="assets/images/lp/torus-half.png" width="128" height="148">
+    </jnt-container>
+  </jnt-lp-slide>
+
+  <jnt-lp-slide [height]="ui.height.default">
+    <jnt-container data-tariffs>
+      <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
+      <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
+      <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
+
+      <img data-coin
+           src="assets/images/lp/coin.png" width="197" height="225">
       <img data-torus-half
            src="assets/images/lp/torus-half.png" width="128" height="148">
     </jnt-container>

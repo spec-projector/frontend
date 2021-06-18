@@ -7,7 +7,7 @@ import { Language } from 'src/enums/language';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { Resource } from '../../../../../models/spec/planning/feature/resource';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 
 @Component({
   selector: 'spec-feature-resources',

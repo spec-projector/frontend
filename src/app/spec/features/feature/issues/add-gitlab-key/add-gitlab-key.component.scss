@@ -1,0 +1,30 @@
+@import "src/variables";
+
+:host {
+  display: block;
+}
+
+p {
+  margin: $jnt-gutter-normal 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: $jnt-corner-normal;
+}
+
+[data-gitlab1] {
+  max-width: 300px;
+  max-height: 330px;
+}
+
+[data-gitlab2] {
+  max-width: 225px;
+  max-height: 470px;
+}
+
+[data-gitlab3] {
+  max-width: 570px;
+  max-height: 355px;
+}

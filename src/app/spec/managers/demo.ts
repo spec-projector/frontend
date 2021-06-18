@@ -1,20 +1,19 @@
-import {Injectable} from '@angular/core';
-import {EnumOption} from 'src/models/spec/orm/enum-option';
-import {CURRENT_LANGUAGE} from '../../../../consts';
-import {Language} from '../../../../enums/language';
-import {Entity} from '../../../../models/spec/orm/entity';
-import {EntityField, FieldType} from '../../../../models/spec/orm/entity-field';
-import {Enum} from '../../../../models/spec/orm/enum';
-import {Actor} from '../../../../models/spec/planning/actor';
-import {Feature} from '../../../../models/spec/planning/feature/feature';
-import {StoryEntry, StoryEntryType} from '../../../../models/spec/planning/feature/story';
-import {Module} from '../../../../models/spec/planning/module';
-import {Sprint} from '../../../../models/spec/planning/sprint';
-import {Term} from '../../../../models/spec/planning/term';
-import {AccentToken, TermToken, TextToken, Token} from '../../../../models/spec/planning/token';
-import {ResourceType, Spec} from '../../../../models/spec/spec';
-import {Depends} from '../../../../types/depends';
-import {SpecManager} from '../../managers';
+import { Injectable } from '@angular/core';
+import { EnumOption } from 'src/models/spec/orm/enum-option';
+import { CURRENT_LANGUAGE } from '../../../consts';
+import { Language } from '../../../enums/language';
+import { Entity } from '../../../models/spec/orm/entity';
+import { EntityField, FieldType } from '../../../models/spec/orm/entity-field';
+import { Enum } from '../../../models/spec/orm/enum';
+import { Actor } from '../../../models/spec/planning/actor';
+import { Feature } from '../../../models/spec/planning/feature/feature';
+import { StoryEntry, StoryEntryType } from '../../../models/spec/planning/feature/story';
+import { Module } from '../../../models/spec/planning/module';
+import { Sprint } from '../../../models/spec/planning/sprint';
+import { Term } from '../../../models/spec/planning/term';
+import { AccentToken, TermToken, TextToken, Token } from '../../../models/spec/planning/token';
+import { ResourceType, Spec } from '../../../models/spec/spec';
+import { Patch } from '../../../types/patch';
 
 const I18N = (() => {
   switch (CURRENT_LANGUAGE) {
@@ -77,6 +76,12 @@ const I18N = (() => {
             }
           }
         },
+        terms: {
+          order: {
+            title: 'Заказ',
+            description: [new TextToken('Запрос клиента на доставку товаров из каталога')]
+          }
+        },
         modules: {
           nomenclature: {
             title: 'Номенклатура'
@@ -86,6 +91,20 @@ const I18N = (() => {
           },
           orders: {
             title: 'Заказы'
+          },
+          delivery: {
+            title: 'Доставка'
+          },
+          reports: {
+            title: 'Отчеты'
+          }
+        },
+        sprints: {
+          keyFeatures: {
+            title: 'Ключевые возможности'
+          },
+          shopping: {
+            title: 'Покупка'
           },
           delivery: {
             title: 'Доставка'
@@ -194,6 +213,12 @@ const I18N = (() => {
             }
           }
         },
+        terms: {
+          order: {
+            title: 'Order',
+            description: [new TextToken('Client\' request to deliver products from catalog')]
+          }
+        },
         modules: {
           nomenclature: {
             title: 'Nomenclature'
@@ -203,6 +228,20 @@ const I18N = (() => {
           },
           orders: {
             title: 'Orders'
+          },
+          delivery: {
+            title: 'Delivery'
+          },
+          reports: {
+            title: 'Reports'
+          }
+        },
+        sprints: {
+          keyFeatures: {
+            title: 'Key features'
+          },
+          shopping: {
+            title: 'Shopping'
           },
           delivery: {
             title: 'Delivery'
@@ -255,22 +294,33 @@ const I18N = (() => {
 
 type Features = { catalog, productDetails, addToCart, shoppingList, payOrder, processOrder, deliveriesList, deliveryOrder, sales };
 
-@Injectable()
-export class StaffManager {
+export enum FillMode {
+  clear = 'clear',
+  full = 'full'
+}
+
+@Injectable({providedIn: 'root'})
+export class DemoManager {
 
   private spec: Spec;
+  private patch: Patch;
 
-  constructor(private manager: SpecManager) {
-  }
-
-  fillDemo(spec: Spec) {
+  fill(spec: Spec, mode = FillMode.full): Patch {
     this.spec = spec;
+
+    this.patch = {changed: [], deleted: []};
+
     this.clean();
-    this.create();
+
+    if (mode === FillMode.full) {
+      this.create();
+    }
+
+    return this.patch;
   }
 
   private clean() {
-    const links: Depends[] = [];
+    const links: Patch[] = [];
 
     Array.from(this.spec.actors).forEach(a => links.push(a.delete()));
     Array.from(this.spec.terms).forEach(t => links.push(t.delete()));
@@ -280,8 +330,8 @@ export class StaffManager {
     Array.from(this.spec.sprints).forEach(s => links.push(s.delete()));
 
     links.forEach(l => {
-      l.deleted.forEach(o => this.manager.remove(o));
-      l.changed.forEach(o => this.manager.put(o));
+      this.patch.changed = this.patch.changed.concat(l.changed);
+      this.patch.deleted = this.patch.deleted.concat(l.deleted);
     });
   }
 
@@ -300,11 +350,11 @@ export class StaffManager {
       new ResourceType({title: I18N.resourceTypes.backend, hourRate: 30}),
       new ResourceType({title: I18N.resourceTypes.frontend, hourRate: 30})
     ];
-    this.manager.put(this.spec);
+    this.patch.changed.push(this.spec);
   }
 
   private createTerms() {
-    this.createTerm('Order', [new TextToken('Client\' request to deliver products from catalog')]);
+    this.createTerm(I18N.terms.order.title, I18N.terms.order.description);
   }
 
   private createFeatures(): Features {
@@ -409,10 +459,10 @@ export class StaffManager {
     });
     field.linking({spec: this.spec, entity: productCategory});
     field.new();
-    this.manager.put(field);
+    this.patch.changed.push(field);
 
     productCategory.addField(field);
-    this.manager.put(productCategory);
+    this.patch.changed.push(productCategory);
 
     const product = this.createEntity(
       {
@@ -488,10 +538,10 @@ export class StaffManager {
   }
 
   private createSprints(features: Features) {
-    this.createSprint('Key features', [features.catalog, features.productDetails]);
-    this.createSprint('Shopping', [features.addToCart, features.shoppingList, features.payOrder, features.processOrder]);
-    this.createSprint('Delivery', [features.deliveriesList, features.deliveryOrder]);
-    this.createSprint('Reports', [features.sales]);
+    this.createSprint(I18N.sprints.keyFeatures.title, [features.catalog, features.productDetails]);
+    this.createSprint(I18N.sprints.shopping.title, [features.addToCart, features.shoppingList, features.payOrder, features.processOrder]);
+    this.createSprint(I18N.sprints.delivery.title, [features.deliveriesList, features.deliveryOrder]);
+    this.createSprint(I18N.sprints.reports.title, [features.sales]);
   }
 
   private createModules(features: Features, model) {
@@ -517,10 +567,10 @@ export class StaffManager {
     });
     actor.new();
     actor.linking(this.spec);
-    this.manager.put(actor);
+    this.patch.changed.push(actor);
 
     this.spec.actors.push(actor);
-    this.manager.put(this.spec);
+    this.patch.changed.push(this.spec);
 
     return features.map(f => {
       const feature = this.createFeature(actor, {
@@ -528,7 +578,7 @@ export class StaffManager {
         story: f.story || []
       });
       actor.addFeature(feature);
-      this.manager.put(actor);
+      this.patch.changed.push(actor);
 
       return feature;
     });
@@ -540,8 +590,8 @@ export class StaffManager {
       story: story || []
     });
     feature.linking({spec: actor.spec, actor});
-    feature.new().forEach(o => this.manager.put(o));
-    this.manager.put(feature);
+    feature.new().forEach(o => this.patch.changed.push(o));
+    this.patch.changed.push(feature);
 
     return feature;
   }
@@ -551,10 +601,10 @@ export class StaffManager {
       title: title
     });
     module.linking(this.spec);
-    module.new().forEach(o => this.manager.put(o));
+    module.new().forEach(o => this.patch.changed.push(o));
 
     this.spec.modules.push(module);
-    this.manager.put(this.spec);
+    this.patch.changed.push(this.spec);
 
     features.forEach(f => {
       f.linking({module});
@@ -572,9 +622,9 @@ export class StaffManager {
       model.addEnum(e);
     });
 
-    this.manager.put(model);
+    this.patch.changed.push(model);
     module.model = model;
-    this.manager.put(module);
+    this.patch.changed.push(module);
   }
 
   private createEntity({title, name}, fields: ({ title, required?, type?, reference?, enum? })[] = []): Entity {
@@ -598,14 +648,14 @@ export class StaffManager {
       });
       field.linking({spec: this.spec, entity});
       field.new();
-      this.manager.put(field);
+      this.patch.changed.push(field);
       return field;
     });
 
-    this.manager.put(entity);
+    this.patch.changed.push(entity);
 
     this.spec.model.addEntity(entity);
-    this.manager.put(this.spec.model);
+    this.patch.changed.push(this.spec.model);
 
     return entity;
   }
@@ -627,14 +677,14 @@ export class StaffManager {
       });
       option.linking(enum_);
       option.new();
-      this.manager.put(option);
+      this.patch.changed.push(option);
       return option;
     });
 
-    this.manager.put(enum_);
+    this.patch.changed.push(enum_);
 
     this.spec.model.addEnum(enum_);
-    this.manager.put(this.spec.model);
+    this.patch.changed.push(this.spec.model);
 
     return enum_;
   }
@@ -645,15 +695,15 @@ export class StaffManager {
     });
     sprint.new();
     sprint.linking(this.spec);
-    this.manager.put(sprint);
+    this.patch.changed.push(sprint);
 
     this.spec.sprints.push(sprint);
-    this.manager.put(this.spec);
+    this.patch.changed.push(this.spec);
 
     features.forEach(f => {
       f.linking({sprint});
       sprint.addFeature(f);
-      this.manager.put(sprint);
+      this.patch.changed.push(sprint);
     });
   }
 
@@ -664,10 +714,10 @@ export class StaffManager {
     });
     term.new();
     term.linking(this.spec);
-    this.manager.put(term);
+    this.patch.changed.push(term);
 
     this.spec.terms.push(term);
-    this.manager.put(this.spec);
+    this.patch.changed.push(this.spec);
   }
 
 }

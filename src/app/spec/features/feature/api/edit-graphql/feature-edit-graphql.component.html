@@ -19,7 +19,7 @@
           <ng-template #setPlaygroundTemplate>
             <jnt-button text="Run"
                         [icon]="{position: ui.position.right, icon: ui.icons.chevronRight}"
-                        [jntModal]="{content: setPlaygroundModalTemplate}"></jnt-button>
+                        [jntModal]="{content: setPlaygroundModalTemplate, title: {icon: localUi.icons.graphQl, text: 'GraphQL playground'}}"></jnt-button>
           </ng-template>
           <jnt-button *ngIf="!!spec.tools.graphqlPlaygroundUrl;else setPlaygroundTemplate" text="Run"
                       [icon]="{position: ui.position.right, icon: ui.icons.chevronRight}"

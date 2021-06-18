@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
 import { EditMode } from 'src/enums/edit-mode';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { Module } from 'src/models/spec/planning/module';
 import { LocalUI } from '../../../../enums/local-ui';
 import { Entity } from '../../../../models/spec/orm/entity';

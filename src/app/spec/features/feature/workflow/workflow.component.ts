@@ -7,7 +7,7 @@ import { EditMode } from '../../../../../enums/edit-mode';
 import { LocalUI } from '../../../../../enums/local-ui';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { WorkflowStepState } from '../../../../../models/spec/planning/feature/workflow';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 
 @Component({
   selector: 'spec-feature-workflow',

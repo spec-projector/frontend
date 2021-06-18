@@ -42,6 +42,7 @@ import { AddGraphqlPlaygroundComponent } from './features/feature/api/add-graphq
 import { FeatureApiComponent } from './features/feature/api/feature-api.component';
 import { FeatureEditComponent } from './features/feature/edit/feature-edit.component';
 import { AddFigmaKeyComponent } from './features/feature/frames/add-figma-key/add-figma-key.component';
+import { AddGitLabKeyComponent } from './features/feature/issues/add-gitlab-key/add-gitlab-key.component';
 import { EstimatedTimePipe, SpentTimePipe } from './features/feature/pipes';
 import { FeatureResourcesComponent } from './features/feature/resources/feature-resources.component';
 import { WorkflowStepComponent } from './features/feature/workflow/step/step.component';
@@ -55,7 +56,6 @@ import {
   GroupFeaturesByActorPipe,
   GroupFeaturesByModulesPipe
 } from './features/pipes';
-import { SpecManager } from './managers';
 import { EntitiesComponent } from './model/entities/entities.component';
 import { EntityEditComponent } from './model/entities/entity/edit/entity-edit.component';
 import { EntityComponent } from './model/entities/entity/entity.component';
@@ -72,7 +72,7 @@ import { PrintComponent } from './print/print.component';
 import { SchemeInvalidComponent } from './scheme-invalid/scheme-invalid.component';
 import { MaintenanceComponent } from './settings/maintenance/maintenance.component';
 import { ResourceTypesComponent } from './settings/resources/resource-types.component';
-import { StaffComponent } from './settings/staff/staff.component';
+import { ToolsComponent } from './settings/tools/tools.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +100,7 @@ import { StaffComponent } from './settings/staff/staff.component';
     FeatureIssuesComponent,
     FeatureMarkdownComponent,
     AttachIssueComponent,
+    AddGitLabKeyComponent,
     WorkflowStepComponent,
     FeatureTermsPipe,
     GroupFeaturesByActorPipe,
@@ -142,7 +143,7 @@ import { StaffComponent } from './settings/staff/staff.component';
     SettingsComponent,
     ResourceTypesComponent,
     MaintenanceComponent,
-    StaffComponent,
+    ToolsComponent,
 
     TokensComponent,
 

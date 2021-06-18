@@ -5,7 +5,7 @@ import { ModalService, UI } from '@junte/ui';
 import { generate as shortid } from 'shortid';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { Sprint } from 'src/models/spec/planning/sprint';
 import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../consts';

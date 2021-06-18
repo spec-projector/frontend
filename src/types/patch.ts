@@ -1,6 +1,6 @@
 import { Persistence } from '../decorators/persistence';
 
-export interface Depends {
+export interface Patch {
   changed: Persistence[];
   deleted: Persistence[];
 }

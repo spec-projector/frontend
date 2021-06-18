@@ -2,7 +2,7 @@ import { ArraySerializer } from 'serialize-ts';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
 import { Spec } from 'src/models/spec/spec';
 import { TokenSerializer } from 'src/serializers/token';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Token } from './token';
 import * as assign from 'assign-deep';
@@ -30,7 +30,7 @@ export class Term extends Persistence {
     this.spec = spec;
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this]};
 
     const index = this.spec.terms.findIndex(f => f.id === this.id);
