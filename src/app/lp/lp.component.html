@@ -5,7 +5,7 @@
 </spec-viewport>
 
 <jnt-lp-layout>
-  <jnt-lp-header #header>
+  <jnt-lp-header #lpHeader>
     <ng-template #headerLogoTemplate>
       <a data-logo routerLink="/">
         <img src="assets/images/lp/logo.svg" height="49" width="108">
@@ -57,7 +57,7 @@
     </ng-template>
   </jnt-lp-header>
 
-  <jnt-lp-slide data-welcome [header]="header">
+  <jnt-lp-slide data-welcome [header]="lpHeader">
     <jnt-container>
       <img data-specifications
            src="assets/images/lp/app.png" width="981" height="764">
