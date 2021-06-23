@@ -238,7 +238,7 @@ export class SpecManager {
       const spec = this.spec$.getValue();
       for (const doc of changes.docs) {
         spec.replicate(this.db.local, progress, doc)
-          .subscribe(() => null);
+          .subscribe(() => spec.linking());
       }
     });
   }

@@ -18,7 +18,7 @@
                      i18n-title="@@label.maintenance"
                      [link]="['maintenance']">
       </jnt-menu-item>
-      <jnt-menu-item *ngIf="me.isStaff"
+      <jnt-menu-item *ngIf="me?.isStaff"
                      title="Tools"
                      i18n-title="@@label.tools"
                      [link]="['tools']">
