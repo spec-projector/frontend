@@ -1,5 +1,6 @@
 <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
         (mouseleave)="mode = editMode.view">
+  <jnt-icon [icon]="localUi.icons.actor"></jnt-icon>
   <ng-container [formGroup]="form" *ngIf="mode == editMode.edit; else viewHeader">
     <input #nameRef data-name formControlName="name">
   </ng-container>

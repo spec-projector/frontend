@@ -576,4 +576,14 @@
     <path d="M13.5791 10.4211C14.4511 11.2932 14.4511 12.707 13.5791 13.5791C12.707 14.4511 11.2932 14.4511 10.4211 13.5791C9.54908 12.707 9.54908 11.2932 10.4211 10.4211C11.2932 9.54908 12.707 9.54908 13.5791 10.4211" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 
+  <svg id="actor" width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.8178 21.5039L14.9414 17.9983" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="3.99658" y="3.49634" width="18.0075" height="18.0075" rx="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.1821 21.5039L11.0585 17.9983" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="7.49805" y="9.49878" width="11.0046" height="5.50229" rx="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.2495 12H14.751" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.82861 9.51882C9.26762 7.74337 10.8613 6.4965 12.6902 6.49756H13.3105C15.1394 6.4965 16.7331 7.74337 17.1721 9.51882" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16.9519 15.0012C16.707 17.0003 15.0093 18.5027 12.9952 18.5027C10.9812 18.5027 9.28349 17.0003 9.03857 15.0012" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
 </icons>

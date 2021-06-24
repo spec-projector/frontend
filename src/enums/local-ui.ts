@@ -54,6 +54,7 @@ export class LocalUI {
       active: 'cloud-active:animated:local:stroked'
     },
     localDirty: 'local-dirty:animated:local:stroked',
-    share: 'share:svg:local:stroked'
+    share: 'share:svg:local:stroked',
+    actor: 'actor:svg:local:stroked'
   };
 }
