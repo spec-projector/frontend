@@ -63,6 +63,7 @@ select {
   margin-right: $jnt-gutter-small;
   background: none;
   width: 60px;
+  line-height: 1.5;
 }
 
 input {
@@ -74,7 +75,7 @@ input {
   margin: 0;
   border: none;
   outline: none;
-  height: 20px;
+  height: 21px;
   line-height: 1.2em;
   overflow: hidden;
   background-color: transparent;

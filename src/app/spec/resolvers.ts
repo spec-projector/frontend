@@ -79,7 +79,7 @@ export class FeatureResolver implements Resolve<Feature> {
     const {actor} = route.parent.data as { actor: Actor };
     const {feature} = route.params as { feature: string };
 
-    return actor.features.find(f => f.id === feature);
+    return actor?.features.find(f => f.id === feature);
   }
 }
 
