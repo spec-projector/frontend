@@ -21,7 +21,7 @@ export const SCHEME_VERSION = 6;
 export const PLATFORM_DELAY = 100;
 export const DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
-export const BUILD_HASH = 'v21';
+export const BUILD_HASH = 'v22';
 export const CURRENT_LANGUAGE = detectLanguage();
 
 enum CurrencyCode {
