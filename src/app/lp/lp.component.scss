@@ -27,6 +27,8 @@ $windows-scrollbar-width: 17px;
   position: absolute;
   min-height: 100vh;
   min-width: 100vw;
+  background: url(../../assets/images/lp/bg.svg);
+  background-size: cover;
 
   &[data-device-tags*='windows'] {
     min-width: calc(100vw - #{$windows-scrollbar-width});
@@ -83,8 +85,6 @@ h2 {
 jnt-lp-slide {
   display: flex;
   position: static;
-  background: url(../../assets/images/lp/bg.svg) fixed;
-  background-size: cover;
 
   &[data-welcome] {
     padding-bottom: 0;
