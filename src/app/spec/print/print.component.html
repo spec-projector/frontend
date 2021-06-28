@@ -70,8 +70,8 @@
       </ol>
     </jnt-block>
 
-    <jnt-block title="Features"
-               i18n-title="@@label.features">
+    <jnt-block title="Agreements"
+               i18n-title="@@label.agreements">
       <ol>
         <li *ngFor="let actor of spec.actors; trackBy:trackElement">
           <ng-container *ngIf="actor.features.length > 0">
@@ -89,18 +89,20 @@
                   <b>{{feature.title | joinTokens}}</b>
                   <ol *ngIf="feature.story.length > 0">
                     <li *ngFor="let entry of feature.story; let i = index">
-                      <ng-container [ngSwitch]="consts.language">
-                        <ng-container *ngSwitchDefault>
-                          <ng-container [ngSwitch]="entry.type">
-                            <b *ngSwitchCase="storyEntryType.see">I see</b>
-                            <b *ngSwitchCase="storyEntryType.can">I can</b>
+                      <ng-container [ngSwitch]="entry.type">
+                        <ng-container *ngSwitchCase="storyEntryType.see">
+                          <ng-container [ngSwitch]="consts.language">
+                            <b *ngSwitchCase="language.ru">Я вижу</b>
+                            <b *ngSwitchDefault>I see</b>
                           </ng-container>
+                          &nbsp;
                         </ng-container>
-                        <ng-container *ngSwitchCase="language.ru">
-                          <ng-container [ngSwitch]="entry.type">
-                            <b *ngSwitchCase="storyEntryType.see">Я вижу</b>
-                            <b *ngSwitchCase="storyEntryType.can">Я могу</b>
+                        <ng-container *ngSwitchCase="storyEntryType.can">
+                          <ng-container [ngSwitch]="consts.language">
+                            <b *ngSwitchCase="language.ru">Я могу</b>
+                            <b *ngSwitchDefault>I can</b>
                           </ng-container>
+                          &nbsp;
                         </ng-container>
                       </ng-container>
                       <spec-tokens [tokens]="entry.description" [spec]="spec"></spec-tokens>

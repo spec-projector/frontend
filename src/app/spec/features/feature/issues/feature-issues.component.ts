@@ -46,6 +46,7 @@ export class FeatureIssuesComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(({project, feature}) =>
       [this.project, this.feature] = [project, feature]);
+    console.log(this.feature);
   }
 
   add(issue: Issue) {
