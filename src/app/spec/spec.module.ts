@@ -54,7 +54,7 @@ import {
   FeaturesWithoutSprintPipe,
   FeatureTermsPipe,
   GroupFeaturesByActorPipe,
-  GroupFeaturesByModulesPipe
+  GroupFeaturesByModulesPipe,
 } from './features/pipes';
 import { EntitiesComponent } from './model/entities/entities.component';
 import { EntityEditComponent } from './model/entities/entity/edit/entity-edit.component';
@@ -73,6 +73,7 @@ import { SchemeInvalidComponent } from './scheme-invalid/scheme-invalid.componen
 import { MaintenanceComponent } from './settings/maintenance/maintenance.component';
 import { ResourceTypesComponent } from './settings/resources/resource-types.component';
 import { ToolsComponent } from './settings/tools/tools.component';
+import { SprintPricePipe } from './sprints/pipes';
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { ToolsComponent } from './settings/tools/tools.component';
     JoinTokensPipe,
 
     FeaturePricePipe,
+    SprintPricePipe,
     ActorPricePipe,
     SpecPricePipe,
 

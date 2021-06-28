@@ -1,15 +1,18 @@
 <ng-template #noResourceTypesTemplate>
-  <p [ngSwitch]="consts.language">
-    <ng-container *ngSwitchDefault>
-      Resources are used for implementing features.
-    </ng-container>
-    <ng-container *ngSwitchCase="language.ru">
-      Ресурсы используемые для расширения возможности.
-    </ng-container>
-  </p>
-  <jnt-button text="Fill resources"
-              [icon]="ui.icons.add"
-              (click)="fillResources()"></jnt-button>
+  <jnt-stack>
+    <p [ngSwitch]="consts.language">
+      <ng-container *ngSwitchDefault>
+        Resources are used for estimating features cost.
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Ресурсы используются для оценки стоимости функций.
+      </ng-container>
+    </p>
+    <jnt-button text="Fill resources"
+                i18n-text="@@action.fill_resources"
+                [icon]="ui.icons.add"
+                (click)="fillResources()"></jnt-button>
+  </jnt-stack>
 </ng-template>
 <ng-container *ngIf="resourceTypesArray.controls.length > 0;else noResourceTypesTemplate"
               [formGroup]="form">

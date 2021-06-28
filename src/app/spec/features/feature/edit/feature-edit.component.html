@@ -20,15 +20,6 @@
                    [value]="count"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
-      <jnt-menu-item *ngIf="feature.workflow.design !== workflowStepState.missed"
-                     title="Design"
-                     i18n-title="@@label.design"
-                     [link]="['frames']"
-                     [icon]="ui.icons.figma">
-        <jnt-badge *ngIf="feature.frames.length as count"
-                   [value]="count"
-                   [color]="ui.color.purpleLighten"></jnt-badge>
-      </jnt-menu-item>
       <jnt-menu-item *ngIf="feature.workflow.resources !== workflowStepState.missed"
                      title="Resources"
                      i18n-title="@@label.resources"
@@ -36,6 +27,15 @@
                      [link]="['resources']">
         <jnt-badge *ngIf="feature.resources.length > 0"
                    [value]="(feature.resources | estimatedTime:version) + 'h'"
+                   [color]="ui.color.purpleLighten"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item *ngIf="feature.workflow.design !== workflowStepState.missed"
+                     title="Design"
+                     i18n-title="@@label.design"
+                     [link]="['frames']"
+                     [icon]="ui.icons.figma">
+        <jnt-badge *ngIf="feature.frames.length as count"
+                   [value]="count"
                    [color]="ui.color.purpleLighten"></jnt-badge>
       </jnt-menu-item>
       <jnt-menu-item *ngIf="feature.workflow.api !== workflowStepState.missed"

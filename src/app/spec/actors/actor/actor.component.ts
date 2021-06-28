@@ -38,6 +38,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
 
+  private _mode = EditMode.view;
   private _actor: Actor;
   private subscriptions: {
     actor?: Subscription,
@@ -48,7 +49,14 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   added: string;
 
   @Input()
-  mode = EditMode.view;
+  set mode(mode: EditMode) {
+    this._mode = mode;
+    this.cd.detectChanges();
+  }
+
+  get mode() {
+    return this._mode;
+  }
 
   nameControl = this.fb.control(null);
   form = this.fb.group({
@@ -87,13 +95,11 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
               private cd: ChangeDetectorRef,
               public route: ActivatedRoute,
               public router: Router) {
-
+    this.cd.detach();
   }
 
   ngAfterViewInit() {
-    if (!!this.nameRef) {
-      this.nameRef.nativeElement.focus();
-    }
+    this.nameRef?.nativeElement.focus();
   }
 
   ngOnDestroy() {
@@ -121,6 +127,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
 
     this.added = feature.id;
     this.version++;
+
     this.cd.detectChanges();
   }
 
@@ -144,9 +151,10 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
     links.deleted.forEach(o => this.manager.remove(o));
     links.changed.forEach(o => this.manager.put(o));
 
+    this.modal.close();
+
     this.version++;
     this.cd.detectChanges();
-    this.modal.close();
   }
 
 }

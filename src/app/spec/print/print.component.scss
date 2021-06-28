@@ -1,54 +1,18 @@
 @import "src/variables";
-@import "~@junte/ui/lib/assets/styles/jnt-common";
 
 :host {
   display: block;
 }
 
-h1 {
-  font-size: 30px;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-h3 {
-  font-size: 16px;
-}
-
-[data-content] {
-  li {
+ol {
+  > li {
     padding: $jnt-gutter-tiny 0;
+    border-bottom: 1px dotted $jnt-gray-400-color;
   }
 }
 
-[data-price] {
-  display: flex;
-  border-bottom: 1px dotted $jnt-gray-400-color;
-
-  :nth-child(1) {
-    flex: 1;
-    color: $jnt-muted-color;
-    &[data-has-story='true'] {
-      color: $jnt-primary-text-color;
-    }
-  }
-
-  &[data-total] {
-    :nth-child(1) {
-      color: $jnt-primary-text-color;
-    }
-  }
-
-  :nth-child(2) {
-    font-weight: bold;
-  }
-}
-
-[data-actor] > li {
-  margin-bottom: 20px;
-  font-size: 16px;
+ol > li > ol > li {
+  border: none;
 }
 
 [data-feature] {
@@ -63,12 +27,4 @@ h3 {
   padding: 1px 10px 1px;
   font-weight: bold;
   border-radius: 2px;
-}
-
-[type='see'] {
-  color: $jnt-green-dark-color;
-}
-
-[type='can'] {
-  color: $jnt-orange-color;
 }
