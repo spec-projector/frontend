@@ -111,7 +111,7 @@
             <ng-template #checkboxLabelTemplate>
               <div data-agree (click)="agreementControl.setValue(true)">
                 <div i18n="@@action.accept_documents">While registering I agree and accept:</div>
-                <small *ngIf="tariff.price <= 0"
+                <small *ngIf="tariff?.price <= 0"
                        i18n="@@message.bank_card_not_mandatory">Bank card details are not required</small>
               </div>
             </ng-template>
