@@ -586,4 +586,22 @@
     <path d="M16.9519 15.0012C16.707 17.0003 15.0093 18.5027 12.9952 18.5027C10.9812 18.5027 9.28349 17.0003 9.03857 15.0012" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 
+  <svg id="boolean" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.5241 7.47699C16.8271 8.25999 17.0001 9.10899 17.0001 9.99999C17.0001 13.866 13.8661 17 10.0001 17C9.10907 17 8.26007 16.827 7.47607 16.523" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.214 3.786C12.251 3.287 11.16 3 10 3C6.134 3 3 6.134 3 10C3 11.16 3.287 12.251 3.786 13.214" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.9497 9.05025C21.6834 11.7839 21.6834 16.2161 18.9497 18.9497C16.2161 21.6834 11.7839 21.6834 9.05025 18.9497C6.31658 16.2161 6.31658 11.7839 9.05025 9.05025C11.7839 6.31658 16.2161 6.31658 18.9497 9.05025" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg id="string" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.7791 15.9207L9.16284 16.5369C8.83596 16.8642 8.39238 17.0481 7.92983 17.0481C7.46728 17.0481 7.0237 16.8642 6.69682 16.5369L5.4633 15.3014C5.13604 14.9745 4.95215 14.5309 4.95215 14.0684C4.95215 13.6058 5.13604 13.1623 5.4633 12.8354L6.07956 12.2191" stroke-linecap="round" stroke-linejoin="round"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4927 6.13254L15.8666 3.50745C15.2176 2.85764 14.1758 2.82264 13.4846 3.42741L6.2496 9.75905C5.88612 10.0768 5.67065 10.5311 5.65454 11.0136C5.63842 11.4962 5.82309 11.9638 6.16457 12.3051L9.69904 15.8346C10.0402 16.1759 10.5075 16.3605 10.9898 16.3446C11.4721 16.3286 11.9262 16.1136 12.2441 15.7505L18.5757 8.51453C19.1787 7.82222 19.1424 6.78118 18.4927 6.13254Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2.99634 21.0037H21.0038" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7.48221 16.984L6.42477 18.0025H4.23085L2.99634 16.5369L5.01718 14.515" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <svg id="number" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2.99634" y="4.49686" width="18.0075" height="16.5069" rx="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.2883 10.9996H13.7898L10.9486 16.0017" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
 </icons>

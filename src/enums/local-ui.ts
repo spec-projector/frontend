@@ -42,6 +42,9 @@ export class LocalUI {
     quote: 'quote:svg:local:stroked',
     add: 'add:svg:local:stroked',
     dashboard: 'dashboard:svg:local:stroked',
+    boolean: 'boolean:svg:local:stroked',
+    string: 'string:svg:local:stroked',
+    number: 'number:svg:local:stroked',
     workflow: {
       doing: 'doing:svg:local:stroked',
       done: 'done:svg:local:stroked',
