@@ -17,7 +17,6 @@ import { LpComponent } from './lp.component';
 import { TariffsModule } from '../subscription/tariffs/tarrifs.module';
 import { CookieAgreementComponent } from './cookie/cookie-agreement.component';
 import { ReviewsComponent } from './reviews/reviews.component';
-import { ViewportDirective, ViewportRuleDirective } from './viewport/viewport.directive';
 import { ContractComponent } from './features/contract/contract.component';
 import { CostFeaturesComponent } from './features/cost-features/cost-features.component';
 import { DesignComponent } from './features/design/design.component';
@@ -32,8 +31,6 @@ import { WorkflowComponent } from './features/workflow/workflow.component';
     FeaturesComponent,
     ReviewsComponent,
     CookieAgreementComponent,
-    ViewportRuleDirective,
-    ViewportDirective,
     ContractComponent,
     CostFeaturesComponent,
     DesignComponent,
