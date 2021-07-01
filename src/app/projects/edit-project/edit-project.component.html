@@ -36,7 +36,7 @@
 
       <jnt-form-item *ngIf="!project">
         <jnt-form-control name="demo">
-          <jnt-switch formControlName="demo">
+          <jnt-switch formControlName="demo" [analytics]="{ type: analyticsType.goal, goal: 'addProjectWithDemo' }">
             <ng-template #switchLabelTemplate>
               <div data-demo>
                 Заполнить данными для демонстрации
@@ -118,7 +118,8 @@
       <jnt-button [type]="ui.button.type.submit"
                   text="Save"
                   i18n-text="@@action.save"
-                  [icon]="ui.icons.save"></jnt-button>
+                  [icon]="ui.icons.save"
+                  [analytics]="{ type: analyticsType.goal, goal: 'addProjectSuccess' }"></jnt-button>
     </jnt-stack>
   </ng-template>
 </jnt-form>

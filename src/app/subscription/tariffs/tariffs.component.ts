@@ -9,6 +9,7 @@ import { LocalUI } from '../../../enums/local-ui';
 import { PagingTariffs, Tariff, TariffFeatures } from '../../../models/tariff';
 import { MeUser } from '../../../models/user';
 import { TariffsGQL } from './graphql';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum Pages {
   buy = 1,
@@ -27,6 +28,7 @@ export class TariffsComponent implements OnInit {
   localUi = LocalUI;
   tariffFeatures = TariffFeatures;
   today = new Date();
+  analyticsType = AnalyticsType;
 
   progress = {loading: false};
   reference: { popover?: PopoverInstance } = {};

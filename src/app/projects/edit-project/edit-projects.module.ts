@@ -12,6 +12,7 @@ import {
     TabsModule
 } from '@junte/ui';
 import { EditProjectComponent } from './edit-project.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { EditProjectComponent } from './edit-project.component';
         ImageUploaderModule,
         PictureModule,
         SwitcherModule,
+
+        AnalyticsDirectivesModule
     ]
 })
 export class ProjectEditModule {

@@ -31,7 +31,8 @@
                   i18n-text="@@action.add_frame"
                   [icon]="ui.icons.add"
                   [jntPopover]="{title: i18n.addFrame, contentTemplate: addFrameTemplate, trigger: ui.trigger.click}"
-                  (attached)="reference.popover = $event"></jnt-button>
+                  (attached)="reference.popover = $event"
+                  [analytics]="{ type: analyticsType.goal, goal: 'featureFigmaAttach' }"></jnt-button>
       <jnt-button text="Refresh all"
                   i18n-text="@@action.refresh_all"
                   [icon]="ui.icons.reload"

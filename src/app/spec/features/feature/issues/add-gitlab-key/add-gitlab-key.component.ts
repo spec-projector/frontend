@@ -9,6 +9,7 @@ import { Project, ProjectUpdate } from '../../../../../../models/project';
 import { BackendError } from '../../../../../../types/gql-errors';
 import { catchGQLErrors } from '../../../../../../utils/gql-errors';
 import { SetGitLabTokenGQL } from './graphql';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-add-gitlab-key',
@@ -20,6 +21,7 @@ export class AddGitLabKeyComponent {
   ui = UI;
   language = Language;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   progress = {saving: false};
   errors: BackendError[] = [];

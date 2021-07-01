@@ -14,6 +14,7 @@ import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { catchGQLErrors } from '../../../../../utils/gql-errors';
 import { SpecManager } from '../../../managers/spec';
 import { UploadFigmaAssetGQL } from './frames.graphql';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-feature-frames',
@@ -28,6 +29,7 @@ export class FeatureFramesComponent implements OnInit {
   env = environment;
   consts = {language: CURRENT_LANGUAGE};
   i18n = {addFrame: $localize`:@@label.add_frame:Add frame`};
+  analyticsType = AnalyticsType;
 
   private _feature: Feature;
 

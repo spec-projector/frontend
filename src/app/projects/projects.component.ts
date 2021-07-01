@@ -11,6 +11,7 @@ import { UI_DELAY } from '../../consts';
 import { LocalUI } from '../../enums/local-ui';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { MeUser } from '../../models/user';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export const I18N_ADD_PROJECT = $localize`:@@label.add_project:Add project`;
 export const I18N_EDIT_PROJECT = $localize`:@@label.edit_project:Edit project`;
@@ -25,6 +26,7 @@ export class ProjectsComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   skills = Skills;
+  analyticsType = AnalyticsType;
 
   private filter: ProjectsFilter;
 

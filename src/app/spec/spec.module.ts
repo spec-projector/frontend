@@ -74,6 +74,7 @@ import { MaintenanceComponent } from './settings/maintenance/maintenance.compone
 import { ResourceTypesComponent } from './settings/resources/resource-types.component';
 import { ToolsComponent } from './settings/tools/tools.component';
 import { SprintPricePipe } from './sprints/pipes';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
@@ -176,7 +177,9 @@ import { SprintPricePipe } from './sprints/pipes';
     ProjectEditModule,
     ProjectShareModule,
 
-    SpecRoutingModule
+    SpecRoutingModule,
+
+    AnalyticsDirectivesModule
   ]
 })
 export class SpecModule {

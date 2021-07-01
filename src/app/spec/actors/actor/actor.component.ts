@@ -22,6 +22,7 @@ import { trackElement } from 'src/utils/templates';
 import { CURRENT_LANGUAGE } from '../../../../consts';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from '../../../../enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-actor',
@@ -37,6 +38,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   language = Language;
   trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   private _mode = EditMode.view;
   private _actor: Actor;

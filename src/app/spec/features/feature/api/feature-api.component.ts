@@ -9,6 +9,7 @@ import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { EditMode } from '../../../../../enums/edit-mode';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { SpecManager } from '../../../managers/spec';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 const GRAPHQL_TEXT = `
 query ($id: ID) {
@@ -31,6 +32,7 @@ export class FeatureApiComponent implements OnInit {
   language = Language;
   editMode = EditMode;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   feature: Feature;
   selected: { query: GraphQL } = {query: null};

@@ -13,6 +13,7 @@ import {
   StackModule
 } from '@junte/ui';
 import { TariffsComponent } from './tariffs.component';
+import {AnalyticsDirectivesModule} from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { TariffsComponent } from './tariffs.component';
     DatePeriodModule,
     SkeletonModule,
     CheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    AnalyticsDirectivesModule
   ]
 })
 export class TariffsModule {

@@ -10,6 +10,7 @@ import { AccentToken, TextToken } from 'src/models/spec/planning/token';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { StoryEntry, StoryEntryType } from '../../../../../models/spec/planning/feature/story';
 import { FeatureStoryEntryComponent } from './entry/story-entry.component';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-feature-story',
@@ -23,6 +24,7 @@ export class FeatureStoryComponent implements OnInit {
   language = Language;
   storyEntryType = StoryEntryType;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   feature: Feature;
 
