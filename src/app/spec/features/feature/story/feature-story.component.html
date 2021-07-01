@@ -47,7 +47,8 @@
       <jnt-button text="Add story"
                   i18n-text="@@action.add_story"
                   [icon]="ui.icons.add"
-                  (click)="fill()"></jnt-button>
+                  (click)="fill()"
+                  [analytics]="{ type: analyticsType.goal, goal: 'featureAddStory' }"></jnt-button>
     </jnt-stack>
   </ng-template>
 

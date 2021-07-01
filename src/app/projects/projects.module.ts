@@ -16,29 +16,32 @@ import {
 import { ProjectEditModule } from './edit-project/edit-projects.module';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
     ProjectsComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        ArrayPipesModule,
-        AppLayoutModule,
-        GridModule,
-        ButtonModule,
-        StackModule,
-        CardModule,
-        MenuModule,
-        LinkModule,
-        SkeletonModule,
+  imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      ArrayPipesModule,
+      AppLayoutModule,
+      GridModule,
+      ButtonModule,
+      StackModule,
+      CardModule,
+      MenuModule,
+      LinkModule,
+      SkeletonModule,
 
-        ProjectEditModule,
-        ProjectsRoutingModule,
-        EmptyModule,
-        PictureModule
-    ]
+      ProjectEditModule,
+      ProjectsRoutingModule,
+      EmptyModule,
+      PictureModule,
+
+      AnalyticsDirectivesModule
+  ]
 })
 export class ProjectsModule {
 

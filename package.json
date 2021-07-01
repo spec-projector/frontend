@@ -60,7 +60,8 @@
     "transform-pouch": "^1.1.4",
     "tslib": "1.10.0",
     "uuid": "^3.3.2",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "ng-yandex-metrika": "^4.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.0-rc.9",

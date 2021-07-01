@@ -2,7 +2,8 @@
            [align]="ui.align.center">
   <div data-title>{{title}}</div>
   <jnt-icon data-identity [icon]="icon"></jnt-icon>
-  <button (click)="next()">
+  <button (click)="next()"
+          [analytics]="{ type: analyticsType.goal, goal: 'featureWorkflowStep' }">
     <jnt-icon [icon]="state === workflowStepState.doing
                       ? localUi.icons.workflow.doing : (state === workflowStepState.done
                       ? localUi.icons.workflow.done : localUi.icons.workflow.missed)">

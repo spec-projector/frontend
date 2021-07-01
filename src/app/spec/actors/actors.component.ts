@@ -12,6 +12,7 @@ import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../consts';
 import { LocalUI } from '../../../enums/local-ui';
 import { trackElement } from '../../../utils/templates';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-actors',
@@ -27,6 +28,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
   editMode = EditMode;
   trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   private destroyed$ = new Subject();
   private _spec: Spec;

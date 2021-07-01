@@ -12,6 +12,7 @@ import { Project, ProjectUpdate } from '../../../models/project';
 import { BackendError } from '../../../types/gql-errors';
 import { catchGQLErrors } from '../../../utils/gql-errors';
 import { CreateProjectGQL, UpdateProjectGQL } from '../graphql';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-edit-project',
@@ -22,6 +23,7 @@ export class EditProjectComponent implements AfterViewInit {
 
   ui = UI;
   skills = Skills;
+  analyticsType = AnalyticsType;
 
   private _skill = Skills.all;
   private _project: Project;
