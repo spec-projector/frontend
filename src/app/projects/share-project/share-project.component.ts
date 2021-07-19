@@ -46,7 +46,7 @@ export class ShareProjectComponent {
       isPublic: project.isPublic,
       publicRole: project.publicRole,
       publicPermissions: project.publicPermissions,
-      publicLink: ['https://specprojector.com/projects', project.id].join('/')
+      publicLink: ['https://app.specprojector.com/projects', project.id].join('/')
     });
     project.members.forEach(m => {
       const g = this.createMemberGroup(m.user.id, m.role, m.permissions);
