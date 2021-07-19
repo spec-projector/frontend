@@ -4,7 +4,6 @@ import { AuthToken } from 'src/models/auth-token';
 import { LOCAL_MODE } from '../consts';
 
 const AUTH_TOKEN_KEY = 'auth_token';
-const GRAPHQL_URL = 'https://app.specprojector.com/api/graphql';
 
 @Injectable({providedIn: 'root'})
 export class AppConfig {
@@ -30,6 +29,4 @@ export class AppConfig {
   get token() {
     return this.token$.getValue();
   }
-
-  graphqlUrl = LOCAL_MODE ? GRAPHQL_URL : `${location.origin}/api/graphql`;
 }

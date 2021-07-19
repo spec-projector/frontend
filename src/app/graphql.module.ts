@@ -1,13 +1,14 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Inject, LOCALE_ID, NgModule } from '@angular/core';
-import { Router } from '@angular/router';
-import { Apollo, ApolloModule } from 'apollo-angular';
-import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink } from 'apollo-link';
-import { ErrorResponse, onError } from 'apollo-link-error';
-import { Language } from '../enums/language';
-import { AppConfig } from './app-config';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Inject, LOCALE_ID, NgModule} from '@angular/core';
+import {Router} from '@angular/router';
+import {Apollo, ApolloModule} from 'apollo-angular';
+import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {ApolloLink} from 'apollo-link';
+import {ErrorResponse, onError} from 'apollo-link-error';
+import {Language} from '../enums/language';
+import {AppConfig} from './app-config';
+import {environment} from '../environments/environment';
 
 function getBackendLanguage(locale): string {
   switch (locale) {
@@ -35,7 +36,7 @@ export class GraphQLModule {
               apollo: Apollo,
               httpLink: HttpLink,
               router: Router) {
-    const http = httpLink.create({uri: config.graphqlUrl});
+    const http = httpLink.create({uri: environment.graphql});
     const authLink = new ApolloLink((operation, forward) => {
       const headers = {
         'Accept-Language': getBackendLanguage(locale)
