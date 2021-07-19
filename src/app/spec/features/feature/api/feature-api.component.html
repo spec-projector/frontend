@@ -2,10 +2,12 @@
   <jnt-menu [orientation]="ui.orientation.vertical">
     <jnt-menu-item title="Graph QL"
                    [icon]="localUi.icons.graphQl"
-                   (click)="addGraphQL()"></jnt-menu-item>
+                   (click)="addGraphQL()"
+                   [analytics]="{ type: analyticsType.goal, goal: 'featureAddGraphQlApi' }"></jnt-menu-item>
     <jnt-menu-item title="REST API"
                    [icon]="localUi.icons.rest"
-                   [disabled]="true"></jnt-menu-item>
+                   [disabled]="true"
+                   [analytics]="{ type: analyticsType.goal, goal: 'featureAddRestApi' }"></jnt-menu-item>
   </jnt-menu>
 </ng-template>
 
@@ -54,7 +56,8 @@
                     [icon]="localUi.icons.add"
                     [outline]="ui.outline.transparent"
                     [jntPopover]="{contentTemplate: apiTypeTemplate, trigger: ui.trigger.click}"
-                    (attached)="instance.popover = $event"></jnt-button>
+                    (attached)="instance.popover = $event"
+                    [analytics]="{ type: analyticsType.goal, goal: 'featureAddApi' }"></jnt-button>
       </jnt-card>
     </jnt-col>
   </jnt-row>

@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { Entity } from '../../../../../../models/spec/orm/entity';
 import { EntityField } from '../../../../../../models/spec/orm/entity-field';

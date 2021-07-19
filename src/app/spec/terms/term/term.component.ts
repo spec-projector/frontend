@@ -10,16 +10,11 @@ import {
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { merge, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
-import { SpecManager } from 'src/app/spec/managers';
 import { Term } from 'src/models/spec/planning/term';
 import { Token } from 'src/models/spec/planning/token';
-
-class TermEditMode {
-  title: EditMode;
-  description: EditMode;
-}
 
 @Component({
   selector: 'spec-term',
@@ -33,18 +28,16 @@ export class TermComponent implements AfterViewInit, OnDestroy {
   editMode = EditMode;
 
   private _term: Term;
+  private _mode: EditMode = EditMode.view;
   private subscriptions: {
     term?: Subscription,
     form?: Subscription
   } = {};
-  private _mode: TermEditMode = {
-    title: EditMode.view,
-    description: EditMode.view
-  };
 
   @Input()
-  set mode(mode: Partial<TermEditMode>) {
-    Object.assign(this._mode, mode);
+  set mode(mode: EditMode) {
+    this._mode = mode;
+    this.cd.detectChanges();
   }
 
   get mode() {
@@ -62,7 +55,7 @@ export class TermComponent implements AfterViewInit, OnDestroy {
     this.updateForm();
 
     this.subscriptions.term?.unsubscribe();
-    this.subscriptions.term = merge(term.replicated$, term.updated$)
+    this.subscriptions.term = term.replicated$
       .subscribe(() => this.updateForm());
 
     this.subscriptions.form?.unsubscribe();
@@ -86,12 +79,11 @@ export class TermComponent implements AfterViewInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private cd: ChangeDetectorRef,
               public manager: SpecManager) {
+    this.cd.detach();
   }
 
   ngAfterViewInit() {
-    if (!!this.titleRef) {
-      this.titleRef.nativeElement.focus();
-    }
+    this.titleRef?.nativeElement.focus();
   }
 
   ngOnDestroy() {
@@ -105,7 +97,8 @@ export class TermComponent implements AfterViewInit, OnDestroy {
       title: title,
       description: description.map(t => t.toString()).join(' ')
     }, {emitEvent: false});
-    this.cd.markForCheck();
+
+    this.cd.detectChanges();
   }
 
 }

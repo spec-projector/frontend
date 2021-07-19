@@ -1,5 +1,15 @@
-<ng-template #addStoryTemplate>
-  <jnt-stack [align]="ui.align.stretch">
+<jnt-stack [align]="ui.align.stretch">
+  <p [ngSwitch]="consts.language">
+    <ng-container *ngSwitchDefault>
+      As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title | joinTokens}}</b>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Как <b>{{feature.actor.name}}</b> я хочу <b>{{feature.title | joinTokens}}</b>
+    </ng-container>
+  </p>
+
+  <ng-template #addStoryTemplate>
+
     <jnt-message [icon]="ui.icons.question"
                  [scheme]="ui.scheme.secondary">
       <jnt-stack [ngSwitch]="consts.language">
@@ -24,7 +34,7 @@
           <p>Как <b>Менеджер</b> Я хочу <b>Загрузить аватар</b></p>
           <ol>
             <li><b>Я вижу</b> личный кабинет</li>
-            <li><b>Я вижу</b> нажать на аватар в главном меню</li>
+            <li><b>Я могу</b> нажать на аватар в главном меню</li>
             <li><b>Я вижу</b> выпадающее меню</li>
             <li><b>Я могу</b> выбрать пункт <b>личные настройки</b></li>
           </ol>
@@ -37,91 +47,90 @@
       <jnt-button text="Add story"
                   i18n-text="@@action.add_story"
                   [icon]="ui.icons.add"
-                  (click)="fill()"></jnt-button>
+                  (click)="fill()"
+                  [analytics]="{ type: analyticsType.goal, goal: 'featureAddStory' }"></jnt-button>
     </jnt-stack>
-  </jnt-stack>
-</ng-template>
+  </ng-template>
 
-<ng-container *ngIf="feature.story.length;else addStoryTemplate">
-  <jnt-stack>
-    <div data-syntax *ngIf="(manager.mode$ | async) === editMode.edit" [ngSwitch]="consts.language">
-      <ng-container *ngSwitchDefault>
-        <p>Use keys
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↑↓"></jnt-label>
-          for moving
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↦"></jnt-label>
-          for switching and
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↵"></jnt-label>
-          to add a line.
-        </p>
-        <p>Use special syntax:</p>
-        <ul>
-          <li>
-            <code>[[team]]</code> for links to terms;
-          </li>
-          <li>
-            <code>[@object]]</code> for links to model objects.
-          </li>
-        </ul>
-      </ng-container>
+  <ng-container *ngIf="feature.story.length;else addStoryTemplate">
+    <div data-syntax *ngIf="(manager.mode$ | async) === editMode.edit"
+         [ngSwitch]="consts.language">
+      <ng-container [ngSwitch]="consts.language">
+        <ng-container *ngSwitchDefault>
+          <p>Use keys
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↑↓"></jnt-label>
+            for moving
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↦"></jnt-label>
+            for switching and
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↵"></jnt-label>
+            to add a line
+            <jnt-label label="?"
+                       [color]="ui.color.paleNavy"
+                       [jntPopover]="{contentTemplate: syntaxHelpEnTemplate}"></jnt-label>
+          </p>
+          <ng-template #syntaxHelpEnTemplate>
+            <p>Use special syntax:</p>
+            <ul>
+              <li>
+                <code>[[team]]</code> for links to terms;
+              </li>
+              <li>
+                <code>[@object]]</code> for links to model objects.
+              </li>
+            </ul>
+          </ng-template>
+        </ng-container>
 
-      <ng-container *ngSwitchCase="language.ru">
-        <p>Используйте клавиши
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↑↓"></jnt-label>
-          для перемещения
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↦"></jnt-label>
-          переключения и
-          <jnt-label [size]="ui.size.small"
-                     [color]="ui.color.paleNavy"
-                     label="↵"></jnt-label>
-          добавления линии
-          <jnt-label label="?"
-                     [color]="ui.color.paleNavy"
-                     [jntPopover]="{contentTemplate: syntaxHelpRuTemplate}"></jnt-label>
-        </p>
-        <ng-template #syntaxHelpRuTemplate>
-          <p>Используйте специальный синтаксис:</p>
-          <ul>
-            <li>
-              <code>[[термин]]</code> для ссылок на термины;
-            </li>
-            <li>
-              <code>[@объект]]</code> для ссылок на объекты модели данных.
-            </li>
-          </ul>
-        </ng-template>
+        <ng-container *ngSwitchCase="language.ru">
+          <p>Используйте клавиши
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↑↓"></jnt-label>
+            для перемещения
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↦"></jnt-label>
+            переключения и
+            <jnt-label [size]="ui.size.small"
+                       [color]="ui.color.paleNavy"
+                       label="↵"></jnt-label>
+            добавления линии
+            <jnt-label label="?"
+                       [color]="ui.color.paleNavy"
+                       [jntPopover]="{contentTemplate: syntaxHelpRuTemplate}"></jnt-label>
+          </p>
+          <ng-template #syntaxHelpRuTemplate>
+            <p>Используйте специальный синтаксис:</p>
+            <ul>
+              <li>
+                <code>[[термин]]</code> для ссылок на термины;
+              </li>
+              <li>
+                <code>[@объект]]</code> для ссылок на объекты модели данных.
+              </li>
+            </ul>
+          </ng-template>
+        </ng-container>
       </ng-container>
     </div>
-    <p [ngSwitch]="consts.language">
-      <ng-container *ngSwitchDefault>
-        As a <b>{{feature.actor.name}}</b> I want <b>{{feature.title | joinTokens}}</b>
-      </ng-container>
-      <ng-container *ngSwitchCase="language.ru">
-        Как <b>{{feature.actor.name}}</b> я хочу <b>{{feature.title | joinTokens}}</b>
-      </ng-container>
-    </p>
-  </jnt-stack>
-  <ol data-story>
-    <li *ngFor="let entry of feature.story; let i = index">
-      <div *ngIf="entry.type !== storyEntryType.section">{{i + 1}}</div>
-      <spec-story-entry #storyEntry [entry]="entry"
-                        [spec]="feature.spec"
-                        (changed)="edit(i, $event)"
-                        (up)="focus(i, i - 1)"
-                        (down)="focus(i, i + 1)"
-                        (finished)="add(i)"
-                        (deleted)="delete(i)">
-      </spec-story-entry>
-    </li>
-  </ol>
-</ng-container>
+    <ol data-story>
+      <li *ngFor="let entry of feature.story; let i = index">
+        <div *ngIf="entry.type !== storyEntryType.section">{{i + 1}}</div>
+        <spec-story-entry #storyEntry [entry]="entry"
+                          [spec]="feature.spec"
+                          (changed)="edit(i, $event)"
+                          (up)="focus(i, i - 1)"
+                          (down)="focus(i, i + 1)"
+                          (finished)="add(i)"
+                          (deleted)="delete(i)">
+        </spec-story-entry>
+      </li>
+    </ol>
+  </ng-container>
+</jnt-stack>

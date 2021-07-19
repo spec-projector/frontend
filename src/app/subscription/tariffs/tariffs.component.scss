@@ -2,6 +2,7 @@
 @import '~@junte/ui/lib/assets/styles/elements/icon';
 @import '~@junte/ui/lib/assets/styles/layout/card';
 @import '~@junte/ui/lib/assets/styles/layout/skeleton';
+@import '~@junte/ui/lib/assets/styles/navigation/link';
 
 $jnt-ng-deep: true;
 
@@ -9,7 +10,7 @@ $jnt-ng-deep: true;
   display: block;
   position: relative;
   z-index: 1;
-  @include jnt-skeleton((card: (height: 300px)));
+  @include jnt-skeleton((card: (height: 580px)));
   @include jnt-card((background: rgba($jnt-primary-background, 0.6), corner: 16px));
 }
 
@@ -88,4 +89,9 @@ $jnt-ng-deep: true;
     padding-top: $jnt-gutter-normal;
   }
 
+}
+
+[data-documents] {
+  padding-left: $jnt-gutter-normal;
+  @include jnt-link((font-size: $jnt-font-size-small, icon: (size: 16px)));
 }

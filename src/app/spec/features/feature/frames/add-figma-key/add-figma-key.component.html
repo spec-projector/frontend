@@ -20,7 +20,8 @@
                     text="Save"
                     i18n-text="@@action.save"
                     [width]="ui.width.fluid"
-                    [icon]="ui.icons.save"></jnt-button>
+                    [icon]="ui.icons.save"
+                    [analytics]="{ type: analyticsType.goal, goal: 'featureFigmaTokenSave' }"></jnt-button>
       </jnt-col>
     </jnt-row>
   </jnt-form>
@@ -47,7 +48,7 @@
       </jnt-timeline>
     </ng-container>
     <ng-container *ngSwitchCase="language.ru">
-      <p>Для настройки интеграции с <b>Figma</b> пожалуйста, выполните следующие щаги:</p>
+      <p>Для настройки интеграции с <b>Figma</b> пожалуйста, выполните следующие шаги:</p>
       <jnt-timeline>
         <jnt-timeline-item title="Получите Figma API ключ">
           <ng-template #timelineItemContentTemplate>

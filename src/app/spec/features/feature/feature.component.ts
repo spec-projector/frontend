@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnDestr
 import { FormBuilder } from '@angular/forms';
 import { UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
 import { Feature } from 'src/models/spec/planning/feature/feature';
@@ -19,6 +19,7 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
   localUi = LocalUI;
   editMode = EditMode;
 
+  private _mode = EditMode.view;
   private _feature: Feature;
   private subscriptions: {
     feature?: Subscription,
@@ -26,7 +27,14 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
   } = {};
 
   @Input()
-  mode = EditMode.view;
+  set mode(mode: EditMode) {
+    this._mode = mode;
+    this.cd.detectChanges();
+  }
+
+  get mode() {
+    return this._mode;
+  }
 
   form = this.fb.group({
     title: [null]
@@ -59,12 +67,11 @@ export class FeatureComponent implements AfterViewInit, OnDestroy {
   constructor(public manager: SpecManager,
               private cd: ChangeDetectorRef,
               private fb: FormBuilder) {
+    this.cd.detach();
   }
 
   ngAfterViewInit() {
-    if (!!this.nameRef) {
-      this.nameRef.nativeElement.focus();
-    }
+    this.nameRef?.nativeElement.focus();
   }
 
   ngOnDestroy() {

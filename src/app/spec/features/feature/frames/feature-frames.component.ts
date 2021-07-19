@@ -12,8 +12,9 @@ import { UploadFigmaAssetRequest } from '../../../../../models/figma-asset';
 import { Project } from '../../../../../models/project';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { catchGQLErrors } from '../../../../../utils/gql-errors';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 import { UploadFigmaAssetGQL } from './frames.graphql';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-feature-frames',
@@ -28,6 +29,7 @@ export class FeatureFramesComponent implements OnInit {
   env = environment;
   consts = {language: CURRENT_LANGUAGE};
   i18n = {addFrame: $localize`:@@label.add_frame:Add frame`};
+  analyticsType = AnalyticsType;
 
   private _feature: Feature;
 
@@ -60,6 +62,7 @@ export class FeatureFramesComponent implements OnInit {
   add(frame: Frame) {
     this.reference.popover?.hide();
 
+    frame.linking(this.feature);
     this.feature.addFrame(frame);
     this.manager.put(this.feature);
 

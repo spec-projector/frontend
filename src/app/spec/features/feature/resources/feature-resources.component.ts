@@ -7,7 +7,8 @@ import { Language } from 'src/enums/language';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
 import { Resource } from '../../../../../models/spec/planning/feature/resource';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-feature-resources',
@@ -20,6 +21,7 @@ export class FeatureResourcesComponent implements OnInit {
   ui = UI;
   language = Language;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   private _feature: Feature;
   private subscriptions: { form: Subscription } = {form: null};

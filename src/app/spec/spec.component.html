@@ -2,7 +2,7 @@
 
   <ng-template #asideFooterTemplate let-collapsed="collapsed">
     <jnt-stack data-tools [align]="ui.align.stretch">
-      <jnt-stack *ngIf="me.id === project.owner.id"
+      <jnt-stack *ngIf="me?.id === project.owner.id"
                  [align]="ui.align.center">
         <jnt-button *ngIf="collapsed;else defaultShareTemplate"
                     [scheme]="ui.scheme.secondary"
@@ -68,8 +68,8 @@
                    [icon]="localUi.icons.features"
                    [link]="['actors']"
                    [matching]="ui.matching.wildcard">
-      <jnt-badge *ngIf="spec.actors.length > 0"
-                 [value]="spec.actors.length"
+      <jnt-badge *ngIf="spec.features.length > 0"
+                 [value]="spec.features.length"
                  [color]="ui.color.paleNavy"></jnt-badge>
     </jnt-menu-item>
 

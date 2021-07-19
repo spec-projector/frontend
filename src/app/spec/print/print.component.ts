@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { Language } from 'src/enums/language';
-import { SpecManager } from 'src/app/spec/managers';
 import { Spec } from 'src/models/spec/spec';
+import { CURRENT_LANGUAGE } from '../../../consts';
 import { LocalUI } from '../../../enums/local-ui';
-import { Actor } from '../../../models/spec/planning/actor';
+import { StoryEntryType } from '../../../models/spec/planning/feature/story';
 import { trackElement } from '../../../utils/templates';
 
 @Component({
@@ -19,10 +20,11 @@ export class PrintComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  storyEntryType = StoryEntryType;
+  consts = {language: CURRENT_LANGUAGE};
   trackElement = trackElement;
 
   spec: Spec;
-  version = 0;
 
   constructor(public manager: SpecManager,
               private route: ActivatedRoute,

@@ -1,5 +1,5 @@
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
-import { Depends } from '../../../../types/depends';
+import { Patch } from '../../../../types/patch';
 import { ModelType } from '../../../enums';
 import * as assign from 'assign-deep';
 import { Spec } from '../../spec';
@@ -35,7 +35,7 @@ export class Frame extends Persistence {
     this.feature = feature;
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: []};
 
     this.feature.removeFrame(this);

@@ -51,7 +51,8 @@
                     text="Add first actor"
                     i18n-text="@@action.add_first_actor"
                     [icon]="ui.icons.add"
-                    (click)="addActor()"></jnt-button>
+                    (click)="addActor()"
+                    [analytics]="{ type: analyticsType.goal, goal: 'addActor' }"></jnt-button>
       </jnt-stack>
     </jnt-message>
 
@@ -98,7 +99,8 @@
                   [icon]="localUi.icons.add"
                   [size]="ui.size.large"
                   [outline]="ui.outline.transparent"
-                  (click)="addActor()"></jnt-button>
+                  (click)="addActor()"
+                  [analytics]="{ type: analyticsType.goal, goal: 'addActor' }"></jnt-button>
     </jnt-card>
   </jnt-stack>
 </jnt-stack>

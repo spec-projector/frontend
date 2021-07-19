@@ -21,13 +21,14 @@
        src="assets/images/lp/hand-up.png" alt="hand-up">
 
   <jnt-block #blockRef
+             [width]="ui.width.fluid"
              [padding]="ui.gutter.large"
              [spacing]="ui.gutter.large"
              [features]="[ui.feature.adapted]">
     <ng-template #blockHeaderTemplate>
       <jnt-stack [align]="ui.justify.center">
         <a data-logo routerLink="/">
-          <img src="assets/images/logo.svg" height="50">
+          <img src="assets/images/logo.svg?v2" height="50">
         </a>
         <h1 i18n="@@label.login">Login</h1>
       </jnt-stack>

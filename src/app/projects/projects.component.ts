@@ -1,15 +1,20 @@
-import {Component, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {deserialize} from 'serialize-ts';
-import {ModalService, PopoverInstance, UI} from '@junte/ui';
-import {R} from 'apollo-angular/types';
-import {delay, finalize, map, tap} from 'rxjs/operators';
-import {AllProjectsGQL, DeleteProjectGQL} from './graphql';
-import {PagingProjects, Project, ProjectsFilter} from 'src/models/project';
-import {UI_DELAY} from '../../consts';
-import {LocalUI} from '../../enums/local-ui';
-import {EditProjectComponent} from './edit-project/edit-project.component';
-import {MeUser} from '../../models/user';
+import { Component, ComponentFactoryResolver, Injector, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { deserialize } from 'serialize-ts';
+import { ModalService, PopoverInstance, UI } from '@junte/ui';
+import { R } from 'apollo-angular/types';
+import { delay, finalize, map, tap } from 'rxjs/operators';
+import { Skills } from '../../enums/skills';
+import { AllProjectsGQL, DeleteProjectGQL } from './graphql';
+import { PagingProjects, Project, ProjectsFilter } from 'src/models/project';
+import { UI_DELAY } from '../../consts';
+import { LocalUI } from '../../enums/local-ui';
+import { EditProjectComponent } from './edit-project/edit-project.component';
+import { MeUser } from '../../models/user';
+import { AnalyticsType } from 'src/enums/analyticsType';
+
+export const I18N_ADD_PROJECT = $localize`:@@label.add_project:Add project`;
+export const I18N_EDIT_PROJECT = $localize`:@@label.edit_project:Edit project`;
 
 @Component({
   selector: 'spec-projects',
@@ -20,6 +25,8 @@ export class ProjectsComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  skills = Skills;
+  analyticsType = AnalyticsType;
 
   private filter: ProjectsFilter;
 
@@ -56,28 +63,39 @@ export class ProjectsComponent implements OnInit {
     return project.id;
   }
 
-  add() {
+  add(skill: Skills = Skills.all) {
     const factory = this.cfr.resolveComponentFactory(EditProjectComponent);
     const component = factory.create(this.injector);
-    component.instance.saved.subscribe(p => this.goto(p));
-    this.modal.open(component, {title: {icon: LocalUI.icons.project, text: 'Add project'}});
+    component.instance.skill = skill;
+    component.instance.saved.subscribe(({project, demo: d}) => this.goto(project, d));
+    this.modal.open(component, {
+      title: {
+        icon: LocalUI.icons.project,
+        text: I18N_ADD_PROJECT
+      }
+    });
   }
 
   edit(project: Project, index: number) {
     const factory = this.cfr.resolveComponentFactory(EditProjectComponent);
     const component = factory.create(this.injector);
     component.instance.project = project;
-    component.instance.saved.subscribe(p => {
+    component.instance.saved.subscribe(({project: p}) => {
       this.modal.close();
       this.projects[index] = p;
     });
-    this.modal.open(component, {title: {icon: LocalUI.icons.project, text: 'Edit project'}});
+    this.modal.open(component, {
+      title: {
+        icon: LocalUI.icons.project,
+        text: I18N_EDIT_PROJECT
+      }
+    });
   }
 
-  goto(project: Project) {
+  goto(project: Project, demo: boolean = false) {
     this.modal.close();
     this.load();
-    this.router.navigate([project.id], {relativeTo: this.route});
+    this.router.navigate([project.id, !!demo ? {demo: 'y'} : {}], {relativeTo: this.route});
   }
 
   delete(id: string, hide: Function) {

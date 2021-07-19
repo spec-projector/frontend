@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { deserialize } from 'serialize-ts';
 import { ProjectGQL } from 'src/app/spec/graphql';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { Project } from 'src/models/project';
 import { Spec } from 'src/models/spec/spec';
 import { Entity } from '../../models/spec/orm/entity';
@@ -24,14 +24,14 @@ export class SpecResolver implements Resolve<Spec> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<Spec> {
-    const {project} = route.params;
+    const {project, demo} = route.params;
     return new Observable(o => {
       this.projectGQL.fetch({id: project})
         .pipe(map(({data: {project: p}}) => deserialize(p, Project)))
         .subscribe(p => {
           console.log(p.dbName);
           console.log('spec resolver');
-          this.manager.get(p.dbName)
+          this.manager.get(p.dbName, demo)
             .pipe(finalize(() => o.complete()))
             .subscribe(s => o.next(s), err => {
               if (err instanceof SchemeInvalidError) {
@@ -79,7 +79,7 @@ export class FeatureResolver implements Resolve<Feature> {
     const {actor} = route.parent.data as { actor: Actor };
     const {feature} = route.params as { feature: string };
 
-    return actor.features.find(f => f.id === feature);
+    return actor?.features.find(f => f.id === feature);
   }
 }
 

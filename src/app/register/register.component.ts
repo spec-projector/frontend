@@ -52,11 +52,13 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   @ViewChild('blockRef', {read: ElementRef})
   backdrop: ElementRef<HTMLElement>;
 
+  agreementControl = this.fb.control(false, [Validators.required]);
   form = this.fb.group({
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
     email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required]]
+    password: [null, [Validators.required]],
+    agreement: this.agreementControl
   });
 
   constructor(private registerGQL: RegisterGQL,

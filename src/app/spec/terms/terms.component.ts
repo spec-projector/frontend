@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {ActivatedRoute} from '@angular/router';
 import {ModalService, UI} from '@junte/ui';
 import {merge, Subscription} from 'rxjs';
-import {SpecManager} from 'src/app/spec/managers';
+import {SpecManager} from 'src/app/spec/managers/spec';
 import {EditMode} from 'src/enums/edit-mode';
 import {Language} from 'src/enums/language';
 import {Spec} from 'src/models/spec/spec';

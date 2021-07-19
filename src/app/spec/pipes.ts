@@ -3,7 +3,7 @@ import { Spec } from 'src/models/spec/spec';
 
 @Pipe({name: 'specPrice'})
 export class SpecPricePipe implements PipeTransform {
-    transform(spec: Spec, version: number): number {
+    transform(spec: Spec, version: number = 0): number {
         return spec.actors.reduce((t1, actor) => {
             return t1 + actor.features.reduce((t2, feature) => {
                 return t2 + feature.resources.reduce((t3, r) => {

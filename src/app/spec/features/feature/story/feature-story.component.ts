@@ -2,7 +2,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { Feature } from 'src/models/spec/planning/feature/feature';
@@ -10,6 +10,7 @@ import { AccentToken, TextToken } from 'src/models/spec/planning/token';
 import { CURRENT_LANGUAGE } from '../../../../../consts';
 import { StoryEntry, StoryEntryType } from '../../../../../models/spec/planning/feature/story';
 import { FeatureStoryEntryComponent } from './entry/story-entry.component';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-feature-story',
@@ -23,6 +24,7 @@ export class FeatureStoryComponent implements OnInit {
   language = Language;
   storyEntryType = StoryEntryType;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   feature: Feature;
 

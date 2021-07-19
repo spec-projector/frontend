@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^9.0.0-rc.11",
     "@angular/platform-browser-dynamic": "^9.0.0-rc.11",
     "@angular/router": "^9.0.0-rc.11",
-    "@junte/ui": "https://gitlab.com/api/v4/projects/9560752/packages/npm/@junte/ui/-/@junte/ui-1.0.476.tgz",
+    "@junte/ui": "https://gitlab.com/api/v4/projects/9560752/packages/npm/@junte/ui/-/@junte/ui-1.0.488.tgz",
     "@openfonts/montserrat_cyrillic": "1.44.1",
     "@openfonts/open-sans_cyrillic": "1.44.1",
     "apollo-angular": "^1.7.0",
@@ -60,7 +60,8 @@
     "transform-pouch": "^1.1.4",
     "tslib": "1.10.0",
     "uuid": "^3.3.2",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "ng-yandex-metrika": "^4.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.0-rc.9",

@@ -118,27 +118,26 @@
           <jnt-stack [orientation]="ui.orientation.horizontal"
                      [align]="ui.align.end">
             <jnt-switch formControlName="isPublic"></jnt-switch>
+            <jnt-stack>
+              <jnt-form-control name="publicRole">
+                <jnt-form-label i18n="@@label.public_role">Public role</jnt-form-label>
+                <jnt-switcher formControlName="publicRole">
+                  <jnt-switcher-option label="Viewer"
+                                       i18n-label="@@label.role_viewer"
+                                       [value]="projectMemberRole.viewer"></jnt-switcher-option>
+                  <jnt-switcher-option label="Editor"
+                                       i18n-label="@@label.role_editor"
+                                       [value]="projectMemberRole.editor"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-control>
+            </jnt-stack>
             <jnt-stack data-public-link [gutter]="ui.gutter.tiny"
                        [align]="ui.align.stretch">
               <small i18n="@@label.access_by_link">Provide access by link</small>
               <jnt-input formControlName="publicLink"
                          [readonly]="true"
-                         [size]="ui.size.small"
                          [features]="[ui.feature.copy]"></jnt-input>
             </jnt-stack>
-          </jnt-stack>
-          <jnt-stack>
-            <jnt-form-control name="publicRole">
-              <jnt-form-label i18n="@@label.public_role">Public role</jnt-form-label>
-              <jnt-switcher formControlName="publicRole">
-                <jnt-switcher-option label="Viewer"
-                                     i18n-label="@@label.role_viewer"
-                                     [value]="projectMemberRole.viewer"></jnt-switcher-option>
-                <jnt-switcher-option label="Editor"
-                                     i18n-label="@@label.role_editor"
-                                     [value]="projectMemberRole.editor"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
           </jnt-stack>
           <jnt-form-item>
             <jnt-form-control name="publicPermissions">

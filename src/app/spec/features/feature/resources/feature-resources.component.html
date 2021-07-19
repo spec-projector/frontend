@@ -39,7 +39,8 @@
       <jnt-button text="Fill resources"
                   i18n-text="@@action.fill_resources"
                   [icon]="ui.icons.add"
-                  (click)="fill()"></jnt-button>
+                  (click)="fill()"
+                  [analytics]="{ type: analyticsType.goal, goal: 'featureFillResource' }"></jnt-button>
     </jnt-stack>
   </jnt-stack>
 </ng-template>

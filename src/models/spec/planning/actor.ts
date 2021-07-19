@@ -1,6 +1,6 @@
 import * as assign from 'assign-deep';
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Spec } from '../spec';
 import { Feature } from './feature/feature';
@@ -41,7 +41,7 @@ export class Actor extends Persistence {
     }
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this]};
 
     Array.from(this.features).reduce((r, f) => r.concat(f.delete()), [])

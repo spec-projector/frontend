@@ -1,5 +1,6 @@
 <header (mouseenter)="manager.mode ==  editMode.edit ? mode = editMode.edit : null"
         (mouseleave)="mode = editMode.view">
+  <jnt-icon [icon]="localUi.icons.actor"></jnt-icon>
   <ng-container [formGroup]="form" *ngIf="mode == editMode.edit; else viewHeader">
     <input #nameRef data-name formControlName="name">
   </ng-container>
@@ -50,7 +51,8 @@
             <jnt-button [icon]="localUi.icons.features"
                         [size]="ui.size.tiny"
                         [outline]="ui.outline.ghost"
-                        (click)="router.navigate([actor.id, 'features', feature.id], {relativeTo: route})">
+                        (click)="router.navigate([actor.id, 'features', feature.id], {relativeTo: route})"
+                        [analytics]="{ type: analyticsType.goal, goal: 'featureEdit' }">
             </jnt-button>
             <spec-feature data-feature [feature]="feature"
                           [mode]="added === feature.id ? editMode.edit : editMode.view"></spec-feature>
@@ -83,7 +85,8 @@
                 i18n-text="@@action.add_feature"
                 [icon]="ui.icons.add"
                 [size]="ui.size.small"
-                (click)="addFeature()">
+                (click)="addFeature()"
+                [analytics]="{ type: analyticsType.goal, goal: 'addFeature' }">
     </jnt-button>
   </jnt-stack>
 </jnt-stack>
@@ -93,6 +96,7 @@
               i18n-text="@@action.add_feature"
               [icon]="ui.icons.add"
               [size]="ui.size.small"
-              (click)="addFeature()">
+              (click)="addFeature()"
+              [analytics]="{ type: analyticsType.goal, goal: 'addFeature' }">
   </jnt-button>
 </ng-template>

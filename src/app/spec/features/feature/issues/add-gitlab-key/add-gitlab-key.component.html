@@ -1,0 +1,71 @@
+<ng-template #tokenTemplate>
+  <jnt-form [formGroup]="form"
+            [state]="progress.saving ? ui.state.loading : null"
+            (submitted)="save()">
+    <jnt-row [align]="ui.align.end">
+      <jnt-col [tablet]="8">
+        <jnt-form-item formGroupName="gitlabIntegration">
+          <jnt-form-label i18n="@@label.gitlab_key">GitLab key</jnt-form-label>
+          <jnt-form-control name="token">
+            <jnt-input formControlName="token"
+                       placeholder="xxxxxxxxxxxxxxxxxxxx"></jnt-input>
+            <jnt-form-message [validator]="ui.validator.required"
+                              i18n="@@message.field_is_required">Field is required
+            </jnt-form-message>
+          </jnt-form-control>
+        </jnt-form-item>
+      </jnt-col>
+      <jnt-col [tablet]="4">
+        <jnt-button [type]="ui.button.type.submit"
+                    text="Save"
+                    i18n-text="@@action.save"
+                    [width]="ui.width.fluid"
+                    [icon]="ui.icons.save"
+                    [analytics]="{ type: analyticsType.goal, goal: 'featureGitlabTokenSave' }"></jnt-button>
+      </jnt-col>
+    </jnt-row>
+  </jnt-form>
+</ng-template>
+
+<jnt-message [scheme]="ui.scheme.secondary">
+  <ng-container [ngSwitch]="consts.language">
+    <ng-container *ngSwitchDefault>
+      <p>For <b>Figma</b> integration, please, follow with steps:</p>
+      <jnt-timeline>
+        <jnt-timeline-item title="Get Figma API token">
+          <ng-template #timelineItemContentTemplate>
+            <p>Go to your profile <b>Preferences &rarr; Access Tokens</b></p>
+            <img data-gitlab1 width="300" height="330" src="assets/images/gitlab/preferences.png">
+            <img data-gitlab2 width="225" height="470" src="assets/images/gitlab/tokens.png">
+            <p>Make a new token with name <b>sp</b> and copy to clipboard</p>
+            <img data-gitlab3 width="570" height="355" src="assets/images/gitlab/add_token.png">
+          </ng-template>
+        </jnt-timeline-item>
+        <jnt-timeline-item title="Insert token on the form">
+          <ng-template #timelineItemContentTemplate>
+            <ng-container *ngTemplateOutlet="tokenTemplate"></ng-container>
+          </ng-template>
+        </jnt-timeline-item>
+      </jnt-timeline>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <p>Для настройки интеграции с <b>GitLab</b> пожалуйста, выполните следующие шаги:</p>
+      <jnt-timeline>
+        <jnt-timeline-item title="Получите GitLab API ключ">
+          <ng-template #timelineItemContentTemplate>
+            <p>Зайдите в настройки Вашего профиля <b>Предпочтения &rarr; Ключи Доступа</b></p>
+            <img data-gitlab1 width="300" height="330" src="assets/images/gitlab/preferences.png">
+            <img data-gitlab2 width="225" height="470" src="assets/images/gitlab/tokens.png">
+            <p>Создайте новый ключ с именем <b>sp</b> и скопируйте его в буфер обмена</p>
+            <img data-gitlab3 width="570" height="355" src="assets/images/gitlab/add_token.png">
+          </ng-template>
+        </jnt-timeline-item>
+        <jnt-timeline-item title="Вставьте ключ в поле ниже">
+          <ng-template #timelineItemContentTemplate>
+            <ng-container *ngTemplateOutlet="tokenTemplate"></ng-container>
+          </ng-template>
+        </jnt-timeline-item>
+      </jnt-timeline>
+    </ng-container>
+  </ng-container>
+</jnt-message>

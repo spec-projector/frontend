@@ -2,7 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { LocalUI } from 'src/enums/local-ui';
 import { Enum } from '../../../../../../models/spec/orm/enum';

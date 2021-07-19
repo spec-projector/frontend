@@ -1,6 +1,6 @@
 import { ArraySerializer, ModelSerializer } from 'serialize-ts';
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Spec } from '../spec';
 import { Feature } from './feature/feature';
@@ -41,7 +41,7 @@ export class Sprint extends Persistence {
     }
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this]};
 
     this.features.forEach(f => f.sprint = null);

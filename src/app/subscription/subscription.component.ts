@@ -1,6 +1,7 @@
 import { Component, Inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UI } from '@junte/ui';
+import { addMonths } from 'date-fns';
 import { Subject } from 'rxjs';
 import { filter, finalize, map, takeUntil } from 'rxjs/operators';
 import { deserialize, serialize } from 'serialize-ts';
@@ -118,15 +119,13 @@ export class SubscriptionComponent implements OnInit, OnDestroy {
       cloudPayments: {
         recurrent: {
           Amount: tariff.price,
-          StartDate: new Date(),
+          StartDate: addMonths(new Date(), 1),
           interval: CLOUD_PAYMENT_RECURRENT_INTERVAL,
           period: CLOUD_PAYMENT_RECURRENT_PERIOD,
           customerReceipt: receipt
         }
       }
     };
-
-    console.log(data);
 
     // https://developers.cloudpayments.ru/#rekurrentnye-platezhi-podpiska
     widget.charge({

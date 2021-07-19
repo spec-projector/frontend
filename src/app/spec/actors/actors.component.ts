@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { Language } from 'src/enums/language';
 import { Actor } from 'src/models/spec/planning/actor';
@@ -12,6 +12,7 @@ import { Spec } from 'src/models/spec/spec';
 import { CURRENT_LANGUAGE } from '../../../consts';
 import { LocalUI } from '../../../enums/local-ui';
 import { trackElement } from '../../../utils/templates';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-actors',
@@ -27,6 +28,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
   editMode = EditMode;
   trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
   private destroyed$ = new Subject();
   private _spec: Spec;

@@ -4,6 +4,7 @@ import { UI } from '@junte/ui';
 import { NGXLogger } from 'ngx-logger';
 import { LocalUI } from '../../../../../../enums/local-ui';
 import { WorkflowStepState } from '../../../../../../models/spec/planning/feature/workflow';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-workflow-step',
@@ -24,6 +25,7 @@ export class WorkflowStepComponent {
   ui = UI;
   localUi = LocalUI;
   workflowStepState = WorkflowStepState;
+  analyticsType = AnalyticsType;
 
   @HostBinding('attr.data-disabled')
   disabled = false;

@@ -11,8 +11,9 @@ import { IssueState, IssueSystem } from '../../../../../enums/issue';
 import { IssueDataRequest } from '../../../../../models/issue-data';
 import { Project } from '../../../../../models/project';
 import { Feature } from '../../../../../models/spec/planning/feature/feature';
-import { SpecManager } from '../../../managers';
+import { SpecManager } from '../../../managers/spec';
 import { IssueGQL } from './issues.graphql';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-issues',
@@ -25,6 +26,8 @@ export class FeatureIssuesComponent implements OnInit {
   ui = UI;
   issueState = IssueState;
   language = Language;
+  i18n = {attachIssue: $localize`:@@label.attach_issue:Attach issue`};
+  analyticsType = AnalyticsType;
 
   feature: Feature;
 
@@ -45,6 +48,7 @@ export class FeatureIssuesComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(({project, feature}) =>
       [this.project, this.feature] = [project, feature]);
+    console.log(this.feature);
   }
 
   add(issue: Issue) {

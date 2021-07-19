@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from '@junte/ui';
-import { generate as shortid } from 'shortid';
 import { Frame } from 'src/models/spec/planning/feature/frame';
-import { SpecManager } from '../../../../managers';
+import { CURRENT_LANGUAGE } from '../../../../../../consts';
+import { Language } from '../../../../../../enums/language';
+import { SpecManager } from '../../../../managers/spec';
 
 @Component({
   selector: 'spec-feature-add-frame',
@@ -13,6 +14,8 @@ import { SpecManager } from '../../../../managers';
 export class FeatureAddFrameComponent {
 
   ui = UI;
+  language = Language;
+  consts = {language: CURRENT_LANGUAGE};
 
   form = this.fb.group({
     url: [null, [Validators.required]]

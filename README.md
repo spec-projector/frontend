@@ -1,6 +1,10 @@
-// 159982-b5f73db8-38e2-480e-849e-01564ec5fdcb
+Firma 
+187745-9af4e3c0-f140-43ea-8e92-45ccc8344ee2
+
 // 7d8z_hUSL_9tCh5217Vc
 
+GitLab
+3xHME3rNYb6UvHcfz3xh
 ```
 npm i
 npm start

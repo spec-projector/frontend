@@ -13,7 +13,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService, UI } from '@junte/ui';
 import { Subscription } from 'rxjs';
-import { SpecManager } from 'src/app/spec/managers';
+import { SpecManager } from 'src/app/spec/managers/spec';
 import { EditMode } from 'src/enums/edit-mode';
 import { Actor } from 'src/models/spec/planning/actor';
 import { Feature } from 'src/models/spec/planning/feature/feature';
@@ -22,6 +22,7 @@ import { trackElement } from 'src/utils/templates';
 import { CURRENT_LANGUAGE } from '../../../../consts';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from '../../../../enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'spec-actor',
@@ -37,7 +38,9 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   language = Language;
   trackElement = trackElement;
   consts = {language: CURRENT_LANGUAGE};
+  analyticsType = AnalyticsType;
 
+  private _mode = EditMode.view;
   private _actor: Actor;
   private subscriptions: {
     actor?: Subscription,
@@ -48,7 +51,14 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
   added: string;
 
   @Input()
-  mode = EditMode.view;
+  set mode(mode: EditMode) {
+    this._mode = mode;
+    this.cd.detectChanges();
+  }
+
+  get mode() {
+    return this._mode;
+  }
 
   nameControl = this.fb.control(null);
   form = this.fb.group({
@@ -87,13 +97,11 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
               private cd: ChangeDetectorRef,
               public route: ActivatedRoute,
               public router: Router) {
-
+    this.cd.detach();
   }
 
   ngAfterViewInit() {
-    if (!!this.nameRef) {
-      this.nameRef.nativeElement.focus();
-    }
+    this.nameRef?.nativeElement.focus();
   }
 
   ngOnDestroy() {
@@ -121,6 +129,7 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
 
     this.added = feature.id;
     this.version++;
+
     this.cd.detectChanges();
   }
 
@@ -144,9 +153,10 @@ export class ActorComponent implements AfterViewInit, OnDestroy {
     links.deleted.forEach(o => this.manager.remove(o));
     links.changed.forEach(o => this.manager.put(o));
 
+    this.modal.close();
+
     this.version++;
     this.cd.detectChanges();
-    this.modal.close();
   }
 
 }

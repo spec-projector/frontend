@@ -8,7 +8,7 @@ import { Language } from '../../../../enums/language';
 import { LocalUI } from '../../../../enums/local-ui';
 import { ResourceType, Spec } from '../../../../models/spec/spec';
 import { MeUser } from '../../../../models/user';
-import { SpecManager } from '../../managers';
+import { SpecManager } from '../../managers/spec';
 
 @Component({
   selector: 'spec-resource-types',

@@ -1,5 +1,5 @@
 import { animate, animateChild, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreakpointService, DeviceService, UI } from '@junte/ui';
 import 'reflect-metadata';
@@ -19,6 +19,7 @@ const COOKIE_AGREEMENT_KEY = 'cookie_agreement';
   selector: 'spec-lp',
   templateUrl: './lp.component.html',
   styleUrls: ['./lp.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('move', [
       transition('* => void', moveKeyframes, {params: {distance: '0,0,0', duration: '.5s'}})

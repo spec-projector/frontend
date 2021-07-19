@@ -1,5 +1,5 @@
 import { persist, persistence, Persistence } from 'src/decorators/persistence';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Module } from '../planning/module';
 import { Spec } from '../spec';
@@ -60,7 +60,7 @@ export class Enum extends Persistence {
     this.sort = ++sort;
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this]};
 
     Array.from(this.options).reduce((r, f) => r.concat(f.delete()), [])

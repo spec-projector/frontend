@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SpecManager } from '../../managers';
+import { SpecManager } from '../../managers/spec';
 
 @Component({
   selector: 'spec-maintenance',

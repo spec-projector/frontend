@@ -1,5 +1,5 @@
 import { persist, Persistence, persistence } from 'src/decorators/persistence';
-import { Depends } from '../../../types/depends';
+import { Patch } from '../../../types/patch';
 import { ModelType } from '../../enums';
 import { Spec } from '../spec';
 import { Entity } from './entity';
@@ -76,7 +76,7 @@ export class EntityField extends Persistence {
     }
   }
 
-  delete(): Depends {
+  delete(): Patch {
     const links = {changed: [], deleted: [this]};
 
     this.entity.removeField(this);

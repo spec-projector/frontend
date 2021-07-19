@@ -1,15 +1,15 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {UI} from '@junte/ui';
-import {delay, finalize, map} from 'rxjs/operators';
-import {deserialize, serialize} from 'serialize-ts';
-import {UI_DELAY} from '../../../consts';
-import {ALL_PROJECT_PERMISSIONS, ProjectMemberRole, ProjectPermission} from '../../../enums/project';
-import {Project, ProjectMember, ProjectUpdate} from '../../../models/project';
-import {User} from '../../../models/user';
-import {BackendError} from '../../../types/gql-errors';
-import {catchGQLErrors} from '../../../utils/gql-errors';
-import {UpdateProjectGQL} from '../graphql';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from '@junte/ui';
+import { delay, finalize, map } from 'rxjs/operators';
+import { deserialize, serialize } from 'serialize-ts';
+import { BASE_URI, CURRENT_LANGUAGE, UI_DELAY } from '../../../consts';
+import { ALL_PROJECT_PERMISSIONS, ProjectMemberRole, ProjectPermission } from '../../../enums/project';
+import { Project, ProjectMember, ProjectUpdate } from '../../../models/project';
+import { User } from '../../../models/user';
+import { BackendError } from '../../../types/gql-errors';
+import { catchGQLErrors } from '../../../utils/gql-errors';
+import { UpdateProjectGQL } from '../graphql';
 
 @Component({
   selector: 'spec-share-project',
@@ -46,7 +46,7 @@ export class ShareProjectComponent {
       isPublic: project.isPublic,
       publicRole: project.publicRole,
       publicPermissions: project.publicPermissions,
-      publicLink: ['https://app.specprojector.com/projects', project.id].join('/')
+      publicLink: [BASE_URI, CURRENT_LANGUAGE, 'projects', project.id].join('/')
     });
     project.members.forEach(m => {
       const g = this.createMemberGroup(m.user.id, m.role, m.permissions);

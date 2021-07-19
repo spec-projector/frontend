@@ -1,25 +1,22 @@
-<jnt-row [formGroup]="form">
+<jnt-row [formGroup]="form" (mouseenter)="manager.mode === editMode.edit ? mode = editMode.edit : null"
+         (mouseleave)="mode = editMode.view">
   <jnt-col [tablet]="4">
-    <div data-name (mouseenter)="manager.mode === editMode.edit ? mode.title = editMode.edit : null"
-         (mouseleave)="mode.title = editMode.view">
+    <div data-name>
       <ng-template #viewNameTemplate>
         <span>{{term.title}}</span>
       </ng-template>
-      <ng-container *ngIf="mode.title == editMode.edit; else viewNameTemplate">
+      <ng-container *ngIf="mode == editMode.edit; else viewNameTemplate">
         <input #titleRef formControlName="title">
       </ng-container>
     </div>
   </jnt-col>
   <jnt-col [tablet]="8">
-    <div (mouseenter)="manager.mode === editMode.edit ? mode.description = editMode.edit : null"
-         (mouseleave)="mode.description = editMode.view">
-      <ng-template #viewDescriptionTemplate>
-        <spec-tokens [spec]="term.spec"
-                     [tokens]="term.description"></spec-tokens>
-      </ng-template>
-      <ng-container *ngIf="mode.description === editMode.edit; else viewDescriptionTemplate">
-        <textarea fitHeight formControlName="description" rows="1"></textarea>
-      </ng-container>
-    </div>
+    <ng-template #viewDescriptionTemplate>
+      <spec-tokens [spec]="term.spec"
+                   [tokens]="term.description"></spec-tokens>
+    </ng-template>
+    <ng-container *ngIf="mode === editMode.edit; else viewDescriptionTemplate">
+      <textarea fitHeight formControlName="description" rows="1"></textarea>
+    </ng-container>
   </jnt-col>
 </jnt-row>

@@ -1,14 +1,14 @@
 <jnt-popover></jnt-popover>
-<spec-viewport>
-  <spec-viewport-rule [from]="425" [to]="1200" [width]="1200"></spec-viewport-rule>
-  <spec-viewport-rule [from]="300" [to]="425" [width]="425"></spec-viewport-rule>
-</spec-viewport>
+<jnt-viewport>
+  <jnt-viewport-rule [from]="425" [to]="1200" [width]="1200"></jnt-viewport-rule>
+  <jnt-viewport-rule [from]="300" [to]="425" [width]="425"></jnt-viewport-rule>
+</jnt-viewport>
 
 <jnt-lp-layout>
-  <jnt-lp-header #header>
+  <jnt-lp-header #lpHeader>
     <ng-template #headerLogoTemplate>
       <a data-logo routerLink="/">
-        <img src="assets/images/lp/logo.svg" height="49" width="108">
+        <img src="assets/images/lp/logo.svg?v2" width="160" height="40">
       </a>
     </ng-template>
     <jnt-menu>
@@ -57,7 +57,7 @@
     </ng-template>
   </jnt-lp-header>
 
-  <jnt-lp-slide data-welcome [header]="header">
+  <jnt-lp-slide data-welcome [header]="lpHeader">
     <jnt-container>
       <img data-specifications
            src="assets/images/lp/app.png" width="981" height="764">
@@ -79,7 +79,7 @@
               Where teams make <br> specifications
             </ng-container>
             <ng-container *ngSwitchCase="language.ru">
-              Где команды делают <br> спецификации
+              Где команды создают <br> спецификации
             </ng-container>
           </ng-container>
         </h1>
@@ -89,12 +89,12 @@
               Where <br> teams make <br> specifications
             </ng-container>
             <ng-container *ngSwitchCase="language.ru">
-              Где <br> команды делают <br> спецификации
+              Где <br> команды создают <br> спецификации
             </ng-container>
           </ng-container>
         </h1>
-        <h3 data-teaser i18n="@@message.lp_teaser">We help teams write better <br> documentation for IT-products, <br>
-          start SpecProjector and get a functional <br> data model faster than ever
+        <h3 data-teaser i18n="@@message.lp_teaser">
+          We help teams write better <br> documentation for IT-products
         </h3>
         <jnt-row>
           <jnt-col [tablet]="3" [mobile]="12">
@@ -135,24 +135,25 @@
   </jnt-lp-slide>
 
   <jnt-lp-slide [height]="ui.height.default">
-    <jnt-container data-tariffs>
-      <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
-      <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
-      <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
-      <img data-coin
-           src="assets/images/lp/coin.png" width="197" height="225">
-      <img data-torus-half
-           src="assets/images/lp/torus-half.png" width="128" height="148">
-    </jnt-container>
-  </jnt-lp-slide>
-
-  <jnt-lp-slide [height]="ui.height.default">
     <jnt-container data-reviews>
       <h1 id="reviews" i18n="@@label.reviews">Clients say</h1>
       <h2 data-teaser i18n="@@label.reviews_teaser">We will try for you be here</h2>
       <spec-lp-reviews></spec-lp-reviews>
       <img data-torus-small
            src="assets/images/lp/torus-small.png" width="100" height="100">
+      <img data-torus-half
+           src="assets/images/lp/torus-half.png" width="128" height="148">
+    </jnt-container>
+  </jnt-lp-slide>
+
+  <jnt-lp-slide [height]="ui.height.default">
+    <jnt-container data-tariffs>
+      <h1 id="tariffs" i18n="@@label.pricing_plans">Pricing plans</h1>
+      <h2 data-teaser i18n="@@label.pricing_plans_teaser">Please, choose optimal plan for you</h2>
+      <spec-lp-tariffs [me]="me" (selected)="buy($event)"></spec-lp-tariffs>
+
+      <img data-coin
+           src="assets/images/lp/coin.png" width="197" height="225">
       <img data-torus-half
            src="assets/images/lp/torus-half.png" width="128" height="148">
     </jnt-container>
